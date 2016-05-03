@@ -40,7 +40,7 @@
         net.sf.husky.sms;
         net.sf.husky.eai.core;
         net.sf.husky.eai.publish;
-        com.kysoft.kteam.**.service">
+        com.kysoft.cpsi.**.service">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="regex" expression="net.sf.husky.attachment.*"/>
     </context:component-scan>
@@ -76,15 +76,10 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
           c:sqlSessionFactory-ref="sqlSessionFactory" c:executorType="BATCH"/>
 
-    <!--
-                net.sf.husky.security.mapper;
-                com.kysoft.ntims.sys.auth.mapper;
-                com.kysoft.common.*.mapper
-     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
           p:basePackage="
 			net.sf.husky.**.mapper;
-			com.kysoft.kteam.**.mapper;
+			com.kysoft.cpsi.**.mapper;
 			"/>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -118,7 +113,7 @@
     <aop:config expose-proxy="true" proxy-target-class="true">
         <!-- 只对业务逻辑层实施事务 -->
         <aop:pointcut id="txPointcut"
-                      expression="execution(* com.kysoft.kteam..service..*+.*(..)) or execution(* com.sishuok.es..task..*+.*(..))"/>
+                      expression="execution(* com.kysoft.cpsi..service..*+.*(..)) or execution(* com.sishuok.es..task..*+.*(..))"/>
         <aop:advisor id="txAdvisor" advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>
 

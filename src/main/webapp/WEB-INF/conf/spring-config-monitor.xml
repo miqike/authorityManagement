@@ -9,7 +9,7 @@
 
     <aop:config>
         <aop:advisor id="druidAdvisor" advice-ref="druidStatInterceptor"
-                     pointcut="execution(* com.kysoft.kteam..service.*+.*(..))" />
+                     pointcut="execution(* com.kysoft.cpsi..service.*+.*(..))" />
     </aop:config>
 
 </beans>

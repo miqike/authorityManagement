@@ -13,7 +13,7 @@
 		factory="com.alibaba.druid.pool.DruidDataSourceFactory"
 		maxActive="10"
       	maxWait="10000"
-      	url="jdbc:mysql://mysql.kysoft.com/k-team?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true"
+      	url="jdbc:oracle:thin:@oracle.kysoft.com:1521/orcl"
 		username="cpsi"
 		password="cpsi"
 		filters="stat,wall"

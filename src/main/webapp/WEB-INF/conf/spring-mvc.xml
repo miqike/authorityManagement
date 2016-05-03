@@ -22,7 +22,7 @@
  			net.sf.husky.web.controller
  			net.sf.husky.cache
 			net.sf.husky.*.controller
-			com.kysoft.kteam.**.controller"
+			com.kysoft.cpsi.**.controller"
         >
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>

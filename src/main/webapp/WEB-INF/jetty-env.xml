@@ -6,7 +6,7 @@
         <Arg>jdbc/cpsiDS</Arg>  
         <Arg>  
             <New class="com.alibaba.druid.pool.DruidDataSource">  
-                <Set name="driverClassName">com.mysql.jdbc.Driver</Set>  
+                <Set name="driverClassName">oracle.jdbc.OracleDriver</Set>  
                 <Set name="url">jdbc:oracle:thin:@oracle.kysoft.com:1521/orcl</Set>  
                 <Set name="username">cpsi</Set>  
                 <Set name="password">cpsi</Set>  
