@@ -1,0 +1,33 @@
+<Context path="/cpsi">
+	 <!-- 
+		password="CycbGgKcz7nKUOqbkL4BVIu93O7ocjsUMmdFKsYp8gHkvbgRsxmYe+fKSGqN2VAw4443WWjgQb14HgB7aQLKgA=="
+        config.decrypt="true"
+        driverClassName="net.sf.log4jdbc.DriverSpy"
+		com.mysql.jdbc.Driver
+      	url="jdbc:oracle:thin:@192.168.5.133:1521/orcl"
+	 -->
+
+	<Resource name="jdbc/cpsiDS"
+		type="javax.sql.DataSource"
+		auth="Container" 
+		factory="com.alibaba.druid.pool.DruidDataSourceFactory"
+		maxActive="10"
+      	maxWait="10000"
+      	url="jdbc:mysql://mysql.kysoft.com/k-team?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true"
+		username="cpsi"
+		password="cpsi"
+		filters="stat,wall"
+	/>
+<!-- 
+	<Resource name="jdbc/activitiDS"
+		type="javax.sql.DataSource"
+		auth="Container"
+		factory="com.alibaba.druid.pool.DruidDataSourceFactory"
+        url="jdbc:mysql://mysql.kysoft.com/activiti?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true"
+		maxActive="100"
+		maxWait="10000"
+		username="activiti"
+		password="activiti"
+		filters="stat,wall"/>
+ -->		
+</Context>

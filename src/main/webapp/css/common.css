@@ -1,0 +1,155 @@
+body {
+    /*background:url("images/bg_wood.jpg") repeat;*/
+    font-size: 12px;
+    font-family:"Segoe UI", Verdana, Helvetica,'Sans-Serif','MS Outlook';
+    margin:0;
+    padding: 5px 10px;
+    vertical-align: baseline;
+    color: #888;
+    display: block;
+}
+
+.center {
+  margin: auto;
+  height: auto;
+  position: absolute;
+  top: 10px; left: 10px; bottom: 10px; right: 10px;
+  overflow:visible;
+}
+
+.navigation { margin: 0px; padding: 0px;}
+.navigation:before { content: '|' }
+.navigation li { display: inline; line-height: 1.6em;}
+.navigation li:after { content: '|' }
+.navigation li.active span { background-color: #EEEEEE; }
+
+table a{ color: #0000ff;}
+table a:hover {color: #fff; }
+
+.keyTable th{
+    font-weight: normal;
+    width:60px;
+    text-align: right;
+}
+.receiptTable th{
+    font-weight: normal;
+    width:80px;
+    text-align: right;
+    padding:3px;
+}
+.receiptTable td{
+    padding:3px;
+}
+/*a { text-decoration: none; color: #444; }
+a:visited { text-decoration: none; color: #444; }
+a:hover { text-decoration: none; color: #000; }
+a:active { text-decoration: none; color: #000; }*/
+
+
+.btnBar {
+    background-color:#6298e2;
+    padding:5px 10px;
+    margin:0px;
+    font-weight:600;
+    *zoom:1;
+    *overflow:visible;
+}
+.btnBar a{
+    color:#fff;
+    font-size:13px;
+}
+.btnBar ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.btnBar li{
+    display: inline;
+    line-height: 1.6em;
+    margin:5px;
+}
+
+.btn {
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    *overflow:visible;
+    -webkit-box-sizing:content-box;
+    -moz-box-sizing:content-box;
+    box-sizing:content-box;
+    padding:0 12px;
+    height:25px;
+    line-height:25px;
+    border:1px solid #fff;
+    font-size:12px;
+    letter-spacing:1px;
+    word-spacing:normal;
+    text-align:center;
+    vertical-align:middle;
+    cursor:pointer;
+}
+ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+
+}
+li{
+    display: inline;
+    line-height: 1.6em;
+    margin:0px;
+}
+
+.container {
+    padding:0;
+    margin:0;
+    height:600px;
+    overflow: hidden;
+    background-color:#fff;
+    border: 0;
+}
+.keyBar {
+    width:100%;
+    display:inline-block;
+    padding:10px 5px;
+    background-color:#ebf2fa;
+    color:#777;
+}
+.keyBarDiv {
+    display:inline-block;
+    position:relative;
+    vertical-align: middle;
+    margin:0 3px 3px 3px;
+}
+.keyBaSpan {
+    min-width:60px;
+    text-align: right;
+    display:inline-block;
+    vertical-align: middle;
+ }
+.keyBar input {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.easyui-panel
+{ width:100%;
+}
+
+.keyBar span {
+    vertical-align:middle;
+}
+.subWindowItem{
+	display:inline-block;
+	vertical-align:middle;
+	*display:inline;
+	margin:5px;
+	float:left;
+}
+.subWindow span{
+	display:inline-block;
+	vertical-align:middle;
+	width:50px;
+	text-align:right;
+}
+.clear{clear:both;}

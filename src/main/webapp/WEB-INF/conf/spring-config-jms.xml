@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+          destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://localhost:61616" />
+            </bean>
+        </property>
+        <property name="maxConnections" value="100"></property>
+    </bean>
+
+    <!-- 发送消息的目的地（一个队列） -->
+    <bean id="destination" class="org.apache.activemq.command.ActiveMQTopic">
+        <!-- 设置消息队列的名字 -->
+        <constructor-arg index="0" value="subject" />
+    </bean>
+
+    <bean id="destination11"
+          class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="ztgame.amt.default.queue"></constructor-arg>
+    </bean>
+
+    <!-- Spring JMS Template -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsFactory" />
+        <property name="defaultDestinationName" value="ztgame.amt.default.queue" />
+        <!-- 区别它采用的模式为false是p2p为true是订阅 -->
+        <property name="pubSubDomain" value="true" />
+<!--
+        <property name="defaultDestination" ref="destination"></property>
+        <property name="messageConverter" ref="innerMessageConverter"></property>-->
+    </bean>
+    <!--<bean id="innerMessageConverter" class="jmu.xmpg.service.jms.InnerMessageConverter"></bean>-->
+    <!--<bean id="messageService" class="jmu.xmpg.service.jms.MessageServiceImpl">-->
+        <!-- <property name="jmsTemplate" ref="jmsTemplate"></property> -->
+    <!--</bean>-->
+
+    <!--<bean id="messageListener" class="jmu.xmpg.service.jms.MessageMDB"></bean>-->
+
+<!--
+    <bean id="messageReceiver" class="net.sf.husky.eai.core.adapter.jms.ProxyJMSConsumer">
+        <property name="jmsTemplate" ref="jmsTemplate"></property>
+    </bean>-->
+
+
+    <bean id="jmsTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="jmsFactory" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="jmsTransactionManager" />
+
+</beans>

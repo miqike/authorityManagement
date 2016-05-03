@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<!--<link rel='stylesheet' href='../lib/cupertino/jquery-ui.min.css' />-->
+<link href='../css/fullcalendar.css' rel='stylesheet' />
+<link href='../css/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../js/moment.min.js'></script>
+<script src='../js/jquery.min.js'></script>
+<script src='../js/fullcalendar.min.js'></script>
+<script src='../js/fullcalendar_zh-cn.js'></script>
+<script>
+
+	$(document).ready(function() {
+		//var currentLangCode = 'zh-cn';
+
+		function renderCalendar() {
+			$('#calendar').fullCalendar({
+//				theme: true,
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				defaultDate: '2015-10-08',
+//				lang: currentLangCode,
+				buttonIcons: true, // show the prev/next text
+				weekNumbers: true,
+				weekends:true,
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+
+				/*events: {
+					url: '../task',
+					error: function() {
+						$('#script-warning').show();
+					}
+				},*/
+				loading: function(bool) {
+					$('#loading').toggle(bool);
+				}
+
+			});
+		}
+
+		renderCalendar();
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#top {
+		background: #eee;
+		border-bottom: 1px solid #ddd;
+		padding: 0 10px;
+		line-height: 40px;
+		font-size: 12px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 40px auto;
+		padding: 0 10px;
+	}
+
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>

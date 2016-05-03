@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>代理银行收费信息汇总</title>
+	<link href="../css/content.css" rel="stylesheet" />
+	<link href="../css/themes/metro/easyui.css" rel="stylesheet" />
+	<link href="../css/themes/icon.css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
+	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
+	<script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
+
+	<script type="text/javascript" src="../js/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
+	<script type="text/javascript" src="./tollStatForBanksite.js" ></script>
+</head>
+<body>
+	<div id="panel" class="easyui-panel" title="用户列表" style="padding-left:5px">
+		<div style="margin-bottom:3px;margin-top:5px;">
+ 			<span style="margin-left:8px;margin-right:0px;">用户名:</span>
+				<input id="filter" style="margin-left:5px;margin-right:10px; padding-right: 3px;"/>
+ 			<span style="width:300px;">
+			<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
+			<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
+			</span>
+		</div>
+
+		<table id="userGrid" 
+			class="easyui-datagrid" 
+			data-options="singleSelect:true,collapsible:true,onClickRow:userGridButtonHandler,
+				method:'get',
+				url:'../common/query?mapper=userMapper&queryName=queryUser'" 
+			toolbar="#userGridToolbar" 
+			style="height: 500px" 
+			pageSize="20" 
+			queryParams="filter: $('#filter').val()" 
+			sortName="userId"
+			sortOrder="asc" 
+			pagination="true">
+			<thead>
+				<tr>
+					<th rowspan="2" data-options="field:'userId'" sortable="true" width="70">收款日期</th>
+					<th rowspan="2" data-options="field:'name'" sortable="true" width="70">网点名称</th>
+					<th colspan="2" data-options="field:'dwId'" sortable="true" width="70">当日正常收入</th>
+					<th colspan="2" data-options="field:'dwname'" sortable="true" width="150">待查收入</th>
+					<th colspan="2" data-options="field:'gw'" sortable="true" width="50">收入总额</th>
+					<th colspan="2" data-options="field:'status'" sortable="true" width="100" formatter="formatUserStatus">已确认待查收入</th>
+				</tr>
+				<tr>
+					<th data-options="field:'listprice',width:80,align:'right'">笔数</th>
+					<th data-options="field:'unitcost',width:80,align:'right'">金额</th>
+					<th data-options="field:'listprice',width:80,align:'right'">笔数</th>
+					<th data-options="field:'unitcost',width:80,align:'right'">金额</th>
+					<th data-options="field:'listprice',width:80,align:'right'">笔数</th>
+					<th data-options="field:'unitcost',width:80,align:'right'">金额</th>
+					<th data-options="field:'listprice',width:80,align:'right'">笔数</th>
+					<th data-options="field:'unitcost',width:80,align:'right'">金额</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+<!-- 
+		<div id="userGridToolbar">
+			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+			<a href="#" id="btnUpdate" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">修改</a> 
+			<a href="#" id="btnResetPass" class="easyui-linkbutton" iconCls="icon-back" plain="true" disabled="true">重置密码</a> 
+			<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
+			<a href="#" id="btnRole" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">角色</a>
+			<a href="#" id="btnAuth" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">权限</a>
+			<a href="#" id="btnAuthForm" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">表单</a>
+		</div> -->
+	</div>
+	
+	<!-- --------弹出窗口--------------- -->
+	
+	<div id="userWindow" class="easyui-window" title="用户信息" 
+		data-options="modal:true,closed:true,iconCls:'icon-search'" 
+		style="width: 750px; height: 250px; padding: 10px;">
+		<table width="100%" id="userTable"> 
+	         <tr>  
+				<td>用户名: </td>
+				<td><input class="easyui-validatebox" id="p_userId" type="text" data-options="required:true" ></input>
+					<input id="p_status" type="hidden"></input>
+				</td>  
+	         	<td>姓名:</td>  
+	            <td><input class="easyui-validatebox" type="text" id="p_userName" data-options="required:true"/></td> 
+	         </tr>
+	         <tr>
+	         	<td>职称:</td>  
+	            <td><input class="easyui-validatebox" type="text" id="p_title" data-options="required:true"/></td> 
+	         	<td>性别:</td>  
+	            <td>
+	            	<!-- <select class="codelist" id="p_gender" codeName="gender" ></select> -->
+	            	<input id="p_gender" class="easyui-combobox" style="width:200px;" codeName="gender" ></input>
+	            </td> 
+	         </tr> 
+	         <tr>  
+	            <td>联系人电话:</td>  
+	            <td>
+	             	<input type="hidden" id="oldPhone" />
+	             	<input class="easyui-validatebox" id="p_phone" type="text" />  <span id="phoneCheck"></span>
+	             </td>   
+	             <td>联系人邮件:</td>  
+	             <td><input class="easyui-validatebox" validType="email" id="p_email" type="text"/></td>
+	         </tr>
+		    <tr>
+		    	<td></td>
+		    	<td> 
+		    		<a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
+		    	</td>
+		    </tr>
+		</table>  
+	</div>
+	
+</body>
+</html>

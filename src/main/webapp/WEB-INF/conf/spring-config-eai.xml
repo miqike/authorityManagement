@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    <context:component-scan base-package="net.sf.husky.eai">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <property name="messageSender">
+            <bean class="org.springframework.ws.transport.http.HttpUrlConnectionMessageSender"/>
+        </property>
+    </bean>
+
+    <!--发布服务-->
+    <!--<bean class="net.sf.husky.eai.WebServicePublishManager"/>-->
+    <!--客户端调用-->
+    <!--
+    <jaxws:endpoint id="helloWorld" implementor="#HelloWorldImpl" address="/HelloWorld">
+        <jaxws:properties>
+            <entry key="mtom_enabled" value="true"></entry>
+        </jaxws:properties>
+    </jaxws:endpoint>
+    -->
+
+    <!--JMS-->
+    <!--<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+          destroy-method="stop">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="tcp://localhost:61616" />
+            </bean>
+        </property>
+        <property name="maxConnections" value="100"></property>
+    </bean>
+
+    <bean id="destination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg index="0" value="subject" />
+    </bean>
+
+    <bean id="destination11"
+          class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="myqueue"></constructor-arg>
+    </bean>
+
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsFactory" />
+        <property name="defaultDestinationName" value="ztgame.amt.default.queue" />
+        <property name="pubSubDomain" value="true" />
+    </bean>
+
+
+    <bean id="jmsTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="jmsFactory" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="jmsTransactionManager" />
+    <jms:listener-container connection-factory="jmsFactory" transaction-manager="jmsTransactionManager">
+        <jms:listener destination="ztgame.amt.default.queue" ref="defaultMessageHandler" />
+    </jms:listener-container>-->
+
+</beans>

@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>组织机构维护</title>
+	<link href="../css/content.css" rel="stylesheet"/>
+	<link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
+	<link href="../css/themes/icon.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+
+	<script type="text/javascript" src="../js/hotkeys.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../js/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
+
+	<script type="text/javascript" src="organization.js"></script>
+
+
+</head>
+<body>
+<div class="easyui-layout" style="height:600px;">
+	<div data-options="region:'west',split:true" title="组织机构维护" style="width:400px;">
+		<div id="tgToolbar">
+			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加</a>
+			<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true"  disabled="true">删除</a>
+			<span ><input type="checkbox" id="whetherShowOrgCode"/>机构代码</span>
+
+		</div>
+
+		<ul id="tree" class="ztree"></ul>
+
+	</div>
+	<div data-options="region:'center',title:'详细信息'">
+		<form action="" id="treeNodeForm" method="post">
+			<table>
+				<a href="#" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled="true">编辑</a>
+				<tr>
+					<td style="text-align:right">上级单位名称</td>
+					<td><input class="easyui-textbox" name="parentOrgName" /></td>
+					<td style="text-align:right">上级单位代码</td>
+					<td><input class="easyui-textbox" name="parentId" /></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">单位名称</td>
+					<td><input class="easyui-textbox" name="name" /></td>
+					<td style="text-align:right">单位代码</td>
+					<td><input class="easyui-textbox" name="orgCode" /></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">类型</td>
+					<td><input class="easyui-combobox" name="type" codeName="orgType"/></td>
+					<td style="text-align:right">负责人</td>
+					<td><input class="easyui-textbox" name="fzr" /></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">财政主管部门</td>
+					<td><input class="easyui-combobox" name="czzg" codeName="charger"/></td>
+					<td style="text-align:right">可以收费标志</td>
+					<td><input class="easyui-combobox" name="chargeFlag" codeName="yesno"/></td>
+
+				</tr>
+				<!--
+				<tr>
+					<td style="text-align:right">收费类别</td>
+					<td><input class="easyui-combobox" name="sflb" codeName="sflb"/></td>
+					<td style="text-align:right"></td>
+					<td><input class="easyui-textbox" name="sflb" /></td>
+				</tr>-->
+				<tr>
+					<td style="text-align:right">开户行</td>
+					<td><input class="easyui-textbox" name="zsKhh" /></td>
+					<td style="text-align:right">银行帐号</td>
+					<td><input class="easyui-textbox" name="zsYhzh" /></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">票据管理员</td>
+					<td><input class="easyui-textbox" name="pjgly" /></td>
+					<td style="text-align:right">票据管理员电话</td>
+					<td><input class="easyui-textbox" name="pgydh" /></td>
+				</tr>
+				<tr>
+					<!--<td style="text-align:right">明细标志</td>
+					<td><input class="easyui-combobox" name="mxbz" codeName="mxbz"/></td>-->
+					<td style="text-align:right">联系电话</td>
+					<td><input class="easyui-textbox" name="lxdh" /></td>
+					<td style="text-align:right">单位性质</td>
+					<td><input class="easyui-combobox" name="dwxz" codeName="dwxz"/></td>
+				</tr>
+
+				<tr>
+
+					<td style="text-align:right">图标</td>
+					<td><input class="easyui-textbox" name="icon" />
+						<input type="hidden" name="zfbz" value="0" />
+						<input type="hidden" name="auditFlag" value="0"/>
+						<input type="hidden" name="chargeFlag" value="1"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+</body>
+</html>

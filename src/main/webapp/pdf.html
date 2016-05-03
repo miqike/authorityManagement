@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+<script>
+function bulkpdfPrint(srcFile){
+	var pdf = document.getElementById("createPDF");
+	if (pdf != undefined && pdf != null) {//判断pdf对象是否存在，如果存在就删除该对象
+		var parentNode = pdf.parentNode;
+		parentNode.removeChild(pdf);
+    }
+	window.p = document.createElement("object");
+	p.id = "createPDF";
+	p.classid = "CLSID:CA8A9780-280D-11CF-A24D-444553540000";
+	p.width = 1;
+	p.height = 1;
+	p.src = srcFile;
+	document.body.appendChild(p);
+	alert(1)
+	p.printAll();
+	alert(1)
+}
+</script>
+</head>
+<body>
+
+<button onclick="bulkpdfPrint('drupal.pdf')">xxxx</button>
+<a href="javascript:PDF1.printWithDialog();">print</a>
+
+<object  classid="clsid:CA8A9780-280D-11CF-A24D-444553540000" name="PDF1"  width="1"  height="1"  border="0">
+
+<param  name="SRC"  value="http://localhost/dlna/drupal.pdf"/>   
+
+</object>
+
+<script  language="JavaScript" type="text/javascript">    
+
+//显示工具栏(false为隐藏)      
+
+  PDF1.SetShowToolbar(false); 
+
+</script>
+
+</body> 
+
+</html>

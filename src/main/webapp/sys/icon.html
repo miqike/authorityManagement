@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>图标列表</title>
+	<link href="../css/content.css" rel="stylesheet" />
+	<link href="../css/themes/metro/easyui.css" rel="stylesheet" />
+	<link href="../css/themes/icon.css" rel="stylesheet" />
+	<link href="../css/icon.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
+	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
+	<script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
+
+	<script type="text/javascript" src="../js/husky.common.js" ></script>
+	<script type="text/javascript" src="./icon.js" ></script>
+</head>
+<body>
+	<div id="panel" class="easyui-panel" title="图标列表" style="padding-left:5px">
+<!--
+
+		<div style="margin-bottom:3px;margin-top:5px;">
+ 			<span style="margin-left:8px;margin-right:0px;">用户名:</span>
+				<input id="filter" style="margin-left:5px;margin-right:10px; padding-right: 3px;"/>
+ 			<span style="width:300px;">
+			<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
+			<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
+			</span>
+		</div>
+-->
+
+		<table id="mainGrid"
+			class="easyui-datagrid" 
+			data-options="singleSelect:true,collapsible:true,onClickRow:mainGridButtonHandler,
+				method:'get',
+				url:'../common/query?mapper=iconMapper&queryName=queryIcon'"
+			toolbar="#mainGridToolbar"
+			style="height: 500px" 
+			pageSize="20" 
+			queryParams="filter: $('#filter').val()" 
+			pagination="true">
+			<thead>
+				<tr>
+					<!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+					<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="100">编号</th>
+					<th data-options="field:'identity',halign:'center',align:'center'" sortable="true" width="150">标识符</th>
+					<th data-options="field:'src',halign:'center',align:'left',formatter:formatIcon" sortable="true" width="50">图标</th>
+					<th data-options="field:'description',halign:'center',align:'center'" sortable="true" width="300">描述</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<div id="mainGridToolbar">
+			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+			<a href="#" id="btnUpdate" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">修改/查看</a>
+		</div>
+	</div>
+	
+	<!-- --------弹出窗口--------------- -->
+
+	<div id="userWindow" class="easyui-window" title="用户信息"
+		data-options="modal:true,closed:true,iconCls:'icon-search'"
+		style="width: 750px; height: 250px; padding: 10px;">
+		<table width="100%" id="userTable">
+	         <tr>
+				<td>用户名: </td>
+				<td><input class="easyui-validatebox" id="p_userId" type="text" data-options="required:true" ></input>
+					<input id="p_status" type="hidden"></input>
+				</td>
+	         	<td>姓名:</td>
+	            <td><input class="easyui-validatebox" type="text" id="p_userName" data-options="required:true"/></td>
+	         </tr>
+	         <tr>
+	         	<td>职称:</td>
+	            <td><input class="easyui-validatebox" type="text" id="p_title" data-options="required:true"/></td>
+	         	<td>性别:</td>
+	            <td>
+	            	<!-- <select class="codelist" id="p_gender" codeName="gender" ></select> -->
+	            	<input id="p_gender" class="easyui-combobox" style="width:200px;" codeName="gender" ></input>
+	            </td>
+	         </tr>
+	         <tr>
+	            <td>联系人电话:</td>
+	            <td>
+	             	<input type="hidden" id="oldPhone" />
+	             	<input class="easyui-validatebox" id="p_phone" type="text" />  <span id="phoneCheck"></span>
+	             </td>
+	             <td>联系人邮件:</td>
+	             <td><input class="easyui-validatebox" validType="email" id="p_email" type="text"/></td>
+	         </tr>
+		    <tr>
+		    	<td></td>
+		    	<td>
+		    		<a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
+		    	</td>
+		    </tr>
+		</table>
+	</div>
+	
+</body>
+</html>

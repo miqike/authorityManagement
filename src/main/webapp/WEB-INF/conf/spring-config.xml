@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder
+            system-properties-mode="ENVIRONMENT" local-override="true"
+            location="/WEB-INF/conf/resources.properties"/>
+
+    <!-- 启用注解 -->
+    <context:annotation-config/>
+
+    <import resource="classpath://net/sf/husky/log/husky-log-client.xml"/>
+    <import resource="classpath://net/sf/husky/message/husky-message-client.xml"/>
+    <import resource="spring-config-cache.xml"/>
+    <import resource="spring-config-rest.xml"/>
+    <import resource="spring-config-task.xml"/>
+    <import resource="spring-config-monitor.xml"/>
+    <import resource="spring-config-activiti-rest.xml"/>
+    <!--
+    <import resource="spring-config-activiti.xml"/>
+    <import resource="spring-config-eai.xml"/>
+    -->
+    <import resource="spring-config-redis.xml"/>
+
+    <!-- 扫描注解Bean -->
+    <context:component-scan base-package="
+        net.sf.husky.**.service;
+        net.sf.husky.sms;
+        net.sf.husky.eai.core;
+        net.sf.husky.eai.publish;
+        com.kysoft.kteam.**.service">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="regex" expression="net.sf.husky.attachment.*"/>
+    </context:component-scan>
+
+    <!-- 开启AOP监听 只对当前配置文件有效 
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+     -->
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/cpsiDS"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 多数据源配置，默认dataSource可以省略下一行 -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeHandlers">
+            <list>
+                <bean class="net.sf.husky.mybatis.StringCollectionTypeHandler"></bean>
+                <!-- <bean class="net.sf.husky.security.mapper.OnlineSessionTypeHandler"></bean> -->
+            </list>
+        </property>
+        <!-- 翻页截听器 -->
+        <property name="plugins">
+            <array>
+                <bean class="net.sf.husky.query.service.HuskyDataAccessInterceptor"/>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+          c:sqlSessionFactory-ref="sqlSessionFactory" c:executorType="BATCH"/>
+
+    <!--
+                net.sf.husky.security.mapper;
+                com.kysoft.ntims.sys.auth.mapper;
+                com.kysoft.common.*.mapper
+     -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="
+			net.sf.husky.**.mapper;
+			com.kysoft.kteam.**.mapper;
+			"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="doReweight" propagation="REQUIRES_NEW"/>
+            <tx:method name="doClear*" propagation="REQUIRES_NEW"/>
+            <tx:method name="doSend*" propagation="REQUIRES_NEW"/>
+            <tx:method name="doBatchSave*" propagation="REQUIRES_NEW"/>
+
+            <!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到-->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="count*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="list*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- blob字段处理配置开始 -->
+    <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.SimpleNativeJdbcExtractor"
+          lazy-init="true"/>
+    <!-- LobHandler for Oracle JDBC drivers -->
+    <!-- (refers to the NativeJdbcExtractor above to get access to native OracleConnections) -->
+    <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"></bean>
+    <!-- blob字段处理配置结束 -->
+
+    <aop:config expose-proxy="true" proxy-target-class="true">
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="txPointcut"
+                      expression="execution(* com.kysoft.kteam..service..*+.*(..)) or execution(* com.sishuok.es..task..*+.*(..))"/>
+        <aop:advisor id="txAdvisor" advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+
+
+    <!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找  -->
+                <value>classpath:messages</value>
+                <value>classpath:ValidationMessages</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <beans profile="local">
+        <import resource="spring-config-shiro.xml"/>
+    </beans>
+    <beans profile="cas">
+        <import resource="spring-config-shiro-cas.xml"/>
+    </beans>
+
+</beans>

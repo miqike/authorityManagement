@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HelloWorld</title>
+    <style>
+        .axis path,
+        .axis line{
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+    </style>
+
+</head>
+<body>
+<p>Hello World 1</p>
+<p>Hello World 2</p>
+<script src="../js/d3.min.js" charset="utf-8"></script>
+<script>
+    var width = 300;  //画布的宽度
+    var height = 300;   //画布的高度
+
+    var svg = d3.select("body")     //选择文档中的body元素
+            .append("svg")          //添加一个svg元素
+            .attr("width", width)       //设定宽度
+            .attr("height", height);
+
+    var dataset = [ 250 , 210 , 170 , 130 , 90 ];
+
+    var linear = d3.scale.linear()
+            .domain([0, d3.max(dataset)])
+            .range([0, 250]);
+
+    var axis = d3.svg.axis()
+            .scale(linear)      //指定比例尺
+            .orient("bottom")   //指定刻度的方向
+            .ticks(7);          //指定刻度的数量
+
+    svg.append("g").attr("class","axis")
+            .attr("transform","translate(20,130)").call(axis);
+    var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+
+    svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x",20)
+            .attr("y",function(d,i){
+                return i * rectHeight;
+            })
+           /* .attr("width",function(d){
+                return d;
+            })*/
+            .attr("width",function(d){
+                return linear(d);   //在这里用比例尺
+            })
+
+            .attr("height",rectHeight-2)
+            .attr("fill","steelblue");
+
+
+</script>
+</body>
+</html>

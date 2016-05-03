@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 使用httpclient的实现，带连接池 -->
+	<bean id="ky.pollingConnectionManager"
+		class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+		<!--整个连接池的并发 -->
+		<property name="maxTotal" value="200" />
+		<!--每个主机的并发 -->
+		<property name="defaultMaxPerRoute" value="200" />
+	</bean>
+
+	<bean id="ky.httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
+		factory-method="create">
+		<property name="connectionManager" ref="ky.pollingConnectionManager" />
+		
+		<!--开启重试 -->
+		<property name="retryHandler">
+			<bean class="org.apache.http.impl.client.DefaultHttpRequestRetryHandler">
+				<constructor-arg value="2" />
+				<constructor-arg value="true" />
+			</bean>
+		</property>
+		<property name="defaultHeaders">
+			<list>
+				<!-- <bean class="org.apache.http.message.BasicHeader">
+					<constructor-arg value="User-Agent" />
+					<constructor-arg
+						value="Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36" />
+				</bean> -->
+				<bean class="org.apache.http.message.BasicHeader">
+					<constructor-arg value="Accept-Encoding" />
+					<constructor-arg value="gzip,deflate" />
+				</bean>
+				<!-- <bean class="org.apache.http.message.BasicHeader">
+					<constructor-arg value="Accept-Language" />
+					<constructor-arg value="zh-CN" />
+				</bean> -->
+			</list>
+		</property>
+		<!-- <property name="defaultCredentialsProvider" ref="credentialProvider" /> -->
+	</bean>
+
+	<bean id="ky.httpClient" factory-bean="ky.httpClientBuilder"
+		factory-method="build" />
+
+	<bean id="restTemplateFactory" class="net.sf.husky.web.utils.RestTemplateFactory" />
+
+	<bean id="ky.clientHttpRequestFactory"
+		class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+		<constructor-arg ref="ky.httpClient" />
+		<!-- 连接超时时间，毫秒 -->
+		<property name="connectTimeout" value="5000" />
+		<!-- 读写超时时间，毫秒 -->
+		<property name="readTimeout" value="10000" />
+	</bean>
+
+	<bean id="byteArrayHttpMessageConverter" class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	<bean id="fastJsonHttpMessageConverter"
+					class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>application/json;charset=UTF-8</value>
+			</list>
+		</property>
+		<property name="features">
+			<list>
+				<value>WriteMapNullValue</value>
+				<value>QuoteFieldNames</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 			
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+		<constructor-arg ref="ky.clientHttpRequestFactory" />
+		<property name="errorHandler">
+			<bean class="org.springframework.web.client.DefaultResponseErrorHandler" />
+		</property>
+		<property name="messageConverters">
+			<list>
+				
+				<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.FormHttpMessageConverter" />
+				<bean id="fastJsonHttpMessageConverter"
+					class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+					<property name="features">
+						<list>
+							<value>WriteMapNullValue</value>
+							<value>QuoteFieldNames</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/> 
+					<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<constructor-arg value="UTF-8" />
+					<property name="supportedMediaTypes">
+						<list>
+							<bean class="org.springframework.http.MediaType">
+								<constructor-arg index="0" value="text" />
+								<constructor-arg index="1" value="plain" />
+								<constructor-arg index="2" value="UTF-8" />
+							</bean>
+							<bean class="org.springframework.http.MediaType">
+								<constructor-arg index="0" value="*" />
+								<constructor-arg index="1" value="*" />
+								<constructor-arg index="2" value="UTF-8" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+  -->
+
+	<!-- Credentials provider needed by apache default http client -->
+<!-- 	<bean id="credentialProvider" class="org.apache.http.impl.client.BasicCredentialsProvider" /> -->
+
+	<!-- Used to invoke a method in BasicCredentialsProvider. This has to be 
+		done this way as BasicCredentialsProvider does not take provider and credentials 
+		in constructor or setter method. It has to set by invoking setCredentials() 
+		method and passing two arguments -->
+<!-- 	<bean id="methodInvoke"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<ref bean="credentialProvider" />
+		</property>
+		<property name="targetMethod" value="setCredentials">
+		</property>
+		<property name="arguments">
+			<list>
+				<ref bean="authScope" />
+				<ref bean="credentials" />
+			</list>
+		</property>
+	</bean>
+ -->
+	<!-- Authorization scope for accessing restful service. Since we want this 
+		template to be used for everything, we are setting up it with defaults -->
+<!-- 	<bean id="authScope" class="org.apache.http.auth.AuthScope">
+		<constructor-arg name="host"><null /></constructor-arg>
+		<constructor-arg><value>-1</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+	</bean>
+ -->
+	<!-- Username and Password Credentials to access restful service -->
+	<!-- <bean id="credentials" class="org.apache.http.auth.UsernamePasswordCredentials">
+		<constructor-arg name="userName"><value>lht</value></constructor-arg>
+		<constructor-arg name="password"><value>000000</value></constructor-arg>
+	</bean> --> 
+
+	<!-- <bean id="asyncRestTemplate" class="org.springframework.web.client.AsyncRestTemplate" 
+		/> <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" 
+		/> -->
+</beans>

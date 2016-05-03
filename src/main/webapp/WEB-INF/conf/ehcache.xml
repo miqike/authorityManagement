@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache name="cpsi">
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <!--成员发现-->
+    <!--手动方式列出除本实例之外其他实例的IP和端口以及CacheName-->
+    <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+    properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4448, timeToLive=32" />
+    <!--properties="peerDiscovery=manual,rmiUrls=//192.168.5.100:40007/sys-userCache|//192.168.5.100:40007/sys-codeListCache" />-->
+
+    <!--监听从成员们发到本实例CacheManager的消息-->
+    <!--手动方式，指定本实例监听40008端口，hostName可选-->
+    <cacheManagerPeerListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"  />
+            <!--properties="port=40008,socketTimeoutMillis=2000" />-->
+
+    <defaultCache
+            maxEntriesLocalHeap="1000"
+            eternal="false"
+            timeToIdleSeconds="3600"
+            timeToLiveSeconds="3600"
+            overflowToDisk="false">
+    </defaultCache>
+
+    <cache name="defaultCache" maxBytesLocalHeap="10M" eternal="false"
+		timeToIdleSeconds="3600" timeToLiveSeconds="3600" overflowToDisk="false" />
+
+    <!-- 登录记录缓存 锁定10分钟 -->
+    <cache name="loginRecordCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+
+    <!-- BPM缓存 锁定60分钟 -->
+    <cache name="sys-bpmCache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="30"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+
+    <!-- 系统用户缓存/没必要过期/分布-->
+    <cache name="sys-userCache"
+        maxEntriesLocalHeap="10000"
+        overflowToDisk="false"
+        eternal="false"
+        diskPersistent="false"
+        timeToLiveSeconds="0"
+        timeToIdleSeconds="0"
+        statistics="true">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+    </cache>
+
+    <!-- 菜单缓存/没必要过期/分布-->
+    <cache name="sys-menuCache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+    </cache>
+
+    <cache name="sys-codeListCache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+    </cache>
+
+    <cache name="shiro-authentication"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true" />
+
+    <!-- 系统用户授权缓存 没必要过期 -->
+    <cache name="shiro-authorization"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           memoryStoreEvictionPolicy="LRU"
+           statistics="true"/>
+
+    <!-- shiro 会话缓存 不需要序列化到磁盘 缓存存活n秒后销毁 必须比Redis中过期时间短 -->
+    <cache name="shiro-active-session"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="60"
+           timeToIdleSeconds="0"
+           statistics="true">
+    </cache>
+    
+    <!-- kickout机制使用本地缓存 -->
+    <cache name="shiro-kickout-session"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="false"
+           eternal="false"
+           diskPersistent="false"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           statistics="true">
+    </cache>
+
+    <!-- 
+    <cache name="fa01Cache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="600"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+                properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+    </cache>
+	 -->
+</ehcache>

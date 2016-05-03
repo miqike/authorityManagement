@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- spring工具类 方便在非spring管理环境中获取bean -->
+	<bean id="springUtils" class="net.sf.husky.utils.SpringUtils" />
+
+	<!-- <bean id="clientContextFilter" class="net.sf.husky.clientcontext.ClientContextFilter"/> -->
+
+	<!--<bean id="codeListProvider" class="net.sf.husky.codelist.service.CodeListProviderImpl"/> 
+		<bean id="huskyDataAccessInterceptor" class="net.sf.husky.query.service.HuskyDataAccessInterceptor"/> -->
+	<bean id="menuRepository" class="net.sf.husky.menu.service.MenuRepositoryImpl" />
+
+	<bean id="dataAccessService" class="net.sf.husky.query.service.DataAccessServiceImpl" />
+
+	<!-- log4jdbc -->
+	<bean id="log4jdbcInterceptor" class="net.sf.log4jdbc.DataSourceSpyInterceptor" />
+
+	<bean id="dataSourceLog4jdbcAutoProxyCreator"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="interceptorNames">
+			<list>
+				<value>log4jdbcInterceptor</value>
+			</list>
+		</property>
+		<property name="beanNames">
+			<list>
+				<value>dataSource</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
