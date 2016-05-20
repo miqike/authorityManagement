@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="E:/3rdparty/m2/repo/com/oracle/ojdbc6/11.2.0.3.0/ojdbc6-11.2.0.3.0.jar" />
+	<context id="context" defaultModelType="conditional">
+				
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.5.133:1521/orcl"
+			userId="cpsi" password="cpsi" />
+		<javaModelGenerator targetPackage="com.kysoft.cpsi.repo.entity"
+			targetProject="cpsi" />
+		<sqlMapGenerator targetPackage="com.kysoft.cpsi.repo.mapper"
+			targetProject="cpsi" />
+		<javaClientGenerator targetPackage="com.kysoft.cpsi.repo.mapper"
+			targetProject="cpsi" type="XMLMAPPER" />
+		
+		<!-- 市场主体 -->
+		<table tableName="T_SCZT" domainObjectName="Sczt"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="TYPE"  javaType="java.lang.Integer"	/>
+			<columnOverride column="HYFL"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ZZXS"  javaType="java.lang.Integer"	/>
+			<columnOverride column="JYZT"  javaType="java.lang.Integer"	/>
+		</table>
+		<!-- 执法人员 -->
+		<table tableName="T_ZFRY" domainObjectName="Zfry"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="GENDER"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ZT"  javaType="java.lang.Integer"	/>
+		</table>
+		<!-- 核查事项 -->
+		<table tableName="T_HCSX" domainObjectName="Hcsx"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="TYPE"  javaType="java.lang.Integer"	/>
+			<columnOverride column="HCXXFL"  javaType="java.lang.Integer"	/>
+			<columnOverride column="HCLX"  javaType="java.lang.Integer"	/>
+			<columnOverride column="QYZZXS"  javaType="java.lang.Integer"	/>
+			<columnOverride column="JGCL"  javaType="java.lang.Integer"	/>
+			<columnOverride column="SFXYSDHC"  javaType="java.lang.Integer"	/>
+			<columnOverride column="SFXYRGHD"  javaType="java.lang.Integer"	/>
+			<columnOverride column="SFBJXM"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ZXRQ"  javaType="java.util.Date"	/>
+		</table>
+		<table tableName="T_HCCL" domainObjectName="Hccl"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="SFBYX"  javaType="java.lang.Integer"	/>
+			<columnOverride column="WJLX"  javaType="java.lang.Integer"	/>
+		</table>
+
+	</context>
+</generatorConfiguration>
