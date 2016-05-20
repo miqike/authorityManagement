@@ -37,7 +37,7 @@
 		<ul id="tree" class="ztree"></ul>
 	</div>
 	<div data-options="region:'center',title:''" style="padding-left:30px;padding-top:10px;">
-		<div id="tabPanel" class="easyui-tabs" style="width:700px;clear:both;" data-options="onSelect:tabSelectHandler">
+		<!-- <div id="tabPanel" class="easyui-tabs" style="width:700px;clear:both;" data-options="onSelect:tabSelectHandler">
 			<div title="基本信息" style="padding:5px;" selected="true">
 				<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加本级</a>
 				<a href="#" id="btnAddChild" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加下级</a>
@@ -59,7 +59,39 @@
 					</table>
 				</form>
 			</div>
-		</div>
+		</div> --><!-- 
+		data-options="onClickRow:mainGridButtonHandler,onLoadSuccess:mainGridLoadSuccessHandler,
+                   offset: { width: -310, height: -40},
+                   ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,method:'get'" -->
+		 <table id="mainGrid"
+                   class="easyui-datagrid"
+                   
+                   toolbar="#mainGridToolbar"
+                   style="height: 600px"
+                   pagination="false"
+                   pagePosition ="bottom" >
+                <thead>
+                <tr>
+                    <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+                    <th data-options="field:'orgId',halign:'center',align:'left'" sortable="true" width="70">单位编码</th>
+                    <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="260">单位名称</th>
+                    <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">联系人</th>
+                    <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
+                    <th data-options="field:'userId',halign:'center',align:'center'" sortable="true" width="70">地址</th>
+                    <th data-options="field:'email',halign:'center',align:'right'" sortable="true" width="150">公示信息分类</th>
+                    <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="userStatus"
+                        formatter="formatCodeList">编码别名</th>
+                    <th data-options="field:'managerName',halign:'center',align:'center'" sortable="true" width="70">名称别名</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="mainGridToolbar">
+                <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+                <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑/查看</a>
+                <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
+            </div>
 	</div>
 </div>
 <%--

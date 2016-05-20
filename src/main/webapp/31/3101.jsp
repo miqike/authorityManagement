@@ -43,10 +43,10 @@
 				<td><input id="f_module" class="easyui-textbox"/></td>
 				<td>抽查内容</td>
 				<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
-					data-options="panelHeight:120,width:150,onChange:queryPlan" style="" /></td>
+					data-options="panelHeight:80,width:150,onChange:queryPlan" style="" /></td>
 				<td>抽查分类</td>
-				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl"
-					data-options="panelHeight:120,width:100,onChange:queryPlan" style="" /></td>
+				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl" 
+					data-options="panelHeight:60,width:100,onChange:queryPlan" style="" /></td>
 				<td colspan="2" style="text-align-right;">
 					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
 					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
@@ -58,7 +58,7 @@
 		<table id="grid1"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
-				method:'get',
+				method:'get',url:'../common/query?mapper=hcjhMapper&queryName=query',
 				onSelect:showPlanDetail,
 				onUnselect:disableUpdateAndDeleteButton"
 			   toolbar="#gridToolbar1"
@@ -66,21 +66,21 @@
 			   sortOrder="asc">
 			<thead>
 			<tr>
-				<th data-options="field:'bi1521'" halign="center" align="left" sortable="true" width="70">计划年度</th>
-				<th data-options="field:'ba01861'" halign="center" align="left" sortable="true" width="70">计划编号</th>
-				<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="100">公式系统计划编号</th>
-				<th data-options="field:'bi1512d'" halign="center" align="center" sortable="true" width="130" >计划名称</th>
-				<th data-options="field:'bi1516c'" halign="center" align="center" sortable="true" width="120" formatter="formatDate">下达日期</th>
-				<th data-options="field:'bi1519'" halign="center" align="center" sortable="true" width="120" formatter="formatDate">要求完成时间</th>
-				<th data-options="field:'bi1520'" halign="center" align="center" sortable="true" width="60" >抽查分类</th>
-				<th data-options="field:'bi1522'" halign="center" align="left" sortable="true" width="150" codeName="planStatus" formatter="formatCodeList" styler="planStatusStyler">抽查内容</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >抽查任务数量</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >已派发数量</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >已认领数量</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >未认领数量</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >计划审核人</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="90" >计划下达人</th>
-				<th data-options="field:'remark'" halign="center" align="left" sortable="true" width="250" >说明</th>
+				<th data-options="field:'nd'" halign="center" align="left" sortable="true" width="50">计划年度</th>
+				<th data-options="field:'id'" halign="center" align="left" sortable="true" width="70">计划编号</th>
+				<th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
+				<th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130" >计划名称</th>
+				<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
+				<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">要求完成时间</th>
+				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">抽查分类</th>
+				<th data-options="field:'nr'" halign="center" align="left" sortable="true" width="150" >抽查内容</th>
+				<th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60" >任务数量</th>
+				<th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="60" >已派发</th>
+				<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="60" >已认领</th>
+				<th data-options="field:'wrlsl'" halign="center" align="left" sortable="true" width="60" >未认领</th>
+				<th data-options="field:'jhshr'" halign="center" align="left" sortable="true" width="90" >审核人</th>
+				<th data-options="field:'jhxdr'" halign="center" align="left" sortable="true" width="90" >下达人</th>
+				<th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250" >说明</th>
 			</tr>
 			</thead>
 		</table>
@@ -134,31 +134,6 @@
 				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领/取消认领</a>
 				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
 			</div>
-			<table id="planDetailGrid"
-				class="easyui-datagrid"
-				data-options="singleSelect:true,collapsible:true"
-				style="height: 200px;margin-left:5px"
-				sortOrder="asc">
-				<thead>
-				<tr>
-					<th data-options="field:'bi0101'" halign="center" align="left" width="260" formatter="formatBillType">票据名称</th>
-					<th data-options="field:'bi0123c'" halign="center" align="center" width="70" codeName="pjxz" formatter="formatCodeList">票据性质</th>
-					<th data-options="field:'bi0134c'" halign="center" align="center" width="70" codeName="jldw" formatter="formatCodeList">计量单位</th>
-					<th data-options="field:'count'" halign="center" align="right" width="40" formatter="formatCount">合计</th>
-					<th data-options="field:'jan'" halign="center" align="right" width="40" >1月</th>
-					<th data-options="field:'feb'" halign="center" align="right" width="40" >2月</th>
-					<th data-options="field:'mar'" halign="center" align="right" width="40" >3月</th>
-					<th data-options="field:'apr'" halign="center" align="right" width="40" >4月</th>
-					<th data-options="field:'may'" halign="center" align="right" width="40" >5月</th>
-					<th data-options="field:'jun'" halign="center" align="right" width="40" >6月</th>
-					<th data-options="field:'jun'" halign="center" align="right" width="40" >8月</th>
-					<th data-options="field:'sep'" halign="center" align="right" width="40" >9月</th>
-					<th data-options="field:'oct'" halign="center" align="right" width="40" >10月</th>
-					<th data-options="field:'nov'" halign="center" align="right" width="40" >11月</th>
-					<th data-options="field:'dec'" halign="center" align="right" width="40" >12月</th>
-				</tr>
-				</thead>
-			</table>
 		</div>
 
 	</div>
@@ -168,18 +143,19 @@
 </body>
 </html>
 <script type="text/javascript" src="../js/jquery.min.js" ></script>
+<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
 <script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
-<script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
 <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.combobox.codeList.js"></script>
-<script type="text/javascript" src="../js/husky.common.js" ></script>
 <script type="text/javascript" src="../js/pinyin.js"></script>
 <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
 <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
 <script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
-<script type="text/javascript" src="../js/husky.combobox.js"></script>
-<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+
+<script type="text/javascript" src="../js/husky.common.js"></script>
+<script type="text/javascript" src="../js/husky.orgTree.js"></script>
+<script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
+    
 <script type="text/javascript" src="../js/formatter.js"></script>
-<!-- <script type="text/javascript" src="../bill/billFormat.js" ></script> -->
 <script type="text/javascript" src="./applyCommon.js" ></script>
 <script type="text/javascript" src="./3101.js" ></script>

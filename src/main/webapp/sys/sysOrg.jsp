@@ -56,6 +56,12 @@
 							<td style="text-align:right">单位名称</td>
 							<td><input class="easyui-textbox" id="f_name" name="name" data-options="required:true" style="width: 200px"/></td>
                         </tr>
+						<tr>
+							<td style="text-align:right">联系人</td>
+							<td><input class="easyui-textbox" id="f_contacts" name="p_contacts" style="width: 100px;text-align: right"/></td>
+							<td style="text-align:right">联系电话</td>
+							<td><input class="easyui-textbox" id="f_phone" name="phone" data-options="required:true" style="width: 200px"/></td>
+                        </tr>
 					</table>
 				</form>
 			</div>

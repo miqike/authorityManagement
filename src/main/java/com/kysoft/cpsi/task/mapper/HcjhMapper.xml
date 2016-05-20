@@ -260,4 +260,25 @@
       NR = #{nr,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="query" resultMap="BaseResultMap">
+  		select <include refid="Base_Column_List" />
+    	from T_HCJH
+		<where>
+			<if test="name != null">
+				(USER_ID like concat(concat('%', #{name,jdbcType=VARCHAR}), '%') or
+				NAME like concat(concat('%', #{name,jdbcType=VARCHAR}), '%') )
+			</if>
+			<if test="organization != null">
+				and (ORG_ID like concat(concat('%', #{organization,jdbcType=VARCHAR}), '%') or
+	          ORG_NAME like concat(concat('%', #{organization,jdbcType=VARCHAR}), '%'))
+	        </if>
+		</where>
+		ORDER BY
+		<if test="order != null">
+			${sort} 
+			${order}, 
+		</if>
+		ND
+  </select>
 </mapper>

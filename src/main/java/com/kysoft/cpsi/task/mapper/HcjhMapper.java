@@ -1,5 +1,8 @@
 package com.kysoft.cpsi.task.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kysoft.cpsi.task.entity.Hcjh;
 
 public interface HcjhMapper {
@@ -50,4 +53,6 @@ public interface HcjhMapper {
      * @mbggenerated Fri May 20 11:38:53 CST 2016
      */
     int updateByPrimaryKey(Hcjh record);
+    
+    List<Hcjh> query(Map<String, Object> param);
 }

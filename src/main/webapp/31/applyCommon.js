@@ -378,7 +378,7 @@ $(function() {
 	//取得登录用户信息
     getUserInfo();
 	$.subscribe("CODELIST_INITIALIZED", function(){
-		$.getJSON("../ba/ba01/cascade", function (response) {
+		/*$.getJSON("../ba/ba01/cascade", function (response) {
             if(response.length > 0) {
                 window.orgTreeObj = $.fn.zTree.init($("#orgTree"), setting, response);
                 var x = new Array();
@@ -402,7 +402,7 @@ $(function() {
                 }).combobox("setValue", userInfo.orgId).combobox("disable");
             }
 
-		});
+		});*/
 	});
 
 
