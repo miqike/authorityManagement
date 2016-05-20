@@ -52,7 +52,7 @@
 					<th data-options="field:'role',halign:'center',align:'center'" sortable="true" width="100">角色代码</th>
 					<th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="100">角色名称</th>
 					<th data-options="field:'description',halign:'center',align:'left'" sortable="true" width="350">描述</th>
-					<th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="lockStatus"
+					<th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="userStatus"
 						formatter="formatCodeList">状态</th>
 				</tr>
 			</thead>
@@ -117,7 +117,7 @@
 					</tr>
 					<tr>
 						<td style="text-align: right;">状态</td>
-						<td><input id="p_status" class="easyui-combobox" style="width:200px;" data-options="required:true" codeName="lockStatus"/></td>
+						<td><input id="p_status" class="easyui-combobox" style="width:200px;" data-options="required:true" codeName="userStatus"/></td>
 					</tr>
 
 				</table>

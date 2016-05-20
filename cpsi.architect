@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.8">
+ <project-name>cpsi</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="(Target Database)" />
+   <property key="Connection Type" value="Oracle 11g" />
+   <property key="JDBC URL" value="jdbc:oracle:thin:@192.168.5.133:1521:orcl" />
+   <property key="UID" value="cpsi" />
+   <property key="PWD" value="cpsi" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+  <data-source id="DS2">
+   <property key="Connection Type" value="Oracle 11g" />
+   <property key="Logical" value="oracle_192.168.5.133" />
+   <property key="JDBC URL" value="jdbc:oracle:thin:@192.168.5.133:1521:orcl" />
+   <property key="UID" value="cpsi" />
+   <property key="PWD" value="cpsi" />
+   <property key="ca.sqlpower.architect.etl.kettle.database" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.port" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.hostname" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.login" value="" />
+   <property key="ca.sqlpower.architect.etl.kettle.repos.password" value="" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+  <database id="DB0" populated="true" UUID="a3bd3677-8e06-4c75-9d26-893d98026ea4" dbcs-ref="DS2" name="oracle_192.168.5.133" physicalName="oracle_192.168.5.133" >
+   <schema id="SCH1" populated="false" UUID="41750adf-03fe-4660-a194-968e772accf2" name="ACTIVITI" nativeTerm="schema" physicalName="ACTIVITI" >
+   </schema>
+   <schema id="SCH2" populated="false" UUID="1140ed8e-fa12-45c8-be80-02f07c1ff5cc" name="ANONYMOUS" nativeTerm="schema" physicalName="ANONYMOUS" >
+   </schema>
+   <schema id="SCH3" populated="false" UUID="d3c87572-6bd4-4c6f-be58-65c8182c9926" name="APEX_030200" nativeTerm="schema" physicalName="APEX_030200" >
+   </schema>
+   <schema id="SCH4" populated="false" UUID="c333ff1c-59b8-4ee5-a841-bdb134d4532d" name="APEX_PUBLIC_USER" nativeTerm="schema" physicalName="APEX_PUBLIC_USER" >
+   </schema>
+   <schema id="SCH5" populated="false" UUID="a8a11eba-1b9e-4468-9c5b-003c39bc53f4" name="APPQOSSYS" nativeTerm="schema" physicalName="APPQOSSYS" >
+   </schema>
+   <schema id="SCH6" populated="false" UUID="ff4a9c4a-4732-4e93-8376-f19330924ff6" name="CPKPK_GH" nativeTerm="schema" physicalName="CPKPK_GH" >
+   </schema>
+   <schema id="SCH7" populated="false" UUID="96a0c385-9109-433a-bda6-9be68785f90e" name="CPPGK_GH" nativeTerm="schema" physicalName="CPPGK_GH" >
+   </schema>
+   <schema id="SCH8" populated="true" UUID="7f453368-b2e7-4c99-9bee-a9973e8361c4" name="CPSI" nativeTerm="schema" physicalName="CPSI" >
+    <table id="TAB9" populated="false" UUID="bd9e3513-4586-4e7b-a316-1eca12398e9b" name="EAI_INTERFACE_OUT" objectType="TABLE" physicalName="EAI_INTERFACE_OUT" >
+     <remarks>OUT接口定义</remarks>
+     <folder id="FOLTAB91" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX10" populated="true" UUID="56b13701-1eb1-4f2c-8cbc-f62dddbd2c0b" clustered="false" name="EAI_INTERFACE_OUT_pk" physicalName="EAI_INTERFACE_OUT_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB11" populated="false" UUID="d4af283a-9d2e-40c8-b614-c67028dee2cb" name="EAI_SERVICE" objectType="TABLE" physicalName="EAI_SERVICE" >
+     <remarks></remarks>
+     <folder id="FOLTAB111" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX12" populated="true" UUID="0cc31f50-e2fe-4060-ac45-14e2de568410" clustered="false" name="EAI_SERVICE_pk" physicalName="EAI_SERVICE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB13" populated="false" UUID="14fed98f-228e-42ff-8db5-350788d87b59" name="SYS_DATA_PERM" objectType="TABLE" physicalName="SYS_DATA_PERM" >
+     <remarks>数据级权限</remarks>
+     <folder id="FOLTAB131" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX14" populated="true" UUID="58953967-2518-49bf-98c4-bb36b1a53483" clustered="false" name="SYS_DATA_PERM_pk" physicalName="SYS_DATA_PERM_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB15" populated="false" UUID="34476465-20dc-4e6e-8877-e4623f339d35" name="SYS_DATA_PERM_RULE" objectType="TABLE" physicalName="SYS_DATA_PERM_RULE" >
+     <remarks>数据级权限规则</remarks>
+     <folder id="FOLTAB151" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX16" populated="true" UUID="40ad7a0c-67a6-407c-894d-340572aa8465" clustered="false" name="SYS_DATA_PERM_RULE_pk" physicalName="SYS_DATA_PERM_RULE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB17" populated="false" UUID="cc7719ae-eb03-42aa-aa89-7e11dc852ae0" name="SYS_INDIVIDUAL" objectType="TABLE" physicalName="SYS_INDIVIDUAL" >
+     <remarks>独立部署单位列表</remarks>
+     <folder id="FOLTAB171" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX18" populated="true" UUID="9d38c8f7-195b-4e02-acb0-545a85156dbe" clustered="false" name="SYS_INDIVIDUAL_pk" physicalName="SYS_INDIVIDUAL_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB19" populated="false" UUID="d4a4784d-3064-43d7-bdf4-53e9efa9aa61" name="SYS_NODE" objectType="TABLE" physicalName="SYS_NODE" >
+     <remarks>集群节点列表</remarks>
+     <folder id="FOLTAB191" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX20" populated="true" UUID="81fb63f1-6957-4cb1-a04c-c79dfc076390" clustered="false" name="SYS_NODE_pk" physicalName="SYS_NODE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB21" populated="false" UUID="5ec213dd-5bc3-488d-bd7a-c22ea785dc3d" name="SYS_ORGANIZATION" objectType="TABLE" physicalName="SYS_ORGANIZATION" >
+     <remarks>组织机构</remarks>
+     <folder id="FOLTAB211" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX22" populated="true" UUID="78eb4f08-c77c-4c26-81c0-61d7b150a3ee" clustered="false" name="SYS_ORGANIZATION_pk" physicalName="SYS_ORGANIZATION_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB23" populated="false" UUID="579cf266-12a7-489d-be4f-03995456629a" name="SYS_PERMISSION" objectType="TABLE" physicalName="SYS_PERMISSION" >
+     <remarks>操作权限定义</remarks>
+     <folder id="FOLTAB231" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX24" populated="true" UUID="3fe37982-b967-4a7b-84fa-fada63f61e70" clustered="false" name="SYS_PERMISSION_pk" physicalName="SYS_PERMISSION_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB25" populated="false" UUID="8bf39c37-08fe-4fd0-bc2d-f5e05c4c132a" name="SYS_RES" objectType="TABLE" physicalName="SYS_RES" >
+     <remarks>菜单功能项列</remarks>
+     <folder id="FOLTAB251" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX26" populated="true" UUID="ca633417-a186-4345-b9b8-9a71bcf7dd24" clustered="false" name="SYS_RES_pk" physicalName="SYS_RES_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB27" populated="false" UUID="219a2480-9726-4505-87bf-1c4d8610c76b" name="SYS_ROLE" objectType="TABLE" physicalName="SYS_ROLE" >
+     <remarks>角色表</remarks>
+     <folder id="FOLTAB271" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX28" populated="true" UUID="8bc39663-b3cb-4192-a61f-e56f1ac30a8a" clustered="false" name="SYS_ROLE_pk" physicalName="SYS_ROLE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB29" populated="false" UUID="56d4f11f-1a82-4417-8441-9facea91e928" name="SYS_ROLE_RES_PERMS" objectType="TABLE" physicalName="SYS_ROLE_RES_PERMS" >
+     <remarks>角色权限设置表</remarks>
+     <folder id="FOLTAB291" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX30" populated="true" UUID="fd4ad722-bac2-4f3b-9e7a-14a391044cc3" clustered="false" name="SYS_ROLE_RES_PERMS_pk" physicalName="SYS_ROLE_RES_PERMS_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB31" populated="false" UUID="cd1df602-e826-4027-aa56-aa4a057e77fd" name="SYS_SEQUENCE_NO" objectType="TABLE" physicalName="SYS_SEQUENCE_NO" >
+     <remarks>系统序列号表</remarks>
+     <folder id="FOLTAB311" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX32" populated="true" UUID="e13411a9-9c5e-4cce-8efa-0c1e7c10ab7c" clustered="false" name="SYS_SEQUENCE_NO_pk" physicalName="SYS_SEQUENCE_NO_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB33" populated="false" UUID="e8553ede-e450-456b-b1b9-4617e513ecc8" name="SYS_USER" objectType="TABLE" physicalName="SYS_USER" >
+     <remarks>用户信息表，
+老系统中是DB_USER</remarks>
+     <folder id="FOLTAB331" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX34" populated="true" UUID="5ea3992c-94a4-4520-a6f4-e6fa2db51635" clustered="false" name="SYS_USER_pk" physicalName="SYS_USER_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB35" populated="false" UUID="3d8ce527-cd61-4788-a8b0-c8c2d85817b6" name="SYS_USER_DATA_PERM_RULE" objectType="TABLE" physicalName="SYS_USER_DATA_PERM_RULE" >
+     <remarks>用户数据级权限映射表</remarks>
+     <folder id="FOLTAB351" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX36" populated="true" UUID="565d4e95-78a0-4bf7-a0fb-868e416d754c" clustered="false" name="SYS_USER_DATA_PERM_RULE_pk" physicalName="SYS_USER_DATA_PERM_RULE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB37" populated="false" UUID="4ce7c05e-e705-4f0c-a432-c2e7c9c138b1" name="SYS_USER_ONLINE" objectType="TABLE" physicalName="SYS_USER_ONLINE" >
+     <remarks>在线用户表</remarks>
+     <folder id="FOLTAB371" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX38" populated="true" UUID="80dca37d-fff0-43ab-b721-d567406f9cf1" clustered="false" name="SYS_USER_ONLINE_pk" physicalName="SYS_USER_ONLINE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB39" populated="false" UUID="6ee39c64-b76b-4f41-834d-e59d852f1b8a" name="SYS_USER_PROFILE" objectType="TABLE" physicalName="SYS_USER_PROFILE" >
+     <remarks>操作员自定义信息</remarks>
+     <folder id="FOLTAB391" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX40" populated="true" UUID="0870bcc5-51b8-4a02-b1a7-703893b9b055" clustered="false" name="SYS_USER_PROFILE_pk" physicalName="SYS_USER_PROFILE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB41" populated="false" UUID="319f532d-3985-4958-839c-65d4795c7305" name="SYS_USER_RES_PERMS" objectType="TABLE" physicalName="SYS_USER_RES_PERMS" >
+     <remarks>用户数据权限表</remarks>
+     <folder id="FOLTAB411" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX42" populated="true" UUID="5343ba77-f451-4c03-b7b1-45e8c0d8cf59" clustered="false" name="SYS_USER_RES_PERMS_pk" physicalName="SYS_USER_RES_PERMS_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB43" populated="false" UUID="b0f28c9e-1cfe-49c0-a1a9-9c3a92922128" name="SYS_USER_ROLE" objectType="TABLE" physicalName="SYS_USER_ROLE" >
+     <remarks>用户角色表，
+老系统中是USER_ROLE</remarks>
+     <folder id="FOLTAB431" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX44" populated="true" UUID="4a2054fc-c763-45e2-947c-d1c5d0e372bb" clustered="false" name="SYS_USER_ROLE_pk" physicalName="SYS_USER_ROLE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB45" populated="false" UUID="7a19982d-342a-4ef2-a1b7-0ecf80fef9f8" name="SYS_USER_RUNAS" objectType="TABLE" physicalName="SYS_USER_RUNAS" >
+     <remarks>用户委托</remarks>
+     <folder id="FOLTAB451" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX46" populated="true" UUID="9f41e037-dd8e-4da2-9caa-2e4a39aaf720" clustered="false" name="SYS_USER_RUNAS_pk" physicalName="SYS_USER_RUNAS_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB47" populated="false" UUID="39c9e544-2c8d-471f-a0d8-67917e2fcdfc" name="TEMP_ID" objectType="TABLE" physicalName="TEMP_ID" >
+     <remarks></remarks>
+     <folder id="FOLTAB471" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX48" populated="true" UUID="ffd8bde3-9e75-404a-b690-0748103e97b9" clustered="false" name="TEMP_ID_pk" physicalName="TEMP_ID_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB49" populated="false" UUID="aee29f74-fdd2-449e-85c1-2b3b5015e66c" name="T_ATTACHMENT" objectType="TABLE" physicalName="T_ATTACHMENT" >
+     <remarks></remarks>
+     <folder id="FOLTAB491" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX50" populated="true" UUID="fa5680fb-7a13-49bf-8d29-55b6e31e84c6" clustered="false" name="T_ATTACHMENT_pk" physicalName="T_ATTACHMENT_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB51" populated="false" UUID="de046300-306f-426a-8460-7d0dda807480" name="T_COMMENT" objectType="TABLE" physicalName="T_COMMENT" >
+     <remarks></remarks>
+     <folder id="FOLTAB511" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX52" populated="true" UUID="20f2be24-c643-40b1-b80c-79226a4da656" clustered="false" name="T_COMMENT_pk" physicalName="T_COMMENT_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB53" populated="false" UUID="b90e6921-0830-4059-abeb-b38cc078a535" name="T_LEAVE" objectType="TABLE" physicalName="T_LEAVE" >
+     <remarks></remarks>
+     <folder id="FOLTAB531" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX54" populated="true" UUID="a0a72908-2cc1-4b9a-b97f-041775f7359e" clustered="false" name="T_LEAVE_pk" physicalName="T_LEAVE_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB55" populated="false" UUID="5a20a533-67fb-49ec-a1c7-684499ee7650" name="T_PLAN" objectType="TABLE" physicalName="T_PLAN" >
+     <remarks>计划分解表</remarks>
+     <folder id="FOLTAB551" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX56" populated="true" UUID="707b05e6-01f3-4f9b-af40-ed08e8a52120" clustered="false" name="T_PLAN_pk" physicalName="T_PLAN_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB57" populated="false" UUID="50480c43-ac70-4cbf-b238-86b960112010" name="T_PLAN_ALL" objectType="TABLE" physicalName="T_PLAN_ALL" >
+     <remarks>计划分解表</remarks>
+     <folder id="FOLTAB571" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX58" populated="true" UUID="d33f37d5-89c7-4c5b-8e79-00d452746827" clustered="false" name="T_PLAN_ALL_pk" physicalName="T_PLAN_ALL_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB59" populated="false" UUID="c8ef2606-6c59-44c6-a527-9ec149900552" name="T_PLAN_USER_ORG" objectType="TABLE" physicalName="T_PLAN_USER_ORG" >
+     <remarks></remarks>
+     <folder id="FOLTAB591" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX60" populated="true" UUID="570ea98b-c626-4bf4-9576-21f1500555d0" clustered="false" name="T_PLAN_USER_ORG_pk" physicalName="T_PLAN_USER_ORG_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB61" populated="true" UUID="8a389803-d196-4476-920d-27b55a33f987" name="T_SCZT" objectType="TABLE" physicalName="T_SCZT" >
+     <remarks>抽查_市场主体信息</remarks>
+     <folder id="FOLTAB611" populated="true" name="Columns" physicalName="Columns" type="1">
+      <column id="COL62" populated="true" UUID="326ee6fa-cb44-4617-b598-82ea14e75558" autoIncrement="false" name="ZCH" nullable="0" physicalName="ZCH" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>注册号</remarks>
+      </column>
+      <column id="COL63" populated="true" UUID="e4dbb3fa-8f3d-4d64-a7b7-2ab76ecf25db" autoIncrement="false" name="MC" nullable="0" physicalName="MC" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>名称</remarks>
+      </column>
+      <column id="COL64" populated="true" UUID="b4876269-f90b-4aae-a0d7-ea4193bbc0c6" autoIncrement="false" name="LX" nullable="0" physicalName="LX" precision="22" referenceCount="1" scale="0" sourceDataTypeName="NUMBER" type="3" >
+       <remarks>类型</remarks>
+      </column>
+      <column id="COL65" populated="true" UUID="8688e29b-9b6b-4643-995f-da3a2c2cf116" autoIncrement="false" name="FR" nullable="1" physicalName="FR" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>法人</remarks>
+      </column>
+      <column id="COL66" populated="true" UUID="7464bb53-8fb1-4765-90cd-e45d5592e603" autoIncrement="false" name="FRSFZH" nullable="1" physicalName="FRSFZH" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>法人身份证号</remarks>
+      </column>
+      <column id="COL67" populated="true" UUID="32c20c99-5ace-47d0-9103-5d1133064c8d" autoIncrement="false" name="CLRQ" nullable="1" physicalName="CLRQ" precision="7" referenceCount="1" scale="0" sourceDataTypeName="DATE" type="91" >
+       <remarks>成立日期</remarks>
+      </column>
+      <column id="COL68" populated="true" UUID="b3c39a9b-cd35-4eee-bb6b-b34d00c170a8" autoIncrement="false" name="ZCZB" nullable="1" physicalName="ZCZB" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>注册资本</remarks>
+      </column>
+      <column id="COL69" populated="true" UUID="a7b3a34d-03bb-413e-ad77-55abdcbaa771" autoIncrement="false" name="DJJG" nullable="1" physicalName="DJJG" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>登记机关</remarks>
+      </column>
+      <column id="COL70" populated="true" UUID="4b8d8c30-079b-48b8-bfa6-0b2139c05d81" autoIncrement="false" name="DJJGMC" nullable="1" physicalName="DJJGMC" precision="128" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks>登记机关名称</remarks>
+      </column>
+      <column id="COL71" populated="true" UUID="d08531e7-43a9-45a5-a8ec-7bb639262408" autoIncrement="false" name="DJZT" nullable="1" physicalName="DJZT" precision="22" referenceCount="1" scale="0" sourceDataTypeName="NUMBER" type="3" >
+       <remarks>等级状态</remarks>
+      </column>
+      </folder>
+      <folder id="FOLTAB613" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+      </folder>
+      <folder id="FOLTAB612" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+      </folder>
+      <folder id="FOLTAB614" populated="true" name="Indices" physicalName="Indices" type="4">
+      <index id="IDX72" populated="true" UUID="f68a305f-15bf-4cc0-a2e9-10d41fb13a2a" clustered="false" name="T_SCZT_pk" physicalName="T_SCZT_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB73" populated="true" UUID="8725c79c-b133-446d-b4e0-2f6b572ad320" name="T_ZFRY" objectType="TABLE" physicalName="T_ZFRY" >
+     <remarks>执法人员库</remarks>
+     <folder id="FOLTAB731" populated="true" name="Columns" physicalName="Columns" type="1">
+      <column id="COL74" populated="true" UUID="aa7db17b-d0b8-4302-af36-0b0e047350d8" autoIncrement="false" name="USER_ID" nullable="0" physicalName="USER_ID" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL75" populated="true" UUID="e6cb937b-d51a-41e9-88bc-939210c1edd9" autoIncrement="false" name="MANAGER_ID" nullable="1" physicalName="MANAGER_ID" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL76" populated="true" UUID="dd7c50e4-0fac-4747-852b-c35c7a1fb639" autoIncrement="false" name="NAME" nullable="0" physicalName="NAME" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL77" populated="true" UUID="2409d467-f3d4-4a56-8954-375c8326cd9e" autoIncrement="false" name="EMAIL" nullable="1" physicalName="EMAIL" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL78" populated="true" UUID="c0ad7919-dc10-43c3-800d-7d1277d97311" autoIncrement="false" name="MOBILE" nullable="1" physicalName="MOBILE" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL79" populated="true" UUID="a473ee29-d459-492c-809d-4367aa51c7f8" autoIncrement="false" name="MANAGER_NAME" nullable="1" physicalName="MANAGER_NAME" precision="90" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL80" populated="true" UUID="bfa59706-14e8-4dd0-a1ab-5ab8e83a8943" autoIncrement="false" name="STATUS" nullable="1" physicalName="STATUS" precision="4" referenceCount="1" scale="0" sourceDataTypeName="NUMBER" type="3" >
+       <remarks></remarks>
+      </column>
+      <column id="COL81" populated="true" UUID="0f1145b1-efc7-4c93-a5f7-8d0818501df7" autoIncrement="false" name="ORG_ID" nullable="1" physicalName="ORG_ID" precision="300" referenceCount="1" scale="0" sourceDataTypeName="NVARCHAR2" type="-9" >
+       <remarks></remarks>
+      </column>
+      <column id="COL82" populated="true" UUID="f570b477-16bc-43d5-9497-ddcd5136612b" autoIncrement="false" name="ORG_TYPE" nullable="1" physicalName="ORG_TYPE" precision="4" referenceCount="1" scale="0" sourceDataTypeName="NUMBER" type="3" >
+       <remarks></remarks>
+      </column>
+      <column id="COL83" populated="true" UUID="d3ed38a7-4a4a-401c-9337-97272e258fa5" autoIncrement="false" name="WEIGHT" nullable="1" physicalName="WEIGHT" precision="4" referenceCount="1" scale="0" sourceDataTypeName="NUMBER" type="3" >
+       <remarks></remarks>
+      </column>
+      <column id="COL84" populated="true" UUID="12eb0dce-7241-4291-b8bf-3d532325cb4a" autoIncrement="false" name="ORG_NAME" nullable="1" physicalName="ORG_NAME" precision="255" referenceCount="1" scale="0" sourceDataTypeName="VARCHAR2" type="12" >
+       <remarks></remarks>
+      </column>
+      </folder>
+      <folder id="FOLTAB733" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+      </folder>
+      <folder id="FOLTAB732" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+      </folder>
+      <folder id="FOLTAB734" populated="true" name="Indices" physicalName="Indices" type="4">
+      <index id="IDX85" populated="true" UUID="55418a06-191d-41ca-ac4b-30cf18beec0e" clustered="false" name="T_ZFRY_pk" physicalName="T_ZFRY_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+    <table id="TAB86" populated="false" UUID="0a86cb4b-89ea-4255-8040-f81a316c55e6" name="X_CODELIST" objectType="TABLE" physicalName="X_CODELIST" >
+     <remarks>信息编码，老系统中是XXMB</remarks>
+     <folder id="FOLTAB861" populated="false" name="Columns" physicalName="Columns" type="1">
+      <index id="IDX87" populated="true" UUID="56278bad-862e-48b5-b3a0-58ec485539cb" clustered="false" name="X_CODELIST_pk" physicalName="X_CODELIST_pk" primaryKeyIndex="true" unique="false" >
+      </index>
+     </folder>
+    </table>
+   </schema>
+   <schema id="SCH88" populated="false" UUID="9c04280d-e3ca-429e-8f6b-b182d7f951dc" name="CTXSYS" nativeTerm="schema" physicalName="CTXSYS" >
+   </schema>
+   <schema id="SCH89" populated="false" UUID="213739e8-0dbb-40b4-804a-81f8142f5085" name="DBSNMP" nativeTerm="schema" physicalName="DBSNMP" >
+   </schema>
+   <schema id="SCH90" populated="false" UUID="fbe8f8f4-564b-4352-99b3-e7364d4e294b" name="DIP" nativeTerm="schema" physicalName="DIP" >
+   </schema>
+   <schema id="SCH91" populated="false" UUID="2a9a47cc-ff29-45df-b115-ed8d844b5e64" name="EXFSYS" nativeTerm="schema" physicalName="EXFSYS" >
+   </schema>
+   <schema id="SCH92" populated="false" UUID="0304a89b-9800-476a-b442-8ffc83bfaad0" name="FLOWS_FILES" nativeTerm="schema" physicalName="FLOWS_FILES" >
+   </schema>
+   <schema id="SCH93" populated="false" UUID="831670d7-5637-4acb-9c76-06b0ebebc624" name="JINZHOUFANGWU" nativeTerm="schema" physicalName="JINZHOUFANGWU" >
+   </schema>
+   <schema id="SCH94" populated="false" UUID="405d1fa0-0b0b-4f6e-b552-eed46b1dd0f0" name="KTEAM" nativeTerm="schema" physicalName="KTEAM" >
+   </schema>
+   <schema id="SCH95" populated="false" UUID="fb01cea7-476a-41f6-8df4-57f901fec04b" name="MDDATA" nativeTerm="schema" physicalName="MDDATA" >
+   </schema>
+   <schema id="SCH96" populated="false" UUID="4891e243-6df6-48dc-b23b-3776bc50cdd8" name="MDSYS" nativeTerm="schema" physicalName="MDSYS" >
+   </schema>
+   <schema id="SCH97" populated="false" UUID="9df6f886-ac3b-44ab-a355-179f68271661" name="MGMT_VIEW" nativeTerm="schema" physicalName="MGMT_VIEW" >
+   </schema>
+   <schema id="SCH98" populated="false" UUID="ee86d32c-4d9b-4bb1-9486-5f1dffa98353" name="NTIMS3" nativeTerm="schema" physicalName="NTIMS3" >
+   </schema>
+   <schema id="SCH99" populated="false" UUID="b4888e14-990b-4d44-844d-d589839fffa2" name="NTIMS4" nativeTerm="schema" physicalName="NTIMS4" >
+   </schema>
+   <schema id="SCH100" populated="false" UUID="593fc5df-5806-4779-bc45-7dabdc80509b" name="NTIMS_REMOTE" nativeTerm="schema" physicalName="NTIMS_REMOTE" >
+   </schema>
+   <schema id="SCH101" populated="false" UUID="ac0beb04-db1f-4d05-902e-f13b90c2e6a8" name="NTIMS_TEST" nativeTerm="schema" physicalName="NTIMS_TEST" >
+   </schema>
+   <schema id="SCH102" populated="false" UUID="ac5e4da8-ee84-4051-8df0-a2af9e4572cd" name="OLAPSYS" nativeTerm="schema" physicalName="OLAPSYS" >
+   </schema>
+   <schema id="SCH103" populated="false" UUID="e4d32dd9-1c7b-49a0-b38b-695e6d3691e3" name="ORACLE_OCM" nativeTerm="schema" physicalName="ORACLE_OCM" >
+   </schema>
+   <schema id="SCH104" populated="false" UUID="afe35a28-a7cd-40c7-9155-7374936adccc" name="ORDDATA" nativeTerm="schema" physicalName="ORDDATA" >
+   </schema>
+   <schema id="SCH105" populated="false" UUID="5b6717cd-bd33-4bec-9be8-489b1d6616f6" name="ORDPLUGINS" nativeTerm="schema" physicalName="ORDPLUGINS" >
+   </schema>
+   <schema id="SCH106" populated="false" UUID="dda661e1-098b-47cb-baa5-aa111932b95f" name="ORDSYS" nativeTerm="schema" physicalName="ORDSYS" >
+   </schema>
+   <schema id="SCH107" populated="false" UUID="edbb11a9-ba42-4ce0-8aec-b8705d81aaf7" name="OUTLN" nativeTerm="schema" physicalName="OUTLN" >
+   </schema>
+   <schema id="SCH108" populated="false" UUID="ba7763fd-72e1-4182-9549-996f1194dd82" name="OWBSYS" nativeTerm="schema" physicalName="OWBSYS" >
+   </schema>
+   <schema id="SCH109" populated="false" UUID="0465d65e-8b5b-4be9-af35-10065477abce" name="OWBSYS_AUDIT" nativeTerm="schema" physicalName="OWBSYS_AUDIT" >
+   </schema>
+   <schema id="SCH110" populated="false" UUID="84607559-f817-4083-a5df-a888e31ab882" name="SCOTT" nativeTerm="schema" physicalName="SCOTT" >
+   </schema>
+   <schema id="SCH111" populated="false" UUID="5c2fe0e3-9c4c-4339-a7fd-9128ce817a2a" name="SI_INFORMTN_SCHEMA" nativeTerm="schema" physicalName="SI_INFORMTN_SCHEMA" >
+   </schema>
+   <schema id="SCH112" populated="false" UUID="c4ea2e6b-ec7b-49f8-afb6-6024a52eb8dc" name="SPATIAL_CSW_ADMIN_USR" nativeTerm="schema" physicalName="SPATIAL_CSW_ADMIN_USR" >
+   </schema>
+   <schema id="SCH113" populated="false" UUID="39926b93-f407-499b-999f-336e874420cd" name="SPATIAL_WFS_ADMIN_USR" nativeTerm="schema" physicalName="SPATIAL_WFS_ADMIN_USR" >
+   </schema>
+   <schema id="SCH114" populated="false" UUID="a119bf28-fbd8-418f-96f2-d8deed712f78" name="SYS" nativeTerm="schema" physicalName="SYS" >
+   </schema>
+   <schema id="SCH115" populated="false" UUID="731cf069-825e-42fe-b4fa-f1959157b094" name="SYSMAN" nativeTerm="schema" physicalName="SYSMAN" >
+   </schema>
+   <schema id="SCH116" populated="false" UUID="62aec348-2308-4b9a-816e-8a3e3871ef0c" name="SYSTEM" nativeTerm="schema" physicalName="SYSTEM" >
+   </schema>
+   <schema id="SCH117" populated="false" UUID="7f11a527-b23f-4309-b593-17ec179efc5b" name="TSB" nativeTerm="schema" physicalName="TSB" >
+   </schema>
+   <schema id="SCH118" populated="false" UUID="a25629a2-3e8b-4f94-86a3-8863a9e69ebd" name="WMSYS" nativeTerm="schema" physicalName="WMSYS" >
+   </schema>
+   <schema id="SCH119" populated="false" UUID="492392ed-c4f6-4036-9dde-aae7736c1f13" name="XDB" nativeTerm="schema" physicalName="XDB" >
+   </schema>
+   <schema id="SCH120" populated="false" UUID="5db1c437-eb31-4020-a3aa-17a6fde74cc5" name="XS$NULL" nativeTerm="schema" physicalName="XS$NULL" >
+   </schema>
+   <relationships>
+   </relationships>
+  </database>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB122" populated="true" UUID="1f9e3efb-1ec4-44cb-b663-9445e1a4618d" name="T_SCZT" objectType="TABLE" physicalName="T_SCZT" >
+   <remarks>抽查_市场主体信息</remarks>
+   <folder id="FOLTAB1221" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL123" populated="true" UUID="0d2f8510-1e3c-4bb7-b270-3a19fc56ea74" autoIncrement="false" autoIncrementSequenceName="T_SCZT_ID_seq" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL124" populated="true" UUID="f2f590f0-a9b9-4328-ab8f-30c74017da5a" autoIncrement="false" defaultValue="" name="ZCH" nullable="0" physicalName="ZCH" precision="128" referenceCount="1" scale="0" source-column-ref="COL62" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>注册号</remarks>
+    </column>
+    <column id="COL125" populated="true" UUID="340d07d4-10a1-4374-b4a3-5a58a408226e" autoIncrement="false" defaultValue="" name="MC" nullable="0" physicalName="MC" precision="128" referenceCount="1" scale="0" source-column-ref="COL63" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>名称</remarks>
+    </column>
+    <column id="COL126" populated="true" UUID="aaf1bdc6-0195-4e3d-8aa1-92e00e3d0a79" autoIncrement="false" defaultValue="" name="LX" nullable="0" physicalName="LX" precision="0" referenceCount="1" scale="0" source-column-ref="COL64" sourceDataTypeName="NUMBER" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>类型</remarks>
+    </column>
+    <column id="COL127" populated="true" UUID="d812ad8e-e405-4042-8c4f-3cd276e97865" autoIncrement="false" defaultValue="" name="FR" nullable="1" physicalName="FR" precision="128" referenceCount="1" scale="0" source-column-ref="COL65" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>法人</remarks>
+    </column>
+    <column id="COL128" populated="true" UUID="b9422bca-4751-4703-b780-16325d0c3f90" autoIncrement="false" defaultValue="" name="FRSFZH" nullable="1" physicalName="FRSFZH" precision="128" referenceCount="1" scale="0" source-column-ref="COL66" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>法人身份证号</remarks>
+    </column>
+    <column id="COL129" populated="true" UUID="e823a9ac-346d-4048-8afd-25e2e03b4407" autoIncrement="false" defaultValue="" name="CLRQ" nullable="1" physicalName="CLRQ" precision="0" referenceCount="1" scale="0" source-column-ref="COL67" sourceDataTypeName="DATE" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>成立日期</remarks>
+    </column>
+    <column id="COL130" populated="true" UUID="e5b4e75c-3997-41f6-a8ef-7db7fad70a5a" autoIncrement="false" defaultValue="" name="ZCZB" nullable="1" physicalName="ZCZB" precision="128" referenceCount="1" scale="0" source-column-ref="COL68" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>注册资本</remarks>
+    </column>
+    <column id="COL131" populated="true" UUID="1cf4661c-13bf-4b08-95e6-92f56660779a" autoIncrement="false" defaultValue="" name="DJJG" nullable="1" physicalName="DJJG" precision="128" referenceCount="1" scale="0" source-column-ref="COL69" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>登记机关</remarks>
+    </column>
+    <column id="COL132" populated="true" UUID="e579ca93-5103-4919-a434-58fcf8a0bc59" autoIncrement="false" defaultValue="" name="DJJGMC" nullable="1" physicalName="DJJGMC" precision="128" referenceCount="1" scale="0" source-column-ref="COL70" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>登记机关名称</remarks>
+    </column>
+    <column id="COL133" populated="true" UUID="cd2478c7-da01-425f-b626-9e59cb163572" autoIncrement="false" defaultValue="" name="DJZT" nullable="1" physicalName="DJZT" precision="0" referenceCount="1" scale="0" source-column-ref="COL71" sourceDataTypeName="NUMBER" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>等级状态</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1223" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1222" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1224" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX134" populated="true" UUID="2df1f9fc-4101-482a-b0b2-b24bfdab5aa6" clustered="false" name="T_SCZT_pk" physicalName="T_SCZT_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC135" populated="true" UUID="7025ee8e-0538-4ec5-90e6-31798229b61c" ascendingOrDescending="UNSPECIFIED" column-ref="COL123" name="ID" physicalName="ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB136" populated="true" UUID="90710a6e-2a85-4463-9c30-b3dacdc3a8dc" name="T_CSRW" objectType="TABLE" physicalName="T_CSRW" >
+   <remarks>抽查任务</remarks>
+   <folder id="FOLTAB1361" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL137" populated="true" UUID="5c2385ed-e55b-4b92-9f5d-3d64a772564c" autoIncrement="false" autoIncrementSequenceName="T_CSRW_ID_seq" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>任务编号</remarks>
+    </column>
+    <column id="COL138" populated="true" UUID="88f43b23-7b3c-438d-b748-b48826db9cd4" autoIncrement="false" autoIncrementSequenceName="T_CSRW_JHBH_seq" defaultValue="" name="JHBH" nullable="0" physicalName="JHBH" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>抽查计划编号</remarks>
+    </column>
+    <column id="COL139" populated="true" UUID="eea51274-3a2d-45c6-8326-2acd5cfdabf7" autoIncrement="false" autoIncrementSequenceName="T_CSRW_CJSJ_seq" defaultValue="" name="CJSJ" nullable="0" physicalName="CJSJ" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>创建时间</remarks>
+    </column>
+    <column id="COL140" populated="true" UUID="51320ce9-9142-4b8a-90d6-eb80bc9decc8" autoIncrement="false" autoIncrementSequenceName="T_CSRW_XFSJ_seq" defaultValue="" name="XFSJ" nullable="0" physicalName="XFSJ" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>任务下发时间</remarks>
+    </column>
+    <column id="COL141" populated="true" UUID="de7da4e1-baea-4e33-95e4-ba0b4a45dc5a" autoIncrement="false" autoIncrementSequenceName="T_CSRW_JSSJ_seq" defaultValue="" name="JSSJ" nullable="0" physicalName="JSSJ" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>任务接受时间</remarks>
+    </column>
+    <column id="COL142" populated="true" UUID="060fa9fc-7915-470c-a98b-eb3bd0376b48" autoIncrement="false" autoIncrementSequenceName="T_CSRW_WCSJ_seq" defaultValue="" name="WCSJ" nullable="0" physicalName="WCSJ" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>任务完成时间</remarks>
+    </column>
+    <column id="COL143" populated="true" UUID="b34475f2-38b0-429f-a62f-847edc6d5599" autoIncrement="false" autoIncrementSequenceName="T_CSRW_ZCH_seq" defaultValue="" name="ZCH" nullable="0" physicalName="ZCH" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>核查市场主体注册号</remarks>
+    </column>
+    <column id="COL144" populated="true" UUID="52b4a0a8-7313-44b0-aa81-4e2c695a4040" autoIncrement="false" autoIncrementSequenceName="T_CSRW_MC_seq" defaultValue="" name="MC" nullable="0" physicalName="MC" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>核查市场主体名称</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1363" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1362" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1364" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX145" populated="true" UUID="f6e6b3bc-2823-4b3d-b225-af342745067c" clustered="false" name="T_CSRW_pk" physicalName="T_CSRW_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC146" populated="true" UUID="e137d2fe-d4cf-42b7-b4a2-0cc70c68ba5a" ascendingOrDescending="UNSPECIFIED" column-ref="COL137" name="ID" physicalName="ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB147" populated="true" UUID="90353909-973b-4247-b68e-2fcf5e843e3c" name="T_ZFRY" objectType="TABLE" physicalName="T_ZFRY" >
+   <remarks>执法人员库</remarks>
+   <folder id="FOLTAB1471" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL148" populated="true" UUID="119ac769-7bf3-4cf2-b793-01db243ca0d4" autoIncrement="false" autoIncrementSequenceName="T_ZFRY_ID_seq" defaultValue="" name="ID" nullable="0" physicalName="ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL149" populated="true" UUID="ca9e461e-f525-4151-ba47-06c69262f27f" autoIncrement="false" defaultValue="" name="USER_ID" nullable="0" physicalName="USER_ID" precision="90" referenceCount="1" scale="0" source-column-ref="COL74" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL150" populated="true" UUID="c55cb171-fa43-43a5-9e1d-d18ae8dffdc6" autoIncrement="false" defaultValue="" name="MANAGER_ID" nullable="1" physicalName="MANAGER_ID" precision="90" referenceCount="1" scale="0" source-column-ref="COL75" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL151" populated="true" UUID="617e6924-3fff-43b4-9a1a-8c80f0f9f5e3" autoIncrement="false" defaultValue="" name="NAME" nullable="0" physicalName="NAME" precision="90" referenceCount="1" scale="0" source-column-ref="COL76" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL152" populated="true" UUID="64c9bb45-74a8-40b1-abdc-a5bd0cc7081b" autoIncrement="false" defaultValue="" name="EMAIL" nullable="1" physicalName="EMAIL" precision="90" referenceCount="1" scale="0" source-column-ref="COL77" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL153" populated="true" UUID="4bdbaaf9-5e64-46b1-b649-a9c636351702" autoIncrement="false" defaultValue="" name="MOBILE" nullable="1" physicalName="MOBILE" precision="90" referenceCount="1" scale="0" source-column-ref="COL78" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL154" populated="true" UUID="e75a72b8-d839-4361-8411-bf11e14662ec" autoIncrement="false" defaultValue="" name="MANAGER_NAME" nullable="1" physicalName="MANAGER_NAME" precision="90" referenceCount="1" scale="0" source-column-ref="COL79" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL155" populated="true" UUID="db2dbfca-9a0e-48d7-9186-4f439989e96e" autoIncrement="false" defaultValue="" name="STATUS" nullable="1" physicalName="STATUS" precision="0" referenceCount="1" scale="0" source-column-ref="COL80" sourceDataTypeName="NUMBER" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL156" populated="true" UUID="59ae31e1-e4d9-44c0-863c-a695d29a9564" autoIncrement="false" defaultValue="" name="ORG_ID" nullable="1" physicalName="ORG_ID" precision="300" referenceCount="1" scale="0" source-column-ref="COL81" sourceDataTypeName="NVARCHAR2" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL157" populated="true" UUID="58ec690e-f2d3-49f1-a972-04541237a362" autoIncrement="false" defaultValue="" name="ORG_TYPE" nullable="1" physicalName="ORG_TYPE" precision="0" referenceCount="1" scale="0" source-column-ref="COL82" sourceDataTypeName="NUMBER" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL158" populated="true" UUID="dbdc17e1-e2e1-4040-8ddf-9365f4e7cba5" autoIncrement="false" defaultValue="" name="WEIGHT" nullable="1" physicalName="WEIGHT" precision="0" referenceCount="1" scale="0" source-column-ref="COL83" sourceDataTypeName="NUMBER" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL159" populated="true" UUID="1de35dbb-e9e4-43e5-a22f-a633fb9cb5ee" autoIncrement="false" defaultValue="" name="ORG_NAME" nullable="1" physicalName="ORG_NAME" precision="255" referenceCount="1" scale="0" source-column-ref="COL84" sourceDataTypeName="VARCHAR2" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1473" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1472" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1474" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX160" populated="true" UUID="2f35cc11-b218-4f6c-91e9-3b413abdc75f" clustered="false" name="T_ZFRY_pk" physicalName="T_ZFRY_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC161" populated="true" UUID="6fc88398-5c4d-4118-ad0e-bc1701e76532" ascendingOrDescending="UNSPECIFIED" column-ref="COL148" name="ID" physicalName="ID" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.Oracle9PlusDDLGenerator" allow-connection="false" target-schema="cpsi"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB122" x="98" y="160" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB136" x="454" y="35" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB147" x="261" y="509" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

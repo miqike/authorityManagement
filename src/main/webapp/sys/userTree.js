@@ -78,6 +78,9 @@ function add(){
 	window.operate = 'add';
 	showModalDialog("userWindow");
 	loadForm();
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()[0];
+	console.log(selected)
 	$('#tabPanel').tabs('select',0 );
 }
 
@@ -988,14 +991,6 @@ $(function() {
 	};
 
 	$.fn.zTree.init($("#tree"), setting);
-
-	/*$(document).bind('contextmenu',function(e){
-		e.preventDefault();
-		$('#mm').menu('show', {
-			left: e.pageX,
-			top: e.pageY
-		});
-	});*/
 
 	window._expandeLevel = $("#f_expandLevel").numberspinner("getValue");
 

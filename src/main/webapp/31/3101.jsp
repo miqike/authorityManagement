@@ -29,31 +29,31 @@
 <body style="margin:5px;">
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
 	<div style="padding: 5px 10px 0px 10px">
-			<table id="queryTable">
-				<tr>
-					<td>计划年度</td>
-					<td><input id="f_businessKey" class="easyui-textbox"/></td>
-					<td>计划编号</td>
-					<td><input id="f_errorNo" class="easyui-textbox"/></td>
-					<td>公示系统计划编号人</td>
-					<td><input id="f_operator" class="easyui-textbox"/></td>
-				</tr>
-				<tr>
-					<td>计划名称</td>
-					<td><input id="f_module" class="easyui-textbox"/></td>
-					<td>抽查内容</td>
-					<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
-						data-options="panelHeight:120,width:150,onChange:queryPlan" style="" /></td>
-					<td>抽查分类</td>
-					<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl"
-						data-options="panelHeight:120,width:100,onChange:queryPlan" style="" /></td>
-					<td colspan="2" style="text-align-right;">
-						<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
-						<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-					</td>
-				</tr>
-			</table>
-		</div>
+		<table id="queryTable">
+			<tr>
+				<td>计划年度</td>
+				<td><input id="f_businessKey" class="easyui-textbox"/></td>
+				<td>计划编号</td>
+				<td><input id="f_errorNo" class="easyui-textbox"/></td>
+				<td>公示系统计划编号人</td>
+				<td><input id="f_operator" class="easyui-textbox"/></td>
+			</tr>
+			<tr>
+				<td>计划名称</td>
+				<td><input id="f_module" class="easyui-textbox"/></td>
+				<td>抽查内容</td>
+				<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
+					data-options="panelHeight:120,width:150,onChange:queryPlan" style="" /></td>
+				<td>抽查分类</td>
+				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl"
+					data-options="panelHeight:120,width:100,onChange:queryPlan" style="" /></td>
+				<td colspan="2" style="text-align-right;">
+					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
+					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
+				</td>
+			</tr>
+		</table>
+	</div>
 	<div>
 		<table id="grid1"
 			class="easyui-datagrid"

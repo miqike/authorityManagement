@@ -28,6 +28,15 @@ function view() {
         showModalDialog("detailWindow");
     }
 }
+function view1() {
+	if (!$(this).linkbutton('options').disabled) {
+		var row = $('#mainGrid').datagrid('getSelected');
+		console.log(row);
+		loadForm($("#detailWindow1"), row);
+		window.operateType = "edit";
+		showModalDialog("detailWindow1");
+	}
+}
 
 function remove() {
     if (!$(this).linkbutton('options').disabled) {
@@ -71,6 +80,7 @@ $(function () {
 
     $("#btnAdd").click(add);
     $("#btnView").click(view);
+    $("#btnView1").click(view1);
     $("#btnDelete").click(remove);
     $("#btnExport").click(poiExport);
     $("#btnClose").click(function () {

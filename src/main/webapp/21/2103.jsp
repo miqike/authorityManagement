@@ -51,18 +51,22 @@
 <%-- <shiro:hasPermission name="user"> --%>
 <div id="panel" class="easyui-panel" title="">
 
-    <div style="margin-bottom:3px;margin-top:5px;">
-        <span style="margin-left:8px;margin-right:0px;">代码/名称:</span>
-        <input id="s_name" style="margin-left:5px;margin-right:10px; padding-right: 3px;"/>
-
-        <span style="width:300px;">
-			<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
-               iconCls="icon-search">查找</a>
-			<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
-               iconCls="icon2 r3_c10">重置</a>
-			</span>
-    </div>
-
+	<div style="padding: 5px 10px 0px 10px">
+		<table id="queryTable">
+			<tr>
+				<td>检查类型</td>
+				<td><input id="f_businessKey" class="easyui-textbox"/></td>
+				<td>检查信息分类</td>
+				<td><input id="f_errorNo" class="easyui-textbox"/></td>
+				<td>公示项目</td>
+				<td><input id="f_module" class="easyui-textbox"/></td>
+				<td colspan="2" style="text-align-right;">
+					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
+					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
+				</td>
+			</tr>
+		</table>
+	</div>
     <table id="mainGrid"
            class="easyui-datagrid"
            data-options="collapsible:true,onClickRow:mainGridButtonHandler,
@@ -74,13 +78,22 @@
            pagePosition="bottom">
         <thead>
         <tr>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">事项编码</th>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="100">事项名称</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="150">事项类型</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="260">事项描述</th>
-            <th data-options="field:'material',halign:'center',align:'left'" sortable="true" width="260">检查材料</th>
-            <th data-options="field:'method',halign:'center',align:'left'" sortable="true" width="260">检查方法</th>
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">企业组织形式</th>
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">检查类型</th>
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">检查信息分类</th>
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">项目编码</th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="100">抽检事项</th>
+            <th data-options="field:'material',halign:'center',align:'left'" sortable="true" width="260">对应公示项目</th>
+            <th data-options="field:'method',halign:'center',align:'left'" sortable="true" width="260">检查方法说明</th>
             <th data-options="field:'handle',halign:'center',align:'left'" sortable="true" width="260">结果处理</th>
+            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="150">登记信息和公示信息比对</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">比对信息来源</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否需要实地核查</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否人工核对</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">改正期限</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否必检项</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销日期</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销说明</th>
         </tr>
         </thead>
     </table>
@@ -88,8 +101,8 @@
         <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true">打印</a>
-        <a href="#" id="btnExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">导出</a>
+        <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true">注销/取消注销</a>
+        <a href="#" id="btnView1" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">检查材料清单</a>
     </div>
 </div>
 <%-- </shiro:hasPermission>
@@ -123,35 +136,76 @@
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td>事项编码</td>
+                <td>企业组织形式</td>
                 <td><input class="easyui-textbox" id="p_id" type="text" data-options="required:true"
                            style="width:200px;"/></td>
-                <td>事项名称</td>
+                <td>检查类型</td>
                 <td><input class="easyui-textbox" type="text" id="p_name" data-options="required:true"
                            style="width:200px;"/>
                 </td>
             </tr>
             <tr>
-                <td>事项描述</td>
+                <td>检查信息分类</td>
                 <td><input class="easyui-textbox" id="p_desc" type="text" style="width:200px;" data-options=""/></td>
-                <td>检查材料</td>
+                <td>项目编码</td>
                 <td><input class="easyui-textbox" id="p_material" type="text" style="width:200px;"
                            data-options=""/></td>
             </tr>
             <tr>
-                <td>检查方法</td>
+                <td>抽检事项</td>
                 <td><input class="easyui-textbox" id="p_method" type="text" style="width:200px;"
                            data-options=""/></td>
-                <td>结果处理</td>
+                <td>对应公示项目</td>
                 <td><input class="easyui-textbox" id="p_handle" type="text" style="width:200px;"
                            data-options=""/></td>
             </tr>
-            <tr>
-                <td>事项类型</td>
-                <td><input class="easyui-combobox" id="p_type" type="text" style="width:200px;"
-                           data-options=""/></td>
-            </tr>
+<!--             
+            <th data-options="field:'method',halign:'center',align:'left'" sortable="true" width="260">检查方法说明</th>
+            <th data-options="field:'handle',halign:'center',align:'left'" sortable="true" width="260">结果处理</th>
+            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="150">登记信息和公示信息比对</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">比对信息来源</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否需要实地核查</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否人工核对</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">改正期限</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否必检项</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销日期</th>
+            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销说明</th> -->
         </table>
+    </div>
+
+</div>
+<div id="detailWindow1" class="easyui-window" title="抽检材料清单"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 750px; height: 400px; padding: 10px;">
+    <div>
+        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
+           plain="true">删除</a>
+        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
+    </div>
+    <div>
+		<table id="detailTable1"
+           class="easyui-datagrid"
+           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+           		width: 400,height:300,
+           		offset: { width: 0, height: 0},
+				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
+				toolbar: '',
+           		pageSize: 20, pagination: true"
+           pagePosition="bottom">
+	        <thead>
+	        <tr>
+	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">序号</th>
+	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">材料名称</th>
+	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">是否必要项</th>
+	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">文件类型</th>
+	        </tr>
+	        </thead>
+    	</table>
     </div>
 
 </div>

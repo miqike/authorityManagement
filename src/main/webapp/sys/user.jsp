@@ -68,8 +68,7 @@
     <table id="mainGrid"
            class="easyui-datagrid"
            data-options="collapsible:true,onClickRow:mainGridButtonHandler,
-           		width: 400,height:400,
-           		offset: { width: 0, height: 0},
+           		offset: { width: -26, height: -55},
 				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
 				url:'../common/query?mapper=userMapper&queryName=queryUser',
 				toolbar: '#mainGridToolbar',

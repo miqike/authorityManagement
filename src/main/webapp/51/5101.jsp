@@ -33,7 +33,7 @@
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-    <script type="text/javascript" src="./2101.js"></script>
+    <script type="text/javascript" src="./5101.js"></script>
     <style>
         body {
             margin:0;
@@ -52,7 +52,7 @@
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
 	<div id="layout" class="easyui-layout" data-options="fit:true">
 		
-		<div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
+		<div data-options="region:'west',split:true" title="登记机关" style="width:240px;">
 			<ul id="orgTree" class="ztree"></ul>
 		</div>
 		<div data-options="region:'center'">
@@ -60,17 +60,31 @@
 			<div style="padding: 5px 10px 0px 10px">
 				<table id="queryTable">
 					<tr>
-						<td>姓名</td>
+						<td>计划年度</td>
 						<td><input id="f_businessKey" class="easyui-textbox"/></td>
-						<td>执法(监督)类别</td>
+						<td>计划编号</td>
 						<td><input id="f_errorNo" class="easyui-textbox"/></td>
+						<td>抽查人员</td>
+						<td><input id="f_operator" class="easyui-textbox"/></td>
 					</tr>
 					<tr>
-						<td>计划编号</td>
+						<td>计划名称</td>
 						<td><input id="f_module" class="easyui-textbox"/></td>
+						<td>抽查结果确认</td>
+						<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl"
+							data-options="panelHeight:120,width:100" style="" /></td>
+						
 						<td colspan="2" style="text-align-right;">
 							<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
 							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" style="text-align-right;">
+							<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">实地核查告知书</a>
+							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">责令履行通知书</a>
+							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">企业住所核查函</a>
+							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">核查结果上报/取消上报</a>
 						</td>
 					</tr>
 				</table>
@@ -87,29 +101,22 @@
 		        <thead>
 		        <tr>
 		            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-		            <th data-options="field:'mc',halign:'center',align:'left'" sortable="true" width="100">检查机关</th>
-		            <th data-options="field:'lx',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
-		            <th data-options="field:'fr',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
-		            <th data-options="field:'clrq',halign:'center',align:'right'" sortable="true" width="150">性别</th>
-		            <th data-options="field:'zczb',halign:'center',align:'right'" sortable="true" width="100">身份证号</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">职务</th>
+		            <th data-options="field:'zch',halign:'center',align:'left'" sortable="true" width="100">核查事项编号</th>
+		            <th data-options="field:'mc',halign:'center',align:'left'" sortable="true" width="100">核查事项</th>
+		            <th data-options="field:'lx',halign:'center',align:'center'" sortable="true" width="70">核查方法</th>
+		            <th data-options="field:'fr',halign:'center',align:'center'" sortable="true" width="70">企业公示内容</th>
+		            <th data-options="field:'clrq',halign:'center',align:'right'" sortable="true" width="150">标准内容</th>
+		            <th data-options="field:'zczb',halign:'center',align:'right'" sortable="true" width="100">核查状态</th>
+		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">核查结果</th>
 		            <th data-options="field:'djzt',halign:'center',align:'center'" sortable="true" width="100" codeName="userStatus"
-		                formatter="formatCodeList">执法(监督)类型</th>
-		            <th data-options="field:'djzt',halign:'center',align:'center'" sortable="true" width="100" codeName="userStatus"
-		                formatter="formatCodeList">文化程度</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">状态</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="150">电子邮箱</th>
+		                formatter="formatCodeList">说明</th>
 		        </tr>
 		        </thead>
 		        <tbody>
 		        </tbody>
 		    </table>
 		    <div id="mainGridToolbar">
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-remove" plain="true">注销</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">调转</a>
+		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">核查材料</a>
 		    </div>
 		</div>
 	</div>

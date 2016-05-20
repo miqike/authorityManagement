@@ -10,7 +10,12 @@
     <link href="../css/themes/icon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="../js/jquery.min.js" ></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
+    <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
@@ -112,6 +117,7 @@
             <table id="mainGrid"
                    class="easyui-datagrid"
                    data-options="onClickRow:mainGridButtonHandler,onLoadSuccess:mainGridLoadSuccessHandler,
+                   offset: { width: -310, height: -40},
                    ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,method:'get'"
                    toolbar="#mainGridToolbar"
                    style="height: 600px"
@@ -402,7 +408,7 @@
             <th data-options="field:'role',halign:'center',align:'center'" sortable="true" width="100">角色代码</th>
             <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="100">角色名称</th>
             <th data-options="field:'description',halign:'center',align:'left'" sortable="true" width="350">描述</th>
-            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="lockStatus"
+            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="userStatus"
                 formatter="formatCodeList">状态</th>
         </tr>
         </thead>
