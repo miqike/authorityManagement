@@ -56,9 +56,7 @@ public interface HcsxMapper {
      */
     int updateByPrimaryKey(Hcsx record);
 
-<<<<<<< HEAD
 	List<Hcsx> selectByJhId(String string);
-=======
-    List<Hcsx> query(Map<String, Object> params);
->>>>>>> fad3767c6cd1ce6eb26cd0535973ffdc12516993
+
+	List<Hcsx> query(Map<String, Object> params);
 }
