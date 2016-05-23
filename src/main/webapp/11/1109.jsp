@@ -36,8 +36,9 @@
            class="easyui-datagrid"
            toolbar="#mainGridToolbar"
            style="height: 500px"
-           pagination="false"
-           pagePosition="bottom">
+           data-options="method: 'get'">
+        pagination="false"
+        pagePosition="bottom">
         <thead>
         <tr>
             <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
@@ -82,9 +83,13 @@
            plain="true">删除</a>
         <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
-    <div title="基本信息" style="padding:5px;" selected="true">
+    <div id="baseInfo" title="基本信息" style="padding:5px;" selected="true">
 
+        <div style="display: none">
+            <input class="easyui-textbox" id="p_id" type="text" style="width:200px;"/>
+        </div>
         <table width="100%" id="baseTable">
+
             <tr>
                 <td>
                     <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"

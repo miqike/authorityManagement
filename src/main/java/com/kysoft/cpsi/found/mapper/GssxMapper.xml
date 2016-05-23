@@ -165,4 +165,14 @@
       DZ = #{dz,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+    <select id="query" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List" />
+        from T_GSSX
+        where 1=1
+        <if test="code!=null">
+            and code = #{code}
+        </if>
+    </select>
 </mapper>
