@@ -91,13 +91,88 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 	} else {
 	}
 }
+
+function grid1clickHandler() {
+	if($('#grid1').datagrid('getSelected') != null) {
+		$('#btnModify').linkbutton('enable');
+		$('#btnAudit').linkbutton('enable');
+		$('#btnViewCheckList').linkbutton('enable');
+		if($('#grid1').datagrid('getSelected').status == 2) {
+			$('#btnAudit').linkbutton({
+				text:'审核',
+				iconCls: 'icon2 r14_c2'
+			});
+		} else {
+			$('#btnAudit').linkbutton({
+				text:'取消审核',
+				iconCls: 'icon2 r14_c1'
+			});
+		}
+	} else {
+		$('#btnModify').linkbutton('disable');
+		$('#btnAudit').linkbutton('disable');
+		$('#btnViewCheckList').linkbutton('disable');
+	}
+}
+
+function add() {
+	$('#planWindow input').val('');
+	showModalDialog("planWindow");
+	$('#planTable input.easyui-textbox').textbox("enable");
+	$('#planTable input.easyui-combobox').combobox("enable");
+	$("#btnEditOrSave").linkbutton({
+		iconCls:'icon-save',
+		text:'保存'
+	});
+	$('#tabPanel').tabs('select',0 );
+}
+
+function modify() {
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			$.easyuiExtendObj.loadForm("planTable", row);
+			showModalDialog("planWindow");
+			/*$("#btnEditOrSave").parent().css("text-align", " left");
+			$('#userWindow input.easyui-validatebox').validatebox();*/
+		}
+		;
+		/*$("#tg").parent().find("input:checkbox").attr("disabled", true);
+		$("#grid2").parent().find("input:checkbox").attr("disabled", true);*/
+		$('#tabPanel').tabs('select', 0);
+	}
+}
+
+function remove() {
+	
+}
+
+function formatZfry(val, row) {
+	return row.zfryName1 + "/" + row.zfryName2 ;
+}
+
+function tabSelectHandler(title, index) {
+	var planId = $('#p_id').textbox('getValue');
+	if(index == 1) { //选择角色TAB
+		if(planId != "") {
+			$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
+				$("#grid3").datagrid("loadData", response.rows);
+				
+			});
+		} else {
+			$.messager.alert("操作错误", "请先保存用户基本信息");
+			$('#tabPanel').tabs('select',0 );
+		}
+	}
+}
 //初始化
 $(function() {
 	$.fn.zTree.init($("#orgTree"), setting);
-    /*$("#btnAdd").click(funAdd);
-	$("#btnUpdate").click(update);
-	$("#btnDelete").click(remove);
-	$("#btnSubmit").click(funSubmit);
+    $("#btnAdd").click(add);
+	$("#btnModify").click(modify);
+	$("#btnAudit").click(remove);
+	$("#btnViewCheckList").click(funSubmit);
+	/*
 	$("#btnAddPlan").hide();*/
 });
 

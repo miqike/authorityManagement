@@ -405,4 +405,14 @@
 		</if>
     RLRQ
   </select>
+  
+  <select id="queryForPlan" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List" />
+    from T_HCRW where HCJH_ID = #{planId,jdbcType=VARCHAR}
+	ORDER BY
+	<if test="order != null">
+		${sort} ${order},
+	</if>
+    RLRQ
+  </select>
 </mapper>

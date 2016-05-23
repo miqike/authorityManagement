@@ -90,6 +90,7 @@
 		           class="easyui-datagrid"
 		           data-options="collapsible:true,onClickRow:grid1ClickHandler,
 		           		offset: { width: 0, height: 0},
+		           		singleSelect:true,
 						ctrlSelect:false,method:'get',
 		           		pageSize: 20, pagination: true"
 		           pagePosition ="bottom" >

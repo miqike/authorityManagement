@@ -64,10 +64,47 @@ function loadMyTask() {
 function grid1ClickHandler() {
 	//控制四个按钮显示
 	//加载右侧grid
+	var hcrwId = $('#grid1').datagrid('getSelected').id;
+	
+	$.ajax({
+		url: "../common/query?mapper=hcsxjgMapper&queryName=queryForTask",
+		data:{hcrwId:hcrwId},
+		type: 'GET',
+		success: function (response) {
+			if (response.status == SUCCESS) {
+				if(response.rows.length == 0) {
+					$.messager.confirm('确认', '核查列表尚未生成,是否认生成核查列表?', function (r) {
+						if (r) {
+							$.ajax({
+								url: "./" + hcrwId + "/init",
+								type: 'POST',
+								success: function (response) {
+									if (response.status == SUCCESS) {
+										refreshGrid1()
+									} else {
+										//$.messager.alert('删除失败', response, 'info');
+									}
+								}
+							});
+						}
+					});
+				} else {
+					refreshGrid1();
+				}
+				
+			}
+		}
+	});
+	
+	/*
+	*/
+}
+
+function refreshGrid1() {
 	var options = $("#mainGrid").datagrid("options");
 	options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
 	$('#mainGrid').datagrid('load',{
-		hcrwId:"1"
+		hcrwId:$('#grid1').datagrid('getSelected').id
 	});
 }
 

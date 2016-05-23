@@ -64,6 +64,7 @@
 		<table id="grid1"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
+				onClickRow:grid1clickHandler,
 				method:'get',url:'../common/query?mapper=hcjhMapper&queryName=query',
 				onSelect:showPlanDetail"
 			   toolbar="#gridToolbar1"
@@ -91,10 +92,10 @@
 			</thead>
 		</table>
 		<div id="gridToolbar1">
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
-			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" data-options="disabled:true">审核/取消审核</a>
-			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
+			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
+			<a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
+			<a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" data-options="disabled:true">审核/取消审核</a>
+			<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
 		</div>
 	</div>
 	
@@ -148,7 +149,154 @@
 
 	</div>
 </div>
+
+
+<!-- --------弹出窗口--------------- -->
+<div id="planWindow" class="easyui-window" title="核查计划信息"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 750px; height: 400px; padding: 10px;">
+    <div>
+        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous"  plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next"  plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first"  plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last"  plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
+    </div>
+    <!-- <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler"> -->
+    <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler">
+        <div title="基本信息" style="padding:5px;" selected="true">
+            <table width="100%" id="planTable">
+                <tr>
+                    <td colspan="3">
+                        <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"  plain="true">保存</a>
+                        <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"  plain="true" disabled>导入任务信息</a>
+                    </td>
+                    <td ></td>
+                </tr>
+                <tr>
+                    <td>计划年度</td>
+                    <td><input class="easyui-textbox" id="p_nd" type="text"
+                               data-options="required:true" style="width:200px;"/>
+                    </td>
+                    <td>计划编号</td>
+                    <td><input class="easyui-textbox" type="text" id="p_id" data-options="required:true" style="width:200px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>公示系统计划编号</td>
+                    <td>
+                        <input class="easyui-textbox" id="p_gsjhbh" type="text" style="width:200px;" data-options=""/>
+                    </td>
+                    <td>下达日期</td>
+                    <td><input class="easyui-datebox" id="p_xdrq" type="text" style="width:200px;" data-options=""/></td>
+                </tr>
+                <tr>
+                    <td>要求完成时间</td>
+                    <td><input class="easyui-datebox" type="text" id="p_yqwcsj" data-options="" style="width:200px;"/></td>
+                    <td>核查分类</td>
+                    <td>
+                        <input class="easyui-combobox" id="p_fl" type="text" style="width:200px;" data-options="" codeName="hcfl"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>核查内容</td>
+                    <td colspan="3">
+                        <input id="p_nr" class="easyui-textbox" style="width:557px;" data-options="required:true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>任务数量</td>
+                    <td>
+                        <input class="easyui-textbox" id="p_hcrwsl" type="text" style="width:200px;" data-options=""/>
+                    </td>
+                    <td>已派发</td>
+                    <td><input class="easyui-textbox" validType="email" id="p_ypfsl" type="text" style="width:200px;" data-options=""/></td>
+                </tr>
+                <tr>
+                    <td>已认领</td>
+                    <td>
+                        <input class="easyui-textbox" id="p_yrlsl" type="text" style="width:200px;" data-options=""/>
+                    </td>
+                    <td>未认领</td>
+                    <td><input class="easyui-textbox" validType="email" id="p_wrlsl" type="text" style="width:200px;" data-options=""/></td>
+                </tr>
+                <tr>
+                    <td>审核状态</td>
+                    <td>
+                        <input class="easyui-combobox" id="p_shzt" type="text" style="width:200px;" data-options="" codeName="shzt"/>
+                    </td>
+                    <td>审核人</td>
+                    <td><input class="easyui-textbox" validType="email" id="p_shr" type="text" style="width:200px;" data-options=""/></td>
+                </tr>
+                <tr>
+                    <td>下达人</td>
+                    <td>
+                        <input class="easyui-textbox" id="p_xdrmc" type="text" style="width:200px;" data-options=""/>
+                    </td>
+                    <td>说明</td>
+                    <td><input class="easyui-textbox" id="p_sm" type="text" style="width:200px;" data-options=""/></td>
+                </tr>
+
+            </table>
+        </div>
+        <div title="任务信息" style="width:700px;">
+            <table id="grid3"
+                   class="easyui-datagrid"
+                   data-options="
+                       singleSelect:true,
+                       collapsible:true,
+                       selectOnCheck:false,
+                       checkOnSelect:false"
+                   style="height: 318px">
+                <thead>
+                <tr>
+                    <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">执法人员</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="100">统一社会信用代码</th>
+		            <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="100">单位名称</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
 	
+	
+<div id="checklistWindow" class="easyui-window" title="核查事项"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 750px; height: 400px; padding: 10px;">
+    <div>
+        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous"  plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next"  plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first"  plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last"  plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"  plain="true">删除</a>
+        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
+    </div>
+    
+    <table id="grid2"
+           class="easyui-datagrid"
+           data-options="
+               singleSelect:true,
+               collapsible:true,
+               selectOnCheck:false,
+               checkOnSelect:false"
+           toolbar="#grid2Toolbar"
+           style="height: 318px">
+        <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true,disabled:true"></th>
+            <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th>
+            <th data-options="field:'name'" halign="center" align="center" width="100">角色名</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">标识</th>
+            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
+                formatter="formatCodeList">状态</th>
+            <th data-options="field:'description'" halign="center" align="left" width="400">描述</th>
+        </tr>
+        </thead>
+    </table>
+</div>	
 	
 </body>
 </html>
@@ -162,6 +310,8 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
+    
 	<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>

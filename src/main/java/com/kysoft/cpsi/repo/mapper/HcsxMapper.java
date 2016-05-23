@@ -1,5 +1,7 @@
 package com.kysoft.cpsi.repo.mapper;
 
+import java.util.List;
+
 import com.kysoft.cpsi.repo.entity.Hcsx;
 
 public interface HcsxMapper {
@@ -50,4 +52,6 @@ public interface HcsxMapper {
      * @mbggenerated Fri May 20 11:20:44 CST 2016
      */
     int updateByPrimaryKey(Hcsx record);
+
+	List<Hcsx> selectByJhId(String string);
 }
