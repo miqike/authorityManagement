@@ -21,7 +21,7 @@ public class GssxServiceImpl implements GssxService {
 
     @Override
     public void insert(Gssx gssx) {
-        if (gssx.getId() == null) {
+        if (gssx.getId() == null || gssx.getId().equals("")) {
             gssx.setId(UUID.randomUUID().toString().replace("-", ""));
         }
         gssxMapper.insert(gssx);
