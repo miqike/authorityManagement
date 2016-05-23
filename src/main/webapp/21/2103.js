@@ -1,115 +1,141 @@
-window.operateType = "";
-function mainGridButtonHandler() {
+window.operateType = "";//操作类型
+
+//设置页面为编辑状态
+function setEditStatus() {
+    $("#btnAdd").linkbutton('disable');
+    $("#btnEdit").linkbutton('disable');
+    $("#btnDelete").linkbutton('disable');
+    $("#btnSave").linkbutton('enable');
+    $("#btnCancel").linkbutton('enable');
+
+    $("#baseInfo input.easyui-textbox").textbox("enable");
+    $("#baseInfo input.easyui-datebox").datebox("enable");
+    $("#baseInfo input.easyui-combobox").combobox("enable");
+    $("#baseInfo input.easyui-combotree").combotree("enable");
 
 }
+//设置页面为不可编辑状态
+function setReadOnlyStatus() {
+    $("#btnAdd").linkbutton('enable');
+    $("#btnEdit").linkbutton('enable');
+    $("#btnDelete").linkbutton('enable');
+    $("#btnSave").linkbutton('disable');
+    $("#btnCancel").linkbutton('disable');
 
-function mainGridDblClickHandler(index, row) {
-
+    $("#baseInfo input.easyui-textbox").textbox("disable");
+    $("#baseInfo input.easyui-datebox").datebox("disable");
+    $("#baseInfo input.easyui-combobox").combobox("disable");
+    $("#baseInfo input.easyui-combotree").combotree("disable");
 }
+//通用保存函数
+function save() {
+    var data = $.easyuiExtendObj.drillDownForm('baseInfo');
 
-function add() {
-    $('#detailWindow input').val('');
-    $('#detailTable input.easyui-textbox').textbox("enable");
-    $('#detailTable input.easyui-combobox').combobox("enable");
-    $("#btnEditOrSave").linkbutton({
-        iconCls: 'icon-save',
-        text: '保存'
+    var type = "";
+    var url = "";
+    if (window.operateType == "add") {//增加本级
+        type = "POST";
+        url = "../21/2103";
+    }
+    if (window.operateType == "edit") {//修改
+        type = "PUT";
+        url = "../21/2103";
+    }
+    if (window.operateType == "delete") {//删除
+        type = "DELETE";
+        data = {"id": $("#p_id").textbox("getValue")};
+        data = JSON.stringify(data);
+        url = "../21/2103?id=" + $("#p_id").textbox("getValue");
+    }
+    $.ajax({
+        url: url,
+        type: type,
+        data: data,
+        success: function (response) {
+            if (response.status == SUCCESS) {
+                setReadOnlyStatus();
+                var options = $('#mainGrid').datagrid('options');
+                options.url = '../common/query?mapper=hcsxMapper&queryName=query';
+                $("#mainGrid").datagrid(options);
+                if ($("#mainGrid").datagrid("getSelected") != null) {
+                    $("#btnView").linkbutton("enable");
+                    $("#btnDelete").linkbutton("enable");
+                } else {
+                    $("#btnView").linkbutton("disable");
+                    $("#btnDelete").linkbutton("disable");
+                }
+                $("#baseWindow").window("close");
+            } else {
+                $.messager.alert('失败', response.message, 'info');
+            }
+        }
     });
-    window.operateType = "new";
-    showModalDialog("detailWindow");
+
+}
+//保存按钮点击事件
+function btnSaveClick() {
+    if ($("#baseInfo").form('validate') && !$(this).linkbutton('options').disabled) {
+        save();
+    }
+}
+//取消按钮点击事件
+function btnCloseClick() {
+    if (!$(this).linkbutton('options').disabled) {
+        $("#baseWindow").window("close");
+        setReadOnlyStatus();
+    }
 }
 
-function view() {
+//修改按钮点击事件
+function btnViewClick() {
     if (!$(this).linkbutton('options').disabled) {
-        var row = $('#mainGrid').datagrid('getSelected');
-        console.log(row);
-        loadForm($("#detailWindow"), row);
+        showModalDialog("baseWindow", "修改抽检事项信息");
         window.operateType = "edit";
-        showModalDialog("detailWindow");
+        setEditStatus();
     }
 }
-function view1() {
+//删除按钮点击事件
+function btnDeleteClick() {
     if (!$(this).linkbutton('options').disabled) {
-        var row = $('#mainGrid').datagrid('getSelected');
-        console.log(row);
-        loadForm($("#detailWindow1"), row);
-        window.operateType = "edit";
-        showModalDialog("detailWindow1");
+        window.operateType = "delete";
+        save();
+        setReadOnlyStatus();
     }
 }
-
-function remove() {
+//新增按钮点击事件
+function btnAddClick() {
     if (!$(this).linkbutton('options').disabled) {
-
-        var row = $('#mainGrid').datagrid('getSelected');
-        if (row) {
-            $.messager.confirm('确认', '确认删除此数据？', function (r) {
-                if (r) {
-                    var index = $("#mainGrid").datagrid("getRowIndex", row);
-                    $("#mainGrid").datagrid("deleteRow", index);
-                }
-            });
-        }
+        showModalDialog("baseWindow", "新抽检事项信息");
+        $("#baseInfo").form('clear');
+        window.operateType = "add";
+        setEditStatus();
     }
 }
-
-function editOrSave() {
-    if ($('#detailWindow').form('validate')) {
-        if (window.operateType == "new") {
-            var data = drillDownForm("detailWindow");
-            $("#mainGrid").datagrid("appendRow", data);
-        } else {
-            var row = $('#mainGrid').datagrid('getSelected');
-            var index = $("#mainGrid").datagrid("getRowIndex", row);
-            var data = drillDownForm("detailWindow");
-            $("#mainGrid").datagrid("updateRow", {
-                    index: index,
-                    row: data
-                }
-            );
-        }
-    }
-    return false;
-}
-
-function poiExport() {
-
-}
-
 $(function () {
+    $("#btnAdd").click(btnAddClick);
+    $("#btnView").click(btnViewClick);
+    $("#btnDelete").click(btnDeleteClick);
+    $("#btnSave").click(btnSaveClick);
+    $("#btnClose").click(btnCloseClick);
 
-    $("#btnAdd").click(add);
-    $("#btnView").click(view);
+    setReadOnlyStatus();
 
-    $("#btnAdd1").click(function () {
-        $('#detailWindow input').val('');
-        $('#detailTable input.easyui-textbox').textbox("enable");
-        $('#detailTable input.easyui-combobox').combobox("enable");
-        $("#btnEditOrSave").linkbutton({
-            iconCls: 'icon-save',
-            text: '保存'
-        });
-        window.operateType = "new";
+    $("#mainGrid").datagrid({"singleSelect": "true"}).datagrid({
+        onSelect: function (index, row) {
+            $("#btnView").linkbutton("enable");
+            $("#btnDelete").linkbutton("enable");
+            $("#baseInfo").form('clear');
+            $.easyuiExtendObj.loadForm("baseInfo", row);
+        },
+        onUnselect: function (index, row) {
+            $("#btnView").linkbutton("disable");
+            $("#btnDelete").linkbutton("disable");
+            $("#baseInfo").form('clear');
+        }
     });
-    $("#btnView1").click(view1);
-    $("#btnDelete").click(remove);
-    $("#btnExport").click(poiExport);
-    $("#btnClose1").click(function () {
-        $("#detailWindow").window("close");
-    });
-    $("#btnEditOrSave").click(editOrSave);
-
-    $("#btnList").click(function () {
-        showModalDialog("detailWindow1", "检查材料清单")
-    });
-    $("#btnClose2").click(function () {
-        $("#detailWindow1").window("close");
-    });
-    $("#btnReset").click(function () {
-        $("#s_name").val('');
-    });
-    $("#btnSearch").click(function () {
-    });
+    var options = $('#mainGrid').datagrid('options');
+    options.url = '../common/query?mapper=hcsxMapper&queryName=query';
+    $("#mainGrid").datagrid(options);
 
     $(".datagrid-body").niceScroll({
         cursorcolor: "lightblue", // 滚动条颜色
@@ -118,99 +144,4 @@ $(function () {
         cursorborderradius: 0, // 滚动条是否圆角大小
         autohidemode: false // 是否隐藏滚动条
     });
-
-    $("#detailTable td:even").css("text-align", "right");
-    var data = {
-        "CommonQuery": true,
-        "_": "1462340087792",
-        "_orgId": "0304",
-        "_userId": "yqh",
-        "mapper": "userMapper",
-        "message": "查询成功",
-        "orderby": "asc",
-        "page": 1,
-        "pageIndex": "0",
-        "pageNumber": "1",
-        "pageSize": "20",
-        "queryName": "queryUser"
-        ,
-        "records": 2,
-        "rows": [
-            {
-                "id": "1001",
-                "name": "通信地址",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "口头询问或由企业提供相关材料",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "1002",
-                "name": "邮政编码",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "自行查询",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "1003",
-                "name": "联系电话",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "询问了解或拨打企业公示电话",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "1004",
-                "name": "电子邮箱",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "由企业向工商监管部门指定邮箱发送邮件",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "1005",
-                "name": "企业网站",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "自行查询、网络查询",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "1006",
-                "name": "存续状态",
-                "type": "一般检查信息",
-                "desc": "无",
-                "material": "无",
-                "method": "现场查询或书页检查",
-                "handle": "10日内改正，逾期未改的，按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "2001",
-                "name": "企业投资设立企业、购买股权信息",
-                "type": "重点检查信息",
-                "desc": "检查企业提交的材料或委托专业机构开展相关工作",
-                "material": "审核报告、财务资料、企业章程、对外投资设立企业、购买股权的股东会决议",
-                "method": "检查企业提交的材料或委托专业机构开展相关工作",
-                "handle": "按隐瞒真实情况、弄虚作假处理。"
-            },
-            {
-                "id": "2002",
-                "name": "股东或发起人认缴和实缴的出资额",
-                "type": "重点检查信息",
-                "desc": "",
-                "material": "检查对认缴企业出资到位情况",
-                "method": "核对企业申报年度的自有章程、登记系统中申报年度的相关登记备案信息",
-                "handle": "按隐瞒真实情况、弄虚作假处理。发现被告实缴制的27类行业的企业以及中外合作经营企业、外商独资企业存在两虚一逃违法行为的，同时应依法查处。"
-            }
-        ],
-        "status": 1,
-        "total": 26
-    };
-    $("#mainGrid").datagrid("loadData", data.rows);
 });

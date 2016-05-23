@@ -19,6 +19,8 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
@@ -57,7 +59,7 @@
                 <td><input id="f_errorNo" class="easyui-textbox"/></td>
                 <td>公示项目</td>
                 <td><input id="f_module" class="easyui-textbox"/></td>
-                <td colspan="2" style="text-align-right;">
+                <td colspan="2" style="text-align:right">
                     <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                        iconCls="icon-search">查找</a>
                     <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -68,31 +70,53 @@
     </div>
     <table id="mainGrid"
            class="easyui-datagrid"
-           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+           data-options="collapsible:true,
            		width: 400,height:300,
            		offset: { width: 0, height: 0},
-				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
+				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
+				method: 'get',
            		pageSize: 20, pagination: true"
            pagePosition="bottom">
         <thead>
         <tr>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">企业组织形式</th>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">检查类型</th>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">检查信息分类</th>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">项目编码</th>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="100">抽检事项</th>
-            <th data-options="field:'material',halign:'center',align:'left'" sortable="true" width="260">对应公示项目</th>
-            <th data-options="field:'method',halign:'center',align:'left'" sortable="true" width="260">检查方法说明</th>
-            <th data-options="field:'handle',halign:'center',align:'left'" sortable="true" width="260">结果处理</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="150">登记信息和公示信息比对</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">比对信息来源</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否需要实地核查</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否人工核对</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">改正期限</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否必检项</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销日期</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销说明</th>
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">核查事项代码</th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="70">核查事项名称</th>
+            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="70">类型</th>
+            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="70">描述</th>
+            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">检查材料</th>
+            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
+                formatter="formatCodeList">检查方法
+            </th>
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="70" codeName="hcxxfl"
+                formatter="formatCodeList">
+                核查信息分类
+            </th>
+            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="70" codeName="hclx"
+                formatter="formatCodeList">核查类型
+            </th>
+            <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="70" codeName="qyzzxs"
+                formatter="formatCodeList">企业组织形式
+            </th>
+            <th data-options="field:'gsxm',halign:'center',align:'left'" sortable="true" width="70">对应公示项目</th>
+            <th data-options="field:'hcffsm',halign:'center',align:'left'" sortable="true" width="70">核查方法说明</th>
+            <th data-options="field:'jgcl',halign:'center',align:'left'" sortable="true" width="70">结果处理</th>
+            <th data-options="field:'xxdb',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+                formatter="formatCodeList">登记信息和公示信息比对
+            </th>
+            <th data-options="field:'dbxxly',halign:'center',align:'left'" sortable="true" width="70">比对信息来源</th>
+            <th data-options="field:'sfxysdhc',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+                formatter="formatCodeList">是否需要实地核查
+            </th>
+            <th data-options="field:'sfxyrghd',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+                formatter="formatCodeList">是否需要人工核对
+            </th>
+            <th data-options="field:'gzqx',halign:'center',align:'left'" sortable="true" width="70">改正期限</th>
+            <th data-options="field:'sfbjxm',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+                formatter="formatCodeList">是否必检项
+            </th>
+            <th data-options="field:'zxrq',halign:'center',align:'left'" sortable="true" width="70">注销日期</th>
+            <th data-options="field:'zxsm',halign:'center',align:'left'" sortable="true" width="70">注销说明</th>
         </tr>
         </thead>
     </table>
@@ -112,7 +136,7 @@
 </shiro:lacksPermission> --%>
 <!-- --------弹出窗口--------------- -->
 
-<div id="detailWindow" class="easyui-window" title="抽检事项"
+<div id="baseWindow" class="easyui-window" title="抽检事项"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
@@ -126,38 +150,87 @@
            plain="true">删除</a>
         <a href="javascript:void(0);" id="btnClose1" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
-    <div>
+    <div id="baseInfo">
+        <div style="display: none">
+            <input class="easyui-textbox" id="p_id" type="text" style="width:200px;"/>
+        </div>
+
         <table width="100%" id="baseTable">
             <tr>
                 <td>
-                    <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"
+                    <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
                        plain="true">保存</a>
                 </td>
                 <td colspan="3"></td>
             </tr>
             <tr>
+                <td>核查事项名称</td>
+                <td><input class="easyui-textbox" id="p_name" type="text" style="width:200px;" data-options=""/></td>
+                <td>类型</td>
+                <td><input class="easyui-textbox" id="p_type" type="text" style="width:200px;" data-options=""/></td>
+            </tr>
+            <tr>
+                <td>描述</td>
+                <td><input class="easyui-textbox" id="p_descript" type="text" style="width:200px;" data-options=""/>
+                </td>
+                <td>检查材料</td>
+                <td><input class="easyui-textbox" id="p_hccl" type="text" style="width:200px;" data-options=""/></td>
+            </tr>
+            <tr>
+                <td>检查方法</td>
+                <td><input class="easyui-combobox" id="p_hcff" type="text" style="width:200px;" data-options=""
+                           codeName="hcfs"/></td>
+                <td>核查信息分类</td>
+                <td><input class="easyui-combobox" id="p_hcxxfl" type="text" style="width:200px;" data-options=""
+                           codeName="hcxxfl"/></td>
+            </tr>
+            <tr>
+                <td>核查类型</td>
+                <td><input class="easyui-textbox" id="p_hclx" type="text" style="width:200px;" data-options=""
+                           codeName="hclx"/></td>
                 <td>企业组织形式</td>
-                <td><input class="easyui-textbox" id="p_id" type="text" data-options="required:true"
-                           style="width:200px;"/></td>
-                <td>检查类型</td>
-                <td><input class="easyui-textbox" type="text" id="p_name" data-options="required:true"
-                           style="width:200px;"/>
+                <td><input class="easyui-combobox" id="p_qyzzxs" type="text" style="width:200px;" data-options=""
+                           codeName="qyzzxs"/></td>
+            </tr>
+            <tr>
+                <td>对应公示项目</td>
+                <td><input class="easyui-textbox" id="p_gsxm" type="text" style="width:200px;" data-options=""/></td>
+                <td>核查方法说明</td>
+                <td><input class="easyui-textbox" id="p_hcffsm" type="text" style="width:200px;" data-options=""/></td>
+            </tr>
+            <tr>
+                <td>结果处理</td>
+                <td><input class="easyui-textbox" id="p_jgcl" type="text" style="width:200px;" data-options=""/></td>
+                <td>登记信息和公示信息比对</td>
+                <td><input class="easyui-combobox" id="p_xxdb" type="text" style="width:200px;" data-options=""
+                           codeName="yesno"/></td>
+            </tr>
+            <tr>
+                <td>比对信息来源</td>
+                <td><input class="easyui-textbox" id="p_dbxxly" type="text" style="width:200px;" data-options=""/></td>
+                <td>是否需要实地核查</td>
+                <td><input class="easyui-combobox" id="p_sfxysdhc" type="text" style="width:200px;" data-options=""
+                           codeName="yesno"/>
                 </td>
             </tr>
             <tr>
-                <td>检查信息分类</td>
-                <td><input class="easyui-textbox" id="p_desc" type="text" style="width:200px;" data-options=""/></td>
-                <td>项目编码</td>
-                <td><input class="easyui-textbox" id="p_material" type="text" style="width:200px;"
-                           data-options=""/></td>
+                <td>是否需要人工核对</td>
+                <td><input class="easyui-combobox" id="p_sfxyrghd" type="text" style="width:200px;" data-options=""
+                           codeName="yesno"/>
+                </td>
+                <td>改正期限</td>
+                <td><input class="easyui-textbox" id="p_gzqx" type="text" style="width:200px;" data-options=""/></td>
             </tr>
             <tr>
-                <td>抽检事项</td>
-                <td><input class="easyui-textbox" id="p_method" type="text" style="width:200px;"
-                           data-options=""/></td>
-                <td>对应公示项目</td>
-                <td><input class="easyui-textbox" id="p_handle" type="text" style="width:200px;"
-                           data-options=""/></td>
+                <td>是否必检项</td>
+                <td><input class="easyui-combobox" id="p_sfbjxm" type="text" style="width:200px;" data-options=""
+                           codeName="yesno"/></td>
+                <td>注销日期</td>
+                <td><input class="easyui-textbox" id="p_zxrq" type="text" style="width:200px;" data-options=""/></td>
+            </tr>
+            <tr>
+                <td>注销说明</td>
+                <td><input class="easyui-textbox" id="p_zxsm" type="text" style="width:200px;" data-options=""/></td>
             </tr>
         </table>
     </div>
@@ -180,10 +253,10 @@
     <div>
         <table id="detailTable1"
                class="easyui-datagrid"
-               data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+               data-options="collapsible:true,
            		width: 400,height:300,
            		offset: { width: 0, height: 0},
-				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
+				ctrlSelect:true,method:'get',
 				toolbar: '',
            		pageSize: 20, pagination: true"
                pagePosition="bottom">
