@@ -34,15 +34,13 @@
 <body>
 <%--<shiro:hasPermission name="<%=privilegeName%>">--%>
 <div class="easyui-layout" style="height:600px;">
-    <div data-options="region:'west',split:true" title="组织机构" style="width:400px;">
-        <ul id="tree" class="ztree"></ul>
-    </div>
     <div data-options="region:'center',title:''" style="padding-left:30px;padding-top:10px;">
 
         <table id="mainGrid"
                class="easyui-datagrid"
                toolbar="#mainGridToolbar"
                style="height: 500px"
+               data-options="method: 'get'"
                pagination="false"
                pagePosition="bottom">
             <thead>
@@ -53,7 +51,9 @@
                 <th data-options="field:'lxr',halign:'center',align:'center'" sortable="true" width="70">联系人</th>
                 <th data-options="field:'lxdh',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
                 <th data-options="field:'dz',halign:'center',align:'center'" sortable="true" width="70">地址</th>
-                <th data-options="field:'gsxxfl',halign:'center',align:'right'" sortable="true" width="150">公示信息分类</th>
+                <th data-options="field:'gsxxfl',halign:'center',align:'right'" sortable="true" width="150"
+                    codeName="gsxxfl" formatter="formatCodeList">公示信息分类
+                </th>
                 <th data-options="field:'bmbm',halign:'center',align:'center'" sortable="true" width="70">编码别名</th>
                 <th data-options="field:'mcbm',halign:'center',align:'center'" sortable="true" width="70">名称别名</th>
             </tr>
@@ -79,7 +79,7 @@
 
 <!-- --------弹出窗口--------------- -->
 
-<div id="depWindow" class="easyui-window" title="部门信息"
+<div id="baseWindow" class="easyui-window" title="部门信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
@@ -92,9 +92,9 @@
            plain="true">删除</a>
         <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
-    <div title="基本信息" style="padding:5px;" selected="true">
+    <div id="baseInfo" title="基本信息" style="padding:5px;" selected="true">
 
-        <table width="100%" id="deptTable">
+        <table width="100%" id="baseTable">
             <tr>
                 <td>
                     <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
@@ -126,7 +126,7 @@
                 <td><input class="easyui-textbox" type="text" id="p_dz" data-options="" style="width:200px;"/></td>
                 <td>公示信息分类</td>
                 <td>
-                    <input id="p_gsxxfl" class="easyui-combobox" codeName="orgType" style="width:200px;"
+                    <input id="p_gsxxfl" class="easyui-combobox" codeName="gsxxfl" style="width:200px;"
                            data-options="required:true"/>
                 </td>
             </tr>

@@ -154,4 +154,18 @@
       ORG_NAME = #{orgName,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="query" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_BM
+    where 1=1
+    <if test="name!=null">
+      and name = #{code}
+    </if>
+      <if test="orgId!=null">
+          and org_id = #{orgId}
+      </if>
+  </select>
+
 </mapper>

@@ -165,4 +165,15 @@
       DZ = #{dz,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="query" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_XGBM
+    where 1=1
+    <if test="name!=null">
+      and name = #{code}
+    </if>
+  </select>
+
 </mapper>

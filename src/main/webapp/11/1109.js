@@ -91,7 +91,7 @@ function btnViewClick() {
     if (!$(this).linkbutton('options').disabled) {
         window.operateType = "edit";
         setEditStatus();
-        showModalDialog("baseWindow", "修改部门信息");
+        showModalDialog("baseWindow", "修改公示时限信息");
     }
 }
 //删除按钮点击事件
@@ -102,13 +102,13 @@ function btnDeleteClick() {
         setReadOnlyStatus();
     }
 }
-//增加本级按钮点击事件
+//新增按钮点击事件
 function btnAddClick() {
     if (!$(this).linkbutton('options').disabled) {
         $("#baseInfo").form('clear');
         window.operateType = "add";
         setEditStatus();
-        showModalDialog("baseWindow", "新部门信息");
+        showModalDialog("baseWindow", "新公示时限信息");
     }
 }
 $(function () {

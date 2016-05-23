@@ -28,7 +28,7 @@
     <script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
     <script type="text/javascript" src="../js/myJs/formatter.js"></script>
 
-    <script type="text/javascript" src="sysXgbmXxwh.js"></script>
+    <script type="text/javascript" src="sysOrgDep.js"></script>
 
 </head>
 <body>
@@ -43,19 +43,20 @@
                class="easyui-datagrid"
                toolbar="#mainGridToolbar"
                style="height: 500px"
+               data-options="method: 'get'"
                pagination="false"
                pagePosition="bottom">
             <thead>
             <tr>
                 <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+                <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="70">单位名称</th>
                 <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">部门编码</th>
                 <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="260">部门名称</th>
                 <th data-options="field:'lxr',halign:'center',align:'center'" sortable="true" width="70">联系人</th>
                 <th data-options="field:'lxdh',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
-                <th data-options="field:'dz',halign:'center',align:'center'" sortable="true" width="70">地址</th>
-                <th data-options="field:'gsxxfl',halign:'center',align:'right'" sortable="true" width="150">公示信息分类</th>
-                <th data-options="field:'bmbm',halign:'center',align:'center'" sortable="true" width="70">编码别名</th>
-                <th data-options="field:'mcbm',halign:'center',align:'center'" sortable="true" width="70">名称别名</th>
+                <th data-options="field:'gsxxfl',halign:'center',align:'right'" sortable="true" width="150"
+                    codeName="gsxxfl" formatter="formatCodeList">公示信息分类
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -79,7 +80,7 @@
 
 <!-- --------弹出窗口--------------- -->
 
-<div id="depWindow" class="easyui-window" title="部门信息"
+<div id="baseWindow" class="easyui-window" title="部门信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
@@ -92,9 +93,14 @@
            plain="true">删除</a>
         <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
-    <div title="基本信息" style="padding:5px;" selected="true">
+    <div id="baseInfo" title="基本信息" style="padding:5px;" selected="true">
 
-        <table width="100%" id="deptTable">
+        <div style="display: block">
+            <input class="easyui-textbox" id="p_orgId" type="text" style="width:200px;"/>
+            <input class="easyui-textbox" id="p_orgName" type="text" style="width:200px;"/>
+        </div>
+
+        <table width="100%" id="baseTable">
             <tr>
                 <td>
                     <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
@@ -122,20 +128,9 @@
                            data-options=""/></td>
             </tr>
             <tr>
-                <td>地址</td>
-                <td><input class="easyui-textbox" type="text" id="p_dz" data-options="" style="width:200px;"/></td>
                 <td>公示信息分类</td>
                 <td>
-                    <input id="p_gsxxfl" class="easyui-combobox" codeName="orgType" style="width:200px;"
-                           data-options="required:true"/>
-                </td>
-            </tr>
-            <tr>
-                <td>编码别名</td>
-                <td><input class="easyui-textbox" type="text" id="p_bmbm" data-options="" style="width:200px;"/></td>
-                <td>名称别名</td>
-                <td>
-                    <input id="p_mcbm" class="easyui-textbox" style="width:200px;"
+                    <input id="p_gsxxfl" class="easyui-combobox" codeName="gsxxfl" style="width:200px;"
                            data-options="required:true"/>
                 </td>
             </tr>

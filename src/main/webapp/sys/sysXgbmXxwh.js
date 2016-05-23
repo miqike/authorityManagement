@@ -1,41 +1,5 @@
 window.operateType = "";//操作类型
 
-var setting = {
-    data: {
-        key: {
-            title: "parentId",
-            name: "name"
-        }
-    },
-    async: {
-        enable: true,
-        type: "get",
-        url: "../sys/organization/getSub",
-        autoParam: ["id"]
-    },
-    callback: {
-        beforeClick: beforeTreeClick,
-        onClick: onTreeClick,
-        onAsyncSuccess: zTreeOnAsyncSuccess
-    }
-};
-
-var log, className = "dark";
-//树加载成功后事件
-function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
-
-}
-//zTree点击前事件
-function beforeTreeClick(treeId, treeNode, clickFlag) {
-    className = (className === "dark" ? "" : "dark");
-    return (treeNode.click != false);
-}
-//zTree点击事件
-function onTreeClick(event, treeId, treeNode, clickFlag) {
-    $.easyuiExtendObj.loadForm("deptTable", treeNode);
-    setReadOnlyStatus();
-}
-
 //设置页面为编辑状态
 function setEditStatus() {
     $("#btnAdd").linkbutton('disable');
@@ -44,10 +8,11 @@ function setEditStatus() {
     $("#btnSave").linkbutton('enable');
     $("#btnCancel").linkbutton('enable');
 
-    $("#deptTable input.easyui-textbox").textbox("enable");
-    $("#deptTable input.easyui-datebox").datebox("enable");
-    $("#deptTable input.easyui-combobox").combobox("enable");
-    $("#deptTable input.easyui-combotree").combotree("enable");
+    $("#baseInfo input.easyui-textbox").textbox("enable");
+    $("#baseInfo input.easyui-datebox").datebox("enable");
+    $("#baseInfo input.easyui-combobox").combobox("enable");
+    $("#baseInfo input.easyui-combotree").combotree("enable");
+
 }
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
@@ -57,84 +22,97 @@ function setReadOnlyStatus() {
     $("#btnSave").linkbutton('disable');
     $("#btnCancel").linkbutton('disable');
 
-    $("#deptTable input.easyui-textbox").textbox("disable");
-    $("#deptTable input.easyui-datebox").datebox("disable");
-    $("#deptTable input.easyui-combobox").combobox("disable");
-    $("#deptTable input.easyui-combotree").combotree("disable");
+    $("#baseInfo input.easyui-textbox").textbox("disable");
+    $("#baseInfo input.easyui-datebox").datebox("disable");
+    $("#baseInfo input.easyui-combobox").combobox("disable");
+    $("#baseInfo input.easyui-combotree").combotree("disable");
 }
 //通用保存函数
 function save() {
-    var data = $.easyuiExtendObj.drillDownForm('deptTable');
+    var data = $.easyuiExtendObj.drillDownForm('baseInfo');
 
-    var url = "../sys/organization";
+    var type = "";
+    var url = "";
     if (window.operateType == "add") {//增加本级
-        url = "../sys/organization/save";
+        type = "POST";
+        url = "../11/1107";
     }
     if (window.operateType == "edit") {//修改
-        url = "../sys/organization/update";
+        type = "PUT";
+        url = "../11/1107";
     }
     if (window.operateType == "delete") {//删除
-        url = "../sys/organization/delete";
+        type = "DELETE";
+        data = {"id": $("#p_id").textbox("getValue")};
+        data = JSON.stringify(data);
+        url = "../11/1107?id=" + $("#p_id").textbox("getValue");
     }
-    $.post(url, data, function (response) {
-        if (response.status == myJsCommon.FAIL) {
-            $.messager.alert("警告", myJsCommon.combineErrorMessage(response), "warning");
-        } else {
-            $.messager.show({
-                title: '提示',
-                msg: response.message
-            });
-            setReadOnlyStatus();
+    $.ajax({
+        url: url,
+        type: type,
+        data: data,
+        success: function (response) {
+            if (response.status == SUCCESS) {
+                setReadOnlyStatus();
+                var options = $('#mainGrid').datagrid('options');
+                options.url = '../common/query?mapper=xgbmMapper&queryName=query';
+                $("#mainGrid").datagrid(options);
+                if ($("#mainGrid").datagrid("getSelected") != null) {
+                    $("#btnView").linkbutton("enable");
+                    $("#btnDelete").linkbutton("enable");
+                } else {
+                    $("#btnView").linkbutton("disable");
+                    $("#btnDelete").linkbutton("disable");
+                }
+                $("#baseWindow").window("close");
+            } else {
+                $.messager.alert('失败', response.message, 'info');
+            }
         }
-    }, "json");
+    });
+
 }
 //保存按钮点击事件
 function btnSaveClick() {
-    if ($("#treeNodeForm").form('validate') && !$(this).linkbutton('options').disabled) {
+    if ($("#baseInfo").form('validate') && !$(this).linkbutton('options').disabled) {
         save();
     }
 }
 //取消按钮点击事件
 function btnCloseClick() {
     if (!$(this).linkbutton('options').disabled) {
-        onTreeClick(null, null, $.zTreeExtendObj.getSelectedNode("tree"), null);
-        $("#depWindow").window("close");
+        $("#baseWindow").window("close");
+        setReadOnlyStatus();
     }
 }
 
 //修改按钮点击事件
 function btnViewClick() {
-    // if (!$(this).linkbutton('options').disabled) {
-    window.operateType = "edit";
-    setEditStatus();
-    showModalDialog("depWindow", "修改部门信息");
-    // }
+    if (!$(this).linkbutton('options').disabled) {
+        showModalDialog("baseWindow", "修改相关部门信息");
+        window.operateType = "edit";
+        setEditStatus();
+        $("#p_id").textbox("disable");
+    }
 }
 //删除按钮点击事件
 function btnDeleteClick() {
     if (!$(this).linkbutton('options').disabled) {
-        var node = $.zTreeExtendObj.getSelectedNode("tree");
-        if (null == node) {
-            $.messager.alert("警告", "请首先选择父节点", "warning");
-        } else {
-            window.operateType = "delete";
-            save();
-            setReadOnlyStatus();
-        }
+        window.operateType = "delete";
+        save();
+        setReadOnlyStatus();
     }
 }
-//增加本级按钮点击事件
+//新增按钮点击事件
 function btnAddClick() {
     if (!$(this).linkbutton('options').disabled) {
-        $("#deptTable").form('clear');
+        showModalDialog("baseWindow", "新相关部门信息");
+        $("#baseInfo").form('clear');
         window.operateType = "add";
         setEditStatus();
-        showModalDialog("depWindow", "新部门信息");
     }
 }
 $(function () {
-    $.fn.zTree.init($("#tree"), setting);
-
     $("#btnAdd").click(btnAddClick);
     $("#btnView").click(btnViewClick);
     $("#btnDelete").click(btnDeleteClick);
@@ -142,6 +120,23 @@ $(function () {
     $("#btnClose").click(btnCloseClick);
 
     setReadOnlyStatus();
+
+    $("#mainGrid").datagrid({"singleSelect": "true"}).datagrid({
+        onSelect: function (index, row) {
+            $("#btnView").linkbutton("enable");
+            $("#btnDelete").linkbutton("enable");
+            $("#baseInfo").form('clear');
+            $.easyuiExtendObj.loadForm("baseInfo", row);
+        },
+        onUnselect: function (index, row) {
+            $("#btnView").linkbutton("disable");
+            $("#btnDelete").linkbutton("disable");
+            $("#baseInfo").form('clear');
+        }
+    });
+    var options = $('#mainGrid').datagrid('options');
+    options.url = '../common/query?mapper=xgbmMapper&queryName=query';
+    $("#mainGrid").datagrid(options);
 
     $(".datagrid-body").niceScroll({
         cursorcolor: "lightblue", // 滚动条颜色
