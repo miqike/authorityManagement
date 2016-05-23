@@ -26,13 +26,13 @@
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false"
 		>
-			<columnOverride column="ND"  javaType="java.lang.Integer"	/>
-			<columnOverride column="FL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="HCRWSL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="YPFSL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="YRLSL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="WRLSL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="SHZT"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ND" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="FL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCRWSL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="YPFSL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="YRLSL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="WRLSL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="SHZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="XDRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="YQWCSJ"  javaType="java.util.Date"	/>
 		</table>
@@ -48,14 +48,62 @@
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false"
 		>
-			<columnOverride column="RWZT"  javaType="java.lang.Integer"	/>
-			<columnOverride column="HCFL"  javaType="java.lang.Integer"	/>
-			<columnOverride column="HCJIEGUO"  javaType="java.lang.Integer"	/>
-			<columnOverride column="JYZT"  javaType="java.lang.Integer"	/>
-			<columnOverride column="HCJGGSQK"  javaType="java.lang.Integer"	/>
+			<columnOverride column="RWZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCFL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCJIEGUO" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="JYZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCJGGSQK" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="ZTLX" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="ZZXS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="RLRQ"  javaType="java.util.Date"	/>
-			<columnOverride column="WCRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="JHWCRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="SJWCRQ"  javaType="java.util.Date"	/>
+		</table>
+		<table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false"
+		>
+			<columnOverride column="HCFS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+		</table>
+		<table tableName="T_QYHCCL" domainObjectName="Qyhccl"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false"
+		>
+			<columnOverride column="HCJHND" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
 
+		<!-- 核查任务统计表 -->
+		<table tableName="T_HCRW_TJ" domainObjectName="HcrwTj"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false"
+		>
+			<columnOverride column="HCRWS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="RLS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="WCS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="ZLZ" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="WWCS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+		</table>
 	</context>
 </generatorConfiguration>

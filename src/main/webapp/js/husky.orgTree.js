@@ -12,10 +12,12 @@ var setting = {
     },
     callback: {
         beforeClick: beforeTreeClick,
-        onClick: onTreeClick,
+        onClick: _onTreeClick,
         onAsyncSuccess: zTreeOnAsyncSuccess
     }
 };
+
+var log, className = "dark";
 
 //树加载成功后事件
 function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
@@ -27,11 +29,6 @@ function beforeTreeClick(treeId, treeNode, clickFlag) {
     return (treeNode.click != false);
 }
 //zTree点击事件
-function onTreeClick(event, treeId, treeNode, clickFlag) {
-    $.easyuiExtendObj.loadForm("treeNodeForm",treeNode);
-    setReadOnlyStatus();
-
-    var tab = $('#tabPanel').tabs('getSelected');
-    var index = $('#tabPanel').tabs('getTabIndex',tab);
-    tabSelectHandler("",index);
+function _onTreeClick(event, treeId, treeNode, clickFlag) {
+	onTreeClick(event, treeId, treeNode, clickFlag);
 }

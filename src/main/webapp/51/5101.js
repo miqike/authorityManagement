@@ -1,40 +1,3 @@
-var setting = {
-    data: {
-        key: {
-            title:"parentId",
-            name:"name"
-        }},
-    async: {
-        enable: true,
-        type: "get",
-        url:"../sys/organization/getSub",
-        autoParam:["id"]
-    },
-    callback: {
-        beforeClick: beforeTreeClick,
-        onClick: onTreeClick,
-        onAsyncSuccess: zTreeOnAsyncSuccess
-    }
-};
-
-//树加载成功后事件
-function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
-
-}
-//zTree点击前事件
-function beforeTreeClick(treeId, treeNode, clickFlag) {
-    className = (className === "dark" ? "":"dark");
-    return (treeNode.click != false);
-}
-//zTree点击事件
-function onTreeClick(event, treeId, treeNode, clickFlag) {
-    $.easyuiExtendObj.loadForm("treeNodeForm",treeNode);
-    setReadOnlyStatus();
-
-    var tab = $('#tabPanel').tabs('getSelected');
-    var index = $('#tabPanel').tabs('getTabIndex',tab);
-    tabSelectHandler("",index);
-}
 
 
 function collapseHandler() {
@@ -89,7 +52,26 @@ function showExamHistory() {
 	showModalDialog("examHistory");
 }
 
+//---------------
+function loadMyTask() {
+	var options = $("#grid1").datagrid("options");
+	options.url = '../common/query?mapper=hcrwMapper&queryName=queryForAuditor';
+	$('#grid1').datagrid('load',{
+		
+	});
+}
+
+function grid1ClickHandler() {
+	//控制四个按钮显示
+	//加载右侧grid
+	var options = $("#mainGrid").datagrid("options");
+	options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
+	$('#mainGrid').datagrid('load',{
+		hcrwId:"1"
+	});
+}
+
 $(function() {
-	$.fn.zTree.init($("#orgTree"), setting);
 	$("#btnView").click(showExamHistory);
+	loadMyTask();
 });

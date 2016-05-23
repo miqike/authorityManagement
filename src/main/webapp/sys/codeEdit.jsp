@@ -81,8 +81,9 @@
 			<div id="mainGridToolbar">
 				<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新建</a>
 				<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
-				<a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a>
+				<!-- <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a>
 				<a href="#" id="btnExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a>
+				 -->
 			</div>
 
 			<table id="mainGrid" class="easyui-datagrid" title="编码维护" style="width:900px;height:300px"

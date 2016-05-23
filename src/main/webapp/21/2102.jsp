@@ -117,7 +117,7 @@
 </div>
 <!-- --------弹出窗口--------------- -->
 
-<div id="examHistory" class="easyui-window" title="企业抽查记录"
+<div id="examHistory" class="easyui-window" title="企业核查记录"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
      <table id="grid2"
@@ -132,15 +132,15 @@
         <thead>
         <tr>
             <th data-options="field:'name'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查计划编号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查计划下达时间</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划编号</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划下达时间</th>
             <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
-                formatter="formatCodeList">抽查类型</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查机关</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查人员</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查结果</th>
+                formatter="formatCodeList">核查类型</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查机关</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查人员</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果</th>
             <th data-options="field:'role'" halign="center" align="left" width="100">经营状态</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查结果公示情况</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果公示情况</th>
         </tr>
         </thead>
     </table>

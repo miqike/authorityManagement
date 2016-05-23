@@ -55,12 +55,49 @@ function expandHandler() {
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
 
+function queryPlan(node){
+	var _orgId = $("#f_deptName").combobox("getValue");
+	if(_orgId != "" ) {
+		var orgId = new Array();
+		orgId.push(_orgId);
+		xxxx(orgId);
+	} else if(window.orgTreeObj) {
+		queryPlanFromTree();
+	}
+}
+
+function xxxx(orgId) {
+	var year = $("#f_year").numberspinner('getValue');
+	window.planGridKey = {year:year, tOrgId:orgId, excludeSaved: excludeSaved};
+	if(orgId != undefined && orgId != null )
+		refreshFunGrid(orgId);
+}
+//================
+
+function onTreeClick(event, treeId, treeNode, clickFlag) {
+	
+	console.log(treeNode);
+	
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+
+	if(selected.length == 1) {
+		var options = $("#grid2").datagrid("options");
+		options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
+		$('#grid2').datagrid('load',{
+			organization: selected[0].id
+		});
+
+	} else {
+	}
+}
 //初始化
 $(function() {
-    $("#btnAdd").click(funAdd);
+	$.fn.zTree.init($("#orgTree"), setting);
+    /*$("#btnAdd").click(funAdd);
 	$("#btnUpdate").click(update);
 	$("#btnDelete").click(remove);
 	$("#btnSubmit").click(funSubmit);
-	$("#btnAddPlan").hide();
+	$("#btnAddPlan").hide();*/
 });
 

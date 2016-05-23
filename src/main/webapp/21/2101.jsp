@@ -36,7 +36,7 @@
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="./2101.js"></script>
     <style>
-    	td.label{text-align: right}
+    	
         body {
             margin:0;
             padding:0;
@@ -66,7 +66,7 @@
 						<td><input id="f_businessKey" class="easyui-textbox"/></td>
 						<td class="label">计划编号</td>
 						<td><input id="f_errorNo" class="easyui-textbox"/></td>
-						<td class="label">抽查人员</td>
+						<td class="label">核查人员</td>
 						<td><input id="f_operator" class="easyui-textbox"/></td>
 					</tr>
 					<tr>
@@ -89,13 +89,13 @@
 							data-options="panelHeight:120,width:150" style="" /></td>
 					</tr>
 					<tr>
-						<td class="label">抽查结果</td>
+						<td class="label">核查结果</td>
 						<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl"
 							data-options="panelHeight:120,width:100" style="" /></td>
 							
 						<td>
 							<input type="radio" ></input> 全部
-							<input type="radio" ></input> 按抽查计划
+							<input type="radio" ></input> 按核查计划
 							
 						</td>
 						
@@ -145,7 +145,7 @@
 		        </tbody>
 		    </table>
 		    <div id="mainGridToolbar">
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">抽查记录</a>
+		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">核查记录</a>
 		    </div>
 		</div>
 	</div>
@@ -153,7 +153,7 @@
 </div>
 <!-- --------弹出窗口--------------- -->
 
-<div id="examHistory" class="easyui-window" title="企业抽查记录"
+<div id="examHistory" class="easyui-window" title="企业核查记录"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
      <table id="grid2"
@@ -168,15 +168,15 @@
         <thead>
         <tr>
             <th data-options="field:'name'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查计划编号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查计划下达时间</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划编号</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划下达时间</th>
             <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
-                formatter="formatCodeList">抽查类型</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查机关</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查人员</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查结果</th>
+                formatter="formatCodeList">核查类型</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查机关</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查人员</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果</th>
             <th data-options="field:'role'" halign="center" align="left" width="100">经营状态</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">抽查结果公示情况</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果公示情况</th>
         </tr>
         </thead>
     </table>
