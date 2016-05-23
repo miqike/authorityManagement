@@ -30,6 +30,34 @@
 			
 			<columnOverride column="WCSX"  javaType="java.lang.Integer"	/>
 		</table>
+		
+		<!-- 部门 -->
+		<table tableName="T_BM" domainObjectName="Bm"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="GSXXFL"  javaType="java.lang.Integer"	/>
+		</table>
+		
+		<!-- 相关部门 -->
+		<table tableName="T_XGBM" domainObjectName="Xgbm"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="GSXXFL"  javaType="java.lang.Integer"	/>
+		</table>
 
 	</context>
 </generatorConfiguration>

@@ -15,7 +15,7 @@
 		<javaClientGenerator targetPackage="com.kysoft.cpsi.task.mapper"
 			targetProject="cpsi" type="XMLMAPPER" />
 		<!-- 核查计划 -->
-		<table tableName="T_HCJH" domainObjectName="Hcjh"
+		<!-- <table tableName="T_HCJH" domainObjectName="Hcjh"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
 				enableUpdateByPrimaryKey="true"
@@ -36,7 +36,9 @@
 			<columnOverride column="XDRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="YQWCSJ"  javaType="java.util.Date"	/>
 		</table>
-		<!-- 核查任务 -->
+		 -->
+		 <!-- 核查任务 -->
+		<!-- 
 		<table tableName="T_HCRW" domainObjectName="Hcrw"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -59,7 +61,9 @@
 			<columnOverride column="JHWCRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="SJWCRQ"  javaType="java.util.Date"	/>
 		</table>
-		<table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
+		 -->
+		 <!-- 核查事项检查表 -->
+		 <table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
 				enableUpdateByPrimaryKey="true"
