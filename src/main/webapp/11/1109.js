@@ -1,46 +1,5 @@
 window.operateType = "";//操作类型
 
-var setting = {
-    data: {
-        key: {
-            title: "parentId",
-            name: "name"
-        }
-    },
-    async: {
-        enable: true,
-        type: "get",
-        url: "../sys/organization/getSub",
-        autoParam: ["id"]
-    },
-    callback: {
-        beforeClick: beforeTreeClick,
-        onClick: onTreeClick,
-        onAsyncSuccess: zTreeOnAsyncSuccess
-    }
-};
-
-var log, className = "dark";
-//树加载成功后事件
-function zTreeOnAsyncSuccess(event, treeId, treeNode, msg) {
-
-}
-//zTree点击前事件
-function beforeTreeClick(treeId, treeNode, clickFlag) {
-    className = (className === "dark" ? "" : "dark");
-    return (treeNode.click != false);
-}
-//zTree点击事件
-function onTreeClick(event, treeId, treeNode, clickFlag) {
-    $.easyuiExtendObj.loadForm("baseTable", treeNode);
-    setReadOnlyStatus();
-}
-
-function mainGridButtonHandler() {
-
-}
-function mainGridDblClickHandler() {
-}
 //设置页面为编辑状态
 function setEditStatus() {
     $("#btnAdd").linkbutton('disable');
@@ -53,6 +12,7 @@ function setEditStatus() {
     $("#baseTable input.easyui-datebox").datebox("enable");
     $("#baseTable input.easyui-combobox").combobox("enable");
     $("#baseTable input.easyui-combotree").combotree("enable");
+
 }
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
@@ -95,14 +55,13 @@ function save() {
 }
 //保存按钮点击事件
 function btnSaveClick() {
-    if ($("#treeNodeForm").form('validate') && !$(this).linkbutton('options').disabled) {
+    if ($("#baseTable").form('validate') && !$(this).linkbutton('options').disabled) {
         save();
     }
 }
 //取消按钮点击事件
 function btnCloseClick() {
     if (!$(this).linkbutton('options').disabled) {
-        onTreeClick(null, null, $.zTreeExtendObj.getSelectedNode("ztree"), null);
         $("#baseWindow").window("close");
     }
 }
@@ -118,14 +77,9 @@ function btnViewClick() {
 //删除按钮点击事件
 function btnDeleteClick() {
     if (!$(this).linkbutton('options').disabled) {
-        var node = $.zTreeExtendObj.getSelectedNode("ztree");
-        if (null == node) {
-            $.messager.alert("警告", "请首先选择父节点", "warning");
-        } else {
-            window.operateType = "delete";
-            save();
-            setReadOnlyStatus();
-        }
+        window.operateType = "delete";
+        save();
+        setReadOnlyStatus();
     }
 }
 //增加本级按钮点击事件
@@ -138,8 +92,6 @@ function btnAddClick() {
     }
 }
 $(function () {
-    $.fn.zTree.init($("#ztree"), setting);
-
     $("#btnAdd").click(btnAddClick);
     $("#btnView").click(btnViewClick);
     $("#btnDelete").click(btnDeleteClick);

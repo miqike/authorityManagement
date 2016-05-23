@@ -25,9 +25,6 @@
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
-
-    <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
@@ -51,22 +48,24 @@
 <%-- <shiro:hasPermission name="user"> --%>
 <div id="panel" class="easyui-panel" title="">
 
-	<div style="padding: 5px 10px 0px 10px">
-		<table id="queryTable">
-			<tr>
-				<td>检查类型</td>
-				<td><input id="f_businessKey" class="easyui-textbox"/></td>
-				<td>检查信息分类</td>
-				<td><input id="f_errorNo" class="easyui-textbox"/></td>
-				<td>公示项目</td>
-				<td><input id="f_module" class="easyui-textbox"/></td>
-				<td colspan="2" style="text-align-right;">
-					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
-					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-				</td>
-			</tr>
-		</table>
-	</div>
+    <div style="padding: 5px 10px 0px 10px">
+        <table id="queryTable">
+            <tr>
+                <td>检查类型</td>
+                <td><input id="f_businessKey" class="easyui-textbox"/></td>
+                <td>检查信息分类</td>
+                <td><input id="f_errorNo" class="easyui-textbox"/></td>
+                <td>公示项目</td>
+                <td><input id="f_module" class="easyui-textbox"/></td>
+                <td colspan="2" style="text-align-right;">
+                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
+                       iconCls="icon-search">查找</a>
+                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
+                       iconCls="icon2 r3_c10">重置</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <table id="mainGrid"
            class="easyui-datagrid"
            data-options="collapsible:true,onClickRow:mainGridButtonHandler,
@@ -101,8 +100,8 @@
         <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true">注销/取消注销</a>
-        <a href="#" id="btnView1" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">检查材料清单</a>
+        <a href="#" id="btnDrop" class="easyui-linkbutton" iconCls="icon-print" plain="true">注销/取消注销</a>
+        <a href="#" id="btnList" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">检查材料清单</a>
     </div>
 </div>
 <%-- </shiro:hasPermission>
@@ -118,16 +117,17 @@
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
         <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
-        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
-        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
-        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnPre1" class="easyui-linkbutton" iconCls="icon-previous"
+           plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext1" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst1" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast1" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
         <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
            plain="true">删除</a>
-        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
+        <a href="javascript:void(0);" id="btnClose1" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
     <div>
-        <table width="100%" id="detailTable">
+        <table width="100%" id="baseTable">
             <tr>
                 <td>
                     <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"
@@ -159,17 +159,6 @@
                 <td><input class="easyui-textbox" id="p_handle" type="text" style="width:200px;"
                            data-options=""/></td>
             </tr>
-<!--             
-            <th data-options="field:'method',halign:'center',align:'left'" sortable="true" width="260">检查方法说明</th>
-            <th data-options="field:'handle',halign:'center',align:'left'" sortable="true" width="260">结果处理</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="150">登记信息和公示信息比对</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">比对信息来源</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否需要实地核查</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否人工核对</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">改正期限</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">是否必检项</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销日期</th>
-            <th data-options="field:'desc',halign:'center',align:'left'" sortable="true" width="100">注销说明</th> -->
         </table>
     </div>
 
@@ -178,34 +167,35 @@
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
-        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
-        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
-        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
-        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
-        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
+        <a href="javascript:void(0);" id="btnAdd2" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre2" class="easyui-linkbutton" iconCls="icon-previous"
+           plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext2" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst2" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast2" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnDelete2" class="easyui-linkbutton" iconCls="icon-remove"
            plain="true">删除</a>
-        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
+        <a href="javascript:void(0);" id="btnClose2" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
     <div>
-		<table id="detailTable1"
-           class="easyui-datagrid"
-           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+        <table id="detailTable1"
+               class="easyui-datagrid"
+               data-options="collapsible:true,onClickRow:mainGridButtonHandler,
            		width: 400,height:300,
            		offset: { width: 0, height: 0},
 				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
 				toolbar: '',
            		pageSize: 20, pagination: true"
-           pagePosition="bottom">
-	        <thead>
-	        <tr>
-	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">序号</th>
-	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">材料名称</th>
-	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">是否必要项</th>
-	            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">文件类型</th>
-	        </tr>
-	        </thead>
-    	</table>
+               pagePosition="bottom">
+            <thead>
+            <tr>
+                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">序号</th>
+                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">材料名称</th>
+                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">是否必要项</th>
+                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">文件类型</th>
+            </tr>
+            </thead>
+        </table>
     </div>
 
 </div>

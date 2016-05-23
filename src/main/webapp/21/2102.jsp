@@ -1,149 +1,210 @@
 <%--jsp文件的存储格式--%>
 <%--<%@ page language="java" pageEncoding="UTF-8"%>--%>
 <%--解码格式--%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-    <title>市场主体管理</title>
+    <title>执法人员库管理</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-<!--     
- --> 
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-    <script type="text/javascript" src="./2101.js"></script>
+    <script type="text/javascript" src="../js/myJs/common.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.combobox.codeList.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
+    <script type="text/javascript" src="../js/myJs/formatter.js"></script>
+
+    <script type="text/javascript" src="./2102.js"></script>
     <style>
         body {
-            margin:0;
-            padding:0;
-            font:13px/1.5 \5b8b\4f53, Arial, sans-serif;
-            background:#ffffff;
+            margin: 0;
+            padding: 0;
+            font: 13px/1.5 \5b8b\4f53, Arial, sans-serif;
+            background: #ffffff;
         }
 
-        div .datagrid-wrap{ border-right: 0px; border-left: 0px; border-bottom: 0px}
+        div .datagrid-wrap {
+            border-right: 0px;
+            border-left: 0px;
+            border-bottom: 0px
+        }
 
-        div#tabPanel .datagrid-wrap{ border-top: 0px;}
+        div#tabPanel .datagrid-wrap {
+            border-top: 0px;
+        }
     </style>
 </head>
 <body style="padding:5px;">
 <%-- <shiro:hasPermission name="user"> --%>
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
-	<div id="layout" class="easyui-layout" data-options="fit:true">
-		
-		<div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
-			<ul id="orgTree" class="ztree"></ul>
-		</div>
-		<div data-options="region:'center'">
-		
-			<div style="padding: 5px 10px 0px 10px">
-				<table id="queryTable">
-					<tr>
-						<td>姓名</td>
-						<td><input id="f_businessKey" class="easyui-textbox"/></td>
-						<td>执法(监督)类别</td>
-						<td><input id="f_errorNo" class="easyui-textbox"/></td>
-					</tr>
-					<tr>
-						<td>计划编号</td>
-						<td><input id="f_module" class="easyui-textbox"/></td>
-						<td colspan="2" style="text-align-right;">
-							<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
-							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-						</td>
-					</tr>
-				</table>
-			</div>
-		
-		    <table id="mainGrid"
-		           class="easyui-datagrid"
-		           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+    <div id="layout" class="easyui-layout" data-options="fit:true">
+
+        <div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
+            <ul id="orgTree" class="ztree"></ul>
+        </div>
+        <div data-options="region:'center'">
+
+            <div style="padding: 5px 10px 0px 10px">
+                <table id="queryTable">
+                    <tr>
+                        <td>姓名</td>
+                        <td><input id="f_businessKey" class="easyui-textbox"/></td>
+                        <td>执法(监督)类别</td>
+                        <td><input id="f_errorNo" class="easyui-textbox"/></td>
+                    </tr>
+                    <tr>
+                        <td>计划编号</td>
+                        <td><input id="f_module" class="easyui-textbox"/></td>
+                        <td colspan="2" style="text-align: right ">
+                            <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
+                               iconCls="icon-search">查找</a>
+                            <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r3_c10">重置</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <table id="mainGrid"
+                   class="easyui-datagrid"
+                   data-options="collapsible:true,onClickRow:mainGridButtonHandler,
 		           		offset: { width: 0, height: 0},
 						ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
 						toolbar: '#mainGridToolbar',
 		           		pageSize: 20, pagination: true"
-		           pagePosition ="bottom" >
-		        <thead>
-		        <tr>
-		            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-		            <th data-options="field:'mc',halign:'center',align:'left'" sortable="true" width="100">检查机关</th>
-		            <th data-options="field:'lx',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
-		            <th data-options="field:'fr',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
-		            <th data-options="field:'clrq',halign:'center',align:'right'" sortable="true" width="150">性别</th>
-		            <th data-options="field:'zczb',halign:'center',align:'right'" sortable="true" width="100">身份证号</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">职务</th>
-		            <th data-options="field:'djzt',halign:'center',align:'center'" sortable="true" width="100" codeName="userStatus"
-		                formatter="formatCodeList">执法(监督)类型</th>
-		            <th data-options="field:'djzt',halign:'center',align:'center'" sortable="true" width="100" codeName="userStatus"
-		                formatter="formatCodeList">文化程度</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">状态</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
-		            <th data-options="field:'djjgmc',halign:'center',align:'right'" sortable="true" width="150">电子邮箱</th>
-		        </tr>
-		        </thead>
-		        <tbody>
-		        </tbody>
-		    </table>
-		    <div id="mainGridToolbar">
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-remove" plain="true">注销</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">调转</a>
-		    </div>
-		</div>
-	</div>
-	
+                   pagePosition="bottom">
+                <thead>
+                <tr>
+                    <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+                    <th data-options="field:'dw_name',halign:'center',align:'left'" sortable="true" width="100">检查机关
+                    </th>
+                    <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
+                    <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
+                    <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="150">性别</th>
+                    <th data-options="field:'sfzh',halign:'center',align:'right'" sortable="true" width="100">身份证号</th>
+                    <th data-options="field:'zw',halign:'center',align:'right'" sortable="true" width="100">职务</th>
+                    <th data-options="field:'zflx',halign:'center',align:'center'" sortable="true" width="100"
+                        codeName="userStatus"
+                        formatter="formatCodeList">执法(监督)类型
+                    </th>
+                    <th data-options="field:'whcd',halign:'center',align:'center'" sortable="true" width="100"
+                        codeName="userStatus"
+                        formatter="formatCodeList">文化程度
+                    </th>
+                    <th data-options="field:'zt',halign:'center',align:'right'" sortable="true" width="100">状态</th>
+                    <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">联系电话
+                    </th>
+                    <th data-options="field:'mail',halign:'center',align:'right'" sortable="true" width="150">电子邮箱
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="mainGridToolbar">
+                <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
+                <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+                <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">注销</a>
+                <a href="#" id="btnTrans" class="easyui-linkbutton" iconCls="icon-edit" plain="true">调转</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- --------弹出窗口--------------- -->
 
-<div id="examHistory" class="easyui-window" title="企业核查记录"
+<div id="baseWindow" class="easyui-window" title="执法人员信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
-     <table id="grid2"
-           class="easyui-datagrid"
-           data-options="
-               singleSelect:true,
-               collapsible:true,
-               selectOnCheck:false,
-               checkOnSelect:false"
-           toolbar="#grid2Toolbar"
-           style="height: 318px">
-        <thead>
-        <tr>
-            <th data-options="field:'name'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划编号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划下达时间</th>
-            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
-                formatter="formatCodeList">核查类型</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查机关</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查人员</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">经营状态</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果公示情况</th>
-        </tr>
-        </thead>
-    </table>
+    <div>
+        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
+           plain="true">删除</a>
+        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
+    </div>
+    <div title="基本信息" style="padding:5px;" selected="true">
+
+        <table width="100%" id="baseTable">
+            <tr>
+                <td>
+                    <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
+                       plain="true">保存</a>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>人员编码</td>
+                <td><input class="easyui-textbox" id="p_code" type="text"
+                           data-options="required:true" style="width:200px;"/>
+                </td>
+                <td>人员名称</td>
+                <td><input class="easyui-textbox" type="text" id="p_name" data-options="required:true"
+                           style="width:200px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>
+                    <input class="easyui-combobox" id="p_gender" type="text" style="width:200px;" data-options=""/>
+                </td>
+                <td>单位编码</td>
+                <td><input class="easyui-textbox" id="p_dwId" type="text" style="width:200px;"
+                           data-options=""/></td>
+            </tr>
+            <tr>
+                <td>职务</td>
+                <td><input class="easyui-textbox" type="text" id="p_zw" data-options=""
+                           style="width:200px;"/></td>
+                <td>联系电话</td>
+                <td><input class="easyui-textbox" type="text" id="p_mobile" data-options=""
+                           style="width:200px;"/></td>
+            </tr>
+            <tr>
+                <td>电子邮件</td>
+                <td><input class="easyui-textbox" type="text" id="p_mail" data-options=""
+                           style="width:200px;"/></td>
+                <td>执法证号</td>
+                <td><input class="easyui-textbox" type="text" id="p_zfzh" data-options=""
+                           style="width:200px;"/></td>
+            </tr>
+            <tr>
+                <td>身份证号</td>
+                <td><input class="easyui-textbox" type="text" id="p_sfzh" data-options=""
+                           style="width:200px;"/></td>
+                <td>执法类型</td>
+                <td><input class="easyui-textbox" type="text" id="p_zflx" data-options=""
+                           style="width:200px;"/></td>
+            </tr>
+            <tr>
+                <td>文化程度</td>
+                <td><input class="easyui-textbox" type="text" id="p_whcd" data-options=""
+                           style="width:200px;"/></td>
+                <td>状态</td>
+                <td><input class="easyui-textbox" type="text" id="p_zt" data-options=""
+                           style="width:200px;"/></td>
+            </tr>
+        </table>
+    </div>
 </div>
+
 </body>
 </html>
