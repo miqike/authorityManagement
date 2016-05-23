@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>部门设置</title>
+    <title>相关部门信息维护</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>

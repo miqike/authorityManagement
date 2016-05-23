@@ -29,13 +29,13 @@ function view() {
     }
 }
 function view1() {
-	if (!$(this).linkbutton('options').disabled) {
-		var row = $('#mainGrid').datagrid('getSelected');
-		console.log(row);
-		loadForm($("#detailWindow1"), row);
-		window.operateType = "edit";
-		showModalDialog("detailWindow1");
-	}
+    if (!$(this).linkbutton('options').disabled) {
+        var row = $('#mainGrid').datagrid('getSelected');
+        console.log(row);
+        loadForm($("#detailWindow1"), row);
+        window.operateType = "edit";
+        showModalDialog("detailWindow1");
+    }
 }
 
 function remove() {
@@ -80,14 +80,31 @@ $(function () {
 
     $("#btnAdd").click(add);
     $("#btnView").click(view);
+
+    $("#btnAdd1").click(function () {
+        $('#detailWindow input').val('');
+        $('#detailTable input.easyui-textbox').textbox("enable");
+        $('#detailTable input.easyui-combobox').combobox("enable");
+        $("#btnEditOrSave").linkbutton({
+            iconCls: 'icon-save',
+            text: '保存'
+        });
+        window.operateType = "new";
+    });
     $("#btnView1").click(view1);
     $("#btnDelete").click(remove);
     $("#btnExport").click(poiExport);
-    $("#btnClose").click(function () {
+    $("#btnClose1").click(function () {
         $("#detailWindow").window("close");
     });
     $("#btnEditOrSave").click(editOrSave);
 
+    $("#btnList").click(function () {
+        showModalDialog("detailWindow1", "检查材料清单")
+    });
+    $("#btnClose2").click(function () {
+        $("#detailWindow1").window("close");
+    });
     $("#btnReset").click(function () {
         $("#s_name").val('');
     });

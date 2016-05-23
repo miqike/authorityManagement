@@ -1,94 +1,124 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%
+    String privilegeName = "sysOrganization";//定义权限名称
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>计划任务分配</title>
-	<link href="../css/themes/${theme}/easyui.css" rel="stylesheet" />
-	<link href="../css/themes/icon.css" rel="stylesheet" />
-	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-	<style>
-		#layout>div.layout-panel-west>div.panel-header {
-			border-width: 1px 1px 1px 0px;
-		}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>公示时限设置</title>
+    <link href="../css/content.css" rel="stylesheet"/>
+    <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
-		#layout>div.layout-panel-west>div.panel-body {
-			border-width: 0px 1px 0px 0px;
-		}
+    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
 
-		#layout>div.layout-panel-center>div.panel-body {
-			border-width: 0px;
-		}
+    <script type="text/javascript" src="../js/husky.common.js"></script>
+    <script type="text/javascript" src="../js/myJs/common.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
+    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.combobox.codeList.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
+    <script type="text/javascript" src="../js/myJs/formatter.js"></script>
 
-		#layout>div.layout-panel-center div.datagrid-wrap {
-			border-width: 1px 0px 0px 0px;
-		}
-	</style>
+    <script type="text/javascript" src="1109.js"></script>
+
 </head>
-<body style="margin:5px;">
-<div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
-	<!-- <div style="padding: 5px 10px 0px 10px">
-		<table id="queryTable">
-			<tr>
-				<td>公示分类</td>
-				<td><input id="f_businessKey" class="easyui-textbox"/></td>
-				<td>组织形式</td>
-				<td><input id="f_errorNo" class="easyui-textbox"/></td>
-				<td>项目名称</td>
-				<td><input id="f_operator" class="easyui-textbox"/></td>
-				<td colspan="2" style="text-align-right;">
-					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
-					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-				</td>
-			</tr>
-		</table>
-	</div> -->
-	<div>
-		<table id="grid1"
-			class="easyui-datagrid"
-			data-options="singleSelect:true,collapsible:true,
-				method:'get',
-				onSelect:showPlanDetail,
-				onUnselect:disableUpdateAndDeleteButton"
-			   toolbar="#gridToolbar1"
-			   sortOrder="asc">
-			<thead>
-			<tr>
-				<th data-options="field:'bi1521'" halign="center" align="left" sortable="true" width="70">序号</th>
-				<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="100">项目编号</th>
-				<th data-options="field:'bi1512d'" halign="center" align="center" sortable="true" width="130" >项目名称</th>
-				<th data-options="field:'bi1512d'" halign="center" align="center" sortable="true" width="130" >类型</th>
-				<th data-options="field:'bi1512d'" halign="center" align="center" sortable="true" width="130" >完成时限(日)</th>
-				<th data-options="field:'bi1516c'" halign="center" align="center" sortable="true" width="100" formatter="formatDate">说明</th>
-			</tr>
-			</thead>
-		</table>
-		<div id="gridToolbar1">
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-remove" plain="true" data-options="disabled:true">删除</a>
-		</div>
-	</div>
-	
+<body>
+<%--<shiro:hasPermission name="<%=privilegeName%>">--%>
+<div class="easyui-layout" style="height:600px;">
+    <table id="mainGrid"
+           class="easyui-datagrid"
+           toolbar="#mainGridToolbar"
+           style="height: 500px"
+           pagination="false"
+           pagePosition="bottom">
+        <thead>
+        <tr>
+            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+            <th data-options="field:'code',halign:'center',align:'left'" sortable="true" width="70">项目编码</th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="260">项目名称</th>
+            <th data-options="field:'type',halign:'center',align:'center'" sortable="true" width="70">类型</th>
+            <th data-options="field:'wcsx',halign:'center',align:'right'" sortable="true" width="100">完成时限</th>
+            <th data-options="field:'descript',halign:'center',align:'center'" sortable="true" width="70">说明</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="mainGridToolbar">
+        <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+           disabled="true">编辑/查看</a>
+        <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+           disabled="true">删除</a>
+    </div>
 </div>
-	
-	
+</div>
+<%--
+</shiro:hasPermission>
+<shiro:lacksPermission name="<%=privilegeName%>">
+    <div>没有权限或者权限配置异常</div>
+</shiro:lacksPermission>
+--%>
+
+<!-- --------弹出窗口--------------- -->
+
+<div id="baseWindow" class="easyui-window" title="公示时限信息"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 750px; height: 400px; padding: 10px;">
+    <div>
+        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
+        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
+        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
+           plain="true">删除</a>
+        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
+    </div>
+    <div title="基本信息" style="padding:5px;" selected="true">
+
+        <table width="100%" id="baseTable">
+            <tr>
+                <td>
+                    <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
+                       plain="true">保存</a>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>项目编码</td>
+                <td><input class="easyui-textbox" id="p_code" type="text"
+                           data-options="required:true" style="width:200px;"/>
+                </td>
+                <td>项目名称</td>
+                <td><input class="easyui-textbox" type="text" id="p_name" data-options="required:true"
+                           style="width:200px;"/>
+                </td>
+            </tr>
+            <tr>
+                <td>类型</td>
+                <td>
+                    <input class="easyui-textbox" id="p_type" type="text" style="width:200px;" data-options=""/>
+                </td>
+                <td>完成时限</td>
+                <td><input class="easyui-textbox" id="p_wcsx" type="text" style="width:200px;"
+                           data-options=""/></td>
+            </tr>
+            <tr>
+                <td>说明</td>
+                <td colspan="3"><input class="easyui-textbox" type="text" id="p_descript" data-options=""
+                                       style="width:500px;"/></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>
-<script type="text/javascript" src="../js/jquery.min.js" ></script>
-<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
-<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
-<script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
-<script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.combobox.codeList.js"></script>
-<script type="text/javascript" src="../js/husky.common.js" ></script>
-<script type="text/javascript" src="../js/pinyin.js"></script>
-<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-<script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-<script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
-<script type="text/javascript" src="../js/husky.combobox.js"></script>
-<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-<script type="text/javascript" src="../js/formatter.js"></script>
-<!-- <script type="text/javascript" src="../bill/billFormat.js" ></script> -->
-<script type="text/javascript" src="../31/applyCommon.js" ></script>
-<script type="text/javascript" src="./1108.js" ></script>
