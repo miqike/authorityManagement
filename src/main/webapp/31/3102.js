@@ -83,7 +83,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 
 	if(selected.length == 1) {
 		var options = $("#grid2").datagrid("options");
-		options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
+		options.url = '../common/query?mapper=hcrwTjMapper&queryName=queryForOrg';
 		$('#grid2').datagrid('load',{
 			organization: selected[0].id
 		});

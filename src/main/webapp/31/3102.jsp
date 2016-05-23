@@ -90,10 +90,6 @@
 			</thead>
 		</table>
 		<div id="gridToolbar1">
-			<a href="#" id="btnUpdate1" class="easyui-linkbutton" iconCls="icon2 r16_c8" plain="true">导入</a>
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
-			<a href="#" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
-			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" data-options="disabled:true">审核/取消审核</a>
 			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
 		</div>
 	</div>
@@ -120,22 +116,18 @@
 				<thead>
 				<tr>
 					<!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
-					<th data-options="field:'ba01861'" halign="center" align="left" sortable="true" width="150">检查机关</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="70">检查人员</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="150">检查任务数</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="150">认领数</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="150">已完成数</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="80">责令中</th>
-					<th data-options="field:'ba01862'" halign="center" align="left" sortable="true" width="80">未完成数</th>
+					<th data-options="field:'hcjgmc'" halign="center" align="left" sortable="true" width="150">检查机关</th>
+					<th data-options="field:'zfryName'" halign="center" align="left" sortable="true" width="70">检查人员</th>
+					<th data-options="field:'hcrws'" halign="center" align="left" sortable="true" width="150">检查任务数</th>
+					<th data-options="field:'rls'" halign="center" align="left" sortable="true" width="150">认领数</th>
+					<th data-options="field:'wcs'" halign="center" align="left" sortable="true" width="150">已完成数</th>
+					<th data-options="field:'zlz'" halign="center" align="left" sortable="true" width="80">责令中</th>
+					<th data-options="field:'wwcs'" halign="center" align="left" sortable="true" width="80">未完成数</th>
 					
 				</tr>
 				</thead>
 			</table>
 			<div id="planGridToolbar">
-				<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true" data-options="disabled:true">按检查机关+检查人员排序</a>
-				<a href="#" id="btnUpdate" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" data-options="disabled:true">按市场主体类型+检查机关排序</a>
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">派发/取消派发</a>
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领/取消认领</a>
 				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
 			</div>
 		</div>
