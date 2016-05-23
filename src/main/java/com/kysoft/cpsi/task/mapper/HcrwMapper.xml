@@ -394,7 +394,7 @@
   </select>
   <select id="queryForAuditor" resultMap="BaseResultMap">
 	select <include refid="Base_Column_List" />
-    from T_HCRW where ZFRY_CODE1 = #{userId,jdbcType=VARCHAR} or ZFRY_CODE2 = #{userId,jdbcType=VARCHAR} 
+    from T_HCRW where ZFRY_CODE1 = #{_userId,jdbcType=VARCHAR} or ZFRY_CODE2 = #{_userId,jdbcType=VARCHAR} 
     <if test="name!=null">
       AND (USER_ID like concat(concat('%', #{name}), '%') or
       NAME like concat(concat('%', #{name}), '%') )
