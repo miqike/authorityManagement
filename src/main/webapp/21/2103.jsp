@@ -93,18 +93,10 @@
             </th>
             <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
                 formatter="formatCodeList">核查信息分类
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
-                formatter="formatCodeList">类型
             </th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
             <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
             <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">核查材料</th>
-            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
-                formatter="formatCodeList">核查方法
-            </th>
-            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
-                formatter="formatCodeList">核查信息分类
-            </th>
             <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
                 formatter="formatCodeList">核查类型
             </th>
@@ -213,8 +205,9 @@
             <tr>
                 <td>对应公示项目</td>
                 <td><input class="easyui-textbox" id="p_gsxm" type="text" style="width:200px;" data-options=""/></td>
-                <td>核查方法说明</td>
-                <td><input class="easyui-textbox" id="p_hcffsm" type="text" style="width:200px;" data-options=""/></td>
+                <td>是否必检项</td>
+                <td><input class="easyui-combobox" id="p_sfbjxm" type="text" style="width:200px;" data-options=""
+                           codeName="yesno"/></td>
             </tr>
             <tr>
                 <td>结果处理</td>
@@ -242,13 +235,15 @@
                            style="width:200px;"/></td>
             </tr>
             <tr>
-                <td>是否必检项</td>
-                <td><input class="easyui-combobox" id="p_sfbjxm" type="text" style="width:200px;" data-options=""
-                           codeName="yesno"/></td>
-                <td>注销日期</td>
-                <td><input class="easyui-datebox" id="p_zxrq" type="text" style="width:200px;" data-options=""/></td>
+                <td>核查方法说明</td>
+                <%--<td colspan="3"><input class="easyui-textbox" id="p_hcffsm" type="text" style="width:200px;"
+                                       data-options=""/></td>--%>
+                <td colspan="3"><textarea id="p_hcffsm" type="text" style="width:200px;"
+                                          data-options=""/></td>
             </tr>
             <tr>
+                <td>注销日期</td>
+                <td><input class="easyui-datebox" id="p_zxrq" type="text" style="width:200px;" data-options=""/></td>
                 <td>注销说明</td>
                 <td><input class="easyui-textbox" id="p_zxsm" type="text" style="width:200px;" data-options=""/></td>
             </tr>

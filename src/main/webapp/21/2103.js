@@ -43,6 +43,8 @@ function setReadOnlyStatus() {
 function save() {
     var data = $.easyuiExtendObj.drillDownForm('baseInfo');
 
+    data.hcffsm = $("#p_hcffsm").val();
+    console.log(data);
     var type = "";
     var url = "";
     if (window.operateType == "add") {//增加本级
