@@ -185,7 +185,6 @@ $(function () {
             $("#btnView").linkbutton("enable");
             $("#btnDelete").linkbutton("enable");
             $("#baseInfo").form('clear');
-            console.log(row);
             $.easyuiExtendObj.loadForm("baseInfo", row);
         },
         onUnselect: function (index, row) {

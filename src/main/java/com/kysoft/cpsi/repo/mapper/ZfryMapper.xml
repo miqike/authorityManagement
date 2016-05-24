@@ -222,4 +222,16 @@
       ZT = #{zt,jdbcType=DECIMAL}
     where CODE = #{code,jdbcType=VARCHAR}
   </update>
+
+  <select id="query" resultMap="BaseResultMap" >
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_ZFRY
+    where 1=1
+    <if test="dwId != null">
+      and dw_id=#{dwId}
+    </if>
+    order by code
+  </select>
+
 </mapper>

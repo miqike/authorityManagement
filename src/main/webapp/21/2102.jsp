@@ -82,31 +82,36 @@
 
             <table id="mainGrid"
                    class="easyui-datagrid"
-                   data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+                   data-options="collapsible:true,
 		           		offset: { width: 0, height: 0},
-						ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
+						ctrlSelect:true,method:'get',
 						toolbar: '#mainGridToolbar',
 		           		pageSize: 20, pagination: true"
                    pagePosition="bottom">
                 <thead>
                 <tr>
                     <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-                    <th data-options="field:'dw_name',halign:'center',align:'left'" sortable="true" width="100">检查机关
+                    <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="100">检查机关
                     </th>
                     <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
                     <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
-                    <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="150">性别</th>
+                    <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="150"
+                        codeName="gender"
+                        formatter="formatCodeList">性别
+                    </th>
                     <th data-options="field:'sfzh',halign:'center',align:'right'" sortable="true" width="100">身份证号</th>
                     <th data-options="field:'zw',halign:'center',align:'right'" sortable="true" width="100">职务</th>
                     <th data-options="field:'zflx',halign:'center',align:'center'" sortable="true" width="100"
-                        codeName="userStatus"
+                        codeName="zfjdlx"
                         formatter="formatCodeList">执法(监督)类型
                     </th>
                     <th data-options="field:'whcd',halign:'center',align:'center'" sortable="true" width="100"
-                        codeName="userStatus"
+                        codeName="whcd"
                         formatter="formatCodeList">文化程度
                     </th>
-                    <th data-options="field:'zt',halign:'center',align:'right'" sortable="true" width="100">状态</th>
+                    <th data-options="field:'zt',halign:'center',align:'right'" sortable="true" width="100"
+                        codeName="userStatus" formatter="formatCodeList">状态
+                    </th>
                     <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">联系电话
                     </th>
                     <th data-options="field:'mail',halign:'center',align:'right'" sortable="true" width="150">电子邮箱
@@ -141,7 +146,11 @@
            plain="true">删除</a>
         <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
     </div>
-    <div title="基本信息" style="padding:5px;" selected="true">
+    <div id="baseInfo" title="基本信息" style="padding:5px;" selected="true">
+        <div style="display: none">
+            <input class="easyui-textbox" id="p_dwId" type="text" style="width:200px;"/>
+            <input class="easyui-textbox" id="p_dwName" type="text" style="width:200px;"/>
+        </div>
 
         <table width="100%" id="baseTable">
             <tr>
@@ -164,11 +173,9 @@
             <tr>
                 <td>性别</td>
                 <td>
-                    <input class="easyui-combobox" id="p_gender" type="text" style="width:200px;" data-options=""/>
+                    <input class="easyui-combobox" id="p_gender" type="text" style="width:200px;" data-options=""
+                           codeName="gender"/>
                 </td>
-                <td>单位编码</td>
-                <td><input class="easyui-textbox" id="p_dwId" type="text" style="width:200px;"
-                           data-options=""/></td>
             </tr>
             <tr>
                 <td>职务</td>
@@ -191,16 +198,16 @@
                 <td><input class="easyui-textbox" type="text" id="p_sfzh" data-options=""
                            style="width:200px;"/></td>
                 <td>执法类型</td>
-                <td><input class="easyui-textbox" type="text" id="p_zflx" data-options=""
-                           style="width:200px;"/></td>
+                <td><input class="easyui-combobox" type="text" id="p_zflx" data-options=""
+                           style="width:200px;" codeName="zfjdlx"/></td>
             </tr>
             <tr>
                 <td>文化程度</td>
-                <td><input class="easyui-textbox" type="text" id="p_whcd" data-options=""
-                           style="width:200px;"/></td>
+                <td><input class="easyui-combobox" type="text" id="p_whcd" data-options=""
+                           style="width:200px;" codeName="whcd"/></td>
                 <td>状态</td>
-                <td><input class="easyui-textbox" type="text" id="p_zt" data-options=""
-                           style="width:200px;"/></td>
+                <td><input class="easyui-combobox" type="text" id="p_zt" data-options=""
+                           style="width:200px;" codeName="userStatus"/></td>
             </tr>
         </table>
     </div>
