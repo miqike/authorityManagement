@@ -116,8 +116,9 @@
 		           pagePosition ="bottom" >
 		        <thead>
 		        <tr>
-		            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+		            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>
 		            <th data-options="field:'hcsxId',halign:'center',align:'left'" sortable="true" width="40">编号</th>
+		            -->
 		            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="100">核查事项</th>
 		            <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs"
 		                formatter="formatCodeList">核查方式</th>
@@ -133,7 +134,9 @@
 		        </tbody>
 		    </table>
 		    <div id="mainGridToolbar">
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">核查材料</a>
+		        <a href="#" id="btnPullData" class="easyui-linkbutton" iconCls="icon2 r13_c19" plain="true">加载在线数据</a>
+		        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r3_c19" plain="true">核查材料</a>
+		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r3_c9" plain="true">核查</a>
 		    </div>
 		</div>
 	</div>
