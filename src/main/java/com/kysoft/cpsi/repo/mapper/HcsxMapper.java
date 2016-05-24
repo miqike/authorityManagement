@@ -1,11 +1,9 @@
 package com.kysoft.cpsi.repo.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kysoft.cpsi.repo.entity.Hcsx;
-
-import java.util.List;
-import java.util.Map;
 
 public interface HcsxMapper {
     /**
@@ -56,13 +54,15 @@ public interface HcsxMapper {
      */
     int updateByPrimaryKey(Hcsx record);
 
-	List<Hcsx> selectByJhId(String string);
+//	List<Hcsx> selectByJhId(String hcjhId);
 
 	List<Hcsx> query(Map<String, Object> params);
 
 	List<Hcsx> queryForPlan(Map<String, Object> params);
 	
 	List<Hcsx> queryForPlanCandidate(Map<String, Object> params);
+
+	List<Hcsx> selectByTaskId(String hcrwId);
 	
 	
 }

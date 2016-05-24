@@ -335,4 +335,15 @@
     )
     order by ID
   </select>
+
+  <select id="selectByTaskId" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_HCSX where ID in (
+    	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
+    		SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}
+    	)
+    )
+    order by ID
+  </select>
 </mapper>

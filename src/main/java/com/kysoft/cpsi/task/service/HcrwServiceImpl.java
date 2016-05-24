@@ -26,10 +26,11 @@ public class HcrwServiceImpl implements HcrwService {
 
 	@Override
 	public void initTaskItem(String hcrwId) {
-		List<Hcsx> hcsxList = hcsxMapper.selectByJhId("1");
+		List<Hcsx> hcsxList = hcsxMapper.selectByTaskId(hcrwId);
 		for(Hcsx hcsx: hcsxList) {
 			Hcsxjg hcsxjg = new Hcsxjg();
 			hcsxjg.setHcrwId(hcrwId);
+			hcsxjg.setHcsxId(hcsx.getId());
 			hcsxjg.setName(hcsx.getName());
 			hcsxjg.setHcfs(hcsx.getType());
 			hcsxjg.setHczt(0);
