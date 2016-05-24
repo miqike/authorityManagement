@@ -8,7 +8,7 @@
 <head>
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
-    <title>市场主体管理</title>
+    <title>计划核查</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>

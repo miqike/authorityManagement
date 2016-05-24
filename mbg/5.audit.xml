@@ -8,14 +8,14 @@
 		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
 			connectionURL="jdbc:oracle:thin:@192.168.5.133:1521/orcl"
 			userId="cpsi" password="cpsi" />
-		<javaModelGenerator targetPackage="com.kysoft.cpsi.enterprise.entity"
+		<javaModelGenerator targetPackage="com.kysoft.cpsi.audit.entity"
 			targetProject="cpsi" />
-		<sqlMapGenerator targetPackage="com.kysoft.cpsi.enterprise.mapper"
+		<sqlMapGenerator targetPackage="com.kysoft.cpsi.audit.mapper"
 			targetProject="cpsi" />
-		<javaClientGenerator targetPackage="com.kysoft.cpsi.enterprise.mapper"
+		<javaClientGenerator targetPackage="com.kysoft.cpsi.audit.mapper"
 			targetProject="cpsi" type="XMLMAPPER" />
 			
-		<table tableName="T_SCZT" domainObjectName="Sczt"
+		<table tableName="T_MAIL_VERIFY" domainObjectName="MailVerify"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
 				enableUpdateByPrimaryKey="true"
@@ -27,9 +27,9 @@
 				selectByExampleQueryId="false"
 		>
 			
-			<columnOverride column="LX"  javaType="java.lang.Integer"	/>
-			<columnOverride column="DJZT"  javaType="java.lang.Integer"	/>
-			<columnOverride column="CLRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="RESULT"  javaType="java.lang.Integer"	/>
+			<columnOverride column="SENT_TIME"  javaType="java.util.Date"	/>
+			<columnOverride column="VERIFY_TIME"  javaType="java.util.Date"	/>
 		</table>
 
 	</context>

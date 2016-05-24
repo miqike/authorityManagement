@@ -114,7 +114,7 @@ function funcBtnAudit() {
 	if(auditItem.page == null) {
 		$.messager.alert("未配置比对页面")
 	} else {
-	showModalDialog("auditWindow");
+		showModalDialog("auditWindow");
 		$("#auditContent").panel({
 		    href:'../audit/' + auditItem.page + '.jsp',
 		    onLoad:function(){
