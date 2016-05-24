@@ -3,12 +3,18 @@ window.operateType = "";//操作类型
 //设置页面为编辑状态
 function setEditStatus() {
     $("#btnAdd").linkbutton('disable');
-    $("#btnEdit").linkbutton('disable');
-    $("#btnDelete").linkbutton('disable');
     $("#btnSave").linkbutton('enable');
     $("#btnCancel").linkbutton('enable');
+    if ($("#mainGrid").datagrid("getSelected") != null) {
+        $("#btnView").linkbutton("enable");
+        $("#btnDelete").linkbutton("enable");
+    } else {
+        $("#btnView").linkbutton("disable");
+        $("#btnDelete").linkbutton("disable");
+    }
 
     $("#baseInfo input.easyui-textbox").textbox("enable");
+    $("#baseInfo input.easyui-numberbox").textbox("enable");
     $("#baseInfo input.easyui-datebox").datebox("enable");
     $("#baseInfo input.easyui-combobox").combobox("enable");
     $("#baseInfo input.easyui-combotree").combotree("enable");
@@ -17,12 +23,18 @@ function setEditStatus() {
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
     $("#btnAdd").linkbutton('enable');
-    $("#btnEdit").linkbutton('enable');
-    $("#btnDelete").linkbutton('enable');
     $("#btnSave").linkbutton('disable');
     $("#btnCancel").linkbutton('disable');
+    if ($("#mainGrid").datagrid("getSelected") != null) {
+        $("#btnView").linkbutton("enable");
+        $("#btnDelete").linkbutton("enable");
+    } else {
+        $("#btnView").linkbutton("disable");
+        $("#btnDelete").linkbutton("disable");
+    }
 
     $("#baseInfo input.easyui-textbox").textbox("disable");
+    $("#baseInfo input.easyui-numberbox").textbox("disable");
     $("#baseInfo input.easyui-datebox").datebox("disable");
     $("#baseInfo input.easyui-combobox").combobox("disable");
     $("#baseInfo input.easyui-combotree").combotree("disable");
@@ -90,6 +102,7 @@ function btnCloseClick() {
 function btnViewClick() {
     if (!$(this).linkbutton('options').disabled) {
         showModalDialog("baseWindow", "修改抽检事项信息");
+        $.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
         window.operateType = "edit";
         setEditStatus();
     }
@@ -116,7 +129,7 @@ $(function () {
     $("#btnView").click(btnViewClick);
     $("#btnDelete").click(btnDeleteClick);
     $("#btnSave").click(btnSaveClick);
-    $("#btnClose").click(btnCloseClick);
+    $("#btnClose1").click(btnCloseClick);
 
     setReadOnlyStatus();
 

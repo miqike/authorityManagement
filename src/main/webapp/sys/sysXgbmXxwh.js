@@ -93,6 +93,7 @@ function btnViewClick() {
         window.operateType = "edit";
         setEditStatus();
         $("#p_id").textbox("disable");
+        $.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
     }
 }
 //删除按钮点击事件

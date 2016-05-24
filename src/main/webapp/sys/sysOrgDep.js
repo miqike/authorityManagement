@@ -138,11 +138,12 @@ function btnCloseClick() {
 //修改按钮点击事件
 function btnViewClick() {
     if (!$(this).linkbutton('options').disabled) {
+        showModalDialog("baseWindow", "修改部门信息");
         window.operateType = "edit";
         setEditStatus();
         $("#p_id").textbox("disable");
         $("#p_gsxxfl").combobox("enable");
-        showModalDialog("baseWindow", "修改部门信息");
+        $.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
     }
 }
 //删除按钮点击事件
