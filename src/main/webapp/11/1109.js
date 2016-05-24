@@ -134,6 +134,21 @@ $(function () {
             $("#baseInfo").form('clear');
         }
     });
+
+    $.getJSON("../21/2103", null, function (response) {
+        if (response.status == SUCCESS) {
+            $('#p_code').combobox({
+                data: response.data,
+                valueField: 'id',
+                textField: 'name',
+                onSelect: function (rec) {
+                    $('#p_name').textbox('setValue', rec.name);
+                }
+            });
+
+        }
+    });
+
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=gssxMapper&queryName=query';
     $("#mainGrid").datagrid(options);

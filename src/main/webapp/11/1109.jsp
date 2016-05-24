@@ -36,9 +36,9 @@
            class="easyui-datagrid"
            toolbar="#mainGridToolbar"
            style="height: 500px"
-           data-options="method: 'get'">
-        pagination="false"
-        pagePosition="bottom">
+           data-options="method: 'get'"
+           pagination="false"
+           pagePosition="bottom">
         <thead>
         <tr>
             <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
@@ -87,6 +87,7 @@
 
         <div style="display: none">
             <input class="easyui-textbox" id="p_id" type="text" style="width:200px;"/>
+            <input class="easyui-textbox" id="p_name" type="text" data-options="required:true" style="width:200px;"/>
         </div>
         <table width="100%" id="baseTable">
 
@@ -98,12 +99,8 @@
                 <td colspan="3"></td>
             </tr>
             <tr>
-                <td>项目编码</td>
-                <td><input class="easyui-textbox" id="p_code" type="text"
-                           data-options="required:true" style="width:200px;"/>
-                </td>
                 <td>项目名称</td>
-                <td><input class="easyui-textbox" type="text" id="p_name" data-options="required:true"
+                <td><input class="easyui-combobox" type="text" id="p_code" data-options="required:true"
                            style="width:200px;"/>
                 </td>
             </tr>
