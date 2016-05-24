@@ -37,7 +37,7 @@
 	<div region="center" border="false">
 		<div id="pp" style="position:relative">
 			<div style="width:65%;">
-			
+			<%--
 				<div id="taskTabPanel" class="easyui-tabs" data-options="onSelect:taskTabSelectHandler">
 					<div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:420px;" selected="true">
 						<table id="todoTaskGrid" class="easyui-datagrid" style="width:650px;height:auto"
@@ -104,6 +104,7 @@
 					</div>
 					 -->
 				</div>
+			 --%>
 			</div>
 			<div style="width:20%;">
 				<div title="帮助" collapsible="true" closable="true" style="height:430px;padding:5px;">

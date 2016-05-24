@@ -128,7 +128,7 @@
 					<th data-options="field:'ztlx'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">市场主体类型</th>
 					<th data-options="field:'zzxs'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">组织形式</th>
 					<th data-options="field:'qymc'" halign="center" align="left" sortable="true" width="100">区域</th>
-					<th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="70">检查人员</th>
+					<th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="70" formatter="formatZfry">检查人员</th>
 					<th data-options="field:'rlrmc'" halign="center" align="left" sortable="true" width="70">计划认领人</th>
 					<th data-options="field:'rlrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">认领日期</th>
 					<th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70" codeName="jhlb" formatter="formatCodeList">计划完成状态</th>

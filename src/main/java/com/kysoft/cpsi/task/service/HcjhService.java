@@ -4,4 +4,6 @@ public interface HcjhService {
 
 	void saveCheckList(String hcjhId, String[] hcsxIds);
 
+	void audit(String hcjhId, Integer shzt);
+
 }

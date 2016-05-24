@@ -81,12 +81,14 @@ function grid1clickHandler() {
 		$('#btnModify').linkbutton('enable');
 		$('#btnAudit').linkbutton('enable');
 		$('#btnViewCheckList').linkbutton('enable');
-		if($('#grid1').datagrid('getSelected').status == 2) {
+		if($('#grid1').datagrid('getSelected').shzt == 1) {
+			$('#btnModify').linkbutton('enable');
 			$('#btnAudit').linkbutton({
 				text:'审核',
 				iconCls: 'icon2 r14_c2'
 			});
 		} else {
+			$('#btnModify').linkbutton('disable');
 			$('#btnAudit').linkbutton({
 				text:'取消审核',
 				iconCls: 'icon2 r14_c1'
@@ -128,6 +130,24 @@ function modify() {
 }
 
 function audit() {
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			var action = row.shzt == 1? '审核': '取消审核';
+			$.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
+				if (r) {
+					$.getJSON("./hcjh/audit/" + row.id + "/" + row.shzt, null, function (response) {
+						if (response.status == SUCCESS) {
+							$.messager.alert("提示", action + "成功", 'info');
+							$('#grid1').datagrid('reload');
+						} else {
+							$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
+						}
+					});
+				}
+			});
+		}
+	}
 	
 }
 

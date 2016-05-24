@@ -37,6 +37,7 @@ public class HcjhController extends BaseController {
 		}*/
 		return result;
 	}
+	
 	@RequestMapping(value = "/hcjh/hcsx/{hcjhId}", method = RequestMethod.PUT)
 	public Map<String, Object> saveCheckList(@PathVariable String hcjhId,  @RequestBody String[] hcsxIds) {
 		Map<String, Object> result = Maps.newHashMap();
@@ -47,6 +48,19 @@ public class HcjhController extends BaseController {
             result.put(STATUS, FAIL);
             e.printStackTrace();
         }
+		return result;
+	}
+	
+	@RequestMapping(value = "/hcjh/audit/{hcjhId}/{shzt}", method = RequestMethod.GET)
+	public Map<String, Object> audit(@PathVariable String hcjhId, @PathVariable Integer shzt) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.audit(hcjhId, shzt);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
 		return result;
 	}
 	

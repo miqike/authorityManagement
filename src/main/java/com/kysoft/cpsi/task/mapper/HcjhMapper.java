@@ -3,6 +3,8 @@ package com.kysoft.cpsi.task.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.kysoft.cpsi.task.entity.Hcjh;
 
 public interface HcjhMapper {
@@ -43,4 +45,6 @@ public interface HcjhMapper {
 	int updateByPrimaryKey(Hcjh record);
 
 	List<Hcjh> query(Map<String, Object> param);
+
+	void updateAuditById(@Param("hcjhId") String hcjhId, @Param("shzt")Integer shzt, @Param("userId")String userId, @Param("userName")String userName);
 }

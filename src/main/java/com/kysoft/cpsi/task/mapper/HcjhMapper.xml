@@ -303,4 +303,12 @@
 		</if>
 		ND
   </select>
+  
+  <update id="updateAuditById" parameterType="com.kysoft.cpsi.task.entity.Hcjh">
+    update T_HCJH
+    set SHZT = #{shzt,jdbcType=NUMERIC},
+    SHR = #{userId},
+    SHRMC = #{userName}
+    where ID = #{hcjhId,jdbcType=VARCHAR}
+  </update>
 </mapper>
