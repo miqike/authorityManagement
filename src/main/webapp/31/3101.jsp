@@ -266,38 +266,77 @@
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
-        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
-        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous"  plain="true">上一个</a>
+        <a href="javascript:void(0);" id="btnAdd4" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
+        <!-- <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous"  plain="true">上一个</a>
         <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next"  plain="true">下一个</a>
         <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first"  plain="true">首个</a>
-        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last"  plain="true">末个</a>
-        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"  plain="true">删除</a>
-        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
+        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last"  plain="true">末个</a> -->
+        <a href="javascript:void(0);" id="btnDelete4" class="easyui-linkbutton" iconCls="icon-remove"  plain="true">删除</a>
+        <a href="javascript:void(0);" id="btnClose4" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
     </div>
     
-    <table id="grid2"
+    <table id="grid4"
            class="easyui-datagrid"
            data-options="
                singleSelect:true,
                collapsible:true,
                selectOnCheck:false,
+               method:'get',
                checkOnSelect:false"
-           toolbar="#grid2Toolbar"
+           toolbar="#grid4Toolbar"
            style="height: 318px">
         <thead>
         <tr>
-            <th data-options="field:'ck',checkbox:true,disabled:true"></th>
-            <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th>
-            <th data-options="field:'name'" halign="center" align="center" width="100">角色名</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">标识</th>
-            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
-                formatter="formatCodeList">状态</th>
-            <th data-options="field:'description'" halign="center" align="left" width="400">描述</th>
+            <!-- <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th> -->
+            <!-- <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="60">事项代码</th> -->
+			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
+            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx" formatter="formatCodeList">类型</th>
+            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
+            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">核查方法
+            </th>
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl" formatter="formatCodeList">核查信息分类
+            </th>
+            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
+                formatter="formatCodeList">核查类型
+            </th>
+        </tr>
+        </thead>
+    </table>
+</div>	
+
+<div id="addChecklistWindow" class="easyui-window" title="备选核查事项"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 550px; height: 350px; padding: 10px;">
+     
+     <div>
+        <a href="javascript:void(0);" id="btnSave5" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
+        <a href="javascript:void(0);" id="btnClose5" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
+    </div>
+    
+    <table id="grid5"
+           class="easyui-datagrid"
+           data-options="
+               singleSelect:false,
+               collapsible:true,
+               selectOnCheck:false,
+               method:'get',
+               checkOnSelect:false"
+           toolbar="#grid4Toolbar"
+           style="height: 318px">
+        <thead>
+        <tr>
+            <!-- <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="60">事项代码</th> -->
+			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="250">名称</th>
+            <!-- <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th> -->
+            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="100" codeName="hclx"
+                formatter="formatCodeList">核查类型
+            </th>
         </tr>
         </thead>
     </table>
 </div>	
 	
+		
 </body>
 </html>
    <link href="../css/content.css" rel="stylesheet"/>

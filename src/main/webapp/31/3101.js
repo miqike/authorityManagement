@@ -3,23 +3,7 @@
 window.excludeSaved = false;
 
 
-function funSubmit(){
-	if(!$(this).linkbutton('options').disabled) {
-		var row = $("#planGrid").datagrid('getSelected');
-		$.messager.confirm("确认", "是否确认提交票据计划?", function(r){
-			if(r) {
-				$.post("./submitPlan",{planId: row.bi1501, status: 1},
-					function(response){
-						if(response.status == SUCCESS) {
-							refreshFunGrid();
-						} else {
-                            $.messager.alert("警告", combineErrorMessage(response), "warning");
-						}
-					}, 'json');
-			}
-		});
-	}
-}
+
 
 function showPlanDetail() {
 	var row = $("#grid1").datagrid('getSelected');
@@ -143,7 +127,7 @@ function modify() {
 	}
 }
 
-function remove() {
+function audit() {
 	
 }
 
@@ -165,13 +149,88 @@ function tabSelectHandler(title, index) {
 		}
 	}
 }
+
+function viewCheckList(){
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $("#grid1").datagrid('getSelected');
+		
+		showModalDialog("checklistWindow");
+		var options = $("#grid4").datagrid("options");
+		options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlan';
+		$('#grid4').datagrid('load',{
+			hcjhId: row.id
+		});
+	}
+}
+
+function funcAdd4() {
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $("#grid1").datagrid('getSelected');
+		
+		showModalDialog("addChecklistWindow");
+		var options = $("#grid5").datagrid("options");
+		options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlanCandidate';
+		$('#grid5').datagrid('load',{
+			hcjhId: row.id
+		});
+	}
+}
+
+function funcClose4() {
+	$("#checklistWindow").window("close");
+}
+
+function funcSave5() {
+	
+	var checkedRows = $('#grid5').datagrid('getSelections');
+	var param = new Array();
+	$.each(checkedRows, function(idx, elem) {
+		param.push(elem.id);
+	});
+
+	$.ajax({
+		url:"./hcjh/hcsx/" + $('#grid1').datagrid('getSelected').id,
+		data:JSON.stringify(param),
+		type:"put",
+		contentType: "application/json; charset=utf-8",
+		cache:false,
+		success: function(response) {
+			if(response.status == SUCCESS) {
+				//$.messager.alert("提示", "用户角色保存成功");
+				
+				$('#grid4').datagrid('reload')
+				$('#grid5').datagrid('reload')
+				/*$.messager.show({
+					title : '提示',
+					msg : "用户角色保存成功"
+				});*/
+			} else {
+				$.messager.alert("错误", "核查事项保存失败");
+			}
+		}
+	});
+	
+	$("#grid5").datagrid("reload");
+	//$("#addChecklistWindow").window("close");
+}
+
+
+function funcClose5() {
+	$("#addChecklistWindow").window("close");
+}
+
+
 //初始化
 $(function() {
 	$.fn.zTree.init($("#orgTree"), setting);
     $("#btnAdd").click(add);
 	$("#btnModify").click(modify);
-	$("#btnAudit").click(remove);
-	$("#btnViewCheckList").click(funSubmit);
+	$("#btnAudit").click(audit);
+	$("#btnViewCheckList").click(viewCheckList);
+	$("#btnAdd4").click(funcAdd4);
+	$("#btnClose4").click(funcClose4);
+	$("#btnSave5").click(funcSave5);
+	$("#btnClose5").click(funcClose5);
 	/*
 	$("#btnAddPlan").hide();*/
 });

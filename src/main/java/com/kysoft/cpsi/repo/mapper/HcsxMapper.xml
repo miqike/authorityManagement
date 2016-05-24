@@ -315,5 +315,24 @@
     <if test="name!=null">
       and name = #{code}
     </if>
+    order by ID
+  </select>
+
+  <select id="queryForPlan" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_HCSX where ID in (
+    	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId}
+    )
+    order by ID
+  </select>
+
+  <select id="queryForPlanCandidate" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_HCSX where ID not in (
+    	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId}
+    )
+    order by ID
   </select>
 </mapper>

@@ -59,4 +59,10 @@ public interface HcsxMapper {
 	List<Hcsx> selectByJhId(String string);
 
 	List<Hcsx> query(Map<String, Object> params);
+
+	List<Hcsx> queryForPlan(Map<String, Object> params);
+	
+	List<Hcsx> queryForPlanCandidate(Map<String, Object> params);
+	
+	
 }

@@ -30,6 +30,7 @@
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+    <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="./2103.js"></script>
     <style>
         body {
@@ -53,10 +54,10 @@
     <div style="padding: 5px 10px 0px 10px">
         <table id="queryTable">
             <tr>
-                <td>检查类型</td>
-                <td><input id="f_businessKey" class="easyui-textbox"/></td>
-                <td>检查信息分类</td>
-                <td><input id="f_errorNo" class="easyui-textbox"/></td>
+                <td>核查类型</td>
+                <td><input id="f_businessKey" class="easyui-combobox" codeName="hclx" data-options="panelHeight:60" /></td>
+                <td>核查信息分类</td>
+                <td><input id="f_errorNo" class="easyui-combobox" codeName="hcxxfl" data-options="panelHeight:60"/></td>
                 <td>公示项目</td>
                 <td><input id="f_module" class="easyui-textbox"/></td>
                 <td colspan="2" style="text-align:right">
@@ -80,22 +81,19 @@
            pagePosition="bottom">
         <thead>
         <tr>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">核查事项代码</th>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="70">核查事项名称</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="70">类型</th>
-            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="70">描述</th>
-            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">检查材料</th>
-            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
-                formatter="formatCodeList">检查方法
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="60">事项代码</th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
+            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx" formatter="formatCodeList">类型</th>
+            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
+            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">核查材料</th>
+            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">核查方法
             </th>
-            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="70" codeName="hcxxfl"
-                formatter="formatCodeList">
-                核查信息分类
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl" formatter="formatCodeList">核查信息分类
             </th>
-            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="70" codeName="hclx"
+            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
                 formatter="formatCodeList">核查类型
             </th>
-            <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="70" codeName="qyzzxs"
+            <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
             </th>
             <th data-options="field:'gsxm',halign:'center',align:'left'" sortable="true" width="70">对应公示项目</th>
@@ -111,11 +109,10 @@
             <th data-options="field:'sfxyrghd',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要人工核对
             </th>
-            <th data-options="field:'gzqx',halign:'center',align:'left'" sortable="true" width="70">改正期限</th>
-            <th data-options="field:'sfbjxm',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
-                formatter="formatCodeList">是否必检项
+            <th data-options="field:'gzqx',halign:'center',align:'left'" sortable="true" width="70" >改正期限</th>
+            <th data-options="field:'sfbjxm',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno" formatter="formatCodeList">是否必检项
             </th>
-            <th data-options="field:'zxrq',halign:'center',align:'left'" sortable="true" width="70">注销日期</th>
+            <th data-options="field:'zxrq',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDate">注销日期</th>
             <th data-options="field:'zxsm',halign:'center',align:'left'" sortable="true" width="70">注销说明</th>
         </tr>
         </thead>
@@ -125,7 +122,7 @@
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         <a href="#" id="btnDrop" class="easyui-linkbutton" iconCls="icon-print" plain="true">注销/取消注销</a>
-        <a href="#" id="btnList" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">检查材料清单</a>
+        <a href="#" id="btnList" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true">核查材料清单</a>
     </div>
 </div>
 <%-- </shiro:hasPermission>
@@ -173,11 +170,11 @@
                 <td>描述</td>
                 <td><input class="easyui-textbox" id="p_descript" type="text" style="width:200px;" data-options=""/>
                 </td>
-                <td>检查材料</td>
+                <td>核查材料</td>
                 <td><input class="easyui-textbox" id="p_hccl" type="text" style="width:200px;" data-options=""/></td>
             </tr>
             <tr>
-                <td>检查方法</td>
+                <td>核查方法</td>
                 <td><input class="easyui-combobox" id="p_hcff" type="text" style="width:200px;" data-options=""
                            codeName="hcfs"/></td>
                 <td>核查信息分类</td>

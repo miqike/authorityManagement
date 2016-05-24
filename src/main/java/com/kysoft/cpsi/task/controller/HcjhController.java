@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +37,17 @@ public class HcjhController extends BaseController {
 		}*/
 		return result;
 	}
+	@RequestMapping(value = "/hcjh/hcsx/{hcjhId}", method = RequestMethod.PUT)
+	public Map<String, Object> saveCheckList(@PathVariable String hcjhId,  @RequestBody String[] hcsxIds) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.saveCheckList(hcjhId, hcsxIds);
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            result.put(STATUS, FAIL);
+            e.printStackTrace();
+        }
+		return result;
+	}
+	
 }
