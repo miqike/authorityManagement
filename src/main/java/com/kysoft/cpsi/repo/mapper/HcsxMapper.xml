@@ -316,7 +316,6 @@
       and name = #{code}
     </if>
     order by ID
-<<<<<<< HEAD
   </select>
 
   <select id="queryForPlan" resultMap="BaseResultMap">
@@ -335,7 +334,5 @@
     	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId}
     )
     order by ID
-=======
->>>>>>> efd6bc224c11b3c291af1fa7d54765a928ab78cb
   </select>
 </mapper>
