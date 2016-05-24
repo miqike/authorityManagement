@@ -37,6 +37,7 @@
 			<columnOverride column="YQWCSJ"  javaType="java.util.Date"	/>
 		</table>-->
 		<!-- 核查计划 - 核查事项关联-->
+		<!-- 
 		<table tableName="T_HCJH_HCSX" domainObjectName="JhSx"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -48,7 +49,8 @@
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false"
 		>
-		</table>
+		</table> 
+		-->
 		 <!-- 核查任务 -->
 		<!-- 
 		<table tableName="T_HCRW" domainObjectName="Hcrw"
@@ -75,7 +77,6 @@
 		</table>
 		 -->
 		 <!-- 核查事项检查表 -->
-		 <!-- 
 		 <table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -90,6 +91,7 @@
 			<columnOverride column="HCFS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
+		 <!-- 
 		 -->
 		 
 		<!-- <table tableName="T_QYHCCL" domainObjectName="Qyhccl"

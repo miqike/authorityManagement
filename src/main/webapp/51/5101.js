@@ -108,7 +108,29 @@ function refreshGrid1() {
 	});
 }
 
+function funcBtnAudit() {
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	console.log(auditItem)
+	if(auditItem.page == null) {
+		$.messager.alert("未配置比对页面")
+	} else {
+	showModalDialog("auditWindow");
+		$("#auditContent").panel({
+		    href:'../audit/' + auditItem.page + '.jsp',
+		    onLoad:function(){
+		    	doInit();
+		    }
+		});
+	}
+}
+
+function closeAuditWindow() {
+	$("#auditWindow").window("close");
+}
+
 $(function() {
 	$("#btnView").click(showExamHistory);
 	loadMyTask();
+	$("#btnAudit").click(funcBtnAudit);
+	
 });

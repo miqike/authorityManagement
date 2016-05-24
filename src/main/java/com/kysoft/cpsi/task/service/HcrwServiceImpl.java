@@ -32,7 +32,8 @@ public class HcrwServiceImpl implements HcrwService {
 			hcsxjg.setHcrwId(hcrwId);
 			hcsxjg.setHcsxId(hcsx.getId());
 			hcsxjg.setName(hcsx.getName());
-			hcsxjg.setHcfs(hcsx.getType());
+			hcsxjg.setHcfs(hcsx.getHcff());
+			hcsxjg.setPage(hcsx.getPage());
 			hcsxjg.setHczt(0);
 			hcsxjg.setSm(hcsx.getDescript());
 			hcsxjgMapper.insert(hcsxjg);

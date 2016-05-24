@@ -136,13 +136,22 @@
 		    <div id="mainGridToolbar">
 		        <a href="#" id="btnPullData" class="easyui-linkbutton" iconCls="icon2 r13_c19" plain="true">加载在线数据</a>
 		        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r3_c19" plain="true">核查材料</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r3_c9" plain="true">核查</a>
+		        <a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r3_c9" plain="true">核查</a>
 		    </div>
 		</div>
 	</div>
 	
 </div>
 <!-- --------弹出窗口--------------- -->
+
+<div id="auditWindow" class="easyui-window" title="核查"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 750px; height: 400px; padding: 10px;">
+	<div id="auditContent" style="padding:10px;">
+	    
+	</div>
+</div>
+
 
 <div id="examHistory" class="easyui-window" title="核查材料"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
@@ -168,5 +177,7 @@
         </thead>
     </table>
 </div>
+
+
 </body>
 </html>

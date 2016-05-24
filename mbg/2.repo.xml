@@ -16,6 +16,7 @@
 			targetProject="cpsi" type="XMLMAPPER" />
 		
 		<!-- 市场主体 -->
+		<!-- 
 		<table tableName="T_SCZT" domainObjectName="Sczt"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -30,8 +31,10 @@
 			<columnOverride column="HYFL"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZZXS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="JYZT"  javaType="java.lang.Integer"	/>
-		</table>
+		</table> 
+		-->
 		<!-- 执法人员 -->
+		<!-- 
 		<table tableName="T_ZFRY" domainObjectName="Zfry"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -45,7 +48,9 @@
 			<columnOverride column="GENDER"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZT"  javaType="java.lang.Integer"	/>
 		</table>
+		 -->
 		<!-- 核查事项 -->
+		
 		<table tableName="T_HCSX" domainObjectName="Hcsx"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -59,6 +64,7 @@
 			<columnOverride column="TYPE"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HCXXFL"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HCLX"  javaType="java.lang.Integer"	/>
+			<columnOverride column="HCFF"  javaType="java.lang.Integer"	/>
 			<columnOverride column="QYZZXS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="JGCL"  javaType="java.lang.Integer"	/>
 			<columnOverride column="SFXYSDHC"  javaType="java.lang.Integer"	/>
@@ -66,6 +72,8 @@
 			<columnOverride column="SFBJXM"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZXRQ"  javaType="java.util.Date"	/>
 		</table>
+		
+		<!-- 
 		<table tableName="T_HCCL" domainObjectName="Hccl"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -79,6 +87,6 @@
 			<columnOverride column="SFBYX"  javaType="java.lang.Integer"	/>
 			<columnOverride column="WJLX"  javaType="java.lang.Integer"	/>
 		</table>
-
+ 		-->
 	</context>
 </generatorConfiguration>
