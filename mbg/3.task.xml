@@ -35,8 +35,20 @@
 			<columnOverride column="SHZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="XDRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="YQWCSJ"  javaType="java.util.Date"	/>
+		</table>-->
+		<!-- 核查计划 - 核查事项关联-->
+		<table tableName="T_HCJH_HCSX" domainObjectName="JhSx"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false"
+		>
 		</table>
-		 -->
 		 <!-- 核查任务 -->
 		<!-- 
 		<table tableName="T_HCRW" domainObjectName="Hcrw"
@@ -63,6 +75,7 @@
 		</table>
 		 -->
 		 <!-- 核查事项检查表 -->
+		 <!-- 
 		 <table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -77,7 +90,9 @@
 			<columnOverride column="HCFS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
-		<table tableName="T_QYHCCL" domainObjectName="Qyhccl"
+		 -->
+		 
+		<!-- <table tableName="T_QYHCCL" domainObjectName="Qyhccl"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
 				enableUpdateByPrimaryKey="true"
@@ -90,8 +105,9 @@
 		>
 			<columnOverride column="HCJHND" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
-
+ 		-->
 		<!-- 核查任务统计表 -->
+		<!-- 
 		<table tableName="T_HCRW_TJ" domainObjectName="HcrwTj"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -109,5 +125,6 @@
 			<columnOverride column="ZLZ" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="WWCS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
+		 -->
 	</context>
 </generatorConfiguration>
