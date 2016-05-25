@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.service.AuditService;
 import com.kysoft.cpsi.task.service.HcsxjgService;
+import net.sf.husky.log.service.LogService;
 import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ public class AuditController extends BaseController {
 
     @Resource
     HcsxjgService hcsxjgService;
+
+    @Resource
+    LogService logService;
 
     @RequestMapping(value = "/sentVerifyMail", method = RequestMethod.POST)
     public Map<String, Object> sentVerifyMail(String hcrwId,
@@ -60,13 +64,15 @@ public class AuditController extends BaseController {
     public Map<String, Object> complete(String hcrwId, String hcsxId, Integer hcjg, String qymc, String hcsxmc) {
         Map<String, Object> result = Maps.newHashMap();
         try {
+            logService.info("audit", "核查[" + qymc + "]的" + "[" + hcsxmc + "]完成", "核查结果[" + hcjg + "]", hcrwId + "-" + hcsxId);
             hcsxjgService.complete(hcrwId, hcsxId, hcjg);
-            result.put(MESSAGE, "验证[" + qymc + "]的" + "[" + hcsxmc + "]完成");
+            result.put(MESSAGE, "核查[" + qymc + "]的" + "[" + hcsxmc + "]完成");
             result.put(STATUS, SUCCESS);
         } catch (MailVerifyException e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "验证[" + qymc + "]的" + "[" + hcsxmc + "]失败");
+            result.put(MESSAGE, "核查[" + qymc + "]的" + "[" + hcsxmc + "]失败");
+            logService.info("audit", "核查[" + qymc + "]的" + "[" + hcsxmc + "]异常", e.toString(), hcrwId + "-" + hcsxId);
         }
         return result;
     }
