@@ -110,7 +110,6 @@ function refreshGrid1() {
 
 function funcBtnAudit() {
 	var auditItem = $("#mainGrid").datagrid("getSelected");
-	console.log(auditItem)
 	if(auditItem.page == null) {
 		$.messager.alert("未配置比对页面")
 	} else {
@@ -121,10 +120,13 @@ function funcBtnAudit() {
 		    	doInit();
 		    }
 		});
+		if($("#auditLog").length == 0) {
+			$('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
+		}
 		$("#auditLog").panel({
 			href:'../audit/log.jsp',
 			onLoad:function(){
-				doInit();
+				//doInit();
 			}
 		});
 	}
@@ -135,7 +137,6 @@ function closeAuditWindow() {
 }
 
 function rowStylerHczt(index, row) {
-	console.log(row.hczt)
 	if(row.hczt == 1) {
 		return "";
 	} else if (row.hczt == 2) {

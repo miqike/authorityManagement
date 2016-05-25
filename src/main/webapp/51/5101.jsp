@@ -27,6 +27,9 @@
  --><!--     
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
  --> 
+ 
+ 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
+ 
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>

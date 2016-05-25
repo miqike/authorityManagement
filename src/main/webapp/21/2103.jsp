@@ -94,12 +94,6 @@
             <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
                 formatter="formatCodeList">核查信息分类
             </th>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
-            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
-            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">核查材料</th>
-            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
-                formatter="formatCodeList">核查类型
-            </th>
             <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
             </th>
