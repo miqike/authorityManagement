@@ -84,6 +84,7 @@
                    class="easyui-datagrid"
                    data-options="collapsible:true,
 		           		offset: { width: 0, height: 0},
+		           		height:500,
 						ctrlSelect:true,method:'get',
 						toolbar: '#mainGridToolbar',
 		           		pageSize: 20, pagination: true"
