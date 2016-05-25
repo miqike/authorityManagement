@@ -128,6 +128,28 @@ function closeAuditWindow() {
 	$("#auditWindow").window("close");
 }
 
+function rowStylerHczt(index, row) {
+	console.log(row.hczt)
+	if(row.hczt == 1) {
+		return "";
+	} else if (row.hczt == 2) {
+		return "background-color:yellow";
+	} else if (row.hczt == 3) {
+		return "background-color:lightgreen";
+	}
+}
+
+function stylerHcjg(val,row,index) {
+	
+	if(val == 1) {
+		return "background-color:lightgreen";
+	} else if(val == 2) {
+		return "background-color:orange";
+	} else {
+		return "";
+	}
+}
+
 $(function() {
 	$("#btnView").click(showExamHistory);
 	loadMyTask();

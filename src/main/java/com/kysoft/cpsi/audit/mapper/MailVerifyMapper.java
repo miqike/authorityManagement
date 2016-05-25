@@ -1,5 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.kysoft.cpsi.audit.entity.MailVerify;
 
 public interface MailVerifyMapper {
@@ -50,4 +54,8 @@ public interface MailVerifyMapper {
      * @mbggenerated Tue May 24 19:04:37 CST 2016
      */
     int updateByPrimaryKey(MailVerify record);
+
+	List<MailVerify> selectByTask(@Param("hcrwId")String hcrwId, @Param("hcsxId")String hcsxId);
+
+	void updateVerifiedByPrimaryKey(String id);
 }

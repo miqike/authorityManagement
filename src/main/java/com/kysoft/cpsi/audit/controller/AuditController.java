@@ -4,11 +4,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.service.AuditService;
 
 import net.sf.husky.web.controller.BaseController;
@@ -27,12 +29,28 @@ public class AuditController extends BaseController {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
 			auditService.sentVerifyMail(hcrwId, hcsxId, mail);
-			result.put(MESSAGE, "保存成功");
+			result.put(MESSAGE, "验证邮件发送成功");
 			result.put(STATUS, SUCCESS);
-		} catch (Exception e) {
+		} catch (MailVerifyException e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "保存失败");
+			result.put(MESSAGE, "验证邮件发送失败: " + e.getMessage());
+		}
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/mail/{id}", method = RequestMethod.GET)
+	public Map<String, Object> verifyMail(@PathVariable String id) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			auditService.verifyMail(id);
+			result.put(MESSAGE, "邮件验证成功");
+			result.put(STATUS, SUCCESS);
+		} catch (MailVerifyException e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "邮件验证失败: " + e.getMessage());
 		}
 		return result;
 	}

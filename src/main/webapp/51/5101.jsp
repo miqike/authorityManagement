@@ -19,13 +19,14 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<!-- 	
 	<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-<!--     
- --> 
+ --><!--     
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
+ --> 
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
@@ -109,7 +110,7 @@
 		    <table id="mainGrid"
 		           class="easyui-datagrid"
 		           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
-		           		offset: { width: 0, height: 0},
+		           		offset: { width: 0, height: 0},rowStyler:rowStylerHczt,
 						ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
 						toolbar: '#mainGridToolbar',
 		           		pageSize: 20, pagination: true"
@@ -125,8 +126,8 @@
 		            <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
 		            <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
 		            <th data-options="field:'hczt',halign:'center',align:'right'" sortable="true" width="100" codeName="xmzt"
-		                formatter="formatCodeList">核查状态</th>
-		            <th data-options="field:'hcjg',halign:'center',align:'right'" sortable="true" width="100">核查结果</th>
+		                formatter="formatCodeList" >核查状态</th>
+		            <th data-options="field:'hcjg',halign:'center',align:'right'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
 		            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="100" >说明</th>
 		        </tr>
 		        </thead>

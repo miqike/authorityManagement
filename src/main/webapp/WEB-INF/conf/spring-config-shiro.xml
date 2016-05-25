@@ -51,6 +51,7 @@
                 /**/*.js = anon
 
                 <!--/user/checkUserExist = anon-->
+                /audit/mail/* = anon
                 /weixin/**/* = anon
                 /identiti/**/* = anon
                 /user/*/exist = anon

@@ -5,10 +5,10 @@
 	
 	<table>
 		<tr>
-			<td>公示电子邮件
+			<td>公示电子邮件: 
 			</td>
 			<td>
-				coralsea@gmail.com
+				<span style="color:blue; " id="_mail_"></span>
 			</td>
 		</tr>
 		<tr>
