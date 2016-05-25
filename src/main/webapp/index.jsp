@@ -74,6 +74,8 @@
 </div>
 <!-- <div data-options="region:'west',split:true,border:true,title:''" style="width:180px;"> -->
 <div data-options="region:'west',split:true,border:true,title:'功能菜单'" style="width:200px;">
+	<div id="wnav" class="easyui-accordion" data-options="fit:true,border:false,animate:true"> </div>
+	<!-- 
 	<div id="navTabs" class="easyui-tabs" data-options="fit: true, border: false">
 		<div data-options="title: '导航栏', iconCls: 'icon-standard-application-view-tile', refreshable: false, selected: true">
 		    <div id="wnav" class="easyui-accordion" data-options="fit:true,border:false,animate:true"> </div>
@@ -93,6 +95,7 @@
 		    </div>
 		</div>
 	</div>
+	 -->
     
 </div>
 <div data-options="region:'center',border:false" style="margin-left: 0px">
@@ -102,14 +105,16 @@
                 <td><a id="mainTabs_jumpHome" class="easyui-linkbutton easyui-tooltip" title="跳转至欢迎页" data-options="plain: true, iconCls: 'icon-hamburg-home'"></a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a id="mainTabs_toggleAll" class="easyui-linkbutton easyui-tooltip" title="展开/折叠面板使选项卡最大化" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'"></a></td>
+                <!-- 
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a id="mainTabs_closeTab" class="easyui-linkbutton easyui-tooltip" title="关闭当前选中的选项卡" data-options="plain: true, iconCls: 'icon-standard-application-form-delete'"></a></td>
                 <td><a id="mainTabs_closeOther" class="easyui-linkbutton easyui-tooltip" title="关闭除当前选中外的其他所有选项卡" data-options="plain: true, iconCls: 'icon-standard-cancel'"></a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a id="mainTabs_closeLeft" class="easyui-linkbutton easyui-tooltip" title="关闭左侧所有选项卡" data-options="plain: true, iconCls: 'icon-standard-tab-close-left'"></a></td>
                 <td><a id="mainTabs_closeRight" class="easyui-linkbutton easyui-tooltip" title="关闭右侧所有选项卡" data-options="plain: true, iconCls: 'icon-standard-tab-close-right'"></a></td>
-                <td><div class="datagrid-btn-separator"></div></td>
+                <td><div class="datagrid-btn-separator"></div></td> 
                 <td><a id="mainTabs_closeAll" class="easyui-linkbutton easyui-tooltip" title="关闭所有选项卡" data-options="plain: true, iconCls: 'icon-standard-cross'"></a></td>
+                -->
             </tr>
         </table>
     </div>
@@ -124,8 +129,8 @@
     <div name="reload" data-options="iconCls:'icon-reload'">刷新选项卡</div>
     <div name="close" data-options="iconCls:'icon-standard-application-form-delete'">关闭选项卡</div>
     <div name="closeOther" data-options="iconCls:'icon-standard-cancel'">关闭其他选项卡</div>
-    <div name="closeLeft" data-options="iconCls:'icon-standard-tab-close-left'">关闭左侧选项卡</div>
-    <div name="closeRight" data-options="iconCls:'icon-standard-tab-close-right'">关闭右侧选项卡</div>
+    <!-- <div name="closeLeft" data-options="iconCls:'icon-standard-tab-close-left'">关闭左侧选项卡</div>
+    <div name="closeRight" data-options="iconCls:'icon-standard-tab-close-right'">关闭右侧选项卡</div> -->
     <div name="closeAll" data-options="iconCls:'icon-standard-cross'">关闭所有选项卡</div>
 </div>
 
@@ -364,6 +369,7 @@ onLoadSuccess:btnPersonFilterHandler,
 <script type="text/javascript" src="./js/jquery.jdirk.min.js"></script>
 <script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/husky.easyui.extend.js"></script>
+
 <script type="text/javascript" src="./js/husky.common.js"></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>

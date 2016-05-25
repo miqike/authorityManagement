@@ -832,7 +832,7 @@ function search1(){
 			}
 		}
 	};
-
+/*
 	$.getJSON("../common/query?mapper=ba01Mapper&queryName=query", {
 		ba0101: $("#q_ba0101").val(),
  		ba0111: $("#q_ba0111").val()
@@ -845,7 +845,7 @@ function search1(){
 		} else {
 			$.messager.alert("警告", "没有符合条件的单位", "warning");
 		}
-	});
+	});*/
 }
 
 function poiExport() {
