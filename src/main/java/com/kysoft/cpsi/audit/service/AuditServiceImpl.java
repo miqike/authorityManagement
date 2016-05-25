@@ -17,6 +17,8 @@ import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.mapper.MailVerifyMapper;
 import com.kysoft.cpsi.task.service.HcsxjgService;
 
+import net.sf.husky.log.service.LogService;
+
 @Service("auditService")
 public class AuditServiceImpl implements AuditService {
 
@@ -26,22 +28,16 @@ public class AuditServiceImpl implements AuditService {
 	@Resource
 	HcsxjgService hcsxjgService;
 	
+	@Resource
+	LogService logService;
+	
 
 	@Override
 	public void sentVerifyMail(String hcrwId, String hcsxId, String mail) throws MailVerifyException {
-		// TODO Auto-generated method stub
-		System.out.println(hcrwId);
-		System.out.println(hcsxId);
-		System.out.println(mail);
 		List<MailVerify> mvList = mailVerifyMapper.selectByTask(hcrwId, hcsxId);
 
 		if (mvList.size() > 0) {
-			// if() {
 			throw new MailVerifyException("5分钟内不能重复发送验证邮件");
-
-			// } else {
-			// throw new Exception("不能重复发送");
-			// }
 		} else {
 			MailVerify mv = new MailVerify();
 			mv.setHcrwId(hcrwId);
@@ -75,6 +71,8 @@ public class AuditServiceImpl implements AuditService {
 			}
 
 			hcsxjgService.start(hcrwId, hcsxId);
+			logService.info("audit", "向被核查单位发送验证邮件", "向被核查单位发送验证邮件", hcrwId + "-" + hcsxId);
+			
 		}
 	}
 
@@ -83,6 +81,7 @@ public class AuditServiceImpl implements AuditService {
 		mailVerifyMapper.updateVerifiedByPrimaryKey(id);
 		MailVerify mv = mailVerifyMapper.selectByPrimaryKey(id);
 		hcsxjgService.complete(mv.getHcrwId(), mv.getHcsxId(), 1);
+		logService.info("audit", "被核查单位收到验证邮件,本核查项完成", "被核查单位收到验证邮件", mv.getHcrwId() + "-" + mv.getHcsxId());
 	}
 
 }

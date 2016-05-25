@@ -16,6 +16,7 @@
 			targetProject="cpsi" type="XMLMAPPER" />
 			
 		<!-- 公示时限 -->
+		<!-- 
 		<table tableName="T_GSSX" domainObjectName="Gssx"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -30,8 +31,9 @@
 			
 			<columnOverride column="WCSX"  javaType="java.lang.Integer"	/>
 		</table>
-		
+		 -->
 		<!-- 部门 -->
+		<!-- 
 		<table tableName="T_BM" domainObjectName="Bm"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -44,8 +46,9 @@
 				selectByExampleQueryId="false">
 			<columnOverride column="GSXXFL"  javaType="java.lang.Integer"	/>
 		</table>
-		
+		 -->
 		<!-- 相关部门 -->
+		<!-- 
 		<table tableName="T_XGBM" domainObjectName="Xgbm"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -57,6 +60,18 @@
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false">
 			<columnOverride column="GSXXFL"  javaType="java.lang.Integer"	/>
+		</table>
+		 -->
+		<table tableName="T_USER_ORG" domainObjectName="UserOrg"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
 		</table>
 
 	</context>

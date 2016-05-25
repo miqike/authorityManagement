@@ -121,6 +121,12 @@ function funcBtnAudit() {
 		    	doInit();
 		    }
 		});
+		$("#auditLog").panel({
+			href:'../audit/log.jsp',
+			onLoad:function(){
+				doInit();
+			}
+		});
 	}
 }
 

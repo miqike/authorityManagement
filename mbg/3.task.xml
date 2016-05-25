@@ -90,6 +90,7 @@
 		>
 			<columnOverride column="HCFS" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
+			<columnOverride column="HCJG" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
 		 <!-- 
 		 -->

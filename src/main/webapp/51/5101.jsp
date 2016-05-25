@@ -31,6 +31,7 @@
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
+    <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
@@ -127,7 +128,7 @@
 		            <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
 		            <th data-options="field:'hczt',halign:'center',align:'right'" sortable="true" width="100" codeName="xmzt"
 		                formatter="formatCodeList" >核查状态</th>
-		            <th data-options="field:'hcjg',halign:'center',align:'right'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
+		            <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
 		            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="100" >说明</th>
 		        </tr>
 		        </thead>
@@ -148,9 +149,8 @@
 <div id="auditWindow" class="easyui-window" title="核查"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
-	<div id="auditContent" style="padding:10px;">
-	    
-	</div>
+	<div id="auditContent" style="padding:10px;"></div>
+	<div id="auditLog" style="margin-top:5px;"></div>
 </div>
 
 
