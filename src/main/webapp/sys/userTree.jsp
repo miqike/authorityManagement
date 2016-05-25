@@ -223,7 +223,7 @@
                     </td>
                     <td>排名</td>
                     <td>
-                        <input id="p_weight" class="easyui-textbox" style="width:200px;" data-options="required:true" />
+                        <input id="p_weight" class="easyui-numberspinner" style="width:200px;" data-options="required:false" />
                     </td>
                 </tr>
             </table>

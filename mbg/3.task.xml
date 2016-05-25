@@ -52,7 +52,6 @@
 		</table> 
 		-->
 		 <!-- 核查任务 -->
-		<!-- 
 		<table tableName="T_HCRW" domainObjectName="Hcrw"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -64,6 +63,7 @@
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false"
 		>
+			<columnOverride column="ND" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="RWZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCFL" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCJIEGUO" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
@@ -74,9 +74,13 @@
 			<columnOverride column="RLRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="JHWCRQ"  javaType="java.util.Date"	/>
 			<columnOverride column="SJWCRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="JHXDRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="JHYQWCSJ"  javaType="java.util.Date"	/>
 		</table>
+		<!-- 
 		 -->
 		 <!-- 核查事项检查表 -->
+		 <!-- 
 		 <table tableName="T_HCSXJG" domainObjectName="Hcsxjg"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -92,7 +96,6 @@
 			<columnOverride column="HCZT" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 			<columnOverride column="HCJG" jdbcType="NUMERIC" javaType="java.lang.Integer"	/>
 		</table>
-		 <!-- 
 		 -->
 		 
 		<!-- <table tableName="T_QYHCCL" domainObjectName="Qyhccl"

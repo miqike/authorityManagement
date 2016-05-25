@@ -57,18 +57,30 @@ function loadMyTask() {
 	var options = $("#grid1").datagrid("options");
 	options.url = '../common/query?mapper=hcrwMapper&queryName=queryForAuditor';
 	$('#grid1').datagrid('load',{
+		nd: $('#f_nd').numberspinner("getValue"),
+		hcjhId: $('#f_hcjhId').textbox("getValue"),
+		jhmc: $('#f_jhmc').textbox("getValue")
 		
 	});
 }
 
 function grid1ClickHandler() {
 	//控制四个按钮显示
+	var hcrw =  $('#grid1').datagrid('getSelected');
+	$('#p_id').textbox("setValue",  hcrw.hcjhId);
+	$('#p_jhmc').textbox("setValue",  hcrw.jhmc);
+	$('#p_jhxdrq').datebox("setValue",  formatDate(hcrw.jhxdrq));
+	$('#p_jhyqwcsj').datebox("setValue",  formatDate(hcrw.jhyqwcsj));
+
+	$('#btnSendHcgzs').linkbutton("enable");
+	$('#btnSendZllxtzs').linkbutton("enable");
+	$('#btnSendQyzshch').linkbutton("enable");
+	$('#btnPullData').linkbutton("enable");
+//	$('#btnReport').linkbutton("enable");
 	//加载右侧grid
-	var hcrwId = $('#grid1').datagrid('getSelected').id;
-	
 	$.ajax({
 		url: "../common/query?mapper=hcsxjgMapper&queryName=queryForTask",
-		data:{hcrwId:hcrwId},
+		data:{hcrwId:hcrw.id},
 		type: 'GET',
 		success: function (response) {
 			if (response.status == SUCCESS) {
@@ -136,12 +148,12 @@ function closeAuditWindow() {
 	$("#auditWindow").window("close");
 }
 
-function rowStylerHczt(index, row) {
-	if(row.hczt == 1) {
+function stylerHczt(val,row,index) {
+	if(val == 1) {
 		return "";
-	} else if (row.hczt == 2) {
+	} else if (val == 2) {
 		return "background-color:yellow";
-	} else if (row.hczt == 3) {
+	} else if (val == 3) {
 		return "background-color:lightgreen";
 	}
 }
@@ -151,15 +163,39 @@ function stylerHcjg(val,row,index) {
 	if(val == 1) {
 		return "background-color:lightgreen";
 	} else if(val == 2) {
-		return "background-color:orange";
+		return "background-color:pink";
 	} else {
 		return "";
 	}
 }
 
+function funcBtnRest() {
+	$("#f_nd").textbox("setValue", new Date().getFullYear());
+	$("#f_hcjhId").textbox("setValue", "");
+	$("#f_jhmc").textbox("setValue", "");
+}
+
+function clearInput() {
+	$("#f_hcjhId").textbox("setValue", "");
+	$("#f_jhmc").textbox("setValue", "");
+	$("#p_id").textbox("setValue", "");
+	$("#p_jhmc").textbox("setValue", "");
+	$("#p_xdsj").datebox("setValue", "");
+	$("#p_yqwcsj").datebox("setValue", "");
+}
+
+function funcBtnPullData() {
+	$.messager.alert("弹出窗口,加载数据,显示加载数据统计")
+}
+
 $(function() {
+	clearInput();
+	$("#f_nd").textbox("setValue", new Date().getFullYear());
 	$("#btnView").click(showExamHistory);
 	loadMyTask();
 	$("#btnAudit").click(funcBtnAudit);
 	
+	$("#btnSearch").click(loadMyTask);
+	$("#btnReset").click(funcBtnRest);
+	$("#btnPullData").click(funcBtnPullData);
 });
