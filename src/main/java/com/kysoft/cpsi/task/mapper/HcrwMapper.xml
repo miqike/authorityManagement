@@ -466,4 +466,8 @@
 	</if>
     RLRQ
   </select>
+  
+  <select id="selectCountByPlanId" resultType="java.lang.Integer">
+  	select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR}
+  </select>
 </mapper>

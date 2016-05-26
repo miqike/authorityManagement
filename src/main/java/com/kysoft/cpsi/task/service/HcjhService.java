@@ -14,6 +14,6 @@ public interface HcjhService {
 
 	Map<String, Object> testDblink();
 
-	Map<String, Object> importDblink();
+	Map<String, Object> importDblink(String hcjhId);
 
 }

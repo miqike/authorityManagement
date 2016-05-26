@@ -334,21 +334,18 @@
   </update>
   
     <select id="testDblink" statementType="CALLABLE" parameterType="java.util.HashMap">
-       <![CDATA[{	
-       		call cpsi.testDblink(
+		{	
+       		call prc_testDblink(
               	#{hcrws,mode=OUT,jdbcType=INTEGER},
               	#{hcrys,mode=OUT,jdbcType=INTEGER}
            )}    
-       ]]>
     </select>
     
     <select id="importDblink" statementType="CALLABLE" parameterType="java.util.HashMap">
-       <![CDATA[{	
-       		call cpsi.importDblink(
-              	#{hcrws,mode=OUT,jdbcType=INTEGER},
-              	#{hcrys,mode=OUT,jdbcType=INTEGER}
-           )}    
-       ]]>
+      {	
+   		call prc_importDblink(
+          	#{hcjhId,mode=IN,jdbcType=VARCHAR}
+       )}    
     </select>
     
 </mapper>

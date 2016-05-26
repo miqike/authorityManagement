@@ -64,7 +64,7 @@
 		<table id="grid1"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
-				onClickRow:grid1clickHandler,
+				onClickRow:grid1ClickHandler,
 				method:'get',
 				onSelect:showPlanDetail"
 			   toolbar="#gridToolbar1"
@@ -96,6 +96,7 @@
 			<a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
 			<a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" data-options="disabled:true">审核/取消审核</a>
 			<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
+			<a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">派发/取消派发</a>
 		</div>
 	</div>
 	
@@ -104,10 +105,10 @@
 			<ul id="orgTree" class="ztree"></ul>
 		</div>
 		<div data-options="region:'center'">
-					<!-- onUnselect:disableUpdateAndDeleteButton" -->
 			<table id="grid2"
 				class="easyui-datagrid"
 				data-options="singleSelect:true,collapsible:true,
+					onClickRow:grid2ClickHandler,
 					method:'get',
 					onSelect:showPlanDetail"
 				   toolbar="#planGridToolbar"
@@ -126,19 +127,16 @@
 					<th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="70" formatter="formatZfry">检查人员</th>
 					<th data-options="field:'rlrmc'" halign="center" align="left" sortable="true" width="70">计划认领人</th>
 					<th data-options="field:'rlrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">认领日期</th>
-					<th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70" codeName="jhlb" formatter="formatCodeList">计划完成状态</th>
-					<th data-options="field:'sjwcrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">实际完成日期</th>
-					
-					
+					<th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70" codeName="jhlb" formatter="formatCodeList">计划完成</th>
+					<th data-options="field:'sjwcrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">实际完成</th>
 				</tr>
 				</thead>
 			</table>
 			<div id="planGridToolbar">
-				<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true" data-options="disabled:true">按检查机关+检查人员排序</a>
-				<a href="#" id="btnUpdate" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" data-options="disabled:true">按市场主体类型+检查机关排序</a>
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">派发/取消派发</a>
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领/取消认领</a>
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
+				<a href="#" id="btnSort1" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true" data-options="disabled:true">按检查机关+检查人员排序</a>
+				<a href="#" id="btnSort2" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" data-options="disabled:true">按市场主体类型+检查机关排序</a>
+				<a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领/取消认领</a>
+				<a href="#" id="btnShowDetail" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
 			</div>
 		</div>
 
@@ -180,6 +178,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>计划名称</td>
+                    <td>
+                        <input class="easyui-textbox add" id="p_jhmc" type="text" style="width:200px;" data-options="required:true"/>
+                    </td>
                     <td>公示系统计划编号</td>
                     <td>
                         <input class="easyui-textbox add" id="p_gsjhbh" type="text" style="width:200px;" data-options=""/>
@@ -242,6 +244,8 @@
             <table id="grid3"
                    class="easyui-datagrid"
                    data-options="
+                   		method:'get',
+                   		pageSize: 10, pagination: true,
                        singleSelect:true,
                        collapsible:true,
                        selectOnCheck:false,
@@ -250,8 +254,8 @@
                 <thead>
                 <tr>
                     <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">执法人员</th>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="100">统一社会信用代码</th>
-		            <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="100">单位名称</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="200">统一社会信用代码</th>
+		            <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
                 </tr>
                 </thead>
             </table>
@@ -346,16 +350,16 @@
      </div>
      
      
-     <div id="dblink" style="margin:10px;display:none">
+     <div id="dblink" style="margin:10px;">
        	<a href="javascript:void(0);" id="btnTestDblink" class="easyui-linkbutton" iconCls="icon2 r13_c20"  plain="true">测试连接</a>
        	<a href="javascript:void(0);" id="btnImportDblink" class="easyui-linkbutton" iconCls="icon2 r6_c10"  plain="true">导入</a>
        	
     </div>
 	<div id="importReport" style="margin:10px;display:none">
-		任务数:20000<br/>
-		核查人员: 500<br/>
-		新增核查人员:20<br/>
-		新增企业信息:14000</br>
+		核查任务数: <sapn id="_hcrws" style="color:red"></sapn><br/>
+		核查人员数: <sapn id="_hcrys" style="color:blue"></sapn><br/>
+		<!-- 新增核查人员:20<br/>
+		新增企业信息:14000</br> -->
 		
 	</div>
 </div>		

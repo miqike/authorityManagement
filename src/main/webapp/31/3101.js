@@ -59,9 +59,6 @@ function xxxx(orgId) {
 //================
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
-	
-	console.log(treeNode);
-	
 	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
 	var selected = treeObj.getSelectedNodes()
 
@@ -72,11 +69,17 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 			organization: selected[0].id
 		});
 
+		$("#btnSort1").linkbutton("enable");
+		$("#btnSort2").linkbutton("enable");
+		$("#btnAccept").linkbutton("enable");
 	} else {
+		$("#btnSort1").linkbutton("disable");
+		$("#btnSort2").linkbutton("disable");
+		$("#btnAccept").linkbutton("disable");
 	}
 }
 
-function grid1clickHandler() {
+function grid1ClickHandler() {
 	if($('#grid1').datagrid('getSelected') != null) {
 		$('#btnModify').linkbutton('enable');
 		$('#btnAudit').linkbutton('enable');
@@ -98,6 +101,15 @@ function grid1clickHandler() {
 		$('#btnModify').linkbutton('disable');
 		$('#btnAudit').linkbutton('disable');
 		$('#btnViewCheckList').linkbutton('disable');
+	}
+	$('#grid2').datagrid("loadData", { total: 0, rows: [] })
+}
+
+function grid2ClickHandler() {
+	if($('#grid1').datagrid('getSelected') != null) {
+		$('#btnShowDetail').linkbutton('enable');
+	} else {
+		$('#btnShowDetail').linkbutton('disable');
 	}
 }
 
@@ -174,14 +186,17 @@ function tabSelectHandler(title, index) {
 	if(index == 1) { //选择角色TAB
 		if(planId != "") {
 			if ($('#p_hcrwsl').textbox('getValue') == "") {
-				console.log("3333")
 				$.messager.alert("提示", "任务信息尚未导入");
 				$('#tabPanel').tabs('select',0 );
 			} else {
-				console.log("1111")
-				$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
+				/*$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
 					$("#grid3").datagrid("loadData", response.rows);
-					
+				});
+				*/
+				var options = $("#grid3").datagrid("options");
+				options.url = '../common/query?mapper=hcrwMapper&queryName=queryForPlan';
+				$('#grid3').datagrid('load',{
+					planId:planId 
 				});
 			}
 		} else {
@@ -357,16 +372,20 @@ function selectImportType() {
 function testDblink() {
 	$.getJSON("./hcjh/testDblink", null, function (response) {
         if (response.status == SUCCESS) {
-            console.log("----=")
-
+            $("#importReport #_hcrws").text(response.hcrws);
+            $("#importReport #_hcrys").text(response.hcrys);
+            $("#importReport").show();
         }
     });
 }
 
 function importDblink() {
-	$.getJSON("../hcjh/importDblink", null, function (response) {
+	var hcjhId = $("#p_id").val();
+	$.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
         if (response.status == SUCCESS) {
-        	console.log("----=")
+        	$.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
+        	loadGrid1();
+        	
         }
     });
 }

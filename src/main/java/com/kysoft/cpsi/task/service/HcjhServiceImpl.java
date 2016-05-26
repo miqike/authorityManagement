@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.mapper.HcjhMapper;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
 
 import net.sf.husky.security.entity.User;
@@ -20,6 +21,9 @@ public class HcjhServiceImpl implements HcjhService {
 	
 	@Resource 
 	HcjhMapper hcjhMapper;
+	
+	@Resource 
+	HcrwMapper hcrwMapper;
 	
 	@Resource 
 	JhSxMapper jhSxMapper;
@@ -56,14 +60,18 @@ public class HcjhServiceImpl implements HcjhService {
 	@Override
 	public Map<String, Object> testDblink() {
 		Map<String, Object> param = Maps.newHashMap();
-		return hcjhMapper.testDblink(param);
+		hcjhMapper.testDblink(param);
+		return param;
 	}
 
 	@Override
-	public Map<String, Object> importDblink() {
-		// TODO Auto-generated method stub
+	public Map<String, Object> importDblink(String hcjhId) {
 		Map<String, Object> param = Maps.newHashMap();
-		return hcjhMapper.importDblink(param);
+		param.put("hcjhId", hcjhId);
+		hcjhMapper.importDblink(param);
+		Integer hcrwsl = hcrwMapper.selectCountByPlanId(hcjhId);
+		param.put("hcrws", hcrwsl);
+		return param;
 	}
 
 }

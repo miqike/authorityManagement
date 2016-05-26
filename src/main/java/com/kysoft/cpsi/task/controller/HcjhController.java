@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.service.HcjhService;
-import com.kysoft.kteam.leave.domain.Leave;
 
 import net.sf.husky.web.controller.BaseController;
 
@@ -80,12 +79,11 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
-	
-	@RequestMapping(value = "/hcjh/importDblink", method = RequestMethod.GET)
-	public Map<String, Object> importDblink() {
+	@RequestMapping(value = "/hcjh/importDblink/{hcjhId}", method = RequestMethod.GET)
+	public Map<String, Object> importDblink(@PathVariable String hcjhId) {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
-			Map<String, Object> report = hcjhService.importDblink();
+			Map<String, Object> report = hcjhService.importDblink(hcjhId);
 			result.putAll(report);
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {

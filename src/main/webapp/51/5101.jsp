@@ -142,7 +142,7 @@
 		            <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
 		                formatter="formatCodeList"  styler="stylerHczt">核查状态</th>
 		            <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
-		            <!-- <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="100" >说明</th> -->
+		            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >说明</th>
 		        </tr>
 		        </thead>
 		        <tbody>
