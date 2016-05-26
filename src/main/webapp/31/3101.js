@@ -81,7 +81,7 @@ function grid1clickHandler() {
 		$('#btnModify').linkbutton('enable');
 		$('#btnAudit').linkbutton('enable');
 		$('#btnViewCheckList').linkbutton('enable');
-		if($('#grid1').datagrid('getSelected').shzt == 1) {
+		if($('#grid1').datagrid('getSelected').shzt != 2) {
 			$('#btnModify').linkbutton('enable');
 			$('#btnAudit').linkbutton({
 				text:'审核',
@@ -101,15 +101,26 @@ function grid1clickHandler() {
 	}
 }
 
+function setFormFieldStatus(formId, operation) {
+	$("#"+ formId+ " input.easyui-textbox." + operation).textbox("enable");
+	$("#"+ formId+ " input.easyui-combobox." + operation).combobox("enable");
+	$("#"+ formId+ " input.easyui-numberspinner." + operation).numberspinner("enable");
+	$("#"+ formId+ " input.easyui-datebox." + operation).datebox("enable");
+	$("#"+ formId+ " input.easyui-textbox:not(." + operation + ")").textbox("disable");
+	$("#"+ formId+ " input.easyui-combobox:not(." + operation + ")").combobox("disable");
+	$("#"+ formId+ " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
+	$("#"+ formId+ " input.easyui-datebox:not(." + operation + ")").datebox("disable");
+}
 function add() {
-	$('#planWindow input').val('');
 	showModalDialog("planWindow");
-	$('#planTable input.easyui-textbox').textbox("enable");
-	$('#planTable input.easyui-combobox').combobox("enable");
+	$("#planTable input").val('');
+	setFormFieldStatus("planTable", "add");
+	
 	$("#btnEditOrSave").linkbutton({
 		iconCls:'icon-save',
 		text:'保存'
 	});
+	$("#btnImportTask").linkbutton("disable");
 	$('#tabPanel').tabs('select',0 );
 }
 
@@ -117,14 +128,17 @@ function modify() {
 	if(!$(this).linkbutton('options').disabled) {
 		var row = $('#grid1').datagrid('getSelected');
 		if (row) {
-			$.easyuiExtendObj.loadForm("planTable", row);
 			showModalDialog("planWindow");
+			$.easyuiExtendObj.loadForm("planTable", row);
 			/*$("#btnEditOrSave").parent().css("text-align", " left");
 			$('#userWindow input.easyui-validatebox').validatebox();*/
 		}
-		;
-		/*$("#tg").parent().find("input:checkbox").attr("disabled", true);
-		$("#grid2").parent().find("input:checkbox").attr("disabled", true);*/
+		setFormFieldStatus("planTable", "modify");
+		if(row.hcrwsl == null ) {
+			$("#btnImportTask").linkbutton("enable");
+		} else {
+			$("#btnImportTask").linkbutton("disable");
+		}
 		$('#tabPanel').tabs('select', 0);
 	}
 }
@@ -156,15 +170,22 @@ function formatZfry(val, row) {
 }
 
 function tabSelectHandler(title, index) {
-	var planId = $('#p_id').textbox('getValue');
+	var planId = $('#p_id').val();
 	if(index == 1) { //选择角色TAB
 		if(planId != "") {
-			$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
-				$("#grid3").datagrid("loadData", response.rows);
-				
-			});
+			if ($('#p_hcrwsl').textbox('getValue') == "") {
+				console.log("3333")
+				$.messager.alert("提示", "任务信息尚未导入");
+				$('#tabPanel').tabs('select',0 );
+			} else {
+				console.log("1111")
+				$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
+					$("#grid3").datagrid("loadData", response.rows);
+					
+				});
+			}
 		} else {
-			$.messager.alert("操作错误", "请先保存用户基本信息");
+			$.messager.alert("操作错误", "请先保存计划基本信息");
 			$('#tabPanel').tabs('select',0 );
 		}
 	}
@@ -239,7 +260,116 @@ function funcClose5() {
 	$("#addChecklistWindow").window("close");
 }
 
+function loadGrid1() {
+	var options = $("#grid1").datagrid("options");
+	options.url = '../common/query?mapper=hcjhMapper&queryName=query';
+	$('#grid1').datagrid('load',{
+		nd: $('#f_nd').numberspinner("getValue"),
+		jhbh: $('#f_jhbh').textbox("getValue"),
+		gsjhbh: $('#f_gsjhbh').textbox("getValue"),
+		jhmc: $('#f_jhmc').textbox("getValue"),
+		nr: $('#f_nr').combobox("getValue"),
+		fl: $('#f_fl').combobox("getValue")
+	});
+}
 
+function clearInput() {
+	$("#f_id").val("");
+	$("#f_jhbh").textbox("setValue", "");
+	$("#f_gsjhbh").textbox("setValue", "");
+	$("#f_jhmc").textbox("setValue", "");
+	$("#f_nr").combobox("setValue", "");
+	$("#f_fl").combobox("setValue", "");
+}
+
+function funcBtnRest() {
+	$("#f_nd").textbox("setValue", new Date().getFullYear());
+	clearInput();
+}
+
+function funcSavePlan() {
+	//debugger;
+	if ($("#planTable").form('validate') && !$(this).linkbutton('options').disabled) {
+        savePlan();
+    }
+}
+
+//设置页面为不可编辑状态
+function setReadOnlyStatus() {
+    /*$("#btnAdd").linkbutton('enable');
+    $("#btnEdit").linkbutton('enable');
+    $("#btnDelete").linkbutton('enable');
+    $("#btnSave").linkbutton('disable');
+    $("#btnCancel").linkbutton('disable');*/
+
+    $("#planTable input.easyui-numberspinner").numberspinner("disable");
+    $("#planTable input.easyui-textbox").textbox("disable");
+    $("#planTable input.easyui-datebox").datebox("disable");
+    $("#planTable input.easyui-combobox").combobox("disable");
+    $("#planTable input.easyui-combotree").combotree("disable");
+}
+
+function savePlan() {
+    var data = $.easyuiExtendObj.drillDownForm('planTable');
+    var type = "";
+    var url = "../31/hcjh";
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: data,
+        success: function (response) {
+            if (response.status == SUCCESS) {
+            	$('#p_id').val(response.id);
+                setReadOnlyStatus();
+                $("#btnSavePlan").linkbutton("disable");
+                $("#btnImportTask").linkbutton("enable");
+                $('#grid1').datagrid('reload');
+                /*var options = $('#grid1').datagrid('options');
+                options.url = '../common/query?mapper=hcjhMapper&queryName=query';
+                $("#grid1").datagrid(options);
+                if ($("#grid1").datagrid("getSelected") != null) {
+                    $("#btnView").linkbutton("enable");
+                    $("#btnDelete").linkbutton("enable");
+                } else {
+                    $("#btnView").linkbutton("disable");
+                    $("#btnDelete").linkbutton("disable");
+                }*/
+                
+                //$("#baseWindow").window("close");
+            } else {
+                $.messager.alert('失败', response.message, 'info');
+            }
+        }
+    });
+
+}
+function funcImportTask() {
+	showModalDialog("importTaskWindow");
+}
+
+function selectImportType() {
+	var importType = $("#importTaskWindow input:radio:checked").val();
+	$("#importTaskWindow #" + importType).show();	
+	$("#importTaskWindow div:not(#" + importType + ")").hide();	
+	
+}
+
+function testDblink() {
+	$.getJSON("./hcjh/testDblink", null, function (response) {
+        if (response.status == SUCCESS) {
+            console.log("----=")
+
+        }
+    });
+}
+
+function importDblink() {
+	$.getJSON("../hcjh/importDblink", null, function (response) {
+        if (response.status == SUCCESS) {
+        	console.log("----=")
+        }
+    });
+}
 //初始化
 $(function() {
 	$.fn.zTree.init($("#orgTree"), setting);
@@ -253,5 +383,21 @@ $(function() {
 	$("#btnClose5").click(funcClose5);
 	/*
 	$("#btnAddPlan").hide();*/
+	$("#f_nd").textbox("setValue", new Date().getFullYear());
+	clearInput();
+	loadGrid1();
+	$("#btnSearch").click(loadGrid1);
+	$("#btnReset").click(funcBtnRest);
+	$("#btnSavePlan").click(funcSavePlan);
+	$("#btnImportTask").click(funcImportTask);
+	$("#importTaskWindow input:radio").click(selectImportType);
+	
+	$("#btnTestDblink").click(testDblink);
+	$("#btnImportDblink").click(importDblink);
+	
+	
+	
+	/*
+	*/
 });
 

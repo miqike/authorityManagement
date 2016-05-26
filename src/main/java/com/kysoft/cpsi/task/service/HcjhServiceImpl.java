@@ -1,9 +1,14 @@
 package com.kysoft.cpsi.task.service;
 
+import java.util.Map;
+import java.util.UUID;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.mapper.HcjhMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
 
@@ -35,6 +40,30 @@ public class HcjhServiceImpl implements HcjhService {
 		} else {
 			hcjhMapper.updateAuditById(hcjhId, 1, "", "");
 		}
+	}
+
+	@Override
+	public String save(Hcjh hcjh) {
+		if(hcjh.getId() != null) {
+			hcjhMapper.updateByPrimaryKey(hcjh);
+		} else {
+			hcjh.setId(UUID.randomUUID().toString().replace("-", ""));
+			hcjhMapper.insert(hcjh);
+		}
+		return hcjh.getId();
+	}
+
+	@Override
+	public Map<String, Object> testDblink() {
+		Map<String, Object> param = Maps.newHashMap();
+		return hcjhMapper.testDblink(param);
+	}
+
+	@Override
+	public Map<String, Object> importDblink() {
+		// TODO Auto-generated method stub
+		Map<String, Object> param = Maps.newHashMap();
+		return hcjhMapper.importDblink(param);
 	}
 
 }

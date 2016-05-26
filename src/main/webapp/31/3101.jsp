@@ -36,21 +36,21 @@
 		<table id="queryTable">
 			<tr>
 				<td class="label">计划年度</td>
-				<td><input id="p_recallLimits" class="easyui-numberspinner" data-options="min:2000,max:2017"/>
+				<td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/>
 				</td>
 				<td class="label">计划编号</td>
-				<td><input id="f_errorNo" class="easyui-textbox"/></td>
+				<td><input id="f_jhbh" class="easyui-textbox"/></td>
 				<td class="label">公示系统计划编号</td>
-				<td><input id="f_operator" class="easyui-textbox"/></td>
+				<td><input id="f_gsjhbh" class="easyui-textbox"/></td>
 			</tr>
 			<tr>
 				<td class="label">计划名称</td>
-				<td><input id="f_module" class="easyui-textbox"/></td>
+				<td><input id="f_jhmc" class="easyui-textbox"/></td>
 				<td class="label">核查内容</td>
-				<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
+				<td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
 					data-options="panelHeight:80,width:143,onChange:queryPlan" style="" /></td>
 				<td class="label">核查分类</td>
-				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl" 
+				<td><input id="f_fl" class="easyui-combobox" codeName="hcfl" 
 					data-options="panelHeight:60,width:143,onChange:queryPlan" style="" /></td>
 				<td colspan="2" style="text-align-right;">
 					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
@@ -65,28 +65,28 @@
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
 				onClickRow:grid1clickHandler,
-				method:'get',url:'../common/query?mapper=hcjhMapper&queryName=query',
+				method:'get',
 				onSelect:showPlanDetail"
 			   toolbar="#gridToolbar1"
 			   style="height: 250px"
 			   sortOrder="asc">
 			<thead>
 			<tr>
-				<th data-options="field:'nd'" halign="center" align="left" sortable="true" width="50">计划年度</th>
-				<th data-options="field:'id'" halign="center" align="left" sortable="true" width="70">计划编号</th>
-				<th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
+				<th data-options="field:'nd'" halign="center" align="center" sortable="true" width="50">年度</th>
+				<th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="70">计划编号</th>
+				<th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示计划编号</th>
 				<th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130" >计划名称</th>
 				<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
 				<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">要求完成时间</th>
 				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">核查分类</th>
-				<th data-options="field:'nr'" halign="center" align="left" sortable="true" width="150" >核查内容</th>
-				<th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60" >任务数量</th>
-				<th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="60" >已派发</th>
-				<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="60" >已认领</th>
-				<th data-options="field:'wrlsl'" halign="center" align="left" sortable="true" width="60" >未认领</th>
+				<th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">核查内容</th>
+				<th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60" >任务数</th>
+				<th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="50" >已派发</th>
+				<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="50" >已认领</th>
+				<th data-options="field:'wrlsl'" halign="center" align="left" sortable="true" width="50" >未认领</th>
 				<th data-options="field:'shzt'" halign="center" align="left" sortable="true" width="90" codeName="shzt" formatter="formatCodeList">审核状态</th>
-				<th data-options="field:'shrmc'" halign="center" align="left" sortable="true" width="90" >审核人</th>
-				<th data-options="field:'xdrmc'" halign="center" align="left" sortable="true" width="90" >下达人</th>
+				<th data-options="field:'shrmc'" halign="center" align="center" sortable="true" width="90" >审核人</th>
+				<th data-options="field:'xdrmc'" halign="center" align="center" sortable="true" width="90" >下达人</th>
 				<th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250" >说明</th>
 			</tr>
 			</thead>
@@ -100,11 +100,6 @@
 	</div>
 	
 	<div id="layout" class="easyui-layout" data-options="fit:true">
-		<!-- <div data-options="region:'west',title:'单位列表',onCollapse:collapseHandler,onExpand:expandHandler" style="width:200px">
-			<div style="float:left;margin:0px 5px;border: 1px solid lightgray;">
-                <ul id='orgTree' class="ztree" ></ul>
-			</div>
-		</div> -->
 		<div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
 			<ul id="orgTree" class="ztree"></ul>
 		</div>
@@ -155,54 +150,55 @@
 <div id="planWindow" class="easyui-window" title="核查计划信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
-    <div>
+    <!-- <div>
         <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add"  plain="true">新增</a>
         <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous"  plain="true">上一个</a>
         <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next"  plain="true">下一个</a>
         <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first"  plain="true">首个</a>
         <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last"  plain="true">末个</a>
         <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">关闭</a>
-    </div>
+    </div> -->
     <!-- <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler"> -->
     <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler">
         <div title="基本信息" style="padding:5px;" selected="true">
             <table width="100%" id="planTable">
                 <tr>
                     <td colspan="3">
-                        <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"  plain="true">保存</a>
-                        <a href="javascript:void(0);" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-save"  plain="true" disabled>导入任务信息</a>
+                        <a href="javascript:void(0);" id="btnSavePlan" class="easyui-linkbutton" iconCls="icon-save"  plain="true">保存</a>
+                        <a href="javascript:void(0);" id="btnImportTask" class="easyui-linkbutton" iconCls="icon2 r10_c1"  plain="true" disabled>导入任务信息</a>
                     </td>
                     <td ></td>
                 </tr>
                 <tr>
                     <td>计划年度</td>
-                    <td><input class="easyui-textbox" id="p_nd" type="text"
-                               data-options="required:true" style="width:200px;"/>
+                    <td><input class="easyui-numberspinner add" id="p_nd" type="text"
+                               data-options="required:true,min:2016" style="width:200px;"/>
                     </td>
                     <td>计划编号</td>
-                    <td><input class="easyui-textbox" type="text" id="p_id" data-options="required:true" style="width:200px;"/>
+                    <td><input type="hidden" id="p_id"/>
+                    	<input class="easyui-textbox add" type="text" id="p_jhbh" data-options="required:true" style="width:200px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td>公示系统计划编号</td>
                     <td>
-                        <input class="easyui-textbox" id="p_gsjhbh" type="text" style="width:200px;" data-options=""/>
+                        <input class="easyui-textbox add" id="p_gsjhbh" type="text" style="width:200px;" data-options=""/>
                     </td>
-                    <td>下达日期</td>
-                    <td><input class="easyui-datebox" id="p_xdrq" type="text" style="width:200px;" data-options=""/></td>
                 </tr>
                 <tr>
+                    <td>下达日期</td>
+                    <td><input class="easyui-datebox add modify" id="p_xdrq" type="text" style="width:200px;" data-options="required:true"/></td>
                     <td>要求完成时间</td>
-                    <td><input class="easyui-datebox" type="text" id="p_yqwcsj" data-options="" style="width:200px;"/></td>
+                    <td><input class="easyui-datebox add modify" type="text" id="p_yqwcsj" style="width:200px;" data-options="required:true"/></td>
+                </tr>
+                <tr>
                     <td>核查分类</td>
                     <td>
-                        <input class="easyui-combobox" id="p_fl" type="text" style="width:200px;" data-options="" codeName="hcfl"/>
+                        <input class="easyui-combobox add modify" id="p_fl" type="text" style="width:200px;" data-options="panelHeight:60,required:true" codeName="hcfl"/>
                     </td>
-                </tr>
-                <tr>
                     <td>核查内容</td>
                     <td colspan="3">
-                        <input id="p_nr" class="easyui-textbox" style="width:557px;" data-options="required:true" />
+                        <input id="p_nr" class="easyui-combobox add modify" codeName="hcnr" data-options="panelHeight:80,width:200,required:true" style="" />
                     </td>
                 </tr>
                 <tr>
@@ -234,8 +230,10 @@
                     <td>
                         <input class="easyui-textbox" id="p_xdrmc" type="text" style="width:200px;" data-options=""/>
                     </td>
+                </tr>
+                <tr>
                     <td>说明</td>
-                    <td><input class="easyui-textbox" id="p_sm" type="text" style="width:200px;" data-options=""/></td>
+                    <td colspan="3"><input class="easyui-textbox add modify" id="p_sm" type="text" style="width:540px;" data-options=""/></td>
                 </tr>
 
             </table>
@@ -336,7 +334,31 @@
     </table>
 </div>	
 	
+<div id="importTaskWindow" class="easyui-window" title="导入任务信息"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 550px; height: 350px; padding: 10px;">
+     <input type="radio" name="importType" value="dblink" checked />从接口表导入
+     <input type="radio" name="importType" value="file" / >从文件导入
+     
+     <div id="file" style="margin:10px;display:none">
+   		<input class="easyui-filebox" value="选择文件" style="width:300px" data-options="buttonText:'选择文件'" />
+       	<a href="javascript:void(0);" id="btnImportFile" class="easyui-linkbutton" iconCls="icon2 r6_c10"  plain="true">导入</a>
+     </div>
+     
+     
+     <div id="dblink" style="margin:10px;display:none">
+       	<a href="javascript:void(0);" id="btnTestDblink" class="easyui-linkbutton" iconCls="icon2 r13_c20"  plain="true">测试连接</a>
+       	<a href="javascript:void(0);" id="btnImportDblink" class="easyui-linkbutton" iconCls="icon2 r6_c10"  plain="true">导入</a>
+       	
+    </div>
+	<div id="importReport" style="margin:10px;display:none">
+		任务数:20000<br/>
+		核查人员: 500<br/>
+		新增核查人员:20<br/>
+		新增企业信息:14000</br>
 		
+	</div>
+</div>		
 </body>
 </html>
    <link href="../css/content.css" rel="stylesheet"/>

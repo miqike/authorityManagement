@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.service.HcjhService;
 import com.kysoft.kteam.leave.domain.Leave;
 
@@ -23,18 +24,19 @@ public class HcjhController extends BaseController {
 	@Resource
 	HcjhService hcjhService;
 
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Map<String, Object> save(Leave leave) {
+	@RequestMapping(value = "/hcjh", method = RequestMethod.POST)
+	public Map<String, Object> save(Hcjh hcjh) {
 		Map<String, Object> result = Maps.newHashMap();
-		/*try {
-			hcjhService.askForLeave(leave);
+		try {
+			String id = hcjhService.save(hcjh);
+			result.put("id", id);
 			result.put(MESSAGE, "保存成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
 			result.put(MESSAGE, "保存失败");
-		}*/
+		}
 		return result;
 	}
 	
@@ -63,5 +65,36 @@ public class HcjhController extends BaseController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value = "/hcjh/testDblink", method = RequestMethod.GET)
+	public Map<String, Object> testDblink() {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			Map<String, Object> report = hcjhService.testDblink();
+			result.putAll(report);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/hcjh/importDblink", method = RequestMethod.GET)
+	public Map<String, Object> importDblink() {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			Map<String, Object> report = hcjhService.importDblink();
+			result.putAll(report);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
 	
 }
