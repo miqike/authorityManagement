@@ -64,9 +64,8 @@
 		<table id="grid1"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
-				onClickRow:grid1ClickHandler,
-				method:'get',
-				onSelect:showPlanDetail"
+				onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+				method:'get'"
 			   toolbar="#gridToolbar1"
 			   style="height: 250px"
 			   sortOrder="asc">
@@ -107,25 +106,26 @@
 		<div data-options="region:'center'">
 			<table id="grid2"
 				class="easyui-datagrid"
-				data-options="singleSelect:true,collapsible:true,
+				data-options="singleSelect:true,collapsible:true,pageSize: 10, pagination: true,
 					onClickRow:grid2ClickHandler,
-					method:'get',
-					onSelect:showPlanDetail"
+					method:'get'"
 				   toolbar="#planGridToolbar"
-				   style="height: 250px"
+				   style="height: 285px"
 				   sortOrder="asc">
 				<thead>
 				<tr>
-					<th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th>
+					<!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
 					<th data-options="field:'hcjgmc'" halign="center" align="left" sortable="true" width="150">检查机关</th>
 					<th data-options="field:'djjgmc'" halign="center" align="left" sortable="true" width="150">登记机关</th>
-					<th data-options="field:'hcdwXydm'" halign="center" align="left" sortable="true" width="150">统一社会信用代码</th>
-					<th data-options="field:'hcdwName'" halign="center" align="left" sortable="true" width="150">企业名称</th>
-					<th data-options="field:'ztlx'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">市场主体类型</th>
+					<th data-options="field:'hcdwXydm'" halign="center" align="left" sortable="true" width="180">统一社会信用代码</th>
+					<th data-options="field:'hcdwName'" halign="center" align="left" sortable="true" width="180">企业名称</th>
+<!--
+ 					<th data-options="field:'ztlx'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">市场主体类型</th>
 					<th data-options="field:'zzxs'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">组织形式</th>
-					<th data-options="field:'qymc'" halign="center" align="left" sortable="true" width="100">区域</th>
-					<th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="70" formatter="formatZfry">检查人员</th>
-					<th data-options="field:'rlrmc'" halign="center" align="left" sortable="true" width="70">计划认领人</th>
+ -->
+ 					<th data-options="field:'qymc'" halign="center" align="left" sortable="true" width="100">区域</th>
+					<th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="100" formatter="formatZfry">检查人员</th>
+					<th data-options="field:'rlrmc'" halign="center" align="left" sortable="true" width="70">认领人</th>
 					<th data-options="field:'rlrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">认领日期</th>
 					<th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70" codeName="jhlb" formatter="formatCodeList">计划完成</th>
 					<th data-options="field:'sjwcrq'" halign="center" align="left" sortable="true" width="70" formatter="formatDate">实际完成</th>
@@ -388,7 +388,6 @@
     <script type="text/javascript" src="../js/formatter.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     
     <script type="text/javascript" src="../js/husky.common.js"></script>

@@ -12,7 +12,7 @@
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <!-- <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css"> -->
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
@@ -32,8 +32,6 @@
  
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
 
-    <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
@@ -64,16 +62,8 @@
 				<td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/></td>
 				<td class="label">计划编号</td>
 				<td><input id="f_hcjhId" class="easyui-textbox"/></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
 				<td class="label">计划名称</td>
 				<td><input id="f_jhmc" class="easyui-textbox"/></td>
-				<td class="label">核查结果确认?</td>
-				<td><!-- <input id="f_deptName" class="easyui-combobox" codeName="hcfl"
-					data-options="panelHeight:120,width:100" style="" /> --></td>
-				
 				<td colspan="2" style="text-align-right;">
 					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
 					<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
@@ -110,6 +100,7 @@
 						<td class="label" style="padding-left:10px;">计划名称</td><td><input id="p_jhmc" class="easyui-textbox" readonly="readonly"/></td>
 						<td class="label" style="padding-left:10px;">下达时间</td><td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:100"/></td>
 						<td class="label" style="padding-left:10px;">要求完成时间</td><td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:100"/></td>
+						<td class="label" style="padding-left:10px;">核查结果确认</td><td><input id="p_hcjieguo" class="easyui-combobox" readonly="readonly" data-options="width:100"/></td>
 					</tr>
 					<tr>
 						<td colspan="8" style="text-align-right;">
@@ -142,15 +133,15 @@
 		            <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
 		                formatter="formatCodeList"  styler="stylerHczt">核查状态</th>
 		            <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
-		            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >说明</th>
+		            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
 		        </tr>
 		        </thead>
 		        <tbody>
 		        </tbody>
 		    </table>
 		    <div id="mainGridToolbar">
-		        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true">核查材料</a>
-		        <a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true">核查/查看</a>
+		        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>核查材料</a>
+		        <a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" disabled>核查/查看</a>
 		    </div>
 		</div>
 	</div>
@@ -165,30 +156,10 @@
 	<div id="auditLog" style="margin-top:5px;"></div>
 </div>
 
-
-<div id="examHistory" class="easyui-window" title="核查材料"
-     data-options="modal:true,closed:true,iconCls:'icon-search'"
+<div id="documentWindow" class="easyui-window" title="核查材料"
+     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 750px; height: 400px; padding: 10px;">
-     <table id="grid2"
-           class="easyui-datagrid"
-           data-options="
-               singleSelect:true,
-               collapsible:true,
-               selectOnCheck:false,
-               checkOnSelect:false"
-           toolbar="#grid2Toolbar"
-           style="height: 318px">
-        <thead>
-        <tr>
-            <th data-options="field:'hcclId'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'xydm'" halign="center" align="left" width="100">企业信用代码</th>
-            <th data-options="field:'hdjhnm'" halign="center" align="left" width="100">核查计划年度</th>
-            <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70" >材料名称</th>
-            <th data-options="field:'type'" halign="center" align="left" width="100">文件类型</th>
-            <th data-options="field:'id'" halign="center" align="left" width="100">材料编号</th>
-        </tr>
-        </thead>
-    </table>
+	<div id="docPanel" style="padding:10px;"></div>
 </div>
 
 

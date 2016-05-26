@@ -53,4 +53,6 @@ public interface HcrwMapper {
 	List<Hcrw> queryForPlan(Map<String, Object> param);
 
 	Integer selectCountByPlanId(String planId);
+
+	void pullData(Map<String, Object> param);
 }

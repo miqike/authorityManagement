@@ -12,12 +12,9 @@ function expandHandler() {
 
 function mainGridButtonHandler() {
 	if($('#mainGrid').datagrid('getSelected') != null) {
-		
+		$('#btnAudit').linkbutton('enable');
 	} else {
-		$('#btnView').linkbutton('disable');
-		$('#btnDelete').linkbutton('disable');
-		$('#btnResetPass').linkbutton('disable');
-		$('#btnLock').linkbutton('disable');
+		$('#btnAudit').linkbutton('disable');
 	}
 }
 
@@ -60,7 +57,6 @@ function loadMyTask() {
 		nd: $('#f_nd').numberspinner("getValue"),
 		hcjhId: $('#f_hcjhId').textbox("getValue"),
 		jhmc: $('#f_jhmc').textbox("getValue")
-		
 	});
 }
 
@@ -71,12 +67,14 @@ function grid1ClickHandler() {
 	$('#p_jhmc').textbox("setValue",  hcrw.jhmc);
 	$('#p_jhxdrq').datebox("setValue",  formatDate(hcrw.jhxdrq));
 	$('#p_jhyqwcsj').datebox("setValue",  formatDate(hcrw.jhyqwcsj));
+	$('#p_hcjieguo').combobox("setValue",  hcrw.hcjieguo);
 
 	$('#btnSendHcgzs').linkbutton("enable");
 	$('#btnSendZllxtzs').linkbutton("enable");
 	$('#btnSendQyzshch').linkbutton("enable");
 	$('#btnPullData').linkbutton("enable");
-//	$('#btnReport').linkbutton("enable");
+	$('#btnViewDocument').linkbutton("enable");
+	
 	//加载右侧grid
 	$.ajax({
 		url: "../common/query?mapper=hcsxjgMapper&queryName=queryForTask",
@@ -88,11 +86,11 @@ function grid1ClickHandler() {
 					$.messager.confirm('确认', '核查列表尚未生成,是否认生成核查列表?', function (r) {
 						if (r) {
 							$.ajax({
-								url: "./" + hcrwId + "/init",
+								url: "./" + hcrw.id + "/init",
 								type: 'POST',
 								success: function (response) {
 									if (response.status == SUCCESS) {
-										refreshGrid1()
+										refreshMainGrid()
 									} else {
 										//$.messager.alert('删除失败', response, 'info');
 									}
@@ -101,7 +99,7 @@ function grid1ClickHandler() {
 						}
 					});
 				} else {
-					refreshGrid1();
+					refreshMainGrid();
 				}
 				
 			}
@@ -112,7 +110,7 @@ function grid1ClickHandler() {
 	*/
 }
 
-function refreshGrid1() {
+function refreshMainGrid() {
 	var options = $("#mainGrid").datagrid("options");
 	options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
 	$('#mainGrid').datagrid('load',{
@@ -185,7 +183,25 @@ function clearInput() {
 }
 
 function funcBtnPullData() {
-	$.messager.alert("弹出窗口,加载数据,显示加载数据统计")
+	var row = $("#grid1").datagrid("getSelected");
+	$.getJSON("./pull/" + row.id, null, function (response) {
+        if (response.status == SUCCESS) {
+        	$.messager.alert("提示", "数据加载成功" + response.message, 'info');
+        	refreshMainGrid();
+        }
+    });
+}
+
+function funcBtnViewDocument() {
+	if(!$(this).linkbutton('options').disabled) {
+		showModalDialog("documentWindow");
+		$("#docPanel").panel({
+		    href:'./userDoc.jsp',
+		    onLoad:function(){
+		    	//doInit();
+		    }
+		});
+	}
 }
 
 $(function() {
@@ -198,4 +214,5 @@ $(function() {
 	$("#btnSearch").click(loadMyTask);
 	$("#btnReset").click(funcBtnRest);
 	$("#btnPullData").click(funcBtnPullData);
+	$("#btnViewDocument").click(funcBtnViewDocument);
 });
