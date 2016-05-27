@@ -357,4 +357,11 @@
     )
     order by ID
   </select>
+  
+  <select id="getHcsxCode" resultType="java.util.Map">
+    select 'hcsx' as name, a.HCSX_ID as value , b.NAME as literal from ( 
+    	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
+    		SELECT HCJH_ID FROM T_HCRW WHERE ID=#{hcrwId})) a left join T_HCSX b on a.HCSX_ID = b.ID
+  </select>
+  
 </mapper>

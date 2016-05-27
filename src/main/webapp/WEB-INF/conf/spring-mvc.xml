@@ -27,7 +27,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
 	    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
-	    <context:exclude-filter type="regex" expression="net.sf.husky.attachment.*"/>        
+	    <!-- <context:exclude-filter type="regex" expression="net.sf.husky.attachment.*"/> -->
     </context:component-scan>
     
      <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->

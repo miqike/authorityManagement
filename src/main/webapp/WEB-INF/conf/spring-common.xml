@@ -32,4 +32,5 @@
 		</property>
 	</bean>
 
+	<bean id="mongoDataSource" class="net.sf.husky.mongo.MongoDataSource" />
 </beans>

@@ -1,5 +1,8 @@
 package com.kysoft.cpsi.repo.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kysoft.cpsi.repo.entity.Hccl;
 
 public interface HcclMapper {
@@ -39,4 +42,7 @@ public interface HcclMapper {
 	 * @mbggenerated  Thu May 26 21:05:28 CST 2016
 	 */
 	int updateByPrimaryKey(Hccl record);
+
+
+	List<Hccl> selectByHcsxId(String hcsxId);
 }

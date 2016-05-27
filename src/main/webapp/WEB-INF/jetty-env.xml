@@ -12,18 +12,5 @@
                 <Set name="password">cpsi</Set>  
             </New>  
         </Arg>  
-    </New>
-<!--     
-    <New id="activitiDS" class="org.eclipse.jetty.plus.jndi.Resource">  
-        <Arg>jdbc/activitiDS</Arg>  
-        <Arg>  
-            <New class="com.alibaba.druid.pool.DruidDataSource">  
-                <Set name="driverClassName">com.mysql.jdbc.Driver</Set>  
-                <Set name="url">jdbc:mysql://192.168.5.133/activiti?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true</Set>  
-                <Set name="username">activiti</Set>  
-                <Set name="password">activiti</Set>  
-            </New>  
-        </Arg>  
-    </New>
- -->		
+    </New>	
 </Configure>    

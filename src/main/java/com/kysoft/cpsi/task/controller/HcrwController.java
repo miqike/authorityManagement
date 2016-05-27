@@ -1,5 +1,6 @@
 package com.kysoft.cpsi.task.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.entity.Hccl;
+import com.kysoft.cpsi.task.entity.Hcclmx;
 import com.kysoft.cpsi.task.service.HcrwService;
 
+import net.sf.husky.codelist.entity.Code;
 import net.sf.husky.web.controller.BaseController;
 
 @RestController
@@ -37,7 +41,7 @@ public class HcrwController extends BaseController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/pull/{hcrwId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{hcrwId}/pull", method = RequestMethod.GET)
 	public Map<String, Object> pullData(@PathVariable String hcrwId) {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
@@ -50,6 +54,28 @@ public class HcrwController extends BaseController {
 			result.put(MESSAGE, "核查任务在线数据加载失败");
 		}
 		return result;
+	}
+	
+	@RequestMapping(value = "/{hcrwId}/hcsx", method = RequestMethod.GET)
+	public List<Map> getHcsxCode(@PathVariable String hcrwId) {
+		return hcrwService.getHcsxCode(hcrwId);
+	}
+	
+	@RequestMapping(value = "/hccl", method = RequestMethod.POST)
+	public Map<String, Object> addHccl(Hcclmx hcclmx) {
+		
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcrwService.addHccl(hcclmx);
+			result.put(MESSAGE, "核查材料保存成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查材料保存失败");
+		}
+		return result;
+		
 	}
 	
 }

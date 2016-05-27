@@ -154,4 +154,9 @@
       YHTG = #{yhtg,jdbcType=DECIMAL}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectByHcsxId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from T_HCCL WHERE HCSX_ID = #{hcsxId}
+  </select>
 </mapper>
