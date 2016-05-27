@@ -1,16 +1,22 @@
 package com.kysoft.cpsi.task.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.entity.Hccl;
 import com.kysoft.cpsi.repo.entity.Hcsx;
+import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+import com.kysoft.cpsi.task.entity.Hcclmx;
 import com.kysoft.cpsi.task.entity.Hcsxjg;
+import com.kysoft.cpsi.task.mapper.HcclmxMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.HcsxjgMapper;
 
@@ -26,6 +32,9 @@ public class HcrwServiceImpl implements HcrwService {
 	@Resource 
 	HcsxjgMapper hcsxjgMapper;
 
+	@Resource 
+	HcclmxMapper hcclmxMapper;
+	
 	@Override
 	public void initTaskItem(String hcrwId) {
 		List<Hcsx> hcsxList = hcsxMapper.selectByTaskId(hcrwId);
@@ -46,6 +55,19 @@ public class HcrwServiceImpl implements HcrwService {
 		Map<String, Object> param = Maps.newHashMap();
 		param.put("hcrwId", hcrwId);
 		hcrwMapper.pullData(param);
+	}
+
+	@Override
+	public List<Map> getHcsxCode(String hcrwId) {
+		return hcsxMapper.getHcsxCode(hcrwId);
+	}
+
+	@Override
+	public void addHccl(Hcclmx hcclmx) {
+		// TODO Auto-generated method stub
+		hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
+		hcclmx.setUploadTime(new Date());
+		hcclmxMapper.insert(hcclmx);
 	}
 
 }

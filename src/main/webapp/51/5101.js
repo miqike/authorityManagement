@@ -184,7 +184,7 @@ function clearInput() {
 
 function funcBtnPullData() {
 	var row = $("#grid1").datagrid("getSelected");
-	$.getJSON("./pull/" + row.id, null, function (response) {
+	$.getJSON("./" + row.id + "/pull" , null, function (response) {
         if (response.status == SUCCESS) {
         	$.messager.alert("提示", "数据加载成功" + response.message, 'info');
         	refreshMainGrid();
@@ -198,7 +198,7 @@ function funcBtnViewDocument() {
 		$("#docPanel").panel({
 		    href:'./userDoc.jsp',
 		    onLoad:function(){
-		    	//doInit();
+		    	doInit();
 		    }
 		});
 	}

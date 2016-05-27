@@ -53,6 +53,8 @@ public interface HcsxMapper {
 	List<Hcsx> queryForPlanCandidate(Map<String, Object> params);
 
 	List<Hcsx> selectByTaskId(String hcrwId);
+
+	List<Map> getHcsxCode(String hcrwId);
 	
 	
 }

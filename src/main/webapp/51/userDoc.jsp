@@ -1,19 +1,68 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!-- <script type="text/javascript" src="./userDoc.js"></script> -->
-
 <script>
 	function formatDocOperation(val, row) {
-		return "<a href=\" \">查看</a>";
+		console.log(row)
+		return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";
 	}
 	
 	function wjlyStyler(val,row,index) {
-		console.log(val)
 		if(val == 1) {
 			return "background-color:lightgreen";
 		} else {
 			return "background-color:orange";
 		}
 	}
+	
+	function funcAddDoc() {
+		showModalDialog("addDocWindow");
+		$("#addDocWindow").panel({
+		    href:'./docForm.jsp',
+		    onLoad:function(){
+		    	doInit();
+		    }
+		});
+	}
+	
+	function displayAttachment(mongoId) {
+	    $("<iframe id='download' style='display:none' src='../display?mongoId=" + mongoId + "'/>") .appendTo("body");
+	}
+
+	function downloadAttachment(src) {
+	    $("<iframe id='download' style='display:none' src='../download?mongoId=" + mongoId + "'/>") .appendTo("body");
+	}
+
+	function deleteAttachment(src) {
+	    $.ajax({
+	        url: "attachment/" + $(src).parent().attr("mongoId") ,
+	        type: 'DELETE',
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	                loadAttachmentPanel($("#p_id").val());
+	                $.messager.show({
+	                    title: '提示',
+	                    msg: "文件已删除"
+	                });
+	            } else {
+	                $.messager.alert('错误', '文件删除失败：' + response.message, 'error');
+	            }
+	        }
+	    });
+
+	    //$("<iframe id='download' style='display:none' src='../download?mongoId=" + row.bi0511 + "'/>") .appendTo("body");
+
+	}
+	function doInit() {
+		$("#btnAddDoc").click(funcAddDoc); 
+		
+		var hcrw = $("#grid1").datagrid("getSelected");
+		var hcsx =  $("#mainGrid").datagrid("getSelected");
+		$("#docGrid").datagrid({ 
+			url:'../common/query?mapper=hcclmxMapper&queryName=queryForTask',
+			queryParams: {hcrwId:hcrw.id}
+		});
+	}
+	
 </script>
 
 <div>
@@ -28,14 +77,13 @@
            		singleSelect:true,height:300,width:680,
 				ctrlSelect:false,method:'get',
 				toolbar: '#docGridToolbar',
-				url:'../common/query?mapper=hcclmxMapper&queryName=queryForTask',
            		pageSize: 20, pagination: true">
         <thead>
         <tr>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="110">名称</th>
             <th data-options="field:'ly',halign:'center',align:'center'" sortable="true" width="80" codeName="wjly" formatter="formatCodeList" styler="wjlyStyler">分类</th>
             <th data-options="field:'hcsxmc',halign:'center',align:'left'" sortable="true" width="100">核查事项</th>
-            <th data-options="field:'uploadTime',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDatetime2Min">上传时间</th>
+            <th data-options="field:'uploadTime',halign:'center',align:'left'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
             <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="70" codeName="wjlx" formatter="formatCodeList">文件类型</th>
             <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
         </tr>
@@ -46,7 +94,14 @@
 
 </div>
 <div id="docGridToolbar">
-    <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >上传</a>
+    <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon2 r16_c13" plain="true" >上传</a>
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
 
+<div id="addDocWindow" class="easyui-window" title="上传核查材料"
+     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
+     style="width: 550px; height: 350px; padding: 10px;">
+     
+     	
+    
+</div>
