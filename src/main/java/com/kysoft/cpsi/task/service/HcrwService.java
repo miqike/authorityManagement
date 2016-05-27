@@ -4,4 +4,6 @@ public interface HcrwService {
 
 	void initTaskItem(String hcrwId);
 
+	void pullData(String hcrwId);
+
 }

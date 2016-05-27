@@ -427,11 +427,8 @@
   
   <select id="queryForOrg" resultMap="BaseResultMap">
 	select <include refid="Base_Column_List" />
-    from T_HCRW where HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
-    <if test="name!=null">
-      AND (USER_ID like concat(concat('%', #{name}), '%') or
-      NAME like concat(concat('%', #{name}), '%') )
-    </if>
+    from T_HCRW where HCJH_ID = #{hcjhId}
+    AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
 	ORDER BY
 		<if test="order != null">
 			${sort} ${order},
@@ -470,4 +467,11 @@
   <select id="selectCountByPlanId" resultType="java.lang.Integer">
   	select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="pullData" statementType="CALLABLE" parameterType="java.util.HashMap">
+      {	
+   		call prc_import_hc(
+          	#{hcrwId,mode=IN,jdbcType=VARCHAR}
+       )}    
+    </select>
 </mapper>

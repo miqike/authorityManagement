@@ -159,7 +159,6 @@
     <script type="text/javascript" src="../js/formatter.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     
     <script type="text/javascript" src="../js/husky.common.js"></script>

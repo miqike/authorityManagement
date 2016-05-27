@@ -2,33 +2,6 @@
 
 window.excludeSaved = false;
 
-
-
-
-function showPlanDetail() {
-	var row = $("#grid1").datagrid('getSelected');
-	/*window.billType = window.billTypeMap[row.ba01861];
-	if(row.bi1522 == 0) {
-        $("#btnUpdate").linkbutton("enable");
-        $("#btnDelete").linkbutton("enable");
-		$("#btnSubmit").linkbutton("enable");
-	} else {
-		disableUpdateAndDeleteButton();
-	}
-
-	$.getJSON('../common/query?mapper=bi15DMapper&queryName=selectByBi1501',
-		{ bi1501:row.bi1501},
-		function(response){
-			$('#planDetailGrid').datagrid('loadData',response.rows);
-		});*/
-}
-
-function depNameChangeHandler() {
-	$('#btnAddItem').linkbutton('enable');
-	var orgId = $("#deptName").combobox('getValue');
-	getBillType(orgId);
-}
-
 function collapseHandler() {
 	$("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -61,11 +34,13 @@ function xxxx(orgId) {
 function onTreeClick(event, treeId, treeNode, clickFlag) {
 	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
 	var selected = treeObj.getSelectedNodes()
-
-	if(selected.length == 1) {
+	var hcjh = $('#grid1').datagrid('getSelected');
+	if(selected.length == 1 && hcjh != null) {
+			
 		var options = $("#grid2").datagrid("options");
 		options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
 		$('#grid2').datagrid('load',{
+			hcjhId: hcjh.id,
 			organization: selected[0].id
 		});
 
@@ -359,7 +334,9 @@ function savePlan() {
 
 }
 function funcImportTask() {
-	showModalDialog("importTaskWindow");
+	if(!$(this).linkbutton('options').disabled) {
+		showModalDialog("importTaskWindow");
+	}
 }
 
 function selectImportType() {
@@ -380,14 +357,16 @@ function testDblink() {
 }
 
 function importDblink() {
-	var hcjhId = $("#p_id").val();
-	$.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
-        if (response.status == SUCCESS) {
-        	$.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
-        	loadGrid1();
-        	
-        }
-    });
+	if(!$(this).linkbutton('options').disabled) {
+		var hcjhId = $("#p_id").val();
+		$.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
+	        if (response.status == SUCCESS) {
+	        	$.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
+	        	loadGrid1();
+	        	
+	        }
+	    });
+	}
 }
 //初始化
 $(function() {

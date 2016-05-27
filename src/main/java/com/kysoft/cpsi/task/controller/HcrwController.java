@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
-import com.kysoft.cpsi.task.service.HcjhService;
 import com.kysoft.cpsi.task.service.HcrwService;
-import com.kysoft.kteam.leave.domain.Leave;
 
 import net.sf.husky.web.controller.BaseController;
 
@@ -38,4 +36,20 @@ public class HcrwController extends BaseController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value = "/pull/{hcrwId}", method = RequestMethod.GET)
+	public Map<String, Object> pullData(@PathVariable String hcrwId) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcrwService.pullData(hcrwId);
+			result.put(MESSAGE, "核查任务在线数据加载成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查任务在线数据加载失败");
+		}
+		return result;
+	}
+	
 }

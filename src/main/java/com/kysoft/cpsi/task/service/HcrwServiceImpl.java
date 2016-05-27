@@ -1,11 +1,13 @@
 package com.kysoft.cpsi.task.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import com.kysoft.cpsi.task.entity.Hcsxjg;
@@ -35,9 +37,15 @@ public class HcrwServiceImpl implements HcrwService {
 			hcsxjg.setHcfs(hcsx.getHcff());
 			hcsxjg.setPage(hcsx.getPage());
 			hcsxjg.setHczt(1);
-			hcsxjg.setSm(hcsx.getDescript());
 			hcsxjgMapper.insert(hcsxjg);
 		}
+	}
+
+	@Override
+	public void pullData(String hcrwId) {
+		Map<String, Object> param = Maps.newHashMap();
+		param.put("hcrwId", hcrwId);
+		hcrwMapper.pullData(param);
 	}
 
 }
