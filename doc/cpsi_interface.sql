@@ -66,7 +66,9 @@ CREATE TABLE V_NB (
   NSZE      NUMBER,
   FZZE      NUMBER,
   ZCZE      NUMBER,
-  SJLX      INTEGER
+  SJLX      INTEGER,
+  LXDH      VARCHAR2(100),
+  YZBM      VARCHAR2(100)
 );
 COMMENT ON TABLE v_nb IS '年报主表';
 COMMENT ON COLUMN v_nb.ID IS '计划编号,用于定向核查';
@@ -88,6 +90,8 @@ COMMENT ON COLUMN v_nb.NSZE IS '纳税总额';
 COMMENT ON COLUMN v_nb.FZZE IS '负债总额';
 COMMENT ON COLUMN v_nb.ZCZE IS '资产总额';
 COMMENT ON COLUMN v_nb.SJLX IS '数据来源类型,1为公示信息,2为比对信息';
+COMMENT ON COLUMN v_nb.LXDH IS '联系电话';
+COMMENT ON COLUMN v_nb.YZBM IS '邮政编码';
 DROP TABLE V_NB_WD;
 CREATE TABLE V_NB_WD (
   TYPE NUMBER,
@@ -384,7 +388,7 @@ BEGIN
 END;
 /
 --生成看报V_NB;
-INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, ZCZE, SJLX)
+INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, ZCZE, SJLX, LXDH, YZBM)
   SELECT
     sys_guid()                       id,
     2016                             nd,
@@ -404,7 +408,9 @@ INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDW
     trunc(uext_random.value(1, 500)) NSZE,
     trunc(uext_random.value(1, 500)) FZZE,
     trunc(uext_random.value(1, 500)) ZCZE,
-    sjlx
+    sjlx,
+    uext_random.random_phone         LXDH,
+    trunc(uext_random.value(1, 500)) YZBM
   FROM (
     SELECT
       a.*,
