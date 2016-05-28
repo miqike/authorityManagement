@@ -45,4 +45,8 @@ public interface HcclMapper {
 
 
 	List<Hccl> selectByHcsxId(String hcsxId);
+
+	List<Hccl> queryForAuditItem(Map<String, Object> param);
+	
+	
 }
