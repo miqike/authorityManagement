@@ -2,7 +2,6 @@
 <!-- <script type="text/javascript" src="./userDoc.js"></script> -->
 <script>
 	function formatDocOperation(val, row) {
-		console.log(row)
 		return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";
 	}
 	
@@ -62,10 +61,8 @@
 	            }
 	        }
 	    });
-
-	    //$("<iframe id='download' style='display:none' src='../download?mongoId=" + row.bi0511 + "'/>") .appendTo("body");
-
 	}
+	
 	function doInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
 		$("#btnRemoveDoc").click(funcRemoveDoc); 

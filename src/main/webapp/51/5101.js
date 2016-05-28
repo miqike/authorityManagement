@@ -196,7 +196,7 @@ function funcBtnViewDocument() {
 	if(!$(this).linkbutton('options').disabled) {
 		showModalDialog("documentWindow");
 		$("#docPanel").panel({
-		    href:'./userDoc.jsp',
+		    href:'./docList.jsp',
 		    onLoad:function(){
 		    	doInit();
 		    }
