@@ -10,7 +10,7 @@
 		data.hcsxmc = $("#d_hcsxId").combobox("getText");
 		data.mongoId = $("#d_mongoId").val();
 	    var type = "POST";
-	    var url = "./hccl";
+	    var url = "./hcclmx";
 	    $.ajax({
 	        url: url,
 	        type: type,

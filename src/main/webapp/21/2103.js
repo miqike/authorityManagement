@@ -126,12 +126,45 @@ function btnAddClick() {
         setEditStatus();
     }
 }
+
+function funcShowDocWindow() {
+	console.log("===")
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	if(auditItem != null) {
+		
+		console.log("===")
+		showModalDialog("docWindow");
+		console.log("===")
+		$("#docPanel").panel({
+		    href:'./docList.jsp',
+		    onLoad:function(){
+		    	doInit();
+		    }
+		});
+	}
+}
+
+function mainGridButtonHandler() {
+	if($('#mainGrid').datagrid('getSelected') != null) {
+		$('#btnView').linkbutton('enable');
+		$('#btnDelete').linkbutton('enable');
+		$('#btnDrop').linkbutton('enable');
+		$('#btnShowDocWindow').linkbutton('enable');
+	} else {
+		$('#btnView').linkbutton('disable');
+		$('#btnDelete').linkbutton('disable');
+		$('#btnDrop').linkbutton('disable');
+		$('#btnShowDocWindow').linkbutton('disable');
+	}
+}
+
 $(function () {
     $("#btnAdd").click(btnAddClick);
     $("#btnView").click(btnViewClick);
     $("#btnDelete").click(btnDeleteClick);
     $("#btnSave").click(btnSaveClick);
     $("#btnClose1").click(btnCloseClick);
+    $("#btnShowDocWindow").click(funcShowDocWindow);
 
     setReadOnlyStatus();
 
@@ -159,4 +192,5 @@ $(function () {
         cursorborderradius: 0, // 滚动条是否圆角大小
         autohidemode: false // 是否隐藏滚动条
     });
+    
 });

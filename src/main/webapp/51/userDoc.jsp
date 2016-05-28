@@ -23,22 +23,36 @@
 		    }
 		});
 	}
+
+	function funcRemoveDoc () {
+		if(!$(this).linkbutton('options').disabled) {
+			var row = $('#docGrid').datagrid('getSelected');
+			if (row) {
+				$.messager.confirm('确认', '确认删除核查材料', function (r) {
+					if (r) {
+						deleteAttachment(row.id);
+					}
+				});
+			}
+		}
+	}
 	
 	function displayAttachment(mongoId) {
 	    $("<iframe id='download' style='display:none' src='../display?mongoId=" + mongoId + "'/>") .appendTo("body");
 	}
 
-	function downloadAttachment(src) {
+	function downloadAttachment(mongoId) {
 	    $("<iframe id='download' style='display:none' src='../download?mongoId=" + mongoId + "'/>") .appendTo("body");
 	}
 
-	function deleteAttachment(src) {
+	function deleteAttachment(hcclmxId) {
 	    $.ajax({
-	        url: "attachment/" + $(src).parent().attr("mongoId") ,
+	        url: "./hcclmx/" + hcclmxId ,
 	        type: 'DELETE',
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
-	                loadAttachmentPanel($("#p_id").val());
+	            	$('#docGrid').datagrid('reload');
+	                
 	                $.messager.show({
 	                    title: '提示',
 	                    msg: "文件已删除"
@@ -54,6 +68,7 @@
 	}
 	function doInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
+		$("#btnRemoveDoc").click(funcRemoveDoc); 
 		
 		var hcrw = $("#grid1").datagrid("getSelected");
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
@@ -61,6 +76,14 @@
 			url:'../common/query?mapper=hcclmxMapper&queryName=queryForTask',
 			queryParams: {hcrwId:hcrw.id}
 		});
+	}
+	
+	function docGridClickRowHandler() {
+		if($('#docGrid').datagrid('getSelected') != null) {
+			$('#btnRemoveDoc').linkbutton('enable');
+		} else {
+			$('#btnRemoveDoc').linkbutton('disable');
+		}
 	}
 	
 </script>
@@ -75,6 +98,7 @@
            class="easyui-datagrid"
            data-options="collapsible:true,
            		singleSelect:true,height:300,width:680,
+           		onClickRow:docGridClickRowHandler,
 				ctrlSelect:false,method:'get',
 				toolbar: '#docGridToolbar',
            		pageSize: 20, pagination: true">

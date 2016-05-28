@@ -159,4 +159,9 @@
     select <include refid="Base_Column_List" />
     from T_HCCL WHERE HCSX_ID = #{hcsxId}
   </select>
+  
+  <select id="queryForAuditItem" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from T_HCCL WHERE HCSX_ID = #{hcsxId} ORDER BY ID
+  </select>
 </mapper>

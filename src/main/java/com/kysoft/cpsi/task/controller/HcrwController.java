@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
-import com.kysoft.cpsi.repo.entity.Hccl;
-import com.kysoft.cpsi.task.entity.Hcclmx;
 import com.kysoft.cpsi.task.service.HcrwService;
 
-import net.sf.husky.codelist.entity.Code;
 import net.sf.husky.web.controller.BaseController;
 
 @RestController
@@ -59,23 +56,6 @@ public class HcrwController extends BaseController {
 	@RequestMapping(value = "/{hcrwId}/hcsx", method = RequestMethod.GET)
 	public List<Map> getHcsxCode(@PathVariable String hcrwId) {
 		return hcrwService.getHcsxCode(hcrwId);
-	}
-	
-	@RequestMapping(value = "/hccl", method = RequestMethod.POST)
-	public Map<String, Object> addHccl(Hcclmx hcclmx) {
-		
-		Map<String, Object> result = Maps.newHashMap();
-		try {
-			hcrwService.addHccl(hcclmx);
-			result.put(MESSAGE, "核查材料保存成功");
-			result.put(STATUS, SUCCESS);
-		} catch (Exception e) {
-			e.printStackTrace();
-			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查材料保存失败");
-		}
-		return result;
-		
 	}
 	
 }
