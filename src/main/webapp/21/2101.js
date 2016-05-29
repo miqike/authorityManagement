@@ -10,6 +10,18 @@ function expandHandler() {
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
 
+//zTree点击事件
+function onTreeClick(event, treeId, treeNode, clickFlag) {
+    var options = $('#mainGrid').datagrid('options');
+    options.url = '../common/query?mapper=scztMapper&queryName=query';
+    options.queryParams = {
+        dwId: treeNode.id
+    };
+    $("#mainGrid").datagrid(options);
+
+    //setReadOnlyStatus();
+}
+
 function mainGridButtonHandler() {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		
@@ -55,4 +67,5 @@ function showExamHistory() {
 $(function() {
 	$.fn.zTree.init($("#orgTree"), setting);
 	$("#btnView").click(showExamHistory);
+    
 });
