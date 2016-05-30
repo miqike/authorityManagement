@@ -7,7 +7,7 @@ function doInit() {
     var auditItem = $("#mainGrid").datagrid("getSelected");
     var qy = $("#grid1").datagrid("getSelected");
 
-    // $("#zeling_hcrwId").text(auditItem.hcrwId);
+    $("#zeling_hcrwId").text(qy.id);
     // $("#zeling_hcsxId").text(auditItem.hcsxId);
 
     $("#zeling_qymc").textbox("setValue", qy.hcdwName);
@@ -180,6 +180,14 @@ function doInit() {
 
         LODOP.PREVIEW();
         //LODOP.PRINT();
+        var data = {};
+        data.moduleName = "gaozhishu";
+        data.desc = "打印通知书";
+        data.message = "打印责令履行公示义务通知书";
+        data.businessKey = $("#zeling_hcrwId").text();
+        $.post("../sys/log", data, function (response) {
+            console.log(response.message);
+        });
     });
 
 }

@@ -7,7 +7,7 @@ function doInit() {
     // var auditItem = $("#mainGrid").datagrid("getSelected");
     var qy = $("#grid1").datagrid("getSelected");
 
-    // $("#shidi_hcrwId").text(auditItem.hcrwId);
+    $("#shidi_hcrwId").text(qy.id);
     // $("#shidi_hcsxId").text(auditItem.hcsxId);
 
     $("#shidi_qymc").textbox("setValue", qy.hcdwName);
@@ -168,5 +168,14 @@ function doInit() {
 
         LODOP.PREVIEW();
         //LODOP.PRINT();
+        var data = {};
+        data.moduleName = "gaozhishu";
+        data.desc = "打印通知书";
+        data.message = "打印实地核查告知书";
+        data.businessKey = $("#shidi_hcrwId").text();
+        $.post("../sys/log", data, function (response) {
+            console.log(response.message);
+        });
+
     });
 }
