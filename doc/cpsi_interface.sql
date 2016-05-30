@@ -48,27 +48,45 @@ COMMENT ON COLUMN v_hcrw.JYDZ IS '经营地址';
 COMMENT ON COLUMN v_hcrw.LLR IS '联络人';
 DROP TABLE v_nb;
 CREATE TABLE V_NB (
-  ID        VARCHAR2(32),
-  ND        NUMBER,
-  XYDM      VARCHAR2(32),
-  QYMC      VARCHAR2(300),
-  TXDZ      VARCHAR2(300),
-  MAIL      VARCHAR2(300),
-  SFTZGMGQ  NUMBER,
-  JYZT      NUMBER,
-  SFYWZWD   NUMBER,
-  SFYDWDBXX NUMBER,
-  CYRS      NUMBER,
-  SYZQYHJ   NUMBER,
-  LRZE      NUMBER,
-  ZYYWSR    NUMBER,
-  JLR       NUMBER,
-  NSZE      NUMBER,
-  FZZE      NUMBER,
-  ZCZE      NUMBER,
-  SJLX      INTEGER,
-  LXDH      VARCHAR2(100),
-  YZBM      VARCHAR2(100)
+  ID         VARCHAR2(32),
+  ND         NUMBER,
+  XYDM       VARCHAR2(32),
+  QYMC       VARCHAR2(300),
+  TXDZ       VARCHAR2(300),
+  MAIL       VARCHAR2(300),
+  SFTZGMGQ   NUMBER,
+  JYZT       NUMBER,
+  SFYWZWD    NUMBER,
+  SFYDWDBXX  NUMBER,
+  CYRS       NUMBER,
+  SYZQYHJ    NUMBER,
+  LRZE       NUMBER,
+  ZYYWSR     NUMBER,
+  JLR        NUMBER,
+  NSZE       NUMBER,
+  FZZE       NUMBER,
+  ZCZE       NUMBER,
+  SJLX       INTEGER,
+  LXDH       VARCHAR2(100),
+  YZBM       VARCHAR2(100),
+  gxbys_jy   INTEGER,
+  gxbys_gg   INTEGER,
+  tysbs_jy   INTEGER,
+  tysbs_gg   INTEGER,
+  cjrs_jy    INTEGER,
+  cjrs_gg    INTEGER,
+  zjys_jy    INTEGER,
+  zjys_gg    INTEGER,
+  dj_frsfdy  INTEGER,
+  dj_lxdh    VARCHAR2(32),
+  dj_qtzw    INTEGER,
+  dj_dyzs    INTEGER,
+  dj_zcdys   INTEGER,
+  dj_wzrs    INTEGER,
+  dj_fzdys   INTEGER,
+  dj_jjfzs   INTEGER,
+  dj_sfjlzz  INTEGER,
+  dj_wjlzzyy VARCHAR2(300)
 );
 COMMENT ON TABLE v_nb IS '年报主表';
 COMMENT ON COLUMN v_nb.ID IS '计划编号,用于定向核查';
@@ -92,6 +110,24 @@ COMMENT ON COLUMN v_nb.ZCZE IS '资产总额';
 COMMENT ON COLUMN v_nb.SJLX IS '数据来源类型,1为公示信息,2为比对信息';
 COMMENT ON COLUMN v_nb.LXDH IS '联系电话';
 COMMENT ON COLUMN v_nb.YZBM IS '邮政编码';
+COMMENT ON COLUMN V_NB.gxbys_jy IS '高校毕业生_经营者';
+COMMENT ON COLUMN V_NB.gxbys_gg IS '高校毕业生_雇工';
+COMMENT ON COLUMN V_NB.tysbs_jy IS '退役士兵_经营者';
+COMMENT ON COLUMN V_NB.tysbs_gg IS '退役士兵_雇工';
+COMMENT ON COLUMN V_NB.cjrs_jy IS '残疾人_经营者';
+COMMENT ON COLUMN V_NB.cjrs_gg IS '残疾人_雇工';
+COMMENT ON COLUMN V_NB.zjys_jy IS '再就业_经营者';
+COMMENT ON COLUMN V_NB.zjys_gg IS '再就业_雇工';
+COMMENT ON COLUMN V_NB.dj_frsfdy IS '法人是否是党员';
+COMMENT ON COLUMN V_NB.dj_lxdh IS '联系电话';
+COMMENT ON COLUMN V_NB.dj_qtzw IS '其他职务';
+COMMENT ON COLUMN V_NB.dj_dyzs IS '党员总数';
+COMMENT ON COLUMN V_NB.dj_zcdys IS '在册党员数';
+COMMENT ON COLUMN V_NB.dj_wzrs IS '未转入党组织关系人数';
+COMMENT ON COLUMN V_NB.dj_fzdys IS '本年度发展党员数';
+COMMENT ON COLUMN V_NB.dj_jjfzs IS '现有入党积极分子数量';
+COMMENT ON COLUMN V_NB.dj_sfjlzz IS '是否建立党组织';
+COMMENT ON COLUMN V_NB.dj_wjlzzyy IS '未建立党组织原因';
 DROP TABLE V_NB_WD;
 CREATE TABLE V_NB_WD (
   TYPE NUMBER,
@@ -388,7 +424,8 @@ BEGIN
 END;
 /
 --生成看报V_NB;
-INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, ZCZE, SJLX, LXDH, YZBM)
+INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, ZCZE, SJLX, LXDH, YZBM,
+                  gxbys_jy, gxbys_gg, tysbs_jy, tysbs_gg, cjrs_jy, cjrs_gg, zjys_jy, zjys_gg, dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy)
   SELECT
     sys_guid()                       id,
     2016                             nd,
@@ -410,7 +447,25 @@ INSERT INTO v_nb (ID, ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDW
     trunc(uext_random.value(1, 500)) ZCZE,
     sjlx,
     uext_random.random_phone         LXDH,
-    trunc(uext_random.value(1, 500)) YZBM
+    trunc(uext_random.value(1, 500)) YZBM,
+    trunc(uext_random.value(1, 500)) gxbys_jy,
+    trunc(uext_random.value(1, 500)) gxbys_gg,
+    trunc(uext_random.value(1, 500)) tysbs_jy,
+    trunc(uext_random.value(1, 500)) tysbs_gg,
+    trunc(uext_random.value(1, 500)) cjrs_jy,
+    trunc(uext_random.value(1, 500)) cjrs_gg,
+    trunc(uext_random.value(1, 500)) zjys_jy,
+    trunc(uext_random.value(1, 500)) zjys_gg,
+    trunc(uext_random.value(1, 500)) dj_frsfdy,
+    uext_random.random_phone         dj_lxdh,
+    trunc(uext_random.value(1, 500)) dj_qtzw,
+    trunc(uext_random.value(1, 500)) dj_dyzs,
+    trunc(uext_random.value(1, 500)) dj_zcdys,
+    trunc(uext_random.value(1, 500)) dj_wzrs,
+    trunc(uext_random.value(1, 500)) dj_fzdys,
+    trunc(uext_random.value(1, 500)) dj_jjfzs,
+    trunc(uext_random.value(1, 500)) dj_sfjlzz,
+    uext_random.random_chinese(100)  dj_wjlzzyy
   FROM (
     SELECT
       a.*,
