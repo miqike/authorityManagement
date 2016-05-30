@@ -117,7 +117,8 @@ CREATE OR REPLACE PROCEDURE prc_import_hc(p_HCRWID IN VARCHAR2) IS
     FROM t_hcrw
     WHERE ID = p_hcrwid;
 
-    INSERT INTO t_nb (ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, HCRW_ID)
+    INSERT INTO t_nb (ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, HCRW_ID,
+                      gxbys_jy, gxbys_gg, tysbs_jy, tysbs_gg, cjrs_jy, cjrs_gg, zjys_jy, zjys_gg, dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy)
       SELECT
         ND,
         XYDM,
@@ -135,10 +136,29 @@ CREATE OR REPLACE PROCEDURE prc_import_hc(p_HCRWID IN VARCHAR2) IS
         JLR,
         NSZE,
         FZZE,
-        p_HCRWID HCRW_ID
+        p_HCRWID HCRW_ID,
+        gxbys_jy,
+        gxbys_gg,
+        tysbs_jy,
+        tysbs_gg,
+        cjrs_jy,
+        cjrs_gg,
+        zjys_jy,
+        zjys_gg,
+        dj_frsfdy,
+        dj_lxdh,
+        dj_qtzw,
+        dj_dyzs,
+        dj_zcdys,
+        dj_wzrs,
+        dj_fzdys,
+        dj_jjfzs,
+        dj_sfjlzz,
+        dj_wjlzzyy
       FROM v_nb
       WHERE XYDM = v_xydm AND sjlx = 1;
-    INSERT INTO t_nb_bd (ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE)
+    INSERT INTO t_nb_bd (ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD, SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, HCRW_ID,
+                         gxbys_jy, gxbys_gg, tysbs_jy, tysbs_gg, cjrs_jy, cjrs_gg, zjys_jy, zjys_gg, dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy)
       SELECT
         ND,
         XYDM,
@@ -155,35 +175,28 @@ CREATE OR REPLACE PROCEDURE prc_import_hc(p_HCRWID IN VARCHAR2) IS
         ZYYWSR,
         JLR,
         NSZE,
-        FZZE
+        FZZE,
+        p_HCRWID HCRW_ID,
+        gxbys_jy,
+        gxbys_gg,
+        tysbs_jy,
+        tysbs_gg,
+        cjrs_jy,
+        cjrs_gg,
+        zjys_jy,
+        zjys_gg,
+        dj_frsfdy,
+        dj_lxdh,
+        dj_qtzw,
+        dj_dyzs,
+        dj_zcdys,
+        dj_wzrs,
+        dj_fzdys,
+        dj_jjfzs,
+        dj_sfjlzz,
+        dj_wjlzzyy
       FROM v_nb
       WHERE XYDM = v_xydm AND sjlx = 2;
-
-    --根据导入的年报数据，更新HCSXJG表中每个核查事项的内容
-    SELECT *
-    INTO v_nb_gs
-    FROM t_nb
-    WHERE hcrw_id = p_HCRWID;
-    SELECT *
-    INTO v_nb_bd
-    FROM t_nb_bd
-    WHERE xydm = v_nb_gs.xydm;
-    FOR o IN cur_hcsx LOOP
-      CASE o.hcsx_id
-        WHEN '10a5cbafa03044239b8bedafb301d0a8'
-        THEN --通信地址
-          UPDATE t_hcsxjg
-          SET qygsnr = v_nb_gs.txdz, BZNR = v_nb_bd.txdz
-          WHERE hcrw_id = p_HCRWID AND hcsx_id = '10a5cbafa03044239b8bedafb301d0a8';
-        WHEN '1d7e3138a58a4709bb3a328fb767a82e'
-        THEN --mail
-          UPDATE t_hcsxjg
-          SET qygsnr = v_nb_gs.mail, BZNR = v_nb_bd.mail
-          WHERE hcrw_id = p_HCRWID AND hcsx_id = '1d7e3138a58a4709bb3a328fb767a82e';
-      ELSE
-        NULL;
-      END CASE;
-    END LOOP;
 
     INSERT INTO t_nb_dwdb (id, ND, XYDM, ZQR, ZWR, ZZQZL, ZZQSE, LXZWQX, BZQJ, BZFS, BZDBFW)
       SELECT
@@ -305,6 +318,50 @@ CREATE OR REPLACE PROCEDURE prc_import_hc(p_HCRWID IN VARCHAR2) IS
         XYDM
       FROM v_nb_wd
       WHERE XYDM = v_xydm AND sjlx = 2;
+
+    --根据导入的年报数据，更新HCSXJG表中每个核查事项的内容
+    SELECT *
+    INTO v_nb_gs
+    FROM t_nb
+    WHERE hcrw_id = p_HCRWID;
+    SELECT *
+    INTO v_nb_bd
+    FROM t_nb_bd
+    WHERE xydm = v_nb_gs.xydm;
+    FOR o IN cur_hcsx LOOP
+      CASE o.hcsx_id
+        WHEN '10a5cbafa03044239b8bedafb301d0a8'
+        THEN --通信地址
+          UPDATE t_hcsxjg
+          SET qygsnr = v_nb_gs.txdz, BZNR = v_nb_bd.txdz
+          WHERE hcrw_id = p_HCRWID AND hcsx_id = '10a5cbafa03044239b8bedafb301d0a8';
+        WHEN '1d7e3138a58a4709bb3a328fb767a82e'
+        THEN --mail
+          UPDATE t_hcsxjg
+          SET qygsnr = v_nb_gs.mail, BZNR = v_nb_bd.mail
+          WHERE hcrw_id = p_HCRWID AND hcsx_id = '1d7e3138a58a4709bb3a328fb767a82e';
+        WHEN 'c47e67dcd4b9445bb962efa7f262149c'
+        THEN --联系电话
+          UPDATE t_hcsxjg
+          SET qygsnr = v_nb_gs.lxdh, BZNR = v_nb_bd.lxdh
+          WHERE hcrw_id = p_HCRWID AND hcsx_id = 'c47e67dcd4b9445bb962efa7f262149c';
+        WHEN 'cf8c476dad384a078f2278ac24f702f3'
+        THEN --企业网站网店的名称和网址
+          NULL;
+        WHEN '08f630ac1b3947d2ab91e572c3f75e01'
+        THEN --存续状态 经营状态
+          UPDATE t_hcsxjg
+          SET qygsnr = v_nb_gs.jyzt, BZNR = v_nb_bd.jyzt
+          WHERE hcrw_id = p_HCRWID AND hcsx_id = '08f630ac1b3947d2ab91e572c3f75e01';
+        WHEN '8588a435261e485eb72f0d986082bfdb'
+        THEN --邮政编码
+          UPDATE t_hcsxjg
+          SET qygsnr = v_nb_gs.yzbm, BZNR = v_nb_bd.yzbm
+          WHERE hcrw_id = p_HCRWID AND hcsx_id = '8588a435261e485eb72f0d986082bfdb';
+      ELSE
+        NULL;
+      END CASE;
+    END LOOP;
 
   END prc_import_hc;
 /
