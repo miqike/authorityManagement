@@ -172,30 +172,6 @@
 <div id="changeThemeDialog"></div>
 <div id="runAsDialog"></div>
 <%--
-<div id="t_themeDialog" class="easyui-window" title="主题切换" style="padding-left:20px;padding-top:15px;"
-     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:250,height:100,center:true">
-    <div>
-        <select id="userTheme" class="easyui-combobox" codeName="theme" style="width:150px;">
-            <option value="default">默认</option>
-            <option value="black">黑色</option>
-            <option value="bootstrap">BootStrap</option>
-            <option value="ui-cupertino">加州Cupertino</option>
-            <option value="ui-dark-hive">黑色蜂巢</option>
-            <option value="gray">灰色</option>
-            <option value="metro">Metro默认</option>
-            <option value="metro-blue">Metro蓝色</option>
-            <option value="metro-gray">Metro灰色</option>
-            <option value="metro-green">Metro绿色</option>
-            <option value="metro-orange">Metro橙色</option>
-            <option value="metro-red">Metro红色</option>
-            <option value="ui-pepper-grinder">胡椒研磨机</option>
-            <option value="ui-sunny">阳光</option>
-        </select>
-        <a class="easyui-linkbutton" id="btnSetUserTheme" iconCls="icon-save" plain="true">确认</a>
-    </div>
-
-</div>
-
 <div id="runAsWindow" class="easyui-window" title="身份切换" style="padding-left:2px;"
      data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:400,center:true">
     <table>
@@ -224,75 +200,7 @@
 </div>
 
 
-<div id="msgWindow" class="easyui-window" title="站内消息" style="padding-left:2px;"
-     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:750,height:450,center:true">
-    
-<!--     <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler"> -->
-    <div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" >
-        <div title="收件箱" style="padding:5px;" selected="true">
-        	<input type="radio" name="messageStatus" value="all" checked style="margin-bottom: 8px;">全部</input>
-        	<input type="radio" name="messageStatus" value="readed" >已读</input>
-        	<input type="radio" name="messageStatus" value="unread" >未读</input>
-        	
-            <table id="inboxGrid"
-                   class="easyui-datagrid"
-                   data-options="
-                       singleSelect:true,
-                       collapsible:true,
-                       selectOnCheck:false,
-                       checkOnSelect:false,
-                       method:'get',
-                       pageSize:20,
-           			   pagination:true,
-                   	   toolbar: '#inboxGridToolbar'"
-                   style="height: 318px">
-                <thead>
-                <tr>
-                    <th data-options="field:'sender'" halign="center" align="center" width="100" formatter="formatSender">发件人</th>
-                    <th data-options="field:'title'" halign="center" align="center" width="200" formatter="formatMessageTitle">标题</th>
-                    <th data-options="field:'operateTime'" halign="center" align="center" width="120" formatter="formatDatetime2Min">发件时间</th>
-                    <th data-options="field:'state'" halign="center" align="center" width="40" formatter="formatMessageStatus">状态</th>
-                </tr>
-                </thead>
-            </table>
-            <div id="inboxGridToolbar">
-		        <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true">回复</a>
-		        <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">已读</a>
-		        <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">收藏</a>
-		        <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">删除</a>
-		    </div>
-        </div>
-        <div title="发件箱" style="width:700px;">
-            <table id="grid2"
-                   class="easyui-datagrid"
-                   data-options="
-                       singleSelect:true,
-                       collapsible:true,
-                       selectOnCheck:false,
-                       checkOnSelect:false"
-                   toolbar="#grid2Toolbar"
-                   style="height: 318px">
-                <thead>
-                <tr>
-                    <th data-options="field:'ck',checkbox:true,disabled:true"></th>
-                    <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th>
-                    <th data-options="field:'name'" halign="center" align="center" width="100">角色名</th>
-                    <th data-options="field:'role'" halign="center" align="left" width="100">标识</th>
-                    <th data-options="field:'description'" halign="center" align="left" width="400">描述</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-        <div title="草稿箱" style="width:700px;padding:5px;">
-        </div>
-        <div title="收藏夹" style="width:700px;padding:5px;">
-        </div>
 
-        <div title="联系人">
-            <a href="#" id="btnEditOrSaveUserRole" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
-        </div>
-    </div>
-</div>
 <!-- 
 <div id="msgWindow" class="easyui-window" title="消息窗口" style="padding-left:2px;"
      data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:400,center:true">

@@ -7,12 +7,10 @@
 <html>
 <head>
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
-    <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
     <title>计划核查</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
-    <!-- <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css"> -->
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
@@ -24,14 +22,10 @@
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
- --><!--     
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
  --> 
  
  	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
- 
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
-
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
@@ -44,15 +38,12 @@
             font:13px/1.5 \5b8b\4f53, Arial, sans-serif;
             background:#ffffff;
         }
-
         div .datagrid-wrap{ border-right: 0px; border-left: 0px; border-bottom: 0px}
-
         div#tabPanel .datagrid-wrap{ border-top: 0px;}
         td.label {text-align:right;}
     </style>
 </head>
 <body style="padding:5px;">
-<%-- <shiro:hasPermission name="user"> --%>
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
 
 	<div style="padding: 5px 10px 0px 10px">
@@ -122,9 +113,6 @@
 		           pagePosition ="bottom" >
 		        <thead>
 		        <tr>
-		            <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>
-		            <th data-options="field:'hcsxId',halign:'center',align:'left'" sortable="true" width="40">编号</th>
-		            -->
 		            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">核查事项</th>
 		            <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs"
 		                formatter="formatCodeList">核查方式</th>
@@ -147,16 +135,16 @@
 	</div>
 	
 </div>
-<!-- --------弹出窗口--------------- -->
 
-<div id="auditWindow" class="easyui-window" title="核查"
+<!-- --------弹出窗口--------------- -->
+<div id="auditWindow"  title="核查"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 400px; padding: 10px;">
+     style="width: 750px; height: 420px; padding: 10px;">
 	<div id="auditContent" style="padding:10px;"></div>
 	<div id="auditLog" style="margin-top:5px;"></div>
 </div>
 
-<div id="documentWindow" class="easyui-window" title="核查材料"
+<div id="documentWindow" title="核查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 750px; height: 400px; padding: 10px;">
 	<div id="docPanel" style="padding:10px;"></div>

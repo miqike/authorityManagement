@@ -1,5 +1,57 @@
+var auditConfig = [
+	["cyrs", "从业人数"], 
+	["gxbysJy", "高校毕业生/经营者"], 
+	["gxbysGg", "高校毕业生/雇工"], 
+	["tysbsJy", "退役士兵/经营者"], 
+	["tysbsGg", "退役士兵/雇工"], 
+	["cjrsJy", "残疾人/经营者"], 
+	["cjrsGg", "残疾人/雇工"], 
+	["zjysJy", "再就业/经营者"], 
+	["zjysGg", "再就业/雇工"]
+];
+
 function doInit() {
-    //console.log("doinit..........")
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
+	$.post("../audit/getCompareInfo", param,
+		function(response){
+			if(response.a == null || response.b == null) {
+				$.alert("首先需要加载数据");
+			} else {
+				var data = [];
+				for(var i=0; i<auditConfig.length; i++) {
+					data.push({
+						"xm": auditConfig[i][1],
+						"a": trans(response.a[auditConfig[i][0]], auditConfig[i][2]),
+						"b": trans(response.b[auditConfig[i][0]], auditConfig[i][2]),
+						"result": response.a[auditConfig[i][0]] == response.b[auditConfig[i][0]] ? "一致": "不一致"
+					});
+				}
+				$("#auditTable").datagrid("loadData",data);
+				
+			}
+		}); 
+}
+
+function trans(val, codeName) {
+	if(codeName != undefined) {
+		var code = $.codeListLoader.getCode(codeName, val);
+		if(null == code) {
+			return val + ": 无法找到编码";
+		} else {
+			return code.literal;
+		}
+	} else {
+		return val;
+	}
+}
+
+function resultStyler(val, row) {
+	if(val == "一致") {
+		return "background-color: lightgreen";
+	} else {
+		return "background-color: orange";
+	}
 }
 
 $(function () {

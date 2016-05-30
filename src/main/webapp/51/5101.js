@@ -130,7 +130,7 @@ function funcBtnAudit() {
 		    	doInit();
 		    }
 		});
-		if($("#auditLog").length == 0) {
+		/*if($("#auditLog").length == 0) {
 			$('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
 		}
 		$("#auditLog").panel({
@@ -138,7 +138,7 @@ function funcBtnAudit() {
 			onLoad:function(){
 				//doInit();
 			}
-		});
+		});*/
 	}
 }
 

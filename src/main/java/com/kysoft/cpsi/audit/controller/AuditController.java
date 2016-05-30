@@ -76,5 +76,21 @@ public class AuditController extends BaseController {
         }
         return result;
     }
+    
+    @RequestMapping(value = "/getCompareInfo", method = RequestMethod.POST)
+    public Map<String, Object> getCompareInfo(String hcrwId, String hcsxId) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+        	result.putAll(auditService.getCompareInfo(hcrwId, hcsxId));
+            result.put(MESSAGE, "获得比对数据成功");
+            result.put(STATUS, SUCCESS);
+        } catch (MailVerifyException e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "获得比对数据失败: " + e.getMessage());
+        }
+        return result;
+    }
+
 
 }

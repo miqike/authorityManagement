@@ -1,36 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<script type="text/javascript" src="../audit/dangjianxinxi.js"></script>
-<div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>党建信息</p>
-    <div style="display: none;">
-        <span style="color:blue; " id="_hcrwId_"></span>
-        <span style="color:blue; " id="_hcsxId_"></span>
-        <span style="color:blue; " id="_qymc_"></span>
-
-    </div>
-    <table>
-        <tr>
-            <td>公示系统内容:</td>
-            <td>
-                <span style="color:blue; " id="_qygsnr_"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>标准内容:</td>
-            <td>
-                <span style="color:blue; " id="_bznr_"></span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
-                <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">取消</a>
-            </td>
-        </tr>
-    </table>
-
-</div>
+<script>
+var auditConfig = [
+	["djFrsfdy", "法人是否是党员", "yesno"], 
+	["djLxdh", "联系电话"], 
+	["djQtzw", "其他职务"], 
+	["djDyzs", "党员总数"], 
+	["djZcdys", "在册党员数"], 
+	["djWzrs", "未转入党组织关系人数"], 
+	["djFzdys", "本年度发展党员数"], 
+	["djJjfzs", "现有入党积极分子数量"], 
+	["djSfjlzz", "是否建立党组织", "yesno"], 
+	["djWjlzzyy", "未建立党组织原因"]
+];
+</script>
+<%@ include  file="platAudit.jsp"%>
