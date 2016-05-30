@@ -20,7 +20,6 @@ public class HcclmxServiceImpl implements HcclmxService {
 	
 	@Override
 	public void delete(String id) {
-		// TODO Auto-generated method stub
 		Hcclmx hcclmx = hcclmxMapper.selectByPrimaryKey(id);
 		hcclmxMapper.deleteByPrimaryKey(id);
 		DownloadUtils.mongoDelete(hcclmx.getMongoId());

@@ -1,6 +1,5 @@
 package com.kysoft.cpsi.repo.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,6 +25,11 @@ public class HcclServiceImpl implements HcclService {
 	public void addHccl(Hccl hccl) {
 		hccl.setId(UUID.randomUUID().toString().replace("-", ""));
 		hcclMapper.insert(hccl);
+	}
+
+	@Override
+	public void delete(String id) {
+		hcclMapper.deleteByPrimaryKey(id);
 	}
 
 }

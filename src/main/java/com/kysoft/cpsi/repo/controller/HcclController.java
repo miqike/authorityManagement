@@ -43,4 +43,20 @@ public class HcclController extends BaseController {
 		}
 		return result;
 	}
+	
+
+	@RequestMapping(value = "/hccl/{id}", method = RequestMethod.DELETE)
+	public Map<String, Object> delete(@PathVariable String id) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcclService.delete(id);
+			result.put(MESSAGE, "核查材料删除成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查材料删除失败");
+		}
+		return result;
+	}
 }

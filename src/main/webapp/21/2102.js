@@ -58,7 +58,7 @@ function setEditStatus() {
         $("#btnTrans").linkbutton("disable");
     }
 
-    $("#baseTable input.easyui-textbox").textbox("enable");
+    $("#baseTable input.easyui-validatebox").removeAttr("readonly");
     $("#baseTable input.easyui-datebox").datebox("enable");
     $("#baseTable input.easyui-combobox").combobox("enable");
     $("#baseTable input.easyui-combotree").combotree("enable");
@@ -77,7 +77,7 @@ function setReadOnlyStatus() {
         $("#btnDelete").linkbutton("disable");
         $("#btnTrans").linkbutton("disable");
     }
-    $("#baseTable input.easyui-textbox").textbox("disable");
+    $("#baseTable input.easyui-validatebox").attr("readonly", true);
     $("#baseTable input.easyui-datebox").datebox("disable");
     $("#baseTable input.easyui-combobox").combobox("disable");
     $("#baseTable input.easyui-combotree").combotree("disable");
@@ -98,9 +98,9 @@ function save() {
     }
     if (window.operateType == "delete") {//删除
         type = "DELETE";
-        data = {"id": $("#p_code").textbox("getValue")};
+        data = {"id": $("#p_code").val()};
         data = JSON.stringify(data);
-        url = "../21/2102?code=" + $("#p_code").textbox("getValue");
+        url = "../21/2102?code=" + $("#p_code").val();
     }
     $.ajax({
         url: url,
@@ -148,8 +148,9 @@ function btnViewClick() {
         showModalDialog("baseWindow", "修改执法人员信息");
         window.operateType = "edit";
         setEditStatus();
-        $("#p_code").textbox("disable");
-        $.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+        $("#p_code").attr("readonly", true);
+        //$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+        $("#baseInfo").form("load", $("#mainGrid").datagrid("getSelected"));
     }
 }
 //删除按钮点击事件
@@ -168,8 +169,8 @@ function btnAddClick() {
         showModalDialog("baseWindow", "新执法人员信息");
         setEditStatus();
         $("#baseInfo").form('clear');
-        $("#p_dwId").textbox("setValue", selected[0].id);
-        $("#p_dwName").textbox("setValue", selected[0].name);
+        $("#p_dwId").val(selected[0].id);
+        $("#p_dwName").val(selected[0].name);
         window.operateType = "add";
     } else {
         $.messager.alert('提示', "请先选择单位！", 'info');
@@ -192,7 +193,8 @@ $(function () {
             $("#btnView").linkbutton("enable");
             $("#btnDelete").linkbutton("enable");
             $("#baseInfo").form('clear');
-            $.easyuiExtendObj.loadForm("baseInfo", row);
+            //$.easyuiExtendObj.loadForm("baseInfo", row);
+            $("#baseInfo").form("load", row);
         },
         onUnselect: function (index, row) {
             $("#btnView").linkbutton("disable");
@@ -204,12 +206,7 @@ $(function () {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=zfryMapper&queryName=query';
     $("#mainGrid").datagrid(options);
+    /*
+     */
 
-    $(".datagrid-body").niceScroll({
-        cursorcolor: "lightblue", // 滚动条颜色
-        cursoropacitymax: 3, // 滚动条是否透明
-        horizrailenabled: false, // 是否水平滚动
-        cursorborderradius: 0, // 滚动条是否圆角大小
-        autohidemode: false // 是否隐藏滚动条
-    });
 });

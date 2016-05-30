@@ -21,7 +21,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./css/themes/${theme}/easyui.css">
+    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./js/jquery-easyui-theme/${theme}/easyui.css">
     <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="./css/bubble.css">
 
@@ -44,7 +44,33 @@
     <script>
         eval("var initData = " + '<%= initData %>');
         var sessionId = '<%=currentUser.getSession().getId() %>';
-    </script></head>
+    </script>
+
+<style type="text/css">
+   .validatebox-text {
+        border-width: 1px;
+        border-style: solid;
+        height: 22px;
+        line-height: 17px;
+        padding-top: 1px;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        padding-right: 3px;
+        background-attachment: scroll;
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+    }
+
+    .validatebox-invalid {
+        border-color: ffa8a8;
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-color: fff3f3;
+        background-image: url("");
+    }
+</style>    
+</head>
 <body class="easyui-layout" onbeforeunload="closeBrowse();">
 <div data-options="region:'north',border:false" class="north">
     <div class="logo" style="margin-top:2px;"></div>
@@ -137,34 +163,15 @@
 <div style="display:none">
     <div id="toolbar" >
         <a id="btnShowChangePwdDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r12_c20',plain:true">修改密码</a>
-        <a id="btnShowRunasDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r11_c19',plain:true">切换身份</a>
+        <a id="btnShowRunAsDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r11_c19',plain:true">切换身份</a>
         <a id="btnShowThemeDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r16_c15',plain:true">切换主题</a>
     </div>
 </div>
 
-<div id="t_vaildateUser" class="easyui-dialog" data-options="title:'修改密码', width:300, height:160, closed:true, cache:false, modal:true, onClose:validateUserDialogCloseHandler">
-    <form id="t_pwdForm">
-        <div>
-            <a class="easyui-linkbutton savebutton" id="btnChangePwd" iconCls="icon-save" plain="true">提交</a>
-            <a class="easyui-linkbutton savebutton" iconCls="icon-undo" plain="true" onclick="$('#t_password').val('');$('#t_vaildateUser').dialog('close')">取消</a>
-        </div>
-        <table>
-            <tr align="center">
-                <td>用户名</td>
-                <td> <input type="text" id="t_uname" value="" class="easyui-textbox" readonly="readonly" /></td>
-            </tr>
-            <tr align="center">
-                <td>新密码</td>
-                <td> <input type="password" id="t_password" class="easyui-textbox" data-options="required:true" maxlength="60"/></td>
-            </tr>
-            <tr align="center">
-                <td>确认密码 </td>
-                <td> <input type="password" id="t_password2" class="easyui-textbox" data-options="required:true" maxlength="60" validType="same['t_password']" invalidMessage="两次输入密码不匹配"/></td>
-            </tr>
-        </table>
-    </form>
-</div>
-
+<div id="changePwdDialog"></div>
+<div id="changeThemeDialog"></div>
+<div id="runAsDialog"></div>
+<%--
 <div id="t_themeDialog" class="easyui-window" title="主题切换" style="padding-left:20px;padding-top:15px;"
      data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:250,height:100,center:true">
     <div>
@@ -307,7 +314,7 @@
             <td style="text-align: right">接收人</td>
             <td>
             	<input type="hidden" id="receiverId" />
-                <input class="easyui-textbox"
+                <input class="easyui-validatebox"
 						id="receiver" style="width: 100px"
 						data-options="required:true,editable:true,
                             icons:[{
@@ -319,19 +326,19 @@
         <tr>
             <td style="text-align: right">消息内容</td>
             <td>
-                <input type="text" id="sendMsg" value="" class="easyui-textbox" data-options="width:400"/>
+                <input type="text" id="sendMsg" value="" class="easyui-validatebox" data-options="width:400"/>
             </td>
         </tr>
     </table>
 </div>
-
+ --%>
 <div id='Loading' style="position:absolute;z-index:1000;top:0px;left:0px;width:100%;height:100%;background:#DDDDDB;
-text-align:center;padding-top: 20%;"><h1><image src='./images/loading.gif'/><font color="#15428B">加载中···</font></h1></div>
+	text-align:center;padding-top: 20%;"><h1><image src='./images/loading.gif'/><font color="#15428B">加载中···</font></h1></div>
 
 </body>
 </html>
 
-
+<%--
 <div id="receiverSelectDialog" class="easyui-dialog" title="选择收信人"
 	style="clear: both; width: 650px; height: 400px; padding: 5px;"
 	data-options="iconCls:'icon-man',modal:true,closed:true">
@@ -359,19 +366,19 @@ text-align:center;padding-top: 20%;"><h1><image src='./images/loading.gif'/><fon
 <div id="receiverGridToolbar">
     <a href="#" id="btnSelectReceiver" class="easyui-linkbutton" iconCls="icon-ok" plain="true" >OK</a>
 </div>
+ --%>
     
-<!-- 
-onDblClickRow:personTreeGridDblClickHandler,
-onLoadSuccess:btnPersonFilterHandler,
- -->
 <script type="text/javascript" src="./js/hotkeys.min.js"></script>
-<script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.jdirk.min.js"></script>
-<script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+<!-- 
 <script type="text/javascript" src="./js/husky.easyui.extend.js"></script>
-
+ -->
 <script type="text/javascript" src="./js/husky.common.js"></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
+<!-- 
 <script type="text/javascript" src="./js/index-startup.js"></script>
-
+ -->

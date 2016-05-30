@@ -8,4 +8,6 @@ public interface HcclService {
 	List<Hccl> getHcclCode(String hcsxId);
 
 	void addHccl(Hccl hccl);
+
+	void delete(String id);
 }

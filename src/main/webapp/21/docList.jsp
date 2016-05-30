@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!-- <script type="text/javascript" src="./userDoc.js"></script> -->
 <script>
-	
 	function wjlyStyler(val,row,index) {
 		if(val == 1) {
 			return "background-color:lightgreen";
@@ -26,7 +24,22 @@
 			if (row) {
 				$.messager.confirm('确认', '确认删除核查材料', function (r) {
 					if (r) {
-						deleteAttachment(row.id);
+						$.ajax({
+					        url: "./hccl/" + row.id ,
+					        type: 'DELETE',
+					        success: function (response) {
+					            if (response.status == SUCCESS) {
+					            	$('#docGrid').datagrid('reload');
+					                
+					                $.messager.show({
+					                    title: '提示',
+					                    msg: "文件已删除"
+					                });
+					            } else {
+					                $.messager.alert('错误', '文件删除失败：' + response.message, 'error');
+					            }
+					        }
+					    });
 					}
 				});
 			}
