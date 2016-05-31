@@ -279,4 +279,19 @@
         </if>
         ORDER BY NAME
     </select>
+
+    <select id="queryHccl" resultType="java.util.Map">
+        select a.id hcrw_id,a.hcjh_id,a.hcdw_xydm,a.hcdw_name,b.nd,b.jhmc,b.jhbh,c.hcsx_id,d.id hccl_id,d.name
+        hccl_name,d.hcsxmc
+        from t_hcrw a,t_hcjh b,t_hcjh_hcsx c,t_hccl d
+        where a.hcjh_id=b.id
+        and b.id=c.hcjh_id
+        and c.hcsx_id=d.HCSX_ID
+        and b.nd=2016
+        <if test="xydm!=null">
+            and a.hcdw_xydm = #{xydm}
+        </if>
+        ORDER BY a.id
+    </select>
+
 </mapper>

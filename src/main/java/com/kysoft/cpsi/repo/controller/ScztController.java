@@ -84,4 +84,21 @@ public class ScztController extends net.sf.husky.web.controller.BaseController {
         }
         return result;
     }
+
+    @RequestMapping(value = "/hccl", method = RequestMethod.GET)
+    public Map<String, Object> queryHccl(String xydm) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+            List<Map<String, Object>> queryResult = scztService.queryHccl(xydm);
+            result.put(MESSAGE, "查询成功");
+            result.put(STATUS, SUCCESS);
+            result.put(DATA, queryResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "查询失败");
+        }
+        return result;
+    }
+
 }

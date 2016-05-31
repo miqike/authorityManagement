@@ -375,24 +375,47 @@ DECLARE
   CURSOR qy IS
     SELECT *
     FROM t_qy;
-  ry        NUMBER;
-  hcry_code VARCHAR2(32);
-  hcry_name VARCHAR2(500);
-  v_hcjg    VARCHAR2(32);
-  v_hcjgmc  VARCHAR2(4000);
+  ry         NUMBER;
+  org        NUMBER;
+  ry_max     NUMBER;
+  org_max    NUMBER;
+  hcry_code1 VARCHAR2(32);
+  hcry_name1 VARCHAR2(500);
+  hcry_code2 VARCHAR2(32);
+  hcry_name2 VARCHAR2(500);
+  v_hcjg     VARCHAR2(32);
+  v_hcjgmc   VARCHAR2(4000);
 BEGIN
+  SELECT count(1)
+  INTO ry_max
+  FROM cpsi.sys_user;
+  SELECT count(1)
+  INTO org_max
+  FROM cpsi.sys_organization;
   FOR o IN qy LOOP
-    ry := round(uext_random.value(1, 500));
+    --取得执法人员
+    ry := round(uext_random.value(1, ry_max));
     SELECT
-      code,
+      USER_ID,
       name
-    INTO hcry_code, hcry_name
+    INTO hcry_code1, hcry_name1
     FROM (SELECT
             a.*,
             rownum rn
-          FROM t_ry a)
+          FROM cpsi.sys_user a)
     WHERE rn = ry;
-    ry := round(uext_random.value(1, 14));
+    ry := round(uext_random.value(1, ry_max));
+    SELECT
+      USER_ID,
+      name
+    INTO hcry_code2, hcry_name2
+    FROM (SELECT
+            a.*,
+            rownum rn
+          FROM cpsi.sys_user a)
+    WHERE rn = ry;
+    --取得核查单位
+    org := round(uext_random.value(1, org_max));
     SELECT
       ID,
       name
@@ -401,25 +424,12 @@ BEGIN
             a.*,
             rownum rn
           FROM cpsi.sys_organization a)
-    WHERE rn = ry;
+    WHERE rn = org;
     INSERT INTO v_hcrw (HCDW_XYDM, HCDW_NAME, ZFRY_CODE1, ZFRY_CODE2, ZFRY_NAME1, ZFRY_NAME2, HCFL, HCJG, JYZT, HCJGMC, DJJG, DJJGMC, ZTLX, ZZXS, QYBM, QYMC, HYFL, FR, LXDH, MAIL, JYDZ, LLR)
     VALUES
-      (o.xydm, o.name, hcry_code, NULL, hcry_name, NULL, round(uext_random.value(1, 3)), v_hcjg,
+      (o.xydm, o.name, hcry_code1, hcry_code2, hcry_name2, hcry_name2, round(uext_random.value(1, 3)), v_hcjg,
                o.jyzt, v_hcjgmc, o.djjg, o.djjgmc, o.ztlx, o.zzxs, o.qybm, o.qymc, o.hyfl, o.fr,
                                          o.lxdh, o.mail, o.jydz, o.llr);
-    ry := round(uext_random.value(1, 500));
-    SELECT
-      code,
-      name
-    INTO hcry_code, hcry_name
-    FROM (SELECT
-            a.*,
-            rownum rn
-          FROM t_ry a)
-    WHERE rn = ry;
-    UPDATE v_hcrw
-    SET zfry_code2 = hcry_code, zfry_name2 = hcry_name
-    WHERE HCDW_XYDM = o.xydm;
   END LOOP;
 END;
 /

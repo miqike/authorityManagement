@@ -16,4 +16,6 @@ public interface ScztService {
     void update(Sczt sczt);
 
     List<Sczt> query(Map<String, Object> params);
+
+    List<Map<String, Object>> queryHccl(String xydm);
 }

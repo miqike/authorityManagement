@@ -5,6 +5,7 @@ import com.kysoft.cpsi.repo.mapper.ScztMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -40,5 +41,12 @@ public class ScztServiceImpl implements ScztService {
     @Override
     public List<Sczt> query(Map<String, Object> params) {
         return scztMapper.query(params);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryHccl(String xydm) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("xydm", xydm);
+        return scztMapper.queryHccl(params);
     }
 }
