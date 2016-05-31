@@ -10,22 +10,22 @@
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
     <title>执法人员库管理</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../js/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"  id="easyuiTheme"/>
+    <link href="../js/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" id="easyuiTheme"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
-   	<script type="text/javascript" src="../js/hotkeys.min.js"></script>
-	<script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-	    
-    
+    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
+
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
-    
+
     <!-- 
     <script type="text/javascript" src="../js/myJs/common.js"></script>
     <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
@@ -51,32 +51,34 @@
         div#tabPanel .datagrid-wrap {
             border-top: 0px;
         }
-        
-        td.label {text-align:right;}
-        
+
+        td.label {
+            text-align: right;
+        }
+
         .validatebox-text {
-	        border-width: 1px;
-	        border-style: solid;
-	        
-	        line-height: 17px;
-	        padding-top: 1px;
-	        padding-left: 3px;
-	        padding-bottom: 2px;
-	        padding-right: 3px;
-	        background-attachment: scroll;
-	        background-size: auto;
-	        background-origin: padding-box;
-	        background-clip: border-box;
-	    }
-	
-	    .validatebox-invalid {
-	        border-color: ffa8a8;
-	        background-repeat: repeat-x;
-	        background-position: center bottom;
-	        background-color: fff3f3;
-	        background-image: url("");
-	    }
-        
+            border-width: 1px;
+            border-style: solid;
+
+            line-height: 17px;
+            padding-top: 1px;
+            padding-left: 3px;
+            padding-bottom: 2px;
+            padding-right: 3px;
+            background-attachment: scroll;
+            background-size: auto;
+            background-origin: padding-box;
+            background-clip: border-box;
+        }
+
+        .validatebox-invalid {
+            border-color: ffa8a8;
+            background-repeat: repeat-x;
+            background-position: center bottom;
+            background-color: fff3f3;
+            background-image: url("");
+        }
+
     </style>
 </head>
 <body style="padding:5px;">
@@ -92,13 +94,13 @@
             <table id="queryTable">
                 <tr>
                     <td>姓名</td>
-                    <td><input id="f_businessKey" class="easyui-validatebox"/></td>
+                    <td><input id="f_name" class="easyui-validatebox"/></td>
                     <td>执法(监督)类别</td>
-                    <td><input id="f_errorNo" class="easyui-validatebox"/></td>
+                    <td><input id="f_zflx" class="easyui-combobox" codeName="zflx"/></td>
                 </tr>
                 <tr>
                     <td>计划编号</td>
-                    <td><input id="f_module" class="easyui-validatebox"/></td>
+                    <td><input id="f_jhid" class="easyui-validatebox"/></td>
                     <td colspan="2" style="text-align: right ">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>

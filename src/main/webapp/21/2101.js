@@ -88,4 +88,8 @@ $(function () {
         $("#mainGrid").datagrid(options);
 
     });
+    $("#btnReset").click(function () {
+        $("#queryTable").form("clear");
+        $('#mainGrid').datagrid('loadData', []);
+    });
 });
