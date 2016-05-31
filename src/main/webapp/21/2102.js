@@ -206,7 +206,24 @@ $(function () {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=zfryMapper&queryName=query';
     $("#mainGrid").datagrid(options);
-    /*
-     */
 
+    $("#btnSearch").click(function () {
+        var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+        var selected = treeObj.getSelectedNodes();
+
+        var options = $('#mainGrid').datagrid('options');
+        options.url = '../common/query?mapper=zfryMapper&queryName=query';
+        options.queryParams = {
+            dwId: selected.length == 1 ? selected[0].id : "",
+            name: $("#f_name").val(),
+            zflx: $("#f_zflx").combobox("getValue"),
+            jhid: $("#f_jhid").val()
+        };
+        $("#mainGrid").datagrid(options);
+
+    });
+    $("#btnReset").click(function () {
+        $("#queryTable").form("clear");
+        $('#mainGrid').datagrid('loadData', []);
+    });
 });
