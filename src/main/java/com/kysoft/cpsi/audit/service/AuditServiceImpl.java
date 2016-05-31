@@ -139,8 +139,8 @@ public class AuditServiceImpl implements AuditService {
 				break;
 			case "对外提供保证担保信息":
 				
-				result.put("a", guaranteeMapper.selectByTaskId(hcrwId));
-				result.put("b", guaranteeMapper.selectByTaskId2(hcrwId));
+				/*result.put("a", guaranteeMapper.selectByTaskId(hcrwId));
+				result.put("b", guaranteeMapper.selectByTaskId2(hcrwId));*/
 				break;
 			case "行政许可取得、变更、延续信息":
 				
