@@ -87,7 +87,7 @@
         <thead>
         <tr>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
-            <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
+            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
                 formatter="formatCodeList">类型
             </th>
             <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
@@ -135,12 +135,6 @@
         <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>核查材料清单</a>
     </div>
 </div>
-<%-- </shiro:hasPermission>
-<shiro:lacksPermission name="user">
-    <script>
-        alert("没有权限，跳转");
-    </script>
-</shiro:lacksPermission> --%>
 <!-- --------弹出窗口--------------- -->
 <div id="baseWindow" class="easyui-window" title="抽检事项"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
@@ -153,44 +147,6 @@
      style="width: 750px; height: 400px; padding: 10px;">
 	<div id="docPanel"></div>
 </div>
-<!-- 
-<div id="detailWindow1" class="easyui-window" title="抽检材料清单"
-     data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 400px; padding: 10px;">
-    <div>
-        <a href="javascript:void(0);" id="btnAdd2" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-        <a href="javascript:void(0);" id="btnPre2" class="easyui-linkbutton" iconCls="icon-previous"
-           plain="true">上一个</a>
-        <a href="javascript:void(0);" id="btnNext2" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
-        <a href="javascript:void(0);" id="btnFirst2" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
-        <a href="javascript:void(0);" id="btnLast2" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
-        <a href="javascript:void(0);" id="btnDelete2" class="easyui-linkbutton" iconCls="icon-remove"
-           plain="true">删除</a>
-        <a href="javascript:void(0);" id="btnClose2" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
-    </div>
-    <div>
-        <table id="detailTable1"
-               class="easyui-datagrid"
-               data-options="collapsible:true,
-           		width: 400,height:300,
-           		offset: { width: 0, height: 0},
-				ctrlSelect:true,method:'get',
-				toolbar: '',
-           		pageSize: 20, pagination: true"
-               pagePosition="bottom">
-            <thead>
-            <tr>
-                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">序号</th>
-                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">材料名称</th>
-                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">是否必要项</th>
-                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">文件类型</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-
-</div>
- -->
 
 </body>
 </html>

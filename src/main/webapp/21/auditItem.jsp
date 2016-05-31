@@ -53,16 +53,14 @@ function funcSaveAuditItem() {
         <tr>
             <td class="label">核查事项名称</td>
             <td><input class="easyui-textbox" id="p_name" style="width:200px;" data-options=""/></td>
-            <td class="label">类型</td>
-            <td><input class="easyui-combobox" id="p_type" style="width:200px;" data-options=""
-                       codeName="hclx"/></td>
+            <td class="label">对应公示项目</td>
+            <td><input class="easyui-textbox" id="p_gsxm" style="width:200px;" data-options=""/></td>
         </tr>
         <tr>
             <td class="label">描述</td>
-            <td><input class="easyui-textbox" id="p_descript" style="width:200px;" data-options=""/>
+            <td colspan="3"><input class="easyui-textbox" id="p_descript"  data-options="width:580,"/>
             </td>
-            <td class="label">核查材料</td>
-            <td><input class="easyui-textbox" id="p_hccl" style="width:200px;" data-options=""/></td>
+            
         </tr>
         <tr>
             <td class="label">核查方法</td>
@@ -81,11 +79,12 @@ function funcSaveAuditItem() {
                        codeName="qyzzxs"/></td>
         </tr>
         <tr>
-            <td class="label">对应公示项目</td>
-            <td><input class="easyui-textbox" id="p_gsxm" style="width:200px;" data-options=""/></td>
+            
             <td class="label">是否必检项</td>
             <td><input class="easyui-combobox" id="p_sfbjxm" style="width:200px;" data-options=""
                        codeName="yesno"/></td>
+			<td class="label">核查材料</td>
+            <td><input class="easyui-textbox" id="p_hccl" style="width:200px;" data-options=""/></td>
         </tr>
         <tr>
             <td class="label">结果处理</td>
