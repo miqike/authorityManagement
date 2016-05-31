@@ -2,7 +2,7 @@
 <script>
 
 var auditTableColumnsConfig =  [[
-	{field:"xkwjmc",title:"许可文件名称",width:100},
+	{field:"xkwjmc",title:"许可文件名称",width:230},
 	{field:"yxq",title:"有效期至",width:100}
 ]];
 </script>

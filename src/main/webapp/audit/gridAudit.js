@@ -10,27 +10,32 @@ function rowStyler(index,row){
 }
 
 function doInit() {
-	var auditItem = $("#mainGrid").datagrid("getSelected");
-	var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
-	$.post("../audit/getCompareInfo", param,
-		function(response){
-			if(response.a == null || response.b == null) {
-				$.alert("首先需要加载数据");
-			} else {
-				window.dataA = response.a;
-				window.dataB = response.b;
-				$("#auditTableA").datagrid({
-					rowStyler:rowStyler,
-					columns:auditTableColumnsConfig,
-					data:response.a
-				});
-				$("#auditTableB").datagrid({
-					rowStyler:rowStyler,
-					columns:auditTableColumnsConfig,
-					data:response.b
-				});
-			}
-		}); 
+	var auditTask = $('#grid1').datagrid('getSelected');
+	if(auditTask.dataLoaded == 0) {
+		$.alert("首先需要加载数据");
+	} else {
+		var auditItem = $("#mainGrid").datagrid("getSelected");
+		var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
+		$.post("../audit/getCompareInfo", param,
+			function(response){
+				if(response.a == null ) {
+					$.alert("未找到公示数据");
+				} else {
+					window.dataA = response.a;
+					window.dataB = response.b;
+					$("#auditTableA").datagrid({
+						rowStyler:rowStyler,
+						columns:auditTableColumnsConfig,
+						data:response.a
+					});
+					$("#auditTableB").datagrid({
+						rowStyler:rowStyler,
+						columns:auditTableColumnsConfig,
+						data:response.b
+					});
+				}
+			}); 
+	}
 }
 
 function autoMatch() {

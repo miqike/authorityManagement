@@ -10,15 +10,6 @@ var auditTableColumnsConfig =  [[
 	{field:"bzqj",title:"保证的期间",width:100},
 	{field:"bzfs",title:"保证的方式",width:100},
 	{field:"bzdbfw",title:"保证担保的范围",width:100}
-	
-	XZCFJDSWH VARCHAR2(20)                  行政处罚决定书文号 
-	WFLX INTEGER                  违法行为类型 
-	XZCFNR VARCHAR2(600) Y               行政处罚内容 
-	CFJG  VARCHAR2(500) Y               作出行政处罚决定机关名称 
-	CFRQ DATE     Y               作出行政处罚决定日期 
-	BZ      VARCHAR2(500) Y               备注      
-	GSSJ  DATE     Y               公示时间 
-	
 ]];
 </script>
 

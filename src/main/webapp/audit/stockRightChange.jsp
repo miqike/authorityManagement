@@ -5,7 +5,7 @@ var auditTableColumnsConfig =  [[
 	{field:"gd",title:"股东",width:100},
 	{field:"bgqGqbl",title:"变更前股权比例",width:100},
 	{field:"bghGqbl",title:"变更后股权比例",width:100},
-	{field:"bgrq",title:"股权变更日期",width:100}
+	{field:"bgrq",title:"股权变更日期",width:100, formatter:formatDate}
 ]];
 </script>
 

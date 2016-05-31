@@ -14,7 +14,7 @@
 		<tr>
 			<td colspan="2">
 				<!-- <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">验证邮箱是否存在</a> -->
-        		<a href="#" id="btnSentVerifyMail" class="easyui-linkbutton" iconCls="icon2 r5_c3" plain="true">发送验证邮件</a>
+        		<a href="#" id="btnSentVerifyMail" class="easyui-linkbutton" iconCls="icon2 r10_c10" plain="true">发送验证邮件</a>
         		<a href="#" id="btnCloseAuditWindow" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
 			</td>
 		</tr>

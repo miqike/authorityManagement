@@ -147,13 +147,13 @@
     <select id="selectByTaskId" parameterType="java.lang.String" resultMap="BaseResultMap">
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>
-        from T_NB_DWDB
+        from T_NB_XZXK
         where HCRW_ID = #{taskId,jdbcType=VARCHAR}
     </select>
     <select id="selectByTaskId2" parameterType="java.lang.String" resultMap="BaseResultMap">
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>
-        from T_NB_BD_DWDB
+        from T_NB_BD_XZXK
         where HCRW_ID = #{taskId,jdbcType=VARCHAR}
     </select>
 

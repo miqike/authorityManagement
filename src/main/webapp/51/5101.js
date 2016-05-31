@@ -70,9 +70,13 @@ function grid1ClickHandler() {
     $('#btnSendHcgzs').linkbutton("enable");
     $('#btnSendZllxtzs').linkbutton("enable");
     $('#btnSendQyzshch').linkbutton("enable");
-    $('#btnPullData').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
 
+    if(hcrw.dataLoaded == 0) {
+		$('#btnPullData').linkbutton("enable");
+	} else {
+		$('#btnPullData').linkbutton("disable");
+	}
     //加载右侧grid
     $.ajax({
         url: "../common/query?mapper=hcsxjgMapper&queryName=queryForTask",
@@ -117,27 +121,29 @@ function refreshMainGrid() {
 }
 
 function funcBtnAudit() {
-    var auditItem = $("#mainGrid").datagrid("getSelected");
-    if (auditItem.page == null) {
-        $.messager.alert("未配置比对页面")
-    } else {
-        showModalDialog("auditWindow");
-        $("#auditContent").panel({
-            href: '../audit/' + auditItem.page + '.jsp',
-            onLoad: function () {
-                doInit();
-            }
-        });
-        if ($("#auditLog").length == 0) {
-            $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
-        }
-        $("#auditLog").panel({
-            href: '../audit/log.jsp',
-            onLoad: function () {
-                //doInit();
-            }
-        });
-    }
+	if(!$(this).linkbutton('options').disabled) {
+	    var auditItem = $("#mainGrid").datagrid("getSelected");
+	    if (auditItem.page == null) {
+	        $.messager.alert("未配置比对页面")
+	    } else {
+	        showModalDialog("auditWindow");
+	        $("#auditContent").panel({
+	            href: '../audit/' + auditItem.page + '.jsp',
+	            onLoad: function () {
+	                doInit();
+	            }
+	        });
+	        if ($("#auditLog").length == 0) {
+	            $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
+	        }
+	        $("#auditLog").panel({
+	            href: '../audit/log.jsp',
+	            onLoad: function () {
+	                //doInit();
+	            }
+	        });
+	    }
+	}
 }
 
 function closeAuditWindow() {
@@ -181,13 +187,15 @@ function clearInput() {
 }
 
 function funcBtnPullData() {
-    var row = $("#grid1").datagrid("getSelected");
-    $.getJSON("./" + row.id + "/pull", null, function (response) {
-        if (response.status == SUCCESS) {
-            $.messager.alert("提示", "数据加载成功" + response.message, 'info');
-            refreshMainGrid();
-        }
-    });
+	if(!$(this).linkbutton('options').disabled) {
+	    var row = $("#grid1").datagrid("getSelected");
+	    $.getJSON("./" + row.id + "/pull", null, function (response) {
+	        if (response.status == SUCCESS) {
+	            $.messager.alert("提示", response.message, 'info');
+	            refreshMainGrid();
+	        }
+	    });
+	}
 }
 
 function funcBtnViewDocument() {
