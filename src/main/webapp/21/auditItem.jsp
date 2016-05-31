@@ -2,8 +2,6 @@
 <script>
 function doInit(operation) {
 	$.codeListLoader.parse($("#baseInfo"));
-	$("#btnSaveAuditItem").click(funcSaveAuditItem);
-	
 	if(operation == "edit") {
     	$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
 	} else {
@@ -20,9 +18,6 @@ function docGridClickRowHandler() {
 	}
 }
 
-function funcSaveAuditItem() {
-	
-}
 </script>
 <!-- 
 <div>
@@ -37,42 +32,36 @@ function funcSaveAuditItem() {
 	<a href="javascript:void(0);" id="btnClose1" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
 </div> 
 -->
-<div id="baseInfo">
+<div id="baseInfo" style="padding:10px">
     <div style="display: none">
-        <input class="easyui-textbox" id="p_id" style="width:200px;"/>
+        <input class="easyui-validatebox" id="p_id" style="width:200px;"/>
     </div>
 
     <table width="100%" id="baseTable">
         <tr>
-            <td>
-                <a href="javascript:void(0);" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
-                   plain="true">保存</a>
-            </td>
-            <td colspan="3"></td>
-        </tr>
-        <tr>
             <td class="label">核查事项名称</td>
-            <td><input class="easyui-textbox" id="p_name" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_name" style="width:192px;" data-options=""/></td>
             <td class="label">对应公示项目</td>
-            <td><input class="easyui-textbox" id="p_gsxm" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_gsxm" style="width:192px;" data-options=""/></td>
         </tr>
         <tr>
             <td class="label">描述</td>
-            <td colspan="3"><input class="easyui-textbox" id="p_descript"  data-options="width:580,"/>
+            <td colspan="3">
+            	<input class="easyui-validatebox" id="p_descript" style="width:573px;" data-options=""/>
             </td>
             
         </tr>
         <tr>
             <td class="label">核查方法</td>
-            <td><input class="easyui-combobox" id="p_hcff" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_hcff" style="width:200px;" data-options="panelHeight:100"
                        codeName="hcfs"/></td>
             <td class="label">核查信息分类</td>
-            <td><input class="easyui-combobox" id="p_hcxxfl" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_hcxxfl" style="width:200px;" data-options="panelHeight:100"
                        codeName="hcxxfl"/></td>
         </tr>
         <tr>
             <td class="label">核查类型</td>
-            <td><input class="easyui-combobox" id="p_hclx" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_hclx" style="width:200px;" data-options="panelHeight:100"
                        codeName="hclx"/></td>
             <td class="label">企业组织形式</td>
             <td><input class="easyui-combobox" id="p_qyzzxs" style="width:200px;" data-options=""
@@ -81,14 +70,14 @@ function funcSaveAuditItem() {
         <tr>
             
             <td class="label">是否必检项</td>
-            <td><input class="easyui-combobox" id="p_sfbjxm" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_sfbjxm" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/></td>
 			<td class="label">核查材料</td>
-            <td><input class="easyui-textbox" id="p_hccl" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_hccl" style="width:192px;" data-options=""/></td>
         </tr>
         <tr>
             <td class="label">结果处理</td>
-            <td><input class="easyui-combobox" id="p_jgcl" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_jgcl" style="width:200px;" data-options="panelHeight:100"
                        codeName="gsjg"/></td>
             <td class="label">登记信息和公示信息比对</td>
             <td><input class="easyui-combobox" id="p_xxdb" style="width:200px;" data-options=""
@@ -96,31 +85,31 @@ function funcSaveAuditItem() {
         </tr>
         <tr>
             <td class="label">比对信息来源</td>
-            <td><input class="easyui-textbox" id="p_dbxxly" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_dbxxly" style="width:192px;" data-options=""/></td>
             <td class="label">是否需要实地核查</td>
-            <td><input class="easyui-combobox" id="p_sfxysdhc" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_sfxysdhc" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/>
             </td>
         </tr>
         <tr>
             <td class="label">是否需要人工核对</td>
-            <td><input class="easyui-combobox" id="p_sfxyrghd" style="width:200px;" data-options=""
+            <td><input class="easyui-combobox" id="p_sfxyrghd" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/>
             </td>
             <td class="label">改正期限</td>
-            <td><input class="easyui-numberbox" id="p_gzqx" data-options="min:0,precision:0"
-                       style="width:200px;"/></td>
+            <td><input class="easyui-numberspinner" id="p_gzqx" data-options="min:0,precision:0"
+                       style="width:180px;"/><span style="margin-left:6px;">天</span></td>
         </tr>
         <tr>
             <td class="label">注销日期</td>
             <td><input class="easyui-datebox" id="p_zxrq" style="width:200px;" data-options=""/></td>
             <td class="label">注销说明</td>
-            <td><input class="easyui-textbox" id="p_zxsm" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_zxsm" style="width:192px;" data-options=""/></td>
         </tr>
         <tr>
             <td class="label" style="vertical-align:top">核查方法说明</td>
-            <td colspan="3"><input class="easyui-textbox" id="p_hcffsm" 
-                                   data-options="multiline:true,width:580,height:70"/></td>
+            <td colspan="3">
+            	<textarea id="p_hcffsm" cols="70" rows="2" style="width:580"></textarea></td>
         </tr>
     </table>
 </div>

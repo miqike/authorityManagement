@@ -12,29 +12,41 @@
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-
+    
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <!-- 
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    -->
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script> 
-    <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
+	<script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
     <script type="text/javascript" src="../js/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="./2103.js"></script>
-    <style>
+<style type="text/css">
+   .validatebox-text {
+        border-width: 1px;
+        border-style: solid;
+        line-height: 17px;
+        padding-top: 1px;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        padding-right: 3px;
+        background-attachment: scroll;
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+    }
+
+    .validatebox-invalid {
+        border-color: ffa8a8;
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-color: fff3f3;
+        background-image: url("");
+    }
+       
         body {
             margin: 0;
             padding: 0;
@@ -52,7 +64,6 @@
     </style>
 </head>
 <body style="padding:5px;">
-<%-- <shiro:hasPermission name="user"> --%>
 <div id="panel" class="easyui-panel" title="">
 
     <div style="padding: 5px 10px 0px 10px">
@@ -64,7 +75,7 @@
                 <td>核查信息分类</td>
                 <td><input id="f_errorNo" class="easyui-combobox" codeName="hcxxfl" data-options="panelHeight:60"/></td>
                 <td>公示项目</td>
-                <td><input id="f_module" class="easyui-textbox"/></td>
+                <td><input id="f_module" class="easyui-validatebox"/></td>
                 <td colspan="2" style="text-align:right">
                     <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                        iconCls="icon-search">查找</a>
@@ -74,9 +85,10 @@
             </tr>
         </table>
     </div>
-    <table id="mainGrid"
-           class="easyui-datagrid"
-           data-options="collapsible:true,onClickRow:mainGridButtonHandler,
+    <table id="mainGrid" class="easyui-datagrid"
+           data-options="collapsible:true,
+           		singleSelect: true,
+           		onClickRow:mainGridButtonHandler,
            		width: 400,height:300,
            		offset: { width: 0, height: 0},
 				ctrlSelect:true,method:'get',
@@ -88,15 +100,15 @@
         <tr>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
             <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
-                formatter="formatCodeList">类型
+                formatter="formatCodeList" styler="hclxStyler">类型
             </th>
             <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
             <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">核查材料</th>
             <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
-                formatter="formatCodeList">核查方法
+                formatter="formatCodeList" styler="hcffStyler">核查方法
             </th>
             <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
-                formatter="formatCodeList">核查信息分类
+                formatter="formatCodeList" styler="hcxxflStyler">核查信息分类
             </th>
             <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
@@ -136,11 +148,6 @@
     </div>
 </div>
 <!-- --------弹出窗口--------------- -->
-<div id="baseWindow" class="easyui-window" title="抽检事项"
-     data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 400px; padding: 10px;">
-     <div id="basePanel"
-</div>
 
 <div id="docWindow" class="easyui-window" title="抽检材料清单"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
