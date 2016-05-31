@@ -1,8 +1,3 @@
-<script>
-	if (self != top) {  
-		window.top.location = window.location;
-	}
-</script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,15 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="./css/login.css" />
 	
-	<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-	<script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-	<script type="text/javascript" src="js/husky.common.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
-<!--[if lt IE 10]>
-	<script type="text/javascript" src="js/PIE.js"></script>
-<![endif]-->
+	
     <style type="text/css">
         input {
             width:160px;
@@ -28,7 +15,7 @@
 	    .validatebox-text {
 	        border-width: 1px;
 	        border-style: solid;
-	        height: 24px;
+	        height: 20px;
 	        line-height: 17px;
 	        padding-top: 1px;
 	        padding-left: 3px;
@@ -63,7 +50,7 @@
 						<table>
 							<tr>
 								<td class='br'>用户名</td>
-								<td><input class="easyui-validatebox" id="userId"
+								<td><input class="easyui-validatebox" id="userId" 
 									data-options="required:true,onChange:checkUserExist,prompt:'用户名',iconCls:'icon-man',iconWidth:20" tabindex="1" /></td>
 							</tr>
 							<tr>
@@ -103,4 +90,20 @@
 		<div id="footer">版权所有 CopyRight 2013. 科艺电子. Inc. All Rights Reserved. <br/>技术支持：1332555885</div>
 	</div>
 </body>
+<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/plugins/plusAsTab/emulatetab.joelpurra.js"></script>
+<script type="text/javascript" src="./js/plugins/plusAsTab/plusastab.joelpurra.js"></script>
+<script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+<script type="text/javascript" src="js/husky.common.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script>
+	if (self != top) {  
+		window.top.location = window.location;
+	}
+</script>
+<!--[if lt IE 10]>
+	<script type="text/javascript" src="js/PIE.js"></script>
+<![endif]-->
 </html>
