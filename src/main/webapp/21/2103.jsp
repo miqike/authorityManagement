@@ -12,8 +12,8 @@
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <link href="../js/jeasyui-extensions-release/jeasyui.extensions.min.css" rel="stylesheet" >
     
-    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
 	<script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>

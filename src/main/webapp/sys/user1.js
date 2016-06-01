@@ -26,7 +26,7 @@ function mainGridButtonHandler() {
 function mainGridDblClickHandler(index,row) {
 	window.selected = index;
 	$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-	$("#p_userId").textbox("setValue", row.userId).textbox("readonly", "true");
+	/*$("#p_userId").val("setValue", row.userId).textbox("readonly", "true");
 	$("#p_name").textbox("setValue", row.name);
 	$("#p_orgId").textbox("setValue", row.orgId);
 	$("#p_orgType").combobox('setValue', row.orgType);
@@ -38,11 +38,37 @@ function mainGridDblClickHandler(index,row) {
 	$("#p_email").textbox("setValue", row.email);
 	showModalDialog("userWindow");
 	$("#btnEditOrSave").parent().css("text-align", " left");
-	$('#userWindow input.easyui-validatebox').validatebox();
+	$('#userWindow input.easyui-validatebox').validatebox();*/
 
 	//$("#tg").parent().find("input:checkbox").attr("disabled", true);
 	//$("#grid2").parent().find("input:checkbox").attr("disabled", true);
-	$('#tabPanel').tabs('select', 0);
+	//$('#tabPanel').tabs('select', 0);
+	
+	$.easyui.showDialog({
+		title : "用户信息",
+		width : 750,
+		height : 400,
+		topMost : false,
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./userForm.jsp",
+		onLoad : function() {
+			window.operateType="edit";
+			//$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+			doInit("edit");
+		},
+		onSave: function (d) {
+            var validate = d.form("validate");
+            if (validate) {
+                save();
+            } else {
+                return false;
+            }
+        }
+	});
+	
 }
 
 function grid3ButtonHandler() {

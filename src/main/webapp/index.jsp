@@ -13,8 +13,7 @@
 <html>
 <head>
     <!--[if lt IE 7]>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1"/>
-    <![endif]-->
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/><![endif]-->
     <meta http-equiv="X-UA-Compatible" content="IE=100" />
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -144,19 +143,13 @@
             </tr>
         </table>
     </div>
-    <div class="easyui-tabs" id="tabs" data-options="fit:true,tabPosition:'top',tools:'#mainTabs_tools',onSelect:tabsOnSelectHandler,onContextMenu:tabOnContextMenu">
-        <div title="欢迎页" data-options="cache:true" >
-            <iframe id="welcome" scrolling="no" frameborder="0" style="width: 100%; height: 100%;"></iframe>
-        </div>
-    </div>
+    <div class="easyui-tabs" id="tabs" data-options="fit:true,tabPosition:'top',tools:'#mainTabs_tools',onSelect:tabsOnSelectHandler,onContextMenu:tabOnContextMenu"></div>
 </div>
 
 <div id="tabsMenu" style="width: 120px;">
     <div name="reload" data-options="iconCls:'icon-reload'">刷新选项卡</div>
     <div name="close" data-options="iconCls:'icon-standard-application-form-delete'">关闭选项卡</div>
     <div name="closeOther" data-options="iconCls:'icon-standard-cancel'">关闭其他选项卡</div>
-    <!-- <div name="closeLeft" data-options="iconCls:'icon-standard-tab-close-left'">关闭左侧选项卡</div>
-    <div name="closeRight" data-options="iconCls:'icon-standard-tab-close-right'">关闭右侧选项卡</div> -->
     <div name="closeAll" data-options="iconCls:'icon-standard-cross'">关闭所有选项卡</div>
 </div>
 
