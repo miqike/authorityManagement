@@ -57,7 +57,9 @@
                 /user/*/exist = anon
                 /jcaptcha* = anon
                 /captcha* = anon
+                <!-- 企业用户上传 -->
                 /docUpload/**/* = anon
+                /common/query = anon
                  
                 /login = authc,kickout
                 /activiti-rest = sysUser,activiti-rest

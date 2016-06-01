@@ -39,7 +39,7 @@ function formatUploadButton(value, rowData, rowIndex) {
 $(function () {
 
     var options = $('#mainGrid').datagrid('options');
-    /*options.url = '../common/query?mapper=scztMapper&queryName=queryHccl';*/
+    options.url = '../common/query?mapper=scztMapper&queryName=queryHccl';
     options.queryParams = {
         xydm: window.xydm,
         nd: 2016
