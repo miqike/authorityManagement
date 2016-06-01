@@ -30,6 +30,16 @@
                         title: '提示',
                         msg: "核查材料保存成功"
                     });
+
+                    var options = $('#mainGrid').datagrid('options');
+                    options.url = '../common/query?mapper=scztMapper&queryName=queryHccl';
+                    options.queryParams = {
+                        xydm: window.xydm,
+                        nd: $("#d_hcjhnd").textbox("getValue")
+                    };
+                    $("#mainGrid").datagrid(options);
+
+                    $("#documentWindow").window("close");
                 } else {
                     $.messager.alert('核查材料保存', response.message, 'error');
                 }

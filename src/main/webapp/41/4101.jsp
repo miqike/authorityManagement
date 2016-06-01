@@ -69,7 +69,7 @@
             <th data-options="field:'HCDW_NAME',halign:'center',align:'left'" sortable="true" width="260">企业名称</th>
             <th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="300">核查事项名称</th>
             <th data-options="field:'HCCL_NAME',halign:'center',align:'left'" sortable="true" width="300">核查材料名称</th>
-            <th data-options="field:'HCSX_ID',halign:'center',align:'center'" sortable="true" width="100"
+            <th data-options="field:'MONGO_ID',halign:'center',align:'center'" sortable="true" width="100"
                 formatter="formatUploadButton">操作
             </th>
         </tr>
