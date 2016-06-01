@@ -12,27 +12,19 @@
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <!--
-        <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-     -->
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
 
-    <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
+    <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
+    <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+        
     <script type="text/javascript" src="./4101.js"></script>
     <style>
         body {
