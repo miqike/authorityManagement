@@ -58,7 +58,6 @@
                 /jcaptcha* = anon
                 /captcha* = anon
                 /docUpload/**/* = anon
-                /41/4101.jsp = anon
                  
                 /login = authc,kickout
                 /activiti-rest = sysUser,activiti-rest

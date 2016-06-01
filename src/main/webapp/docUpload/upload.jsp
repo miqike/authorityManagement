@@ -132,7 +132,7 @@ function login() {
 	if(!$("#btnLogin").linkbutton('options').disabled && $('#loginForm').form('validate')){
 		$.post("./" + $("#f_xydm").val() + "/login",  $.easyuiExtendObj.drillDownForm('loginForm'), function(response){
 			if(response.status == SUCCESS){
-				window.location="../41/4101.jsp";
+				window.location="./4101.jsp";
 			} else {
 				$("#loginMessage").html(response.message).show();
 				refreshCaptchaImg();
@@ -150,7 +150,7 @@ function sendToken(){
 				$("#btnLogin").linkbutton("disable");
 			} else if (response.status == SUCCESS) {
 				$("#f_tokenId").val(response.tokenId);
-				$.alert(response.message);
+				$.alert("动态口令已经发送到指定手机上,请注意查收");
 			}
 		});
 	}
