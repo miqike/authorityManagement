@@ -1,8 +1,11 @@
-<%--jsp文件的存储格式--%>
-<%--<%@ page language="java" pageEncoding="UTF-8"%>--%>
-<%--解码格式--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%
+	if(session.getAttribute("xydm") == null || session.getAttribute("token") == null) {
+		System.out.println(session.getAttribute("xydm"));
+		System.out.println(session.getAttribute("token"));
+		response.sendRedirect("../upload.jsp"); 
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +13,7 @@
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
     <title>企业抽查资料上报</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/metro-blue/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
@@ -33,6 +36,9 @@
     <script type="text/javascript" src="../js/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+    <script>
+    	window.xydm = "${xydm}";
+    </script>
     <script type="text/javascript" src="./4101.js"></script>
     <style>
         body {

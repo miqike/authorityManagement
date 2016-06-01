@@ -18,4 +18,10 @@ public interface ScztService {
     List<Sczt> query(Map<String, Object> params);
 
     List<Map<String, Object>> queryHccl(String xydm);
+
+	Sczt loadByXydm(String xydm);
+
+	String sendToken(String xydm, String mobile);
+
+	void login(String xydm, String tokenId, String token);
 }
