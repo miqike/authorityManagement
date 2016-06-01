@@ -20,8 +20,8 @@
         <property name="authorizationCachingEnabled" value="false"/>
     </bean>
 
-    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager" />
-	
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="${shiro.login.url}"/>
@@ -44,7 +44,7 @@
                 /login.html = anon
 
                 /css/** = anon
-            	/js/** = anon
+                /js/** = anon
                 /images/** = anon
                 /index.jsp = authc,sysUser
                 /**/*.html = anon
@@ -59,44 +59,47 @@
                 /captcha* = anon
                 <!-- 企业用户上传 -->
                 /docUpload/**/* = anon
+                /ajaxUpload* = anon
+                /display* = anon
+                /51/hcclmx* = anon
                 /common/query = anon
-                 
+
                 /login = authc,kickout
                 /activiti-rest = sysUser,activiti-rest
                 /logout = logout
-                
+
                 /** = forceLogout,kickout,sysUser,perms
                 <!-- /** = forceLogout,kickout,sysUser,onlineSession,perms -->
                 <!-- /** = forceLogout,sysUser,onlineSession,perms -->
             </value>
         </property>
     </bean>
-	
+
     <!-- filter -->
     <!--替换默认的form 验证过滤器-->
-    <bean id="authenticationFilter" class="net.sf.husky.shiro.web.filter.authc.CustomAuthenticationFilter" />
+    <bean id="authenticationFilter" class="net.sf.husky.shiro.web.filter.authc.CustomAuthenticationFilter"/>
 
     <!-- 退出登录过滤器 -->
-    <bean id="logoutFilter" class="net.sf.husky.shiro.web.filter.authc.LogoutFilter" >
-    	<property name="cacheManager" ref="shiroCacheManager" />
+    <bean id="logoutFilter" class="net.sf.husky.shiro.web.filter.authc.LogoutFilter">
+        <property name="cacheManager" ref="shiroCacheManager"/>
     </bean>
-	
-	<!-- 强制退出过滤器 ,检查Session中的强制退出标志-->
-    <bean id="forceLogoutFilter" class="net.sf.husky.shiro.web.filter.ForceLogoutFilter" />
 
-	<!-- 同一账号同时登录人数控制过滤器 -->
-    <bean id="kickoutSessionControlFilter" class="net.sf.husky.shiro.web.filter.authc.KickoutSessionControlFilter" >
-    	<property name="cacheManager" ref="shiroCacheManager" />
+    <!-- 强制退出过滤器 ,检查Session中的强制退出标志-->
+    <bean id="forceLogoutFilter" class="net.sf.husky.shiro.web.filter.ForceLogoutFilter"/>
+
+    <!-- 同一账号同时登录人数控制过滤器 -->
+    <bean id="kickoutSessionControlFilter" class="net.sf.husky.shiro.web.filter.authc.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="shiroCacheManager"/>
     </bean>
 
     <!--提取系统用户（User） 验证用户是否合法的过滤器（如是否删除了 是否锁定了）-->
-    <bean id="sysUserFilter" class="net.sf.husky.shiro.web.filter.SysUserFilter" />
-    <bean id="activitiRestFilter" class="net.sf.husky.shiro.web.filter.ActivitiRestFilter" />
+    <bean id="sysUserFilter" class="net.sf.husky.shiro.web.filter.SysUserFilter"/>
+    <bean id="activitiRestFilter" class="net.sf.husky.shiro.web.filter.ActivitiRestFilter"/>
 
-	<!-- <bean id="jCaptchaValidateFilter" class="org.apache.shiro.web.filter.jcaptcha.JCaptchaValidateFilter"> 
-		<property name="jcaptchaEbabled" value="${shiro.jcaptcha.enable}"/> <property 
-		name="jcaptchaParam" value="jcaptchaCode"/> <property name="jcapatchaErrorUrl" 
-		value="${shiro.jcaptcha.error.url}"/> </bean> -->
+    <!-- <bean id="jCaptchaValidateFilter" class="org.apache.shiro.web.filter.jcaptcha.JCaptchaValidateFilter">
+        <property name="jcaptchaEbabled" value="${shiro.jcaptcha.enable}"/> <property
+        name="jcaptchaParam" value="jcaptchaCode"/> <property name="jcapatchaErrorUrl"
+        value="${shiro.jcaptcha.error.url}"/> </bean> -->
 
     <!-- aop and other-->
     <!-- For simplest integration, so that all SecurityUtils.* methods work in all cases, -->
@@ -109,10 +112,10 @@
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
-	<bean id="shiroCacheManager" class="net.sf.husky.shiro.cache.SpringCacheManagerWrapper">
+    <bean id="shiroCacheManager" class="net.sf.husky.shiro.cache.SpringCacheManagerWrapper">
         <property name="cacheManager" ref="springCacheManager"/>
-    </bean> 
-    
+    </bean>
+
     <bean class="net.sf.husky.shiro.web.listener.HuskySessionListener"/>
-    
+
 </beans>
