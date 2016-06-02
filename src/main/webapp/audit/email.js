@@ -1,11 +1,13 @@
-
-
 function doInit() {
-	//console.log("doinit..........")
+	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
+	$("#_mail_").text(auditItem.qygsnr);
+	$("#_mail_").text("coralsea_li@yeah.net");
+	$("#btnSentVerifyMail").click(sentVerifyMail);
+	$("#btnCloseAuditWindow").click(closeAuditWindow);
 }
 
 function sentVerifyMail() {
-	var auditItem = $("#mainGrid").datagrid("getSelected");
+	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
 	$.post("../audit/sentVerifyMail", {
 		 hcrwId: auditItem.hcrwId,
 		 hcsxId: auditItem.hcsxId,
@@ -17,16 +19,9 @@ function sentVerifyMail() {
 				title: '提示',
 				msg: response.message
 			});
+			$('#annualAuditItemGrid').datagrid('reload')
 		} else {
 			$.messager.alert('错误', response.message, 'error');
 		}
      });
 }
-
-$(function() {
-	var auditItem = $("#mainGrid").datagrid("getSelected");
-	$("#_mail_").text(auditItem.qygsnr);
-	$("#_mail_").text("coralsea_li@yeah.net");
-	$("#btnSentVerifyMail").click(sentVerifyMail);
-	$("#btnCloseAuditWindow").click(closeAuditWindow);
-});

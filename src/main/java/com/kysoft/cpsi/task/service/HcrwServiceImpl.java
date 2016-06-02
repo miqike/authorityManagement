@@ -36,6 +36,7 @@ public class HcrwServiceImpl implements HcrwService {
 			hcsxjg.setName(hcsx.getName());
 			hcsxjg.setHcfs(hcsx.getHcff());
 			hcsxjg.setPage(hcsx.getPage());
+			hcsxjg.setHclx(hcsx.getHclx());
 			hcsxjg.setHczt(1);
 			hcsxjgMapper.insert(hcsxjg);
 		}
@@ -46,11 +47,17 @@ public class HcrwServiceImpl implements HcrwService {
 		Map<String, Object> param = Maps.newHashMap();
 		param.put("hcrwId", hcrwId);
 		hcrwMapper.pullData(param);
+		hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
 	}
 
 	@Override
 	public List<Map> getHcsxCode(String hcrwId) {
 		return hcsxMapper.getHcsxCode(hcrwId);
+	}
+
+	@Override
+	public Integer getTaskInitStatus(String hcrwId) {
+		return hcsxjgMapper.selectCountByTaskId(hcrwId);
 	}
 
 

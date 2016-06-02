@@ -3,7 +3,7 @@ function doInit() {
 }
 
 $(function () {
-    var auditItem = $("#mainGrid").datagrid("getSelected");
+    var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     var qy = $("#grid1").datagrid("getSelected");
 
     $("#_hcrwId_").text(auditItem.hcrwId);
@@ -27,7 +27,7 @@ $(function () {
                     title: '提示',
                     msg: response.message
                 });
-                $("#mainGrid").datagrid("reload");
+                $("#annualAuditItemGrid").datagrid("reload");
                 closeAuditWindow();
             } else {
                 $.messager.alert('错误', response.message, 'error');
@@ -47,7 +47,7 @@ $(function () {
                     title: '提示',
                     msg: response.message
                 });
-                $("#mainGrid").datagrid("reload");
+                $("#annualAuditItemGrid").datagrid("reload");
                 closeAuditWindow();
             } else {
                 $.messager.alert('错误', response.message, 'error');

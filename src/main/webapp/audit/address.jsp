@@ -34,7 +34,7 @@
             <td colspan="2">
                 <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
                 <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">取消</a>
+                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
             </td>
         </tr>
     </table>
@@ -44,9 +44,6 @@
 	<div id="map" style="margin-top:5px;width: 680px;height:400px;overflow: hidden;margin:0;font-family:"微软雅黑";"></div>
 </div>
 <script>
-	function doInit() {
-	}
-
 	function showInMap(elem) {
 		myGeo.getPoint($(elem).text(), function(point){
 			if (point) {

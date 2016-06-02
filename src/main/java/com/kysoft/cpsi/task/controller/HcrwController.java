@@ -22,6 +22,23 @@ public class HcrwController extends BaseController {
 	@Resource
 	HcrwService hcrwService;
 
+	@RequestMapping(value = "/{hcrwId}/initStatus", method = RequestMethod.GET)
+	public Map<String, Object> getHcrwInitStatus(@PathVariable String hcrwId) {
+		Map<String, Object> result = Maps.newHashMap();
+		
+		try {
+			Integer count = hcrwService.getTaskInitStatus(hcrwId);
+			result.put(MESSAGE, "核查列表项初始成功");
+			result.put(STATUS, SUCCESS);
+			result.put(DATA, count);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查列表项初始失败");
+		}
+		return result;
+	}
+	
 	@RequestMapping(value = "/{hcrwId}/init", method = RequestMethod.POST)
 	public Map<String, Object> init(@PathVariable String hcrwId) {
 		Map<String, Object> result = Maps.newHashMap();

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<script type="text/javascript" src="../audit/youzhengbianma.js"></script>
+<script type="text/javascript" src="../audit/postcode.js"></script>
 <div>
     核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
@@ -28,7 +28,7 @@
             <td colspan="2">
                 <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
                 <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">取消</a>
+                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
             </td>
         </tr>
     </table>

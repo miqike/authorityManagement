@@ -3,7 +3,7 @@ function doInit() {
 	if(auditTask.dataLoaded == 0) {
 		$.alert("首先需要加载数据");
 	} else {
-		var auditItem = $("#mainGrid").datagrid("getSelected");
+		var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
 		var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
 		$.post("../audit/getCompareInfo", param,
 			function(response){
@@ -48,7 +48,7 @@ function resultStyler(val, row) {
 }
 
 $(function () {
-    var auditItem = $("#mainGrid").datagrid("getSelected");
+    var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     var qy = $("#grid1").datagrid("getSelected");
 
     $("#_hcrwId_").text(auditItem.hcrwId);
@@ -72,7 +72,7 @@ $(function () {
                     title: '提示',
                     msg: response.message
                 });
-                $("#mainGrid").datagrid("reload");
+                $("#annualAuditItemGrid").datagrid("reload");
                 closeAuditWindow();
             } else {
                 $.messager.alert('错误', response.message, 'error');
@@ -92,7 +92,7 @@ $(function () {
                     title: '提示',
                     msg: response.message
                 });
-                $("#mainGrid").datagrid("reload");
+                $("#annualAuditItemGrid").datagrid("reload");
                 closeAuditWindow();
             } else {
                 $.messager.alert('错误', response.message, 'error');

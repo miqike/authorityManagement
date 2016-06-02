@@ -84,7 +84,7 @@ public class ScztServiceImpl implements ScztService {
 		loginToken.setMobile(mobile);
 		loginToken.setToken(getToken(sczt));
 		loginTokenMapper.insert(loginToken);
-		//smsService.sendSMS(mobile, "公示核查系统临时验证码: " + loginToken.getToken());
+		smsService.sendSMS(mobile, "公示核查系统临时验证码: " + loginToken.getToken());
 		return loginToken.getId();
 	}
 

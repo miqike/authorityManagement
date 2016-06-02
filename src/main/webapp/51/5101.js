@@ -8,35 +8,6 @@ function expandHandler() {
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
 
-function mainGridButtonHandler() {
-    if ($('#mainGrid').datagrid('getSelected') != null) {
-        $('#btnAudit').linkbutton('enable');
-    } else {
-        $('#btnAudit').linkbutton('disable');
-    }
-}
-
-function mainGridDblClickHandler(index, row) {
-    window.selected = index;
-    $('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-    $("#p_userId").textbox("setValue", row.userId).textbox("readonly", "true");
-    $("#p_name").textbox("setValue", row.name);
-    $("#p_orgId").textbox("setValue", row.orgId);
-    $("#p_orgType").combobox('setValue', row.orgType);
-    $("#p_orgName").textbox('setValue', row.orgName);
-    $("#p_managerId").textbox('setValue', row.managerId);
-    $("#p_managerName").textbox('setValue', row.managerName);
-    $("#p_status").combobox("setValue", row.status);
-    $("#p_mobile").textbox("setValue", row.mobile);
-    $("#p_email").textbox("setValue", row.email);
-    showModalDialog("userWindow");
-    $("#btnEditOrSave").parent().css("text-align", " left");
-    $('#userWindow input.easyui-validatebox').validatebox();
-
-    //$("#tg").parent().find("input:checkbox").attr("disabled", true);
-    //$("#grid2").parent().find("input:checkbox").attr("disabled", true);
-    $('#tabPanel').tabs('select', 0);
-}
 
 
 function poiExport() {
@@ -77,98 +48,20 @@ function grid1ClickHandler() {
 	} else {
 		$('#btnPullData').linkbutton("disable");
 	}
-    //加载右侧grid
-    $.ajax({
-        url: "../common/query?mapper=hcsxjgMapper&queryName=queryForTask",
-        data: {hcrwId: hcrw.id},
-        type: 'GET',
-        success: function (response) {
-            if (response.status == SUCCESS) {
-                if (response.rows.length == 0) {
-                    $.messager.confirm('确认', '核查列表尚未生成,是否认生成核查列表?', function (r) {
-                        if (r) {
-                            $.ajax({
-                                url: "./" + hcrw.id + "/init",
-                                type: 'POST',
-                                success: function (response) {
-                                    if (response.status == SUCCESS) {
-                                        refreshMainGrid()
-                                    } else {
-                                        //$.messager.alert('删除失败', response, 'info');
-                                    }
-                                }
-                            });
-                        }
-                    });
-                } else {
-                    refreshMainGrid();
-                }
-
-            }
-        }
-    });
-
-    /*
-     */
+    refreshAuditItemList();
 }
 
-function refreshMainGrid() {
-    var options = $("#mainGrid").datagrid("options");
-    options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
-    $('#mainGrid').datagrid('load', {
-        hcrwId: $('#grid1').datagrid('getSelected').id
-    });
-}
-
-function funcBtnAudit() {
-	if(!$(this).linkbutton('options').disabled) {
-	    var auditItem = $("#mainGrid").datagrid("getSelected");
-	    if (auditItem.page == null) {
-	        $.messager.alert("未配置比对页面")
-	    } else {
-	        showModalDialog("auditWindow");
-	        $("#auditContent").panel({
-	            href: '../audit/' + auditItem.page + '.jsp',
-	            onLoad: function () {
-	                doInit();
-	            }
-	        });
-	        if ($("#auditLog").length == 0) {
-	            $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
-	        }
-	        $("#auditLog").panel({
-	            href: '../audit/log.jsp',
-	            onLoad: function () {
-	                //doInit();
-	            }
-	        });
-	    }
+function refreshAuditItemList() {
+	if($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
+		$("#auditItemList").panel({
+		    href:'./auditItemList.jsp',
+		    onLoad:function(){
+		    	doAuditItemListInit();
+		    }
+		});
+	} else {
+		doAuditItemListInit();
 	}
-}
-
-function closeAuditWindow() {
-    $("#auditWindow").window("close");
-}
-
-function stylerHczt(val, row, index) {
-    if (val == 1) {
-        return "";
-    } else if (val == 2) {
-        return "background-color:yellow";
-    } else if (val == 3) {
-        return "background-color:lightgreen";
-    }
-}
-
-function stylerHcjg(val, row, index) {
-
-    if (val == 1) {
-        return "background-color:lightgreen";
-    } else if (val == 2) {
-        return "background-color:pink";
-    } else {
-        return "";
-    }
 }
 
 function funcBtnRest() {
@@ -192,7 +85,8 @@ function funcBtnPullData() {
 	    $.getJSON("./" + row.id + "/pull", null, function (response) {
 	        if (response.status == SUCCESS) {
 	            $.messager.alert("提示", response.message, 'info');
-	            refreshMainGrid();
+	            refreshAuditItemList();
+	            row.dataLoaded = 1;
 	        }
 	    });
 	}
@@ -215,7 +109,7 @@ $(function () {
     $("#f_nd").textbox("setValue", new Date().getFullYear());
     $("#btnView").click(showExamHistory);
     loadMyTask();
-    $("#btnAudit").click(funcBtnAudit);
+    
 
     $("#btnSearch").click(loadMyTask);
     $("#btnReset").click(funcBtnRest);
@@ -227,7 +121,7 @@ $(function () {
         $("#gaozhishuContent").panel({
             href: '../gaozhishu/shidihechagaozhishu.jsp',
             onLoad: function () {
-                doInit();
+                doShidihechagaozhishuInit();
             }
         });
     });
@@ -236,7 +130,7 @@ $(function () {
         $("#gaozhishuContent").panel({
             href: '../gaozhishu/zelingluxingtongzhishu.jsp',
             onLoad: function () {
-                doInit();
+                doZelingluxingtongzhishuInit();
             }
         });
     });
@@ -245,7 +139,7 @@ $(function () {
         $("#gaozhishuContent").panel({
             href: '../gaozhishu/qiyezhusuohechahan.jsp',
             onLoad: function () {
-                doInit();
+                doQiyezhusuohechahanInit();
             }
         });
     });

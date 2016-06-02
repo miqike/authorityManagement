@@ -3,7 +3,7 @@ function toMilli(length) {
     return length.toString() + "mm";
 }
 
-function doInit() {
+function doZelingluxingtongzhishuInit() {
     var auditItem = $("#mainGrid").datagrid("getSelected");
     var qy = $("#grid1").datagrid("getSelected");
 

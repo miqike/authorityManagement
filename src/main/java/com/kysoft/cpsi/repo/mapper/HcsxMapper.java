@@ -55,6 +55,6 @@ public interface HcsxMapper {
 	List<Hcsx> selectByTaskId(String hcrwId);
 
 	List<Map> getHcsxCode(String hcrwId);
-	
+
 	
 }
