@@ -106,8 +106,11 @@
                         <td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:100"/>
                         </td>
                         <td class="label" style="padding-left:10px;">检查结果确认</td>
-                        <td><input id="p_hcjieguo" class="easyui-combobox" readonly="readonly"
-                                   data-options="width:100"/></td>
+                        <td><input id="p_hcjieguo" class="easyui-combobox"
+                                   data-options="width:100" codeName="gsjg"/></td>
+                        <td colspan="8" style="text-align:left">
+                            <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r10_c20" disabled>更新任务结果</a></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="text-align:left">
