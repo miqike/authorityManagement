@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="../audit/shijiaochuzi.js"></script>
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p>a.对认缴制企业出资到位情况的检查，要求企业提交财务报表、财务账簿、银行进账单等会计凭证以及其他相关材料；</p>

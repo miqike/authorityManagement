@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="./css/bubble.css">
 
-    <title>工商公示核查平台</title>
+    <title>企业公示信息智能检查系统</title>
     <%
         MenuRepository menuRepository = SpringUtils.getBean(MenuRepository.class);
         MessageService messageService = SpringUtils.getBean(MessageService.class);

@@ -43,7 +43,7 @@ function doQiyezhusuohechahanInit() {
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
         top = top + 10;
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业住所（经营场所）核查函");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业住所（经营场所）检查函");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
@@ -54,7 +54,7 @@ function doQiyezhusuohechahanInit() {
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
         top = top + 10;
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), "150mm", "　　根据《经营异常名录管理办法》第九条的规定，我局现通过邮寄专用信函的方式对你单位登记的住所（经营场所）进行核查。本函一经签收，视为通过登记的住所（经营场所）取得联系；无人签收的，视为通过登记的住所（经营场所）无法取得联系。");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), "150mm", "　　根据《经营异常名录管理办法》第九条的规定，我局现通过邮寄专用信函的方式对你单位登记的住所（经营场所）进行检查。本函一经签收，视为通过登记的住所（经营场所）取得联系；无人签收的，视为通过登记的住所（经营场所）无法取得联系。");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
@@ -90,7 +90,7 @@ function doQiyezhusuohechahanInit() {
         var data = {};
         data.moduleName = "gaozhishu";
         data.desc = "打印通知书";
-        data.message = "打印企业住所核查函";
+        data.message = "打印企业住所检查函";
         data.businessKey = $("#zhusuo_hcrwId").text();
         $.post("../sys/log", data, function (response) {
             console.log(response.message);

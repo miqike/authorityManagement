@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script type="text/javascript" src="../audit/address.js"></script>
 <div style="padding-left:4px;">
-	核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+	检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 
 <div>

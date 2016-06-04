@@ -236,7 +236,7 @@ function funcSave5() {
                  msg : "用户角色保存成功"
                  });*/
             } else {
-                $.messager.alert("错误", "核查事项保存失败");
+                $.messager.alert("错误", "检查事项保存失败");
             }
         }
     });

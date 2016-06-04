@@ -57,12 +57,6 @@
                 /user/*/exist = anon
                 /jcaptcha* = anon
                 /captcha* = anon
-                <!-- 企业用户上传 -->
-                /docUpload/**/* = anon
-                /ajaxUpload* = anon
-                /display* = anon
-                /51/hcclmx* = anon
-                /common/query = anon
 
                 /login = authc,kickout
                 /activiti-rest = sysUser,activiti-rest

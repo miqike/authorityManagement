@@ -64,8 +64,8 @@
         <tr>
             <th data-options="field:'JHMC',halign:'center',align:'center'" sortable="true" width="100">计划名称</th>
             <th data-options="field:'HCDW_NAME',halign:'center',align:'left'" sortable="true" width="260">企业名称</th>
-            <th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="300">核查事项名称</th>
-            <th data-options="field:'HCCL_NAME',halign:'center',align:'left'" sortable="true" width="300">核查材料名称</th>
+            <th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="300">检查事项名称</th>
+            <th data-options="field:'HCCL_NAME',halign:'center',align:'left'" sortable="true" width="300">检查材料名称</th>
             <th data-options="field:'MONGO_ID',halign:'center',align:'center'" sortable="true" width="100"
                 formatter="formatUploadButton">操作
             </th>
@@ -82,7 +82,7 @@
     </script>
 </shiro:lacksPermission> --%>
 <!-- --------弹出窗口--------------- -->
-<div id="documentWindow" title="核查材料"
+<div id="documentWindow" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div id="docPanel" style="padding:10px;"></div>

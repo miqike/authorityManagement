@@ -19,10 +19,10 @@
 	                $("#addDocWindow").window("close");
 	                $.messager.show({
 						title : '提示',
-						msg : "核查材料保存成功"
+						msg : "检查材料保存成功"
 					});
 	            } else {
-	                $.messager.alert('核查材料保存', response.message, 'error');
+	                $.messager.alert('检查材料保存', response.message, 'error');
 	            }
 	        }
 	    }); 

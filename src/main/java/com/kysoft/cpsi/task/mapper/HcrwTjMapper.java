@@ -44,6 +44,6 @@ public interface HcrwTjMapper {
 	 */
 	int updateByPrimaryKey(HcrwTj record);
 
-	//根据核查单位查询任务统计列表--3102
+	//根据检查单位查询任务统计列表--3102
     List<HcrwTj> queryForOrg(Map<String, Object> param);
 }

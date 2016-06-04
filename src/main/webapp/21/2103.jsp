@@ -69,10 +69,10 @@
     <div style="padding: 5px 10px 0px 10px">
         <table id="queryTable">
             <tr>
-                <td>核查类型</td>
+                <td>检查类型</td>
                 <td><input id="f_businessKey" class="easyui-combobox" codeName="hclx" data-options="panelHeight:60"/>
                 </td>
-                <td>核查信息分类</td>
+                <td>检查信息分类</td>
                 <td><input id="f_errorNo" class="easyui-combobox" codeName="hcxxfl" data-options="panelHeight:60"/></td>
                 <td>公示项目</td>
                 <td><input id="f_module" class="easyui-validatebox"/></td>
@@ -103,18 +103,18 @@
                 formatter="formatCodeList" styler="hclxStyler">类型
             </th>
             <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
-            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">核查材料</th>
+            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">检查材料</th>
             <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
-                formatter="formatCodeList" styler="hcffStyler">核查方法
+                formatter="formatCodeList" styler="hcffStyler">检查方法
             </th>
             <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
-                formatter="formatCodeList" styler="hcxxflStyler">核查信息分类
+                formatter="formatCodeList" styler="hcxxflStyler">检查信息分类
             </th>
             <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
             </th>
             <th data-options="field:'gsxm',halign:'center',align:'left'" sortable="true" width="70">对应公示项目</th>
-            <th data-options="field:'hcffsm',halign:'center',align:'left'" sortable="true" width="70">核查方法说明</th>
+            <th data-options="field:'hcffsm',halign:'center',align:'left'" sortable="true" width="70">检查方法说明</th>
             <th data-options="field:'jgcl',halign:'center',align:'left'" sortable="true" width="70" codeName="gsjg"
                 formatter="formatCodeList">结果处理
             </th>
@@ -123,7 +123,7 @@
             </th>
             <th data-options="field:'dbxxly',halign:'center',align:'left'" sortable="true" width="70">比对信息来源</th>
             <th data-options="field:'sfxysdhc',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
-                formatter="formatCodeList">是否需要实地核查
+                formatter="formatCodeList">是否需要实地检查
             </th>
             <th data-options="field:'sfxyrghd',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要人工核对
@@ -144,7 +144,7 @@
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled>编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
         <a href="#" id="btnDrop" class="easyui-linkbutton" iconCls="icon-print" plain="true" disabled>注销/取消注销</a>
-        <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>核查材料清单</a>
+        <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>检查材料清单</a>
     </div>
 </div>
 <!-- --------弹出窗口--------------- -->

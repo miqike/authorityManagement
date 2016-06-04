@@ -64,15 +64,15 @@ public class AuditController extends BaseController {
     public Map<String, Object> complete(String hcrwId, String hcsxId, Integer hcjg, String qymc, String hcsxmc) {
         Map<String, Object> result = Maps.newHashMap();
         try {
-            logService.info("audit", "核查[" + qymc + "]的" + "[" + hcsxmc + "]完成", "核查结果[" + hcjg + "]", hcrwId + "-" + hcsxId);
+            logService.info("audit", "检查[" + qymc + "]的" + "[" + hcsxmc + "]完成", "检查结果[" + hcjg + "]", hcrwId + "-" + hcsxId);
             hcsxjgService.complete(hcrwId, hcsxId, hcjg);
-            result.put(MESSAGE, "核查[" + qymc + "]的" + "[" + hcsxmc + "]完成");
+            result.put(MESSAGE, "检查[" + qymc + "]的" + "[" + hcsxmc + "]完成");
             result.put(STATUS, SUCCESS);
         } catch (MailVerifyException e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "核查[" + qymc + "]的" + "[" + hcsxmc + "]失败");
-            logService.info("audit", "核查[" + qymc + "]的" + "[" + hcsxmc + "]异常", e.toString(), hcrwId + "-" + hcsxId);
+            result.put(MESSAGE, "检查[" + qymc + "]的" + "[" + hcsxmc + "]失败");
+            logService.info("audit", "检查[" + qymc + "]的" + "[" + hcsxmc + "]异常", e.toString(), hcrwId + "-" + hcsxId);
         }
         return result;
     }

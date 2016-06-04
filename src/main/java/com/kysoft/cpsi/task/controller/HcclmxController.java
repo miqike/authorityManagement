@@ -28,12 +28,12 @@ public class HcclmxController extends BaseController {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
 			hcclmxService.delete(id);
-			result.put(MESSAGE, "核查材料删除成功");
+			result.put(MESSAGE, "检查材料删除成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查材料删除失败");
+			result.put(MESSAGE, "检查材料删除失败");
 		}
 		return result;
 	}
@@ -44,12 +44,12 @@ public class HcclmxController extends BaseController {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
 			hcclmxService.addHcclmx(hcclmx);
-			result.put(MESSAGE, "核查材料保存成功");
+			result.put(MESSAGE, "检查材料保存成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查材料保存失败");
+			result.put(MESSAGE, "检查材料保存失败");
 		}
 		return result;
 	}

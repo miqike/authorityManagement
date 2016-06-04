@@ -41,7 +41,7 @@ function doShidihechagaozhishuInit() {
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
         top = top + 10;
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "企业公示信息实地核查记录表");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "企业公示信息实地检查记录表");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
@@ -93,12 +93,12 @@ function doShidihechagaozhishuInit() {
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left + columnWidth1 + columnWidth2), toMilli(top + rowHeight), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最右侧竖线
         LODOP.ADD_PRINT_LINE(toMilli(top + rowHeight), toMilli(left), toMilli(top + rowHeight), toMilli(left + columnWidth1 + columnWidth2), 0, 1);//橫线
-        //核查实施机关
+        //检查实施机关
         top = top + rowHeight;
         rowHeight = 20;
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最上橫线
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top + rowHeight), toMilli(left), 0, 2);//最左侧竖线
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "核查实施机关");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "检查实施机关");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
@@ -109,12 +109,12 @@ function doShidihechagaozhishuInit() {
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left + columnWidth1 + columnWidth2), toMilli(top + rowHeight), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最右侧竖线
         LODOP.ADD_PRINT_LINE(toMilli(top + rowHeight), toMilli(left), toMilli(top + rowHeight), toMilli(left + columnWidth1 + columnWidth2), 0, 1);//橫线
-        //核查情况
+        //检查情况
         top = top + rowHeight;
         rowHeight = 80;
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最上橫线
         LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top + rowHeight), toMilli(left), 0, 2);//最左侧竖线
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "核查情况");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "检查情况");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
@@ -143,13 +143,13 @@ function doShidihechagaozhishuInit() {
         LODOP.ADD_PRINT_LINE(toMilli(top + rowHeight), toMilli(left), toMilli(top + rowHeight), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最下侧橫线
         //企业盖章
         top = top + 50;
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "企业盖章：          核查人（签字）：");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "企业盖章：          检查人（签字）：");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
         //或法定代表人（负责人）签字
         top = top + 10;
-        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "或法定代表人（负责人）签字：          核查时间：");
+        LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidth1 + columnWidth2), "10mm", "或法定代表人（负责人）签字：          检查时间：");
         LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
         LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
         LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
@@ -171,7 +171,7 @@ function doShidihechagaozhishuInit() {
         var data = {};
         data.moduleName = "gaozhishu";
         data.desc = "打印通知书";
-        data.message = "打印实地核查告知书";
+        data.message = "打印实地检查告知书";
         data.businessKey = $("#shidi_hcrwId").text();
         $.post("../sys/log", data, function (response) {
             console.log(response.message);

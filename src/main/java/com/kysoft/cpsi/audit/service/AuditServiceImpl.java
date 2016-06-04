@@ -96,7 +96,7 @@ public class AuditServiceImpl implements AuditService {
             }
 
             hcsxjgService.start(hcrwId, hcsxId);
-            logService.info("audit", "向被核查单位发送验证邮件", "向被核查单位发送验证邮件", hcrwId + "-" + hcsxId);
+            logService.info("audit", "向被检查单位发送验证邮件", "向被检查单位发送验证邮件", hcrwId + "-" + hcsxId);
 
         }
     }
@@ -106,7 +106,7 @@ public class AuditServiceImpl implements AuditService {
         mailVerifyMapper.updateVerifiedByPrimaryKey(id);
         MailVerify mv = mailVerifyMapper.selectByPrimaryKey(id);
         hcsxjgService.complete(mv.getHcrwId(), mv.getHcsxId(), 1);
-        logService.info("audit", "被核查单位收到验证邮件,本核查项完成", "被核查单位收到验证邮件", mv.getHcrwId() + "-" + mv.getHcsxId());
+        logService.info("audit", "被检查单位收到验证邮件,本检查项完成", "被检查单位收到验证邮件", mv.getHcrwId() + "-" + mv.getHcsxId());
     }
 
     @Override

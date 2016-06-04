@@ -9,7 +9,7 @@ var auditTableColumnsConfig =  [[
 </script>
 
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p> a.检查企业提交的材料或委托专业机构开展相关工作。</p>

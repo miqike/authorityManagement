@@ -27,7 +27,7 @@
 		if(!$(this).linkbutton('options').disabled) {
 			var row = $('#docGrid').datagrid('getSelected');
 			if (row) {
-				$.messager.confirm('确认', '确认删除核查材料', function (r) {
+				$.messager.confirm('确认', '确认删除检查材料', function (r) {
 					if (r) {
 						deleteAttachment(row.id);
 					}
@@ -103,7 +103,7 @@
         <tr>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="110">名称</th>
             <th data-options="field:'ly',halign:'center',align:'center'" sortable="true" width="80" codeName="wjly" formatter="formatCodeList" styler="wjlyStyler">分类</th>
-            <th data-options="field:'hcsxmc',halign:'center',align:'left'" sortable="true" width="100">核查事项</th>
+            <th data-options="field:'hcsxmc',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>
             <th data-options="field:'uploadTime',halign:'center',align:'left'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
             <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="70" codeName="wjlx" formatter="formatCodeList">文件类型</th>
             <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
@@ -119,7 +119,7 @@
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
 
-<div id="addDocWindow" class="easyui-window" title="上传核查材料"
+<div id="addDocWindow" class="easyui-window" title="上传检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 550px; height: 350px; padding: 10px;">
      

@@ -60,7 +60,7 @@
 		<div id="main">
 			<div id="header">33AE62C37FFE178DE050A8C085052133</div>
 			<div class="loginbox" style="margin-right:320px;">
-				<div id="panel" class="easyui-panel rounded" title="核查单位登录" style="height:316px;width:440px;padding-left:20px">
+				<div id="panel" class="easyui-panel rounded" title="检查单位登录" style="height:316px;width:440px;padding-left:20px">
 
 					<form id="loginForm" method="post" class="loginForm">
 						<table>

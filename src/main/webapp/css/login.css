@@ -6,15 +6,15 @@
 
 body {
     font-family:helvetica,tahoma,verdana,sans-serif;
-    padding:20px;
+    /* padding:20px; */
     font-size:13px;
     margin:0;
 }
 
 #box {
 	margin: 0 auto;
-	width: 980px;
-	height: 600px;
+	/* width: 980px;
+	height: 600px; */
 }
 
 #main {

@@ -100,7 +100,7 @@
                     <td><input id="f_jhnd" class="easyui-validatebox"/></td>
                     <td class="label">计划编号</td>
                     <td><input id="f_jhbh" class="easyui-validatebox"/></td>
-                    <td class="label">核查人员</td>
+                    <td class="label">检查人员</td>
                     <td><input id="f_hcry" class="easyui-validatebox"/></td>
                     <td class="label">企业名称</td>
                     <td><input id="f_qymc" class="easyui-validatebox"/></td>
@@ -119,14 +119,14 @@
                     <td class="label">经营状态</td>
                     <td><input id="f_jyzt" class="easyui-combobox" codeName="jyzt"
                                data-options="panelHeight:120,width:144" style=""/></td>
-                    <td class="label">核查结果</td>
+                    <td class="label">检查结果</td>
                     <td><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
                                data-options="panelHeight:120,width:144" style=""/></td>
 
                     <%--
                                         <td colspan="3">
                                             <input type="radio"/> 全部
-                                            <input type="radio"/> 按核查计划
+                                            <input type="radio"/> 按检查计划
                                             <input type="radio"/> 定向
                                             <input type="radio"/> 不定向
                                         </td>
@@ -187,9 +187,9 @@
 
 <!-- --------弹出窗口--------------- -->
 <div id="mainGridToolbar">
-    <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">核查记录</a>
+    <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">检查记录</a>
 </div>
-<div id="examHistory" class="easyui-window" title="企业核查记录"
+<div id="examHistory" class="easyui-window" title="企业检查记录"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <table id="grid2"
@@ -204,17 +204,17 @@
         <thead>
         <tr>
             <th data-options="field:'name'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划编号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查计划下达时间</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查计划编号</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查计划下达时间</th>
             <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70"
                 codeName="roleStatus"
-                formatter="formatCodeList">核查类型
+                formatter="formatCodeList">检查类型
             </th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查机关</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查人员</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查机关</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查人员</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查结果</th>
             <th data-options="field:'role'" halign="center" align="left" width="100">经营状态</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">核查结果公示情况</th>
+            <th data-options="field:'role'" halign="center" align="left" width="100">检查结果公示情况</th>
         </tr>
         </thead>
     </table>

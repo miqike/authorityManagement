@@ -22,7 +22,7 @@
 		if(!$(this).linkbutton('options').disabled) {
 			var row = $('#docGrid').datagrid('getSelected');
 			if (row) {
-				$.messager.confirm('确认', '确认删除核查材料', function (r) {
+				$.messager.confirm('确认', '确认删除检查材料', function (r) {
 					if (r) {
 						$.ajax({
 					        url: "./hccl/" + row.id ,
@@ -99,7 +99,7 @@
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
 
-<div id="addDocWindow" class="easyui-window" title="核查材料"
+<div id="addDocWindow" class="easyui-window" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 300px; height: 200px; padding: 10px;">
     

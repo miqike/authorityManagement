@@ -34,20 +34,42 @@
 	        background-color: fff3f3;
 	        background-image: url("");
 	    }
-	</style>
-	<title>系统登录</title>
-</head>
-<body>
+	    
+	    .bg{
+	    	/* background-color:#137bd7; */
+		}
+		   
+	    .bg1{
+		   	margin:0px;
+			background-image:url('./images/logo1.jpg');
+			background-position: center;
+			background-repeat: no-repeat;
+			top:0px;left:0px;
+			height:659px;	
+			width:1024px;	
+			overflow:hidden;
+		}
+		
+		.transparent_class {  
+		      filter:alpha(opacity=30);  
+		      -moz-opacity:0.3;  
+		      -khtml-opacity: 0.3;  
+		      opacity: 0.3;  
+		}  
 
-<div id="box">
+	</style>
+	<title>企业公示信息智能检查系统登录</title>
+</head>
+<body  class="bg">
+	<div id="box" class="bg1">
 		<div id="main">
 			<div id="header"></div>
 			<div id="titles"></div>
-			<div class="loginbox" style="margin-right:320px;">
-				<div id="panel" class="easyui-panel rounded" title="登录" style="height:236px;width:280px;">
+			<div class="loginbox" style="margin-right:130px;margin-top:100px;" class="transparent_class">
+				<div id="panel" class="easyui-panel rounded" title="登录" style="height:236px;width:320px;" class="transparent_class">
 
 					<form id="loginForm" method="post" class="loginForm">
-						<table>
+						<table >
 							<tr>
 								<td class='br'>用户名</td>
 								<td><input class="easyui-validatebox" id="userId" 
@@ -82,13 +104,13 @@
 						<div id="toolbar" style="margin-top:10px;">
 							<a href="javascript:void(0);" id="btnLogin" class="easyui-linkbutton" iconCls="icon-ok" tabindex="4">登录</a>
 							<a href="javascript:void(0);" id="btnPasswordRetrieve" class="easyui-linkbutton" iconCls="icon-add" tabindex="5">忘记密码</a>
-							<a href="javascript:void(0);" id="btnScztLogin" class="easyui-linkbutton" iconCls="icon-add" tabindex="5">企业上传资料</a>
+							<a href="javascript:void(0);" id="btnScztLogin" class="easyui-linkbutton" iconCls="icon2 r25_c10" tabindex="5">企业上传资料</a>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<div id="footer">版权所有 CopyRight 2013. 科艺电子. Inc. All Rights Reserved. <br/>技术支持：1332555885</div>
+		<!-- <div id="footer">版权所有 CopyRight 2013. 科艺电子. Inc. All Rights Reserved. <br/>技术支持：1332555885</div> -->
 	</div>
 </body>
 <script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>

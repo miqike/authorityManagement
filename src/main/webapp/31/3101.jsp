@@ -46,10 +46,10 @@
 			<tr>
 				<td class="label">计划名称</td>
 				<td><input id="f_jhmc" class="easyui-textbox"/></td>
-				<td class="label">核查内容</td>
+				<td class="label">检查内容</td>
 				<td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
 					data-options="panelHeight:80,width:143,onChange:queryPlan" style="" /></td>
-				<td class="label">核查分类</td>
+				<td class="label">检查分类</td>
 				<td><input id="f_fl" class="easyui-combobox" codeName="hcfl" 
 					data-options="panelHeight:60,width:143,onChange:queryPlan" style="" /></td>
 				<td colspan="2" style="text-align-right;">
@@ -77,8 +77,8 @@
 				<th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130" >计划名称</th>
 				<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
 				<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">要求完成时间</th>
-				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">核查分类</th>
-				<th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">核查内容</th>
+				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
+				<th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">检查内容</th>
 				<th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60" >任务数</th>
 				<th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="50" >已派发</th>
 				<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="50" >已认领</th>
@@ -94,7 +94,7 @@
 			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
 			<a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
 			<a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" data-options="disabled:true">审核/取消审核</a>
-			<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
+			<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
 			<a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">派发/取消派发</a>
 		</div>
 	</div>
@@ -145,7 +145,7 @@
 
 
 <!-- --------弹出窗口--------------- -->
-<div id="planWindow" class="easyui-window" title="核查计划信息"
+<div id="planWindow" class="easyui-window" title="检查计划信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <!-- <div>
@@ -194,11 +194,11 @@
                     <td><input class="easyui-datebox add modify" type="text" id="p_yqwcsj" style="width:200px;" data-options="required:true"/></td>
                 </tr>
                 <tr>
-                    <td>核查分类</td>
+                    <td>检查分类</td>
                     <td>
                         <input class="easyui-combobox add modify" id="p_fl" type="text" style="width:200px;" data-options="panelHeight:60,required:true" codeName="hcfl"/>
                     </td>
-                    <td>核查内容</td>
+                    <td>检查内容</td>
                     <td colspan="3">
                         <input id="p_nr" class="easyui-combobox add modify" codeName="hcnr" data-options="panelHeight:80,width:200,required:true" style="" />
                     </td>
@@ -264,7 +264,7 @@
 </div>
 	
 	
-<div id="checklistWindow" class="easyui-window" title="核查事项"
+<div id="checklistWindow" class="easyui-window" title="检查事项"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
     <div>
@@ -294,19 +294,19 @@
 			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
             <th data-options="field:'type',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx" formatter="formatCodeList">类型</th>
             <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
-            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">核查方法
+            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方法
             </th>
-            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl" formatter="formatCodeList">核查信息分类
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl" formatter="formatCodeList">检查信息分类
             </th>
             <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
-                formatter="formatCodeList">核查类型
+                formatter="formatCodeList">检查类型
             </th>
         </tr>
         </thead>
     </table>
 </div>	
 
-<div id="addChecklistWindow" class="easyui-window" title="备选核查事项"
+<div id="addChecklistWindow" class="easyui-window" title="备选检查事项"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 550px; height: 350px; padding: 10px;">
      
@@ -331,7 +331,7 @@
 			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="250">名称</th>
             <!-- <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th> -->
             <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="100" codeName="hclx"
-                formatter="formatCodeList">核查类型
+                formatter="formatCodeList">检查类型
             </th>
         </tr>
         </thead>
@@ -356,9 +356,9 @@
        	
     </div>
 	<div id="importReport" style="margin:10px;display:none">
-		核查任务数: <sapn id="_hcrws" style="color:red"></sapn><br/>
-		核查人员数: <sapn id="_hcrys" style="color:blue"></sapn><br/>
-		<!-- 新增核查人员:20<br/>
+		检查任务数: <sapn id="_hcrws" style="color:red"></sapn><br/>
+		检查人员数: <sapn id="_hcrys" style="color:blue"></sapn><br/>
+		<!-- 新增检查人员:20<br/>
 		新增企业信息:14000</br> -->
 		
 	</div>

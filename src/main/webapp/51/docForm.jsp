@@ -21,10 +21,10 @@
 	                $("#addDocWindow").window("close");
 	                $.messager.show({
 						title : '提示',
-						msg : "核查材料保存成功"
+						msg : "检查材料保存成功"
 					});
 	            } else {
-	                $.messager.alert('核查材料保存', response.message, 'error');
+	                $.messager.alert('检查材料保存', response.message, 'error');
 	            }
 	        }
 	    });
@@ -121,18 +121,18 @@
 
     <table>
     	<tr>
-    		<td class="label">核查计划年度</td><td>
+    		<td class="label">检查计划年度</td><td>
     			<input type="hidden" id="d_id" />
      			<input type="hidden" id="d_mongoId" />
     			<input class="easyui-textbox", id="d_hcjhnd" disabled/>
     		<td class="label">统一社会信用代码</td><td><input class="easyui-textbox", id="d_hcdwXydm" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">核查任务编号</td><td><input class="easyui-textbox", id="d_hcrwId" disabled/></td>
+    		<td class="label">检查任务编号</td><td><input class="easyui-textbox", id="d_hcrwId" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">核查事项</td><td><input class="easyui-combobox", id="d_hcsxId" data-options=""/></td>
-    		<td class="label">核查材料</td><td><input class="easyui-combobox", id="d_hcclId"/ ></td>
+    		<td class="label">检查事项</td><td><input class="easyui-combobox", id="d_hcsxId" data-options=""/></td>
+    		<td class="label">检查材料</td><td><input class="easyui-combobox", id="d_hcclId"/ ></td>
     	</tr>
     	<tr>
     		<td class="label">是否必要项</td><td><input class="easyui-combobox", id="d_sfbyx" codeName="yesno" data-options="panelHeight:70" disabled/></td>

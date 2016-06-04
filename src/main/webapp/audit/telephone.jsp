@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script type="text/javascript" src="../audit/lianxidianhua.js"></script>
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p>询问了解或拨打企业公示电话</p>

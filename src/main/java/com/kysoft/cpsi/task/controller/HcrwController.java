@@ -28,13 +28,13 @@ public class HcrwController extends BaseController {
 		
 		try {
 			Integer count = hcrwService.getTaskInitStatus(hcrwId);
-			result.put(MESSAGE, "核查列表项初始成功");
+			result.put(MESSAGE, "检查列表项初始成功");
 			result.put(STATUS, SUCCESS);
 			result.put(DATA, count);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查列表项初始失败");
+			result.put(MESSAGE, "检查列表项初始失败");
 		}
 		return result;
 	}
@@ -45,12 +45,12 @@ public class HcrwController extends BaseController {
 		
 		try {
 			hcrwService.initTaskItem(hcrwId);
-			result.put(MESSAGE, "核查列表项初始成功");
+			result.put(MESSAGE, "检查列表项初始成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查列表项初始失败");
+			result.put(MESSAGE, "检查列表项初始失败");
 		}
 		return result;
 	}
@@ -60,12 +60,12 @@ public class HcrwController extends BaseController {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
 			hcrwService.pullData(hcrwId);
-			result.put(MESSAGE, "核查任务在线数据加载成功");
+			result.put(MESSAGE, "检查任务在线数据加载成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);
-			result.put(MESSAGE, "核查任务在线数据加载失败");
+			result.put(MESSAGE, "检查任务在线数据加载失败");
 		}
 		return result;
 	}

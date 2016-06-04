@@ -7,7 +7,7 @@
 <html>
 <head>
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
-    <title>计划核查</title>
+    <title>计划检查</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
@@ -67,7 +67,7 @@
         </table>
     </div>
     <div id="layout" class="easyui-layout" data-options="fit:true">
-        <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的核查任务" style="width:300px;">
+        <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的检查任务" style="width:300px;">
 		      <table id="grid1"
 		             class="easyui-datagrid"
 		             data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
@@ -97,22 +97,22 @@
                         <td class="label" style="padding-left:10px;">要求完成时间</td>
                         <td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:100"/>
                         </td>
-                        <td class="label" style="padding-left:10px;">核查结果确认</td>
+                        <td class="label" style="padding-left:10px;">检查结果确认</td>
                         <td><input id="p_hcjieguo" class="easyui-combobox" readonly="readonly"
                                    data-options="width:100"/></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="text-align:left">
                             <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true"
-                               iconCls="icon2 r10_c20" disabled>实地核查告知书</a>
+                               iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
                             <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
                             <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true"
-                               iconCls="icon2 r12_c11" disabled>企业住所核查函</a>
+                               iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
                             <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-                            <!-- <a href="javascript:void(0);" id="btnReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10" disabled>核查结果上报/取消上报</a> -->
-					        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>核查材料</a>
+                            <!-- <a href="javascript:void(0);" id="btnReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10" disabled>检查结果上报/取消上报</a> -->
+					        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
                         </td>
                     </tr>
                 </table>
@@ -123,7 +123,7 @@
 </div>
 
 <!-- --------弹出窗口---------------
-<div id="auditWindow"  title="核查"
+<div id="auditWindow"  title="检查"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 420px; padding: 10px;">
 	<div id="auditContent" style="padding:10px;"></div>
@@ -131,7 +131,7 @@
 </div>
  -->
 
-<div id="documentWindow" title="核查材料"
+<div id="documentWindow" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 750px; height: 400px; padding: 10px;">
 	<div id="docPanel" style="padding:10px;"></div>

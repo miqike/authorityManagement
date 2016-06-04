@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script type="text/javascript" src="../audit/email.js"></script>
 <div >
-	<p>电子邮件核查过程:发送测试邮件到客户邮箱,客户收到邮件后点击相应的链接即可完成,若5日内未完成则该项验证失败</p>
+	<p>电子邮件检查过程:发送测试邮件到客户邮箱,客户收到邮件后点击相应的链接即可完成,若5日内未完成则该项验证失败</p>
 	
 	<table>
 		<tr>

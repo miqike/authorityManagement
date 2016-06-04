@@ -46,10 +46,10 @@
 			<tr>
 				<td class="label">计划名称</td>
 				<td><input id="f_module" class="easyui-textbox"/></td>
-				<td class="label">核查内容</td>
+				<td class="label">检查内容</td>
 				<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
 					data-options="panelHeight:80,width:143,onChange:queryPlan" style="" /></td>
-				<td class="label">核查分类</td>
+				<td class="label">检查分类</td>
 				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl" 
 					data-options="panelHeight:60,width:143,onChange:queryPlan" style="" /></td>
 				<td colspan="2" style="text-align-right;">
@@ -77,8 +77,8 @@
 				<th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130" >计划名称</th>
 				<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
 				<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">要求完成时间</th>
-				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">核查分类</th>
-				<th data-options="field:'nr'" halign="center" align="left" sortable="true" width="150" >核查内容</th>
+				<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
+				<th data-options="field:'nr'" halign="center" align="left" sortable="true" width="150" >检查内容</th>
 				<th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60" >任务数量</th>
 				<th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="60" >已派发</th>
 				<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="60" >已认领</th>
@@ -90,7 +90,7 @@
 			</thead>
 		</table>
 		<div id="gridToolbar1">
-			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">核查事项</a>
+			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
 		</div>
 	</div>
 	

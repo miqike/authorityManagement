@@ -14,7 +14,7 @@ var auditTableColumnsConfig =  [[
 </script>
 
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p>审计报告、财务资料、企业章程、对外投资设立企业、购买股权的股东会决议、所投资企业的股东名册等</p>

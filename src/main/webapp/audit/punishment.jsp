@@ -14,7 +14,7 @@ var auditTableColumnsConfig =  [[
 </script>
 
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p>工商处罚信息自查，与相关部门信息进行数据比对，或检查企业的处罚决定书、罚没收据等相关材料。</p>

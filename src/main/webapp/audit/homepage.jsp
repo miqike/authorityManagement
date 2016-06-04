@@ -9,7 +9,7 @@ var auditTableColumnsConfig =  [[
 </script>
 
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p> 自行查询、网络查询对比</p>

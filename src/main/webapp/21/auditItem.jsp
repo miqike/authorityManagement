@@ -39,7 +39,7 @@ function docGridClickRowHandler() {
 
     <table width="100%" id="baseTable">
         <tr>
-            <td class="label">核查事项名称</td>
+            <td class="label">检查事项名称</td>
             <td><input class="easyui-validatebox" id="p_name" style="width:192px;" data-options=""/></td>
             <td class="label">对应公示项目</td>
             <td><input class="easyui-validatebox" id="p_gsxm" style="width:192px;" data-options=""/></td>
@@ -52,15 +52,15 @@ function docGridClickRowHandler() {
             
         </tr>
         <tr>
-            <td class="label">核查方法</td>
+            <td class="label">检查方法</td>
             <td><input class="easyui-combobox" id="p_hcff" style="width:200px;" data-options="panelHeight:100"
                        codeName="hcfs"/></td>
-            <td class="label">核查信息分类</td>
+            <td class="label">检查信息分类</td>
             <td><input class="easyui-combobox" id="p_hcxxfl" style="width:200px;" data-options="panelHeight:100"
                        codeName="hcxxfl"/></td>
         </tr>
         <tr>
-            <td class="label">核查类型</td>
+            <td class="label">检查类型</td>
             <td><input class="easyui-combobox" id="p_hclx" style="width:200px;" data-options="panelHeight:100"
                        codeName="hclx"/></td>
             <td class="label">企业组织形式</td>
@@ -72,7 +72,7 @@ function docGridClickRowHandler() {
             <td class="label">是否必检项</td>
             <td><input class="easyui-combobox" id="p_sfbjxm" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/></td>
-			<td class="label">核查材料</td>
+			<td class="label">检查材料</td>
             <td><input class="easyui-validatebox" id="p_hccl" style="width:192px;" data-options=""/></td>
         </tr>
         <tr>
@@ -86,7 +86,7 @@ function docGridClickRowHandler() {
         <tr>
             <td class="label">比对信息来源</td>
             <td><input class="easyui-validatebox" id="p_dbxxly" style="width:192px;" data-options=""/></td>
-            <td class="label">是否需要实地核查</td>
+            <td class="label">是否需要实地检查</td>
             <td><input class="easyui-combobox" id="p_sfxysdhc" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/>
             </td>
@@ -107,7 +107,7 @@ function docGridClickRowHandler() {
             <td><input class="easyui-validatebox" id="p_zxsm" style="width:192px;" data-options=""/></td>
         </tr>
         <tr>
-            <td class="label" style="vertical-align:top">核查方法说明</td>
+            <td class="label" style="vertical-align:top">检查方法说明</td>
             <td colspan="3">
             	<textarea id="p_hcffsm" cols="70" rows="2" style="width:580"></textarea></td>
         </tr>

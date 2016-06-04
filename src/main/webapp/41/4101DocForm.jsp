@@ -28,7 +28,7 @@
                     $("#addDocWindow").window("close");
                     $.messager.show({
                         title: '提示',
-                        msg: "核查材料保存成功"
+                        msg: "检查材料保存成功"
                     });
 
                     var options = $('#mainGrid').datagrid('options');
@@ -41,7 +41,7 @@
 
                     $("#documentWindow").window("close");
                 } else {
-                    $.messager.alert('核查材料保存', response.message, 'error');
+                    $.messager.alert('检查材料保存', response.message, 'error');
                 }
             }
         });
@@ -94,7 +94,7 @@
 
 <table>
     <tr>
-        <td class="label">核查计划年度</td>
+        <td class="label">检查计划年度</td>
         <td>
             <input type="hidden" id="d_mongoId"/>
             <input class="easyui-textbox" , id="d_hcjhnd" disabled/>
@@ -102,9 +102,9 @@
         <td><input class="easyui-textbox" id="d_hcdwXydm" disabled/></td>
     </tr>
     <tr>
-        <td class="label">核查事项</td>
+        <td class="label">检查事项</td>
         <td><input class="easyui-textbox" id="d_hcsxId" data-options=""/></td>
-        <td class="label">核查事项名称</td>
+        <td class="label">检查事项名称</td>
         <td><input class="easyui-textbox" id="d_hcsxmc" data-options=""/></td>
     </tr>
 </table>

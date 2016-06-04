@@ -19,7 +19,7 @@
             <td sytle="text-align:right;">工商行政管理局</td>
         </tr>
         <tr>
-            <td colspan="2" sytle="text-align:right;">企业公示信息实地核查记录表</td>
+            <td colspan="2" sytle="text-align:right;">企业公示信息实地检查记录表</td>
         </tr>
         <tr>
             <td sytle="text-align:right;">企业名称</td>
@@ -40,13 +40,13 @@
             </td>
         </tr>
         <tr>
-            <td sytle="text-align:right;">核查实施机关</td>
+            <td sytle="text-align:right;">检查实施机关</td>
             <td><input class="easyui-textbox" type="text" id="shidi_hcjg" data-options=""
                        style="width:200px;"/>
             </td>
         </tr>
         <tr>
-            <td sytle="text-align:right;">核查情况</td>
+            <td sytle="text-align:right;">检查情况</td>
             <td><input class="easyui-textbox" type="text" id="shidi_hcqk" data-options=""
                        style="width:200px;"/>
             </td>
@@ -59,11 +59,11 @@
         </tr>
         <tr>
             <td sytle="text-align:right;">企业盖章：</td>
-            <td sytle="text-align:right;">核查人（签字）：</td>
+            <td sytle="text-align:right;">检查人（签字）：</td>
         </tr>
         <tr>
             <td sytle="text-align:right;">或法定代表人（负责人）签字</td>
-            <td sytle="text-align:right;">核查时间：</td>
+            <td sytle="text-align:right;">检查时间：</td>
         </tr>
         <tr>
             <td sytle="text-align:right;">见证人签字：</td>

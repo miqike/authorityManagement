@@ -50,6 +50,6 @@ public interface ScztMapper {
 
     List<Sczt> query(Map<String, Object> params);
 
-    /*查询被核查单位需要上传的核查材料*/
+    /*查询被检查单位需要上传的检查材料*/
     List<Map<String, Object>> queryHccl(Map<String, Object> params);
 }

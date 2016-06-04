@@ -10,7 +10,7 @@ var auditTableColumnsConfig =  [[
 </script>
 
 <div>
-    核查事项：<span style="color:blue; " id="_hcsxmc_"></span>
+    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
 <div>
     <p>a. 股东变更：核对登记系统中登记信息，查看企业章程、股东会决议、股权转让协议、股东名册、审计报告等相关材料。</p>

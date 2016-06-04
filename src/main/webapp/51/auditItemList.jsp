@@ -79,7 +79,7 @@
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
 	                if (response.data == 0) {
-	                    $.messager.confirm('确认', '核查列表尚未生成,是否认生成核查列表?', function (r) {
+	                    $.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
 	                        if (r) {
 	                            $.ajax({
 	                                url: "./" + hcrw.id + "/init",
@@ -232,7 +232,7 @@ $(function () {
 
 </script>
 <div id="auditItemAccordion" class="easyui-accordion" data-options="fit:true,border:false,animate:true" style="width:500px;height:467px;"> 
-	<div title="核查事项列表" data-options="iconCls:'icon2 r4_c20', selected:true" style="overflow:auto;">
+	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', selected:true" style="overflow:auto;">
 		<div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false, onSelect:auditItemsTabSelectHandler">
 			<div data-options="title: '年报信息', iconCls: 'icon2 r9_c2', refreshable: false, selected: true">
 				<table id="annualAuditItemGrid" class="easyui-datagrid"
@@ -242,20 +242,20 @@ $(function () {
 						toolbar: '#annualAuditItemGridToolbar'" >
 				     <thead>
 				     <tr>
-				         <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">核查事项</th>
+				         <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
 				         <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs"
-				             formatter="formatCodeList">核查方式</th>
+				             formatter="formatCodeList">检查方式</th>
 				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
 				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
 				         <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
-				             formatter="formatCodeList"  styler="stylerHczt">核查状态</th>
-				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
+				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th>
+				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">检查结果</th>
 				         <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
 				     </tr>
 				     </thead>
 				 </table>
 				 <div id="annualAuditItemGridToolbar">
-				     <a href="#" id="btnAnnualAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" disabled>核查/查看</a>
+				     <a href="#" id="btnAnnualAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" disabled>检查/查看</a>
 				 </div>
 			</div>
 			<div data-options="title: '即时信息', iconCls: 'icon2 r8_c1', refreshable: false">
@@ -266,26 +266,26 @@ $(function () {
 						toolbar: '#instanceAuditItemGridToolbar'" >
 				     <thead>
 				     <tr>
-				         <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">核查事项</th>
+				         <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
 				         <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs"
-				             formatter="formatCodeList">核查方式</th>
+				             formatter="formatCodeList">检查方式</th>
 				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
 				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
 				         <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
-				             formatter="formatCodeList"  styler="stylerHczt">核查状态</th>
-				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">核查结果</th>
+				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th>
+				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">检查结果</th>
 				         <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
 				     </tr>
 				     </thead>
 				 </table>
 				 <div id="instanceAuditItemGridToolbar">
-				     <a href="#" id="btnInstanceAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" disabled>核查/查看</a>
+				     <a href="#" id="btnInstanceAudit" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" disabled>检查/查看</a>
 				 </div>
 			</div>
 		</div>
     </div>
     <div title="事项内容" data-options="iconCls:'icon2 r11_c17'" style="padding:5px;">
-        <div id="auditWindow"  title="核查"
+        <div id="auditWindow"  title="检查"
 		     data-options="modal:true,closed:true,iconCls:'icon-search'"
 		     style="width: 750px; height: 420px; padding: 10px;">
 			<div id="auditContent" style="padding:10px;"></div>
