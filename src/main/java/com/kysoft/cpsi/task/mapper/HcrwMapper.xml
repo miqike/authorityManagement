@@ -455,10 +455,13 @@
         from T_HCRW where HCJH_ID = #{hcjhId}
         AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
         ORDER BY
-        <if test="order != null">
-            ${sort} ${order},
+        
+        <if test="order == 1">
+            HCJGMC, ZFRY_NAME1, ZFRY_NAME2
         </if>
-        RLRQ
+        <if test="order ==2">
+            ZZXS, HCJGMC
+        </if>
     </select>
     <select id="queryForAuditor" resultMap="BaseResultMap">
         select

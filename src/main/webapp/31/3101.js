@@ -31,20 +31,15 @@ function xxxx(orgId) {
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-    var selected = treeObj.getSelectedNodes()
+    var selected = treeObj.getSelectedNodes();
     var hcjh = $('#grid1').datagrid('getSelected');
     if (selected.length == 1 && hcjh != null) {
+    	sort(1);
 
-        var options = $("#grid2").datagrid("options");
-        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
-        $('#grid2').datagrid('load', {
-            hcjhId: hcjh.id,
-            organization: selected[0].id
-        });
-
-        $("#btnSort1").linkbutton("enable");
+        $("#btnSort1").linkbutton("disable");
         $("#btnSort2").linkbutton("enable");
-        $("#btnAccept").linkbutton("enable");
+        //TODO
+        $("#btnAccept").linkbutton("disable");
     } else {
         $("#btnSort1").linkbutton("disable");
         $("#btnSort2").linkbutton("disable");
@@ -369,6 +364,38 @@ function importDblink() {
         });
     }
 }
+
+function funcSort1() {
+	if (!$(this).linkbutton('options').disabled) {
+		sort(1);
+	}
+}
+function funcSort2() {
+	if (!$(this).linkbutton('options').disabled) {
+		sort(2);
+	}
+}
+
+function sort(order) {
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: selected[0].id,
+        order:order
+    });
+    if(order == 1) {
+    	$("#btnSort1").linkbutton("disable");
+    	$("#btnSort2").linkbutton("enable");
+    } else {
+    	$("#btnSort1").linkbutton("enable");
+    	$("#btnSort2").linkbutton("disable");
+    }
+    
+}
 //初始化
 $(function () {
     $.fn.zTree.init($("#orgTree"), setting);
@@ -385,6 +412,8 @@ $(function () {
     $("#f_nd").textbox("setValue", new Date().getFullYear());
     clearInput();
     loadGrid1();
+    $("#btnSort1").click(funcSort1);
+    $("#btnSort2").click(funcSort2);
     $("#btnSearch").click(loadGrid1);
     $("#btnReset").click(funcBtnRest);
     $("#btnSavePlan").click(funcSavePlan);

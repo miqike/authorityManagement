@@ -315,7 +315,7 @@
         <if test="name!=null">
             and name = #{code}
         </if>
-        order by ID
+        order by HCLX, QYZZXS, HCXXFL
     </select>
 
     <select id="queryForPlan" resultMap="BaseResultMap">

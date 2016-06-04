@@ -98,44 +98,44 @@
            pagePosition="bottom">
         <thead>
         <tr>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
-            <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
+            <th data-options="field:'name',halign:'center',align:'left'" width="150">名称</th>
+            <th data-options="field:'hclx',halign:'center',align:'left'" width="90" codeName="hclx"
                 formatter="formatCodeList" styler="hclxStyler">类型
             </th>
-            <th data-options="field:'descript',halign:'center',align:'left'" sortable="true" width="150">描述</th>
-            <th data-options="field:'hccl',halign:'center',align:'left'" sortable="true" width="70">检查材料</th>
-            <th data-options="field:'hcff',halign:'center',align:'left'" sortable="true" width="70" codeName="hcfs"
+            <th data-options="field:'descript',halign:'center',align:'left'" width="150">描述</th>
+            <th data-options="field:'hccl',halign:'center',align:'left'" width="70">检查材料</th>
+            <th data-options="field:'hcff',halign:'center',align:'left'" width="70" codeName="hcfs"
                 formatter="formatCodeList" styler="hcffStyler">检查方法
             </th>
-            <th data-options="field:'hcxxfl',halign:'center',align:'left'" sortable="true" width="90" codeName="hcxxfl"
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" width="90" codeName="hcxxfl"
                 formatter="formatCodeList" styler="hcxxflStyler">检查信息分类
             </th>
-            <th data-options="field:'qyzzxs',halign:'center',align:'left'" sortable="true" width="100" codeName="qyzzxs"
+            <th data-options="field:'qyzzxs',halign:'center',align:'left'" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
             </th>
-            <th data-options="field:'gsxm',halign:'center',align:'left'" sortable="true" width="70">对应公示项目</th>
-            <th data-options="field:'hcffsm',halign:'center',align:'left'" sortable="true" width="70">检查方法说明</th>
-            <th data-options="field:'jgcl',halign:'center',align:'left'" sortable="true" width="70" codeName="gsjg"
+            <th data-options="field:'gsxm',halign:'center',align:'left'" width="70">对应公示项目</th>
+            <th data-options="field:'hcffsm',halign:'center',align:'left'" width="70">检查方法说明</th>
+            <th data-options="field:'jgcl',halign:'center',align:'left'" width="70" codeName="gsjg"
                 formatter="formatCodeList">结果处理
             </th>
-            <th data-options="field:'xxdb',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+            <th data-options="field:'xxdb',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">登记信息和公示信息比对
             </th>
-            <th data-options="field:'dbxxly',halign:'center',align:'left'" sortable="true" width="70">比对信息来源</th>
-            <th data-options="field:'sfxysdhc',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="70">比对信息来源</th>
+            <th data-options="field:'sfxysdhc',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要实地检查
             </th>
-            <th data-options="field:'sfxyrghd',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+            <th data-options="field:'sfxyrghd',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要人工核对
             </th>
-            <th data-options="field:'gzqx',halign:'center',align:'left'" sortable="true" width="70">改正期限</th>
-            <th data-options="field:'sfbjxm',halign:'center',align:'left'" sortable="true" width="70" codeName="yesno"
+            <th data-options="field:'gzqx',halign:'center',align:'left'" width="70">改正期限</th>
+            <th data-options="field:'sfbjxm',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否必检项
             </th>
-            <th data-options="field:'zxrq',halign:'center',align:'left'" sortable="true" width="70"
+            <th data-options="field:'zxrq',halign:'center',align:'left'" width="70"
                 formatter="formatDate">注销日期
             </th>
-            <th data-options="field:'zxsm',halign:'center',align:'left'" sortable="true" width="70">注销说明</th>
+            <th data-options="field:'zxsm',halign:'center',align:'left'" width="70">注销说明</th>
         </tr>
         </thead>
     </table>
