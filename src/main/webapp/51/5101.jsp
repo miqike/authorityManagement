@@ -12,12 +12,13 @@
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
- 
+
     <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/husky.common.js"></script>
@@ -37,9 +38,11 @@
             border-left: 0px;
             border-bottom: 0px
         }
+
         div#tabPanel .datagrid-wrap {
             border-top: 0px;
         }
+
         td.label {
             text-align: right;
         }
@@ -68,24 +71,29 @@
     </div>
     <div id="layout" class="easyui-layout" data-options="fit:true">
         <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的检查任务" style="width:300px;">
-		      <table id="grid1"
-		             class="easyui-datagrid"
-		             data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
+            <table id="grid1"
+                   class="easyui-datagrid"
+                   data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
 		       		offset: { width: 0, height: 0},
 		       		singleSelect:true,ctrlSelect:false,method:'get',
 		       		pageSize: 20, pagination: true"
-		             pagePosition="bottom">
-		          <thead>
-		          <tr>
-		              <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">统一社会信用代码 </th>
-		              <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称</th>
-		          </tr>
-		          </thead>
-		      </table>
+                   pagePosition="bottom">
+                <thead>
+                <tr>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">
+                        统一社会信用代码
+                    </th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称
+                    </th>
+                </tr>
+                </thead>
+            </table>
         </div>
         <div data-options="region:'center'">
-        	<div class="easyui-panel" data-options="title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="padding-top:5px;">
-                <table >
+            <div class="easyui-panel"
+                 data-options="title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
+                 style="padding-top:5px;">
+                <table>
                     <tr>
                         <td class="label">计划编号</td>
                         <td><input id="p_id" class="easyui-textbox" readonly="readonly" data-options="width:100"/></td>
@@ -111,15 +119,15 @@
                                iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
                             <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-                            <!-- <a href="javascript:void(0);" id="btnReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10" disabled>检查结果上报/取消上报</a> -->
-					        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
+                            <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1"
+                               plain="true" disabled>检查材料</a>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div id="auditItemList" class="easyui-panel" ></div>
-		</div>
-	</div>
+            <div id="auditItemList" class="easyui-panel"></div>
+        </div>
+    </div>
 </div>
 
 <!-- --------弹出窗口---------------
@@ -134,7 +142,7 @@
 <div id="documentWindow" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 750px; height: 400px; padding: 10px;">
-	<div id="docPanel" style="padding:10px;"></div>
+    <div id="docPanel" style="padding:10px;"></div>
 </div>
 
 
@@ -142,5 +150,6 @@
 </html>
 
 <div id="gaozhishuWindow" style="width: 550px; height: 420px; padding: 10px;">
-<div id="gaozhishuContent">
-</div></div>
+    <div id="gaozhishuContent">
+    </div>
+</div>

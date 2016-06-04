@@ -9,7 +9,6 @@ function expandHandler() {
 }
 
 
-
 function poiExport() {
     $("<iframe id='poiExport' style='display:none' src='../user/poiExport'>").appendTo("body");
 }
@@ -43,25 +42,25 @@ function grid1ClickHandler() {
     $('#btnSendQyzshch').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
 
-    if(hcrw.dataLoaded == 0) {
-		$('#btnPullData').linkbutton("enable");
-	} else {
-		$('#btnPullData').linkbutton("disable");
-	}
+    if (hcrw.dataLoaded == 0) {
+        $('#btnPullData').linkbutton("enable");
+    } else {
+        $('#btnPullData').linkbutton("disable");
+    }
     refreshAuditItemList();
 }
 
 function refreshAuditItemList() {
-	if($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
-		$("#auditItemList").panel({
-		    href:'./auditItemList.jsp',
-		    onLoad:function(){
-		    	doAuditItemListInit();
-		    }
-		});
-	} else {
-		doAuditItemListInit();
-	}
+    if ($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
+        $("#auditItemList").panel({
+            href: './auditItemList.jsp',
+            onLoad: function () {
+                doAuditItemListInit();
+            }
+        });
+    } else {
+        doAuditItemListInit();
+    }
 }
 
 function funcBtnRest() {
@@ -80,16 +79,16 @@ function clearInput() {
 }
 
 function funcBtnPullData() {
-	if(!$(this).linkbutton('options').disabled) {
-	    var row = $("#grid1").datagrid("getSelected");
-	    $.getJSON("./" + row.id + "/pull", null, function (response) {
-	        if (response.status == SUCCESS) {
-	            $.messager.alert("提示", response.message, 'info');
-	            refreshAuditItemList();
-	            row.dataLoaded = 1;
-	        }
-	    });
-	}
+    if (!$(this).linkbutton('options').disabled) {
+        var row = $("#grid1").datagrid("getSelected");
+        $.getJSON("./" + row.id + "/pull", null, function (response) {
+            if (response.status == SUCCESS) {
+                $.messager.alert("提示", response.message, 'info');
+                refreshAuditItemList();
+                row.dataLoaded = 1;
+            }
+        });
+    }
 }
 
 function funcBtnViewDocument() {
@@ -109,7 +108,6 @@ $(function () {
     $("#f_nd").textbox("setValue", new Date().getFullYear());
     $("#btnView").click(showExamHistory);
     loadMyTask();
-    
 
     $("#btnSearch").click(loadMyTask);
     $("#btnReset").click(funcBtnRest);
@@ -144,4 +142,10 @@ $(function () {
         });
     });
 
+    $("#btnUpdateHcjg").click(function () {
+        var row = $("#grid1").datagrid("getSelected");
+        $.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
+            $.messager.alert("提示", response.message, 'info');
+        })
+    });
 });
