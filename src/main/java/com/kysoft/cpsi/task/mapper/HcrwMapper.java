@@ -48,12 +48,6 @@ public interface HcrwMapper {
      */
     int updateByPrimaryKey(Hcrw record);
 
-    //根据核查单位查询任务列表--3101
-    List<Hcrw> queryForOrg(Map<String, Object> param);
-
-    //根据核查人员查询任务列表--5101
-    List<Hcrw> queryForAuditor(Map<String, Object> param);
-
     //根据检查单位查询任务列表--3101
     List<Hcrw> queryForOrg(Map<String, Object> param);
 
