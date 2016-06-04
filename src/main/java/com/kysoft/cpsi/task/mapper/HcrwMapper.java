@@ -63,4 +63,6 @@ public interface HcrwMapper {
     void updateLoadedByPrimaryKey(String hcrwId);
 
     List<Hcrw> query(Map<String, Object> param);
+
+    List<Map<String, Object>> queryTongJiFenXi(Map<String, Object> params);
 }

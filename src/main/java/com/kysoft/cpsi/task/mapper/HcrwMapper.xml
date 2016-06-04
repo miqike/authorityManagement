@@ -524,4 +524,291 @@
         RLRQ
     </select>
 
+    <select id="queryTongJiFenXi" resultType="java.util.Map">
+        select id,name,level,
+        (select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        ) heji,
+        (select sum(case when hcjieguo =1 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        ) sl_1,
+        round((select sum(case when hcjieguo =1 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_1,
+        (select sum(case when hcjieguo =2 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )sl_2,
+        round((select sum(case when hcjieguo =2 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_2,
+        (select sum(case when hcjieguo =3 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )sl_3,
+        round((select sum(case when hcjieguo =3 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_3,
+        (select sum(case when hcjieguo =4 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )sl_4,
+        round((select sum(case when hcjieguo =4 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_4,
+        (select sum(case when hcjieguo =5 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )sl_5,
+        round((select sum(case when hcjieguo =5 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_5,
+        (select sum(case when hcjieguo =6 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )sl_6,
+        round((select sum(case when hcjieguo =6 then 1 else 0 end) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )/(select count(1) from t_hcrw b,t_sczt c
+        where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
+        <if test="nd!=null">
+            and b.nd=#{nd}
+        </if>
+        <if test="hcjhId!=null">
+            and b.hcjh_id=#{hcjhId}
+        </if>
+        <if test="ztlx!=null">
+            and c.ztlx=#{ztlx}
+        </if>
+        <if test="hyfl!=null">
+            and c.hyfl=#{hyfl}
+        </if>
+        )*100,2) bz_6
+        from sys_organization a
+        start with id=#{id} connect by prior id=parent_id
+        group by id,name,level
+        order by id
+    </select>
+
 </mapper>
