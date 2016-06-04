@@ -34,90 +34,47 @@
     </style>
 </head>
 <body class="easyui-layout">
-<div region="north" class="title" border="false">
+<!-- <div region="north" class="title" border="false">
     <div style="margin-top:5px;margin-left:10px;"></div>
-</div>
+</div> -->
 <div region="center" border="false">
     <div id="pp" style="position:relative">
-        <div style="width:65%;">
-            <%--
-                <div id="taskTabPanel" class="easyui-tabs" data-options="onSelect:taskTabSelectHandler">
-                    <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:420px;" selected="true">
-                        <table id="todoTaskGrid" class="easyui-datagrid" style="width:650px;height:auto"
-                               data-options="fit:true,border:false,singleSelect:true,method:'get',
-                                   pagination:true,pageSize:20, onLoadSuccess: loadSuccess,idField:'id'">
-                            <thead>
-                            <tr>
-                                <th data-options="field:'priority', halign:'center',align:'right'" width="30" formatter="formatPriority"></th>
-                                <!-- <th data-options="field:'id', halign:'center',align:'right'" width="60" >任务编号</th> -->
-                                <th data-options="field:'processInstanceId', halign:'center',align:'left'" width="60" align="center" >流程编号</th>
-                                <th data-options="field:'processDefinition', halign:'center',align:'left'" width="100" formatter="formatProcessDefinition">流程名</th>
-                                <th data-options="field:'name', halign:'center',align:'left'" width="100" formatter="formatTask">任务名称</th>
-                                <th data-options="field:'processInstanceStartTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">流程创建时间</th>
-                                <th data-options="field:'createTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">任务创建时间</th>
-                                <th data-options="field:'dueDate', halign:'center',align:'left'" width="120" align="right" formatter="formatDatetime2Min">到期时间</th>
-                                <th data-options="field:'startUserName', halign:'center',align:'center'" width="70" formatter="formatUser">发起人</th>
-                                <th data-options="field:'id', halign:'center',align:'left'" width="60" align="center" formatter="formatOperation"></th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div id="involvedProcessInstanceGridDiv" title="相关流程" data-options="closable:false,collapsible:true" style="height:420px;" selected="false">
-                        <input type="radio" name="processStatus" value="1" checked>流转中</input>
-                        <input type="radio" name="processStatus" value="0" >结束</input>
-                        <table id="involvedProcessInstanceGrid" class="easyui-datagrid" style="width:650px;height:auto"
-                               data-options="fit:true,border:false,singleSelect:true,method:'get',
-                                   pagination:true,pageSize:20, onLoadSuccess: loadSuccess,idField:'id'">
-                            <thead>
-                            <tr>
-                                <!-- <th data-options="field:'priority', halign:'center',align:'right'" width="30" formatter="formatPriority"></th> -->
-                                <th data-options="field:'id', halign:'center',align:'left'" width="60" align="center" >流程编号</th>
-                                <th data-options="field:'processDefinition', halign:'center',align:'left'" width="100" formatter="formatProcessDefinition">流程名</th>
-                                <th data-options="field:'startUserName', halign:'center',align:'center'" width="70">发起人</th>
-                                <th data-options="field:'activityId', halign:'center',align:'left'" width="100" >活动任务</th>
-                                <th data-options="field:'processInstanceStartTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">流程创建时间</th>
-                                <th data-options="field:'endTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">流程完成时间</th>
-                                <th data-options="field:'ended', halign:'center',align:'center'" width="70" formatter="formatInvolvedProcessInstanceState">状态</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <!--
-                    <div id="doneTaskGridDiv" title="已办任务" data-options="closable:false,collapsible:true" style="height:420px;" selected="false">
-                        <input type="radio" name="processStatus" value="all" checked style="margin-bottom: 8px;">全部</input>
-                        <input type="radio" name="processStatus" value="active" >流转</input>
-                        <input type="radio" name="processStatus" value="completed" >结束</input>
-                        <table id="doneTaskGrid" class="easyui-datagrid" style="width:650px;height:auto"
-                               data-options="fit:true,border:false,singleSelect:true,method:'get',
-                                   pagination:true,pageSize:20, onLoadSuccess: loadSuccess,idField:'id'">
-                            <thead>
-                            <tr>
-                                <th data-options="field:'priority', halign:'center',align:'right'" width="30" formatter="formatPriority"></th>
-                                <th data-options="field:'processInstanceId', halign:'center',align:'left'" width="60" align="center" >流程编号</th>
-                                <th data-options="field:'processDefinition', halign:'center',align:'left'" width="100" formatter="formatProcessDefinition">流程名</th>
-                                <th data-options="field:'name', halign:'center',align:'left'" width="100" >任务名称</th>
-                                <th data-options="field:'endTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">任务完成时间</th>
-                                <th data-options="field:'startUserName', halign:'center',align:'center'" width="70">发起人</th>
-                                <th data-options="field:'processInstanceStartTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">流程创建时间</th>
-                                <th data-options="field:'processInstanceEndTime', halign:'center',align:'left'" width="100" align="right" formatter="formatDatetime2Min">流程完成时间</th>
-                                <th data-options="field:'state', halign:'center',align:'center'" width="70" formatter="formatProcessInstanceState">状态</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                     -->
+        <div style="width:80%;">
+            <div id="taskTabPanel" class="easyui-tabs" data-options="">
+                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:420px;" selected="true">
+                    <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;height:auto"
+                           data-options="fit:true,border:false,singleSelect:true,method:'get',
+                               pagination:true,pageSize:20, idField:'id'">
+                        <thead>
+                        <tr>
+                            <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
+                            <th data-options="field:'hcdwXydm', halign:'center',align:'left'" width="200" >被检单位统一社会信用代码</th>
+                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
+                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
+                            <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检察机关</th>
+                            <th data-options="field:'qymc', halign:'center',align:'left'" width="100" >区域名称</th>
+                            <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检察人员</th>
+                            <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
+                            <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">要求完成时间</th>
+                            <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
+                            <!-- 
+                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
+                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> -->
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
-             --%>
+            </div>
         </div>
-        <%--<div style="width:20%;">
-            <div title="帮助" collapsible="true" closable="true" style="height:430px;padding:5px;">
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-layout.html">非税业务管理信息系统简介</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">财政端操作手册</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-accordion.html">票管业务手册</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-tabs1.html">执收单位业务手册</a></div>
+        <div style="width:20%;">
+            <div title="帮助" collapsible="true" closable="true" style="height:450px;padding:5px;">
+                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-layout.html">企业公示信息智能检查系统简介</a></div>
+                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">管理人员操作手册</a></div>
+                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">检察人员操作手册</a></div>
+                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-accordion.html">企业用户手册</a></div>
                 <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-tabs2.html">基本操作规则</a></div>
             </div>
-        </div>--%>
+        </div>
     </div>
 </div>
 <div id="processDiagramWindow" class="easyui-window" title="流程跟踪"
@@ -141,3 +98,24 @@
 <script type="text/javascript" src="./js/husky.common.js"></script>
 <script type="text/javascript" src="./js/qtip/jquery.qtip.pack.js"></script>
 <script type="text/javascript" src="./js/welcome.js"></script>
+<script type="text/javascript" src="./js/husky.easyui.codeList.js"></script>
+<script>
+
+function formatZfry(val, row) {
+    return row.zfryName1 + "/" + row.zfryName2;
+}
+
+function loadMyTask() {
+    var options = $("#todoTaskGrid").datagrid("options");
+    options.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor';
+    $('#todoTaskGrid').datagrid('load', {
+        
+    });
+}
+
+$(function(){
+    loadMyTask();
+});
+
+
+</script>

@@ -80,11 +80,8 @@
                    pagePosition="bottom">
                 <thead>
                 <tr>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">
-                        统一社会信用代码
-                    </th>
-                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称
-                    </th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">统一社会信用代码 </th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称 </th>
                 </tr>
                 </thead>
             </table>
