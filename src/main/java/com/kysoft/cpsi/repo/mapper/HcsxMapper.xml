@@ -347,9 +347,7 @@
         <include refid="Base_Column_List"/>
         from T_HCSX where ID in (
         SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
-        SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}
-        )
-        )
+        SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}))
         order by ID
     </select>
 
@@ -359,4 +357,9 @@
         SELECT HCJH_ID FROM T_HCRW WHERE ID=#{hcrwId})) a left join T_HCSX b on a.HCSX_ID = b.ID
     </select>
 
+	<update id="updateHcclByPrimaryKey" >
+        update T_HCSX
+        set HCCL = #{hcclInHcsx,jdbcType=VARCHAR}
+        where ID = #{hcsxId,jdbcType=VARCHAR}
+    </update>
 </mapper>

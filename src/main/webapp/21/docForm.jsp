@@ -6,6 +6,7 @@
 		data.id = $("#d_id").val();
 		data.hcsxId = $("#d_hcsxId").val();
 		data.hcsxmc = $("#d_hcsxmc").val();
+		data.name = $("#d_name").val();
 		
 	    var type = "POST";
 	    var url = "./hccl";
@@ -16,6 +17,7 @@
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
 	                $("#docGrid").datagrid("reload");
+	                $("#mainGrid").datagrid("reload");
 	                $("#addDocWindow").window("close");
 	                $.messager.show({
 						title : '提示',
@@ -30,8 +32,6 @@
 	
 	function doInit() {
 		$.codeListLoader.parse($("#addDocWindow"));
-		$("#btnSaveDoc").click(funcSaveDoc);
-		
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
 		$("#d_hcsxId").val(hcsx.id);
 		$("#d_hcsxmc").val(hcsx.name);
@@ -61,12 +61,10 @@
     		$("#d_ly").combobox("setValue", 2);
     		$("#btnUpload").linkbutton("enable");
 		}
-		
 	}
 	
 </script>
-              
-    <a href="#" id="btnSaveDoc" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
+<div id="addDocWindow" style="padding-left:5px; padding-top:5px;">
     <table>
     	<tr>
     		<td class="label">材料名称</td><td>
@@ -85,3 +83,4 @@
     		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" /></td>
     	</tr>
     </table>
+</div>

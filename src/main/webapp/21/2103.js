@@ -78,7 +78,7 @@ function btnViewClick() {
     	$.easyui.showDialog({
     		title : "修改抽检事项信息",
     		width : 750,
-    		height : 400,
+    		height : 450,
     		topMost : false,
     		enableSaveButton : true,
     		enableApplyButton : false,
@@ -100,14 +100,6 @@ function btnViewClick() {
             }
     	});
     	
-      
-       /* 
-        $("#basePanel").panel({
-		    href:'./auditItem.jsp',
-		    onLoad:function(){
-		    	doInit("edit");
-		    }
-		});*/
         setEditStatus();
     }
 }

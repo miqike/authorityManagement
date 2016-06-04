@@ -3,6 +3,8 @@ package com.kysoft.cpsi.repo.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.kysoft.cpsi.repo.entity.Hcsx;
 
 public interface HcsxMapper {
@@ -55,6 +57,8 @@ public interface HcsxMapper {
 	List<Hcsx> selectByTaskId(String hcrwId);
 
 	List<Map> getHcsxCode(String hcrwId);
+
+	void updateHcclByPrimaryKey(@Param("hcsxId") String hcsxId, @Param("hcclInHcsx") String hcclInHcsx);
 
 	
 }

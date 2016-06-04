@@ -9,13 +9,29 @@
 	}
 	
 	function funcAddDoc() {
-		showModalDialog("addDocWindow");
-		$("#addDocWindow").panel({
-		    href:'./docForm.jsp',
-		    onLoad:function(){
-		    	doInit();
-		    }
-		});
+		/* <div id="addDocWindow" class="easyui-window" title="检查材料"
+		     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
+		     style="width: 300px; height: 200px; padding: 10px;">
+		    
+		</div>
+		 */
+		$.easyui.showDialog({
+    		title : "修改抽检事项信息",
+    		width : 300,
+    		height : 200,
+    		topMost : false,
+    		enableSaveButton : true,
+    		enableApplyButton : false,
+    		closeButtonText : "返回",
+    		closeButtonIconCls : "icon-undo",
+    		href : "./docForm.jsp",
+    		onLoad : function() {
+    			doInit();
+    		},
+    		onSave: function (d) {
+    			funcSaveDoc();
+            }
+    	});
 	}
 
 	function funcRemoveDoc () {
@@ -72,7 +88,6 @@
         <span style="color:blue; " id="_qymc_"></span>
     </div>
     <table id="docGrid"
-           class="easyui-datagrid"
            data-options="collapsible:true,
            		singleSelect:true,height:300,width:680,
            		onClickRow:docGridClickRowHandler,
@@ -98,9 +113,10 @@
     <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
-
+<!-- 
 <div id="addDocWindow" class="easyui-window" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
      style="width: 300px; height: 200px; padding: 10px;">
     
 </div>
+ -->
