@@ -455,7 +455,7 @@
         from T_HCRW where HCJH_ID = #{hcjhId}
         AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
         ORDER BY
-        
+
         <if test="order == 1">
             HCJGMC, ZFRY_NAME1, ZFRY_NAME2
         </if>
@@ -525,7 +525,7 @@
     </select>
 
     <select id="queryTongJiFenXi" resultType="java.util.Map">
-        select id,name,level,
+        select id,lpad('　',(level-1)*2,'　')||name name,level,
         (select count(1) from t_hcrw b,t_sczt c
         where c.xydm=b.HCDW_XYDM and b.hcjg like a.id||'%'
         <if test="nd!=null">

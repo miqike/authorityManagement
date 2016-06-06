@@ -387,34 +387,51 @@ DECLARE
   v_hcjgmc   VARCHAR2(4000);
 BEGIN
   SELECT count(1)
-  INTO ry_max
-  FROM cpsi.sys_user;
-  SELECT count(1)
   INTO org_max
   FROM cpsi.sys_organization;
   FOR o IN qy LOOP
     --取得执法人员
+    hcry_code1 := '';
+    hcry_code2 := '';
+    hcry_name1 := '';
+    hcry_name2 := '';
+    v_hcjg := '';
+    v_hcjgmc := '';
+    SELECT count(1)
+    INTO ry_max
+    FROM cpsi.sys_user;
     ry := round(uext_random.value(1, ry_max));
     SELECT
       USER_ID,
-      name
-    INTO hcry_code1, hcry_name1
+      name,
+      org_id,
+      org_name
+    INTO hcry_code1, hcry_name1, v_hcjg, v_hcjgmc
     FROM (SELECT
             a.*,
             rownum rn
           FROM cpsi.sys_user a)
     WHERE rn = ry;
-    ry := round(uext_random.value(1, ry_max));
-    SELECT
-      USER_ID,
-      name
-    INTO hcry_code2, hcry_name2
-    FROM (SELECT
-            a.*,
-            rownum rn
-          FROM cpsi.sys_user a)
-    WHERE rn = ry;
+    SELECT count(1)
+    INTO ry_max
+    FROM cpsi.sys_user
+    WHERE org_id = v_hcjg AND user_id != hcry_code1;
+    IF (ry_max > 0)
+    THEN
+      ry := round(uext_random.value(1, ry_max));
+      SELECT
+        USER_ID,
+        name
+      INTO hcry_code2, hcry_name2
+      FROM (SELECT
+              a.*,
+              rownum rn
+            FROM cpsi.sys_user a
+            WHERE org_id = v_hcjg AND user_id != hcry_code1)
+      WHERE rn = ry;
+    END IF;
     --取得核查单位
+    /*
     org := round(uext_random.value(1, org_max));
     SELECT
       ID,
@@ -425,9 +442,10 @@ BEGIN
             rownum rn
           FROM cpsi.sys_organization a)
     WHERE rn = org;
+    */
     INSERT INTO v_hcrw (HCDW_XYDM, HCDW_NAME, ZFRY_CODE1, ZFRY_CODE2, ZFRY_NAME1, ZFRY_NAME2, HCFL, HCJG, JYZT, HCJGMC, DJJG, DJJGMC, ZTLX, ZZXS, QYBM, QYMC, HYFL, FR, LXDH, MAIL, JYDZ, LLR)
     VALUES
-      (o.xydm, o.name, hcry_code1, hcry_code2, hcry_name2, hcry_name2, round(uext_random.value(1, 3)), v_hcjg,
+      (o.xydm, o.name, hcry_code1, hcry_code2, hcry_name1, hcry_name2, round(uext_random.value(1, 3)), v_hcjg,
                o.jyzt, v_hcjgmc, o.djjg, o.djjgmc, o.ztlx, o.zzxs, o.qybm, o.qymc, o.hyfl, o.fr,
                                          o.lxdh, o.mail, o.jydz, o.llr);
   END LOOP;
