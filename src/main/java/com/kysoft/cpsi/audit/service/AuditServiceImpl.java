@@ -105,7 +105,7 @@ public class AuditServiceImpl implements AuditService {
     public void verifyMail(String id) {
         mailVerifyMapper.updateVerifiedByPrimaryKey(id);
         MailVerify mv = mailVerifyMapper.selectByPrimaryKey(id);
-        hcsxjgService.complete(mv.getHcrwId(), mv.getHcsxId(), 1);
+        hcsxjgService.complete(mv.getHcrwId(), mv.getHcsxId(), 1, "正常");
         logService.info("audit", "被检查单位收到验证邮件,本检查项完成", "被检查单位收到验证邮件", mv.getHcrwId() + "-" + mv.getHcsxId());
     }
 
