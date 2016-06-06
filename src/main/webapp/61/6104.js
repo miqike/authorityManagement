@@ -81,7 +81,8 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
         options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
-            organization: selected[0].id
+            organization: selected[0].id,
+            order: 1
         });
     } else {
 
@@ -121,7 +122,7 @@ $(function () {
         columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20});
         columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "hcjg"});
         //取得数据
-        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + selected[0].id, null, function (response) {
+        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + selected[0].id + "&order=1", null, function (response) {
             if (response.status == 1) {
                 data = response.rows;
                 listPrint(params, data, columnList);
