@@ -5,10 +5,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="./css/themes/${theme}/easyui.css">
-    <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./js/jquery-easyui-theme/${theme}/easyui.css">
     <link rel="stylesheet" type="text/css" href="./css/portal.css">
     <link rel="stylesheet" type="text/css" href="./js/qtip/jquery.qtip.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="./css/bubble.css">
+    
     <style type="text/css">
         .title {
             font-size: 14px;
@@ -33,17 +36,21 @@
         }
     </style>
 </head>
-<body class="easyui-layout">
-<!-- <div region="north" class="title" border="false">
+<body>
+<!-- 
+<div region="north" class="title" border="false">
     <div style="margin-top:5px;margin-left:10px;"></div>
-</div> -->
+</div> 
 <div region="center" border="false">
-    <div id="pp" style="position:relative">
-        <div style="width:80%;">
+ -->
+     <div id="pp" style="position:relative">
+        <div style="width:80%;height:auto">
             <div id="taskTabPanel" class="easyui-tabs" data-options="">
-                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:420px;" selected="true">
+                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:800px;" selected="true">
+                    <table id="todoTaskGrid"></table>
+                    <!-- 
                     <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;height:auto"
-                           data-options="fit:true,border:false,singleSelect:true,method:'get',
+                           data-options="fit:true,border:false,singleSelect:true,method:'get',offset:{}
                                pagination:true,pageSize:20, idField:'id'">
                         <thead>
                         <tr>
@@ -57,12 +64,12 @@
                             <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
                             <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">要求完成时间</th>
                             <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
-                            <!-- 
+                            
                             <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
-                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> -->
+                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th>
                         </tr>
                         </thead>
-                    </table>
+                    </table> -->
                 </div>
             </div>
         </div>
@@ -76,7 +83,10 @@
             </div>
         </div>
     </div>
+<!--     
 </div>
+ -->
+ <!-- 
 <div id="processDiagramWindow" class="easyui-window" title="流程跟踪"
      style="clear: both; width: 750px; height: 400px;"
      data-options="iconCls:'icon-edit',modal:true,closed:true">
@@ -84,11 +94,19 @@
         <img id="processDiagram"/>
         <div id='processImageBorder'></div>
     </div>
-</div>
+</div> 
+ -->
+ <!-- 
+<h2>jEasyUI DataGrid Extensions - 自动适应屏幕大小(Offset)</h2>
+<p>该部分扩展由文件 jeasyui.extensions.datagrid.js 实现。</p>
+<hr />
+<p>请试着调整浏览器窗口大小，在移动时/后，可以观察到表格的大小也随之而改变</p>
+<table id="todoTaskGrid"></table>
+ -->
 </body>
 
 </html>
-
+<!-- 
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery.browser.min.js"></script>
 <script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
@@ -99,6 +117,16 @@
 <script type="text/javascript" src="./js/qtip/jquery.qtip.pack.js"></script>
 <script type="text/javascript" src="./js/welcome.js"></script>
 <script type="text/javascript" src="./js/husky.easyui.codeList.js"></script>
+ -->
+<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.portal.js"></script>
+<script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+<script type="text/javascript" src="./js/formatter.js"></script>
+<script type="text/javascript" src="./js/welcome.js"></script>
+
+
 <script>
 
 function formatZfry(val, row) {
@@ -108,14 +136,39 @@ function formatZfry(val, row) {
 function loadMyTask() {
     var options = $("#todoTaskGrid").datagrid("options");
     options.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor';
-    $('#todoTaskGrid').datagrid('load', {
-        
-    });
+    $('#todoTaskGrid').datagrid('load', {});
 }
 
 $(function(){
-    loadMyTask();
+    //loadMyTask();
+    
+    
+    $("#todoTaskGrid").datagrid({
+        title: 'test datagrid',
+        width: 1200,
+        height: 400,
+        method: "get",
+        /* url: "datagrid/datagrid-data.json", */
+        idField: 'ID',
+        remoteSort: false,
+        frozenColumns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'ID', title: 'ID', width: 80, sortable: true }
+        ]],
+        columns: [[
+            { field: 'Code', title: '编号(Code)', width: 120 },
+            { field: 'Name', title: '名称(Name)', width: 140 },
+            { field: 'Age', title: '年龄(Age)', width: 120 },
+            { field: 'Height', title: '身高(Height)', width: 140 },
+            { field: 'Weight', title: '体重(Weight)', width: 140 },
+            { field: 'CreateDate', title: '创建日期(CreateDate)', width: 180 },
+            { field: 'undefined', title: '测试(不存在的字段)', width: 150 }
+        ]],
+        enableHeaderClickMenu: false,
+        enableHeaderContextMenu: false,
+        enableRowContextMenu: false,
+        offset: { width: -250, height: -150}   //该属性属性表示当屏幕大小调整时候随屏幕大小尺寸调整而自身大小调整的偏移量，具体设置方式参见 API 文档说明
+    });
 });
-
 
 </script>
