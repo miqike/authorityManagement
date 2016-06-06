@@ -195,6 +195,6 @@
     from T_HCRW_TJ where HCJH_ID=#{hcjhId}
     AND
     HCJG like concat(#{organization}, '%')
-    HCJG
+    ORDER BY HCJGMC
   </select>
 </mapper>
