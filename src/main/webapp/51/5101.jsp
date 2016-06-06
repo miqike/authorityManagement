@@ -82,7 +82,7 @@
             <table id="grid1"
                    class="easyui-datagrid"
                    data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
-		       		offset: { width: 0, height: 0},
+		       		offset: { width: 0, height: 0},rowStyler: hcrwStyler,
 		       		singleSelect:true,ctrlSelect:false,method:'get',
 		       		pageSize: 20, pagination: true"
                    pagePosition="bottom">

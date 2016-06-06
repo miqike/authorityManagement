@@ -17,7 +17,23 @@ function showExamHistory() {
     showModalDialog("examHistory");
 }
 
-//---------------
+function hcrwStyler(index,row){
+	console.log(row.rwzt)
+	if (row.rwzt == 1){
+		return 'background-color:lightgray;'; // return inline style
+	} else if (row.rwzt == 2) {
+		return 'background-color:orange;';
+	} else if (row.rwzt == 3) {
+		return 'background-color:lightblue;';
+	} else if (row.rwzt == 4) {
+		return 'background-color:brown;color:#fff;';
+	} else if (row.rwzt == 5) {
+		return 'background-color:lightgreen;';
+	} else {
+		return 'background-color:lightgray;';;
+	}
+}
+
 function loadMyTask() {
     var options = $("#grid1").datagrid("options");
     options.url = '../common/query?mapper=hcrwMapper&queryName=queryForAuditor';
