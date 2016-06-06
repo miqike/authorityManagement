@@ -26,7 +26,7 @@ public class HcsxjgServiceImpl implements HcsxjgService {
 	}
 
 	@Override
-	public void complete(String hcrwId, String hcsxId, Integer hcjg) {
+	public void complete(String hcrwId, String hcsxId, Integer hcjg, String sm) {
 		HcsxjgKey key = new HcsxjgKey();
 		key.setHcrwId(hcrwId);
 		key.setHcsxId(hcsxId);
@@ -34,6 +34,7 @@ public class HcsxjgServiceImpl implements HcsxjgService {
 		Hcsxjg hcsxjg = hcsxjgMapper.selectByPrimaryKey(key);
 		hcsxjg.setHczt(3);
 		hcsxjg.setHcjg(hcjg);
+		hcsxjg.setSm(sm);
 		hcsxjgMapper.updateByPrimaryKeySelective(hcsxjg);
 	}
 

@@ -103,6 +103,23 @@ function funcBtnViewDocument() {
     }
 }
 
+function updateHcjg() {
+	$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
+	$("#p_hcjieguo").combobox("enable").combobox("showPanel");
+}
+
+function confirmUpdateHcjg() {
+	var row = $("#grid1").datagrid("getSelected");
+	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
+		$.messager.alert("提示", response.message, 'info');
+		
+		$("#btnUpdateHcjg").linkbutton("enable");
+	    $("#btnConfirmUpdateHcjg").hide();
+		$("#p_hcjieguo").combobox("disable");
+		loadMyTask();
+	})
+}
+
 $(function () {
     clearInput();
     $("#f_nd").textbox("setValue", new Date().getFullYear());
@@ -142,10 +159,10 @@ $(function () {
         });
     });
 
-    $("#btnUpdateHcjg").click(function () {
-        var row = $("#grid1").datagrid("getSelected");
-        $.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
-            $.messager.alert("提示", response.message, 'info');
-        })
-    });
+    $("#btnUpdateHcjg").linkbutton("disable");
+    $("#btnUpdateHcjg").click(updateHcjg);
+    
+    $("#btnConfirmUpdateHcjg").click(confirmUpdateHcjg);
+    $("#btnConfirmUpdateHcjg").hide();
+    
 });

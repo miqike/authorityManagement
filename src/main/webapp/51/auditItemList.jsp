@@ -2,12 +2,6 @@
 <!-- <script type="text/javascript" src="./userDoc.js"></script> -->
 <script>
 	
-	function closeAuditWindow() {
-		$("#auditContent").empty()
-		$("#auditLog").empty()
-	    $("#auditItemAccordion").accordion("select", 0); 
-	}
-
 	function stylerHczt(val, row, index) {
 	    if (val == 1) {
 	        return "";
@@ -55,6 +49,10 @@
 	}
 	
 	function initAuditItemList() {
+		$("#p_hcjieguo").combobox("disable")
+		$("#btnUpdateHcjg").linkbutton("enable");
+	    $("#btnConfirmUpdateHcjg").hide();
+	    
 		$("#auditItemAccordion").accordion("select", 0); 
 		var hcrw = $('#grid1').datagrid('getSelected');
 		if(hcrw.nr == 1) {
@@ -107,9 +105,7 @@
 	    });
 	}
 	
-	//-----------annual
-	
-	
+//-----------annual
 function annualAuditItemClickHandler() {
     if ($('#annualAuditItemGrid').datagrid('getSelected') != null) {
         $('#btnAnnualAudit').linkbutton('enable');
@@ -139,6 +135,7 @@ function _funcAnnualAudit() {
         $("#auditContent").panel({
             href: '../audit/' + auditItem.page + '.jsp',
             onLoad: function () {
+            	_doInit("annual");
                 doInit();
             }
         });
@@ -192,13 +189,17 @@ function _funcInstanceAudit() {
     if (auditItem.page == null) {
         $.alert("未配置比对页面")
     } else {
+    	$("#auditItemAccordion").accordion("select", 1); 
+    	
         //showModalDialog("auditWindow");
         $("#auditContent").panel({
             href: '../audit/' + auditItem.page + '.jsp',
             onLoad: function () {
+            	_doInit("instance");
                 doInit();
             }
         });
+        /* 
         if ($("#auditLog").length == 0) {
             $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
         }
@@ -207,9 +208,7 @@ function _funcInstanceAudit() {
             onLoad: function () {
                 //doInit();
             }
-        });
-        
-        $("#auditItemAccordion").accordion("select", 1); 
+        }); */
     }
 }
 
@@ -220,11 +219,99 @@ function instanceAuditItemInit() {
     	hcrwId: $('#grid1').datagrid('getSelected').id,
     	hclx: 2
     });
-	
 }
 
 
 //================instance end=========
+function _doInit(type) {
+	var auditItem = null;
+	if(type=="annual") {
+		auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
+	}  else {
+		auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
+	}
+    var qy = $("#grid1").datagrid("getSelected");
+    
+	$("#_hcrwId_").text(auditItem.hcrwId);
+    $("#_hcsxId_").text(auditItem.hcsxId);
+
+    $("#_qygsnr_").text(auditItem.qygsnr == null ? "" : auditItem.qygsnr);
+    $("#_bznr_").text(auditItem.bznr == null ? "" : auditItem.bznr);
+    $("#_qymc_").text(qy.hcdwName);
+    $("#_hcsxmc_").text(auditItem.name);
+
+    $("#btnSuccess").show();
+	$("#btnFail").show();
+	
+    $("#btnSuccess").click(pass);
+    $("#btnFail").click(fail);
+    
+    $("#btnConfirmFail").click(confirmFail);
+    $("#btnCancelFail").click(cancelFail);
+    $("#btnClose").click(closeAuditWindow);
+    cancelFail();
+}
+//==通用,通过,失败,返回===	
+function pass() {
+    $.post("../audit/complete", {
+        hcrwId: $("#_hcrwId_").text(),
+        hcsxId: $("#_hcsxId_").text(),
+        hcjg: 1,
+        qymc: $("#_qymc_").text(),
+        hcsxmc: $("#_hcsxmc_").text(),
+        sm: "正常"
+    }, function (response) {
+        if (response.status == SUCCESS) {
+            $.messager.show({
+                title: '提示',
+                msg: response.message
+            });
+            $("#annualAuditItemGrid").datagrid("reload");
+            closeAuditWindow();
+        } else {
+            $.messager.alert('错误', response.message, 'error');
+        }
+    });
+};
+    
+function fail() {
+	$('#auditToolbar').hide();
+	$('#failReason').show();
+}
+
+function cancelFail () {
+	$('#auditToolbar').show();
+	$('#failReason').hide();
+}
+
+function confirmFail () {
+	$.post("../audit/complete", {
+        hcrwId: $("#_hcrwId_").text(),
+        hcsxId: $("#_hcsxId_").text(),
+        hcjg: 2,
+        qymc: $("#_qymc_").text(),
+        hcsxmc: $("#_hcsxmc_").text(),
+        sm:$("#k_failReason").val()
+    }, function (response) {
+        if (response.status == SUCCESS) {
+            $.messager.show({
+                title: '提示',
+                msg: response.message
+            });
+            $("#annualAuditItemGrid").datagrid("reload");
+            closeAuditWindow();
+        } else {
+            $.messager.alert('错误', response.message, 'error');
+        }
+    });
+}
+
+function closeAuditWindow() {
+	$("#auditContent").empty()
+	$("#auditLog").empty()
+    $("#auditItemAccordion").accordion("select", 0); 
+}
+
 $(function () {
 	$("#btnAnnualAudit").click(funcAnnualAudit);
 	$("#btnInstanceAudit").click(funcInstanceAudit);
@@ -289,7 +376,22 @@ $(function () {
 		     data-options="modal:true,closed:true,iconCls:'icon-search'"
 		     style="width: 750px; height: 420px; padding: 10px;">
 			<div id="auditContent" style="padding:10px;"></div>
+			<div id="auditToolbar" style="padding:5px 0px;">
+                <div class="dialog-button calendar-header" style="height: auto; border-top-color: rgb(195, 217, 224);">
+				    <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
+				    <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
+				    <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
+				</div>
+			</div>
+            <div id="failReason" style="display:none;padding:5px;">
+				<span style="font-weight:bold; ">检查项目不通过理由和说明:</span><br/>
+				<textarea id="k_failReason" cols="70" rows="2" style="width:553px;margin-top:5px;"></textarea>
+	               <a href="#" id="btnConfirmFail" class="easyui-linkbutton" iconCls="icon-ok" plain="true">确定</a>
+	               <a href="#" id="btnCancelFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">取消</a>
+			
+			</div>
 			<div id="auditLog" style="margin-top:5px;"></div>
+			
 		</div>
     </div>
 </div>

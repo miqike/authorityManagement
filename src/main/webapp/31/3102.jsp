@@ -36,21 +36,21 @@
 		<table id="queryTable">
 			<tr>
 				<td class="label">计划年度</td>
-				<td><input id="p_recallLimits" class="easyui-numberspinner" data-options="min:2000,max:2017"/>
+				<td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/>
 				</td>
 				<td class="label">计划编号</td>
-				<td><input id="f_errorNo" class="easyui-textbox"/></td>
+				<td><input id="f_jhbh" class="easyui-textbox"/></td>
 				<td class="label">公示系统计划编号</td>
-				<td><input id="f_operator" class="easyui-textbox"/></td>
+				<td><input id="f_gsjhbh" class="easyui-textbox"/></td>
 			</tr>
 			<tr>
 				<td class="label">计划名称</td>
-				<td><input id="f_module" class="easyui-textbox"/></td>
+				<td><input id="f_jhmc" class="easyui-textbox"/></td>
 				<td class="label">检查内容</td>
-				<td><input id="f_deptName" class="easyui-combobox" codeName="hcnr"
+				<td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
 					data-options="panelHeight:80,width:143,onChange:queryPlan" style="" /></td>
 				<td class="label">检查分类</td>
-				<td><input id="f_deptName" class="easyui-combobox" codeName="hcfl" 
+				<td><input id="f_fl" class="easyui-combobox" codeName="hcfl" 
 					data-options="panelHeight:60,width:143,onChange:queryPlan" style="" /></td>
 				<td colspan="2" style="text-align-right;">
 					<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
@@ -64,8 +64,8 @@
 		<table id="grid1"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,
-				method:'get',url:'../common/query?mapper=hcjhMapper&queryName=query',
-				onSelect:showPlanDetail"
+				onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+				method:'get'"
 			   toolbar="#gridToolbar1"
 			   style="height: 250px"
 			   sortOrder="asc">
@@ -90,16 +90,11 @@
 			</thead>
 		</table>
 		<div id="gridToolbar1">
-			<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
+			<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
 		</div>
 	</div>
 	
 	<div id="layout" class="easyui-layout" data-options="fit:true">
-		<!-- <div data-options="region:'west',title:'单位列表',onCollapse:collapseHandler,onExpand:expandHandler" style="width:200px">
-			<div style="float:left;margin:0px 5px;border: 1px solid lightgray;">
-                <ul id='orgTree' class="ztree" ></ul>
-			</div>
-		</div> -->
 		<div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
 			<ul id="orgTree" class="ztree"></ul>
 		</div>
@@ -107,9 +102,8 @@
 					<!-- onUnselect:disableUpdateAndDeleteButton" -->
 			<table id="grid2"
 				class="easyui-datagrid"
-				data-options="singleSelect:true,collapsible:true,
-					method:'get',
-					onSelect:showPlanDetail"
+				data-options="singleSelect:true,collapsible:true,pageSize: 10, pagination: true,
+					method:'get'"
 				   toolbar="#planGridToolbar"
 				   style="height: 250px"
 				   sortOrder="asc">
@@ -128,7 +122,7 @@
 				</thead>
 			</table>
 			<div id="planGridToolbar">
-				<a href="#" id="btnDelete1" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
+				<a href="#" id="btnViewDetail" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">详细</a>
 			</div>
 		</div>
 

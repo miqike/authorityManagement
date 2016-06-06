@@ -1,36 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<script type="text/javascript" src="../audit/postcode.js"></script>
-<div>
-    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>自行查询</p>
-    <div style="display: none;">
-        <span style="color:blue; " id="_hcrwId_"></span>
-        <span style="color:blue; " id="_hcsxId_"></span>
-        <span style="color:blue; " id="_qymc_"></span>
-
-    </div>
-    <table>
-        <tr>
-            <td>公示系统内容:</td>
-            <td>
-                <span style="color:blue; " id="_qygsnr_"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>标准内容:</td>
-            <td>
-                <span style="color:blue; " id="_bznr_"></span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
-                <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
-            </td>
-        </tr>
-    </table>
-
-</div>
+<script>
+var auditApproach = "自行查询";
+</script>
+<%@ include  file="singleAudit.jsp"%> 

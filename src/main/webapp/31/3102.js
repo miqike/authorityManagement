@@ -1,7 +1,4 @@
-
-
 window.excludeSaved = false;
-
 
 function funSubmit(){
 	if(!$(this).linkbutton('options').disabled) {
@@ -75,29 +72,88 @@ function xxxx(orgId) {
 //================
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
-	
-	console.log(treeNode);
-	
+	 var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	    var selected = treeObj.getSelectedNodes();
+	    var hcjh = $('#grid1').datagrid('getSelected');
+	    if (selected.length == 1 && hcjh != null) {
+	    	loadGrid2();
+
+	        $("#btnViewDetail").linkbutton("enable");
+	    } else {
+	        $("#btnViewDetail").linkbutton("disable");
+	    }
+}
+
+function loadGrid2() {
 	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
 	var selected = treeObj.getSelectedNodes()
-
-	if(selected.length == 1) {
-		var options = $("#grid2").datagrid("options");
-		options.url = '../common/query?mapper=hcrwTjMapper&queryName=queryForOrg';
-		$('#grid4').datagrid('load',{
-			organization: selected[0].id
-		});
-
-	} else {
-	}
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwTjMapper&queryName=queryForOrg';
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: selected[0].id
+    });
 }
+
+function grid1ClickHandler() {
+    if ($('#grid1').datagrid('getSelected') != null) {
+        $('#btnViewCheckList').linkbutton('enable');
+    } else {
+        $('#btnViewCheckList').linkbutton('disable');
+    }
+    $('#grid2').datagrid("loadData", {total: 0, rows: []})
+}
+
+function viewCheckList() {
+    if (!$(this).linkbutton('options').disabled) {
+        var row = $("#grid1").datagrid('getSelected');
+
+        showModalDialog("checklistWindow");
+        var options = $("#grid4").datagrid("options");
+        options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlan';
+        $('#grid4').datagrid('load', {
+            hcjhId: row.id
+        });
+    }
+}
+
+function clearInput() {
+    $("#f_id").val("");
+    $("#f_jhbh").textbox("setValue", "");
+    $("#f_gsjhbh").textbox("setValue", "");
+    $("#f_jhmc").textbox("setValue", "");
+    $("#f_nr").combobox("setValue", "");
+    $("#f_fl").combobox("setValue", "");
+}
+
+function loadGrid1() {
+    var options = $("#grid1").datagrid("options");
+    options.url = '../common/query?mapper=hcjhMapper&queryName=query';
+    $('#grid1').datagrid('load', {
+        nd: $('#f_nd').numberspinner("getValue"),
+        jhbh: $('#f_jhbh').textbox("getValue"),
+        gsjhbh: $('#f_gsjhbh').textbox("getValue"),
+        jhmc: $('#f_jhmc').textbox("getValue"),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue")
+    });
+}
+
+function funcBtnRest() {
+    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    clearInput();
+}
+
 //初始化
 $(function() {
 	$.fn.zTree.init($("#orgTree"), setting);
-    /*$("#btnAdd").click(funAdd);
-	$("#btnUpdate").click(update);
-	$("#btnDelete").click(remove);
-	$("#btnSubmit").click(funSubmit);
-	$("#btnAddPlan").hide();*/
+    $("#btnViewCheckList").click(viewCheckList);
+
+    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    clearInput();
+    loadGrid1();
+    $("#btnSearch").click(loadGrid1);
+    $("#btnReset").click(funcBtnRest);
 });
 

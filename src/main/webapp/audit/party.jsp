@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
+var auditApproach = "自行查询";
+
 var auditConfig = [
 	["djFrsfdy", "法人是否是党员", "yesno"], 
 	["djLxdh", "联系电话"], 

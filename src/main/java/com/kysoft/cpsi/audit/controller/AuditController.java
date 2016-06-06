@@ -61,11 +61,11 @@ public class AuditController extends BaseController {
     }
 
     @RequestMapping(value = "/complete", method = RequestMethod.POST)
-    public Map<String, Object> complete(String hcrwId, String hcsxId, Integer hcjg, String qymc, String hcsxmc) {
+    public Map<String, Object> complete(String hcrwId, String hcsxId, Integer hcjg, String qymc, String hcsxmc, String sm) {
         Map<String, Object> result = Maps.newHashMap();
         try {
             logService.info("audit", "检查[" + qymc + "]的" + "[" + hcsxmc + "]完成", "检查结果[" + hcjg + "]", hcrwId + "-" + hcsxId);
-            hcsxjgService.complete(hcrwId, hcsxId, hcjg);
+            hcsxjgService.complete(hcrwId, hcsxId, hcjg, sm);
             result.put(MESSAGE, "检查[" + qymc + "]的" + "[" + hcsxmc + "]完成");
             result.put(STATUS, SUCCESS);
         } catch (MailVerifyException e) {

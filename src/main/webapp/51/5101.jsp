@@ -46,6 +46,14 @@
         td.label {
             text-align: right;
         }
+        
+        div.hcsx {
+        	display:inline-block; 
+        	width:140px;
+        	color:brown;
+        	font-weight:bold;
+        	text-align:right;
+        }
     </style>
 </head>
 <body style="padding:5px;">
@@ -104,10 +112,9 @@
                         </td>
                         <td class="label" style="padding-left:10px;">检查结果确认</td>
                         <td><input id="p_hcjieguo" class="easyui-combobox"
-                                   data-options="width:100" codeName="gsjg"/></td>
-                        <td colspan="8" style="text-align:left">
-                            <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
-                               iconCls="icon2 r10_c20" disabled>更新任务结果</a></td>
+                                   data-options="width:100" codeName="gsjg" disabled/>
+                            <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true"
+                               iconCls="icon-ok" disabled >确认</a></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="text-align:left">
@@ -121,6 +128,8 @@
                                iconCls="icon2 r14_c3" disabled>加载在线数据</a>
                             <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1"
                                plain="true" disabled>检查材料</a>
+                            <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r10_c20" disabled>更新任务结果</a>
                         </td>
                     </tr>
                 </table>
@@ -130,14 +139,7 @@
     </div>
 </div>
 
-<!-- --------弹出窗口---------------
-<div id="auditWindow"  title="检查"
-     data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 420px; padding: 10px;">
-	<div id="auditContent" style="padding:10px;"></div>
-	<div id="auditLog" style="margin-top:5px;"></div>
-</div>
- -->
+<!-- --------弹出窗口--------------- -->
 
 <div id="documentWindow" title="检查材料"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
@@ -153,3 +155,4 @@
     <div id="gaozhishuContent">
     </div>
 </div>
+<div id="failDialog"></div>

@@ -4,6 +4,6 @@ public interface HcsxjgService {
 
 	void start(String hcrwId, String hcsxId);
 
-	void complete(String hcrwId, String hcsxId, Integer hcjg);
+	void complete(String hcrwId, String hcsxId, Integer hcjg, String sm);
 
 }

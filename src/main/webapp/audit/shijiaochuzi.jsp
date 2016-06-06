@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<script type="text/javascript" src="../audit/shijiaochuzi.js"></script>
 <div>
     检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
 </div>
@@ -23,13 +22,6 @@
             <td>标准内容:</td>
             <td>
                 <span style="color:blue; " id="_bznr_"></span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
-                <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-                <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
             </td>
         </tr>
     </table>
