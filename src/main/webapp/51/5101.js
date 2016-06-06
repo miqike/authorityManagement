@@ -18,7 +18,6 @@ function showExamHistory() {
 }
 
 function hcrwStyler(index,row){
-	console.log(row.rwzt)
 	if (row.rwzt == 1){
 		return 'background-color:lightgray;'; // return inline style
 	} else if (row.rwzt == 2) {

@@ -58,12 +58,15 @@
 		if(hcrw.nr == 1) {
 			$("#auditItemTabs").tabs("enableTab", 0).tabs("select", 0);
 			$("#auditItemTabs").tabs("disableTab", 1);
+			annualAuditItemInit();
 		} else if(hcrw.nr == 2) {
 			$("#auditItemTabs").tabs("disableTab", 0);
 			$("#auditItemTabs").tabs("enableTab", 1).tabs("select", 1);
+			instanceAuditItemInit() 
 		} else {
 			$("#auditItemTabs").tabs("enableTab", 0).tabs("select", 0);
 			$("#auditItemTabs").tabs("enableTab", 1);
+			annualAuditItemInit() 
 		} 
 	} 
 	
