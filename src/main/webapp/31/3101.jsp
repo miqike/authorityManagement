@@ -132,30 +132,30 @@
                    sortOrder="asc">
                 <thead>
                 <tr>
-                    <!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
-                    <th data-options="field:'hcjgmc'" halign="center" align="left" sortable="true" width="150">检查机关</th>
-                    <th data-options="field:'djjgmc'" halign="center" align="left" sortable="true" width="150">登记机关</th>
-                    <th data-options="field:'hcdwXydm'" halign="center" align="left" sortable="true" width="180">
+                    <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
+                    <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+                    <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+                    <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">
                         统一社会信用代码
                     </th>
-                    <th data-options="field:'hcdwName'" halign="center" align="left" sortable="true" width="180">企业名称
+                    <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称
                     </th>
                     <!--
-                                         <th data-options="field:'ztlx'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">市场主体类型</th>
-                                        <th data-options="field:'zzxs'" halign="center" align="left" sortable="true" width="80" codeName="jhlb" formatter="formatCodeList">组织形式</th>
+                                         <th data-options="field:'ztlx'" halign="center" align="left" width="80" codeName="jhlb" formatter="formatCodeList">市场主体类型</th>
+                                        <th data-options="field:'zzxs'" halign="center" align="left" width="80" codeName="jhlb" formatter="formatCodeList">组织形式</th>
                      -->
-                    <th data-options="field:'qymc'" halign="center" align="left" sortable="true" width="100">区域</th>
-                    <th data-options="field:'zfryCode1'" halign="center" align="left" sortable="true" width="100"
+                    <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
+                    <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
                         formatter="formatZfry">检查人员
                     </th>
-                    <th data-options="field:'rlrmc'" halign="center" align="left" sortable="true" width="70">认领人</th>
-                    <th data-options="field:'rlrq'" halign="center" align="left" sortable="true" width="70"
+                    <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
+                    <th data-options="field:'rlrq'" halign="center" align="left" width="70"
                         formatter="formatDate">认领日期
                     </th>
-                    <th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70"
+                    <th data-options="field:'rwzt'" halign="center" align="left" width="70"
                         codeName="jhlb" formatter="formatCodeList">计划完成
                     </th>
-                    <th data-options="field:'sjwcrq'" halign="center" align="left" sortable="true" width="70"
+                    <th data-options="field:'sjwcrq'" halign="center" align="left" width="70"
                         formatter="formatDate">实际完成
                     </th>
                 </tr>

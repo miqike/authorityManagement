@@ -110,13 +110,13 @@
 				<thead>
 				<tr>
 					<!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
-					<th data-options="field:'hcjgmc'" halign="center" align="left" sortable="true" width="150">检查机关</th>
-					<th data-options="field:'zfryName'" halign="center" align="left" sortable="true" width="70">检查人员</th>
-					<th data-options="field:'hcrws'" halign="center" align="left" sortable="true" width="150">检查任务数</th>
-					<th data-options="field:'rls'" halign="center" align="left" sortable="true" width="150">认领数</th>
-					<th data-options="field:'wcs'" halign="center" align="left" sortable="true" width="150">已完成数</th>
-					<th data-options="field:'zlz'" halign="center" align="left" sortable="true" width="80">责令中</th>
-					<th data-options="field:'wwcs'" halign="center" align="left" sortable="true" width="80">未完成数</th>
+					<th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+					<th data-options="field:'zfryName'" halign="center" align="left" width="70">检查人员</th>
+					<th data-options="field:'hcrws'" halign="center" align="left" width="150">检查任务数</th>
+					<th data-options="field:'rls'" halign="center" align="left" width="150">认领数</th>
+					<th data-options="field:'wcs'" halign="center" align="left" width="150">已完成数</th>
+					<th data-options="field:'zlz'" halign="center" align="left" width="80">责令中</th>
+					<th data-options="field:'wwcs'" halign="center" align="left" width="80">未完成数</th>
 					
 				</tr>
 				</thead>
