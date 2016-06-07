@@ -2,6 +2,7 @@ var auditApproach = "电子邮件检查过程:发送测试邮件到客户邮箱,
 
 function doInit() {
 	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
+	$("#_auditApproach_").html(auditApproach);
 	$("#_mail_").text(auditItem.qygsnr);
 	$("#_mail_").text("coralsea_li@yeah.net");
 	$("#btnSentVerifyMail").click(sentVerifyMail);

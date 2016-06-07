@@ -9,8 +9,8 @@
     <link href="../css/themes/${theme}/easyui.css" rel="stylesheet" type="text/css"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>

@@ -71,7 +71,7 @@
     			<input type="hidden" id="d_id" />
     			<input type="hidden" id="d_hcsxId" />
     			<input type="hidden" id="d_hcsxmc" />
-    			<input class="easyui-combobox", id="d_name" /></td>
+    			<input class="easyui-validatebox", id="d_name" /></td>
     	</tr>
     	<tr>
     		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100" /></td>

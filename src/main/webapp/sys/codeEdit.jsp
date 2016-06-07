@@ -10,7 +10,7 @@
 	<link href="../css/themes/icon.css" rel="stylesheet"/>
 
 	<script type="text/javascript" src="../js/hotkeys.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>

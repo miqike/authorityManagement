@@ -9,7 +9,7 @@
 	<link href="../css/themes/icon.css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="../js/qtip/jquery.qtip.min.css" />
 	
-	<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js" ></script>
 	<script type="text/javascript" src="../js/jquery.browser.min.js"></script>
 	<script type="text/javascript" src="../js/qtip/jquery.qtip.pack.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>

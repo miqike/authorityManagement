@@ -1,5 +1,5 @@
 function doInit() {
-	$("#_auditApproach_").text(auditApproach);
+	$("#_auditApproach_").html(auditApproach);
 
 	var auditTask = $('#grid1').datagrid('getSelected');
 	if(auditTask.dataLoaded == 0) {

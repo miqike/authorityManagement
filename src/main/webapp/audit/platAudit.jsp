@@ -8,7 +8,7 @@
         <span style="color:blue; " id="_qymc_"></span>
     </div>
    <div class="hcsx" style="width: 70px;">检查事项：</div><span style="color:blue; " id="_hcsxmc_"></span><br/>
-   <div class="hcsx" style="width: 70px;">检查方法：</div><span style="color:blue; " id="_auditApproach_"></span><br/>
+   <div class="hcsx" style="float:left">检查方法：</div><div style="color:blue; " id="_auditApproach_"></div><br/>
    <table id="auditTable" class="easyui-datagrid" data-options="collapsible:true,ctrlSelect:true">
     	<thead>
     	<tr>

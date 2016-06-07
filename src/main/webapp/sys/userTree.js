@@ -80,7 +80,6 @@ function add(){
 	loadForm();
 	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
 	var selected = treeObj.getSelectedNodes()[0];
-	console.log(selected)
 	$('#tabPanel').tabs('select',0 );
 }
 
