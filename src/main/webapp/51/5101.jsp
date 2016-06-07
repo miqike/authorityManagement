@@ -46,13 +46,13 @@
         td.label {
             text-align: right;
         }
-        
+
         div.hcsx {
-        	display:inline-block; 
-        	width:140px;
-        	color:brown;
-        	font-weight:bold;
-        	text-align:right;
+            display: inline-block;
+            width: 140px;
+            color: brown;
+            font-weight: bold;
+            text-align: right;
         }
     </style>
 </head>
@@ -82,14 +82,17 @@
             <table id="grid1"
                    class="easyui-datagrid"
                    data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
-		       		offset: { width: 0, height: 0},rowStyler: hcrwStyler,
+		       		offset: { width: 0, height: 0},
 		       		singleSelect:true,ctrlSelect:false,method:'get',
 		       		pageSize: 20, pagination: true"
                    pagePosition="bottom">
                 <thead>
                 <tr>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">统一社会信用代码 </th>
-                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称 </th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">
+                        统一社会信用代码
+                    </th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称
+                    </th>
                 </tr>
                 </thead>
             </table>
@@ -113,8 +116,9 @@
                         <td class="label" style="padding-left:10px;">检查结果确认</td>
                         <td><input id="p_hcjieguo" class="easyui-combobox"
                                    data-options="width:100" codeName="gsjg" disabled/>
-                            <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true"
-                               iconCls="icon-ok" disabled >确认</a></td>
+                            <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
+                               plain="true"
+                               iconCls="icon-ok" disabled>确认</a></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="text-align:left">
