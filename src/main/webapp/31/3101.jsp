@@ -30,6 +30,28 @@
         #layout > div.layout-panel-center div.datagrid-wrap {
             border-width: 1px 0px 0px 0px;
         }
+   .validatebox-text {
+        border-width: 1px;
+        border-style: solid;
+        height: 22px;
+        line-height: 17px;
+        padding-top: 1px;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        padding-right: 3px;
+        background-attachment: scroll;
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+    }
+
+    .validatebox-invalid {
+        border-color: ffa8a8;
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-color: fff3f3;
+        background-image: url("");
+    }
     </style>
 </head>
 <body style="margin:5px;">
@@ -38,22 +60,22 @@
         <table id="queryTable">
             <tr>
                 <td class="label">计划年度</td>
-                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/>
+                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016,onChange:loadGrid1"/>
                 </td>
                 <td class="label">计划编号</td>
-                <td><input id="f_jhbh" class="easyui-textbox"/></td>
+                <td><input id="f_jhbh" class="easyui-validatebox"/></td>
                 <td class="label">公示系统计划编号</td>
-                <td><input id="f_gsjhbh" class="easyui-textbox"/></td>
+                <td><input id="f_gsjhbh" class="easyui-validatebox"/></td>
             </tr>
             <tr>
                 <td class="label">计划名称</td>
-                <td><input id="f_jhmc" class="easyui-textbox"/></td>
+                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
                 <td class="label">检查内容</td>
                 <td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
-                           data-options="panelHeight:80,width:143,onChange:queryPlan" style=""/></td>
+                           data-options="panelHeight:80,width:143,onChange:loadGrid1" style=""/></td>
                 <td class="label">检查分类</td>
                 <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
-                           data-options="panelHeight:60,width:143,onChange:queryPlan" style=""/></td>
+                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
                 <td colspan="2" style="text-align-right;">
                     <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                        iconCls="icon-search">查找</a>
@@ -209,19 +231,19 @@
                     </td>
                     <td>计划编号</td>
                     <td><input type="hidden" id="p_id"/>
-                        <input class="easyui-textbox add" type="text" id="p_jhbh" data-options="required:true"
+                        <input class="easyui-validatebox add" type="text" id="p_jhbh" data-options="required:true"
                                style="width:200px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td>计划名称</td>
                     <td>
-                        <input class="easyui-textbox add" id="p_jhmc" type="text" style="width:200px;"
+                        <input class="easyui-validatebox add" id="p_jhmc" type="text" style="width:200px;"
                                data-options="required:true"/>
                     </td>
                     <td>公示系统计划编号</td>
                     <td>
-                        <input class="easyui-textbox add" id="p_gsjhbh" type="text" style="width:200px;"
+                        <input class="easyui-validatebox add" id="p_gsjhbh" type="text" style="width:200px;"
                                data-options=""/>
                     </td>
                 </tr>
@@ -248,19 +270,19 @@
                 <tr>
                     <td>任务数量</td>
                     <td>
-                        <input class="easyui-textbox" id="p_hcrwsl" type="text" style="width:200px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_hcrwsl" type="text" style="width:200px;" data-options=""/>
                     </td>
                     <td>已派发</td>
-                    <td><input class="easyui-textbox" validType="email" id="p_ypfsl" type="text" style="width:200px;"
+                    <td><input class="easyui-validatebox" validType="email" id="p_ypfsl" type="text" style="width:200px;"
                                data-options=""/></td>
                 </tr>
                 <tr>
                     <td>已认领</td>
                     <td>
-                        <input class="easyui-textbox" id="p_yrlsl" type="text" style="width:200px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_yrlsl" type="text" style="width:200px;" data-options=""/>
                     </td>
                     <td>未认领</td>
-                    <td><input class="easyui-textbox" validType="email" id="p_wrlsl" type="text" style="width:200px;"
+                    <td><input class="easyui-validatebox" validType="email" id="p_wrlsl" type="text" style="width:200px;"
                                data-options=""/></td>
                 </tr>
                 <tr>
@@ -270,18 +292,18 @@
                                codeName="shzt"/>
                     </td>
                     <td>审核人</td>
-                    <td><input class="easyui-textbox" validType="email" id="p_shr" type="text" style="width:200px;"
+                    <td><input class="easyui-validatebox" validType="email" id="p_shr" type="text" style="width:200px;"
                                data-options=""/></td>
                 </tr>
                 <tr>
                     <td>下达人</td>
                     <td>
-                        <input class="easyui-textbox" id="p_xdrmc" type="text" style="width:200px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_xdrmc" type="text" style="width:200px;" data-options=""/>
                     </td>
                 </tr>
                 <tr>
                     <td>说明</td>
-                    <td colspan="3"><input class="easyui-textbox add modify" id="p_sm" type="text" style="width:540px;"
+                    <td colspan="3"><input class="easyui-validatebox add modify" id="p_sm" type="text" style="width:540px;"
                                            data-options=""/></td>
                 </tr>
 
@@ -438,15 +460,8 @@
 <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-
-<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-<script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-<!--
--->
 <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-<script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
+<!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script> -->
 <script type="text/javascript" src="../js/formatter.js"></script>
 
 <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>

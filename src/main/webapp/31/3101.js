@@ -10,25 +10,6 @@ function expandHandler() {
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
 
-function queryPlan(node) {
-    var _orgId = $("#f_deptName").combobox("getValue");
-    if (_orgId != "") {
-        var orgId = new Array();
-        orgId.push(_orgId);
-        xxxx(orgId);
-    } else if (window.orgTreeObj) {
-        queryPlanFromTree();
-    }
-}
-
-function xxxx(orgId) {
-    var year = $("#f_year").numberspinner('getValue');
-    window.planGridKey = {year: year, tOrgId: orgId, excludeSaved: excludeSaved};
-    if (orgId != undefined && orgId != null)
-        refreshFunGrid(orgId);
-}
-//================
-
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var treeObj = $.fn.zTree.getZTreeObj("orgTree");
     var selected = treeObj.getSelectedNodes();
@@ -82,11 +63,11 @@ function grid2ClickHandler() {
 }
 
 function setFormFieldStatus(formId, operation) {
-    $("#" + formId + " input.easyui-textbox." + operation).textbox("enable");
+    $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("readonly");
     $("#" + formId + " input.easyui-combobox." + operation).combobox("enable");
     $("#" + formId + " input.easyui-numberspinner." + operation).numberspinner("enable");
     $("#" + formId + " input.easyui-datebox." + operation).datebox("enable");
-    $("#" + formId + " input.easyui-textbox:not(." + operation + ")").textbox("disable");
+    $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("readonly", true);
     $("#" + formId + " input.easyui-combobox:not(." + operation + ")").combobox("disable");
     $("#" + formId + " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
     $("#" + formId + " input.easyui-datebox:not(." + operation + ")").datebox("disable");
@@ -110,7 +91,9 @@ function modify() {
         if (row) {
             showModalDialog("planWindow");
             $("#btnSavePlan").linkbutton("enable");
-            $.easyuiExtendObj.loadForm("planTable", row);
+            
+            //$.easyuiExtendObj.loadForm("planTable", row);
+            
             /*$("#btnEditOrSave").parent().css("text-align", " left");
              $('#userWindow input.easyui-validatebox').validatebox();*/
         }
@@ -154,7 +137,7 @@ function tabSelectHandler(title, index) {
     var planId = $('#p_id').val();
     if (index == 1) { //选择角色TAB
         if (planId != "") {
-            if ($('#p_hcrwsl').textbox('getValue') == "") {
+            if ($('#p_hcrwsl').val() == "") {
                 $.messager.alert("提示", "任务信息尚未导入");
                 $('#tabPanel').tabs('select', 0);
             } else {
@@ -250,9 +233,9 @@ function loadGrid1() {
     options.url = '../common/query?mapper=hcjhMapper&queryName=query';
     $('#grid1').datagrid('load', {
         nd: $('#f_nd').numberspinner("getValue"),
-        jhbh: $('#f_jhbh').textbox("getValue"),
-        gsjhbh: $('#f_gsjhbh').textbox("getValue"),
-        jhmc: $('#f_jhmc').textbox("getValue"),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
     });
@@ -260,15 +243,15 @@ function loadGrid1() {
 
 function clearInput() {
     $("#f_id").val("");
-    $("#f_jhbh").textbox("setValue", "");
-    $("#f_gsjhbh").textbox("setValue", "");
-    $("#f_jhmc").textbox("setValue", "");
+    $("#f_jhbh").val("");
+    $("#f_gsjhbh").val("");
+    $("#f_jhmc").val("");
     $("#f_nr").combobox("setValue", "");
     $("#f_fl").combobox("setValue", "");
 }
 
 function funcBtnRest() {
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    $("#f_nd").val( new Date().getFullYear());
     clearInput();
 }
 
@@ -288,7 +271,7 @@ function setReadOnlyStatus() {
      $("#btnCancel").linkbutton('disable');*/
 
     $("#planTable input.easyui-numberspinner").numberspinner("disable");
-    $("#planTable input.easyui-textbox").textbox("disable");
+    $("#planTable input.easyui-validatebox").attr("readonly", true);
     $("#planTable input.easyui-datebox").datebox("disable");
     $("#planTable input.easyui-combobox").combobox("disable");
     $("#planTable input.easyui-combotree").combotree("disable");
@@ -409,7 +392,7 @@ $(function () {
     $("#btnClose5").click(funcClose5);
     /*
      $("#btnAddPlan").hide();*/
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    $("#f_nd").val( new Date().getFullYear());
     clearInput();
     loadGrid1();
     $("#btnSort1").click(funcSort1);
