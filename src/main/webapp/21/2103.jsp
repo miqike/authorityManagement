@@ -19,9 +19,9 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-    <script type="text/javascript" src="../js/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="./2103.js"></script>
 <style type="text/css">

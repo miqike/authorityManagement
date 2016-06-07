@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
-
+var auditApproach = "检查企业的商标权、著作权（版权）、专利权质押登记书等相关材料，或与相关部门信息进行数据比对。";
 var auditTableColumnsConfig =  [[
 	{field:"czrmc",title:"出质人名称 ",width:100},
 	{field:"zl",title:"种类",width:100},
@@ -12,12 +12,5 @@ var auditTableColumnsConfig =  [[
 	{field:"bhqk",title:"变化情况",width:100}
 ]];
 </script>
-
-<div>
-    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>检查企业的商标权、著作权（版权）、专利权质押登记书等相关材料，或与相关部门信息进行数据比对。</p>
-</div>
 <%@ include  file="gridAudit.jsp"%> 
 

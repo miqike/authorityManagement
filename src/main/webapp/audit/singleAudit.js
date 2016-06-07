@@ -1,6 +1,6 @@
 function doInit() {
 	
-	$("#_auditApproach_").text(auditApproach);
+	$("#_auditApproach_").html(auditApproach);
 	if($("#_qygsnr_").text() != $("#_bznr_").text()) {
 		$("#_bdjg_").text("不一致").css("color", "red");
 	} else {

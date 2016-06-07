@@ -16,16 +16,16 @@
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.extend.js" ></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.extend.js" ></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="../js/datagrid-filter.js"></script>
-    <script type="text/javascript" src="../js/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/lodop/listPrint.js"></script>
 
     <script type="text/javascript" src="./userTree.js"></script>

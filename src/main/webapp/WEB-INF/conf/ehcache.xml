@@ -5,14 +5,14 @@
 
     <!--成员发现-->
     <!--手动方式列出除本实例之外其他实例的IP和端口以及CacheName-->
-    <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
-    properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4448, timeToLive=32" />
+    <!-- <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+    properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4448, timeToLive=32" /> -->
     <!--properties="peerDiscovery=manual,rmiUrls=//192.168.5.100:40007/sys-userCache|//192.168.5.100:40007/sys-codeListCache" />-->
 
     <!--监听从成员们发到本实例CacheManager的消息-->
     <!--手动方式，指定本实例监听40008端口，hostName可选-->
-    <cacheManagerPeerListenerFactory
-            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"  />
+    <!-- <cacheManagerPeerListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"  /> -->
             <!--properties="port=40008,socketTimeoutMillis=2000" />-->
 
     <defaultCache
@@ -55,9 +55,9 @@
         timeToLiveSeconds="0"
         timeToIdleSeconds="0"
         statistics="true">
-        <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <!-- 菜单缓存/没必要过期/分布-->
@@ -69,9 +69,9 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="true">
-        <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <cache name="sys-codeListCache"
@@ -82,9 +82,9 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="true">
-        <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <cache name="shiro-authentication"

@@ -19,10 +19,10 @@
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
 
-    <script type="text/javascript" src="../js/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/myJs/common.js"></script>
     <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.combobox.codeList.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
     <script type="text/javascript" src="../js/myJs/formatter.js"></script>
 

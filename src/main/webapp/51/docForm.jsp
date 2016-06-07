@@ -1,7 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!-- <script type="text/javascript" src="./userDoc.js"></script> -->
 <script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
-<script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
+<script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
+<script type="text/javascript" src="../js/fileuploader.js""></script>
+<!-- <script type="text/javascript" src="../js/jeasyui-extensions/jquery.euploadify.js"></script> -->
 <script>
 	function funcSaveDoc() {
 		$("#btnSaveDoc").linkbutton("disable");
@@ -37,9 +39,9 @@
 		var hcrw = $("#grid1").datagrid("getSelected");
 		var hcsx = getAuditItem();
 		
-		$("#d_hcrwId").textbox("setValue", hcrw.id);
-		$("#d_hcdwXydm").textbox("setValue", hcrw.hcdwXydm);
-		$("#d_hcjhnd").textbox("setValue", hcrw.nd);
+		$("#d_hcrwId").val(hcrw.id);
+		$("#d_hcdwXydm").val(hcrw.hcdwXydm);
+		$("#d_hcjhnd").val(hcrw.nd);
 		
 		
 		$("#d_hcsxId").combobox({url: "./" + hcrw.id + "/hcsx", method:'get',valueField: 'VALUE', textField: 'LITERAL',
@@ -55,13 +57,14 @@
 			onUnselect: function(record) { $("#d_hcclId").combobox("loadData" , []); }
 		});
 		
-		$.getScript("../js/fileuploader.js", function() {
+		//$.getScript("../js/fileuploader.js", function() {
+			console.log("----")
 			window.uploader = new qq.FileUploaderBasic({
 		        button: document.getElementById('btnUpload'),
 		        allowedExtensions: [],
 		        action: '../ajaxUpload',
 		        multiple: false,
-		        debug: false,
+		        debug: true,
 
 		        onSubmit: function(id, fileName){
 		            uploader.setParams({
@@ -78,16 +81,14 @@
 		        },
 		        // display a fancy message
 		        onComplete: function (id, fileName, response) {
-		        	//$("#a_name").textbox("setValue", fileName);
+		        	//$("#a_name").val(fileName);
             		$("#d_mongoId").val(response.mongoId);
 		            $("#progressbar").hide();
 		            $("#btnSaveDoc").linkbutton("enable");
 		        }
 
 		    });
-		});
-		
-		
+		//});
 	}
 	
 	function setForm(value) {
@@ -114,7 +115,6 @@
     		$("#d_ly").combobox("setValue", 2);
     		$("#btnUpload").linkbutton("enable");
 		}
-		
 	}
 	
 </script>
@@ -124,11 +124,11 @@
     		<td class="label">检查计划年度</td><td>
     			<input type="hidden" id="d_id" />
      			<input type="hidden" id="d_mongoId" />
-    			<input class="easyui-textbox", id="d_hcjhnd" disabled/>
-    		<td class="label">统一社会信用代码</td><td><input class="easyui-textbox", id="d_hcdwXydm" disabled/></td>
+    			<input class="easyui-validatebox", id="d_hcjhnd" disabled/>
+    		<td class="label">统一社会信用代码</td><td><input class="easyui-validatebox", id="d_hcdwXydm" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">检查任务编号</td><td><input class="easyui-textbox", id="d_hcrwId" disabled/></td>
+    		<td class="label">检查任务编号</td><td><input class="easyui-validatebox", id="d_hcrwId" disabled/></td>
     	</tr>
     	<tr>
     		<td class="label">检查事项</td><td><input class="easyui-combobox", id="d_hcsxId" data-options=""/></td>
@@ -145,6 +145,21 @@
     		<td class="label">来源</td><td><input class="easyui-combobox", id="d_ly" codeName="wjly" data-options="panelHeight:70" disabled/></td>
     	</tr>
     </table>
+    <!-- 
+    <input id="euploadify2" name="euploadify2" class="easyui-euploadify" type="text" data-options="
+           width: 900,
+           //height: 400,
+           multi: true,
+           multiTemplate: 'simple',
+           auto: false,
+           showStop: true,
+           showCancel: true,
+           required: true,
+           //onCancel: function (file) { alert(file.id); },
+           swf: './js/plugins/uploadify/uploadify.swf',
+           uploader: './js/plugins/uploadify/net/uploadify.ashx'
+           " /> -->
+           
     <a href="#" id="btnUpload" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" disabled>选择文件</a>
     <a href="#" id="btnSaveDoc" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled>保存</a>
 	<div id="_docPanel" style="padding:10px;"></div>

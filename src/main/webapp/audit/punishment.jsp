@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
-
+var auditApproach = "工商处罚信息自查，与相关部门信息进行数据比对，或检查企业的处罚决定书、罚没收据等相关材料";
 var auditTableColumnsConfig =  [[
 	{field:"zqr",title:"债权人",width:100},
 	{field:"zwr",title:"债务人",width:100},
@@ -12,11 +12,4 @@ var auditTableColumnsConfig =  [[
 	{field:"bzdbfw",title:"保证担保的范围",width:100}
 ]];
 </script>
-
-<div>
-    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>工商处罚信息自查，与相关部门信息进行数据比对，或检查企业的处罚决定书、罚没收据等相关材料。</p>
-</div>
 <%@ include  file="gridAudit.jsp"%> 

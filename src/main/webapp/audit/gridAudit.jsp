@@ -8,8 +8,8 @@
         <span style="color:blue; " id="_qymc_"></span>
     </div>
    <div class="hcsx" style="width: 70px;">检查事项：</div><span style="color:blue; " id="_hcsxmc_"></span><br/>
-   <div class="hcsx" style="width: 70px;">检查方法：</div><span style="color:blue; " id="_auditApproach_"></span><br/>
-	   <div>
+   <div class="hcsx" style="width: 70px;float:left">检查方法：</div><div style="color:blue; " id="_auditApproach_"></div><br/>
+	<div>
 		<a href="#" id="btnAutoMatch" class="easyui-linkbutton" iconCls="icon-ok" plain="true">智能匹配</a>
 		<a href="#" id="btnShowMatchItems" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">隐藏/显示匹配项目</a>
 	</div>

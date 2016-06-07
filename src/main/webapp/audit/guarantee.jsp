@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
+var auditApproach = "核对企业的保证担保合同、董事会、股东会决议等相关材料";
 
 var auditTableColumnsConfig =  [[
 	{field:"zqr",title:"债权人",width:100},
@@ -12,11 +13,4 @@ var auditTableColumnsConfig =  [[
 	{field:"bzdbfw",title:"保证担保的范围",width:100}
 ]];
 </script>
-
-<div>
-    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>核对企业的保证担保合同、董事会、股东会决议等相关材料</p>
-</div>
 <%@ include  file="gridAudit.jsp"%> 

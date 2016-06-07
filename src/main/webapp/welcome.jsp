@@ -5,7 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <!-- <link rel="stylesheet" type="text/css" href="./css/index.css"> -->
     <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/${theme}/easyui.css">
     <link rel="stylesheet" type="text/css" href="./css/portal.css">
     <link rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/icon.css">
@@ -26,25 +25,28 @@
         #taskTabPanel .tabs-header {
             border-top: 0px;
             border-left: 0px;
+            border-right: 0px;
         }
 
         #taskTabPanel .tabs-panels {
             border-left: 0px;
             border-bottom: 0px;
+            border-right: 0px;
         }
     </style>
 </head>
 <body>
 <!-- 
+
 <div region="north" class="title" border="false">
     <div style="margin-top:5px;margin-left:10px;"></div>
 </div> 
 <div region="center" border="false">
  -->
      <div id="pp">
-        <div style="width:70%;height:auto" class="easyui-panel" data-options="fit:true">
+        <div style="width:70%;height:520px;" class="easyui-panel" data-options="fit:true">
             <div id="taskTabPanel" class="easyui-tabs" data-options="fit:true">
-                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true,fit:true" selected="true">
+                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" selected="true">
                     <!-- 
                     <table id="todoTaskGrid"></table>
  -->
@@ -59,13 +61,15 @@
                             <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
                             <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检察机关</th>
                             <th data-options="field:'qymc', halign:'center',align:'left'" width="100" >区域名称</th>
-                            <!-- <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检察人员</th>
+                            <!-- 
+                            -->
+                            <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检察人员</th>
                             <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
                             <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">要求完成时间</th>
                             <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
                             
                             <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
-                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> -->
+                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> 
                         </tr>
                         </thead>
                     </table>
@@ -103,19 +107,20 @@
 <table id="todoTaskGrid"></table>
  -->
 </body>
-
 </html>
 <script type="text/javascript" src="./js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="./js/jquery.portal.js"></script>
 <script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+<script type="text/javascript" src="./js/husky/husky.common.js"></script>
+<script type="text/javascript" src="./js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/welcome.js"></script>
 
 
 <script>
-
+var ctx = "."
 function formatZfry(val, row) {
     return row.zfryName1 + "/" + row.zfryName2;
 }
@@ -128,34 +133,6 @@ function loadMyTask() {
 
 $(function(){
     loadMyTask();
-    
-    
-    /* $("#todoTaskGrid").datagrid({
-        title: 'test datagrid',
-        width: 1200,
-        height: 400,
-        method: "get",
-        url: "datagrid/datagrid-data.json", 
-        idField: 'ID',
-        remoteSort: false,
-        frozenColumns: [[
-            { field: 'ck', checkbox: true },
-            { field: 'ID', title: 'ID', width: 80, sortable: true }
-        ]],
-        columns: [[
-            { field: 'Code', title: '编号(Code)', width: 120 },
-            { field: 'Name', title: '名称(Name)', width: 140 },
-            { field: 'Age', title: '年龄(Age)', width: 120 },
-            { field: 'Height', title: '身高(Height)', width: 140 },
-            { field: 'Weight', title: '体重(Weight)', width: 140 },
-            { field: 'CreateDate', title: '创建日期(CreateDate)', width: 180 },
-            { field: 'undefined', title: '测试(不存在的字段)', width: 150 }
-        ]],
-        enableHeaderClickMenu: false,
-        enableHeaderContextMenu: false,
-        enableRowContextMenu: false,
-        offset: { width: -250, height: -150}   //该属性属性表示当屏幕大小调整时候随屏幕大小尺寸调整而自身大小调整的偏移量，具体设置方式参见 API 文档说明
-    }); */
 });
 
 </script>

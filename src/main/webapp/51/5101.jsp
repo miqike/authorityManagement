@@ -14,16 +14,19 @@
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
-    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 
-    <script type="text/javascript" src="../js/husky.easyui.extend.js"></script>
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+	
+
+    <!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script> -->
     <script type="text/javascript" src="../js/formatter.js"></script>
-    <script type="text/javascript" src="../js/husky.common.js"></script>
-    <script type="text/javascript" src="../js/husky.easyui.codeList.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+    <script type="text/javascript" src="./lodop.js"></script>
     <script type="text/javascript" src="./5101.js"></script>
     <style>
         body {
@@ -64,9 +67,9 @@
                 <td class="label">计划年度</td>
                 <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/></td>
                 <td class="label">计划编号</td>
-                <td><input id="f_hcjhId" class="easyui-textbox"/></td>
+                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
                 <td class="label">计划名称</td>
-                <td><input id="f_jhmc" class="easyui-textbox"/></td>
+                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
                 <td colspan="2" style="text-align-right;">
                     <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                        iconCls="icon-search">查找</a>
@@ -77,18 +80,18 @@
         </table>
     </div>
     <div id="layout" class="easyui-layout" data-options="fit:true">
-        <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的检查任务" style="width:300px;">
+        <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的检查任务" style="width:340px;">
             <table id="grid1"
                    class="easyui-datagrid"
-                   data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
-		       		rowStyler: hcrwStyler,fit:true,
-		       		offset: { width: 0, height: 0},
+                   data-options="collapsible:true,onClickRow:grid1ClickHandler,
+		       		rowStyler: hcrwStyler,
+		       		offset: { width: 0, height: -80},
 		       		singleSelect:true,ctrlSelect:false,method:'get',
 		       		pageSize: 20, pagination: true"
                    pagePosition="bottom">
                 <thead>
                 <tr>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="110">
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="160">
                         统一社会信用代码
                     </th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称
@@ -104,9 +107,9 @@
                 <table>
                     <tr>
                         <td class="label">计划编号</td>
-                        <td><input id="p_id" class="easyui-textbox" readonly="readonly" data-options="width:100"/></td>
+                        <td><input id="p_id" class="easyui-validatebox" readonly="readonly" data-options="width:100"/></td>
                         <td class="label" style="padding-left:10px;">计划名称</td>
-                        <td><input id="p_jhmc" class="easyui-textbox" readonly="readonly"/></td>
+                        <td><input id="p_jhmc" class="easyui-validatebox" readonly="readonly"/></td>
                         <td class="label" style="padding-left:10px;">下达时间</td>
                         <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:100"/>
                         </td>
@@ -146,15 +149,4 @@
 <!-- --------弹出窗口--------------- -->
 </body>
 </html>
-<div style="display:none">
-	<div id="documentWindow" title="检查材料"
-	     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-	     style="width: 750px; height: 400px; padding: 10px;">
-	    <div id="docPanel" style="padding:10px;"></div>
-	</div>
-	
-	<div id="gaozhishuWindow" style="width: 550px; height: 420px; padding: 10px;">
-	    <div id="gaozhishuContent"></div>
-	</div>
-	<div id="failDialog"></div>
-</div>
+

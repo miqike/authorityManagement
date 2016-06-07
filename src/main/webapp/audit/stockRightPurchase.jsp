@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
-
+var auditApproach = "审计报告、财务资料、企业章程、对外投资设立企业、购买股权的股东会决议、所投资企业的股东名册等";
 var auditTableColumnsConfig =  [[
 	{field:"zqr",title:"债权人",width:100},
 	{field:"zwr",title:"债务人",width:100},
@@ -13,11 +13,5 @@ var auditTableColumnsConfig =  [[
 ]];
 </script>
 
-<div>
-    检查事项：<span style="color:blue; " id="_hcsxmc_"></span>
-</div>
-<div>
-    <p>审计报告、财务资料、企业章程、对外投资设立企业、购买股权的股东会决议、所投资企业的股东名册等</p>
-</div>
 <%@ include  file="gridAudit.jsp"%> 
 

@@ -10,7 +10,7 @@ function rowStyler(index,row){
 }
 
 function doInit() {
-	$("#_auditApproach_").text(auditApproach);
+	$("#_auditApproach_").html(auditApproach);
 	
 	$("#btnAutoMatch").click(autoMatch);
 	var auditTask = $('#grid1').datagrid('getSelected');

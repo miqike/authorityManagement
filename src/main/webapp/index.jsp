@@ -270,14 +270,14 @@
  --%>
     
 <script type="text/javascript" src="./js/hotkeys.min.js"></script>
-<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 <!-- 
-<script type="text/javascript" src="./js/husky.easyui.extend.js"></script>
+<script type="text/javascript" src="./js/husky/husky.easyui.extend.js"></script>
  -->
-<script type="text/javascript" src="./js/husky.common.js"></script>
+<script type="text/javascript" src="./js/husky/husky.common.js"></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
 <!-- 

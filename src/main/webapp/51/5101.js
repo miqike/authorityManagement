@@ -19,7 +19,7 @@ function showExamHistory() {
 
 function hcrwStyler(index,row){
 	if (row.rwzt == 1){
-		return 'background-color:lightgray;'; // return inline style
+		return ''; // return inline style
 	} else if (row.rwzt == 2) {
 		return 'background-color:orange;';
 	} else if (row.rwzt == 3) {
@@ -29,7 +29,7 @@ function hcrwStyler(index,row){
 	} else if (row.rwzt == 5) {
 		return 'background-color:lightgreen;';
 	} else {
-		return 'background-color:lightgray;';;
+		return '';;
 	}
 }
 
@@ -38,16 +38,16 @@ function loadMyTask() {
     options.url = '../common/query?mapper=hcrwMapper&queryName=queryForAuditor';
     $('#grid1').datagrid('load', {
         nd: $('#f_nd').numberspinner("getValue"),
-        hcjhId: $('#f_hcjhId').textbox("getValue"),
-        jhmc: $('#f_jhmc').textbox("getValue")
+        hcjhId: $('#f_hcjhId').val(),
+        jhmc: $('#f_jhmc').val()
     });
 }
 
 function grid1ClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
-    $('#p_id').textbox("setValue", hcrw.hcjhId);
-    $('#p_jhmc').textbox("setValue", hcrw.jhmc);
+    $('#p_id').val(hcrw.hcjhId);
+    $('#p_jhmc').val(hcrw.jhmc);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
     $('#p_jhyqwcsj').datebox("setValue", formatDate(hcrw.jhyqwcsj));
     $('#p_hcjieguo').combobox("setValue", hcrw.hcjieguo);
@@ -79,16 +79,16 @@ function refreshAuditItemList() {
 }
 
 function funcBtnRest() {
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
-    $("#f_hcjhId").textbox("setValue", "");
-    $("#f_jhmc").textbox("setValue", "");
+    $("#f_nd").val(new Date().getFullYear());
+    $("#f_hcjhId").val("");
+    $("#f_jhmc").val("");
 }
 
 function clearInput() {
-    $("#f_hcjhId").textbox("setValue", "");
-    $("#f_jhmc").textbox("setValue", "");
-    $("#p_id").textbox("setValue", "");
-    $("#p_jhmc").textbox("setValue", "");
+    $("#f_hcjhId").val("");
+    $("#f_jhmc").val("");
+    $("#p_id").val("");
+    $("#p_jhmc").val("");
     $("#p_xdsj").datebox("setValue", "");
     $("#p_yqwcsj").datebox("setValue", "");
 }
@@ -108,13 +108,21 @@ function funcBtnPullData() {
 
 function funcBtnViewDocument() {
     if (!$(this).linkbutton('options').disabled) {
-        showModalDialog("documentWindow");
-        $("#docPanel").panel({
-            href: './docList.jsp',
-            onLoad: function () {
-                doInit();
-            }
-        });
+    	$.easyui.showDialog({
+    		title : "检查材料",
+    		width : 750,
+    		height : 400,
+    		topMost : false,
+    		iconCls:'icon2 r16_c14',
+    		enableSaveButton : false,
+    		enableApplyButton : false,
+    		closeButtonText : "返回",
+    		closeButtonIconCls : "icon-undo",
+    		href : "./docList.jsp",
+    		onLoad : function() {
+    			doInit();
+    		}
+    	});
     }
 }
 
@@ -139,9 +147,40 @@ function getAuditItem() {
 	return $("#auditItemTabs").tabs("getSelected").find(".easyui-datagrid").datagrid("getSelected")
 }
 
+function _showDialog(title, url) {
+	$.easyui.showDialog({
+		title : title,
+		width : 550,
+		height : 420,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : url,
+		onLoad : function() {
+			doShidihechagaozhishuInit();
+		},
+		buttons:[{
+			text:'打印',
+			iconCls:'icon-print',
+			handler:function(){
+				if(title == "实地检查告知") {
+					printShidihechagaozhishu();
+				} else if(title == "责令履行通知书") {
+					printZelingluxingtongzhishu();
+				} else {
+					printQiyezhusuohechahan();
+				}
+			}
+		}]
+	});
+}
+
 $(function () {
     clearInput();
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    $("#f_nd").val(new Date().getFullYear());
     $("#btnView").click(showExamHistory);
     loadMyTask();
 
@@ -151,31 +190,13 @@ $(function () {
     $("#btnViewDocument").click(funcBtnViewDocument);
 
     $("#btnSendHcgzs").click(function () {
-        showModalDialog("gaozhishuWindow");
-        $("#gaozhishuContent").panel({
-            href: '../gaozhishu/shidihechagaozhishu.jsp',
-            onLoad: function () {
-                doShidihechagaozhishuInit();
-            }
-        });
+    	_showDialog("实地检查告知书", "../gaozhishu/shidihechagaozhishu.jsp");
     });
     $("#btnSendZllxtzs").click(function () {
-        showModalDialog("gaozhishuWindow");
-        $("#gaozhishuContent").panel({
-            href: '../gaozhishu/zelingluxingtongzhishu.jsp',
-            onLoad: function () {
-                doZelingluxingtongzhishuInit();
-            }
-        });
+    	_showDialog("责令履行通知书", "../gaozhishu/zelingluxingtongzhishu.jsp");
     });
     $("#btnSendQyzshch").click(function () {
-        showModalDialog("gaozhishuWindow");
-        $("#gaozhishuContent").panel({
-            href: '../gaozhishu/qiyezhusuohechahan.jsp',
-            onLoad: function () {
-                doQiyezhusuohechahanInit();
-            }
-        });
+    	_showDialog("企业住所调查函", "../gaozhishu/qiyezhusuohechahan.jsp");
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");
