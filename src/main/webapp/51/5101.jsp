@@ -57,8 +57,7 @@
     </style>
 </head>
 <body style="padding:5px;">
-<div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
-
+<div id="panel" class="easyui-panel" title="" style="overflow: hidden;" data-options="fit:true">
     <div style="padding: 5px 10px 0px 10px">
         <table id="queryTable">
             <tr>
@@ -81,8 +80,8 @@
         <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'" title="我的检查任务" style="width:300px;">
             <table id="grid1"
                    class="easyui-datagrid"
-                   data-options="collapsible:true,onClickRow:grid1ClickHandler,height:535,
-		       		offset: { width: 0, height: 0},rowStyler: hcrwStyler,
+                   data-options="collapsible:true,onClickRow:grid1ClickHandler,
+		       		rowStyler: hcrwStyler,fit:true,
 		       		singleSelect:true,ctrlSelect:false,method:'get',
 		       		pageSize: 20, pagination: true"
                    pagePosition="bottom">
@@ -97,7 +96,7 @@
         <div data-options="region:'center'">
             <div class="easyui-panel"
                  data-options="title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
-                 style="padding-top:5px;">
+                 style="padding-top:5px;width:auto">
                 <table>
                     <tr>
                         <td class="label">计划编号</td>
@@ -134,16 +133,14 @@
                     </tr>
                 </table>
             </div>
-            <div id="auditItemList" class="easyui-panel"></div>
+            <div id="auditItemList" class="easyui-panel" data-options="fit:true"></div>
         </div>
     </div>
 </div>
 
 <!-- --------弹出窗口--------------- -->
-
 </body>
 </html>
-
 <div style="display:none">
 	<div id="documentWindow" title="检查材料"
 	     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"

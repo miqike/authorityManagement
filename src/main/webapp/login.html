@@ -2,87 +2,31 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="./css/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="./css/themes/metro/easyui.css">
-	<link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/icon.css">
 	<link rel="stylesheet" type="text/css" href="./css/login.css" />
-	
-	
-    <style type="text/css">
-        input {
-            width:160px;
-        }
-	    .validatebox-text {
-	        border-width: 1px;
-	        border-style: solid;
-	        height: 20px;
-	        line-height: 17px;
-	        padding-top: 1px;
-	        padding-left: 3px;
-	        padding-bottom: 2px;
-	        padding-right: 3px;
-	        background-attachment: scroll;
-	        background-size: auto;
-	        background-origin: padding-box;
-	        background-clip: border-box;
-	    }
-	
-	    .validatebox-invalid {
-	        border-color: ffa8a8;
-	        background-repeat: repeat-x;
-	        background-position: center bottom;
-	        background-color: fff3f3;
-	        background-image: url("");
-	    }
-	    
-	    .bg{
-	    	/* background-color:#137bd7; */
-		}
-		   
-	    .bg1{
-		   	margin:0px;
-			background-image:url('./images/logo1.jpg');
-			background-position: center;
-			background-repeat: no-repeat;
-			top:0px;left:0px;
-			height:659px;	
-			width:1024px;	
-			overflow:hidden;
-		}
-		
-		.transparent_class {  
-		      filter:alpha(opacity=30);  
-		      -moz-opacity:0.3;  
-		      -khtml-opacity: 0.3;  
-		      opacity: 0.3;  
-		}  
-
-	</style>
 	<title>企业公示信息智能检查系统登录</title>
 </head>
-<body  class="bg">
-	<div id="box" class="bg1">
-		<div id="main">
-			<div id="header"></div>
-			<div id="titles"></div>
-			<div class="loginbox" style="margin-right:130px;margin-top:100px;" class="transparent_class">
-				<div id="panel" class="easyui-panel rounded" title="登录" style="height:236px;width:320px;" class="transparent_class">
-
+<body>
+	<div>
+		<div id="box" class="box">
+			<div class="loginbox">
+				<div id="loginPanel" class="easyui-panel rounded" title="登录" style="height:236px;width:320px;" >
 					<form id="loginForm" method="post" class="loginForm">
 						<table >
 							<tr>
-								<td class='br'>用户名</td>
+								<td class='label'>用户名</td>
 								<td><input class="easyui-validatebox" id="userId" 
 									data-options="required:true,onChange:checkUserExist,prompt:'用户名',iconCls:'icon-man',iconWidth:20" tabindex="1" /></td>
 							</tr>
 							<tr>
-								<td class='br'>密码</td>
+								<td class='label'>密码</td>
 								<td>
 									<input class="easyui-validatebox" type="password" id="password" value="" data-options="required:true,iconCls:'icon-lock',iconWidth:20" tabindex="2" />
 								</td>
 							</tr>
 							<tr>
-								<td class='br'>验证码</td>
+								<td class='label'>验证码</td>
 								<td>
 									<input class="easyui-validatebox" id="captcha" data-options="required:true,prompt:'验证码',iconCls:'icon-more',iconWidth:20" tabindex="3"/>
 								</td>
@@ -94,10 +38,10 @@
 								</td>
 							</tr>
 							<tr style="padding-top:-5px;display:none">
-								<td class="br" style="padding-right:7px;">
+								<td class="label" style="padding-right:7px;">
 									<input type="checkbox" id="rememberMe" style="width:20px;margin-right:0px;" />
 								</td>
-								<td class='br' style="text-align: left;">下次自动登录</td>
+								<td class='label' style="text-align: left;">下次自动登录</td>
 							</tr>
 						</table> 
 						<div id="loginMessage" style="color:red;margin-left:10px;"></div>
@@ -110,15 +54,13 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div id="footer">版权所有 CopyRight 2013. 科艺电子. Inc. All Rights Reserved. <br/>技术支持：1332555885</div> -->
 	</div>
 </body>
-<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="./js/plugins/plusAsTab/emulatetab.joelpurra.js"></script>
 <script type="text/javascript" src="./js/plugins/plusAsTab/plusastab.joelpurra.js"></script>
 <script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-<script type="text/javascript" src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 <script type="text/javascript" src="js/husky.common.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script>
@@ -126,7 +68,4 @@
 		window.top.location = window.location;
 	}
 </script>
-<!--[if lt IE 10]>
-	<script type="text/javascript" src="js/PIE.js"></script>
-<![endif]-->
 </html>

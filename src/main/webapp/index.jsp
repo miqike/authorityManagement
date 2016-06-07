@@ -20,7 +20,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./js/jquery-easyui-theme/${theme}/easyui.css">
+    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/${theme}/easyui.css">
     <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="./css/bubble.css">
 

@@ -5,12 +5,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./js/jquery-easyui-theme/${theme}/easyui.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/index.css"> -->
+    <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/${theme}/easyui.css">
     <link rel="stylesheet" type="text/css" href="./css/portal.css">
-    <link rel="stylesheet" type="text/css" href="./js/qtip/jquery.qtip.min.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="./css/bubble.css">
+    <link rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/icon.css">
     
     <style type="text/css">
         .title {
@@ -43,14 +41,15 @@
 </div> 
 <div region="center" border="false">
  -->
-     <div id="pp" style="position:relative">
-        <div style="width:80%;height:auto">
-            <div id="taskTabPanel" class="easyui-tabs" data-options="">
-                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" style="height:800px;" selected="true">
-                    <table id="todoTaskGrid"></table>
+     <div id="pp">
+        <div style="width:70%;height:auto" class="easyui-panel" data-options="fit:true">
+            <div id="taskTabPanel" class="easyui-tabs" data-options="fit:true">
+                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true,fit:true" selected="true">
                     <!-- 
-                    <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;height:auto"
-                           data-options="fit:true,border:false,singleSelect:true,method:'get',offset:{}
+                    <table id="todoTaskGrid"></table>
+ -->
+                    <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;"
+                           data-options="fit:true,border:false,singleSelect:true,method:'get',
                                pagination:true,pageSize:20, idField:'id'">
                         <thead>
                         <tr>
@@ -60,21 +59,21 @@
                             <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
                             <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检察机关</th>
                             <th data-options="field:'qymc', halign:'center',align:'left'" width="100" >区域名称</th>
-                            <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检察人员</th>
+                            <!-- <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检察人员</th>
                             <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
                             <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">要求完成时间</th>
                             <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
                             
                             <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
-                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th>
+                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> -->
                         </tr>
                         </thead>
-                    </table> -->
+                    </table>
                 </div>
             </div>
         </div>
-        <div style="width:20%;">
-            <div title="帮助" collapsible="true" closable="true" style="height:450px;padding:5px;">
+        <div style="width:30%;height:auto"  data-options="fit:true">
+            <div title="帮助" collapsible="true" closable="true" style="padding:5px;">
                 <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-layout.html">企业公示信息智能检查系统简介</a></div>
                 <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">管理人员操作手册</a></div>
                 <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">检查人员操作手册</a></div>
@@ -106,19 +105,7 @@
 </body>
 
 </html>
-<!-- 
-<script type="text/javascript" src="./js/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.browser.min.js"></script>
-<script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="./js/husky.easyui.extend.js"></script>
-<script type="text/javascript" src="./js/formatter.js"></script>
-<script type="text/javascript" src="./js/jquery.portal.js"></script>
-<script type="text/javascript" src="./js/husky.common.js"></script>
-<script type="text/javascript" src="./js/qtip/jquery.qtip.pack.js"></script>
-<script type="text/javascript" src="./js/welcome.js"></script>
-<script type="text/javascript" src="./js/husky.easyui.codeList.js"></script>
- -->
-<script type="text/javascript" src="./js/jquery/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="./js/jquery.portal.js"></script>
 <script type="text/javascript" src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
@@ -140,15 +127,15 @@ function loadMyTask() {
 }
 
 $(function(){
-    //loadMyTask();
+    loadMyTask();
     
     
-    $("#todoTaskGrid").datagrid({
+    /* $("#todoTaskGrid").datagrid({
         title: 'test datagrid',
         width: 1200,
         height: 400,
         method: "get",
-        /* url: "datagrid/datagrid-data.json", */
+        url: "datagrid/datagrid-data.json", 
         idField: 'ID',
         remoteSort: false,
         frozenColumns: [[
@@ -168,7 +155,7 @@ $(function(){
         enableHeaderContextMenu: false,
         enableRowContextMenu: false,
         offset: { width: -250, height: -150}   //该属性属性表示当屏幕大小调整时候随屏幕大小尺寸调整而自身大小调整的偏移量，具体设置方式参见 API 文档说明
-    });
+    }); */
 });
 
 </script>

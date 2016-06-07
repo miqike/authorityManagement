@@ -20,8 +20,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>企业公示信息智能检查系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="./js/jquery-easyui-theme/default/easyui.css" rel="stylesheet" type="text/css" />
-    <link href="./js/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
+    <link href="./css/jquery-easyui-theme/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
     <link href="./js/jeasyui-extensions-release/icons/icon-all.css" rel="stylesheet" type="text/css" />
     <script src="./js/jquery/jquery-1.11.1.js" type="text/javascript"></script>
     <script src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js" type="text/javascript"></script>
