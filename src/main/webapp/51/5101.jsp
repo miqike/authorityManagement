@@ -141,18 +141,18 @@
 
 <!-- --------弹出窗口--------------- -->
 
-<div id="documentWindow" title="检查材料"
-     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-     style="width: 750px; height: 400px; padding: 10px;">
-    <div id="docPanel" style="padding:10px;"></div>
-</div>
-
-
 </body>
 </html>
 
-<div id="gaozhishuWindow" style="width: 550px; height: 420px; padding: 10px;">
-    <div id="gaozhishuContent">
-    </div>
+<div style="display:none">
+	<div id="documentWindow" title="检查材料"
+	     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
+	     style="width: 750px; height: 400px; padding: 10px;">
+	    <div id="docPanel" style="padding:10px;"></div>
+	</div>
+	
+	<div id="gaozhishuWindow" style="width: 550px; height: 420px; padding: 10px;">
+	    <div id="gaozhishuContent"></div>
+	</div>
+	<div id="failDialog"></div>
 </div>
-<div id="failDialog"></div>
