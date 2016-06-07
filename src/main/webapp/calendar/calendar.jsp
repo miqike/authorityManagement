@@ -5,8 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<link rel="stylesheet" type="text/css" href="../css/themes/${theme}/easyui.css">
-	<link rel="stylesheet" type="text/css" href="../css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-easyui-theme/${theme}/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../css/jquery-easyui-theme/icon.css">
 	<link rel='stylesheet' href='../css/cupertino/jquery-ui.min.css' />
 	<link rel='stylesheet' href='../css/fullcalendar.css' />
 	<link rel='stylesheet' href='../css/fullcalendar.print.css' media='print' />

@@ -10,8 +10,8 @@
     <%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
     <title>抽检事项清单管理</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link href="../js/jeasyui-extensions-release/jeasyui.extensions.min.css" rel="stylesheet" >
     
 	<script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>

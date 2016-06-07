@@ -5,8 +5,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>企业抽查结果统计分析</title>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link href="../css/content.css" rel="stylesheet"/>
     <style>
@@ -141,8 +141,8 @@
 </body>
 </html>
 <link href="../css/content.css" rel="stylesheet"/>
-<link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-<link href="../css/themes/icon.css" rel="stylesheet"/>
+<link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 

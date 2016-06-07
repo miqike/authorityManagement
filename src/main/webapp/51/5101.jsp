@@ -9,8 +9,8 @@
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
     <title>计划检查</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
