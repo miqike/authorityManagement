@@ -135,6 +135,10 @@ function confirmUpdateHcjg() {
 	})
 }
 
+function getAuditItem() {
+	return $("#auditItemTabs").tabs("getSelected").find(".easyui-datagrid").datagrid("getSelected")
+}
+
 $(function () {
     clearInput();
     $("#f_nd").textbox("setValue", new Date().getFullYear());

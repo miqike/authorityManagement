@@ -35,7 +35,7 @@
 		$("#btnSaveDoc").click(funcSaveDoc);
 		
 		var hcrw = $("#grid1").datagrid("getSelected");
-		var hcsx =  $("#mainGrid").datagrid("getSelected");
+		var hcsx = getAuditItem();
 		
 		$("#d_hcrwId").textbox("setValue", hcrw.id);
 		$("#d_hcdwXydm").textbox("setValue", hcrw.hcdwXydm);

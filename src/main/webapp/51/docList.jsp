@@ -68,7 +68,7 @@
 		$("#btnRemoveDoc").click(funcRemoveDoc); 
 		
 		var hcrw = $("#grid1").datagrid("getSelected");
-		var hcsx =  $("#mainGrid").datagrid("getSelected");
+		var hcsx = getAuditItem();
 		$("#docGrid").datagrid({ 
 			url:'../common/query?mapper=hcclmxMapper&queryName=queryForTask',
 			queryParams: {hcrwId:hcrw.id}
