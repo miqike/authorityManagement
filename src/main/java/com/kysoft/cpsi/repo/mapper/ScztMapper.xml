@@ -234,9 +234,15 @@
         where XYDM = #{xydm,jdbcType=VARCHAR}
     </update>
 
-    <select id="query" resultMap="BaseResultMap">
+
+    <resultMap id="ExtendResultMap" extends="BaseResultMap" type="com.kysoft.cpsi.repo.entity.Sczt">
+        <result column="HCRWS" jdbcType="DECIMAL" property="hcrws"/>
+    </resultMap>
+
+    <select id="query" resultMap="ExtendResultMap">
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>
+        ,(select count(1) from t_hcrw b where b.hcdw_xydm=t_sczt.xydm) hcrws
         from T_SCZT
         where 1=1
         <if test="qymc!=null">

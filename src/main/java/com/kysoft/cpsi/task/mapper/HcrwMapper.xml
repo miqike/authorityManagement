@@ -463,6 +463,13 @@
             ZZXS, HCJGMC
         </if>
     </select>
+    <select id="queryForXydm" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from T_HCRW where hcdw_xydm=#{hcdwXydm}
+        ORDER BY JHWCRQ
+    </select>
+
     <select id="queryForAuditor" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
