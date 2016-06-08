@@ -53,18 +53,60 @@ function mainGridDblClickHandler(index, row) {
     $('#tabPanel').tabs('select', 0);
 }
 
+function formatZfry(val, row) {
+    return row.zfryName1 + "/" + row.zfryName2;
+}
 
 function poiExport() {
     $("<iframe id='poiExport' style='display:none' src='../user/poiExport'>").appendTo("body");
 }
 
-function showExamHistory() {
-    showModalDialog("examHistory");
+function stylerHczt(val, row, index) {
+    if (val == 1) {
+        return "";
+    } else if (val == 2) {
+        return "background-color:yellow";
+    } else if (val == 3) {
+        return "background-color:lightgreen";
+    }
+}
+
+function stylerHcjg(val, row, index) {
+    if (val == 1) {
+        return "background-color:lightgreen";
+    } else if (val == 2) {
+        return "background-color:pink";
+    } else {
+        return "";
+    }
 }
 
 $(function () {
     $.fn.zTree.init($("#orgTree"), setting);
-    $("#btnView").click(showExamHistory);
+    $("#btnView").click(function(){
+        showModalDialog("examHistory");
+        var qy=$("#mainGrid").datagrid("getSelected");
+        var options = $("#grid2").datagrid("options");
+        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
+        $('#grid2').datagrid('load', {
+            hcdwXydm: qy.xydm
+        });
+    });
+    $("#btnCloseHistory").click(function(){
+        $("#examHistory").window("close");
+    });
+    $("#btnViewHcsxjg").click(function(){
+        showModalDialog("examHistoryHcsxjg");
+        var rw=$("#grid2").datagrid("getSelected");
+        var options = $("#grid3").datagrid("options");
+        options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
+        $('#grid3').datagrid('load', {
+            hcrwId: rw.id
+        });
+    });
+    $("#btnCloseHcsxjg").click(function(){
+        $("#examHistoryHcsxjg").window("close");
+    });
 
     $("#btnSearch").click(function () {
         var treeObj = $.fn.zTree.getZTreeObj("orgTree");

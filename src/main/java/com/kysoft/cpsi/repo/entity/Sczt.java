@@ -324,4 +324,15 @@ public class Sczt {
 	public void setQymc(String qymc) {
 		this.qymc = qymc;
 	}
+
+
+	Integer hcrws;
+
+	public Integer getHcrws() {
+		return hcrws;
+	}
+
+	public void setHcrws(Integer hcrws) {
+		this.hcrws = hcrws;
+	}
 }

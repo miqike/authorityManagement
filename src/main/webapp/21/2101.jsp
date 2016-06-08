@@ -37,6 +37,8 @@
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+     <script type="text/javascript" src="../js/formatter.js"></script>
+
     <script type="text/javascript" src="./2101.js"></script>
     <style>
 
@@ -131,7 +133,7 @@
                                             <input type="radio"/> 不定向
                                         </td>
                     --%>
-                    <td style="text-align-right;">
+                    <td style="text-align:right">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>
                         <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -179,16 +181,17 @@
                 <th data-options="field:'lxdh',halign:'center',align:'left'" sortable="true" width="100">联系电话</th>
                 <th data-options="field:'mail',halign:'center',align:'left'" sortable="true" width="150">电子邮箱</th>
                 <th data-options="field:'llr',halign:'center',align:'left'" sortable="true" width="70">工商联络员</th>
+                <th data-options="field:'hcrws',halign:'center',align:'right'" sortable="true" width="70">检查记录</th>
             </tr>
             </thead>
         </table>
+        <div id="mainGridToolbar">
+            <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">检查记录</a>
+        </div>
     </div>
 </div>
 
 <!-- --------弹出窗口--------------- -->
-<div id="mainGridToolbar">
-    <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">检查记录</a>
-</div>
 <div id="examHistory" class="easyui-window" title="企业检查记录"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
@@ -197,27 +200,58 @@
            data-options="
                singleSelect:true,
                collapsible:true,
-               selectOnCheck:false,
+               selectOnCheck:false,method:'get',
                checkOnSelect:false"
            toolbar="#grid2Toolbar"
            style="height: 318px">
         <thead>
         <tr>
-            <th data-options="field:'name'" halign="center" align="center" width="30">序号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查计划编号</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查计划下达时间</th>
-            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70"
-                codeName="roleStatus"
-                formatter="formatCodeList">检查类型
-            </th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查机关</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查人员</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查结果</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">经营状态</th>
-            <th data-options="field:'role'" halign="center" align="left" width="100">检查结果公示情况</th>
+            <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+            <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+            <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
+            <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
+            <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
+            <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"formatter="formatZfry">检查人员</th>
+            <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
+            <th data-options="field:'rlrq'" halign="center" align="left" width="70"formatter="formatDate">认领日期</th>
+            <th data-options="field:'rwzt'" halign="center" align="left" width="70"codeName="jhlb" formatter="formatCodeList">计划完成</th>
+            <th data-options="field:'sjwcrq'" halign="center" align="left" width="70"formatter="formatDate">实际完成</th>
         </tr>
         </thead>
     </table>
+    <div id="grid2Toolbar">
+        <a href="#" id="btnViewHcsxjg" class="easyui-linkbutton" iconCls="icon-edit" plain="true">事项核查结果</a>
+        <a href="#" id="btnCloseHistory" class="easyui-linkbutton" iconCls="icon-edit" plain="true">返回</a>
+    </div>
+</div>
+
+<div id="examHistoryHcsxjg" class="easyui-window" title="事项核查结果列表"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 950px; height: 500px; padding: 10px;">
+    <table id="grid3"
+           class="easyui-datagrid"
+           data-options="
+               singleSelect:true,
+               collapsible:true,
+               selectOnCheck:false,method:'get',
+               checkOnSelect:false"
+           toolbar="#grid3Toolbar"
+           style="height: 418px">
+        <thead>
+        <tr>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
+            <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方式</th>
+            <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
+            <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
+            <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt" formatter="formatCodeList"  styler="stylerHczt">检查状态</th>
+            <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">检查结果</th>
+            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
+        </tr>
+        </thead>
+    </table>
+    <div id="grid3Toolbar">
+        <a href="#" id="btnCloseHcsxjg" class="easyui-linkbutton" iconCls="icon-edit" plain="true">返回</a>
+    </div>
 </div>
 </body>
 </html>
