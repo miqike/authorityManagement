@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!-- <script type="text/javascript" src="./userDoc.js"></script> -->
+<script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
 <script>
 	function formatDocOperation(val, row) {
 		return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";
@@ -14,15 +14,31 @@
 	}
 	
 	function funcAddDoc() {
-		showModalDialog("addDocWindow");
-		$("#addDocWindow").panel({
-		    href:'./docForm.jsp',
-		    onLoad:function(){
-		    	doInit();
-		    }
-		});
+	 	if (!$(this).linkbutton('options').disabled) {
+	 		$.easyui.showDialog({
+	 			iniframe: false,
+	    		title: "上传检查材料",
+	    		width: 550,
+	    		height: 275,
+	    		topMost: true,
+	    		iconCls:'icon2 r16_c14',
+	    		enableSaveButton: true,
+	    		saveButtonText: "保存",
+	    		enableApplyButton: false,
+	    		closeButtonText: "返回",
+	    		closeButtonIconCls: "icon-undo",
+	    		href: "./docForm.jsp",
+	    		onLoad: function() {
+	    			doInitDocForm();
+	    		},
+	    		onSave: function() {
+	    			return doSaveDoc();
+	    		}
+	    	});
+	    }
 	}
-
+	
+	
 	function funcRemoveDoc () {
 		if(!$(this).linkbutton('options').disabled) {
 			var row = $('#docGrid').datagrid('getSelected');
@@ -85,7 +101,7 @@
 	
 </script>
 
-<div>
+<div style="padding:10px 10px 0px 10px;">
     <div style="display: none;">
         <span style="color:blue; " id="_hcrwId_"></span>
         <span style="color:blue; " id="_hcsxId_"></span>
@@ -94,7 +110,7 @@
     <table id="docGrid"
            class="easyui-datagrid"
            data-options="collapsible:true,
-           		singleSelect:true,height:300,width:680,
+           		singleSelect:true,height:325,width:680,
            		onClickRow:docGridClickRowHandler,
 				ctrlSelect:false,method:'get',
 				toolbar: '#docGridToolbar',
@@ -119,10 +135,3 @@
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
 
-<div id="addDocWindow" class="easyui-window" title="上传检查材料"
-     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-     style="width: 550px; height: 350px; padding: 10px;">
-     
-     	
-    
-</div>

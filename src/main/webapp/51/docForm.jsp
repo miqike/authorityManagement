@@ -1,41 +1,40 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<!-- <script type="text/javascript" src="./userDoc.js"></script> -->
-<script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
-<script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
-<script type="text/javascript" src="../js/fileuploader.js""></script>
-<!-- <script type="text/javascript" src="../js/jeasyui-extensions/jquery.euploadify.js"></script> -->
+<!-- <script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
+<script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script> -->
 <script>
-	function funcSaveDoc() {
-		$("#btnSaveDoc").linkbutton("disable");
-		var data = $.easyuiExtendObj.drillDownForm('addDocWindow');
-		data.name = $("#d_hcclId").combobox("getText");
-		data.hcsxmc = $("#d_hcsxId").combobox("getText");
-		data.mongoId = $("#d_mongoId").val();
-	    var type = "POST";
-	    var url = "./hcclmx";
-	    $.ajax({
-	        url: url,
-	        type: type,
-	        data: data,
-	        success: function (response) {
-	            if (response.status == SUCCESS) {
-	                $("#docGrid").datagrid("reload");
-	                $("#addDocWindow").window("close");
-	                $.messager.show({
-						title : '提示',
-						msg : "检查材料保存成功"
-					});
-	            } else {
-	                $.messager.alert('检查材料保存', response.message, 'error');
-	            }
-	        }
-	    });
+	function doSaveDoc() {
+		if( $("#d_mongoId").val() == "") {
+			$.messager.alert("操作提醒", "保存之前必须上传文件", "warning");
+			return false;
+		} else {
+			var data = $.easyuiExtendObj.drillDownForm('addDocWindow');
+			data.name = $("#d_hcclId").combobox("getText");
+			data.hcsxmc = $("#d_hcsxId").combobox("getText");
+			data.mongoId = $("#d_mongoId").val();
+		    var type = "POST";
+		    var url = "./hcclmx";
+		    $.ajax({
+		        url: url,
+		        type: type,
+		        data: data,
+		        success: function (response) {
+		            if (response.status == SUCCESS) {
+		                $("#docGrid").datagrid("reload");
+		                $("#addDocWindow").window("close");
+		                $.messager.show({
+							title : '提示',
+							msg : "检查材料保存成功"
+						});
+		            } else {
+		                $.messager.alert('检查材料保存', response.message, 'error');
+		            }
+		        }
+		    });
+		}
 	}
 	
-	function doInit() {
+	function doInitDocForm() {
 		$.codeListLoader.parse($("#addDocWindow"));
-		$("#btnSaveDoc").click(funcSaveDoc);
-		
 		var hcrw = $("#grid1").datagrid("getSelected");
 		var hcsx = getAuditItem();
 		
@@ -57,8 +56,7 @@
 			onUnselect: function(record) { $("#d_hcclId").combobox("loadData" , []); }
 		});
 		
-		//$.getScript("../js/fileuploader.js", function() {
-			console.log("----")
+		$.getScript("../js/fileuploader.js", function() {
 			window.uploader = new qq.FileUploaderBasic({
 		        button: document.getElementById('btnUpload'),
 		        allowedExtensions: [],
@@ -72,23 +70,22 @@
 		                col:"BI0511",
 		                ownerKey:"#datagridBi05"
 		            });
-		            $("#progressbar").show().width('260px');
+		            //$("#progressbar").show().width('260px');
 		        },
 
 		        onProgress: function(id, fileName, loaded, total){
 		            var percentLoaded = (loaded / total) * 100;
-		            $( "#progressbar" ).progressBar(percentLoaded);
+		            //$( "#progressbar" ).progressBar(percentLoaded);
 		        },
 		        // display a fancy message
 		        onComplete: function (id, fileName, response) {
 		        	//$("#a_name").val(fileName);
             		$("#d_mongoId").val(response.mongoId);
-		            $("#progressbar").hide();
-		            $("#btnSaveDoc").linkbutton("enable");
+		            //$("#progressbar").hide();
 		        }
 
 		    });
-		//});
+		});
 	}
 	
 	function setForm(value) {
@@ -102,23 +99,20 @@
 				}
 			}
 		}
-
 		if(hccl == null ) {
     		$("#d_sfbyx").combobox("clear");
     		$("#d_wjlx").combobox("clear");
     		$("#d_yhtg").combobox("clear");
-    		$("#btnUpload").linkbutton("disable");
 		} else {
 			$("#d_sfbyx").combobox("setValue", hccl.sfbyx);
     		$("#d_wjlx").combobox("setValue", hccl.wjlx);
     		$("#d_yhtg").combobox("setValue", hccl.yhtg);
     		$("#d_ly").combobox("setValue", 2);
-    		$("#btnUpload").linkbutton("enable");
 		}
 	}
 	
 </script>
-
+<div id="addDocWindow" style="padding:10px;height:175px;">
     <table>
     	<tr>
     		<td class="label">检查计划年度</td><td>
@@ -139,28 +133,22 @@
     		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100" disabled/></td>
     	</tr>
     	<tr>
-    	</tr>
-    	<tr>
     		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" disabled/></td>
     		<td class="label">来源</td><td><input class="easyui-combobox", id="d_ly" codeName="wjly" data-options="panelHeight:70" disabled/></td>
     	</tr>
+    	<tr>
+		    <td colspan="4">
+		    	<!-- <a href="#" id="btnUpload"  iconCls="icon2 r1_c13" plain="true" disabled>选择文件</a> -->
+		    	<a plain="true" class="l-btn l-btn-small l-btn-plain" id="btnUpload" href="#" group="" style="position: relative; overflow: hidden; direction: ltr;">
+		    		<span class="l-btn-left l-btn-icon-left">
+		    			<span class="l-btn-text">选择文件</span>
+		    			<span class="l-btn-icon icon2 r1_c13">&nbsp;</span>
+		    		</span>
+		    	</a>	
+		    	
+		    </td>
+    	</tr>
     </table>
-    <!-- 
-    <input id="euploadify2" name="euploadify2" class="easyui-euploadify" type="text" data-options="
-           width: 900,
-           //height: 400,
-           multi: true,
-           multiTemplate: 'simple',
-           auto: false,
-           showStop: true,
-           showCancel: true,
-           required: true,
-           //onCancel: function (file) { alert(file.id); },
-           swf: './js/plugins/uploadify/uploadify.swf',
-           uploader: './js/plugins/uploadify/net/uploadify.ashx'
-           " /> -->
            
-    <a href="#" id="btnUpload" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" disabled>选择文件</a>
-    <a href="#" id="btnSaveDoc" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled>保存</a>
-	<div id="_docPanel" style="padding:10px;"></div>
-	<div id="progressbar" style='margin-bottom:10px;display:none'></div>
+	
+</div>

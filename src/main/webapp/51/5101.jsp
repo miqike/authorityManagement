@@ -19,7 +19,6 @@
 	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-	
 
     <!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script> -->
     <script type="text/javascript" src="../js/formatter.js"></script>
@@ -35,14 +34,17 @@
             font: 13px/1.5 \5b8b\4f53, Arial, sans-serif;
             background: #ffffff;
         }
-
+        
+/* 
         div .datagrid-wrap {
             border-right: 0px;
             border-left: 0px;
             border-bottom: 0px
         }
 
+ */
         div#tabPanel .datagrid-wrap {
+            border-left: 0px;
             border-top: 0px;
         }
 
