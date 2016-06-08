@@ -20,7 +20,7 @@
 	    		title: "上传检查材料",
 	    		width: 550,
 	    		height: 275,
-	    		topMost: true,
+	    		topMost: false,
 	    		iconCls:'icon2 r16_c14',
 	    		enableSaveButton: true,
 	    		saveButtonText: "保存",
