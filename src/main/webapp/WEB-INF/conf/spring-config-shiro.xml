@@ -49,6 +49,7 @@
                 /index.jsp = authc,sysUser
                 /**/*.html = anon
                 /**/*.js = anon
+                /chromeframe/**/* = anon
 
                 <!--/user/checkUserExist = anon-->
                 /audit/mail/* = anon
