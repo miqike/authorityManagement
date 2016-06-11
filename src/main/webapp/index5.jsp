@@ -21,17 +21,16 @@
     <title>企业公示信息智能检查系统</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="./css/jquery-easyui-theme/default/easyui.css" rel="stylesheet" type="text/css" />
-    <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
+    
     <link href="./js/jeasyui-extensions-release/icons/icon-all.css" rel="stylesheet" type="text/css" />
-    <script src="./js/jquery/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="./js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="./js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
     <script src="./js/jeasyui-extensions-release/jquery.jdirk.min.js" type="text/javascript"></script>
     <link href="./js/jeasyui-extensions-release/jeasyui.extensions.min.css" rel="stylesheet" type="text/css" />
     <script src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js" type="text/javascript"></script>
+   
     <!--<script src="release/jeasyui.icons.all.min.js"></script>-->
-
-
    <%
         MenuRepository menuRepository = SpringUtils.getBean(MenuRepository.class);
         MessageService messageService = SpringUtils.getBean(MessageService.class);
@@ -55,90 +54,11 @@
     <!--导入首页启动时需要的相应资源文件(首页相应功能的 js 库、css样式以及渲染首页界面的 js 文件)-->
     <script src="./common/index.js" type="text/javascript"></script>
     <link href="./common/index.css" rel="stylesheet" />
+    <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
+    <script src="./js/husky/husky.common.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.message.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.index.js" type="text/javascript"></script>
     <script src="./common/index-startup.js"></script>
-    <style>
-    
-    div#logo {
-	    background: rgba(0, 0, 0, 0) url("./images/logo.jpg") no-repeat scroll 0 0 / 30px 30px;
-	    float: left;
-	    height: 30px;
-	    margin-left: 15px;
-	    margin-top:3px;
-	    width: 40px;
-    }
-    
-    #topMenu {
-	    float: left;
-	    margin: 0 0 0 5px;
-	    padding: 0;
-	}
-	#topMenu li {
-	    background-color: #6caef5;
-	    color: #000;
-	    cursor: pointer;
-	    float: left;
-	    font-size: 14px;
-	    line-height: 35px;
-	    list-style-type: none;
-	    padding: 0 10px;
-	}
-	#topMenu li:hover {
-	    background-color: #7a9bbf;
-	    color: #fff;
-	}
-	#topMenu li.active {
-	    background-color: orange;
-	    color: black;
-	}
-    </style>
-    <script type="text/javascript">
-  //初始化一级菜单
-    function initTopMenu(menus) {
-    	$("#topMenu").empty();
-    	$.each(menus, function(i, menu) {
-    		$("<li title='" + menu.text + "' id='menu_" + menu.id + (i==0 ? "' class='active'>" : "'>") + menu.text + "</li>")
-    			.appendTo("#topMenu")
-    			.click(topMenuClickHandler)
-    			.find(":first").addClass('active');
-    	});
-    }
-
-    function topMenuClickHandler() {
-    	$('#topMenu li').removeClass('active');
-    	$(this).addClass('active');
-    	var menuId = $(this).attr('id').split("_")[1];
-    	var d = getMenuById(menus, menuId);
-    	clearLeftMenu();
-    	initLeftMenu(d, 0);
-    }
-    
-    $(function(){
-	    if(initData.userInfo == null) {
-			if(initData.redirect == null) {
-				window.location = "login";
-			} else {
-				window.location = initData.redirect;
-			}
-		} else {
-			window.parent.parent.userInfo = initData.userInfo;
-			if(initData.isRunas){
-				var pwdLink = $("#pswDiv").children().eq(1);
-				pwdLink.remove();
-			}
-	
-			var userInfo = initData.userInfo.name;
-			if(initData.userInfo.orgName != undefined) {
-				userInfo += " - " ;
-				userInfo += initData.userInfo.orgName;
-			}
-			$('#userInfo').text("欢迎：" + userInfo);
-			//加载菜单
-			menus = initData.menu;
-			initTopMenu(menus);
-			//initLeftMenu(menus[0], 0);
-		}
-    });
-    </script>
 </head>
 <body>
 
@@ -148,9 +68,7 @@
     </div>
 
     <div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
-        <div id="northPanel" data-options="region: 'north', border: false" style="height: 80px; overflow: hidden;">
-        
-        	
+        <div id="northPanel" data-options="region: 'north', border: false" style="height: 64px; overflow: hidden;">
             <div id="topbar" class="top-bar">
                 <div class="top-bar-left">
                     <!-- <h1 style="margin-left: 10px; margin-top: 10px;">jQuery & jEasyUI Extensions</h1> -->
@@ -158,7 +76,8 @@
                     <ul id="topMenu"></ul>
                 </div>
                 <div class="top-bar-right">
-                    <!-- <div id="timerSpan" style="float:right"></div> -->
+                    <!-- <div id="timerSpan" style="float:right"></div> 
+                    -->
                     <div id="themeSpan" style="float:right">
                         <span>更换皮肤风格：</span>
                         <select id="themeSelector"></select>
@@ -168,10 +87,9 @@
             </div>
             <div id="toolbar" class="panel-header panel-header-noborder top-toolbar">
                 <div id="infobar">
-                    <span class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;">
-                        此处可以放置登录用户账户信息
-                    </span>
+                    <span id="userInfo" class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;"></span>
                 </div>
+                <!-- 
                 <div id="searchbar">
                     <input id="topSearchbox" name="topSearchbox" class="easyui-searchbox" data-options="width: 350, height: 26, prompt: '请输入您要查找的内容关键词', menu: '#topSearchboxMenu'" />
                     <div id="topSearchboxMenu" style="width: 85px;">
@@ -182,17 +100,34 @@
                         <div data-options="name:'4'">测试类型4</div>
                     </div>
                 </div>
+                 -->
                 <div id="buttonbar">
-                    <a id="btnContact" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-contact', tooltip: '前往作者关于该插件集合的博客专文；可以进行问题反馈提交或留言操作。'">博客留言</a>
-                    <a id="btn2" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-bug'">按钮2</a>
-                    <a id="btn3" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-archives'">按钮3</a>
+                    <!-- <a id="btnContact" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-contact', tooltip: '前往作者关于该插件集合的博客专文；可以进行问题反馈提交或留言操作。'">博客留言</a> -->
+                    
+                    <a id="msgIcon" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r10_c10'"/>消息</a>
+        			<span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
+	       			<a id="btnSetting" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r17_c12'"/>设置</a>
+	       			<!-- 
+	       				<a class="easyui-tooltip" style="cursor:pointer;" data-options="
+		                    hideEvent: 'none',
+		                    content: function(){
+		                        /*return $('#toolbar');*/
+		                    },
+		                    onShow: function(){
+		                        var t = $(this);
+		                        /*
+		                        t.tooltip('tip').focus().unbind().bind('blur',function(){
+		                            t.tooltip('hide');
+		                        });*/
+		                    }">
+            		<img src="./images/hammer_screwdriver.png" style="margin-right:5px;"/>设置</a>
+	       			 -->
+                    
                     <a id="btnFullScreen" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'">全屏切换</a>
                     <a id="btnExit" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-sign-out'">退出系统</a>
                     <a id="btnShowNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-down'" style="display: none;"></a>
                 </div>
             </div> 
-            <!-- 
-            -->
         </div>
 
         <div data-options="region: 'west', title: '菜单导航栏', iconCls: 'icon-standard-map', split: true, minWidth: 250, maxWidth: 500" style="width: 250px; padding: 1px;">
@@ -205,14 +140,16 @@
             </div>
             <div id="navTabs" class="easyui-tabs" data-options="fit: true, border: true, tools: '#navTabs_tools'">
                 <div data-options="title: '导航菜单', iconCls: 'icon-standard-application-view-tile', refreshable: false, selected: true">
+                	<div id="wnav" class="easyui-accordion" data-options="fit:true,border:false,animate:true"> </div>
+                    <!-- 
                     <div id="westLayout" class="easyui-layout" data-options="fit: true">
                         <div data-options="region: 'center', border: false" style="border-bottom-width: 1px;">
-                            <div id="westCenterLayout" class="easyui-layout" data-options="fit: true">
+                        	<div id="westCenterLayout" class="easyui-layout" data-options="fit: true">
                                 <div data-options="region: 'north', split: false, border: false" style="height: 33px;">
                                     <div class="easyui-toolbar">
                                         <a id="navMenu_expand" class="easyui-splitbutton" data-options="iconCls: 'icon-metro-expand2', menu: '#navMenu_toggleMenu'">展开</a>
                                         <a id="navMenu_Favo" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-feed-add'">收藏</a>
-                                        <a id="navMenu_Rename" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-pencil'">重命名</a>
+                                        <a id="navMenu_Rename" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-pencil'">重命名</a> 
                                         <div id="navMenu_toggleMenu" class="easyui-menu">
                                             <div id="navMenu_collapse" data-options="iconCls: 'icon-metro-contract2'">折叠当前</div>
                                             <div class="menu-sep"></div>
@@ -221,7 +158,7 @@
                                             <div class="menu-sep"></div>
                                             <div id="navMenu_collapseAll" data-options="iconCls: 'icon-standard-arrow-out'">展开所有</div>
                                             <div id="navMenu_expandAll" data-options="iconCls: 'icon-standard-arrow-in'">折叠所有</div>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div data-options="region: 'center', border: false">
@@ -233,7 +170,9 @@
                             <ul id="navMenu_list"></ul>
                         </div>
                     </div>
+                    -->
                 </div>
+                <!-- 
                 <div data-options="title: '个人收藏', iconCls: 'icon-hamburg-star', refreshable: false">
                     <div id="westFavoLayout" class="easyui-layout" data-options="fit: true">
                         <div data-options="region: 'north', split: false, border: false" style="height: 33px;">
@@ -256,7 +195,7 @@
                             <ul id="favoMenu_Tree" style="padding-top: 2px; padding-bottom: 2px;"></ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -268,7 +207,7 @@
                         <td><div class="datagrid-btn-separator"></div></td>
                         <td><a id="mainTabs_toggleAll" class="easyui-linkbutton easyui-tooltip" title="展开/折叠面板使选项卡最大化" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'"></a></td>
                         <td><div class="datagrid-btn-separator"></div></td>
-                        <td><a id="mainTabs_jumpTab" class="easyui-linkbutton easyui-tooltip" title="在新页面中打开该选项卡" data-options="plain: true, iconCls: 'icon-standard-shape-move-forwards'"></a></td>
+                        <!-- <td><a id="mainTabs_jumpTab" class="easyui-linkbutton easyui-tooltip" title="在新页面中打开该选项卡" data-options="plain: true, iconCls: 'icon-standard-shape-move-forwards'"></a></td> -->
                         <td><div class="datagrid-btn-separator"></div></td>
                         <td><a id="mainTabs_closeTab" class="easyui-linkbutton easyui-tooltip" title="关闭当前选中的选项卡" data-options="plain: true, iconCls: 'icon-standard-application-form-delete'"></a></td>
                         <td><a id="mainTabs_closeOther" class="easyui-linkbutton easyui-tooltip" title="关闭除当前选中外的其他所有选项卡" data-options="plain: true, iconCls: 'icon-standard-cancel'"></a></td>
@@ -280,8 +219,9 @@
                     </tr>
                 </table>
             </div>
-            <div id="mainTabs" class="easyui-tabs" data-options="fit: true, border: true, showOption: true, enableNewTabMenu: true, tools: '#mainTabs_tools', enableJumpTabMenu: true, onSelect: function (title, index) { window.mainpage.mainTabs.updateHash(index); }">
+            <div id="mainTabs" class="easyui-tabs" data-options="fit: true, border: true, showOption: true, enableNewTabMenu: true, tools: '#mainTabs_tools', enableJumpTabMenu: true, onSelect:tabsOnSelectHandler">
                 <div id="homePanel" data-options="title: '主页', iconCls: 'icon-hamburg-home'">
+                    <!-- 
                     <div class="easyui-layout" data-options="fit: true">
                         <div data-options="region: 'north', split: false, border: false" style="height: 33px;">
                             <div class="easyui-toolbar">
@@ -293,7 +233,7 @@
                                 <a id="A4" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-config'">测试操作02</a>
                             </div>
                         </div>
-                        <div data-options="region: 'center', border: false" style="overflow: hidden;">
+                        <div data-options="region: 'center', border: false" style="overflow: hidden;"> -->
                             <div id="portal" class="easyui-portal" data-options="fit: true, border: false">
                                 <div style="width: 33%;">
                                     <div data-options="title: '项目信息', height: 260, collapsible: true, closable: true">
@@ -308,8 +248,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <!-- </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -343,5 +283,13 @@
 
 
     </div>
+    
+    <div style="display:none">
+	    <div id="toolbar" >
+	        <a id="btnShowChangePwdDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r12_c20',plain:true">修改密码</a>
+	        <a id="btnShowRunAsDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r11_c19',plain:true">切换身份</a>
+	        <a id="btnShowThemeDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r16_c15',plain:true">切换主题</a>
+	    </div>
+	</div>
 </body>
 </html>
