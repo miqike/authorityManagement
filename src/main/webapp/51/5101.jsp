@@ -43,14 +43,6 @@
             background: #ffffff;
         }
         
-/* 
-        div .datagrid-wrap {
-            border-right: 0px;
-            border-left: 0px;
-            border-bottom: 0px
-        }
-
- */
         div#tabPanel .datagrid-wrap {
             border-left: 0px;
             border-top: 0px;

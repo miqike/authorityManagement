@@ -24,18 +24,8 @@ function mainGridButtonHandler(index,row) {
 function mainGridDblClickHandler(index,row) {
 	window.selected = index;
 	$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-	$("#p_id").val(row.id);
-	$("#p_role").textbox("setValue", row.role);
-	$("#p_name").textbox("setValue", row.name);
-	$("#p_status").combobox('setValue', row.status);
-	$("#p_description").textbox("setValue", row.description);
-	showModalDialog("roleWindow");
-	$("#btnEditOrSave").parent().css("text-align", " left");
-	$('#roleWindow input.easyui-validatebox').validatebox();
-	$.each($("#roleTable input.easyui-textbox"), function (idx, elem) {
-		$(elem).next().find("input.textbox-text").css("width", "100%");
-	});
-	$('#tabPanel').tabs('select', 0);
+	var row = $('#mainGrid').datagrid('getSelected');
+	showRoleForm(row);
 }
 
 function grid2ButtonHandler() {
@@ -54,40 +44,89 @@ function grid3ButtonHandler() {
 	}
 }
 
-function add(){
+function funcAdd(){
 	window.selected = -1;
 	$('#mainGrid').datagrid('unselectAll');
-	$('#roleTable input').val('');
-	$("#p_status").combobox('setValue', '1').combobox('setText', '正常')
-
-	showModalDialog("roleWindow");
-	$('#roleTable input.easyui-textbox').textbox("enable");
-	$('#roleTable input.easyui-combobox').combobox("enable");
-	$('#tabPanel').tabs('select',0 );
-}
-
-function view(){
-	if(!$(this).linkbutton('options').disabled) {
-
-		var row = $('#mainGrid').datagrid('getSelected');
-		if (row) {
-			$("#p_id").val(row.id);
-			$("#p_role").textbox("setValue", row.role);
-			$("#p_name").textbox("setValue", row.name);
-			$("#p_status").combobox('setValue', row.status);
-			$("#p_description").textbox("setValue", row.description);
-			showModalDialog("roleWindow");
-			$("#btnEditOrSave").parent().css("text-align", " left");
-			$('#roleWindow input.easyui-validatebox').validatebox();
-		}
-		$.each($("#roleTable input.easyui-textbox"), function (idx, elem) {
-			$(elem).next().find("input.textbox-text").css("width", "100%");
-		});
-		$('#tabPanel').tabs('select', 0);
+	if (!$(this).linkbutton('options').disabled) {
+		showRoleForm(row);
 	}
 }
 
-function remove(){
+
+function funcView(){
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $('#mainGrid').datagrid('getSelected');
+		if (row) {
+			showRoleForm(row);
+		}
+	}
+}
+
+function showRoleForm(data) {
+	$.easyui.showDialog({
+		title : "角色信息",
+		width : 750,
+		height : 440,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./roleForm.jsp",
+		onLoad : function() {
+			doRoleFormInit(data);
+		},
+		onSave: function() {
+			var tab = $('#tabPanel').tabs('getSelected');
+			var index = $('#tabPanel').tabs('getTabIndex',tab);
+			if(index == 0 && $('#roleWindow').form('validate')) {
+				saveRole();
+			} else if (index == 1) {
+				saveRoleResource();
+			}
+			return false;
+		}
+	});
+}
+
+function saveRoleResource() {
+	var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var checkedNodes = treeObj.getCheckedNodes(true);
+
+	var param = new Array();
+	$.each(checkedNodes, function(idx, elem) {
+		param.push(elem.id);
+	});
+
+	$.post("../sys/role/resource/" + $('#p_id').val(), {
+		resourceIds:param.join(',')
+	}, function(response){
+		if(response.status == SUCCESS) {
+			$.messager.show({
+				title : '提示',
+				msg : "角色授权成功"
+			});
+		} else {
+			$.messager.alert("错误", "角色授权失败", 'error');
+		}
+	}, "json");
+}
+
+
+function doRoleFormInit(data) {
+	$.codeListLoader.parse($('#roleTable'))
+	if(null != data) {
+		loadForm('roleTable', data)
+	}
+	/*$('#roleTable input').val('');
+	//$("#p_status").combobox('setValue', '1').combobox('setText', '正常')
+	$('#roleTable input.easyui-validatebox').removeAttr("readonly");
+	$('#roleTable input.easyui-combobox').combobox("enable");
+	$('#tabPanel').tabs('select',0 );*/
+}
+
+function funcDelete(){
 	if(!$(this).linkbutton('options').disabled) {
 		var checkedRows = $('#mainGrid').datagrid('getSelections');
 		if (checkedRows.length > 0) {
@@ -122,7 +161,7 @@ function remove(){
 	}
 }
 
-function lockUnlock() {
+function funcLock() {
 	if(!$(this).linkbutton('options').disabled) {
 		var row = $('#mainGrid').datagrid('getSelected');
 		var operate = row.status == 2 ? "解锁" : "锁定";
@@ -150,10 +189,10 @@ function lockUnlock() {
 function saveRole(){
 	$.post("../sys/role", {
 		id:$("#p_id").val(),
-		role: $("#p_role").textbox("getValue"),
-		name: $("#p_name").textbox("getValue"),
+		role: $("#p_role").val(),
+		name: $("#p_name").val(),
 		status: $("#p_status").combobox("getValue"),
-		description: $("#p_description").textbox("getValue")
+		description: $("#p_description").val()
 	}, function(response) {
 		if(response.status == FAIL){
 			$.messager.alert('错误', '保存角色失败: ' + response.message, 'error');
@@ -171,27 +210,73 @@ function saveRole(){
 
 function tabSelectHandler(title, index) {
 	var id = $("#p_id").val();
-	if(index == 1) { //选择权限TAB
-		if(id != "") {
+	if(id == "" && index != 0) {
+		$.messager.alert("操作错误", "请先选择或保存角色基本信息", "error");
+		$('#tabPanel').tabs('select',0 );
+	} else {
+		if(index == 1) { //选择权限TAB
 			$.getJSON("../sys/role/resource/" + id, {}, function(responseA) {
 				window.x = responseA.data;
+				$("#treePanel").empty();
+				$('<ul id="tree" class="ztree"></ul>').appendTo($("#treePanel"));
+				setting.callback.onAsyncSuccess = function(event, treeId, treeNode, msg){
+					_checkAuthorizedResourceNode(treeObj, treeNode);
+				};
+				treeObj = $.fn.zTree.init($("#tree"), setting);
 				checkAuthorizedResourceNode();
 			});
-		} else {
-			$.messager.alert("操作错误", "请先选择或保存角色基本信息", "error");
-			$('#tabPanel').tabs('select',0 );
+		} else if (index == 2) { //选择用户TAB
+			loadRoleUserForm();
 		}
-
-	} else if (index == 2) { //选择用户TAB
-		$("#f_name1").val('');
-		$("#f_organization1").val('');
-		var options = $('#grid2').datagrid('options');
-		options.url = '../common/query?mapper=userMapper&queryName=queryByRoleId';
-		options.queryParams.roleId = id;
-		$("#grid2").datagrid("reload");
 	}
 }
 
+function loadRoleUserForm() {
+	$("#roleUserForm").panel({
+		href: "./roleUserForm.jsp",
+		onLoad:function(){
+			$("#f_name1").val('');
+			$("#f_organization1").val('');
+			var options = $('#grid2').datagrid('options');
+			options.url = '../common/query?mapper=userMapper&queryName=queryByRoleId';
+			options.queryParams.roleId = $("#p_id").val();
+			$("#grid2").datagrid("reload");
+	    }
+	});
+}
+/*
+function showRoleUserForm() {
+	$.easyui.showDialog({
+		title : "角色信息",
+		width : 750,
+		height : 440,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./roleUserForm.jsp",
+		onLoad : function() {
+			$("#f_name1").val('');
+			$("#f_organization1").val('');
+			var options = $('#grid2').datagrid('options');
+			options.url = '../common/query?mapper=userMapper&queryName=queryByRoleId';
+			options.queryParams.roleId = id;
+			$("#grid2").datagrid("reload");
+		},
+		onSave: function() {
+			var tab = $('#tabPanel').tabs('getSelected');
+			var index = $('#tabPanel').tabs('getTabIndex',tab);
+			if(index == 0 && $('#roleWindow').form('validate')) {
+				saveRole();
+			} else if (index == 1) {
+				saveRoleResource();
+			}
+			return false;
+		}
+	});
+}*/
 function queryUserByRoleId(){
     var options = $('#grid2').datagrid('options');
     options.url = '../common/query?mapper=userMapper&queryName=queryByRoleId';
@@ -204,14 +289,7 @@ function queryUserByRoleId(){
 
 function checkAuthorizedResourceNode(treeNode) {
 	var treeObj = $.fn.zTree.getZTreeObj("tree");
-	if(null == treeObj) {
-		setting.callback.onAsyncSuccess = function(event, treeId, treeNode, msg){
-			_checkAuthorizedResourceNode(treeObj, treeNode);
-		};
-		treeObj = $.fn.zTree.init($("#tree"), setting);
-	} else {
-		_checkAuthorizedResourceNode(treeObj, treeNode);
-	}
+	_checkAuthorizedResourceNode(treeObj, treeNode);
 }
 
 function _checkAuthorizedResourceNode(treeObj, treeNode) {
@@ -250,50 +328,6 @@ function enableResourceNodeChecked(enable) {
 
 function onExpand(event, treeId, treeNode) {
 	checkAuthorizedResourceNode(treeNode);
-}
-/*
-*/
-
-function saveRoleResource() {
-	var treeObj = $.fn.zTree.getZTreeObj("tree");
-	var checkedNodes = treeObj.getCheckedNodes(true);
-
-	var param = new Array();
-	$.each(checkedNodes, function(idx, elem) {
-		param.push(elem.id);
-	});
-
-	$.post("../sys/role/resource/" + $('#p_id').val(), {
-		resourceIds:param.join(',')
-	}, function(response){
-		if(response.status == SUCCESS) {
-			$.messager.show({
-				title : '提示',
-				msg : "角色授权成功"
-			});
-		} else {
-			$.messager.alert("错误", "角色授权失败", 'error');
-		}
-	}, "json");
-}
-
-function editOrSave () {
-	if($("#btnEditOrSave").linkbutton("options").text == "编辑") {
-		$("#btnEditOrSave").linkbutton({
-			iconCls:'icon-save',
-			text:'保存'
-		});
-
-		$.each($("#roleTable input.easyui-textbox"), function(idx, elem) {
-			$(elem).textbox("enable").textbox("readonly", false);
-		});
-		$("#p_status").combobox("enable").combobox("readonly", false);
-
-	} else {
-		if($('#roleWindow').form('validate')) {
-			saveRole();
-		}
-	}
 }
 
 function addUserRole() {
@@ -412,27 +446,26 @@ function loadForm() {
 	row = $('#mainGrid').datagrid('getSelected');
 	if(row != null) {
 		$("#p_id").val(row.id);
-		$("#p_role").textbox("setValue", row.role);
-		$("#p_name").textbox("setValue", row.name);
+		$("#p_role").val(row.role);
+		$("#p_name").val(row.name);
 		$("#p_status").combobox('setValue', row.status);
-		$("#p_description").textbox("setValue", row.description);
+		$("#p_description").val(row.description);
 		//$("#btnEditOrSave").parent().css("text-align", " left");
 		$('#roleWindow input.easyui-validatebox').validatebox();
-		$.each($("#roleTable input.easyui-textbox"), function (idx, elem) {
-			$(elem).next().find("input.textbox-text").css("width", "100%");
+		$.each($("#roleTable input.easyui-validatebox"), function (idx, elem) {
+			$(elem).next().find("input.validatebox-text").css("width", "100%");
 		});
 	} else {
 		$("#p_id").val("");
-		$("#p_role").textbox("clear");
-		$("#p_name").textbox("clear");
+		$("#p_role").val("");
+		$("#p_name").val("");
 		$("#p_status").combobox('setValue', '1').combobox('setText', '正常')
-		$("#p_description").textbox("clear");
+		$("#p_description").val("");
 	}
 	$('#tabPanel').tabs('select', 0);
 }
 
 function mainGridLoadSuccessHandler(data) {
-
 	if(window.selected == undefined || window.selected == -1) {
 		var pId = $("#p_id").val();
 		for(var i = 0; i<data.rows.length; i++) {
@@ -451,81 +484,6 @@ function mainGridLoadSuccessHandler(data) {
 		$('#mainGrid').datagrid('selectRow', window.selected);
 		loadForm();
 	}
-}
-
-function add1() {
-	window.selected = -1;
-	$('#mainGrid').datagrid('unselectAll');
-	loadForm();
-}
-
-function showPre() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex > 0) {
-		window.selected = rowIndex - 1;
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-		loadForm();
-	}
-}
-
-function showNext() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex < $('#mainGrid').datagrid('getRows').length - 1) {
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', rowIndex + 1);
-		window.selected = rowIndex + 1;
-		loadForm();
-	}
-}
-
-function shorFirst() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex > 0) {
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', 0);
-		window.selected = 0;
-		loadForm();
-	}
-}
-
-function showLast() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex < $('#mainGrid').datagrid('getRows').length - 1) {
-		window.selected = $('#mainGrid').datagrid('getRows').length - 1;
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-		loadForm();
-	}
-}
-
-function remove1() {
-	$.messager.confirm('确认删除', '确认删除角色?', function (r) {
-		if (r) {
-			var row =  $('#mainGrid').datagrid('getSelected');
-			var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-			$.ajax({
-				url: "../sys/role/" + row.id,
-				type: 'DELETE',
-				success: function (response) {
-					if (response.status == SUCCESS) {
-						window.selected = rowIndex;
-						$('#mainGrid').datagrid('reload');
-						$.messager.show({
-							title: '提示',
-							msg: "角色已删除"
-						});
-					} else {
-						$.messager.alert('错误', '角色删除失败：' + response.message, 'error');
-					}
-				}
-			});
-		}
-	});
-}
-
-function closeWindow() {
-	$("#roleWindow").window("close");
 }
 
 function expandAll(e) {
@@ -555,46 +513,37 @@ function expandNodes(zTree, nodes) {
 	}
 }
 
+function _funcDelete_() {
+	$.messager.confirm('确认删除', '确认删除角色?', function (r) {
+		if (r) {
+			var row =  $('#mainGrid').datagrid('getSelected');
+			var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
+			$.ajax({
+				url: "../sys/role/" + row.id,
+				type: 'DELETE',
+				success: function (response) {
+					if (response.status == SUCCESS) {
+						window.selected = rowIndex;
+						$('#mainGrid').datagrid('reload');
+						$.messager.show({
+							title: '提示',
+							msg: "角色已删除"
+						});
+					} else {
+						$.messager.alert('错误', '角色删除失败：' + response.message, 'error');
+					}
+				}
+			});
+		}
+	});
+}
+
 $(function() {
 	$("#p_id").val("");
-	$("#btnAdd").click(add);
-	$("#btnView").click(view);
-	$("#btnDelete").click(remove);
-	$("#btnLock").click(lockUnlock);
-
-	$("#btnEditOrSave").click(editOrSave);
-
-
-	$("#btnAdd1").click(add1);
-	$("#btnPre").click(showPre);
-	$("#btnNext").click(showNext);
-	$("#btnFirst").click(shorFirst);
-	$("#btnLast").click(showLast);
-	$("#btnDelete1").click(remove1);
-	$("#btnClose").click(closeWindow);
-
-	$("#btnEditOrSaveRoleResource").click(saveRoleResource);
-
-	$("#btnAddUserRole").click(addUserRole);
-	$("#btnDeleteUserRole").click(deleteUserRole);
-
-	$("#btnSaveUserRole").click(saveUserRole);
-	$("#btnReturn").click(_return);
-
-    $("#btnReset").click(function(){
-        $("#f_name").val('');
-        $("#f_organization").val('');
-		queryUserByRoleIdNegative();
-    });
-    $("#btnSearch").click(queryUserByRoleIdNegative);
-
-    $("#btnReset1").click(function(){
-        $("#f_name1").val('');
-        $("#f_organization1").val('');
-		queryUserByRoleId();
-    });
-    $("#btnSearch1").click(queryUserByRoleId);
-
+	$("#btnAdd").click(funcAdd);
+	$("#btnView").click(funcView);
+	$("#btnDelete").click(funcDelete);
+	$("#btnLock").click(funcLock);
 	$(".datagrid-body").niceScroll({
 		cursorcolor : "lightblue", // 滚动条颜色
 		cursoropacitymax : 3, // 滚动条是否透明
