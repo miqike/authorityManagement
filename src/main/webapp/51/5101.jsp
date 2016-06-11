@@ -6,6 +6,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <!--[if lt IE 7]>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"/><![endif]-->
+    <meta http-equiv="X-UA-Compatible" content="IE=100" />
+
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
     <title>计划检查</title>
     <link href="../css/content.css" rel="stylesheet"/>
@@ -27,6 +31,10 @@
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="./lodop.js"></script>
     <script type="text/javascript" src="./5101.js"></script>
+
+    <script type="text/javascript" src="./auditItemList.js"></script>
+    <script type="text/javascript" src="../audit/gridAudit.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -143,7 +151,7 @@
                     </tr>
                 </table>
             </div>
-            <div id="auditItemList" class="easyui-panel" data-options="fit:true"></div>
+            <div id="auditItemList" class="easyui-panel" data-options="fit:true">xxxx</div>
         </div>
     </div>
 </div>
