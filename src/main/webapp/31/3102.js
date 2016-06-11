@@ -92,7 +92,7 @@ function loadGrid2() {
     options.url = '../common/query?mapper=hcrwTjMapper&queryName=queryForOrg';
     $('#grid2').datagrid('load', {
         hcjhId: hcjh.id,
-        organization: selected[0].id
+        organization: processorOrgId(selected[0].id)
     });
 }
 

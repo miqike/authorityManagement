@@ -143,12 +143,11 @@
                     </tr>
                 </table>
             </div>
-            <div id="auditItemList" class="easyui-panel" data-options="fit:true">xxxx</div>
+            <div id="auditItemList" class="easyui-panel" data-options="fit:true"></div>
         </div>
     </div>
 </div>
 
-<!-- --------弹出窗口--------------- -->
 </body>
 </html>
 

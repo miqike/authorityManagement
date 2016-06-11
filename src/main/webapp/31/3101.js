@@ -461,7 +461,7 @@ function sort(order) {
     options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
     $('#grid2').datagrid('load', {
         hcjhId: hcjh.id,
-        organization: selected[0].id,
+        organization: processorOrgId(selected[0].id),
         order:order
     });
     if(order == 1) {

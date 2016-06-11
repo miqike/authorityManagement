@@ -35,7 +35,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=zfryMapper&queryName=query';
     options.queryParams = {
-        dwId: treeNode.id
+        dwId: processorOrgId(treeNode.id)
     };
     $("#mainGrid").datagrid(options);
 
@@ -213,7 +213,7 @@ $(function () {
         var options = $('#mainGrid').datagrid('options');
         options.url = '../common/query?mapper=zfryMapper&queryName=query';
         options.queryParams = {
-            dwId: selected.length == 1 ? selected[0].id : "",
+            dwId: selected.length == 1 ? processorOrgId(selected[0].id) : "",
             name: $("#f_name").val(),
             zflx: $("#f_zflx").combobox("getValue"),
             jhid: $("#f_jhid").val()

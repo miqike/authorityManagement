@@ -13,7 +13,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=scztMapper&queryName=query';
     options.queryParams = {
-        dwId: treeNode.id
+        dwId: processorOrgId(treeNode.id)
     };
     $("#mainGrid").datagrid(options);
 
@@ -115,7 +115,7 @@ $(function () {
         var options = $('#mainGrid').datagrid('options');
         options.url = '../common/query?mapper=scztMapper&queryName=query';
         options.queryParams = {
-            dwId: selected.length == 1 ? selected[0].id : "",
+            dwId: selected.length == 1 ? processorOrgId(selected[0].id) : "",
             jhnd: $("#f_jhnd").val(),
             jhbh: $("#f_jhbh").val(),
             hcry: $("#f_hcry").val(),

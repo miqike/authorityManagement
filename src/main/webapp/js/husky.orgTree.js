@@ -32,3 +32,11 @@ function beforeTreeClick(treeId, treeNode, clickFlag) {
 function _onTreeClick(event, treeId, treeNode, clickFlag) {
 	onTreeClick(event, treeId, treeNode, clickFlag);
 }
+
+function processorOrgId(orgId) {
+	var result = orgId;
+	while(result.endsWith("00")) {
+		result = result.substr(0,result.length - 2);
+	}
+	return result;
+}
