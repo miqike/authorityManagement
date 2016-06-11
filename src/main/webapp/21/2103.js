@@ -60,7 +60,7 @@ function save() {
         success: function (response) {
             if (response.status == SUCCESS) {
                 setReadOnlyStatus();
-                $("#mainGrid").datagrid("reload");
+                loadMainGrid();
                 $("#btnView").linkbutton("disable");
                 $("#btnDelete").linkbutton("disable");
                 $("#baseWindow").window("close");
@@ -69,64 +69,116 @@ function save() {
             }
         }
     });
-
 }
 
-//修改按钮点击事件
-function btnViewClick() {
-    if (!$(this).linkbutton('options').disabled) {
-    	$.easyui.showDialog({
-    		title : "修改抽检事项信息",
-    		width : 750,
-    		height : 450,
-    		topMost : false,
-    		enableSaveButton : true,
-    		enableApplyButton : false,
-    		closeButtonText : "返回",
-    		closeButtonIconCls : "icon-undo",
-    		href : "./auditItem.jsp",
-    		onLoad : function() {
-    			window.operateType="edit";
-    			//$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
-    			doInit("edit");
-    		},
-    		onSave: function (d) {
-                var validate = d.form("validate");
-                if (validate) {
-                    save();
-                } else {
-                    return false;
-                }
-            }
-    	});
-    	
-        setEditStatus();
-    }
-}
 //删除按钮点击事件
 function btnDeleteClick() {
     if (!$(this).linkbutton('options').disabled) {
-        window.operateType = "delete";
-        save();
-        setReadOnlyStatus();
+    	var row = $("#mainGrid").datagrid("getSelected");
+		if(null != row) {
+			$.messager.confirm("请确人是否删除该检查项?", function (c) { if(c){
+				$.ajax({
+			        url: "../21/2103?id=" + row.id,
+			        type: "DELETE",
+			        success: function (response) {
+			            if (response.status == SUCCESS) {
+			                setReadOnlyStatus();
+			                loadMainGrid();
+			                $("#btnView").linkbutton("disable");
+			                $("#btnDelete").linkbutton("disable");
+			                $("#baseWindow").window("close");
+			            } else {
+			                $.messager.alert('失败', response.message, 'info');
+			            }
+			        }
+			    });
+				
+			}});
+		}
     }
 }
-//新增按钮点击事件
-function btnAddClick() {
-    if (!$(this).linkbutton('options').disabled) {
-        showModalDialog("baseWindow", "新抽检事项信息");
-        $("#baseInfo").form('clear');
-        window.operateType = "add";
-        
-        $("#basePanel").panel({
-		    href:'./auditItem.jsp',
-		    onLoad:function(){
-		    	doInit("add");
-		    }
-		});
-        
-        setEditStatus();
-    }
+
+function funcDisable() {
+	if (!$(this).linkbutton('options').disabled) {
+		var row = $("#mainGrid").datagrid("getSelected");
+		if(null != row) {
+			if(row.zxrq == null && row.zxsm == null) {
+				$.messager.prompt("请输入注销说明:", function (text) { if (text != undefined) { 
+					disableAuditItem(1, row.id, text);
+				}});
+			} else {
+				$.messager.confirm("请确人是否取消注销?", function (c) { if(c){
+					disableAuditItem(0, row.id);
+				}});
+			}
+		}
+	}
+}
+
+function disableAuditItem(disableFlag, auditItemId, zxsm) {
+	$.post("../21/2103/" + auditItemId + "/disable", {
+		disableFlag: disableFlag,
+		zxsm: zxsm
+    }, function(response) {
+        if(response.status == FAIL){
+            $.messager.alert('错误', response.message, 'error');
+        } else {
+            //$("#mainGrid").datagrid("reload");
+            loadMainGrid();
+            $.messager.show({
+                title : '提示',
+                msg : response.message
+            });
+        }
+    }, "json");
+}
+
+
+function funcAdd() {
+	window.selected = -1;
+	$('#mainGrid').datagrid('unselectAll');
+	if (!$(this).linkbutton('options').disabled) {
+		window.operateType = "add";
+		showAuditItemForm();
+	}
+	
+}
+
+function funcView() {
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $('#mainGrid').datagrid('getSelected');
+		if (row) {
+			window.operateType = "edit";
+			showAuditItemForm(row);
+		}
+	}
+}
+
+function showAuditItemForm(data) {
+	$.easyui.showDialog({
+		title : "修改抽检事项信息",
+		width : 750,
+		height : 450,
+		topMost : false,
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./auditItem.jsp",
+		onLoad : function() {
+			//$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+			doAuditItemFormInit(window.operateType);
+		},
+		onSave: function (d) {
+            var validate = d.form("validate");
+            if (validate) {
+                save();
+            } else {
+                return false;
+            }
+        }
+	});
+    setEditStatus();
 }
 
 function funcShowDocWindow() {
@@ -136,7 +188,7 @@ function funcShowDocWindow() {
 		$("#docPanel").panel({
 		    href:'./docList.jsp',
 		    onLoad:function(){
-		    	doInit();
+		    	doDocListInit();
 		    }
 		});
 	}
@@ -146,12 +198,12 @@ function mainGridButtonHandler() {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		$('#btnView').linkbutton('enable');
 		$('#btnDelete').linkbutton('enable');
-		$('#btnDrop').linkbutton('enable');
+		$('#btnDisable').linkbutton('enable');
 		$('#btnShowDocWindow').linkbutton('enable');
 	} else {
 		$('#btnView').linkbutton('disable');
 		$('#btnDelete').linkbutton('disable');
-		$('#btnDrop').linkbutton('disable');
+		$('#btnDisable').linkbutton('disable');
 		$('#btnShowDocWindow').linkbutton('disable');
 	}
 }
@@ -182,24 +234,44 @@ function hcxxflStyler(val, row, index) {
 	}
 }
 
+function loadMainGrid() {
+	
+	$.getJSON("../common/query?mapper=hcsxMapper&queryName=query", {
+		gsxm: $('#f_gsxm').val(),
+		hclx: $('#f_hclx').combobox("getValue"),
+		hcxxfl: $('#f_hcxxfl').combobox("getValue")
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#mainGrid").datagrid("loadData",response);
+        }
+    });
+}
+
+function funcBtnRest() {
+    clearInput();
+}
+
+function clearInput() {
+    $("#f_gsxm").val("");
+    $("#f_hclx").combobox("setValue", "");
+    $("#f_hcxxfl").combobox("setValue", "");
+}
+
 $(function () {
-    $("#btnAdd").click(btnAddClick);
-    $("#btnView").click(btnViewClick);
+	
+	$("#btnSearch").click(loadMainGrid);
+    $("#btnReset").click(funcBtnRest);
+    
+    $("#btnAdd").click(funcAdd);
+    $("#btnView").click(funcView);
     $("#btnDelete").click(btnDeleteClick);
+    $("#btnDisable").click(funcDisable);
     $("#btnShowDocWindow").click(funcShowDocWindow);
 
     setReadOnlyStatus();
 
-    $("#mainGrid").datagrid({
-    	url:'../common/query?mapper=hcsxMapper&queryName=query',
-        onSelect: function (index, row) {
-            $("#btnView").linkbutton("enable");
-            $("#btnDelete").linkbutton("enable");
-        },
-        onUnselect: function (index, row) {
-            $("#btnView").linkbutton("disable");
-            $("#btnDelete").linkbutton("disable");
-        }
-    });
+    clearInput();
+    loadMainGrid();
+    
 
 });

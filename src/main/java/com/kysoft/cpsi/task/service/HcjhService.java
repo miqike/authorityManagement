@@ -16,4 +16,10 @@ public interface HcjhService {
 
 	Map<String, Object> importDblink(String hcjhId);
 
+	void reCalcAcceptStatus(String planId);
+
+	void deleteCheckList(String hcjhId, String[] hcsxIds);
+
+//	Map<String, Object> updateAcceptStatus(Map<String, Object> result);
+
 }

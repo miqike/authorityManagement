@@ -1,20 +1,25 @@
 package com.kysoft.cpsi.task.controller;
 
-import com.google.common.collect.Maps;
-import com.kysoft.cpsi.task.entity.Hcrw;
-import com.kysoft.cpsi.task.service.HcrwService;
-import net.sf.husky.utils.HuskyConstants;
-import net.sf.husky.web.controller.BaseController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.WebUtils;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
-import java.util.List;
-import java.util.Map;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.WebUtils;
+
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.task.entity.Hcrw;
+import com.kysoft.cpsi.task.service.HcrwService;
+
+import net.sf.husky.utils.HuskyConstants;
+import net.sf.husky.web.controller.BaseController;
 
 @RestController
 @RequestMapping("/51")
@@ -101,4 +106,19 @@ public class HcrwController extends BaseController {
         return hcrwService.getHcsxCode(hcrwId);
     }
 
+    @RequestMapping(value = "/{planId}/accept", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> accept(@PathVariable String planId, @RequestBody List<String> taskIds) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+        	hcrwService.accept(planId, taskIds);
+            result.put(MESSAGE, "认领任务成功");
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "批量保存失败");
+        }
+        return result;
+    }
 }

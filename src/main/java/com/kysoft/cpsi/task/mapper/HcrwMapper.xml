@@ -504,6 +504,10 @@
     <select id="selectCountByPlanId" resultType="java.lang.Integer">
         select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR}
     </select>
+    
+    <select id="selectYrlsByPlanId" resultType="java.lang.Integer">
+        select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR} and RLR IS NOT NULL AND rlrq IS NOT NULL
+    </select>
 
     <select id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
         {
@@ -818,4 +822,10 @@
         order by id
     </select>
 
+	<update id="updateAccept">
+        UPDATE T_HCRW SET RLR = #{userId}, RLRMC = #{userName},RLRQ = SYSDATE where ID in (
+	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
+	      select #{taskId} from dual
+	    </foreach>)
+    </update>
 </mapper>

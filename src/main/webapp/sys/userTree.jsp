@@ -5,32 +5,62 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>用户列表</title>
-    <link href="../css/content.css" rel="stylesheet" />
-    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" type="text/css" />
-    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js" ></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.extend.js" ></script>
 
-    <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
+	<link href="../css/content.css" rel="stylesheet" />
+    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/icon.css" rel="stylesheet"/>
+    <!-- <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css"> -->
+	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+	<!-- <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script> -->
+	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<!-- <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script> -->
+
+	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
+	<script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js" ></script>
+
+	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+
+	<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+	<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+	
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="../js/datagrid-filter.js"></script>
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/lodop/listPrint.js"></script>
 
     <script type="text/javascript" src="./userTree.js"></script>
-    <style>
-
+	<style type="text/css">
+	   .validatebox-text {
+	        border-width: 1px;
+	        border-style: solid;
+	        line-height: 17px;
+	        padding-top: 1px;
+	        padding-left: 3px;
+	        padding-bottom: 2px;
+	        padding-right: 3px;
+	        background-attachment: scroll;
+	        background-size: auto;
+	        background-origin: padding-box;
+	        background-clip: border-box;
+	    }
+	
+	    .validatebox-invalid {
+	        border-color: ffa8a8;
+	        background-repeat: repeat-x;
+	        background-position: center bottom;
+	        background-color: fff3f3;
+	        background-image: url("");
+	    }
+		div #panel .datagrid-wrap{ border: 0px;}
+		div #roleWindow .datagrid-wrap{ border-right: 0px;
+			border-left: 0px;
+			border-bottom: 0px;}
 
         #treePanel {
             width:300px;
@@ -76,12 +106,6 @@
 
 </head>
 <body style="padding:1px;">
-<%--<shiro:hasPermission name="userTree">--%>
-    <%--
-    <div id="mm" class="easyui-menu" style="width:220px;">
-        <div id="menu1" data-options="iconCls:'icon-uncheck'" onclick="javascript:window.queryChild=!window.queryChild;queryUser();">查询下级单位数据</div>
-    </div>
---%>
     <div class="easyui-layout" data-options="fit:true,height:600" style="height:600px;">
         <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:false,border:false">
             <div class="easyui-panel" title="单位列表" style="width:295px;height:145px;padding:5px;"
@@ -142,8 +166,8 @@
             </table>
             <div id="mainGridToolbar">
                 <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-                <%--<a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑/查看</a>
-                <a href="#" id="btnResetPass" class="easyui-linkbutton" iconCls="icon2 r10_c20" plain="true" disabled="true">重置密码</a>--%>
+                <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑/查看</a>
+                <%--<a href="#" id="btnResetPass" class="easyui-linkbutton" iconCls="icon2 r10_c20" plain="true" disabled="true">重置密码</a>--%>
                 <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
                 <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true" disabled="true">锁定/解锁</a>
                 <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a>
@@ -152,14 +176,9 @@
         </div>
 
     </div>
-<%--</shiro:hasPermission>
-<shiro:lacksPermission name="userTree">
-    <script>
-        //alert("没有权限，跳转");
-    </script>
-</shiro:lacksPermission>--%>
 
 <!-- --------弹出窗口--------------- -->
+<%--
 <div id="userWindow" class="easyui-window" title="用户信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 780px; height: 440px; padding: 5px;">
@@ -419,6 +438,7 @@
         <a href="#" id="btnAddUserRole1" class="easyui-linkbutton" iconCls="icon-add" plain="true">确定</a>
     </div>
 </div>
+ --%>
 
 </body>
 </html>

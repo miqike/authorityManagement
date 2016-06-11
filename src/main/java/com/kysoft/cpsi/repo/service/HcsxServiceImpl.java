@@ -41,4 +41,9 @@ public class HcsxServiceImpl implements HcsxService {
     public List<Hcsx> query(Map<String, Object> params) {
         return hcsxMapper.query(params);
     }
+
+	@Override
+	public void disable(String hcsxId, Integer disableFlag, String zxsm) {
+		hcsxMapper.updateDisable(hcsxId, disableFlag, zxsm);
+	}
 }

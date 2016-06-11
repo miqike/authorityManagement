@@ -25,7 +25,7 @@
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
 
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
-    <script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="./user1.js"></script>

@@ -10,6 +10,8 @@ import net.sf.husky.utils.WebUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,7 +29,6 @@ public class HcjhServiceImpl implements HcjhService {
 
     @Override
     public void saveCheckList(String hcjhId, String[] hcsxIds) {
-        // TODO Auto-generated method stub
         if (hcsxIds.length > 0)
             jhSxMapper.insertBatch(hcjhId, hcsxIds);
     }
@@ -70,5 +71,35 @@ public class HcjhServiceImpl implements HcjhService {
         param.put("hcrws", hcrwsl);
         return param;
     }
+
+	@Override
+	public void reCalcAcceptStatus(String planId) {
+		int yrls = hcrwMapper.selectYrlsByPlanId(planId);
+		hcjhMapper.updateAcceptStatusByPrimaryKey(planId, yrls);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteCheckList(String hcjhId, String[] hcsxIds) {
+		 if (hcsxIds.length > 0)
+	            jhSxMapper.deleteBatch(hcjhId, hcsxIds);
+	}
+
+/*
+	@Override
+	public Map<String, Object> updateAcceptStatus(Map<String, Object> result) {
+		List<Hcjh> planList = (List<Hcjh>) result.get("rows");
+		for(Hcjh plan: planList) {
+			int yrls = hcrwMapper.selectYrlsByPlanId(plan.getId());
+			plan.setYrlsl(yrls);
+			if(null != plan.getHcrwsl()) {
+				plan.setWrlsl(plan.getHcrwsl() - yrls);
+			}
+		}
+
+		return result;
+	}
+	*/
 
 }

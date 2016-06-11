@@ -60,5 +60,7 @@ public interface HcsxMapper {
 
 	void updateHcclByPrimaryKey(@Param("hcsxId") String hcsxId, @Param("hcclInHcsx") String hcclInHcsx);
 
+	void updateDisable(@Param("hcsxId")String hcsxId, @Param("disableFlag")Integer disableFlag, @Param("zxsm")String zxsm);
+
 	
 }

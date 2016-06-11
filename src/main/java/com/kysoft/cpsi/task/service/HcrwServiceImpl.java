@@ -7,6 +7,10 @@ import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.entity.Hcsxjg;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.HcsxjgMapper;
+
+import net.sf.husky.security.entity.User;
+import net.sf.husky.utils.WebUtils;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,6 +28,9 @@ public class HcrwServiceImpl implements HcrwService {
 
     @Resource
     HcsxjgMapper hcsxjgMapper;
+    
+    @Resource
+    HcjhService hcjhService;
 
     @Override
     public void initTaskItem(String hcrwId) {
@@ -73,6 +80,13 @@ public class HcrwServiceImpl implements HcrwService {
     public Integer getTaskInitStatus(String hcrwId) {
         return hcsxjgMapper.selectCountByTaskId(hcrwId);
     }
+
+	@Override
+	public void accept(String planId, List<String> taskIds) {
+		User user = WebUtils.getCurrentUser();
+		hcrwMapper.updateAccept(taskIds, user.getUserId(), user.getName());
+		hcjhService.reCalcAcceptStatus(planId);
+	}
 
 
 }

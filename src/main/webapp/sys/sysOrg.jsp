@@ -10,14 +10,14 @@
 	<title>组织机构维护</title>
 	<link href="../css/content.css" rel="stylesheet"/>
 	<link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
-	<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
+	<link href="../css/themes/icon.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
 	<script type="text/javascript" src="../js/hotkeys.min.js"></script>
 	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-	<script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js" ></script>
+	<script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js" ></script>
 
 	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>

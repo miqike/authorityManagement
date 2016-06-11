@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
-    <script type="text/javascript" src="../js/husky/jeasyui.extend.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="./2103.js"></script>
@@ -64,18 +64,17 @@
     </style>
 </head>
 <body style="padding:5px;">
-<div id="panel" class="easyui-panel" title="">
 
     <div style="padding: 5px 10px 0px 10px">
         <table id="queryTable">
             <tr>
                 <td>检查类型</td>
-                <td><input id="f_businessKey" class="easyui-combobox" codeName="hclx" data-options="panelHeight:60"/>
+                <td><input id="f_hclx" class="easyui-combobox" codeName="hclx" data-options="panelHeight:60"/>
                 </td>
                 <td>检查信息分类</td>
-                <td><input id="f_errorNo" class="easyui-combobox" codeName="hcxxfl" data-options="panelHeight:60"/></td>
+                <td><input id="f_hcxxfl" class="easyui-combobox" codeName="hcxxfl" data-options="panelHeight:60"/></td>
                 <td>公示项目</td>
-                <td><input id="f_module" class="easyui-validatebox"/></td>
+                <td><input id="f_gsxm" class="easyui-validatebox"/></td>
                 <td colspan="2" style="text-align:right">
                     <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                        iconCls="icon-search">查找</a>
@@ -89,8 +88,8 @@
            data-options="collapsible:true,
            		singleSelect: true,
            		onClickRow:mainGridButtonHandler,
-           		width: 400,height:300,
-           		offset: { width: 0, height: 0},
+           		width: 1000,height:400,
+           		offset: { width: -50, height: -50},
 				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
 				method: 'get',
@@ -143,10 +142,9 @@
         <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled>编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
-        <a href="#" id="btnDrop" class="easyui-linkbutton" iconCls="icon-print" plain="true" disabled>注销/取消注销</a>
+        <a href="#" id="btnDisable" class="easyui-linkbutton" iconCls="icon-print" plain="true" disabled>注销/取消注销</a>
         <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>检查材料清单</a>
     </div>
-</div>
 <!-- --------弹出窗口--------------- -->
 
 <div id="docWindow" class="easyui-window" title="抽检材料清单"

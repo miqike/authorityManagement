@@ -912,7 +912,7 @@ $(function() {
 	});
 	$("#btnExport").click(poiExport);
 
-
+/*
 	$("#btnAdd1").click(add1);
 	$("#btnPre").click(showPre);
 	$("#btnNext").click(showNext);
@@ -965,7 +965,7 @@ $(function() {
 		}
 	});
 
-
+*/
 	var setting = {
 		data: {key: {
 			title:"parentId",
@@ -992,7 +992,7 @@ $(function() {
 	$.fn.zTree.init($("#tree"), setting);
 
 	window._expandeLevel = $("#f_expandLevel").numberspinner("getValue");
-
+/*
 	$("#btnSearch1").click(search1);
 
 	$("#btnReset1").click(function(){
@@ -1000,7 +1000,7 @@ $(function() {
 		$("#f_expandLevel").numberspinner("setValue", 3);
 		search1();
 	});
-
+*/
 	$("#btnExpandAll").bind("click", {type:"expandAll"}, expandAll);
 	$("#btnCollapseAll").bind("click", {type:"collapseAll"}, expandAll);
 });

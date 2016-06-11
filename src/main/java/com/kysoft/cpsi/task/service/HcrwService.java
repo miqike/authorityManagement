@@ -21,4 +21,6 @@ public interface HcrwService {
 
     List<Hcrw> queryForOrg(Map<String, Object> params);
 
+	void accept(String planId, List<String> taskIds);
+
 }

@@ -55,11 +55,18 @@ function grid1ClickHandler() {
 }
 
 function grid2ClickHandler() {
-    if ($('#grid1').datagrid('getSelected') != null) {
+    /*if ($('#grid2').datagrid('getSelected') != null) {
         $('#btnShowDetail').linkbutton('enable');
     } else {
         $('#btnShowDetail').linkbutton('disable');
     }
+    */
+	if ($('#grid2').datagrid('getSelections').length > 0) {
+		$('#btnAccept').linkbutton('enable');
+	} else {
+        $('#btnAccept').linkbutton('disable');
+    }
+    
 }
 
 function setFormFieldStatus(formId, operation) {
@@ -67,44 +74,68 @@ function setFormFieldStatus(formId, operation) {
     $("#" + formId + " input.easyui-combobox." + operation).combobox("enable");
     $("#" + formId + " input.easyui-numberspinner." + operation).numberspinner("enable");
     $("#" + formId + " input.easyui-datebox." + operation).datebox("enable");
+    
     $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("readonly", true);
     $("#" + formId + " input.easyui-combobox:not(." + operation + ")").combobox("disable");
     $("#" + formId + " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
     $("#" + formId + " input.easyui-datebox:not(." + operation + ")").datebox("disable");
 }
-function add() {
-    showModalDialog("planWindow");
-    $("#planTable input").val('');
-    setFormFieldStatus("planTable", "add");
 
-    $("#btnEditOrSave").linkbutton({
-        iconCls: 'icon-save',
-        text: '保存'
-    });
-    $("#btnImportTask").linkbutton("disable");
-    $('#tabPanel').tabs('select', 0);
+function add() {
+	window.selected = -1;
+	$('#grid1').datagrid('unselectAll');
+	if (!$(this).linkbutton('options').disabled) {
+		showPlanForm();
+	}
+	
 }
 
 function modify() {
-    if (!$(this).linkbutton('options').disabled) {
-        var row = $('#grid1').datagrid('getSelected');
-        if (row) {
-            showModalDialog("planWindow");
-            $("#btnSavePlan").linkbutton("enable");
-            
-            //$.easyuiExtendObj.loadForm("planTable", row);
-            
-            /*$("#btnEditOrSave").parent().css("text-align", " left");
-             $('#userWindow input.easyui-validatebox').validatebox();*/
-        }
-        setFormFieldStatus("planTable", "modify");
-        if (row.hcrwsl == null) {
-            $("#btnImportTask").linkbutton("enable");
-        } else {
-            $("#btnImportTask").linkbutton("disable");
-        }
-        $('#tabPanel').tabs('select', 0);
-    }
+	if(!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			showPlanForm(row);
+		}
+	}
+}
+
+function showPlanForm(data) {
+	$.easyui.showDialog({
+		title : "检查计划信息",
+		width : 750,
+		height : 400,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./planForm.jsp",
+		onLoad : function() {
+			doPlanFormInit(data);
+		},
+		onSave: function() {
+			var tab = $('#tabPanel').tabs('getSelected');
+			var index = $('#tabPanel').tabs('getTabIndex',tab);
+			if(index == 0 && $('#planWindow').form('validate')) {
+				savePlan();
+			} else if (index == 1) {
+				//saveRoleResource();
+			}
+			return false;
+		}
+	});
+}
+
+function doPlanFormInit(data) {
+	$.codeListLoader.parse($('#planTable'))
+	if(null != data) {
+		$.easyuiExtendObj.loadForm('planTable', data);
+		$('#planTable').form("validate");
+		setFormFieldStatus("planTable", "modify");
+	} else {
+		setFormFieldStatus("planTable", "add");
+	}
 }
 
 function audit() {
@@ -117,7 +148,7 @@ function audit() {
                     $.getJSON("./hcjh/audit/" + row.id + "/" + row.shzt, null, function (response) {
                         if (response.status == SUCCESS) {
                             $.messager.alert("提示", action + "成功", 'info');
-                            $('#grid1').datagrid('reload');
+                            loadGrid1();
                         } else {
                             $.messager.alert("错误", action + '失败: \n' + response.message, 'info');
                         }
@@ -159,23 +190,57 @@ function tabSelectHandler(title, index) {
 }
 
 function viewCheckList() {
-    if (!$(this).linkbutton('options').disabled) {
-        var row = $("#grid1").datagrid('getSelected');
+    if(!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			showAuditItemList(row);
+		}
+	}
+}
 
-        showModalDialog("checklistWindow");
-        var options = $("#grid4").datagrid("options");
-        options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlan';
-        $('#grid4').datagrid('load', {
-            hcjhId: row.id
-        });
-    }
+function showAuditItemList(data) {
+	$.easyui.showDialog({
+		title : "检查事项",
+		width : 750,
+		height : 400,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./auditItemList.jsp",
+		onLoad : function() {
+			doAuditItemListInit(data);
+		}
+	});
+}
+
+function doAuditItemListInit(data) {
+	$.codeListLoader.parse($('#auditItemListWindow'))
+	if(null != data) {
+		loadAuditItemList();
+		$("#btnAdd4").click(funcAdd4);
+		$("#btnDelete4").click(funcDelete4);
+		$("#btnSave5").click(funcSave5);
+		$("#btnClose5").click(funcClose5);
+	}
+}
+
+function loadAuditItemList() {
+	$.getJSON('../common/query?mapper=hcsxMapper&queryName=queryForPlan',  {
+		hcjhId: $("#grid1").datagrid('getSelected').id
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#grid4").datagrid("loadData",response);
+        }
+    });
 }
 
 function funcAdd4() {
     if (!$(this).linkbutton('options').disabled) {
         var row = $("#grid1").datagrid('getSelected');
-
-        showModalDialog("addChecklistWindow");
+        showModalDialog("addAuditItemWindow");
         var options = $("#grid5").datagrid("options");
         options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlanCandidate';
         $('#grid5').datagrid('load', {
@@ -185,59 +250,89 @@ function funcAdd4() {
     }
 }
 
-function funcClose4() {
-    $("#checklistWindow").window("close");
+
+function funcDelete4() {
+	var checkedRows = $('#grid4').datagrid('getSelections');
+    if(checkedRows.length == 0) {
+    	$.messager.alert("操作提示", "请首先选择一项或者多项核查事项", "info");
+    } else {
+    	var param = new Array();
+	    $.each(checkedRows, function (idx, elem) {
+	        param.push(elem.id);
+	    });
+	    console.log(param)
+	    $.ajax({
+	        url: "./hcjh/hcsx/" + $('#grid1').datagrid('getSelected').id,
+	        type: "DELETE",
+	        data: JSON.stringify(param),
+	        dataType: "json",
+	        contentType: 'application/json;charset=utf-8',
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	            	loadAuditItemList();
+	            } else {
+	                $.messager.alert('失败', response.message, 'info');
+	            }
+	        }
+	    });
+    }
 }
 
 function funcSave5() {
 
     var checkedRows = $('#grid5').datagrid('getSelections');
-    var param = new Array();
-    $.each(checkedRows, function (idx, elem) {
-        param.push(elem.id);
-    });
-
-    $.ajax({
-        url: "./hcjh/hcsx/" + $('#grid1').datagrid('getSelected').id,
-        data: JSON.stringify(param),
-        type: "put",
-        contentType: "application/json; charset=utf-8",
-        cache: false,
-        success: function (response) {
-            if (response.status == SUCCESS) {
-                //$.messager.alert("提示", "用户角色保存成功");
-
-                $('#grid4').datagrid('reload')
-                $('#grid5').datagrid('reload')
-                /*$.messager.show({
-                 title : '提示',
-                 msg : "用户角色保存成功"
-                 });*/
-            } else {
-                $.messager.alert("错误", "检查事项保存失败");
-            }
-        }
-    });
-
-    $("#grid5").datagrid("reload");
-    //$("#addChecklistWindow").window("close");
+    if(checkedRows.length == 0) {
+    	$.messager.alert("操作提示", "请首先选择一项或者多项备选核查事项", "info");
+    } else {
+	    var param = new Array();
+	    $.each(checkedRows, function (idx, elem) {
+	        param.push(elem.id);
+	    });
+	
+	    $.ajax({
+	        url: "./hcjh/hcsx/" + $('#grid1').datagrid('getSelected').id,
+	        data: JSON.stringify(param),
+	        type: "put",
+	        contentType: "application/json; charset=utf-8",
+	        cache: false,
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	                //$.messager.alert("提示", "用户角色保存成功");
+	
+	            	loadAuditItemList();
+	                $('#grid5').datagrid('reload')
+	                /*$.messager.show({
+	                 title : '提示',
+	                 msg : "用户角色保存成功"
+	                 });*/
+	            } else {
+	                $.messager.alert("错误", "检查事项保存失败");
+	            }
+	        }
+	    });
+	
+	    $("#grid5").datagrid("reload");
+	    //$("#addChecklistWindow").window("close");
+    }
 }
 
 
 function funcClose5() {
-    $("#addChecklistWindow").window("close");
+    $("#addAuditItemWindow").window("close");
 }
 
 function loadGrid1() {
-    var options = $("#grid1").datagrid("options");
-    options.url = '../common/query?mapper=hcjhMapper&queryName=query';
-    $('#grid1').datagrid('load', {
+	$.getJSON("../common/query?mapper=hcjhMapper&queryName=query",  {
         nd: $('#f_nd').numberspinner("getValue"),
         jhbh: $('#f_jhbh').val(),
         gsjhbh: $('#f_gsjhbh').val(),
         jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#grid1").datagrid("loadData",response);
+        }
     });
 }
 
@@ -255,12 +350,12 @@ function funcBtnRest() {
     clearInput();
 }
 
-function funcSavePlan() {
+/*function funcSavePlan() {
     //debugger;
     if ($("#planTable").form('validate') && !$(this).linkbutton('options').disabled) {
         savePlan();
     }
-}
+}*/
 
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
@@ -290,9 +385,9 @@ function savePlan() {
             if (response.status == SUCCESS) {
                 $('#p_id').val(response.id);
                 setReadOnlyStatus();
-                $("#btnSavePlan").linkbutton("disable");
+                //$("#btnSavePlan").linkbutton("disable");
                 $("#btnImportTask").linkbutton("enable");
-                $('#grid1').datagrid('reload');
+                loadGrid1();
                 /*var options = $('#grid1').datagrid('options');
                  options.url = '../common/query?mapper=hcjhMapper&queryName=query';
                  $("#grid1").datagrid(options);
@@ -342,7 +437,6 @@ function importDblink() {
             if (response.status == SUCCESS) {
                 $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
                 loadGrid1();
-
             }
         });
     }
@@ -379,27 +473,73 @@ function sort(order) {
     }
     
 }
+
+function funcAccept() {
+	if (!$(this).linkbutton('options').disabled) {
+		var selected = $('#grid2').datagrid('getSelections');
+		var validate = true;
+		var datas = new Array();
+		for(var i=0; i<selected.length; i++) {
+			var task = selected[i];
+			datas.push(task.id);
+			if((task.zfryCode1 != userInfo.zfry && task.zfryCode2 != userInfo.zfry) || (task.rlr != null && task.rlr != "")) {
+				validate = false;
+				break;
+			}
+		}
+		if(validate) {
+		    $.ajax({
+		        url: "../51/" + selected[0].hcjhId + "/accept",
+		        type: "POST",
+		        data: JSON.stringify(datas),
+		        dataType: "json",
+		        contentType: 'application/json;charset=utf-8',
+		        success: function (response) {
+		            if (response.status == SUCCESS) {
+		            	loadGrid1();
+		                $('#grid2').datagrid("reload");
+		            } else {
+		                $.messager.alert('失败', response.message, 'info');
+		            }
+		        }
+		    });
+		} else {
+			$.messager.alert("操作提醒", "选中的任务已认领或者没有指定到本人", "warning");
+		}
+	}
+}
+
+
 //初始化
 $(function () {
+	
+	getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
+    
+    $("#btnSearch").click(loadGrid1);
+    $("#btnReset").click(funcBtnRest);
+    
     $("#btnAdd").click(add);
     $("#btnModify").click(modify);
-    $("#btnAudit").click(audit);
+    //$("#btnAudit").click(audit);
     $("#btnViewCheckList").click(viewCheckList);
-    $("#btnAdd4").click(funcAdd4);
-    $("#btnClose4").click(funcClose4);
-    $("#btnSave5").click(funcSave5);
-    $("#btnClose5").click(funcClose5);
+    
+    $("#btnSort1").click(funcSort1);
+    $("#btnSort2").click(funcSort2);
+    $("#btnAccept").click(funcAccept);
+    
+    
+    //$("#btnClose4").click(funcClose4);
+    //$("#btnSave5").click(funcSave5);
+    //$("#btnClose5").click(funcClose5);
     /*
      $("#btnAddPlan").hide();*/
     $("#f_nd").val( new Date().getFullYear());
     clearInput();
     loadGrid1();
-    $("#btnSort1").click(funcSort1);
-    $("#btnSort2").click(funcSort2);
-    $("#btnSearch").click(loadGrid1);
-    $("#btnReset").click(funcBtnRest);
-    $("#btnSavePlan").click(funcSavePlan);
+   
+    
+    //$("#btnSavePlan").click(funcSavePlan);
     $("#btnImportTask").click(funcImportTask);
     $("#importTaskWindow input:radio").click(selectImportType);
 

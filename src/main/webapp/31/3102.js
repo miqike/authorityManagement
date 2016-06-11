@@ -106,54 +106,91 @@ function grid1ClickHandler() {
 }
 
 function viewCheckList() {
-    if (!$(this).linkbutton('options').disabled) {
-        var row = $("#grid1").datagrid('getSelected');
+    if(!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			showAuditItemList(row);
+		}
+	}
+}
 
-        showModalDialog("checklistWindow");
-        var options = $("#grid4").datagrid("options");
-        options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlan';
-        $('#grid4').datagrid('load', {
-            hcjhId: row.id
-        });
-    }
+function showAuditItemList(data) {
+	$.easyui.showDialog({
+		title : "检查事项",
+		width : 750,
+		height : 400,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./auditItemList.jsp",
+		onLoad : function() {
+			doAuditItemListInit(data);
+		}
+	});
+}
+
+function doAuditItemListInit(data) {
+	$.codeListLoader.parse($('#auditItemListWindow'))
+	if(null != data) {
+		loadAuditItemList();
+		$("#btnAdd4").hide();
+		$("#btnDelete4").hide();
+	}
+}
+
+
+function loadAuditItemList() {
+	$.getJSON('../common/query?mapper=hcsxMapper&queryName=queryForPlan',  {
+		hcjhId: $("#grid1").datagrid('getSelected').id
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#grid4").datagrid("loadData",response);
+        }
+    });
 }
 
 function clearInput() {
-    $("#f_id").val("");
-    $("#f_jhbh").textbox("setValue", "");
-    $("#f_gsjhbh").textbox("setValue", "");
-    $("#f_jhmc").textbox("setValue", "");
+	$("#f_id").val("");
+    $("#f_jhbh").val("");
+    $("#f_gsjhbh").val("");
+    $("#f_jhmc").val("");
     $("#f_nr").combobox("setValue", "");
     $("#f_fl").combobox("setValue", "");
 }
 
 function loadGrid1() {
-    var options = $("#grid1").datagrid("options");
-    options.url = '../common/query?mapper=hcjhMapper&queryName=query';
-    $('#grid1').datagrid('load', {
+	$.getJSON("../common/query?mapper=hcjhMapper&queryName=query",  {
         nd: $('#f_nd').numberspinner("getValue"),
-        jhbh: $('#f_jhbh').textbox("getValue"),
-        gsjhbh: $('#f_gsjhbh').textbox("getValue"),
-        jhmc: $('#f_jhmc').textbox("getValue"),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#grid1").datagrid("loadData",response);
+        }
     });
 }
 
 function funcBtnRest() {
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+	$("#f_nd").val( new Date().getFullYear());
     clearInput();
 }
 
 //初始化
 $(function() {
+	getUserInfo();
 	$.fn.zTree.init($("#orgTree"), setting);
+	$("#btnSearch").click(loadGrid1);
+	$("#btnReset").click(funcBtnRest);
     $("#btnViewCheckList").click(viewCheckList);
 
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+    $("#f_nd").val( new Date().getFullYear());
     clearInput();
     loadGrid1();
-    $("#btnSearch").click(loadGrid1);
-    $("#btnReset").click(funcBtnRest);
 });
 

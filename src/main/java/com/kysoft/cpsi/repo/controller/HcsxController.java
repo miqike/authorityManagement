@@ -3,8 +3,11 @@ package com.kysoft.cpsi.repo.controller;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.service.HcsxService;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
@@ -81,6 +84,21 @@ public class HcsxController extends net.sf.husky.web.controller.BaseController {
             e.printStackTrace();
             result.put(STATUS, FAIL);
             result.put(MESSAGE, "删除失败");
+        }
+        return result;
+    }
+    
+    @RequestMapping(value = "/{hcsxId}/disable", method = RequestMethod.POST)
+    public Map<String, Object> disable(@PathVariable String hcsxId, Integer disableFlag, @RequestParam(required = false) String zxsm) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+            result.put(MESSAGE, "检查事项注销/取消注销成功");
+            result.put(STATUS, SUCCESS);
+            hcsxService.disable(hcsxId, disableFlag, zxsm);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "检查事项注销/取消注销失败");
         }
         return result;
     }

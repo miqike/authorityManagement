@@ -62,7 +62,7 @@
 		}
 	}
 	
-	function doInit() {
+	function doDocListInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
 		$("#btnRemoveDoc").click(funcRemoveDoc); 
 		var hcsx =  $("#mainGrid").datagrid("getSelected");

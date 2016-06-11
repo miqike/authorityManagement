@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!-- <script type="text/javascript" src="./userDoc.js"></script> -->
 <script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
-<script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
+<script type="text/javascript" src="../js/easyuiExtend/husky.easyui.extend.1.3.6.js"></script>
 <script>
     function funcSaveDoc() {
         $("#btnSaveDoc").linkbutton("disable");

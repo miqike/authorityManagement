@@ -13,18 +13,6 @@
     <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" id="easyuiTheme"/>
     <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <!--
-    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script> 
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    -->
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
@@ -115,7 +103,7 @@
                     <td class="label">区域</td>
                     <td><input id="f_qy" class="easyui-validatebox" style=""/></td>
                     <td class="label">组织形式</td>
-                    <td><input id="f_zzxs" codeName="zzxs" class="easyui-combobox"/></td>
+                    <td><input id="f_zzxs" class="easyui-combobox" codeName="qyzzxs"/></td>
                 </tr>
                 <tr>
                     <td class="label">经营状态</td>

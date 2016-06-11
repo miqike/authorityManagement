@@ -312,8 +312,14 @@
         <include refid="Base_Column_List"/>
         from T_HCSX
         where 1=1
-        <if test="name!=null">
-            and name = #{code}
+        <if test="gsxm!=null">
+            and GSXM = #{gsxm}
+        </if>
+        <if test="hclx!=null">
+            and HCLX = #{hclx}
+        </if>
+        <if test="hcxxfl!=null">
+            and HCXXFL = #{hcxxfl}
         </if>
         order by HCLX, QYZZXS, HCXXFL
     </select>
@@ -360,6 +366,17 @@
 	<update id="updateHcclByPrimaryKey" >
         update T_HCSX
         set HCCL = #{hcclInHcsx,jdbcType=VARCHAR}
+        where ID = #{hcsxId,jdbcType=VARCHAR}
+    </update>
+    
+	<update id="updateDisable" >
+        update T_HCSX
+        <if test="disableFlag==1">
+        	SET ZXRQ = SYSDATE, ZXSM = #{zxsm,jdbcType=VARCHAR}
+        </if>
+        <if test="disableFlag==0">
+        	SET ZXRQ = NULL, ZXSM = NULL
+        </if>
         where ID = #{hcsxId,jdbcType=VARCHAR}
     </update>
 </mapper>

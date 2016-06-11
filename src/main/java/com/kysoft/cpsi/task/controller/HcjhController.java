@@ -14,15 +14,21 @@ import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.service.HcjhService;
 
+import net.sf.husky.query.service.DataAccessService;
 import net.sf.husky.web.controller.BaseController;
 
 @RestController
 @RequestMapping("/31")
 public class HcjhController extends BaseController {
-
+//	public static final String BLANK_ARRAY = "[]";
+//	public static final String ARRAY_START = "[";
+	
 	@Resource
 	HcjhService hcjhService;
-
+	
+	@Resource
+	DataAccessService dataAccessService;
+	
 	@RequestMapping(value = "/hcjh", method = RequestMethod.POST)
 	public Map<String, Object> save(Hcjh hcjh) {
 		Map<String, Object> result = Maps.newHashMap();
@@ -49,6 +55,19 @@ public class HcjhController extends BaseController {
             result.put(STATUS, FAIL);
             e.printStackTrace();
         }
+		return result;
+	}
+
+	@RequestMapping(value = "/hcjh/hcsx/{hcjhId}", method = RequestMethod.DELETE)
+	public Map<String, Object> deleteCheckList(@PathVariable String hcjhId,  @RequestBody String[] hcsxIds) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.deleteCheckList(hcjhId, hcsxIds);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
 		return result;
 	}
 	

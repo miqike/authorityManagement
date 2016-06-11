@@ -296,6 +296,37 @@
 
     <select id="query" resultMap="BaseResultMap">
         select ID, ND, JHMC, GSJHBH, FL, XDRQ, YQWCSJ, HCRWSL, SHR, SHZT, XDR,
+        SM, NR, XDRMC, SHRMC, JHBH, YPFSL,YRLSL,WRLSL
+        from T_HCJH a
+        <where>
+            <if test="nd!=null">
+                ND = #{nd}
+            </if>
+            <if test="jhbh!=null">
+                AND JHBH = #{jhbh}
+            </if>
+            <if test="gsjhbh!=null">
+                AND GSJHBH = #{gsjhbh}
+            </if>
+            <if test="jhmc!=null">
+                AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
+            </if>
+            <if test="nr!=null">
+                AND NR = #{nr}
+            </if>
+            <if test="fl!=null">
+                AND FL = #{fl}
+            </if>
+        </where>
+        ORDER BY
+        <if test="order != null">
+            ${sort}
+            ${order},
+        </if>
+        ND
+    </select>
+<!--     <select id="query" resultMap="BaseResultMap">
+        select ID, ND, JHMC, GSJHBH, FL, XDRQ, YQWCSJ, HCRWSL, SHR, SHZT, XDR,
         SM, NR, XDRMC, SHRMC, JHBH,
         (select count(1) from t_hcrw b where b.hcjh_id=a.id and b.rwzt in(1,2)) YPFSL,
         (select count(1) from t_hcrw b where b.hcjh_id=a.id and b.rwzt in(2)) YRLSL,
@@ -327,7 +358,7 @@
             ${order},
         </if>
         ND
-    </select>
+    </select> -->
 
     <update id="updateAuditById" parameterType="com.kysoft.cpsi.task.entity.Hcjh">
         update T_HCJH
@@ -352,4 +383,10 @@
         )}
     </select>
 
+	<update id="updateAcceptStatusByPrimaryKey" >
+        update T_HCJH
+        set YRLSL = #{yrlsl,jdbcType=NUMERIC},
+        WRLSL = (HCRWSL - #{yrlsl,jdbcType=NUMERIC})
+        where ID = #{hcjhId,jdbcType=VARCHAR}
+    </update>
 </mapper>

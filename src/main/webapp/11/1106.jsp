@@ -6,17 +6,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>单位数据授权</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" type="text/css"/>
-    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
+    <link href="../css/thems/${theme}/easyui.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/thems/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
     <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.menu.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.panel.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions/jeasyui.extensions.datagrid.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>

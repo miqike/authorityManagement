@@ -61,4 +61,11 @@
       select #{hcjhId,jdbcType=VARCHAR}, #{hcsxId} from dual
     </foreach>
   </insert>
+ 
+  <delete id="deleteBatch">
+    DELETE FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId,jdbcType=VARCHAR} AND HCSX_ID IN (
+    <foreach collection="hcsxIds" index="index" item="hcsxId" separator="UNION ALL">
+      select #{hcsxId} from dual
+    </foreach> )
+  </delete>
 </mapper>

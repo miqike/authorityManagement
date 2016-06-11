@@ -5,8 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="../css/content.css" rel="stylesheet" />
-	<link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" />
-	<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet" />
+	<link href="../css/themes/${theme}/easyui.css" rel="stylesheet" />
+	<link href="../css/themes/icon.css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="../js/qtip/jquery.qtip.min.css" />
 	
 	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js" ></script>

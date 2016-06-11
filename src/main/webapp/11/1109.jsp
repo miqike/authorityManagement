@@ -10,14 +10,14 @@
     <title>公示时限设置</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
-    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
+    <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
+    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
 
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/myJs/common.js"></script>

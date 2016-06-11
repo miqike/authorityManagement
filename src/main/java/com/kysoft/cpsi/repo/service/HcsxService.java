@@ -16,4 +16,6 @@ public interface HcsxService {
     void update(Hcsx hcsx);
 
     List<Hcsx> query(Map<String, Object> params);
+
+	void disable(String hcsxId, Integer disableFlag, String zxsm);
 }

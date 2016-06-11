@@ -24,4 +24,6 @@ public interface JhSxMapper {
 	int insertSelective(JhSxKey record);
 
 	void insertBatch(@Param("hcjhId")String hcjhId, @Param("hcsxIds")String[] hcsxIds);
+
+	void deleteBatch(@Param("hcjhId")String hcjhId, @Param("hcsxIds")String[] hcsxIds);
 }

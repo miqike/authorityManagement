@@ -1,9 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
-function doInit(operation) {
+function doAuditItemFormInit(operation) {
 	$.codeListLoader.parse($("#baseInfo"));
 	if(operation == "edit") {
     	$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+    	$("#p_zxrq").datebox("disable")
 	} else {
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
 		console.log(hcsx);	
@@ -101,9 +102,9 @@ function docGridClickRowHandler() {
         </tr>
         <tr>
             <td class="label">注销日期</td>
-            <td><input class="easyui-datebox" id="p_zxrq" style="width:200px;" data-options=""/></td>
+            <td><input class="easyui-datebox" id="p_zxrq" style="width:200px;" data-options="disabled:true" disabled/></td>
             <td class="label">注销说明</td>
-            <td><input class="easyui-validatebox" id="p_zxsm" style="width:192px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_zxsm" style="width:192px;" data-options="" disabled/></td>
         </tr>
         <tr>
             <td class="label" style="vertical-align:top">检查材料</td>
