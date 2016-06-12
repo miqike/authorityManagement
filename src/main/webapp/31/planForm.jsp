@@ -30,20 +30,17 @@
                 </tr>
                 <tr>
                     <td class="label">计划名称</td>
-                    <td>
-                        <input class="easyui-validatebox add" id="p_jhmc" type="text" style="width:192px;"
+                    <td colspan="3">
+                        <input class="easyui-validatebox add" id="p_jhmc" type="text" style="width:535px;"
                                data-options="required:true"/>
                     </td>
+                </tr>
+                <tr>
                     <td class="label">公示系统计划编号</td>
                     <td>
                         <input class="easyui-validatebox add" id="p_gsjhbh" type="text" style="width:192px;"
                                data-options=""/>
                     </td>
-                </tr>
-                <tr>
-                    <td class="label">下达日期</td>
-                    <td><input class="easyui-datebox add moddify" id="p_xdrq" type="text" style="width:200px;"
-                               data-options="required:true"/></td>
                     <td class="label">要求完成时间</td>
                     <td><input class="easyui-datebox add modify" type="text" id="p_yqwcsj" style="width:200px;"
                                data-options="required:true"/></td>
@@ -90,6 +87,9 @@
                                data-options=""/></td>
                 </tr> -->
                 <tr>
+	                <td class="label">下达日期</td>
+	                <td><input class="easyui-datebox add moddify" id="p_xdrq" type="text" style="width:200px;"
+	                               data-options="required:true"/></td>
                     <td class="label">下达人</td>
                     <td>
                         <input class="easyui-validatebox" id="p_xdrmc" type="text" style="width:192px;" data-options=""/>
@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td class="label">说明</td>
-                    <td colspan="3"><input class="easyui-validatebox add modify" id="p_sm" type="text" style="width:580px;"
+                    <td colspan="3"><input class="easyui-validatebox add modify" id="p_sm" type="text" style="width:535px;"
                                            data-options=""/></td>
                 </tr>
 
