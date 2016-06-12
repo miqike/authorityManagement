@@ -240,5 +240,4 @@
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
 <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-<script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
 <script type="text/javascript" src="./3101.js"></script>
