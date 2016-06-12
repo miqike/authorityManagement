@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="../js/jquery.browser.min.js"></script>
 	<script type="text/javascript" src="../js/qtip/jquery.qtip.pack.js"></script>
 	<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
+	<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
 	<script type="text/javascript" src="../js/husky/husky.easyui.extend.js" ></script>
 

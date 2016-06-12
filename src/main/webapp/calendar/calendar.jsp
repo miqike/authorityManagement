@@ -201,6 +201,7 @@
 <script type="text/javascript" src="../js/hotkeys.min.js"></script>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../js/formatter.js"></script>
 <script type="text/javascript" src="../js/husky/husky.common.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
