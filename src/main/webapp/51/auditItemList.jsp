@@ -3,7 +3,6 @@
 <script>
 
 $(function () {
-	debugger;
 	$("#btnAnnualAudit").click(funcAnnualAudit);
 	$("#btnInstanceAudit").click(funcInstanceAudit);
 });
