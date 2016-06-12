@@ -75,7 +75,7 @@ public class HcrwController extends BaseController {
         Map<String, Object> result = Maps.newHashMap();
 
         try {
-            hcrwService.initTaskItem(hcrwId);
+            hcrwService.initTaskItem(hcrwId, 1);
             result.put(MESSAGE, "检查列表项初始成功");
             result.put(STATUS, SUCCESS);
         } catch (Exception e) {

@@ -33,7 +33,7 @@ public class HcrwServiceImpl implements HcrwService {
     HcjhService hcjhService;
 
     @Override
-    public void initTaskItem(String hcrwId) {
+    public void initTaskItem(String hcrwId, int pullDataFlag) {
         List<Hcsx> hcsxList = hcsxMapper.selectByTaskId(hcrwId);
         for (Hcsx hcsx : hcsxList) {
             Hcsxjg hcsxjg = new Hcsxjg();
@@ -45,6 +45,9 @@ public class HcrwServiceImpl implements HcrwService {
             hcsxjg.setHclx(hcsx.getHclx());
             hcsxjg.setHczt(1);
             hcsxjgMapper.insert(hcsxjg);
+        }
+        if(pullDataFlag == 1) {
+        	pullData(hcrwId);
         }
     }
 

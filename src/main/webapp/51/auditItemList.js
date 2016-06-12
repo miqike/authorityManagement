@@ -20,10 +20,13 @@ function stylerHcjg(val, row, index) {
 }
 
 function auditItemsTabSelectHandler(title,index) {
+	console.log("select tab: " + title)
     if(canBeSelected(index)) {
         if(window.auditItemDataReady) {
+        	console.log("----------------")
             _auditItemsTabSelectHandler(index)
         } else {
+        	console.log("++++++++++++++++")
             $.subscribe("AUDITITEM_DATA_INITIALIZED", _auditItemsTabSelectHandler, [index]);
         }
     }
@@ -53,21 +56,22 @@ function initAuditItemList() {
     $("#auditItemAccordion").accordion("select", 0);
     var hcrw = $('#grid1').datagrid('getSelected');
     if(hcrw.nr == 1) {
-        $("#auditItemTabs").tabs("enableTab", 0).tabs("select", 0);
+        $("#auditItemTabs").tabs("enableTab", 0);
         $("#auditItemTabs").tabs("disableTab", 1);
         annualAuditItemInit();
     } else if(hcrw.nr == 2) {
         $("#auditItemTabs").tabs("disableTab", 0);
-        $("#auditItemTabs").tabs("enableTab", 1).tabs("select", 1);
+        $("#auditItemTabs").tabs("enableTab", 1);
         instanceAuditItemInit()
     } else {
-        $("#auditItemTabs").tabs("enableTab", 0).tabs("select", 0);
+        $("#auditItemTabs").tabs("enableTab", 0);
         $("#auditItemTabs").tabs("enableTab", 1);
         annualAuditItemInit()
     }
 }
 
 function doAuditItemListInit() {
+	
     window.auditItemDataReady = false;
     var hcrw = $('#grid1').datagrid('getSelected');
     $.ajax({
@@ -77,8 +81,8 @@ function doAuditItemListInit() {
         success: function (response) {
             if (response.status == SUCCESS) {
                 if (response.data == 0) {
-                    $.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
-                        if (r) {
+                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
+                    //    if (r) {
                             $.ajax({
                                 url: "./" + hcrw.id + "/init",
                                 type: 'POST',
@@ -92,8 +96,8 @@ function doAuditItemListInit() {
                                     }
                                 }
                             });
-                        }
-                    });
+                    //    }
+                    //});
                 } else {
                     $.publish("AUDITITEM_DATA_INITIALIZED", null);
                     window.auditItemDataReady = true;
@@ -155,13 +159,14 @@ function _funcAnnualAudit() {
 }
 
 function annualAuditItemInit() {
-    // debugger;
     var options = $("#annualAuditItemGrid").datagrid().datagrid("options");
     options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
     $('#annualAuditItemGrid').datagrid('load', {
         hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 1
     });
+    
+    //$("#auditItemAccordion").accordion("select", 0)
 }
 //---------------annual end and instance begin
 
@@ -220,6 +225,7 @@ function instanceAuditItemInit() {
         hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 2
     });
+    //$("#auditItemAccordion").accordion("select", 1)
 }
 
 

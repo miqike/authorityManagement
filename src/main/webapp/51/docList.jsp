@@ -79,7 +79,7 @@
 	    });
 	}
 	
-	function doInit() {
+	function doDocListInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
 		$("#btnRemoveDoc").click(funcRemoveDoc); 
 		

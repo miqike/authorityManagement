@@ -95,15 +95,19 @@ function clearInput() {
 
 function funcBtnPullData() {
     if (!$(this).linkbutton('options').disabled) {
-        var row = $("#grid1").datagrid("getSelected");
-        $.getJSON("./" + row.id + "/pull", null, function (response) {
-            if (response.status == SUCCESS) {
-                $.messager.alert("提示", response.message, 'info');
-                refreshAuditItemList();
-                row.dataLoaded = 1;
-            }
-        });
+    	_pullData();
     }
+}
+
+function _pullData() {
+	var row = $("#grid1").datagrid("getSelected");
+    $.getJSON("./" + row.id + "/pull", null, function (response) {
+        if (response.status == SUCCESS) {
+            $.messager.alert("提示", response.message, 'info');
+            refreshAuditItemList();
+            row.dataLoaded = 1;
+        }
+    });
 }
 
 function funcBtnViewDocument() {
@@ -120,7 +124,7 @@ function funcBtnViewDocument() {
     		closeButtonIconCls : "icon-undo",
     		href : "./docList.jsp",
     		onLoad : function() {
-    			doInit();
+    			doDocListInit();
     		}
     	});
     }

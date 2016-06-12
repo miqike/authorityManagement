@@ -9,7 +9,7 @@ public interface HcrwService {
 
     Integer getTaskInitStatus(String hcrwId);
 
-    void initTaskItem(String hcrwId);
+    void initTaskItem(String hcrwId, int pullDataFlag);
 
     void pullData(String hcrwId);
 
