@@ -8,7 +8,6 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<<<<<<< HEAD
         <spring.version>4.2.6.RELEASE</spring.version>
         <shiro.version>1.2.5</shiro.version>
         <fastjson.version>1.2.11</fastjson.version>
@@ -22,8 +21,6 @@
         <commons-lang3.version>3.4</commons-lang3.version>
         <jackson.version>2.7.1</jackson.version>
         <guava.version>19.0</guava.version>
-=======
->>>>>>> d476870f2216c630a01eac59b63b09b96e0d8034
         <servlet.version>3.1.0</servlet.version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -130,7 +127,6 @@
                     <groupId>javax.servlet</groupId>
                 </exclusion>
             </exclusions>
-<<<<<<< HEAD
 		</dependency>
 
         <dependency>
@@ -181,8 +177,6 @@
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.9</version>
-=======
->>>>>>> d476870f2216c630a01eac59b63b09b96e0d8034
         </dependency>
 
         <dependency>

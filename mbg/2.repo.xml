@@ -27,7 +27,7 @@
 				enableUpdateByExample="false"
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false">
-			<columnOverride column="TYPE"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ZTLX"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HYFL"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZZXS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="JYZT"  javaType="java.lang.Integer"	/>
@@ -50,7 +50,6 @@
 		</table>
 		 -->
 		<!-- 核查事项 -->
-		
 		<table tableName="T_HCSX" domainObjectName="Hcsx"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -61,7 +60,6 @@
 				enableUpdateByExample="false"
 				selectByPrimaryKeyQueryId="false"
 				selectByExampleQueryId="false">
-			<columnOverride column="TYPE"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HCXXFL"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HCLX"  javaType="java.lang.Integer"	/>
 			<columnOverride column="HCFF"  javaType="java.lang.Integer"	/>
@@ -72,7 +70,8 @@
 			<columnOverride column="SFBJXM"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZXRQ"  javaType="java.util.Date"	/>
 		</table>
-		
+		<!-- 
+		 -->
 		<!-- 
 		<table tableName="T_HCCL" domainObjectName="Hccl"
   				enableSelectByPrimaryKey="true"
@@ -86,6 +85,7 @@
 				selectByExampleQueryId="false">
 			<columnOverride column="SFBYX"  javaType="java.lang.Integer"	/>
 			<columnOverride column="WJLX"  javaType="java.lang.Integer"	/>
+			<columnOverride column="YHTG"  javaType="java.lang.Integer"	/>
 		</table>
  		-->
 	</context>
