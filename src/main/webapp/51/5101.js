@@ -174,7 +174,9 @@ function _showDialog(title, url) {
 					printShidihechagaozhishu();
 				} else if(title == "责令履行通知书") {
 					printZelingluxingtongzhishu();
-				} else {
+				} else if(title == "年报公示信息核查结果报告") {
+                    printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+                }else {
 					printQiyezhusuohechahan();
 				}
 			}
@@ -201,6 +203,9 @@ $(function () {
     });
     $("#btnSendQyzshch").click(function () {
     	_showDialog("企业住所调查函", "../gaozhishu/qiyezhusuohechahan.jsp");
+    });
+    $("#btnPrintHeChaJieGuo").click(function () {
+        _showDialog("年报公示信息核查结果报告", "../gaozhishu/qiyenianbaohechajieguo.jsp");
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");

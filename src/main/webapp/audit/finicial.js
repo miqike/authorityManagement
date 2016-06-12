@@ -1,5 +1,6 @@
 function executeFile(file, paramArray) {
     try {
+        debugger;
         var _file = file;
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         if (fso.FileExists(_file)) {

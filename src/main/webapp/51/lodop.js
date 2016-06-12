@@ -1,3 +1,4 @@
+//打印企业住所核查函
 function printQiyezhusuohechahan() {
     var columnWidthFull = 190;
     var columnWidth = 0;
@@ -75,7 +76,7 @@ function printQiyezhusuohechahan() {
         console.log(response.message);
     });
 }
-
+//打印实地核查告知书
 function printShidihechagaozhishu() {
     var columnWidth1 = 60;
     var columnWidth2 = 130;
@@ -236,7 +237,7 @@ function printShidihechagaozhishu() {
     });
 
 }
-
+//打印责令履行通知书
 function printZelingluxingtongzhishu() {
     var columnWidthFull = 190;
     var columnWidth = 0;
@@ -401,6 +402,58 @@ function printZelingluxingtongzhishu() {
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
     data.message = "打印责令履行公示义务通知书";
+    data.businessKey = $("#zeling_hcrwId").text();
+    $.post("../sys/log", data, function (response) {
+        console.log(response.message);
+    });
+}
+
+//打印企业年报公示信息核查结果报告
+function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
+    var columnWidthFull = 190;
+    var columnWidth = 0;
+    var leftOri = 10;
+    var left = 10;
+    var top = 10;
+    var rowHeight = 0;
+    //LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+    var LODOP = getLodop();
+    //设置纸张
+    LODOP.BKIMG_PRINT
+    LODOP.PRINT_INITA("5mm", "5mm", "210mm", "297mm", "");
+    LODOP.SET_PRINT_PAGESIZE(1, 0, 0, "A4");
+    LODOP.SET_PRINTER_INDEX(-1);
+    LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
+    LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
+
+    //开始打印
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业年报公示信息核查结果报告");
+    LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+    LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+    LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
+    top = top + 10;
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划编号：");
+    LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+    LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+    LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
+    top = top + 10;
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业名称：    注册号/社会统一信用代码：");
+    LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+    LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+    LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
+    top = top + 10;
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "抽查结果：   检查机关：");
+    LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+    LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+    LODOP.SET_PRINT_STYLEA(0, "FontSize", 20);
+
+    LODOP.PREVIEW();
+    //LODOP.PRINT();
+    var data = {};
+    data.moduleName = "gaozhishu";
+    data.desc = "打印通知书";
+    data.message = "打印企业年报公示信息核查结果报告";
     data.businessKey = $("#zeling_hcrwId").text();
     $.post("../sys/log", data, function (response) {
         console.log(response.message);
