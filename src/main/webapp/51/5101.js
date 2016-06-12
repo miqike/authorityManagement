@@ -74,7 +74,7 @@ function refreshAuditItemList() {
             }
         });
     } else {
-        //doAuditItemListInit();
+        doAuditItemListInit();
     }
 }
 

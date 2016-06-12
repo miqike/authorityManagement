@@ -156,7 +156,6 @@ function _funcAnnualAudit() {
 
 function annualAuditItemInit() {
     // debugger;
-    console.log( $("#annualAuditItemGrid").length);
     var options = $("#annualAuditItemGrid").datagrid().datagrid("options");
     options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
     $('#annualAuditItemGrid').datagrid('load', {
