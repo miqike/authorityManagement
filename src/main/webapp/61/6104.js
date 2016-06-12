@@ -81,7 +81,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
         options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
-            organization: selected[0].id,
+            organization: processorOrgId(selected[0].id),
             order: 1
         });
     } else {

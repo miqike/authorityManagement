@@ -389,7 +389,7 @@ function queryUser(){
 		var options = $("#mainGrid").datagrid("options");
 		options.url = '../common/query?mapper=userMapper&queryName=queryUserForOrg';
 		$('#mainGrid').datagrid('load',{
-			organization: selected[0].id
+			organization: processorOrgId(selected[0].id)
 		});
 
 	} else {
@@ -912,60 +912,6 @@ $(function() {
 	});
 	$("#btnExport").click(poiExport);
 
-/*
-	$("#btnAdd1").click(add1);
-	$("#btnPre").click(showPre);
-	$("#btnNext").click(showNext);
-	$("#btnFirst").click(shorFirst);
-	$("#btnLast").click(showLast);
-	$("#btnDelete1").click(remove1);
-	$("#btnClose").click(closeWindow);
-
-	$("#btnEditOrSave").click(saveUser);
-	$("#btnAddUserRole").click(addUserRole);
-	$("#btnDeleteUserRole").click(deleteUserRole);
-	$("#btnAddUserRole1").click(addUserRole1);
-
-    $("#btnEditDataPermission").click(editDataPermission);
-    $("#btnShowAcl").click(showAcl);
-    $('#btnDataPermRuleSelect').click(selectDataPermRule);
-
-    $("#btnAclSelect").click(aclSelect);
-
-	$("#btnOrganizationSelect").click(organizationSelect);
-
-    $("#userTable td:even").css("text-align", "right");
-
-	$("#mainGrid").datagrid("loadData",[]);
-
-	$("#btnReset").click(function(){
-		if(!$(this).linkbutton('options').disabled){
-			$("#f_name").val('');
-			var dg = $('#mainGrid');
-			dg.datagrid('disableFilter');
-			$("#btnSearch").linkbutton('enable');
-			var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-			var selected = treeObj.getSelectedNodes()[0];
-
-			$('#mainGrid').datagrid('load',{
-				organization: selected.ba01861
-			});
-		}
-	});
-
-	$("#btnSearch").click(function(){
-		if(!$(this).linkbutton('options').disabled){
-			var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-			var selected = treeObj.getSelectedNodes()[0];
-
-			$('#mainGrid').datagrid('load',{
-				name: encodeURI($('#f_name').val()),
-				organization: selected.ba01861
-			});
-		}
-	});
-
-*/
 	var setting = {
 		data: {key: {
 			title:"parentId",

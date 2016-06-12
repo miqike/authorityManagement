@@ -702,7 +702,7 @@ $(function() {
 	$("#btnSearch").click(function(){
 		$('#mainGrid').datagrid('load',{
 			name: encodeURI($('#f_name').val()),
-			organization: $('#f_organization').val()
+			organization: processorOrgId($('#f_organization').val())
 		});
 	});
 	

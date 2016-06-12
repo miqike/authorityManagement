@@ -35,7 +35,6 @@
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/datagrid-filter.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/lodop/listPrint.js"></script>
 
     <script type="text/javascript" src="./userTree.js"></script>
