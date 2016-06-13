@@ -473,7 +473,8 @@
     <select id="queryForAuditor" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from T_HCRW where (ZFRY_CODE1 = #{_userId,jdbcType=VARCHAR} or ZFRY_CODE2 = #{_userId,jdbcType=VARCHAR})
+        from T_HCRW
+        where (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
         <if test="nd!=null">
             AND ND = #{nd}
         </if>
