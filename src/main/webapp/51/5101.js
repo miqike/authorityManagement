@@ -56,6 +56,7 @@ function grid1ClickHandler() {
     $('#btnSendZllxtzs').linkbutton("enable");
     $('#btnSendQyzshch').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
+    $('#btnPrintHeChaJieGuo').linkbutton("enable");
 
     if (hcrw.dataLoaded == 0) {
         $('#btnPullData').linkbutton("enable");
@@ -164,17 +165,28 @@ function _showDialog(title, url) {
 		closeButtonIconCls : "icon-undo",
 		href : url,
 		onLoad : function() {
-			doShidihechagaozhishuInit();
+            if(title == "实地检查告知书") {
+                doShidihechagaozhishuInit();
+            } else if(title == "责令履行通知书") {
+                doZelingluxingtongzhishuInit();
+            } else if(title == "年报公示信息核查结果报告") {
+                printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+            }else {
+                doQiyezhusuohechahanInit();
+            }
+
 		},
 		buttons:[{
 			text:'打印',
 			iconCls:'icon-print',
 			handler:function(){
-				if(title == "实地检查告知") {
+				if(title == "实地检查告知书") {
 					printShidihechagaozhishu();
 				} else if(title == "责令履行通知书") {
 					printZelingluxingtongzhishu();
-				} else {
+				} else if(title == "年报公示信息核查结果报告") {
+                    printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+                }else {
 					printQiyezhusuohechahan();
 				}
 			}
@@ -201,6 +213,9 @@ $(function () {
     });
     $("#btnSendQyzshch").click(function () {
     	_showDialog("企业住所调查函", "../gaozhishu/qiyezhusuohechahan.jsp");
+    });
+    $("#btnPrintHeChaJieGuo").click(function () {
+        _showDialog("年报公示信息核查结果报告", "../gaozhishu/qiyenianbaohechajieguo.jsp");
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");

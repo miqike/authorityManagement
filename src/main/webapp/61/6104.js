@@ -120,12 +120,19 @@ $(function () {
         columnList.push({"fieldName": "hcdwXydm", "header": "注册号", "colWidth": 80});
         columnList.push({"fieldName": "hcjgmc", "header": "检查机关", "colWidth": 80});
         columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20});
-        columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "hcjg"});
+        columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "gsjg"});
         //取得数据
-        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + selected[0].id + "&order=1", null, function (response) {
+        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + processorOrgId(selected[0].id) + "&order=1", null, function (response) {
             if (response.status == 1) {
                 data = response.rows;
-                listPrint(params, data, columnList);
+                if(data.length>1){
+                    listPrint(params, data, columnList);
+                }else{
+                    $.messager.show({
+                        title : '提示',
+                        msg : "未找到任何数据"
+                    });
+                }
             }
         });
     });
