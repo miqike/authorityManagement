@@ -142,6 +142,8 @@
                                iconCls="icon2 r10_c20" disabled>更新任务结果</a>
                             <a href="javascript:void(0);" id="btnPrintHeChaJieGuo" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r12_c11" disabled>年报公示信息核查结果报告</a>
+                            <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZheng" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r12_c11" disabled>公示信息更正审批表</a>
                         </td>
                     </tr>
                 </table>

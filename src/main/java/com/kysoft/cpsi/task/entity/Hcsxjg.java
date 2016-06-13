@@ -209,4 +209,14 @@ public class Hcsxjg extends HcsxjgKey {
 	public void setHclx(Integer hclx) {
 		this.hclx = hclx;
 	}
+
+	private Integer hcxxfl;
+
+	public Integer getHcxxfl() {
+		return hcxxfl;
+	}
+
+	public void setHcxxfl(Integer hcxxfl) {
+		this.hcxxfl = hcxxfl;
+	}
 }
