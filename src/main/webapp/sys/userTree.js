@@ -88,6 +88,7 @@ function view(){
 		var row = $('#mainGrid').datagrid('getSelected');
 		if (row) {
 			window.operate = 'update';
+			showModalDialog("userWindow");
 
 			$("#p_userId").textbox("setValue", row.userId).textbox("disable");
 			$("#p_name").textbox("setValue", row.name);
@@ -97,7 +98,6 @@ function view(){
 			$("#p_status").combobox("setValue", row.status);
 			$("#p_mobile").textbox("setValue", row.mobile);
 			$("#p_email").textbox("setValue", row.email);
-			showModalDialog("userWindow");
 			//$("#btnEditOrSave").parent().css("text-align", " left");
 			$('#userWindow input.easyui-validatebox').validatebox();
 		}
@@ -345,6 +345,7 @@ function onExpand(event, treeId, treeNode) {
 }
 
 function checkAuthorizedResourceNode(treeNode) {
+	/*
 	var disable = true;
 	var treeObj = $.fn.zTree.getZTreeObj("tree");
 	var nodes;
@@ -370,7 +371,7 @@ function checkAuthorizedResourceNode(treeNode) {
 				checkAuthorizedResourceNode(node)
 			}
 		})
-	}
+	}*/
 }
 //设置CHECKBOX
 function setCheckBox(){
