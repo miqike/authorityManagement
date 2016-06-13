@@ -184,14 +184,76 @@ function showAuditItemForm(data) {
 function funcShowDocWindow() {
 	var auditItem = $("#mainGrid").datagrid("getSelected");
 	if(auditItem != null) {
-		showModalDialog("docWindow");
+		
+		$.easyui.showDialog({
+			title : "抽检材料清单",
+			width : 750,
+			height : 400,
+			topMost : false,
+			enableSaveButton : true,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./docList.jsp",
+			onLoad : function() {
+				doDocListInit();
+			}/*,
+			onSave: function (d) {
+	            var validate = d.form("validate");
+	            if (validate) {
+	                save();
+	            } else {
+	                return false;
+	            }
+	        }*/
+		});
+		/*showModalDialog("docWindow");
 		$("#docPanel").panel({
 		    href:'./docList.jsp',
 		    onLoad:function(){
 		    	doDocListInit();
 		    }
-		});
+		});*/
 	}
+}
+
+function funcShowComment() {
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	if(auditItem != null) {
+		$.easyui.showDialog({
+			title : "常见问题说明",
+			width : 750,
+			height : 400,
+			topMost : false,
+			enableSaveButton : true,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./commentList.jsp",
+			onLoad : function() {
+				doCommentListInit();
+			}/*,
+			onSave: function (d) {
+	            var validate = d.form("validate");
+	            if (validate) {
+	                save();
+	            } else {
+	                return false;
+	            }
+	        }*/
+		});
+		/*showModalDialog("docWindow");
+		$("#docPanel").panel({
+		    href:'./docList.jsp',
+		    onLoad:function(){
+		    	doDocListInit();
+		    }
+		});*/
+	}
+}
+
+function doCommentListInit() {
+	
 }
 
 function mainGridButtonHandler() {
@@ -200,11 +262,13 @@ function mainGridButtonHandler() {
 		$('#btnDelete').linkbutton('enable');
 		$('#btnDisable').linkbutton('enable');
 		$('#btnShowDocWindow').linkbutton('enable');
+		$('#btnShowComment').linkbutton('enable');
 	} else {
 		$('#btnView').linkbutton('disable');
 		$('#btnDelete').linkbutton('disable');
 		$('#btnDisable').linkbutton('disable');
 		$('#btnShowDocWindow').linkbutton('disable');
+		$('#btnShowComment').linkbutton('disable');
 	}
 }
 
@@ -267,6 +331,7 @@ $(function () {
     $("#btnDelete").click(btnDeleteClick);
     $("#btnDisable").click(funcDisable);
     $("#btnShowDocWindow").click(funcShowDocWindow);
+    $("#btnShowComment").click(funcShowComment);
 
     setReadOnlyStatus();
 

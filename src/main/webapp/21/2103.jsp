@@ -146,14 +146,8 @@
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
         <a href="#" id="btnDisable" class="easyui-linkbutton" iconCls="icon-print" plain="true" disabled>注销/取消注销</a>
         <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>检查材料清单</a>
+        <a href="#" id="btnShowComment" class="easyui-linkbutton" iconCls="icon2 r8_c15" plain="true" disabled>常见问题说明</a>
     </div>
-<!-- --------弹出窗口--------------- -->
-
-<div id="docWindow" class="easyui-window" title="抽检材料清单"
-     data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 400px; padding: 10px;">
-	<div id="docPanel"></div>
-</div>
 
 </body>
 </html>
