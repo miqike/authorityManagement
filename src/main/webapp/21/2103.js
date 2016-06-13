@@ -184,36 +184,20 @@ function showAuditItemForm(data) {
 function funcShowDocWindow() {
 	var auditItem = $("#mainGrid").datagrid("getSelected");
 	if(auditItem != null) {
-		
 		$.easyui.showDialog({
 			title : "抽检材料清单",
 			width : 750,
-			height : 400,
+			height : 420,
 			topMost : false,
-			enableSaveButton : true,
+			enableSaveButton : false,
 			enableApplyButton : false,
 			closeButtonText : "返回",
 			closeButtonIconCls : "icon-undo",
 			href : "./docList.jsp",
 			onLoad : function() {
 				doDocListInit();
-			}/*,
-			onSave: function (d) {
-	            var validate = d.form("validate");
-	            if (validate) {
-	                save();
-	            } else {
-	                return false;
-	            }
-	        }*/
+			}
 		});
-		/*showModalDialog("docWindow");
-		$("#docPanel").panel({
-		    href:'./docList.jsp',
-		    onLoad:function(){
-		    	doDocListInit();
-		    }
-		});*/
 	}
 }
 
@@ -223,37 +207,26 @@ function funcShowComment() {
 		$.easyui.showDialog({
 			title : "常见问题说明",
 			width : 750,
-			height : 400,
+			height : 420,
 			topMost : false,
-			enableSaveButton : true,
+			enableSaveButton : false,
 			enableApplyButton : false,
 			closeButtonText : "返回",
 			closeButtonIconCls : "icon-undo",
 			href : "./commentList.jsp",
 			onLoad : function() {
 				doCommentListInit();
-			}/*,
-			onSave: function (d) {
-	            var validate = d.form("validate");
-	            if (validate) {
-	                save();
-	            } else {
-	                return false;
-	            }
-	        }*/
+			}
 		});
-		/*showModalDialog("docWindow");
-		$("#docPanel").panel({
-		    href:'./docList.jsp',
-		    onLoad:function(){
-		    	doDocListInit();
-		    }
-		});*/
 	}
 }
 
 function doCommentListInit() {
-	
+	$("#btnAddComment").click(funcAddComment); 
+	$("#btnRemoveComment").click(funcRemoveComment); 
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	$("#_name_comment_").text(auditItem.name);
+	loadCommentGrid(auditItem.id);
 }
 
 function mainGridButtonHandler() {

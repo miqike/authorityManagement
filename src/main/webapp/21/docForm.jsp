@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
 	function funcSaveDoc() {
-		$("#btnSaveDoc").linkbutton("disable");
+		//$("#btnSaveDoc").linkbutton("disable");
 		var data = $.easyuiExtendObj.drillDownForm('addDocWindow');
 		data.id = $("#d_id").val();
 		data.hcsxId = $("#d_hcsxId").val();
@@ -16,7 +16,7 @@
 	        data: data,
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
-	                $("#docGrid").datagrid("reload");
+	            	loadDocGrid($("#mainGrid").datagrid("getSelected").id);
 	                $("#mainGrid").datagrid("reload");
 	                $("#addDocWindow").window("close");
 	                $.messager.show({
@@ -24,7 +24,7 @@
 						msg : "检查材料保存成功"
 					});
 	            } else {
-	                $.messager.alert('检查材料保存', response.message, 'error');
+	                $.messager.alert('检查材料保存失败', response.message, 'error');
 	            }
 	        }
 	    }); 

@@ -8,44 +8,38 @@
 		}
 	}
 	
-	function funcAddDoc() {
-		/* <div id="addDocWindow" class="easyui-window" title="检查材料"
-		     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-		     style="width: 300px; height: 200px; padding: 10px;">
-		    
-		</div>
-		 */
+	function funcAddComment() {
 		$.easyui.showDialog({
-    		title : "修改抽检事项信息",
-    		width : 300,
+    		title : "修改常见问题说明信息",
+    		width : 600,
     		height : 200,
     		topMost : false,
     		enableSaveButton : true,
     		enableApplyButton : false,
     		closeButtonText : "返回",
     		closeButtonIconCls : "icon-undo",
-    		href : "./docForm.jsp",
+    		href : "./commentForm.jsp",
     		onLoad : function() {
     			doInit();
     		},
     		onSave: function (d) {
-    			funcSaveDoc();
+    			funcSaveComment();
             }
     	});
 	}
 
-	function funcRemoveDoc () {
+	function funcRemoveComment () {
 		if(!$(this).linkbutton('options').disabled) {
-			var row = $('#docGrid').datagrid('getSelected');
+			var row = $('#commentGrid').datagrid('getSelected');
 			if (row) {
 				$.messager.confirm('确认', '确认删除检查材料', function (r) {
 					if (r) {
 						$.ajax({
-					        url: "./hccl/" + row.id ,
+					        url: "./comment/" + row.id ,
 					        type: 'DELETE',
 					        success: function (response) {
 					            if (response.status == SUCCESS) {
-					            	$('#docGrid').datagrid('reload');
+					            	$('#commentGrid').datagrid('reload');
 					                
 					                $.messager.show({
 					                    title: '提示',
@@ -62,54 +56,43 @@
 		}
 	}
 	
-	function doDocListInit() {
-		$("#btnAddDoc").click(funcAddDoc); 
-		$("#btnRemoveDoc").click(funcRemoveDoc); 
-		var auditItem = $("#mainGrid").datagrid("getSelected");
-		$("#_name_").text(auditItem.name);
-		loadDocGrid(auditItem.id);
-	}
 	
-	function docGridClickRowHandler() {
-		if($('#docGrid').datagrid('getSelected') != null) {
-			$('#btnRemoveDoc').linkbutton('enable');
+	function commentGridClickRowHandler() {
+		if($('#commentGrid').datagrid('getSelected') != null) {
+			$('#btnRemoveComment').linkbutton('enable');
 		} else {
-			$('#btnRemoveDoc').linkbutton('disable');
+			$('#btnRemoveComment').linkbutton('disable');
 		}
 	}
 	
-	function loadDocGrid(hcsxId) {
-		/* $.getJSON("../common/query?mapper=hcclMapper&queryName=queryForAuditItem",  {hcsxId:hcsxId}, function(response) {
-			$("#docGrid").datagrid().datagrid("loadData", response);
-		}); */
+	function loadCommentGrid(hcsxId) {
+		$.getJSON("../common/query?mapper=auditItemCommentMapper&queryName=queryForAuditItem",  {hcsxId:hcsxId}, function(response) {
+			$("#commentGrid").datagrid().datagrid("loadData", response);
+		});
 	}
 </script>
 
 <div style="height: 345px">
     <div style="padding:5px;">
         <span>抽检事项:</span>
-        <span style="color:blue; " id="_name_"></span>
+        <span style="color:blue; " id="_name_comment_"></span>
     </div>
     <table id="commentGrid" class="easyui-datagrid" 
            data-options="collapsible:true,fit:true,
            		singleSelect:true,width:680,
-           		onClickRow:docGridClickRowHandler,
+           		onClickRow:commentGridClickRowHandler,
 				ctrlSelect:false,method:'get',
-				toolbar: '#docGridToolbar'">
+				toolbar: '#commentGridToolbar'">
         <thead>
         <tr>
-            <!-- <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="120">序号</th> -->
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">材料名称</th>
-            <th data-options="field:'sfbyx',halign:'center',align:'center'" sortable="true" width="80"codeName="yesno" formatter="formatCodeList">是否必要项</th>
-            <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
-            <th data-options="field:'yhtg',halign:'center',align:'center'" sortable="true" width="80" codeName="yesno" formatter="formatCodeList">是否用户提供</th>
-                
+            <th data-options="field:'content',halign:'center',align:'left'" sortable="true" width="650">常见问题说明</th>
+            <th data-options="field:'weight',halign:'center',align:'center'" sortable="true" width="80">排序权重</th>
         </tr>
         </thead>
     </table>
 
 </div>
 <div id="commentGridToolbar">
-    <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-    <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
+    <a href="#" id="btnAddComment" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+    <a href="#" id="btnRemoveComment" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>

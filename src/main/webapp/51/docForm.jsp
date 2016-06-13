@@ -118,23 +118,23 @@
     		<td class="label">检查计划年度</td><td>
     			<input type="hidden" id="d_id" />
      			<input type="hidden" id="d_mongoId" />
-    			<input class="easyui-validatebox", id="d_hcjhnd" disabled/>
-    		<td class="label">统一社会信用代码</td><td><input class="easyui-validatebox", id="d_hcdwXydm" disabled/></td>
+    			<input class="easyui-validatebox" id="d_hcjhnd" disabled/>
+    		<td class="label">统一社会信用代码</td><td><input class="easyui-validatebox" id="d_hcdwXydm" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">检查任务编号</td><td><input class="easyui-validatebox", id="d_hcrwId" disabled/></td>
+    		<td class="label">检查任务编号</td><td><input class="easyui-validatebox" id="d_hcrwId" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">检查事项</td><td><input class="easyui-combobox", id="d_hcsxId" data-options=""/></td>
-    		<td class="label">检查材料</td><td><input class="easyui-combobox", id="d_hcclId"/ ></td>
+    		<td class="label">检查事项</td><td><input class="easyui-combobox" id="d_hcsxId" data-options=""/></td>
+    		<td class="label">检查材料</td><td><input class="easyui-combobox" id="d_hcclId"/ ></td>
     	</tr>
     	<tr>
-    		<td class="label">是否必要项</td><td><input class="easyui-combobox", id="d_sfbyx" codeName="yesno" data-options="panelHeight:70" disabled/></td>
-    		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100" disabled/></td>
+    		<td class="label">是否必要项</td><td><input class="easyui-combobox" id="d_sfbyx" codeName="yesno" data-options="panelHeight:70" disabled/></td>
+    		<td class="label">文件类型</td><td><input class="easyui-combobox" id="d_wjlx" codeName="wjlx" data-options="panelHeight:100" disabled/></td>
     	</tr>
     	<tr>
-    		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" disabled/></td>
-    		<td class="label">来源</td><td><input class="easyui-combobox", id="d_ly" codeName="wjly" data-options="panelHeight:70" disabled/></td>
+    		<td class="label">是否用户提供</td><td><input class="easyui-combobox" id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" disabled/></td>
+    		<td class="label">来源</td><td><input class="easyui-combobox" id="d_ly" codeName="wjly" data-options="panelHeight:70" disabled/></td>
     	</tr>
     	<tr>
 		    <td colspan="4">

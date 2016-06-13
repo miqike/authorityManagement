@@ -9,12 +9,6 @@
 	}
 	
 	function funcAddDoc() {
-		/* <div id="addDocWindow" class="easyui-window" title="检查材料"
-		     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-		     style="width: 300px; height: 200px; padding: 10px;">
-		    
-		</div>
-		 */
 		$.easyui.showDialog({
     		title : "修改抽检事项信息",
     		width : 300,
