@@ -513,7 +513,7 @@
         {
         call prc_import_hc(
         #{hcrwId,mode=IN,jdbcType=VARCHAR},
-        #{result,mode=OUT,jdbcType=NUMERIC}
+        #{result,mode=OUT,jdbcType=NUMERIC},
         #{errorMsg,mode=OUT,jdbcType=VARCHAR}
         )}
     </select>
