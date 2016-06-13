@@ -103,7 +103,10 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
 					<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
-					<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">要求完成时间</th>
+					 <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
+	                    formatter="formatDate">计划开始时间
+	                </th>
+					<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
 					<th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
 					<th data-options="field:'nr'" halign="center" align="left" sortable="true" width="150" codeName="hcnr"
 	                    formatter="formatCodeList">检查内容</th>

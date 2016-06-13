@@ -65,7 +65,7 @@
                             -->
                             <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检查人员</th>
                             <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
-                            <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">要求完成时间</th>
+                            <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">计划结束时间</th>
                             <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
                             
                             <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>

@@ -24,7 +24,7 @@
     <result column="SFXYRGHD" jdbcType="DECIMAL" property="sfxyrghd" />
     <result column="GZQX" jdbcType="VARCHAR" property="gzqx" />
     <result column="SFBJXM" jdbcType="DECIMAL" property="sfbjxm" />
-    <result column="ZXRQ" jdbcType="TIMESTAMP" property="zxrq" />
+    <result column="ZXRQ" jdbcType="DATE" property="zxrq" />
     <result column="ZXSM" jdbcType="VARCHAR" property="zxsm" />
     <result column="PAGE" jdbcType="VARCHAR" property="page" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
@@ -76,7 +76,7 @@
       #{hclx,jdbcType=DECIMAL}, #{qyzzxs,jdbcType=DECIMAL}, #{gsxm,jdbcType=VARCHAR}, 
       #{hcffsm,jdbcType=VARCHAR}, #{jgcl,jdbcType=DECIMAL}, #{xxdb,jdbcType=VARCHAR}, 
       #{dbxxly,jdbcType=VARCHAR}, #{sfxysdhc,jdbcType=DECIMAL}, #{sfxyrghd,jdbcType=DECIMAL}, 
-      #{gzqx,jdbcType=VARCHAR}, #{sfbjxm,jdbcType=DECIMAL}, #{zxrq,jdbcType=TIMESTAMP}, 
+      #{gzqx,jdbcType=VARCHAR}, #{sfbjxm,jdbcType=DECIMAL}, #{zxrq,jdbcType=DATE}, 
       #{zxsm,jdbcType=VARCHAR}, #{page,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kysoft.cpsi.repo.entity.Hcsx">
@@ -204,7 +204,7 @@
         #{sfbjxm,jdbcType=DECIMAL},
       </if>
       <if test="zxrq != null">
-        #{zxrq,jdbcType=TIMESTAMP},
+        #{zxrq,jdbcType=DATE},
       </if>
       <if test="zxsm != null">
         #{zxsm,jdbcType=VARCHAR},
@@ -274,7 +274,7 @@
         SFBJXM = #{sfbjxm,jdbcType=DECIMAL},
       </if>
       <if test="zxrq != null">
-        ZXRQ = #{zxrq,jdbcType=TIMESTAMP},
+        ZXRQ = #{zxrq,jdbcType=DATE},
       </if>
       <if test="zxsm != null">
         ZXSM = #{zxsm,jdbcType=VARCHAR},
@@ -311,7 +311,7 @@
       SFXYRGHD = #{sfxyrghd,jdbcType=DECIMAL},
       GZQX = #{gzqx,jdbcType=VARCHAR},
       SFBJXM = #{sfbjxm,jdbcType=DECIMAL},
-      ZXRQ = #{zxrq,jdbcType=TIMESTAMP},
+      ZXRQ = #{zxrq,jdbcType=DATE},
       ZXSM = #{zxsm,jdbcType=VARCHAR},
       PAGE = #{page,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR}

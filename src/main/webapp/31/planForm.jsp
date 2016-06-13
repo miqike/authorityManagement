@@ -19,36 +19,56 @@
                 </tr>
                 <tr>
                     <td class="label">计划年度</td>
-                    <td><input class="easyui-numberspinner add" id="p_nd" type="text"
+                    <td><input class="easyui-numberspinner add" id="p_nd"
                                data-options="required:true,min:2016" style="width:200px;"/>
                     </td>
                     <td class="label">计划编号</td>
                     <td><input type="hidden" id="p_id"/>
-                        <input class="easyui-validatebox add" type="text" id="p_jhbh" data-options="required:true"
+                        <input class="easyui-validatebox add" id="p_jhbh" data-options="required:true"
                                style="width:192px;"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">计划名称</td>
                     <td colspan="3">
-                        <input class="easyui-validatebox add" id="p_jhmc" type="text" style="width:535px;"
+                        <input class="easyui-validatebox add" id="p_jhmc" style="width:535px;"
+                               data-options="required:true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">抽查文号</td>
+                    <td colspan="3">
+                        <input class="easyui-validatebox add modify" id="p_cxwh" style="width:535px;"
                                data-options="required:true"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">公示系统计划编号</td>
                     <td>
-                        <input class="easyui-validatebox add" id="p_gsjhbh" type="text" style="width:192px;"
+                        <input class="easyui-validatebox add" id="p_gsjhbh" style="width:192px;"
                                data-options="required:true"/>
                     </td>
-                    <td class="label">要求完成时间</td>
-                    <td><input class="easyui-datebox add modify" type="text" id="p_yqwcsj" style="width:200px;"
+                </tr>
+                <tr>
+                    <td class="label">计划开始时间</td>
+                    <td><input class="easyui-datebox add modify" id="p_ksrq" style="width:200px;"
+                               data-options="required:true"/></td>
+                    <td class="label">计划结束时间</td>
+                    <td><input class="easyui-datebox add modify" id="p_yqwcsj" style="width:200px;"
+                               data-options="required:true"/></td>
+                </tr>
+                <tr>
+                    <td class="label">成立起始日</td>
+                    <td><input class="easyui-datebox add modify" id="p_clqsr" style="width:200px;"
+                               data-options="required:true"/></td>
+                    <td class="label">成立终止日</td>
+                    <td><input class="easyui-datebox add modify" id="p_clzzr" style="width:200px;"
                                data-options="required:true"/></td>
                 </tr>
                 <tr>
                     <td class="label">检查分类</td>
                     <td>
-                        <input class="easyui-combobox add modify" id="p_fl" type="text" style="width:200px;"
+                        <input class="easyui-combobox add modify" id="p_fl" style="width:200px;"
                                data-options="panelHeight:60,required:true" codeName="hcfl"/>
                     </td>
                     <td class="label">检查内容</td>
@@ -60,44 +80,44 @@
                 <tr>
                     <td class="label">任务数量</td>
                     <td>
-                        <input class="easyui-validatebox" id="p_hcrwsl" type="text" style="width:192px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_hcrwsl" style="width:192px;" data-options=""/>
                     </td>
                     <td class="label">已派发</td>
-                    <td><input class="easyui-validatebox" id="p_ypfsl" type="text" style="width:192px;"
+                    <td><input class="easyui-validatebox" id="p_ypfsl" style="width:192px;"
                                data-options=""/></td>
                 </tr>
                 <tr>
                     <td class="label">已认领</td>
                     <td>
-                        <input class="easyui-validatebox" id="p_yrlsl" type="text" style="width:192px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_yrlsl" style="width:192px;" data-options=""/>
                     </td>
                     <td class="label">未认领</td>
-                    <td><input class="easyui-validatebox" id="p_wrlsl" type="text" style="width:192px;"
+                    <td><input class="easyui-validatebox" id="p_wrlsl" style="width:192px;"
                                data-options=""/></td>
                 </tr>
                 <!-- 
                 <tr>
                     <td class="label">审核状态</td>
                     <td>
-                        <input class="easyui-combobox" id="p_shzt" type="text" style="width:200px;" data-options=""
+                        <input class="easyui-combobox" id="p_shzt" style="width:200px;" data-options=""
                                codeName="shzt"/>
                     </td>
                     <td class="label">审核人</td>
-                    <td><input class="easyui-validatebox" validType="email" id="p_shr" type="text" style="width:192px;"
+                    <td><input class="easyui-validatebox" validType="email" id="p_shr" style="width:192px;"
                                data-options=""/></td>
                 </tr> -->
                 <tr>
 	                <td class="label">下达日期</td>
-	                <td><input class="easyui-datebox add moddify" id="p_xdrq" type="text" style="width:200px;"
+	                <td><input class="easyui-datebox add moddify" id="p_xdrq" style="width:200px;"
 	                               data-options="required:true"/></td>
                     <td class="label">下达人</td>
                     <td>
-                        <input class="easyui-validatebox" id="p_xdrmc" type="text" style="width:192px;" data-options=""/>
+                        <input class="easyui-validatebox" id="p_xdrmc" style="width:192px;" data-options=""/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">说明</td>
-                    <td colspan="3"><input class="easyui-validatebox add modify" id="p_sm" type="text" style="width:535px;"
+                    <td colspan="3"><input class="easyui-validatebox add modify" id="p_sm" style="width:535px;"
                                            data-options=""/></td>
                 </tr>
 

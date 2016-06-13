@@ -104,8 +104,11 @@
 	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
 	                    formatter="formatDate">下达日期
 	                </th>
+	                <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
+	                    formatter="formatDate">计划开始时间
+	                </th>
 	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">要求完成时间
+	                    formatter="formatDate">计划结束时间
 	                </th>
 	                <th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl"
 	                    formatter="formatCodeList">检查分类
