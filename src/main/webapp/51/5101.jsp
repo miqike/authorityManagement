@@ -116,7 +116,7 @@
                         <td class="label" style="padding-left:10px;">下达时间</td>
                         <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:100"/>
                         </td>
-                        <td class="label" style="padding-left:10px;">要求完成时间</td>
+                        <td class="label" style="padding-left:10px;">计划结束时间</td>
                         <td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:100"/>
                         </td>
                         <td class="label" style="padding-left:10px;">检查结果确认</td>

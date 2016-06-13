@@ -103,26 +103,33 @@ function showPlanForm(data) {
 	$.easyui.showDialog({
 		title : "检查计划信息",
 		width : 750,
-		height : 400,
+		height : 455,
 		topMost : false,
 		iconCls:'icon2 r16_c14',
-		enableSaveButton : true,
+		
+		buttons:[{
+			text:'保存',
+			iconCls : "icon-save",
+			handler:function(){
+				var tab = $('#tabPanel').tabs('getSelected');
+				var index = $('#tabPanel').tabs('getTabIndex',tab);
+				if(index == 0 && $('#planWindow').form('validate')) {
+					savePlan();
+				} else if (index == 1) {
+					//saveRoleResource();
+				}
+				return false;
+			}
+		}],
+		
+		enableSaveButton : false,
 		enableApplyButton : false,
 		closeButtonText : "返回",
 		closeButtonIconCls : "icon-undo",
+		        	
 		href : "./planForm.jsp",
 		onLoad : function() {
 			doPlanFormInit(data);
-		},
-		onSave: function() {
-			var tab = $('#tabPanel').tabs('getSelected');
-			var index = $('#tabPanel').tabs('getTabIndex',tab);
-			if(index == 0 && $('#planWindow').form('validate')) {
-				savePlan();
-			} else if (index == 1) {
-				//saveRoleResource();
-			}
-			return false;
 		}
 	});
 }
@@ -130,9 +137,9 @@ function showPlanForm(data) {
 function doPlanFormInit(data) {
 	$.codeListLoader.parse($('#planTable'))
 	if(null != data) {
+		setFormFieldStatus("planTable", "modify");
 		$.easyuiExtendObj.loadForm('planTable', data);
 		$('#planTable').form("validate");
-		setFormFieldStatus("planTable", "modify");
 	} else {
 		setFormFieldStatus("planTable", "add");
 	}
