@@ -39,7 +39,7 @@
                     <td class="label">公示系统计划编号</td>
                     <td>
                         <input class="easyui-validatebox add" id="p_gsjhbh" type="text" style="width:192px;"
-                               data-options=""/>
+                               data-options="required:true"/>
                     </td>
                     <td class="label">要求完成时间</td>
                     <td><input class="easyui-datebox add modify" type="text" id="p_yqwcsj" style="width:200px;"

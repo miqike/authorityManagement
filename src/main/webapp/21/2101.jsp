@@ -148,7 +148,7 @@
                 <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="100">登记机关</th>
                 <th data-options="field:'mc',halign:'center',align:'left'" sortable="true" width="100">检查机关</th>
                 <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="70">所在区域</th>
-                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="70">信用代码</th>
+                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
                 <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">企业(机构)名称</th>
                 <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100"
                     codeName="ztlx"

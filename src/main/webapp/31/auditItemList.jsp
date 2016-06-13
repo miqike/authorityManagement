@@ -24,7 +24,7 @@
         <thead>
         <tr>
             <!-- <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th> -->
-            <!-- <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="60">事项代码</th> -->
+            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="60">事项代码</th>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">名称</th>
             <th data-options="field:'hclx',halign:'center',align:'left'" sortable="true" width="90" codeName="hclx"
                 formatter="formatCodeList">检查类型
