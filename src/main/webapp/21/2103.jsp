@@ -101,12 +101,12 @@
             <th data-options="field:'hclx',halign:'center',align:'left'" width="90" codeName="hclx"
                 formatter="formatCodeList" styler="hclxStyler">类型
             </th>
+            <th data-options="field:'hcxxfl',halign:'center',align:'left'" width="90" codeName="hcxxfl"
+                formatter="formatCodeList" styler="hcxxflStyler">检查信息分类
+            </th>
             <th data-options="field:'name',halign:'center',align:'left'" width="150">名称</th>
             <th data-options="field:'qyzzxs',halign:'center',align:'left'" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
-            </th>
-            <th data-options="field:'hcxxfl',halign:'center',align:'left'" width="90" codeName="hcxxfl"
-                formatter="formatCodeList" styler="hcxxflStyler">检查信息分类
             </th>
             <th data-options="field:'descript',halign:'center',align:'left'" width="150">描述</th>
             <th data-options="field:'hccl',halign:'center',align:'left'" width="70">检查材料</th>
