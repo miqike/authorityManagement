@@ -65,11 +65,9 @@
 	function doDocListInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
 		$("#btnRemoveDoc").click(funcRemoveDoc); 
-		var hcsx =  $("#mainGrid").datagrid("getSelected");
-		$("#docGrid").datagrid({ 
-			url:'../common/query?mapper=hcclMapper&queryName=queryForAuditItem',
-			queryParams: {hcsxId:hcsx.id}
-		});
+		var auditItem = $("#mainGrid").datagrid("getSelected");
+		$("#_name_").text(auditItem.name);
+		loadDocGrid(auditItem.id);
 	}
 	
 	function docGridClickRowHandler() {
@@ -79,24 +77,28 @@
 			$('#btnRemoveDoc').linkbutton('disable');
 		}
 	}
+	
+	function loadDocGrid(hcsxId) {
+		$.getJSON("../common/query?mapper=hcclMapper&queryName=queryForAuditItem",  {hcsxId:hcsxId}, function(response) {
+			$("#docGrid").datagrid().datagrid("loadData", response);
+		});
+	}
 </script>
 
-<div>
-    <div style="display: none;">
-        <span style="color:blue; " id="_hcrwId_"></span>
-        <span style="color:blue; " id="_hcsxId_"></span>
-        <span style="color:blue; " id="_qymc_"></span>
+<div style="height: 345px">
+    <div style="padding:5px;">
+        <span>抽检事项:</span>
+        <span style="color:blue; " id="_name_"></span>
     </div>
-    <table id="docGrid"
-           data-options="collapsible:true,
-           		singleSelect:true,height:300,width:680,
+    <table id="docGrid" class="easyui-datagrid" 
+           data-options="collapsible:true,fit:true,
+           		singleSelect:true,width:680,
            		onClickRow:docGridClickRowHandler,
 				ctrlSelect:false,method:'get',
-				toolbar: '#docGridToolbar',
-           		pageSize: 20, pagination: true">
+				toolbar: '#docGridToolbar'">
         <thead>
         <tr>
-            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="120">序号</th>
+            <!-- <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="120">序号</th> -->
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">材料名称</th>
             <th data-options="field:'sfbyx',halign:'center',align:'center'" sortable="true" width="80"codeName="yesno" formatter="formatCodeList">是否必要项</th>
             <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
@@ -104,8 +106,6 @@
                 
         </tr>
         </thead>
-        <tbody>
-        </tbody>
     </table>
 
 </div>
@@ -113,10 +113,3 @@
     <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
-<!-- 
-<div id="addDocWindow" class="easyui-window" title="检查材料"
-     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-     style="width: 300px; height: 200px; padding: 10px;">
-    
-</div>
- -->
