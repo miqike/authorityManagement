@@ -57,6 +57,8 @@ public class HcrwServiceImpl implements HcrwService {
         param.put("hcrwId", hcrwId);
         hcrwMapper.pullData(param);
         hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
+        
+        //TODO 处理错误消息..
     }
 
     @Override
