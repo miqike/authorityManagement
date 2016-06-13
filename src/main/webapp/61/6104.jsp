@@ -147,7 +147,7 @@
                         formatter="formatDate">实际完成
                     </th>
                     <th data-options="field:'hcjieguo'" halign="center" align="left" sortable="true" width="70"
-                        formatter="formatCodeList" codeName="hcjg">核查结果
+                        formatter="formatCodeList" codeName="gsjg">核查结果
                     </th>
                 </tr>
                 </thead>
