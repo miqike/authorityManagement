@@ -11,8 +11,8 @@
 	function funcAddDoc() {
 		$.easyui.showDialog({
     		title : "修改抽检事项信息",
-    		width : 300,
-    		height : 200,
+    		width : 400,
+    		height : 280,
     		topMost : false,
     		enableSaveButton : true,
     		enableApplyButton : false,

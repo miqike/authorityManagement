@@ -64,23 +64,23 @@
 	}
 	
 </script>
-<div id="addDocWindow" style="padding-left:5px; padding-top:5px;">
+<div id="addDocWindow" style="padding-left:5px; padding-top:15px;">
     <table>
     	<tr>
     		<td class="label">材料名称</td><td>
     			<input type="hidden" id="d_id" />
     			<input type="hidden" id="d_hcsxId" />
     			<input type="hidden" id="d_hcsxmc" />
-    			<input class="easyui-validatebox" id="d_name" /></td>
+    			<input class="easyui-validatebox" id="d_name" style="width:242px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100" /></td>
+    		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100"  style="width:250px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">是否必要项</td><td><input class="easyui-combobox", id="d_sfbyx" codeName="yesno" data-options="panelHeight:70" /></td>
+    		<td class="label">是否必要项</td><td><input class="easyui-combobox", id="d_sfbyx" codeName="yesno" data-options="panelHeight:70"  style="width:250px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" /></td>
+    		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" style="width:250px;" /></td>
     	</tr>
     </table>
 </div>

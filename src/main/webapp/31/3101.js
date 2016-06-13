@@ -71,11 +71,13 @@ function grid2ClickHandler() {
 
 function setFormFieldStatus(formId, operation) {
     $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("readonly");
+    $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("disabled");;
     $("#" + formId + " input.easyui-combobox." + operation).combobox("enable");
     $("#" + formId + " input.easyui-numberspinner." + operation).numberspinner("enable");
     $("#" + formId + " input.easyui-datebox." + operation).datebox("enable");
     
     $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("readonly", true);
+    $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("disabled", true);
     $("#" + formId + " input.easyui-combobox:not(." + operation + ")").combobox("disable");
     $("#" + formId + " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
     $("#" + formId + " input.easyui-datebox:not(." + operation + ")").datebox("disable");
@@ -178,6 +180,7 @@ function tabSelectHandler(title, index) {
             if ($('#p_hcrwsl').val() == "") {
                 $.messager.alert("提示", "任务信息尚未导入");
                 $('#tabPanel').tabs('select', 0);
+                $('#btnImportTask').linkbutton('enable');
             } else {
                 /*$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
                  $("#grid3").datagrid("loadData", response.rows);

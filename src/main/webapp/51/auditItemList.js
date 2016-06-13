@@ -20,7 +20,6 @@ function stylerHcjg(val, row, index) {
 }
 
 function auditItemsTabSelectHandler(title,index) {
-	console.log("select tab: " + title)
     if(canBeSelected(index)) {
         if(window.auditItemDataReady) {
         	console.log("----------------")

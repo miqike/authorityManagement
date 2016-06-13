@@ -948,6 +948,7 @@ $(function() {
 		search1();
 	});
 */
+	$("#btnOrganizationSelect").click(organizationSelect);
 	$("#btnExpandAll").bind("click", {type:"expandAll"}, expandAll);
 	$("#btnCollapseAll").bind("click", {type:"collapseAll"}, expandAll);
 });

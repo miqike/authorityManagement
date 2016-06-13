@@ -210,9 +210,9 @@
                             iconCls:'icon2 r22_c16',
                             handler: selectOrganization
                         }]" style="width:200px;"/></td>
-                    <td>单位类型</td>
+                    <!-- <td>单位类型</td>
                     <td><input class="easyui-combobox" codeName="orgType" id="p_orgType" data-options="required:true" style="width:200px;"/>
-                    </td>
+                    </td> -->
                 </tr>
                 <tr>
                     <td>单位名称</td>
