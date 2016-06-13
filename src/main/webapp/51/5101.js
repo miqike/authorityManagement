@@ -56,6 +56,7 @@ function grid1ClickHandler() {
     $('#btnSendZllxtzs').linkbutton("enable");
     $('#btnSendQyzshch').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
+    $('#btnPrintHeChaJieGuo').linkbutton("enable");
 
     if (hcrw.dataLoaded == 0) {
         $('#btnPullData').linkbutton("enable");
@@ -164,14 +165,14 @@ function _showDialog(title, url) {
 		closeButtonIconCls : "icon-undo",
 		href : url,
 		onLoad : function() {
-            if(title == "实地检查告知") {
+            if(title == "实地检查告知书") {
                 doShidihechagaozhishuInit();
             } else if(title == "责令履行通知书") {
                 doZelingluxingtongzhishuInit();
             } else if(title == "年报公示信息核查结果报告") {
                 printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
             }else {
-                printQiyezhusuohechahan();
+                doQiyezhusuohechahanInit();
             }
 
 		},
@@ -179,7 +180,7 @@ function _showDialog(title, url) {
 			text:'打印',
 			iconCls:'icon-print',
 			handler:function(){
-				if(title == "实地检查告知") {
+				if(title == "实地检查告知书") {
 					printShidihechagaozhishu();
 				} else if(title == "责令履行通知书") {
 					printZelingluxingtongzhishu();
