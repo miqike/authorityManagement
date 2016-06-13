@@ -183,7 +183,7 @@
 <!-- --------弹出窗口--------------- -->
 <div id="examHistory" class="easyui-window" title="企业检查记录"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
-     style="width: 750px; height: 400px; padding: 10px;">
+     style="width: 1350px; height: 400px; padding: 10px;">
     <table id="grid2"
            class="easyui-datagrid"
            data-options="
@@ -197,14 +197,16 @@
         <tr>
             <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
             <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+            <!-- 
             <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
-            <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
+            <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th> -->
             <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
-            <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"formatter="formatZfry">检查人员</th>
+            <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
             <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
-            <th data-options="field:'rlrq'" halign="center" align="left" width="70"formatter="formatDate">认领日期</th>
-            <th data-options="field:'rwzt'" halign="center" align="left" width="70"codeName="jhlb" formatter="formatCodeList">计划完成</th>
+            <th data-options="field:'rlrq'" halign="center" align="left" width="70" formatter="formatDate">认领日期</th>
+            <th data-options="field:'rwzt'" halign="center" align="left" width="70" codeName="jhlb" formatter="formatCodeList">计划完成</th>
             <th data-options="field:'sjwcrq'" halign="center" align="left" width="70"formatter="formatDate">实际完成</th>
+            <th data-options="field:'hcjiegou'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
         </tr>
         </thead>
     </table>
