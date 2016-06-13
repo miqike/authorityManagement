@@ -6,87 +6,82 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>单位数据授权</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/thems/${theme}/easyui.css" rel="stylesheet" type="text/css"/>
-    <link href="../css/thems/icon.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" id="easyuiTheme"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
 
+    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
+    <script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+    <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
+
+    <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/formatter.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
-    <script type="text/javascript" src="../js/lodop/listPrint.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 
     <script type="text/javascript" src="./1106.js"></script>
     <style>
-
+	<style type="text/css">
+	   .validatebox-text {
+	        border-width: 1px;
+	        border-style: solid;
+	        line-height: 17px;
+	        padding-top: 1px;
+	        padding-left: 3px;
+	        padding-bottom: 2px;
+	        padding-right: 3px;
+	        background-attachment: scroll;
+	        background-size: auto;
+	        background-origin: padding-box;
+	        background-clip: border-box;
+	    }
+	
+	    .validatebox-invalid {
+	        border-color: ffa8a8;
+	        background-repeat: repeat-x;
+	        background-position: center bottom;
+	        background-color: fff3f3;
+	        background-image: url("");
+	    }
+		div #panel .datagrid-wrap{ border: 0px;}
 
         #treePanel {
-            width: 300px;
+            width:300px;
             height: 500px;
-            margin-left: 5px;
-            border-left-width: 1px;
-            border-right-width: 1px;
-            border-bottom-width: 1px;
+            margin-left:5px;
+            margin-right:5px;
+            
         }
 
-        #treePanel panel-header {
-            border-top-width: 0px;
-        }
-
-        #treePanel > div.panel > div {
-            border-left-width: 0px;
-            border-right-width: 0px;
-        }
-
+        
         div.datagrid-wrap {
-            border-left-width: 0px;
-            border-right-width: 0px;
+           border-left-width: 0px;
+           border-right-width: 0px;
         }
 
         #userWindow div.datagrid-wrap {
-            border-top-width: 0px;
-            border-bottom-width: 0px;
+           border-top-width: 0px;
+           border-bottom-width: 0px;
         }
 
         #cc div.datagrid-wrap {
-            border-top-width: 0px;
-            border-bottom-width: 0px;
+           border-top-width: 0px;
+           border-bottom-width: 0px;
         }
-
     </style>
-
-    <!-- 打印控件引入定义开始 -->
-    <script type="text/javascript" src="../js/LodopFuncs.js"></script>
-    <object id="LODOP_OB"
-            classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
-        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
-    </object>
-    <!-- 打印控件引入定义结束 -->
-
 </head>
-<body style="padding:1px;">
-<%--<shiro:hasPermission name="userTree">--%>
-<%--
-<div id="mm" class="easyui-menu" style="width:220px;">
-    <div id="menu1" data-options="iconCls:'icon-uncheck'" onclick="javascript:window.queryChild=!window.queryChild;queryUser();">查询下级单位数据</div>
-</div>
---%>
-<div class="easyui-layout" data-options="fit:true,height:300" style="height:300px;">
-    <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:false,border:false">
-        <div style="float:left;margin:0px 5px;solid: lightgray">
-            <ul id='orgTree' class="ztree" style="height: 150px"></ul>
+<body style="padding:5px;">
+<div class="easyui-layout" data-options="fit:true" >
+    <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:true">
+        <div style="float:left;margin:0px 5px; solid: lightgray">
+            <ul id='orgTree' class="ztree" ></ul>
         </div>
     </div>
-    <div data-options="region:'center'">
+    <div data-options="region:'center'" data-options="fit:true">
         <div style="margin-bottom:3px;margin-top:5px;">
             <span style="margin-left:8px;margin-right:0px;">用户代码/姓名:</span>
             <input id="f_name" style="margin-left:5px;margin-right:10px; padding-right: 3px;"/>
@@ -102,28 +97,22 @@
         <div style="height:150px;">
             <table id="mainGrid"
                    class="easyui-datagrid"
-                   data-options="offset: { width: -310, height: -40},
+                   data-options="offset: { width: -326, height: -640},
                    ctrlSelect:true,method:'get',method:'get'"
                    pagination="false"
                    pagePosition="bottom">
                 <thead>
                 <tr>
                     <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-                    <th data-options="field:'orgId',halign:'center',align:'left'" sortable="true" width="70">单位编码</th>
-                    <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="260">单位名称
-                    </th>
-                    <th data-options="field:'userId',halign:'center',align:'center'" sortable="true" width="70">用户代码
-                    </th>
+                    <th data-options="field:'orgId',halign:'center',align:'center'" sortable="true" width="70">单位编码</th>
+                    <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="200">单位名称</th>
+                    <th data-options="field:'userId',halign:'center',align:'center'" sortable="true" width="70">用户代码</th>
                     <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">用户姓名</th>
                     <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">电话</th>
                     <th data-options="field:'email',halign:'center',align:'right'" sortable="true" width="150">邮箱</th>
                     <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70"
-                        codeName="userStatus"
-                        formatter="formatCodeList">状态
-                    </th>
-                    <th data-options="field:'managerName',halign:'center',align:'center'" sortable="true" width="70">
-                        上级
-                    </th>
+                        codeName="userStatus" formatter="formatCodeList">状态</th>
+                    <th data-options="field:'managerName',halign:'center',align:'center'" sortable="true" width="70">上级</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -133,7 +122,7 @@
         <div style="height:100px;">
             <table id="deptGrid"
                    class="easyui-datagrid"
-                   data-options="offset: { width: -310, height: -40},
+                   data-options="offset: { width: -326, height: -190},
                    ctrlSelect:true,method:'get',method:'get'"
                    toolbar="#mainGridToolbar"
                    pagination="false"

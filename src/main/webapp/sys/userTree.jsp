@@ -99,14 +99,6 @@
 
     </style>
 
-    <!-- 打印控件引入定义开始 -->
-    <script type="text/javascript" src="../js/LodopFuncs.js"></script>
-    <object id="LODOP_OB"
-            classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
-        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
-    </object>
-    <!-- 打印控件引入定义结束 -->
-
 </head>
 <body style="padding:1px;">
     <div class="easyui-layout" data-options="fit:true,height:600" style="height:600px;">
@@ -173,7 +165,7 @@
                 <%--<a href="#" id="btnResetPass" class="easyui-linkbutton" iconCls="icon2 r10_c20" plain="true" disabled="true">重置密码</a>--%>
                 <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
                 <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true" disabled="true">锁定/解锁</a>
-                <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a>
+                <!-- <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a> -->
                 <a href="#" id="btnExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a></div>
 
         </div>

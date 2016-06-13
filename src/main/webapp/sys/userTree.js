@@ -894,7 +894,7 @@ $(function() {
 	$("#btnLock").click(lockUnlock);
 	//$("#btnEditOrSave").click(editOrSave);
 
-	$("#btnPrint").click(function(){
+	/*$("#btnPrint").click(function(){
         var params={};
         params["pageRows"]=50;
         params["pageTitle"]="用户列表";
@@ -910,7 +910,7 @@ $(function() {
         columnList.push({"header":"单位名称","fieldName":"orgName","codeName":null,"colWidth":80});
 
         listPrint(params,$("#mainGrid").datagrid("getRows"),columnList);
-	});
+	});*/
 	$("#btnExport").click(poiExport);
 
 	var setting = {
