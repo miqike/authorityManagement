@@ -512,7 +512,9 @@
     <select id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
         {
         call prc_import_hc(
-        #{hcrwId,mode=IN,jdbcType=VARCHAR}
+        #{hcrwId,mode=IN,jdbcType=VARCHAR},
+        #{result,mode=out,jdbcType=NUMERIC}
+        #{errorMsg,mode=out,jdbcType=VARCHAR}
         )}
     </select>
 

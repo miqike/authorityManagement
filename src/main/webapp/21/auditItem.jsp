@@ -41,9 +41,9 @@ function docGridClickRowHandler() {
     <table width="100%" id="baseTable">
         <tr>
             <td class="label">检查事项名称</td>
-            <td><input class="easyui-validatebox" id="p_name" style="width:192px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_name" style="width:192px;" data-options="required:true"/></td>
             <td class="label">检查事项编码</td>
-            <td><input class="easyui-validatebox" id="p_code" style="width:192px;" data-options=""/></td>
+            <td><input class="easyui-validatebox" id="p_code" style="width:192px;" data-options="required:true"/></td>
         </tr>
         <tr>
             <td class="label">对应公示项目</td>
