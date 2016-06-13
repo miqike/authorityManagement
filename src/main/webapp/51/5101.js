@@ -57,6 +57,7 @@ function grid1ClickHandler() {
     $('#btnSendQyzshch').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
     $('#btnPrintHeChaJieGuo').linkbutton("enable");
+    $('#btnPrintGongShiXinXiGengZheng').linkbutton("enable");
 
     if (hcrw.dataLoaded == 0) {
         $('#btnPullData').linkbutton("enable");
@@ -171,6 +172,8 @@ function _showDialog(title, url) {
                 doZelingluxingtongzhishuInit();
             } else if(title == "年报公示信息核查结果报告") {
                 printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+            }else if(title == "公示信息更正审批表") {
+                printGongShiXinXiGengZhengBiao();
             }else {
                 doQiyezhusuohechahanInit();
             }
@@ -216,6 +219,9 @@ $(function () {
     });
     $("#btnPrintHeChaJieGuo").click(function () {
         _showDialog("年报公示信息核查结果报告", "../gaozhishu/qiyenianbaohechajieguo.jsp");
+    });
+    $("#btnPrintGongShiXinXiGengZheng").click(function () {
+        _showDialog("公示信息更正审批表", "../gaozhishu/gongshixinxigengzheng.jsp");
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");
