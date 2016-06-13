@@ -487,6 +487,7 @@ function getDataFromDataList(xh,dataList,zhongDian){
     return data;
 }
 function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
+    $("#gaozhishuWindow").window("close");
     var columnWidthFull = 200;
     var columnWidths=[15,25,25,25,25,25,25,30];
     var left = 0;

@@ -164,7 +164,16 @@ function _showDialog(title, url) {
 		closeButtonIconCls : "icon-undo",
 		href : url,
 		onLoad : function() {
-			doShidihechagaozhishuInit();
+            if(title == "实地检查告知") {
+                doShidihechagaozhishuInit();
+            } else if(title == "责令履行通知书") {
+                doZelingluxingtongzhishuInit();
+            } else if(title == "年报公示信息核查结果报告") {
+                printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+            }else {
+                printQiyezhusuohechahan();
+            }
+
 		},
 		buttons:[{
 			text:'打印',
