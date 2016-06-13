@@ -332,7 +332,7 @@
         <if test="hcxxfl!=null">
             and HCXXFL = #{hcxxfl}
         </if>
-        order by to_number(CODE) ASC
+        order by to_number(CODE), HCLX, QYZZXS, HCXXFL
     </select>
 
     <select id="queryForPlan" resultMap="BaseResultMap">
@@ -341,7 +341,7 @@
         from T_HCSX where ID in (
         SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId}
         )
-        order by to_number(CODE) ASC
+        order by to_number(CODE) 
     </select>
 
     <select id="queryForPlanCandidate" resultMap="BaseResultMap">
@@ -356,7 +356,7 @@
         <if test="nr==2">
             and hclx=2
         </if>
-        order by to_number(CODE) ASC
+        order by to_number(CODE) 
     </select>
 
     <select id="selectByTaskId" resultMap="BaseResultMap">
@@ -365,7 +365,7 @@
         from T_HCSX where ID in (
         SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
         SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}))
-        order by to_number(CODE) ASC
+        order by to_number(CODE) 
     </select>
 
     <select id="getHcsxCode" resultType="java.util.Map">
