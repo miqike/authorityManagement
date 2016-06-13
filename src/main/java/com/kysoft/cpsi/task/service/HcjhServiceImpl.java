@@ -1,6 +1,7 @@
 package com.kysoft.cpsi.task.service;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.mapper.HcjhMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
@@ -26,6 +27,9 @@ public class HcjhServiceImpl implements HcjhService {
 
     @Resource
     JhSxMapper jhSxMapper;
+    
+    @Resource
+    HcsxMapper hcsxMapper;
 
     @Override
     public void saveCheckList(String hcjhId, String[] hcsxIds) {
@@ -51,8 +55,19 @@ public class HcjhServiceImpl implements HcjhService {
         } else {
             hcjh.setId(UUID.randomUUID().toString().replace("-", ""));
             hcjhMapper.insert(hcjh);
+            
+            insertAvailableAuditItem(hcjh.getId(), hcjh.getNr());
+            /*Map<String, Object> param = Maps.newHashMap();
+            param.put("hcjhId", hcjh.getId());
+            jhSxMapper.insertAvailableAuditItem(param);*/
         }
         return hcjh.getId();
+    }
+    
+    void insertAvailableAuditItem(String hcjhId, Integer nr) {
+    	
+    	List<String> hcsxIdList = hcsxMapper.selectAvailableAuditItemId(hcjhId, nr);
+    	jhSxMapper.insertBatch(hcjhId, hcsxIdList.toArray());
     }
 
     @Override
