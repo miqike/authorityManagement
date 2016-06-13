@@ -509,14 +509,14 @@
         select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR} and RLR IS NOT NULL AND rlrq IS NOT NULL
     </select>
 
-    <select id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
+    <update id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
         {
         call prc_import_hc(
         #{hcrwId,mode=IN,jdbcType=VARCHAR},
         #{result,mode=OUT,jdbcType=NUMERIC},
         #{errorMsg,mode=OUT,jdbcType=VARCHAR}
         )}
-    </select>
+    </update>
 
     <update id="updateLoadedByPrimaryKey">
         UPDATE T_HCRW SET DATA_LOADED = 1 where HCJH_ID = #{planId,jdbcType=VARCHAR}

@@ -1,5 +1,7 @@
 package com.kysoft.cpsi.task.mapper;
 
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.kysoft.cpsi.task.entity.JhSxKey;
@@ -23,7 +25,9 @@ public interface JhSxMapper {
 	 */
 	int insertSelective(JhSxKey record);
 
-	void insertBatch(@Param("hcjhId")String hcjhId, @Param("hcsxIds")String[] hcsxIds);
+	void insertBatch(@Param("hcjhId")String hcjhId, @Param("hcsxIds")Object[] hcsxIds);
 
 	void deleteBatch(@Param("hcjhId")String hcjhId, @Param("hcsxIds")String[] hcsxIds);
+
+	Map<String, Object> insertAvailableAuditItem(Map<String, Object> paramMap);
 }

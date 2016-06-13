@@ -358,6 +358,19 @@
         </if>
         order by to_number(CODE) 
     </select>
+    
+    <select id="selectAvailableAuditItemId" resultType="java.lang.String">
+        select ID from T_HCSX where ID not in (
+        SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = #{hcjhId}
+        )
+        <if test="nr==1">
+            and hclx=1
+        </if>
+        <if test="nr==2">
+            and hclx=2
+        </if>
+        order by to_number(CODE) 
+    </select>
 
     <select id="selectByTaskId" resultMap="BaseResultMap">
         select 'false' as QUERYID,

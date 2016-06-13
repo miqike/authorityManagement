@@ -62,5 +62,7 @@ public interface HcsxMapper {
 
 	void updateDisable(@Param("hcsxId")String hcsxId, @Param("disableFlag")Integer disableFlag, @Param("zxsm")String zxsm);
 
+	List<String> selectAvailableAuditItemId(@Param("hcjhId") String hcjhId, @Param("nr") Integer nr);
+
 	
 }

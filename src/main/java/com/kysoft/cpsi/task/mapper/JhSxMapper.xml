@@ -54,7 +54,6 @@
     </trim>
   </insert>
   
-  
   <insert id="insertBatch">
     INSERT INTO T_HCJH_HCSX (HCJH_ID, HCSX_ID )
     <foreach collection="hcsxIds" index="index" item="hcsxId" separator="UNION ALL">
@@ -68,4 +67,22 @@
       select #{hcsxId} from dual
     </foreach> )
   </delete>
+  
+   <update id="insertAvailableAuditItem" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {
+        call prc_insertAvailableAuditItem(
+        	#{hcjhId,mode=IN,jdbcType=VARCHAR}
+        )}
+    </update> 
+    
+<!--   
+   <update id="insertAvailableAuditItem" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {
+        call prc_insertAvailableAuditItem(
+        #{hcjhId,mode=IN,jdbcType=VARCHAR},
+        #{result,mode=OUT,jdbcType=NUMERIC},
+        #{errorMsg,mode=OUT,jdbcType=VARCHAR}
+        )}
+    </update> 
+     -->
 </mapper>

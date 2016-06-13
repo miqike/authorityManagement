@@ -260,7 +260,6 @@ function funcDelete4() {
 	    $.each(checkedRows, function (idx, elem) {
 	        param.push(elem.id);
 	    });
-	    console.log(param)
 	    $.ajax({
 	        url: "./hcjh/hcsx/" + $('#grid1').datagrid('getSelected').id,
 	        type: "DELETE",
@@ -385,21 +384,8 @@ function savePlan() {
             if (response.status == SUCCESS) {
                 $('#p_id').val(response.id);
                 setReadOnlyStatus();
-                //$("#btnSavePlan").linkbutton("disable");
                 $("#btnImportTask").linkbutton("enable");
                 loadGrid1();
-                /*var options = $('#grid1').datagrid('options');
-                 options.url = '../common/query?mapper=hcjhMapper&queryName=query';
-                 $("#grid1").datagrid(options);
-                 if ($("#grid1").datagrid("getSelected") != null) {
-                 $("#btnView").linkbutton("enable");
-                 $("#btnDelete").linkbutton("enable");
-                 } else {
-                 $("#btnView").linkbutton("disable");
-                 $("#btnDelete").linkbutton("disable");
-                 }*/
-
-                //$("#baseWindow").window("close");
             } else {
                 $.messager.alert('失败', response.message, 'info');
             }
