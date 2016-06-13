@@ -125,7 +125,9 @@ $(function () {
             qy: $("#f_qy").val(),
             zzxs: $("#f_zzxs").combobox("getValue"),
             jyzt: $("#f_jyzt").combobox("getValue"),
-            hcjg: $("#f_hcjg").combobox("getValue")
+            hcjg: $("#f_hcjg").combobox("getValue"),
+            jhmc:$("#f_jhmc").val(),
+            gsjhbh:$("#f_gsjhbh").val()
         };
         $("#mainGrid").datagrid(options);
 
