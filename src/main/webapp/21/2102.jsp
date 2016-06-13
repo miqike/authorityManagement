@@ -112,43 +112,37 @@
             </table>
         </div>
 
+<!-- onDblClickRow:mainGridDblClickHandler, -->
         <table id="mainGrid"
                class="easyui-datagrid"
                data-options="collapsible:true,
-         		offset: { width: 0, height: 0},
-         		height:500,
-		ctrlSelect:true,method:'get',
-		toolbar: '#mainGridToolbar',
-         		pageSize: 20, pagination: true"
-               pagePosition="bottom">
+         			width: 100, height: 140,
+	            	enableHeaderClickMenu: false,
+					ctrlSelect:true,method:'get',
+		            enableHeaderContextMenu: false,
+		            enableRowContextMenu: false,
+					toolbar: '#mainGridToolbar',
+	           		pageSize: 20, pagination: true,
+		            offset: { width: -254, height: -76}">
             <thead>
             <tr>
                 <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-                <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="100">检查机关
-                </th>
+                <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="100">检查机关</th>
                 <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
                 <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
-                <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="150"
-                    codeName="gender"
-                    formatter="formatCodeList">性别
-                </th>
-                <th data-options="field:'sfzh',halign:'center',align:'right'" sortable="true" width="100">身份证号</th>
+                <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="50"
+                    codeName="gender"formatter="formatCodeList">性别</th>
+                <th data-options="field:'sfzh',halign:'center',align:'right'" sortable="true" width="150">身份证号</th>
                 <th data-options="field:'zw',halign:'center',align:'right'" sortable="true" width="100">职务</th>
                 <th data-options="field:'zflx',halign:'center',align:'center'" sortable="true" width="100"
-                    codeName="zfjdlx"
-                    formatter="formatCodeList">执法(监督)类型
-                </th>
+                    codeName="zfjdlx" formatter="formatCodeList">执法(监督)类型</th>
                 <th data-options="field:'whcd',halign:'center',align:'center'" sortable="true" width="100"
                     codeName="whcd"
-                    formatter="formatCodeList">文化程度
-                </th>
-                <th data-options="field:'zt',halign:'center',align:'right'" sortable="true" width="100"
-                    codeName="userStatus" formatter="formatCodeList">状态
-                </th>
-                <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">联系电话
-                </th>
-                <th data-options="field:'mail',halign:'center',align:'right'" sortable="true" width="150">电子邮箱
-                </th>
+                    formatter="formatCodeList">文化程度</th>
+                <th data-options="field:'zt',halign:'center',align:'center'" sortable="true" width="100"
+                    codeName="userStatus" formatter="formatCodeList">状态</th>
+                <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
+                <th data-options="field:'mail',halign:'center',align:'right'" sortable="true" width="150">电子邮箱</th>
             </tr>
             </thead>
             <tbody>

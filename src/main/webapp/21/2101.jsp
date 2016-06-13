@@ -108,7 +108,7 @@
                     <td class="label">行业分类</td>
                     <td><input id="f_hyfl" class="easyui-combobox" codeName="hyfl"/></td>
                     <td class="label">区域</td>
-                    <td><input id="f_qy" class="easyui-validatebox" style=""/></td>
+                    <td><input id="f_qy" class="easyui-combobox" codeName="" /></td>
                 </tr>
                 <tr>
                     <td class="label">组织形式</td>
@@ -139,7 +139,7 @@
 			            enableRowContextMenu: false,
 						toolbar: '#mainGridToolbar',
 		           		pageSize: 20, pagination: true,
-			            offset: { width: -265, height: -110}">
+			            offset: { width: -252, height: -124}">
             <thead>
             <tr>
                 <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="100">登记机关</th>
