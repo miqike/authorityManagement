@@ -42,15 +42,21 @@ function docGridClickRowHandler() {
         <tr>
             <td class="label">检查事项名称</td>
             <td><input class="easyui-validatebox" id="p_name" style="width:192px;" data-options=""/></td>
+            <td class="label">检查事项编码</td>
+            <td><input class="easyui-validatebox" id="p_code" style="width:192px;" data-options=""/></td>
+        </tr>
+        <tr>
             <td class="label">对应公示项目</td>
             <td><input class="easyui-validatebox" id="p_gsxm" style="width:192px;" data-options=""/></td>
+            <td class="label">企业组织形式</td>
+            <td><input class="easyui-combobox" id="p_qyzzxs" style="width:200px;" data-options=""
+                       codeName="qyzzxs"/></td>
         </tr>
         <tr>
             <td class="label">描述</td>
             <td colspan="3">
             	<input class="easyui-validatebox" id="p_descript" style="width:553px;" data-options=""/>
             </td>
-            
         </tr>
         <tr>
             <td class="label">检查方法</td>
@@ -64,9 +70,10 @@ function docGridClickRowHandler() {
             <td class="label">检查类型</td>
             <td><input class="easyui-combobox" id="p_hclx" style="width:200px;" data-options="panelHeight:100"
                        codeName="hclx"/></td>
-            <td class="label">企业组织形式</td>
-            <td><input class="easyui-combobox" id="p_qyzzxs" style="width:200px;" data-options=""
-                       codeName="qyzzxs"/></td>
+            <td class="label">是否需要人工核对</td>
+            <td><input class="easyui-combobox" id="p_sfxyrghd" style="width:200px;" data-options="panelHeight:100"
+                       codeName="yesno"/>
+            </td>
         </tr>
         <tr>
             <td class="label">登记/公示信息比对</td>
@@ -81,13 +88,6 @@ function docGridClickRowHandler() {
                        codeName="yesno"/></td>
             <td class="label">是否需要实地检查</td>
             <td><input class="easyui-combobox" id="p_sfxysdhc" style="width:200px;" data-options="panelHeight:100"
-                       codeName="yesno"/>
-            </td>
-        </tr>
-        
-        <tr>   
-            <td class="label">是否需要人工核对</td>
-            <td><input class="easyui-combobox" id="p_sfxyrghd" style="width:200px;" data-options="panelHeight:100"
                        codeName="yesno"/>
             </td>
         </tr>

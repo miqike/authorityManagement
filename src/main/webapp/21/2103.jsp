@@ -98,6 +98,7 @@
            pagePosition="bottom">
         <thead>
         <tr>
+            <th data-options="field:'code',halign:'center',align:'center'" width="40">编码</th>
             <th data-options="field:'hclx',halign:'center',align:'left'" width="90" codeName="hclx"
                 formatter="formatCodeList" styler="hclxStyler">类型
             </th>
