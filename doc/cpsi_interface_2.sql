@@ -646,6 +646,7 @@ comment on column v_xt_user.zfzh is '执法证号';
 /**
 导入数据之后，生成测试数据
  */
+delete from v_nnb_jbqk where nd='2016';
 insert into v_nnb_jbqk(QSZSJQK,JYXMQZXZXK,QZXZXKSFYX,GDSFBD,GDSFBA,GDSJQK,DSJSSFBG,DSJSSFBA,DSJSSJQK,ZGBMSFBG,ZGBMSFBA,ZGBMSJQK,
                        TZZEMY,ZCZBMY,ZFRJMY,WFRJMY,SSZBMY,ZFSJMY,WFSJMY,WQSFCX,WQCXQX,ZXSWHHRSFBD,ZXSWHHRSFBA,HHRSFBD,HHRSFBA,HHRCZSFBD,HHRCZSFBA,GBDQ,
                        FQR,YYZK,ZYYWXM,BZSM,ZCXS,YWFW,REGNO,LSQY,NBXH,ND,ZS,FDDBR,YQMC,YYQX_QS,YYQX_JZ,ZCZJ,QYLX,JYFS_JYFW,JYCS,SSZB,JYFW,JYFS,CYRS,CZFS,
@@ -661,10 +662,10 @@ insert into v_nnb_jbqk(QSZSJQK,JYXMQZXZXK,QZXZXKSFYX,GDSFBD,GDSFBA,GDSJQK,DSJSSF
          uext_random.random_chinese(10) HHRSFBA,uext_random.random_chinese(10) HHRCZSFBD,uext_random.random_chinese(10) HHRCZSFBA,uext_random.random_chinese(10) GBDQ,
          uext_random.random_chinese(10) FQR,trunc(uext_random.value(0, 2)) YYZK,uext_random.random_chinese(10) ZYYWXM,uext_random.random_chinese(10) BZSM,
          uext_random.random_chinese(10) ZCXS,uext_random.random_chinese(10) YWFW,uext_random.random_chinese(10) REGNO,uext_random.random_chinese(10) LSQY,
-         nbxh NBXH,'2016' ND,uext_random.random_addr ZS,uext_random.random_name FDDBR,
+         nbxh NBXH,nd ND,uext_random.random_addr ZS,uext_random.random_name FDDBR,
          uext_random.random_chinese(10) YQMC,uext_random.random_chinese(10) YYQX_QS,to_char(uext_random.random_date(345),'yyyy/mm/dd') YYQX_JZ,uext_random.value(1000,10000) ZCZJ,
          uext_random.random_chinese(10) QYLX,uext_random.random_chinese(10) JYFS_JYFW,uext_random.random_chinese(10) JYCS,uext_random.random_chinese(10) SSZB,
-         uext_random.random_chinese(10) JYFW,uext_random.random_chinese(10) JYFS,uext_random.random_chinese(10) CYRS,uext_random.random_chinese(10) CZFS,
+         uext_random.random_chinese(10) JYFW,uext_random.random_chinese(10) JYFS,trunc(uext_random.value(1,100)) CYRS,uext_random.random_chinese(10) CZFS,
          uext_random.random_chinese(10) QZXK,uext_random.random_chinese(10) YBJY,uext_random.random_chinese(10) JYLB,uext_random.value(1000,10000) SSHY,
          to_char(uext_random.random_date(345),'yyyy/mm/dd') CLRQ,uext_random.random_chinese(10) BELONG_EPNAME,uext_random.random_numeric_character(15) BELONG_EPZCH,uext_random.random_addr BELONG_EPZS,
          uext_random.random_chinese(10) JYFWDJXKZ,uext_random.random_chinese(10) JYFWDJXKZNR,uext_random.random_chinese(10) JYFWQZXKXM,uext_random.random_chinese(10) JYFWQZXKXMNR,
@@ -674,11 +675,42 @@ insert into v_nnb_jbqk(QSZSJQK,JYXMQZXZXK,QZXZXKSFYX,GDSFBD,GDSFBA,GDSJQK,DSJSSF
          uext_random.random_chinese(10) JSSJQK,uext_random.random_chinese(10) JLSFBD,uext_random.random_chinese(10) JLSFBA,uext_random.random_chinese(10) JLSJQK,
          case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFYFGS,uext_random.random_chinese(10) FGSSFBD,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end FGSSFBA,uext_random.random_chinese(10) FGSSJQK,
          case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFQS,uext_random.random_chinese(10) QSZSFBD,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end QSZSFBA
-  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jbqk  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jbqk  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from v_nnb_jbqk_bd where nd='2016';
+insert into v_nnb_jbqk_bd(QSZSJQK,JYXMQZXZXK,QZXZXKSFYX,GDSFBD,GDSFBA,GDSJQK,DSJSSFBG,DSJSSFBA,DSJSSJQK,ZGBMSFBG,ZGBMSFBA,ZGBMSJQK,
+                       TZZEMY,ZCZBMY,ZFRJMY,WFRJMY,SSZBMY,ZFSJMY,WFSJMY,WQSFCX,WQCXQX,ZXSWHHRSFBD,ZXSWHHRSFBA,HHRSFBD,HHRSFBA,HHRCZSFBD,HHRCZSFBA,GBDQ,
+                       FQR,YYZK,ZYYWXM,BZSM,ZCXS,YWFW,REGNO,LSQY,NBXH,ND,ZS,FDDBR,YQMC,YYQX_QS,YYQX_JZ,ZCZJ,QYLX,JYFS_JYFW,JYCS,SSZB,JYFW,JYFS,CYRS,CZFS,
+                       QZXK,YBJY,JYLB,SSHY,CLRQ,BELONG_EPNAME,BELONG_EPZCH,BELONG_EPZS,JYFWDJXKZ,JYFWDJXKZNR,JYFWQZXKXM,JYFWQZXKXMNR,JYFWYBDJXM,
+                       JYFWYBDJXMNR,GDXMSFBG,GDAQJCZE,ZCSFXG,ZCSFBA,ZCSJQK,DSSFBD,DSSFBA,DSSJQK,JSSFBD,JSSFBA,JSSJQK,JLSFBD,JLSFBA,JLSJQK,SFYFGS,FGSSFBD,
+                       FGSSFBA,FGSSJQK,SFQS,QSZSFBD,QSZSFBA)
+  select uext_random.random_chinese(10) QSZSJQK,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end JYXMQZXZXK,uext_random.random_chinese(10) QZXZXKSFYX,uext_random.random_chinese(10) GDSFBD,
+         uext_random.random_chinese(10) GDSFBA,uext_random.random_chinese(10) GDSJQK,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end DSJSSFBG,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end DSJSSFBA,
+         uext_random.random_chinese(10) DSJSSJQK,uext_random.random_chinese(10) ZGBMSFBG,uext_random.random_chinese(10) ZGBMSFBA,uext_random.random_chinese(10) ZGBMSJQK,
+         uext_random.value(1000,10000) TZZEMY,uext_random.value(1000,10000) ZCZBMY,uext_random.value(1000,10000) ZFRJMY,uext_random.value(1000,10000) WFRJMY,
+         uext_random.value(1000,10000) SSZBMY,uext_random.value(1000,10000) ZFSJMY,uext_random.value(1000,10000) WFSJMY,uext_random.random_chinese(10) WQSFCX,
+         uext_random.random_chinese(10) WQCXQX,uext_random.random_chinese(10) ZXSWHHRSFBD,uext_random.random_chinese(10) ZXSWHHRSFBA,uext_random.random_chinese(10) HHRSFBD,
+         uext_random.random_chinese(10) HHRSFBA,uext_random.random_chinese(10) HHRCZSFBD,uext_random.random_chinese(10) HHRCZSFBA,uext_random.random_chinese(10) GBDQ,
+         uext_random.random_chinese(10) FQR,trunc(uext_random.value(0, 2)) YYZK,uext_random.random_chinese(10) ZYYWXM,uext_random.random_chinese(10) BZSM,
+         uext_random.random_chinese(10) ZCXS,uext_random.random_chinese(10) YWFW,uext_random.random_chinese(10) REGNO,uext_random.random_chinese(10) LSQY,
+         nbxh NBXH,nd ND,uext_random.random_addr ZS,uext_random.random_name FDDBR,
+         uext_random.random_chinese(10) YQMC,uext_random.random_chinese(10) YYQX_QS,to_char(uext_random.random_date(345),'yyyy/mm/dd') YYQX_JZ,uext_random.value(1000,10000) ZCZJ,
+         uext_random.random_chinese(10) QYLX,uext_random.random_chinese(10) JYFS_JYFW,uext_random.random_chinese(10) JYCS,uext_random.random_chinese(10) SSZB,
+         uext_random.random_chinese(10) JYFW,uext_random.random_chinese(10) JYFS,trunc(uext_random.value(1,100)) CYRS,uext_random.random_chinese(10) CZFS,
+         uext_random.random_chinese(10) QZXK,uext_random.random_chinese(10) YBJY,uext_random.random_chinese(10) JYLB,uext_random.value(1000,10000) SSHY,
+         to_char(uext_random.random_date(345),'yyyy/mm/dd') CLRQ,uext_random.random_chinese(10) BELONG_EPNAME,uext_random.random_numeric_character(15) BELONG_EPZCH,uext_random.random_addr BELONG_EPZS,
+         uext_random.random_chinese(10) JYFWDJXKZ,uext_random.random_chinese(10) JYFWDJXKZNR,uext_random.random_chinese(10) JYFWQZXKXM,uext_random.random_chinese(10) JYFWQZXKXMNR,
+         uext_random.random_chinese(10) JYFWYBDJXM,uext_random.random_chinese(10) JYFWYBDJXMNR,uext_random.random_chinese(10) GDXMSFBG,uext_random.random_chinese(10) GDAQJCZE,
+         case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end ZCSFXG,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end ZCSFBA,uext_random.random_chinese(10) ZCSJQK,uext_random.random_chinese(10) DSSFBD,
+         case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end DSSFBA,uext_random.random_chinese(10) DSSJQK,uext_random.random_chinese(10) JSSFBD,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end JSSFBA,
+         uext_random.random_chinese(10) JSSJQK,uext_random.random_chinese(10) JLSFBD,uext_random.random_chinese(10) JLSFBA,uext_random.random_chinese(10) JLSJQK,
+         case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFYFGS,uext_random.random_chinese(10) FGSSFBD,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end FGSSFBA,uext_random.random_chinese(10) FGSSJQK,
+         case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFQS,uext_random.random_chinese(10) QSZSFBD,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end QSZSFBA
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jbqk_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
+delete from v_nnb_jyqk where nd='2016';
 insert into v_nnb_jyqk(KS,NBXH,ND,YYE,FWYYSL,GNXSE,FWYYE,NSZE,GS,LRZE,SHLR,ZCZE,CQTZ,FZZE,CQFZ,YWJYQ,SZJWTZ,JCKDL,JCKZY,DNTZ,
                        DWTZ,YZJGMC,YYZK,TCKYRQ,KSJFZCSCDYY,SFCBJYGL,CBBQYDCBQYMC,QJCZYY,GYZCCZE)
-  select uext_random.value(100,10000) KS,nbxh NBXH,'2016' ND,uext_random.value(100,10000) YYE,
+  select uext_random.value(100,10000) KS,nbxh NBXH,nd nd,uext_random.value(100,10000) YYE,
          uext_random.value(100,10000) FWYYSL,uext_random.value(100,10000) GNXSE,uext_random.value(100,10000) FWYYE,uext_random.value(100,10000) NSZE,
          uext_random.value(100,10000) GS,uext_random.value(100,10000) LRZE,uext_random.value(100,10000) SHLR,uext_random.value(100,10000) ZCZE,
          uext_random.value(100,10000) CQTZ,uext_random.value(100,10000) FZZE,uext_random.value(100,10000) CQFZ,trunc(uext_random.value(0,2)) YWJYQ,
@@ -686,29 +718,67 @@ insert into v_nnb_jyqk(KS,NBXH,ND,YYE,FWYYSL,GNXSE,FWYYE,NSZE,GS,LRZE,SHLR,ZCZE,
          uext_random.value(100,10000) DWTZ,uext_random.random_chinese(10) YZJGMC,trunc(uext_random.value(0,2)) YYZK,to_char(uext_random.random_date(345),'yyyy-mm-dd') TCKYRQ,
          uext_random.random_chinese(10) KSJFZCSCDYY,trunc(uext_random.value(0,2)) SFCBJYGL,uext_random.value(100,10000) CBBQYDCBQYMC,uext_random.value(100,10000) QJCZYY,
          uext_random.value(100,10000) GYZCCZE
-  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jyqk  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jyqk  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from v_nnb_jyqk_bd where nd='2016';
+insert into v_nnb_jyqk_bd(KS,NBXH,ND,YYE,FWYYSL,GNXSE,FWYYE,NSZE,GS,LRZE,SHLR,ZCZE,CQTZ,FZZE,CQFZ,YWJYQ,SZJWTZ,JCKDL,JCKZY,DNTZ,
+                       DWTZ,YZJGMC,YYZK,TCKYRQ,KSJFZCSCDYY,SFCBJYGL,CBBQYDCBQYMC,QJCZYY,GYZCCZE)
+  select uext_random.value(100,10000) KS,nbxh NBXH,nd nd,uext_random.value(100,10000) YYE,
+         uext_random.value(100,10000) FWYYSL,uext_random.value(100,10000) GNXSE,uext_random.value(100,10000) FWYYE,uext_random.value(100,10000) NSZE,
+         uext_random.value(100,10000) GS,uext_random.value(100,10000) LRZE,uext_random.value(100,10000) SHLR,uext_random.value(100,10000) ZCZE,
+         uext_random.value(100,10000) CQTZ,uext_random.value(100,10000) FZZE,uext_random.value(100,10000) CQFZ,trunc(uext_random.value(0,2)) YWJYQ,
+         uext_random.value(100,10000) SZJWTZ,uext_random.value(100,10000) JCKDL,uext_random.value(100,10000) JCKZY,uext_random.value(100,10000) DNTZ,
+         uext_random.value(100,10000) DWTZ,uext_random.random_chinese(10) YZJGMC,trunc(uext_random.value(0,2)) YYZK,to_char(uext_random.random_date(345),'yyyy-mm-dd') TCKYRQ,
+         uext_random.random_chinese(10) KSJFZCSCDYY,trunc(uext_random.value(0,2)) SFCBJYGL,uext_random.value(100,10000) CBBQYDCBQYMC,uext_random.value(100,10000) QJCZYY,
+         uext_random.value(100,10000) GYZCCZE
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_jyqk_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
+delete from v_nnb_fgdj where nd='2016';
 insert into v_nnb_fgdj(NBXH,ND,XH,PARINS,DZZZJFS,NUMPARM,BNZJBZ,RESPARMSIGN,RESPARSECSIGN,CJSJ,ZJSJ,QYLX,DJZDYBZ,BNXZDYRS)
-  select nbxh NBXH,'2016' ND,uext_random.value(1,10) XH,uext_random.value(1,10) PARINS,uext_random.value(1,10) DZZZJFS,uext_random.value(1,10) NUMPARM,
+  select nbxh NBXH,nd nd,uext_random.value(1,10) XH,uext_random.value(1,10) PARINS,uext_random.value(1,10) DZZZJFS,uext_random.value(1,10) NUMPARM,
          uext_random.value(1,10) BNZJBZ,uext_random.value(1,10) RESPARMSIGN,uext_random.value(1,10) RESPARSECSIGN,uext_random.value(1,10) CJSJ,
          to_char(uext_random.random_date(345),'yyyy-mm-dd') ZJSJ,uext_random.value(1,10) QYLX,uext_random.value(1,10) DJZDYBZ,uext_random.value(1,10) BNXZDYRS
-  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fgdj  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fgdj  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from v_nnb_fgdj_bd where nd='2016';
+insert into v_nnb_fgdj_bd(NBXH,ND,XH,PARINS,DZZZJFS,NUMPARM,BNZJBZ,RESPARMSIGN,RESPARSECSIGN,CJSJ,ZJSJ,QYLX,DJZDYBZ,BNXZDYRS)
+  select nbxh NBXH,nd nd,uext_random.value(1,10) XH,uext_random.value(1,10) PARINS,uext_random.value(1,10) DZZZJFS,uext_random.value(1,10) NUMPARM,
+         uext_random.value(1,10) BNZJBZ,uext_random.value(1,10) RESPARMSIGN,uext_random.value(1,10) RESPARSECSIGN,uext_random.value(1,10) CJSJ,
+         to_char(uext_random.random_date(345),'yyyy-mm-dd') ZJSJ,uext_random.value(1,10) QYLX,uext_random.value(1,10) DJZDYBZ,uext_random.value(1,10) BNXZDYRS
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fgdj_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
+delete from v_nnb_fqczqk where nd='2016';
 insert into v_nnb_fqczqk(NBXH,ND,SEQ,CZQS,QXJZ,YCZE,SJCZE,SJCZSJ,YCZEMY,WFYCZEMY,SJCZEMY,WFSJCZEMY)
-  select nbxh NBXH,'2016' ND,rownum SEQ,to_char(uext_random.random_date(345),'yyyy-mm-dd') CZQS,to_char(uext_random.random_date(345),'yyyy-mm-dd') QXJZ,
+  select nbxh NBXH,nd nd,rownum SEQ,to_char(uext_random.random_date(345),'yyyy-mm-dd') CZQS,to_char(uext_random.random_date(345),'yyyy-mm-dd') QXJZ,
          uext_random.value(1,10) YCZE,uext_random.value(1,10) SJCZE,to_char(uext_random.random_date(345),'yyyy-mm-dd')  SJCZSJ,uext_random.value(1,10) YCZEMY,
          uext_random.value(1,10) WFYCZEMY,uext_random.value(1,10) SJCZEMY,uext_random.value(1,10) WFSJCZEMY
-  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fqczqk  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fqczqk  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from v_nnb_fqczqk_bd where nd='2016';
+insert into v_nnb_fqczqk_bd(NBXH,ND,SEQ,CZQS,QXJZ,YCZE,SJCZE,SJCZSJ,YCZEMY,WFYCZEMY,SJCZEMY,WFSJCZEMY)
+  select nbxh NBXH,nd nd,rownum SEQ,to_char(uext_random.random_date(345),'yyyy-mm-dd') CZQS,to_char(uext_random.random_date(345),'yyyy-mm-dd') QXJZ,
+         uext_random.value(1,10) YCZE,uext_random.value(1,10) SJCZE,to_char(uext_random.random_date(345),'yyyy-mm-dd')  SJCZSJ,uext_random.value(1,10) YCZEMY,
+         uext_random.value(1,10) WFYCZEMY,uext_random.value(1,10) SJCZEMY,uext_random.value(1,10) WFSJCZEMY
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_fqczqk_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
+delete from V_NNB_GQBG where nd='2016';
 insert into V_NNB_GQBG(NBXH,ND,XH,INV,ALTDATE,TRANSAMPR,TRANSAMOR)
-  select nbxh NBXH,'2016' ND,rownum XH,uext_random.random_name INV,to_char(uext_random.random_date(345),'yyyy-mm-dd')  ALTDATE,
+  select nbxh NBXH,nd nd,rownum XH,uext_random.random_name INV,to_char(uext_random.random_date(345),'yyyy-mm-dd')  ALTDATE,
          uext_random.value(1,10) TRANSAMPR,uext_random.value(1,10) TRANSAMOR
-  from gov_nbcc_jh_qy a where not exists(select 1 from V_NNB_GQBG  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from V_NNB_GQBG  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from V_NNB_GQBG_bd where nd='2016';
+insert into V_NNB_GQBG_bd(NBXH,ND,XH,INV,ALTDATE,TRANSAMPR,TRANSAMOR)
+  select nbxh NBXH,nd nd,rownum XH,uext_random.random_name INV,to_char(uext_random.random_date(345),'yyyy-mm-dd')  ALTDATE,
+         uext_random.value(1,10) TRANSAMPR,uext_random.value(1,10) TRANSAMOR
+  from gov_nbcc_jh_qy a where not exists(select 1 from V_NNB_GQBG_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
+delete from v_nnb_wzxx where nd='2016';
 insert into v_nnb_wzxx(NBXH,ND,SEQ,WEBSITNAME,DOMAIN,WEBTYPE,SFWSLZ)
-  select nbxh NBXH,'2016' ND,rownum SEQ,uext_random.random_chinese(10) WEBSITNAME,'http://'||uext_random.string('x',10)||'.com' DOMAIN,
+  select nbxh NBXH,nd nd,rownum SEQ,uext_random.random_chinese(10) WEBSITNAME,'http://'||uext_random.string('x',10)||'.com' DOMAIN,
          trunc(uext_random.value(1,10))*10 WEBTYPE,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFWSLZ
-  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_wzxx  b where b.nbxh=a.nbxh);
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_wzxx  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
+delete from v_nnb_wzxx_bd where nd='2016';
+insert into v_nnb_wzxx_bd(NBXH,ND,SEQ,WEBSITNAME,DOMAIN,WEBTYPE,SFWSLZ)
+  select nbxh NBXH,nd nd,rownum SEQ,uext_random.random_chinese(10) WEBSITNAME,'http://'||uext_random.string('x',10)||'.com' DOMAIN,
+         trunc(uext_random.value(1,10))*10 WEBTYPE,case trunc(uext_random.value(0,2)) when 0 then 'N' else 'Y' end SFWSLZ
+  from gov_nbcc_jh_qy a where not exists(select 1 from v_nnb_wzxx_bd  b where b.nbxh=a.nbxh and b.ND=a.nd) and nd='2016';
 
 /**
 ----问题
