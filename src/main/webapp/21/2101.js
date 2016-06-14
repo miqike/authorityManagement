@@ -12,9 +12,18 @@ function expandHandler() {
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=scztMapper&queryName=query';
-    options.queryParams = {
-        dwId: processorOrgId(treeNode.id)
-    };
+    console.log(treeNode.id)
+    if(treeNode.id.length==8) {
+    	console.log("qybm")
+    	options.queryParams = {
+    		qybm: treeNode.id
+    	};
+    } else {
+    	console.log("dwId")
+	    options.queryParams = {
+	        dwId: processorOrgId(treeNode.id)
+	    };
+    }
     $("#mainGrid").datagrid(options);
 
     //setReadOnlyStatus();
