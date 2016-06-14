@@ -129,7 +129,6 @@ function formatZfry(val, row) {
 function loadMyTask() {
     var options = $("#todoTaskGrid").datagrid("options");
     options.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor';
-    $('#todoTaskGrid').datagrid('load', {});
 }
 
 $(function(){

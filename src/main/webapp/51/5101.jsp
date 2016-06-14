@@ -71,19 +71,6 @@
     </style>
     
     <%
-        /* MenuRepository menuRepository = SpringUtils.getBean(MenuRepository.class);
-        MessageService messageService = SpringUtils.getBean(MessageService.class);
-        Map<String, Object> result = Maps.newHashMap();
-        Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated() || null == currentUser.getPrincipal()) {
-            result.put("userInfo", null);
-        } else {
-            result.put("isRunas", currentUser.isRunAs());
-            result.put("userInfo", WebUtils.getCurrentUser());
-            result.put("menu", menuRepository.getMenu());
-            result.put("webdis", messageService.getWebdisURL());
-        }
-        String initData = JSON.toJSONString(result); */
     %>
     <script>
 	    window.customer = '61';
@@ -138,7 +125,7 @@
                 <table>
                     <tr>
                         <td class="label">计划编号</td>
-                        <td><input id="p_id" class="easyui-validatebox" readonly="readonly" data-options="width:100"/></td>
+                        <td><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" data-options="width:100"/></td>
                         <td class="label" style="padding-left:10px;">计划名称</td>
                         <td><input id="p_jhmc" class="easyui-validatebox" readonly="readonly"/></td>
                         <td class="label" style="padding-left:10px;">下达时间</td>

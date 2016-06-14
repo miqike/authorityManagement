@@ -101,8 +101,8 @@
 
 </head>
 <body style="padding:1px;">
-    <div class="easyui-layout" data-options="fit:true,height:600" style="height:600px;">
-        <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:false,border:false">
+    <div class="easyui-layout" data-options="fit:true">
+        <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:false">
             <div class="easyui-panel" title="单位列表" style="width:295px;height:145px;padding:5px;"
                  data-options="iconCls:'icon-search',collapsible:true,collapsed:true">
                 <div id="p">

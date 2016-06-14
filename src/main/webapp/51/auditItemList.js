@@ -145,13 +145,14 @@ function _funcAnnualAudit() {
 }
 
 function annualAuditItemInit() {
-    var options = $("#annualAuditItemGrid").datagrid().datagrid("options");
-    options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
-    $('#annualAuditItemGrid').datagrid('load', {
-        hcrwId: $('#grid1').datagrid('getSelected').id,
+	$.getJSON("../common/query?mapper=hcsxjgMapper&queryName=queryForTask",  {
+		hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 1
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#annualAuditItemGrid").datagrid("loadData",response);
+        }
     });
-    
     //$("#auditItemAccordion").accordion("select", 0)
 }
 //---------------annual end and instance begin
@@ -182,8 +183,6 @@ function _funcInstanceAudit() {
         $.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
-
-        //showModalDialog("auditWindow");
         $("#auditContent").panel({
             href: '../audit/' + auditItem.page + '.jsp',
             onLoad: function () {
@@ -191,29 +190,19 @@ function _funcInstanceAudit() {
                 doInit();
             }
         });
-        /*
-         if ($("#auditLog").length == 0) {
-         $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
-         }
-         $("#auditLog").panel({
-         href: '../audit/log.jsp',
-         onLoad: function () {
-         //doInit();
-         }
-         }); */
     }
 }
 
 function instanceAuditItemInit() {
-    var options = $("#instanceAuditItemGrid").datagrid("options");
-    options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
-    $('#instanceAuditItemGrid').datagrid('load', {
-        hcrwId: $('#grid1').datagrid('getSelected').id,
+    $.getJSON("../common/query?mapper=hcsxjgMapper&queryName=queryForTask",  {
+		hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 2
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#instanceAuditItemGrid").datagrid("loadData",response);
+        }
     });
-    //$("#auditItemAccordion").accordion("select", 1)
 }
-
 
 //================instance end=========
 function _doInit(type) {
@@ -248,10 +237,8 @@ function _doInit(type) {
 }
 
 function _initPromptForAuditItem(auditItem) {
-	console.log(auditItem)
 	var url = "../common/query?mapper=auditItemCommentMapper&queryName=queryForAuditItem&hcsxId=" + auditItem.hcsxId
 	$.getJSON(url, null, function(response){
-		console.log(response);
 		$.easyui.tooltip.init($("#btnShowPrompt"), { 
 	    	content: constructPromptContent(response.rows), 
 	    	position:"right",showEvent:null,hideEvent:null,

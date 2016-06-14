@@ -56,8 +56,12 @@
 						<tr>
 							<td style="text-align:right">单位编码</td>
 							<td><input class="easyui-textbox" id="f_id" name="p_id" style="width: 100px;text-align: right"/></td>
+							<td style="text-align:right">单位简称</td>
+							<td><input class="easyui-textbox" id="f_briefName" name="p_id" style="width: 200px;text-align: left"/></td>
+                        </tr>
+						<tr>
 							<td style="text-align:right">单位名称</td>
-							<td><input class="easyui-textbox" id="f_name" name="name" data-options="required:true" style="width: 200px"/></td>
+							<td colspan="3"><input class="easyui-validatebox" id="f_name" name="name" data-options="required:true" style="width: 350px"/></td>
                         </tr>
 						<tr>
 							<td style="text-align:right">联系人</td>
@@ -71,11 +75,5 @@
 		</div>
 	</div>
 </div>
-<%--
-</shiro:hasPermission>
-<shiro:lacksPermission name="<%=privilegeName%>">
-    <div>没有权限或者权限配置异常</div>
-</shiro:lacksPermission>
---%>
 </body>
 </html>

@@ -403,7 +403,7 @@ function refreshOrgTree(){
 		data: {
 			key: {
 				title:"parentId",
-				name:"name"
+				name:"nameWithId"
 			}},
 		async: {
 			enable: true,
@@ -620,7 +620,7 @@ function selectOrganization() {
 		data: {
 			key: {
 				title:"parentId",
-				name:"name"
+				name:"nameWithId"
 			}},
 		async: {
 			enable: true,

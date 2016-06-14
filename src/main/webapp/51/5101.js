@@ -36,12 +36,14 @@ function hcrwStyler(index,row){
 }
 
 function loadMyTask() {
-    var options = $("#grid1").datagrid("options");
-    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForAuditor';
-    $('#grid1').datagrid('load', {
-        nd: $('#f_nd').numberspinner("getValue"),
+    $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
+    	nd: $('#f_nd').numberspinner("getValue"),
         hcjhId: $('#f_hcjhId').val(),
         jhmc: $('#f_jhmc').val()
+    }, function (response) {
+        if (response.status == SUCCESS) {
+        	 $("#grid1").datagrid("loadData",response);
+        }
     });
 }
 

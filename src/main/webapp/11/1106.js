@@ -59,7 +59,7 @@ function refreshOrgTree() {
         data: {
             key: {
                 title: "parentId",
-                name: "name"
+                name: "nameWithId"
             }
         },
         async: {
@@ -84,7 +84,7 @@ function selectOrganization() {
         data: {
             key: {
                 title: "parentId",
-                name: "name"
+                name: "nameWithId"
             }
         },
         async: {

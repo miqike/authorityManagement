@@ -4,7 +4,7 @@ var setting = {
     data: {
         key: {
             title:"parentId",
-            name:"name"
+            name:"nameWithId"
         }},
     async: {
         enable: true,
