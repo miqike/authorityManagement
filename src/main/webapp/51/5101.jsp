@@ -60,7 +60,35 @@
             font-weight: bold;
             text-align: right;
         }
+        
+        span.commentItem {
+	        height:20px;  
+			margin:3px 3px 0px 0px; 
+        	font-weight:bold;
+        	font-size:14px;
+			color:blue;
+        }
     </style>
+    
+    <%
+        /* MenuRepository menuRepository = SpringUtils.getBean(MenuRepository.class);
+        MessageService messageService = SpringUtils.getBean(MessageService.class);
+        Map<String, Object> result = Maps.newHashMap();
+        Subject currentUser = SecurityUtils.getSubject();
+        if(!currentUser.isAuthenticated() || null == currentUser.getPrincipal()) {
+            result.put("userInfo", null);
+        } else {
+            result.put("isRunas", currentUser.isRunAs());
+            result.put("userInfo", WebUtils.getCurrentUser());
+            result.put("menu", menuRepository.getMenu());
+            result.put("webdis", messageService.getWebdisURL());
+        }
+        String initData = JSON.toJSONString(result); */
+    %>
+    <script>
+	    window.customer = '61';
+    </script>
+    
 </head>
 <body style="padding:5px;">
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;" data-options="fit:true">

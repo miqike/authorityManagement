@@ -1,3 +1,5 @@
+
+
 function collapseHandler() {
     $("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
