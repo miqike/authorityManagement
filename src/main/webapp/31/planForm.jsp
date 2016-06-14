@@ -12,8 +12,10 @@
                 <tr>
                     <td colspan="3">
                         <!-- <a href="javascript:void(0);" id="btnSavePlan" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a> -->
+                        <a href="javascript:void(0);" id="btnImportPlan" class="easyui-linkbutton add"
+                           iconCls="icon2 r13_c16" plain="true">导入任务信息</a>
                         <a href="javascript:void(0);" id="btnImportTask" class="easyui-linkbutton"
-                           iconCls="icon2 r10_c1" plain="true" disabled>导入任务信息</a>
+                           iconCls="icon2 r10_c1" plain="true" disabled>导入任务</a>
                     </td>
                     <td></td>
                 </tr>
@@ -38,15 +40,15 @@
                 <tr>
                     <td class="label">抽查文号</td>
                     <td colspan="3">
-                        <input class="easyui-validatebox add modify" id="p_cxwh" style="width:535px;"
-                               data-options="required:true"/>
+                        <input class="easyui-validatebox" id="p_cxwh" style="width:535px;"
+                               data-options="required:true" disabled/>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">公示系统计划编号</td>
                     <td>
-                        <input class="easyui-validatebox add" id="p_gsjhbh" style="width:192px;"
-                               data-options="required:true"/>
+                        <input class="easyui-validatebox " id="p_gsjhbh" style="width:192px;"
+                               data-options="required:true" disabled/>
                     </td>
                 </tr>
                 <tr>

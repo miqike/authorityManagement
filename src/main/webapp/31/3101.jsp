@@ -194,6 +194,34 @@
      </div>
 </div>
 
+<!-- --------弹出窗口--------------- -->
+<div id="importTaskWindow" class="easyui-window" title="导入任务信息"
+     data-options="modal:true,closed:true,iconCls:'icon-search'"
+     style="width: 550px; height: 350px; padding: 10px;">
+    <input type="radio" name="importType" value="dblink" checked/>从接口表导入
+    <input type="radio" name="importType" value="file"/>从文件导入
+
+    <div id="file" style="margin:10px;display:none">
+        <input class="easyui-filebox" value="选择文件" style="width:300px" data-options="buttonText:'选择文件'"/>
+        <a href="javascript:void(0);" id="btnImportFile" class="easyui-linkbutton" iconCls="icon2 r6_c10" plain="true">导入</a>
+    </div>
+
+
+    <div id="dblink" style="margin:10px;">
+        <a href="javascript:void(0);" id="btnTestDblink" class="easyui-linkbutton" iconCls="icon2 r13_c20" plain="true">测试连接</a>
+        <a href="javascript:void(0);" id="btnImportDblink" class="easyui-linkbutton" iconCls="icon2 r6_c10"
+           plain="true">导入</a>
+
+    </div>
+    <div id="importReport" style="margin:10px;display:none">
+        检查任务数:
+        <sapn id="_hcrws" style="color:red"></sapn>
+        <br/>
+        检查人员数:
+        <sapn id="_hcrys" style="color:blue"></sapn>
+        <br/>
+    </div>
+</div>
 
 </body>
 </html>

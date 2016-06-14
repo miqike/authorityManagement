@@ -75,12 +75,13 @@ function setFormFieldStatus(formId, operation) {
     $("#" + formId + " input.easyui-combobox." + operation).combobox("enable");
     $("#" + formId + " input.easyui-numberspinner." + operation).numberspinner("enable");
     $("#" + formId + " input.easyui-datebox." + operation).datebox("enable");
+    $("#" + formId + " a.easyui-linkbutton." + operation).linkbutton("enable");
     
     $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("readonly", true);
     $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("disabled", true);
     $("#" + formId + " input.easyui-combobox:not(." + operation + ")").combobox("disable");
     $("#" + formId + " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
-    $("#" + formId + " input.easyui-datebox:not(." + operation + ")").datebox("disable");
+    $("#" + formId + " a.easyui-linkbutton:not(." + operation + ")").linkbutton("disable");
 }
 
 function add() {
@@ -145,6 +146,10 @@ function doPlanFormInit(data) {
 	} else {
 		setFormFieldStatus("planTable", "add");
 	}
+	
+    $("#btnImportTask").click(funcImportTask);
+    $("#btnImportPlan").click(funcImportPlan);
+
 }
 
 function audit() {
@@ -409,6 +414,43 @@ function funcImportTask() {
     }
 }
 
+function funcImportPlan() {
+	if (!$(this).linkbutton('options').disabled) {
+		$.easyui.showDialog({
+			title : "接口抽查计划信息",
+			width : 550,
+			height : 355,
+			topMost : false,
+			iconCls:'icon2 r16_c14',
+			
+			buttons:[{
+				text:'确定',
+				iconCls : "icon-ok",
+				handler:function(){
+					/*var tab = $('#tabPanel').tabs('getSelected');
+					var index = $('#tabPanel').tabs('getTabIndex',tab);
+					if(index == 0 && $('#planWindow').form('validate')) {
+						savePlan();
+					} else if (index == 1) {
+						//saveRoleResource();
+					}
+					return false;*/
+				}
+			}],
+			
+			enableSaveButton : false,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./importPlanList.jsp",
+			onLoad : function() {
+				//doImportPlanList.jspInit();
+			}
+		});
+		
+	}
+}
+
 function selectImportType() {
     var importType = $("#importTaskWindow input:radio:checked").val();
     $("#importTaskWindow #" + importType).show();
@@ -536,7 +578,6 @@ $(function () {
    
     
     //$("#btnSavePlan").click(funcSavePlan);
-    $("#btnImportTask").click(funcImportTask);
     $("#importTaskWindow input:radio").click(selectImportType);
 
     $("#btnTestDblink").click(testDblink);
