@@ -416,10 +416,10 @@ function funcImportTask() {
 
 function funcImportPlan() {
 	if (!$(this).linkbutton('options').disabled) {
-		$.easyui.showDialog({
+		var dialog = $.easyui.showDialog({
 			title : "接口抽查计划信息",
-			width : 550,
-			height : 355,
+			width : 650,
+			height : 380,
 			topMost : false,
 			iconCls:'icon2 r16_c14',
 			
@@ -427,14 +427,26 @@ function funcImportPlan() {
 				text:'确定',
 				iconCls : "icon-ok",
 				handler:function(){
-					/*var tab = $('#tabPanel').tabs('getSelected');
-					var index = $('#tabPanel').tabs('getTabIndex',tab);
-					if(index == 0 && $('#planWindow').form('validate')) {
-						savePlan();
-					} else if (index == 1) {
-						//saveRoleResource();
+					var selected = $('#planAbstractGrid').datagrid("getSelected");
+					if(null != selected) {
+						$.getJSON("./hcjh/validate/" + selected.gsjhbh, null, function(response) {
+							if(response.validate) {
+								$("#p_nd").numberspinner("setValue", selected.nd);
+								$("#p_jhbh").val(selected.gsjhbh);
+								$("#p_jhmc").val(selected.jhmc);
+								$("#p_cxwh").val(selected.cxwh);
+								$("#p_gsjhbh").val(selected.gsjhbh);
+								$(dialog).dialog("close")
+								return true;
+							} else {
+								$.messager.alert("操作提示", "该公示计划曾经导入,不能重复导入");
+								return false;
+							}
+						});
+					} else {
+						$.messager.alert("操作提示", "请首先选择一项公示计划");
+						return false;
 					}
-					return false;*/
 				}
 			}],
 			
@@ -442,13 +454,20 @@ function funcImportPlan() {
 			enableApplyButton : false,
 			closeButtonText : "返回",
 			closeButtonIconCls : "icon-undo",
-			href : "./importPlanList.jsp",
+			href : "./planAbstractList.jsp",
 			onLoad : function() {
-				//doImportPlanList.jspInit();
+				doPlanAbstractListInit();
 			}
 		});
-		
 	}
+}
+
+function doPlanAbstractListInit() {
+	$.getJSON("../common/query?mapper=hcjhMapper&queryName=queryPlanAbstract",  null, function (response) {
+	    if (response.status == SUCCESS) {
+	    	 $("#planAbstractGrid").datagrid("loadData",response);
+	    }
+	});
 }
 
 function selectImportType() {

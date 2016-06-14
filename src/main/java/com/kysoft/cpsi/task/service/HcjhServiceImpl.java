@@ -91,8 +91,6 @@ public class HcjhServiceImpl implements HcjhService {
 	public void reCalcAcceptStatus(String planId) {
 		int yrls = hcrwMapper.selectYrlsByPlanId(planId);
 		hcjhMapper.updateAcceptStatusByPrimaryKey(planId, yrls);
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -101,20 +99,9 @@ public class HcjhServiceImpl implements HcjhService {
 	            jhSxMapper.deleteBatch(hcjhId, hcsxIds);
 	}
 
-/*
 	@Override
-	public Map<String, Object> updateAcceptStatus(Map<String, Object> result) {
-		List<Hcjh> planList = (List<Hcjh>) result.get("rows");
-		for(Hcjh plan: planList) {
-			int yrls = hcrwMapper.selectYrlsByPlanId(plan.getId());
-			plan.setYrlsl(yrls);
-			if(null != plan.getHcrwsl()) {
-				plan.setWrlsl(plan.getHcrwsl() - yrls);
-			}
-		}
-
-		return result;
+	public boolean validateGsjh(String gsjhbh) {
+		int count = hcjhMapper.selectCountByGsjhbh(gsjhbh);
+		return count == 0;
 	}
-	*/
-
 }

@@ -372,6 +372,15 @@
         </if>
         ND
     </select>
+    
+    <select id="queryPlanAbstract" resultMap="BaseResultMap">
+        select jhxh GSJHBH,nd,jhmc,ccwh CXWH,ccqys HCRWSL from GOV_NBCC_JH
+        ORDER BY jhxh
+    </select>
+    
+    <select id="selectCountByGsjhbh" resultType="java.lang.Integer">
+        select count(id) from T_HCJH WHERE GSJHBH = #{gsjhbh}
+    </select>
 <!--     <select id="query" resultMap="BaseResultMap">
         select ID, ND, JHMC, GSJHBH, FL, XDRQ, YQWCSJ, HCRWSL, SHR, SHZT, XDR,
         SM, NR, XDRMC, SHRMC, JHBH,

@@ -70,7 +70,6 @@ function initAuditItemList() {
 }
 
 function doAuditItemListInit() {
-	
     window.auditItemDataReady = false;
     var hcrw = $('#grid1').datagrid('getSelected');
     $.ajax({
@@ -136,24 +135,12 @@ function _funcAnnualAudit() {
         $("#auditItemAccordion").accordion("select", 1);
         //showModalDialog("auditWindow");
         $("#auditContent").panel({
-            href: '../audit/' + auditItem.page + '.jsp',
+            href: '../audit_' + customer + '/' + auditItem.page + '.jsp',
             onLoad: function () {
                 _doInit("annual");
                 doInit();
             }
         });
-        /*
-         if ($("#auditLog").length == 0) {
-         $('<div id="auditLog" style="margin-top:5px;"></div>').appendTo($("#auditWindow"))
-         }
-         $("#auditLog").panel({
-         href: '../audit/log.jsp',
-         onLoad: function () {
-         //doInit();
-         }
-         }); */
-
-
     }
 }
 
@@ -254,8 +241,38 @@ function _doInit(type) {
 
     $("#btnConfirmFail").click(confirmFail);
     $("#btnCancelFail").click(cancelFail);
+    $("#btnShowPrompt").click(showPrompt);
+    _initPromptForAuditItem(auditItem)
     $("#btnClose").click(closeAuditWindow);
     cancelFail();
+}
+
+function _initPromptForAuditItem(auditItem) {
+	console.log(auditItem)
+	var url = "../common/query?mapper=auditItemCommentMapper&queryName=queryForAuditItem&hcsxId=" + auditItem.hcsxId
+	$.getJSON(url, null, function(response){
+		console.log(response);
+		$.easyui.tooltip.init($("#btnShowPrompt"), { 
+	    	content: constructPromptContent(response.rows), 
+	    	position:"right",showEvent:null,hideEvent:null,
+	    	trackMouse: false
+		});
+	});
+}
+
+function constructPromptContent(rows) {
+	var content = "";
+	for(var i=0; i<rows.length; i++) {
+		content += "<span class='commentItem' ondblclick='javascript:addComment(this);'>";
+		content += rows[i].content;
+		content += "</span></br>";
+	}
+	return content;
+}
+
+function addComment(elem) {
+	var content = $(elem).text();
+	$("#k_failReason").text($("#k_failReason").text() + "\n" + content);
 }
 //==通用,通过,失败,返回===
 function pass() {
@@ -288,28 +305,34 @@ function fail() {
 function cancelFail () {
     $('#auditToolbar').show();
     $('#failReason').hide();
+    $("#btnShowPrompt").tooltip("hide");
+}
+
+function showPrompt () {
+	$("#btnShowPrompt").tooltip("show");
 }
 
 function confirmFail () {
-    $.post("../audit/complete", {
-        hcrwId: $("#_hcrwId_").text(),
-        hcsxId: $("#_hcsxId_").text(),
-        hcjg: 2,
-        qymc: $("#_qymc_").text(),
-        hcsxmc: $("#_hcsxmc_").text(),
-        sm:$("#k_failReason").val()
-    }, function (response) {
-        if (response.status == SUCCESS) {
-            $.messager.show({
-                title: '提示',
-                msg: response.message
-            });
-            $("#annualAuditItemGrid").datagrid("reload");
-            closeAuditWindow();
-        } else {
-            $.messager.alert('错误', response.message, 'error');
-        }
-    });
+	$("#btnShowPrompt").tooltip("hide");
+	$.post("../audit/complete", {
+		hcrwId: $("#_hcrwId_").text(),
+		hcsxId: $("#_hcsxId_").text(),
+		hcjg: 2,
+		qymc: $("#_qymc_").text(),
+		hcsxmc: $("#_hcsxmc_").text(),
+		sm:$("#k_failReason").val()
+	}, function (response) {
+		if (response.status == SUCCESS) {
+			$.messager.show({
+				title: '提示',
+				msg: response.message
+			});
+			$("#annualAuditItemGrid").datagrid("reload");
+			closeAuditWindow();
+		} else {
+			$.messager.alert('错误', response.message, 'error');
+		}
+	});
 }
 
 function closeAuditWindow() {
