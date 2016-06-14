@@ -20,6 +20,8 @@ public interface HcjhService {
 
 	void deleteCheckList(String hcjhId, String[] hcsxIds);
 
+	boolean validateGsjh(String gsjhbh);
+
 //	Map<String, Object> updateAcceptStatus(Map<String, Object> result);
 
 }

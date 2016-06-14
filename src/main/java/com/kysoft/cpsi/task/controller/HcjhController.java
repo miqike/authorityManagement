@@ -20,8 +20,6 @@ import net.sf.husky.web.controller.BaseController;
 @RestController
 @RequestMapping("/31")
 public class HcjhController extends BaseController {
-//	public static final String BLANK_ARRAY = "[]";
-//	public static final String ARRAY_START = "[";
 	
 	@Resource
 	HcjhService hcjhService;
@@ -112,6 +110,19 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/hcjh/validate/{gsjhbh}", method = RequestMethod.GET)
+	public Map<String, Object> validateGsjh(@PathVariable String gsjhbh) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			boolean validate = hcjhService.validateGsjh(gsjhbh);
+			result.put("validate", validate);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 }

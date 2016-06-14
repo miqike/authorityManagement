@@ -13,7 +13,7 @@
     	<thead>
     	<tr>
     		<th data-options="field:'xm'" halign="center" align="center" width="200" >项目名称</th>
-            <th data-options="field:'a'" halign="center" align="center" width="200" >公式系统内容</th>
+            <th data-options="field:'a'" halign="center" align="center" width="200" >公示系统内容</th>
             <th data-options="field:'b'" halign="center" align="center" width="200" >标准内容</th>
             <th data-options="field:'result'" halign="center" align="center" width="80" styler="resultStyler">结果</th>
         </tr>

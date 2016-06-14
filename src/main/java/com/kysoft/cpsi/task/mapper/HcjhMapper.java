@@ -53,4 +53,8 @@ public interface HcjhMapper {
 	Map<String, Object> importDblink(Map<String, Object> paramMap);
 
 	void updateAcceptStatusByPrimaryKey(@Param("hcjhId") String hcjhId, @Param("yrlsl")int yrlsl);
+	
+	List<Hcjh> queryPlanAbstract(Map<String, Object> param);
+
+	int selectCountByGsjhbh(String gsjhbh);
 }
