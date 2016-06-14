@@ -107,19 +107,17 @@
                     <td><input id="f_xydm" class="easyui-validatebox"/></td>
                     <td class="label">行业分类</td>
                     <td><input id="f_hyfl" class="easyui-combobox" codeName="hyfl"/></td>
-                    <td class="label">区域</td>
-                    <td><input id="f_qy" class="easyui-combobox" codeName="" /></td>
-                </tr>
-                <tr>
                     <td class="label">组织形式</td>
                     <td><input id="f_zzxs" class="easyui-combobox" codeName="qyzzxs"/></td>
+                </tr>
+                <tr>
                     <td class="label">经营状态</td>
                     <td><input id="f_jyzt" class="easyui-combobox" codeName="jyzt"
                                data-options="panelHeight:120,width:144" style=""/></td>
                     <td class="label">检查结果</td>
                     <td><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
                                data-options="panelHeight:120,width:144" style=""/></td>
-                    <td style="text-align:right">
+                    <td style="text-align:right" colspan="2">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>
                         <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
