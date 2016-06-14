@@ -75,3 +75,10 @@ insert into sys_user_role(role_id,user_id)
   where a.name in('超级管理员')
         and b.user_id<>'system';
 
+/**
+开发测试过程中可能需要用到的SQL
+ */
+--查询操作员，条件是此操作员有未核查过的企业
+select * from sys_user a where exists(select 1 from t_hcrw b where b.zfry_code1=a.zfry and not exists(select 1 from t_hcsxjg c where c.hcrw_id=b.id));
+--查询操作员，条件是此操作员有核查过的企业
+select * from sys_user a where exists(select 1 from t_hcrw b where b.zfry_code1=a.zfry and exists(select 1 from t_hcsxjg c where c.hcrw_id=b.id));
