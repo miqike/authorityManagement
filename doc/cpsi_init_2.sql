@@ -37,16 +37,16 @@ declare
     select * from sys_organization;
 begin
   delete from sys_organization;
-  insert into sys_organization(id,name,parent_id,type,contacts,phone)
-    select code id,content name,sjcode2 parent_id,1 type,null contacts,null phone  from(
+  insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
+    select code id,content name,sjcode2 parent_id,1 type,null contacts,null phone,djjgjc brief_name  from(
       select a.*,case when sjcode='0' and code not in('100000','610000') then '610000' else sjcode end sjcode2
       from bm_djjg@Dbl_Cpsi a where code not in('100000')
       start with sjcode='0' connect by prior code=sjcode
     ) start with sjcode2='0' connect by prior code=sjcode2;
 
   for o in cur_org loop
-    insert into sys_organization(id,name,parent_id,type,contacts,phone)
-      select code id,content name,o.id parent_id,1 type,null contacts,null phone from BM_gxdw@Dbl_Cpsi where code like o.id||'%' and length(code)=8;
+    insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
+      select code id,content name,o.id parent_id,1 type,null contacts,null phone,null brief_name from BM_gxdw@Dbl_Cpsi where code like o.id||'%' and length(code)=8;
   end loop;
 end;
 /
@@ -74,7 +74,7 @@ insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
   where a.name in('超级管理员')
         and b.user_id<>'system';
-
+update sys_user set password=lower(MD5_DIGEST(user_id||'111111'||salt));
 /**
 开发测试过程中可能需要用到的SQL
  */
