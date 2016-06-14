@@ -61,7 +61,7 @@
                         </tr>
 						<tr>
 							<td style="text-align:right">单位名称</td>
-							<td colspan="3"><input class="easyui-validatebox" id="f_name" name="name" data-options="required:true" style="width: 350px"/></td>
+							<td colspan="3"><input class="easyui-textbox" id="f_name" name="name" data-options="required:true" style="width: 350px"/></td>
                         </tr>
 						<tr>
 							<td style="text-align:right">联系人</td>
