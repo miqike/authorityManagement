@@ -227,7 +227,7 @@ $(function () {
     });
     $("#btnPrintGongShiXinXiGengZheng").click(function () {
         //_showDialog("公示信息更正审批表", "../gaozhishu/gongshixinxigengzheng .jsp");
-        printGongShiXinXiGengZhengBiao
+        printGongShiXinXiGengZhengBiao();
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");
