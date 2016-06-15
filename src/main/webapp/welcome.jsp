@@ -56,17 +56,17 @@
                         <thead>
                         <tr>
                             <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
-                            <th data-options="field:'hcdwXydm', halign:'center',align:'left'" width="200" >被检单位统一社会信用代码</th>
+                            <th data-options="field:'hcdwXydm', halign:'center',align:'center'" width="120" >统一社会信用代码</th>
                             <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
                             <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
                             <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检查机关</th>
                             <th data-options="field:'qymc', halign:'center',align:'left'" width="100" >区域名称</th>
                             <!-- 
                             -->
-                            <th data-options="field:'zfryCode1', halign:'center',align:'left'" width="100" formatter="formatZfry">检查人员</th>
-                            <th data-options="field:'jhxdrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">下达时间</th>
-                            <th data-options="field:'jhyqwcrq', halign:'center',align:'left'" width="100" align="right" formatter="formatDate">计划结束时间</th>
-                            <th data-options="field:'rlrq', halign:'center',align:'left'" width="120" align="right" formatter="formatDate">认领时间</th>
+                            <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
+                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="100" align="right" formatter="formatDate">下达时间</th>
+                            <th data-options="field:'jhyqwcrq', halign:'center',align:'center'" width="100" align="right" formatter="formatDate">计划结束时间</th>
+                            <th data-options="field:'rlrq', halign:'center',align:'center'" width="120" align="right" formatter="formatDate">认领时间</th>
                             
                             <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
                             <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> 
@@ -123,7 +123,11 @@
 <script>
 var ctx = "."
 function formatZfry(val, row) {
-    return row.zfryName1 + "/" + row.zfryName2;
+	var result = row.zfryName1 == null? "": row.zfryName1;
+	if(row.zfryName2 != null) {
+		result =  result + "/" + row.zfryName2;
+	}
+    return result;
 }
 
 function loadMyTask() {

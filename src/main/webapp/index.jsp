@@ -74,9 +74,9 @@
 <div data-options="region:'north',border:false" class="north">
     <div class="logo" style="margin-top:2px;"></div>
     <ul id="topMenu"></ul>
-    <div id="pswDiv" style="margin-top:6px;">
+    <div id="pswDiv" style="margin-top:6px;width:380px;">
         <a><img src="./images/head_subject.png" style="margin-right:5px;"/><span id="userInfo"></span></a>
-
+<!-- 
         <a id="msgIcon" style="cursor:pointer;"><img src="./images/icon5.gif" style="margin-right:5px;"/>消息</a>
         <span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
         <a class="easyui-tooltip" style="cursor:pointer;" data-options="
@@ -91,7 +91,7 @@
                         });
                     }">
             <img src="./images/hammer_screwdriver.png" style="margin-right:5px;"/>设置</a>
-        <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/>
+ -->        <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/>
         	<span>全屏</span></a>
         <a onclick='logout()' style="cursor:pointer;"><img src="./images/head_out.png" style="margin-right:5px;"/>注销</a>
         <br/>

@@ -227,9 +227,14 @@
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>
         from T_ZFRY
-        where 1=1
+        where 
+ 			DW_ID IN (
+		    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+					SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) 
+				CONNECT BY PRIOR ID=PARENT_ID
+		    ) 
         <if test="dwId!=null">
-            and dw_id=#{dwId}
+            and dw_id like #{dwId} || '%'
         </if>
         <if test="name != null">
             and name like #{name} || '%'

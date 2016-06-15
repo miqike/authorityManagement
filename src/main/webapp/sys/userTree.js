@@ -951,4 +951,8 @@ $(function() {
 	$("#btnOrganizationSelect").click(organizationSelect);
 	$("#btnExpandAll").bind("click", {type:"expandAll"}, expandAll);
 	$("#btnCollapseAll").bind("click", {type:"collapseAll"}, expandAll);
+	
+	$("#btnAddUserRole").click(addUserRole);
+	$("#btnDeleteUserRole").click(deleteUserRole);
+	$("#btnAddUserRole1").click(addUserRole1);
 });

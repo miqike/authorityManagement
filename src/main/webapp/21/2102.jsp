@@ -127,9 +127,9 @@
             <thead>
             <tr>
                 <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-                <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="100">检查机关</th>
+                <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="180">检查机关</th>
                 <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
-                <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="70">执法证号</th>
+                <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="85">执法证号</th>
                 <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="50"
                     codeName="gender"formatter="formatCodeList">性别</th>
                 <th data-options="field:'sfzh',halign:'center',align:'right'" sortable="true" width="150">身份证号</th>

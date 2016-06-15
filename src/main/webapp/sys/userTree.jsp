@@ -272,6 +272,7 @@
             <a href="#" id="btnCollapseAll" class="easyui-linkbutton" iconCls="icon-minus" plain="true">缩回</a>
             <ul id="tree" class="ztree"></ul>
         </div>
+        <!-- 
         <div title="数据权限" style="width:700px;">
             <table id="grid4"
                    class="easyui-datagrid"
@@ -291,18 +292,18 @@
                     <th data-options="field:'DATAPERMRULEEXP'" align="left" width="150">规则表达式</th>
                     <th data-options="field:'ACLTYPE',halign:'center'" align="left" width="70" codeName="aclType" formatter="formatCodeList">ACL</th>
                     <th data-options="field:'DATAPERMRULEDESC',halign:'center',align:'left'" sortable="true" width="250">规则描述</th>
-                    <!--<th data-options="field:'ACL'" align="left" width="320">ACL列表</th>-->
+                    <th data-options="field:'ACL'" align="left" width="320">ACL列表</th>
                 </tr>
                 </thead>
             </table>
-        </div>
+        </div> -->
     </div>
 
-
+<!-- 
     <div id="grid4Toolbar">
         <a href="#" id="btnEditDataPermission" class="easyui-linkbutton" iconCls="icon-save" plain="true" >保存</a>
         <a href="#" id="btnShowAcl" class="easyui-linkbutton" iconCls="icon2 r5_c16" plain="true" disabled="true">ACL</a>
-    </div>
+    </div> -->
 </div>
 
 <div id="dataPermRuleSelectDialog" class="easyui-dialog" title="选择数据权限规则"
