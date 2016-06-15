@@ -75,9 +75,12 @@
     <script>
 	    window.customer = '61';
     </script>
-    
+    <object id="LODOP_OB"
+        classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+	    <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+	</object>
 </head>
-<body style="padding:5px;">
+<body style="padding:5px;margin-top:-20px;">
 <div id="panel" class="easyui-panel" title="" style="overflow: hidden;" data-options="fit:true">
     <div style="padding: 5px 10px 0px 10px">
         <table id="queryTable">

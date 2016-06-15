@@ -22,10 +22,8 @@ function stylerHcjg(val, row, index) {
 function auditItemsTabSelectHandler(title,index) {
     if(canBeSelected(index)) {
         if(window.auditItemDataReady) {
-        	console.log("----------------")
             _auditItemsTabSelectHandler(index)
         } else {
-        	console.log("++++++++++++++++")
             $.subscribe("AUDITITEM_DATA_INITIALIZED", _auditItemsTabSelectHandler, [index]);
         }
     }

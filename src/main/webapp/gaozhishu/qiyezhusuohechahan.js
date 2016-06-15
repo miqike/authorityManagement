@@ -8,5 +8,6 @@ function doQiyezhusuohechahanInit() {
     $("#zhusuo_hcrwId").text(qy.id);
     $("#zhusuo_qymc").val(qy.hcdwName);
     $("#zhusuo_gljmc").val(qy.hcjgmc);
-
+    $("#zhusuo_gljmc1").val(qy.hcjgmc);
+    $("#zhusuo_sj").val(chinesseDateformatter(new Date()));
 }

@@ -11,5 +11,7 @@ function doZelingluxingtongzhishuInit() {
 
     $("#zeling_qymc").val(qy.hcdwName);
     $("#zeling_gljmc").val(qy.hcjgmc);
+    $("#zeling_gljmc1").val(qy.hcjgmc);
     $("#zeling_tznr").val(auditItem == null ? "" : auditItem.name);
+    $("#zeling_sj").val(chinesseDateformatter(new Date()));
 }

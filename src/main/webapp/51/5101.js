@@ -160,8 +160,8 @@ function getAuditItem() {
 function _showDialog(title, url) {
 	$.easyui.showDialog({
 		title : title,
-		width : 550,
-		height : 420,
+		width : 650,
+		height : 520,
 		topMost : false,
 		iconCls:'icon2 r16_c14',
 		enableSaveButton : false,
@@ -213,19 +213,21 @@ $(function () {
     $("#btnViewDocument").click(funcBtnViewDocument);
 
     $("#btnSendHcgzs").click(function () {
-    	_showDialog("实地检查告知书", "../gaozhishu/shidihechagaozhishu.jsp");
+    	_showDialog("实地检查告知书", "../gaozhishu/shidihecha.jsp");
     });
     $("#btnSendZllxtzs").click(function () {
-    	_showDialog("责令履行通知书", "../gaozhishu/zelingluxingtongzhishu.jsp");
+    	_showDialog("责令履行通知书", "../gaozhishu/zelingluxing.jsp");
     });
     $("#btnSendQyzshch").click(function () {
-    	_showDialog("企业住所调查函", "../gaozhishu/qiyezhusuohechahan.jsp");
+    	_showDialog("企业住所调查函", "../gaozhishu/qiyezhusuo.jsp");
     });
     $("#btnPrintHeChaJieGuo").click(function () {
-        _showDialog("年报公示信息核查结果报告", "../gaozhishu/qiyenianbaohechajieguo.jsp");
+        //_showDialog("年报公示信息核查结果报告", "../gaozhishu/qiyenianbaohechajieguo.jsp");
+        printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
     });
     $("#btnPrintGongShiXinXiGengZheng").click(function () {
-        _showDialog("公示信息更正审批表", "../gaozhishu/gongshixinxigengzheng.jsp");
+        //_showDialog("公示信息更正审批表", "../gaozhishu/gongshixinxigengzheng .jsp");
+        printGongShiXinXiGengZhengBiao
     });
 
     $("#btnUpdateHcjg").linkbutton("disable");
