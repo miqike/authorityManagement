@@ -444,6 +444,7 @@ function onClick(event, treeId, treeNode, clickFlag) {
 
 function loadForm() {
 	row = $('#mainGrid').datagrid('getSelected');
+	
 	if(row != null) {
 		$("#p_id").val(row.id);
 		$("#p_role").val(row.role);
@@ -455,6 +456,9 @@ function loadForm() {
 		$.each($("#roleTable input.easyui-validatebox"), function (idx, elem) {
 			$(elem).next().find("input.validatebox-text").css("width", "100%");
 		});
+		/*
+		$.husky.loadForm("roleTable", data);
+		*/
 	} else {
 		$("#p_id").val("");
 		$("#p_role").val("");

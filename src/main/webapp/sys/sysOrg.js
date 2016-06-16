@@ -48,13 +48,7 @@ function setEditStatus(){
     $("#btnStop").linkbutton('disable');
     $("#btnSave").linkbutton('enable');
     $("#btnCancel").linkbutton('enable');
-
-    $("#treeNodeForm input.easyui-validatebox").removeAttr("readonly").removeAttr("disabled");
-    $("#treeNodeForm input.easyui-datebox").datebox("enable");
-    $("#treeNodeForm input.easyui-combobox").combobox("enable");
-    $("#treeNodeForm input.easyui-combotree").combotree("enable");
-
-    $("#f_parentId").attr("readonly", true);
+    $.husky.setFormStatus("treeNodeForm", 'editable')
 }
 //设置页面为不可编辑状态
 function setReadOnlyStatus(){
@@ -65,15 +59,11 @@ function setReadOnlyStatus(){
     $("#btnStop").linkbutton('enable');
     $("#btnSave").linkbutton('disable');
     $("#btnCancel").linkbutton('disable');
-
-    $("#treeNodeForm input.easyui-validatebox").attr("readonly", true).attr("disabled", true);
-    $("#treeNodeForm input.easyui-datebox").datebox("disable");
-    $("#treeNodeForm input.easyui-combobox").combobox("disable");
-    $("#treeNodeForm input.easyui-combotree").combotree("disable");
+    $.husky.setFormStatus("treeNodeForm", 'readonly')
 }
 //通用保存函数
 function save(){
-    var data = $.husky.getData('treeNodeForm');
+    var data = $.husky.getFormData('treeNodeForm');
 
     var url="../sys/organization";
     if(window.operateType=="add"){//增加本级
@@ -100,6 +90,7 @@ function save(){
             }else if(window.operateType=="addChild"){//增加下级
                 $.zTreeExtendObj.addNodeBySelectedNode("tree",data);
             }else if(window.operateType=="edit"){//修改
+            	console.log(data)
                 $.zTreeExtendObj.updateSelectedNode("tree",data,null);
             }else {//删除
                 $.zTreeExtendObj.removeSelectedNode("tree");
