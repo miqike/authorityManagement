@@ -94,6 +94,7 @@
 				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
 				method: 'get',
+				url:'../common/query?mapper=hcsxMapper&queryName=query',
            		pageSize: 20, pagination: true"
            pagePosition="bottom">
         <thead>

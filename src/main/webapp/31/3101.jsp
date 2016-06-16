@@ -87,11 +87,11 @@
 	        </table>
 	    </div>
 	    <div>
-	        <!-- 				onUnselect:disableUpdateAndDeleteButton" -->
 	        <table id="grid1"
 	               class="easyui-datagrid"
 	               data-options="singleSelect:true,collapsible:true,height:200,
 					onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+					url:'../common/query?mapper=hcjhMapper&queryName=query',
 					method:'get'"
 	               toolbar="#gridToolbar1"
 	               sortOrder="asc">

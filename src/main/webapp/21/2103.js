@@ -272,15 +272,10 @@ function hcxxflStyler(val, row, index) {
 }
 
 function loadMainGrid() {
-	
-	$.getJSON("../common/query?mapper=hcsxMapper&queryName=query", {
+	$("#mainGrid").datagrid("load", {
 		gsxm: $('#f_gsxm').val(),
 		hclx: $('#f_hclx').combobox("getValue"),
 		hcxxfl: $('#f_hcxxfl').combobox("getValue")
-    }, function (response) {
-        if (response.status == SUCCESS) {
-        	 $("#mainGrid").datagrid("loadData",response);
-        }
     });
 }
 
@@ -307,9 +302,5 @@ $(function () {
     $("#btnShowComment").click(funcShowComment);
 
     setReadOnlyStatus();
-
     clearInput();
-    loadMainGrid();
-    
-
 });
