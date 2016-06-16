@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
 
 	<script type="text/javascript" src="../js/lodop/listPrint.js"></script>
 	<script type="text/javascript" src="./codeEdit.js"></script>

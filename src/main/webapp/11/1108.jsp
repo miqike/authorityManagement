@@ -22,7 +22,7 @@
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
     <script type="text/javascript" src="../js/myJs/common.js"></script>
     <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>

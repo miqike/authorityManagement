@@ -71,7 +71,7 @@ function grid2ClickHandler() {
 
 function setFormFieldStatus(formId, operation) {
     $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("readonly");
-    $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("disabled");;
+    $("#" + formId + " input.easyui-validatebox." + operation).removeAttr("disabled");
     $("#" + formId + " input.easyui-combobox." + operation).combobox("enable");
     $("#" + formId + " input.easyui-numberspinner." + operation).numberspinner("enable");
     $("#" + formId + " input.easyui-datebox." + operation).datebox("enable");

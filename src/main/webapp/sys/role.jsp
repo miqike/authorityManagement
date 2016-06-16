@@ -5,11 +5,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>角色列表</title>
-	<link href="../css/content.css" rel="stylesheet" />
-    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+	
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/${theme}/easyui.css" />
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/icon.css" />
+	<link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" >
+	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" >
+	<link rel="stylesheet" href="../css/content.css"/>
 
 	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
@@ -22,7 +23,7 @@
 
 	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
 
 	<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 	<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>

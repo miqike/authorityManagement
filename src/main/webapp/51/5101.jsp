@@ -25,9 +25,8 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-    <!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script> -->
     <script type="text/javascript" src="../js/formatter.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="./lodop.js"></script>

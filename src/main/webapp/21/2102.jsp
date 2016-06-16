@@ -24,7 +24,7 @@
 
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 
     <!-- 

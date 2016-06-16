@@ -19,11 +19,11 @@
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.extend.depreciated.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="./dataPermission.js"></script>

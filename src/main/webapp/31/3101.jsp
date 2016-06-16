@@ -238,7 +238,7 @@
 <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
 <script type="text/javascript" src="../js/husky.orgTree.js"></script>
 
-<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
 <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>

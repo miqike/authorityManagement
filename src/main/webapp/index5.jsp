@@ -55,7 +55,7 @@
     <script src="./common/index.js" type="text/javascript"></script>
     <link href="./common/index.css" rel="stylesheet" />
     <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
-    <script src="./js/husky/husky.common.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.common.depreciated.js" type="text/javascript" ></script>
     <script src="./js/husky/husky.message.js" type="text/javascript" ></script>
     <script src="./js/husky/husky.index.js" type="text/javascript"></script>
     <script src="./common/index-startup.js"></script>
