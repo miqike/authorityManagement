@@ -8,7 +8,7 @@ $(function () {
 });
 
 </script>
-<div id="auditItemAccordion" class="easyui-accordion" data-options="fit:true,border:false,animate:true" style="width:500px;height:467px;"> 
+<div id="auditItemAccordion" class="easyui-accordion" data-options="fit:false,border:true,animate:true" > 
 	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', selected:true" style="overflow:auto;">
 		<div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false, onSelect:auditItemsTabSelectHandler">
 			<div data-options="title: '年报信息', iconCls: 'icon2 r9_c2', refreshable: false, selected: true">

@@ -142,12 +142,7 @@
 	               data-options="disabled:true">派发/取消派发</a> -->
 	        </div>
 	    </div>
-   <!-- <ul id="orgTree" class="ztree"></ul> -->
     </div>
-    
-    <<!-- div data-options="region:'south'">
-    
-	    <div id="layout" class="easyui-layout" data-options="fit:true"> -->
      <div data-options="region:'west',split:true," title="单位列表" style="width:240px;" >
           <ul id="orgTree" class="ztree"></ul> 
      </div>

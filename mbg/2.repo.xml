@@ -50,6 +50,7 @@
 		</table>
 		 -->
 		<!-- 核查事项 -->
+		<!-- 
 		<table tableName="T_HCSX" domainObjectName="Hcsx"
   				enableSelectByPrimaryKey="true"
   				enableSelectByExample="false"
@@ -70,7 +71,6 @@
 			<columnOverride column="SFBJXM"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZXRQ"  javaType="java.util.Date"	/>
 		</table>
-		<!-- 
 		 -->
 		<!-- 
 		<table tableName="T_HCCL" domainObjectName="Hccl"
@@ -88,5 +88,18 @@
 			<columnOverride column="YHTG"  javaType="java.lang.Integer"	/>
 		</table>
  		-->
+ 		
+ 		<table tableName="T_HCSX_SM" domainObjectName="AuditItemComment"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="WEIGHT"  javaType="java.lang.Integer"	/>
+		</table>
 	</context>
 </generatorConfiguration>
