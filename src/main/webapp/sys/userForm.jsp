@@ -1,10 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
-window.navigateBar = {
-	grid: $('#mainGrid')
-};
-function grid4ButtonHandler() {
-    var udpr = $('#grid4').datagrid('getSelected');
+function userPermissionGridButtonHandler() {
+    var udpr = $('#userPermissionGrid').datagrid('getSelected');
 	if(udpr != null) {
 		$('#btnEditDataPermission').linkbutton('enable');
         if(udpr.ACLTYPE != undefined && udpr.ACLTYPE != 0) {
@@ -38,10 +35,169 @@ function formatDefaultFlag(val, row) {
     }
 }
 
+function loadUserRoleGrid() {
+	$.getJSON("../sys/user/role1/" + $('#p_userId').val(), {}, function(responseA) {
+		$("#userRoleGrid").datagrid("loadData", responseA.data);
+	});
+}
+
+function loadUserPermissionGrid() {
+    $.getJSON("../common/query?mapper=userDataPermissionRuleMapper&queryName=query", {"pUserId":$("#p_userId").val()}, function(response) {
+        $("#userPermissionGrid").datagrid("loadData", response.rows);
+    });
+}
+
+function checkAuthorizedResourceNode(treeNode) {
+	var disable = true;
+	var treeObj = $.fn.zTree.getZTreeObj("resTree");
+	var nodes;
+	if(treeNode == undefined) {
+		nodes = treeObj.getNodes();
+	} else {
+		nodes = treeNode.children;
+	}
+	if(nodes.length > 0) {
+		$.each(nodes, function(idx, node) {
+			//treeObj.setChkDisabled(node, false);
+			if(_.contains(window.ownedResources, node.id)) {
+				//treeObj.checkNode(node, true);
+				treeObj.showNode(node);
+			} else {
+				//treeObj.checkNode(node, false);
+				treeObj.hideNode(node);
+			}
+			//treeObj.setChkDisabled(node, disable);
+			if (node.isParent) {
+				checkAuthorizedResourceNode(node)
+			}
+		})
+	} 
+}
+
+function showUserRoleCandidateDialog() {
+	$.easyui.showDialog({
+		title : "选择角色",
+		width : 600,
+		height : 300,
+		topMost : false,
+		enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./candidateUserRoleSelectDialog.jsp",
+		onLoad : function() {
+			loadCandidateUserRoleGrid();
+		},
+		onSave : function() {
+			addUserRole();
+			return false;
+		}
+	});
+	
+}
+
+function deleteUserRole() {
+	var rows = $("#userRoleGrid").datagrid("getSelections")
+	if(rows.length > 0) {
+		$.messager.confirm("确认", "是否要删除选中的用户角色?", function (r) {
+			if (r) {
+				var param = new Array();
+				$.each(rows, function(idx, elem) {
+					param.push(elem.id);
+				});
+
+				$.ajax({
+					url:"../sys/user/role2/" + $('#mainGrid').datagrid('getSelected').userId,
+					data:JSON.stringify(param),
+					type:"put",
+					contentType: "application/json; charset=utf-8",
+					cache:false,
+					success: function(response) {
+						if(response.status == $.husky.SUCCESS) {
+							$.messager.show("操作提醒", "删除用户角色成功", "info", "bottomRight");
+							loadUserRoleGrid();
+						} else {
+							$.messager.alert("错误", "删除用户角色失败");
+						}
+					}
+				});
+			}
+		});
+		
+	} else {
+		$.messager.alert("操作提示", "请首先选择需要删除的用户角色!", "error");
+	}
+}
+
+function initResTree(){
+	var setting = {
+		data: {key: {
+			title:"parentId",
+			name:"nameWithId"
+		}},
+		check: {
+			enable: false
+			//enable: true
+		},
+		async: {
+			enable: true,
+			type: "get",
+			url:"../sys/resource",
+			autoParam:["id"]
+		},
+		callback: {
+			onExpand: onExpand,
+			beforeAsync: beforeAsync,
+			onAsyncSuccess: onAsyncSuccess,
+			onAsyncError: onAsyncError
+		}
+	};
+
+	$.fn.zTree.init($("#resTree"), setting);
+	//reset();
+}
+
+function onExpand(event, treeId, treeNode) {
+	checkAuthorizedResourceNode(treeNode);
+}
+
+function expandAll(e) {
+	_expandAll("expandAll");
+}
+
+function collapseAll() {
+	_expandAll("collapseAll");
+}
+
+function _expandAll(type) {
+	var zTree = $.fn.zTree.getZTreeObj("resTree"),
+		nodes = zTree.getSelectedNodes();
+	if (type.indexOf("All")<0 && nodes.length == 0) {
+		alert("请先选择一个父节点");
+	}
+	if (type == "expandAll") {
+		expandNodes(zTree, zTree.getNodes());
+		checkAuthorizedResourceNode();
+	} else if (type == "collapseAll") {
+		zTree.expandAll(false);
+	}
+}
+
+function expandNodes(zTree, nodes) {
+	if (!nodes) return;
+	for (var i=0, l=nodes.length; i<l; i++) {
+		zTree.expandNode(nodes[i], true, false, false, true);
+		if (nodes[i].isParent && nodes[i].zAsync) {
+			expandNodes(zTree,  nodes[i].children);
+		}
+	}
+}
+
 $(function() {
+	initResTree();
 });
+	
 </script>
-<!-- --------弹出窗口--------------- -->
 <div id="userWindow">
     <div id="tabPanel" class="easyui-tabs" style="width:755px;clear:both;" data-options="onSelect:tabSelectHandler">
         <div title="基本信息" style="padding:5px;" selected="true">
@@ -80,28 +236,26 @@ $(function() {
                 <tr>
                     <td class="label">状态</td>
                     <td>
-                        <input id="p_status" class="easyui-combobox add update" style="width:206px;" data-options="required:true,panelHeight:80" codeName="userStatus"/>
+                        <input id="p_status" class="easyui-combobox add update" style="width:208px;" data-options="required:true,panelHeight:80" codeName="userStatus"/>
                     </td>
                     <td class="label">排名</td>
                     <td>
-                        <input id="p_weight" class="easyui-numberspinner add update" style="width:206px;" data-options="required:false" />
+                        <input id="p_weight" class="easyui-numberspinner add update" style="width:208px;" data-options="required:false" />
                     </td>
                 </tr>
             </table>
         </div>
-        <div title="所属角色" style="width:700px;">
-            <table id="grid2"
+        <div title="所属角色" >
+            <table id="userRoleGrid"
                    class="easyui-datagrid"
                    data-options="
                        ctrlSelect:true,
-                       collapsible:true"
-                   toolbar="#grid2Toolbar"
-                   style="height: 318px">
+                       collapsible:true">
                 <thead>
                 <tr>
                     <%--<th data-options="field:'ck',checkbox:true,disabled:true"></th>--%>
                     <th data-options="field:'id'" hidden="true" halign="center" align="left" width="0">主键</th>
-                    <th data-options="field:'role'" halign="center" align="left" width="100">角色代码</th>
+                    <th data-options="field:'role'" halign="center" align="center" width="100">角色代码</th>
                     <th data-options="field:'name'" halign="center" align="center" width="100">角色名称</th>
                     <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="roleStatus"
                         formatter="formatCodeList">状态</th>
@@ -110,27 +264,22 @@ $(function() {
                 </thead>
             </table>
         </div>
-        <div id="grid2Toolbar">
-            <%--<a href="#" id="btnEditOrSaveUserRole" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>--%>
-            <a href="#" id="btnAddUserRole" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
-            <a href="#" id="btnDeleteUserRole" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-        </div>
+        
         <div title="功能权限列表" style="width:700px;padding:5px;">
             <a href="#" id="btnExpandAll" class="easyui-linkbutton" iconCls="icon-plus" plain="true">展开</a>
             <a href="#" id="btnCollapseAll" class="easyui-linkbutton" iconCls="icon-minus" plain="true">缩回</a>
-            <ul id="tree" class="ztree"></ul>
+            <ul id="resTree" class="ztree"></ul>
         </div>
-        <div title="数据权限" style="width:700px;">
-            <table id="grid4"
+        <div title="数据权限"">
+            <table id="userPermissionGrid"
                    class="easyui-datagrid"
                    data-options="
                        singleSelect:true,
                        collapsible:true,
                        selectOnCheck:false,
-                       onClickRow:grid4ButtonHandler,
-                       checkOnSelect:false"
-                   toolbar="#grid4Toolbar"
-                   style="height: 318px">
+                       onClickRow:userPermissionGridButtonHandler,
+                       checkOnSelect:false">
+                   <!-- toolbar="#userPermissionGridToolbar" > -->
                 <thead>
                 <tr>
                     <th data-options="field:'ISDEFAULT'" align="left" width="30" formatter="formatDefaultFlag"></th>
@@ -145,11 +294,11 @@ $(function() {
             </table>
         </div> 
     </div>
-
-    <div id="grid4Toolbar">
+<!-- 
+    <div id="userPermissionGridToolbar">
         <a href="#" id="btnEditDataPermission" class="easyui-linkbutton" iconCls="icon-save" plain="true" >保存</a>
         <a href="#" id="btnShowAcl" class="easyui-linkbutton" iconCls="icon2 r5_c16" plain="true" disabled="true">ACL</a>
-    </div>
+    </div> -->
 </div>
 <%-- 
 <div id="dataPermRuleSelectDialog" class="easyui-dialog" title="选择数据权限规则"
@@ -252,30 +401,4 @@ $(function() {
 </div>
 
 
-<div id="roleSelectDialog" class="easyui-dialog" title="选择角色"
-     style="clear: both; width: 700px; height: 500px;"
-     data-options="iconCls:'icon-edit',modal:true,closed:true">
-    <table id="grid8"
-           class="easyui-datagrid"
-           data-options="collapsible:true,ctrlSelect:true,
-				method:'get'"
-           toolbar="#grid8Toolbar"
-           style="height: 500px"
-           pagination="false">
-        <thead>
-        <tr>
-            <th data-options="field:'role',halign:'center',align:'center'" sortable="true" width="100">角色代码</th>
-            <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="100">角色名称</th>
-            <th data-options="field:'description',halign:'center',align:'left'" sortable="true" width="350">描述</th>
-            <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="userStatus"
-                formatter="formatCodeList">状态</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div id="grid8Toolbar">
-        <a href="#" id="btnAddUserRole1" class="easyui-linkbutton" iconCls="icon-add" plain="true">确定</a>
-    </div>
-</div>
  --%>

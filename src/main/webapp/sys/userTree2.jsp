@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js" ></script>
 
 	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-	<!-- <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script> -->
+	<script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
 
 	<!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script> -->
@@ -108,11 +108,12 @@
                 </span>
             </div>
 
+			<!--  -->
             <table id="mainGrid"
                    class="easyui-datagrid"
-                   data-options="onClickRow:mainGridButtonHandler,onLoadSuccess:mainGridLoadSuccessHandler,
-                   offset: { width: -310, height: -40},ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
-                   method:'get',pagination:true,pageSize:20"
+                   data-options="onClickRow:mainGridButtonHandler,ctrlSelect:true,method:'get',
+                   offset: { width: -310, height: -40},onDblClickRow:mainGridDblClickHandler,
+                   onLoadSuccess:mainGridLoadSuccessHandler,pagination:true,pageSize:20"
                    queryParams="name: $('#f_name').val()" 
                    toolbar="#mainGridToolbar">
                 <thead>
@@ -140,7 +141,7 @@
                 <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
                 <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true" disabled="true">锁定/解锁</a>
                 <!-- <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a> -->
-                <a href="#" id="btnExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a></div>
+                <a href="#" id="btnPoiExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a></div>
         </div>
     </div>
 </body>

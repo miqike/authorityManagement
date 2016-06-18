@@ -43,32 +43,11 @@ function queryUser(){
 	}
 }
 
-function mainGridLoadSuccessHandler(data) {
-	if(window.selected == undefined || window.selected == -1) {
-		var pId = $("#p_userId").val();
-		for(var i = 0; i<data.rows.length; i++) {
-			if(data.rows[i].id == pId) {
-				window.selected = i;
-				break;
-			}
-		}
-	}
-
-	if(data.rows.length > 0) {
-		if (window.selected > data.rows.length - 1) {
-			window.selected = data.rows.length - 1;
-		} else if (window.selected < 0) {
-			window.selected = 0;
-		}
-		$('#mainGrid').datagrid('selectRow', window.selected);
-		loadForm();
-	}
-}
 
 function mainGridButtonHandler() {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		$('#btnView').linkbutton('enable');
-		$('#btnDelete').linkbutton('enable');
+		$('#btnRemove').linkbutton('enable');
 		$('#btnResetPass').linkbutton('enable');
 		$('#btnLock').linkbutton('enable');
 		if($('#mainGrid').datagrid('getSelected').status == 2) {
@@ -84,31 +63,28 @@ function mainGridButtonHandler() {
 		}
 	} else {
 		$('#btnView').linkbutton('disable');
-		$('#btnDelete').linkbutton('disable');
+		$('#btnRemove').linkbutton('disable');
 		$('#btnResetPass').linkbutton('disable');
 		$('#btnLock').linkbutton('disable');
 	}
 }
 
 function mainGridDblClickHandler(index,row) {
-	window.selected = index;
-	window.operation = 'update';
-	$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-	showModalDialog("userWindow");
-	$("#p_userId").val( row.userId).attr("readonly", true).attr("disabled", true);
-	$("#p_name").val( row.name);
-	$("#p_orgId").val( row.orgId);
-	$("#p_orgType").combobox("setValue", row.orgType);
-	$("#p_orgName").val( row.orgName).attr("readonly", true).attr("disabled", true);
-	$("#p_status").combobox("setValue", row.status);
-	$("#p_mobile").val( row.mobile);
-	$("#p_email").val( row.email);
-	//("#btnEditOrSave").parent().css("text-align", " left");
-	$('#userWindow input.easyui-validatebox').validatebox();
+	$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', index);
+	view();
+}
 
-	//$("#tg").parent().find("input:checkbox").attr("disabled", true);
-	//$("#grid2").parent().find("input:checkbox").attr("disabled", true);
-	$('#tabPanel').tabs('select', 0);
+function mainGridLoadSuccessHandler(data) {
+	$('#btnView').linkbutton('disable');
+	$('#btnRemove').linkbutton('disable');
+	$('#btnResetPass').linkbutton('disable');
+	$('#btnLock').linkbutton('disable');
+	var fName = $("#f_name").val();
+	var pUserId = $("#p_userId").val();
+	
+	if(fName != "" && $("#userTable").length != 0 && fName == pUserId ) {
+		$('#mainGrid').datagrid('selectRow', 0);
+	}
 }
 
 function loadForm() {
@@ -154,9 +130,7 @@ function view(){
 	}
 }
 
-
 function showUserWindow(operation, data) {
-	window.operation = operation;
 	$.easyui.showDialog({
 		title : "用户信息",
 		width : 780,
@@ -169,111 +143,177 @@ function showUserWindow(operation, data) {
 		href : "./userForm.jsp",
 		onLoad : function() {
 			$.codeListLoader.parse($('#userTable'))
+			var orgTreeObj = $.fn.zTree.getZTreeObj("orgTree");
+			var selectedOrgNode = orgTreeObj.getSelectedNodes()[0];
 			if(operation == "add"){
-				$.husky.loadForm("userTable", {});
+				if(orgTreeObj.getSelectedNodes().length == 1) {
+					$.husky.loadForm("userTable", {
+						orgId: selectedOrgNode.id,
+						orgName: selectedOrgNode.name
+					});
+				} else {
+					$.husky.loadForm("userTable", {});
+				}
+				$("#mainGrid").datagrid("unselectAll");
 			} else {
 				if(null != data) {
 					$.husky.loadForm("userTable", data);
 					$.husky.setFormStatus("userTable", operation);
 				}
+				
 			}
-			var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-			var selected = treeObj.getSelectedNodes()[0];
 			$('#tabPanel').tabs('select',0 );
-			
-			$("#p_status").combobox("setValue", data.status);
-			$("#p_weight").numberspinner("setValue", data.weight);
-			
 		},
 		onSave: function (d) {
-			saveUser();
+			saveUser(operation);
 			return false;
         },
         toolbar: [
-                  { text: "新增", iconCls:"icon-add", handler: function () { alert("button1"); } },
-                  { text: "删除", iconCls:"icon-remove", handler: function () { alert("button1"); } },
-                  "-",
-                  { text: "首个", iconCls:"icon-first", handler: function () { alert("button2"); } },
-                  { text: "上一个", iconCls:"icon-previous", handler: function () { alert("button2"); } },
-                  { text: "下一个", iconCls:"icon-next", handler: function () { alert("button2"); } },
-                  { text: "末个", iconCls:"icon-last", handler: function () { alert("button2"); } },
-                  "-",
-                  { text: "关闭", iconCls:"icon-undo", handler: function () { alert("button2"); } },
-              ]
+			{ text: "新增", iconCls:"icon-add", handler: userFormAddHandler },
+			{ text: "删除", iconCls:"icon-remove", handler: userFormDeleteHandler },
+			"-",
+			{ text: "首个", iconCls:"icon-first", handler: function () { $.husky.ramble("first", "mainGrid", "userTable"); } },
+			{ text: "上一个", iconCls:"icon-previous", handler: function () { $.husky.ramble("previous", "mainGrid", "userTable"); } },
+			{ text: "下一个", iconCls:"icon-next", handler: function () { $.husky.ramble("next", "mainGrid", "userTable"); } },
+			{ text: "末个", iconCls:"icon-last", handler: function () { $.husky.ramble("last", "mainGrid", "userTable"); } }
+		]
 	});
 }
 
-function remove(){
-	if(!$(this).linkbutton('options').disabled) {
-		var checkedRows = $('#mainGrid').datagrid('getSelections');
-		if (checkedRows.length > 0) {
-			$.messager.confirm('确认删除', '确认删除选中的用户?', function (r) {
-				if (r) {
-					var param = new Array();
-					$.each(checkedRows, function (idx, elem) {
-						param.push(elem.userId);
-					});
-
-					$.ajax({
-						url: "../user",
-						data:JSON.stringify(param),
-						type: 'DELETE',
-						contentType: "application/json; charset=utf-8",
-						cache:false,
-						success: function (response) {
-							if (response.status == SUCCESS) {
-								$('#mainGrid').datagrid('reload');
-								$.messager.show("操作提醒", response.message, "info", "bottomRight");
-							} else {
-								$.messager.alert('错误', '用户删除失败：' + response.message, 'error');
-							}
-						}
-					});
-				}
+function userFormAddHandler(){
+	var selected = $("#tabPanel").tabs("getSelected");
+	var tabIndex = $("#tabPanel").tabs("getTabIndex", selected);
+	if(tabIndex == 0) { //基本信息
+		var orgTreeObj = $.fn.zTree.getZTreeObj("orgTree");
+		var selectedOrgNode = orgTreeObj.getSelectedNodes()[0];
+		if(orgTreeObj.getSelectedNodes().length == 1) {
+			$.husky.loadForm("userTable", {
+				orgId: selectedOrgNode.id,
+				orgName: selectedOrgNode.name
 			});
+			$.husky.setFormStatus("userTable","add");
+		} else {
+			$.husky.loadForm("userTable", {});
 		}
+		$("#mainGrid").datagrid("unselectAll");
+				
+	} else if(tabIndex == 1) { //选择角色TAB
+		showUserRoleCandidateDialog();
+	} else if (tabIndex == 2) { //选择权限TAB
+		//Do nothing
+	} else if (tabIndex == 3) { //选择权限TAB
+		alert("TODO,有点混了")
+    }
+}
+function userFormDeleteHandler(){
+	var selected = $("#tabPanel").tabs("getSelected");
+	var tabIndex = $("#tabPanel").tabs("getTabIndex", selected);
+	if(tabIndex == 0) { //基本信息
+		var row = $('#mainGrid').datagrid('getSelected');
+		remove();
+	} else if(tabIndex == 1) { //选择角色TAB
+		deleteUserRole();
+	} else if (tabIndex == 2) { //选择权限TAB
+		//Do nothing
+	} else if (tabIndex == 3) { //选择权限TAB
+		alert("TODO,有点混了")
+    }
+}
+
+function remove(){
+	var grid = $("#mainGrid");
+	var row = grid.datagrid("getSelected");
+	if (row) {
+		$.messager.confirm('确认删除', '确认删除账户 ' + row.userId + " ?", function (r) {
+			if (r) {
+				$.ajax({
+					url: "../user/" + row.userId,
+					type: 'DELETE',
+					success: function (response) {
+						if (response.status == $.husky.SUCCESS) {
+							var nextRowIndex;
+							var rowCount = grid.datagrid("getRows").length;
+							var rowIndex = grid.datagrid("getRowIndex", row);
+							if(rowIndex == rowCount -1) { //最后一条记录
+								nextRowIndex = rowIndex - 1;
+							} else {
+								nextRowIndex = rowIndex + 1;
+							}
+							grid.datagrid("selectRow", nextRowIndex)
+							grid.datagrid("deleteRow", rowIndex)
+				    		$.husky.loadForm("userTable", grid.datagrid("getSelected"));
+						    
+						} else {
+							$.messager.alert('删除失败', response, 'info');
+						}
+					}
+				});
+			}
+		});
 	}
+	/*
+	var checkedRows = $('#mainGrid').datagrid('getSelections');
+	if (checkedRows.length > 0) {
+		$.messager.confirm('确认删除', '确认删除选中的用户?', function (r) {
+			if (r) {
+				var param = new Array();
+				$.each(checkedRows, function (idx, elem) {
+					param.push(elem.userId);
+				});
+
+				$.ajax({
+					url: "../user",
+					data:JSON.stringify(param),
+					type: 'DELETE',
+					contentType: "application/json; charset=utf-8",
+					cache:false,
+					success: function (response) {
+						if (response.status == SUCCESS) {
+							$('#mainGrid').datagrid('reload');
+							$.messager.show("操作提醒", response.message, "info", "bottomRight");
+						} else {
+							$.messager.alert('错误', '用户删除失败：' + response.message, 'error');
+						}
+					}
+				});
+			}
+		});
+	}*/
 }
 
 function resetPass(){
-	if(!$(this).linkbutton('options').disabled) {
-
-		var row = $('#mainGrid').datagrid('getSelected');
-		if (row) {
-			$.messager.confirm('确认重置密码', '确认重置该账户密码', function (r) {
-				if (r) {
-					$.getJSON("../user/" + row.userId + "/resetPass", null, function (response) {
-						if (response.status == SUCCESS) {
-							$.messager.alert("重置成功", "新密码为：" + response.message, 'info');
-						} else {
-							$.messager.alert('重置失败', response.message, 'info');
-						}
-					});
-				}
-			});
-		}
+	var row = $('#mainGrid').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('确认重置密码', '确认重置该账户密码', function (r) {
+			if (r) {
+				$.getJSON("../user/" + row.userId + "/resetPass", null, function (response) {
+					if (response.status == $.husky.SUCCESS) {
+						$.messager.alert("操作提醒", "密码重置成功, 新密码为：" + response.message, 'info');
+					} else {
+						$.messager.alert('重置失败', response.message, 'info');
+					}
+				});
+			}
+		});
 	}
 }
 
-function lockUnlock() {
-	if(!$(this).linkbutton('options').disabled) {
-
-		var row = $('#mainGrid').datagrid('getSelected');
-		var operation = row.status == 2 ? "解锁" : "锁定";
-		if (row) {
-			$.messager.confirm('确认' + operation + '用户', '是否' + operation + '该用户？', function (r) {
-				if (r) {
-					$.getJSON("../user/" + row.userId + "/lock", null, function (response) {
-						if (response.status == SUCCESS) {
-							$.messager.show("操作提醒", response.message, "info", "bottomRight");
-							$('#mainGrid').datagrid('reload');
-						} else {
-							$.messager.alert('提示', operation + '操作失败: ' + response.message, 'info');
-						}
-					});
-				}
-			});
-		}
+function lock() {
+	var row = $('#mainGrid').datagrid('getSelected');
+	var operation = row.status == 2 ? "解锁" : "锁定";
+	if (row) {
+		$.messager.confirm('确认' + operation + '用户', '是否' + operation + '该用户？', function (r) {
+			if (r) {
+				$.getJSON("../user/" + row.userId + "/lock", null, function (response) {
+					if (response.status == $.husky.SUCCESS) {
+						$.messager.show("操作提醒", '用户 ' + row.userId + ' ' + operation + '成功', "info", "bottomRight");
+						$('#mainGrid').datagrid('reload');
+					} else {
+						$.messager.alert('提示', '用户 ' + row.userId + ' ' + operation + '失败: ' + response.message, 'error');
+					}
+				});
+			}
+		});
 	}
 }
 
@@ -327,28 +367,33 @@ function selectManager() {
     }
 }
 
-function tabSelectHandler(title, index) {
+function tabSelectHandler(title, tabIndex) {
 	var userId = $('#p_userId').val();
-	if(index == 1) { //选择角色TAB
+	if(tabIndex == 1) { //选择角色TAB
 		if(userId != "") {
-			loadGrid2();
+			loadUserRoleGrid();
 		} else {
 			$.messager.alert("操作错误", "请先保存用户基本信息");
 			$('#tabPanel').tabs('select',0 );
 		}
-	} else if (index == 2) { //选择权限TAB
+	} else if (tabIndex == 2) { //选择权限TAB
 		if(userId != "") {
 			$.getJSON("../sys/user/resource/" + userId, {}, function(responseA) {
+				
 				window.ownedResources = responseA.data;
-				checkAuthorizedResourceNode();
+				if(ownedResources.length=0) {
+					$.messager.alert("操作提示", "用户没有任何权限!");
+				} else {
+					checkAuthorizedResourceNode();
+				}
 			});
 		} else {
 			$.messager.alert("操作错误", "请先保存用户基本信息");
 			$('#tabPanel').tabs('select',0 );
 		}
-	} else if (index == 3) { //选择权限TAB
+	} else if (tabIndex == 3) { //选择权限TAB
         if(userId != "") {
-            loadGrid4();
+        	loadUserPermissionGrid();
         } else {
             $.messager.alert("操作错误", "请先保存用户基本信息");
             $('#tabPanel').tabs('select',0 );
@@ -364,31 +409,35 @@ function reset() {
 	$("#f_name").val("");
 }
 
-function saveUser(){
+function saveUser(operation){
 	if($('#userTable').form('validate')) {
 		var data = $.husky.getFormData("userTable");
-		if(window.operation == 'update') {
+		if(operation == 'update') {
 			data._method = 'put';
 		}
 		$.post("../user/", data, function(response) {
 			if(response.status == $.husky.FAIL){
 				$.messager.alert('错误', $.husky.combineErrorMessage(response.message), 'error');
 			} else {
-		    	$("#mainGrid").datagrid("reload");
+				var grid = $("#mainGrid");
+		    	var row = grid.datagrid("getSelected");
+		    	if(null==row) { //新增,设置查找条件,重新加载grid,选中
+		    		$("#f_name").val(data.userId);
+		    		queryUser();
+		    	} else {
+		    		$.husky.refreshParent("mainGrid", data);
+		    	}
 		    	$.messager.show("操作提醒", response.message, "info", "bottomRight");
 		    }
 		}, "json");
 	}
 }
 
+function poiExport() {
+	$("<iframe id='poiExport' style='display:none' src='../user/poiExport'>") .appendTo("body");
+}
 //============================================
 /*
-
-
-
-
-
-
 function fillResourceCheckbox() {
 	var rows = $("#tg").treegrid("getData");
 	fillResourceCheckboxRecursive(rows);
@@ -406,134 +455,15 @@ function fillResourceCheckboxRecursive(rows) {
 	});
 }
 
-function addUserRole() {
-	$('#roleSelectDialog').dialog('open');
-	loadGrid8();
-}
 
-function deleteUserRole() {
-	var rows = $('#grid2').datagrid('getSelections');
-	var param = new Array();
-	$.each(rows, function(idx, elem) {
-		param.push(elem.id);
-	});
 
-	$.ajax({
-		url:"../sys/user/role2/" + $('#mainGrid').datagrid('getSelected').userId,
-		data:JSON.stringify(param),
-		type:"put",
-		contentType: "application/json; charset=utf-8",
-		cache:false,
-		success: function(response) {
-			if(response.status == SUCCESS) {
-				$.messager.show({
-					title : '提示',
-					msg : "删除用户角色成功"
-				});
-				loadGrid2();
-				loadGrid8()
-			} else {
-				$.messager.alert("错误", "删除用户角色失败");
-			}
-		}
-	});
-}
 
-function addUserRole1() {
-	var rows = $('#grid8').datagrid('getSelections');
-	var param = new Array();
-	$.each(rows, function(idx, elem) {
-		param.push(elem.id);
-	});
-
-	$.ajax({
-		url:"../sys/user/role1/" + $('#mainGrid').datagrid('getSelected').userId,
-		data:JSON.stringify(param),
-		type:"put",
-		contentType: "application/json; charset=utf-8",
-		cache:false,
-		success: function(response) {
-			if(response.status == SUCCESS) {
-				$.messager.show({
-					title : '提示',
-					msg : "添加用户角色成功"
-				});
-				loadGrid2();
-				loadGrid8()
-			} else {
-				$.messager.alert("错误", "添加用户角色失败");
-			}
-		}
-	});
-}
-
-function loadGrid2() {
-	$.getJSON("../sys/user/role1/" + $('#p_userId').val(), {}, function(responseA) {
-		$("#grid2").datagrid("loadData", responseA.data);
-	});
-}
-
-function loadGrid8() {
-	var options = $("#grid8").datagrid("options");
-	options.url = '../common/query?mapper=roleMapper&queryName=selectRoleByUserIdExclude';
-	$('#grid8').datagrid('load',{
-		userId: $('#mainGrid').datagrid('getSelected').userId
-	});
-}
-
-function onExpand(event, treeId, treeNode) {
-	checkAuthorizedResourceNode(treeNode);
-}
-
-function checkAuthorizedResourceNode(treeNode) {
-	
-	var disable = true;
-	var treeObj = $.fn.zTree.getZTreeObj("tree");
-	var nodes;
-
-	if(treeNode == undefined) {
-		nodes = treeObj.getNodes();
-	} else {
-		nodes = treeNode.children;
-	}
-
-	if(nodes.length > 0) {
-		$.each(nodes, function(idx, node) {
-			//treeObj.setChkDisabled(node, false);
-			if(_.contains(window.ownedResources, node.id)) {
-				//treeObj.checkNode(node, true);
-				treeObj.showNode(node);
-			} else {
-				//treeObj.checkNode(node, false);
-				treeObj.hideNode(node);
-			}
-			//treeObj.setChkDisabled(node, disable);
-			if (node.isParent) {
-				checkAuthorizedResourceNode(node)
-			}
-		})
-	}
-}
 //设置CHECKBOX
 function setCheckBox(){
 	if($("#queryChild").is(':checked')){
 		$("#queryChild").removeAttr()("checked");
 	}else{
 		$("#queryChild").attr("checked",'checked');
-	}
-}
-//查询用户
-function queryUser(){
-	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-	var selected = treeObj.getSelectedNodes()
-
-	if(selected.length == 1) {
-		var options = $("#mainGrid").datagrid("options");
-		options.url = '../common/query?mapper=userMapper&queryName=queryUserForOrg';
-		$('#mainGrid').datagrid('load',{
-			organization: $.husky.processorOrgId(selected[0].id)
-		});
-	} else {
 	}
 }
 
@@ -548,18 +478,13 @@ function formatDefaultFlag1(val, row) {
     }
 }
 
-function loadGrid4() {
-    $.getJSON("../common/query?mapper=userDataPermissionRuleMapper&queryName=query", {"pUserId":$("#p_userId").val()}, function(response) {
-        $("#grid4").datagrid("loadData", response.rows);
-    });
-}
 
 function loadGrid5() {
     $.getJSON("../common/query?mapper=dataPermissionRuleMapper&queryName=queryByDataPermissionId", {
-        dataPermissionId:  $('#grid4').datagrid('getSelected').DATAPERMID
+        dataPermissionId:  $('#userPermissionGrid').datagrid('getSelected').DATAPERMID
     }, function(response) {
         $("#grid5").datagrid("loadData", response.rows);
-        var dprId = $('#grid4').datagrid('getSelected').DATAPERMRULEID;
+        var dprId = $('#userPermissionGrid').datagrid('getSelected').DATAPERMRULEID;
         $.each(response.rows, function(idx, rowData) {
             if(rowData.id == dprId) {
                 $('#grid5').datagrid('selectRow', idx);
@@ -575,7 +500,7 @@ function editDataPermission() {
 }
 
 function showAcl() {
-    var aclType = $('#grid4').datagrid('getSelected').ACLTYPE;
+    var aclType = $('#userPermissionGrid').datagrid('getSelected').ACLTYPE;
     //var aclType = prompt("选择ACL类型:", "")
 
     if(aclType == "4") {
@@ -631,9 +556,9 @@ function showAcl() {
     }
 
     $('#aclSelectDialog').dialog('open');
-	if($("#grid4").datagrid("getSelected").ACL != undefined) {
+	if($("#userPermissionGrid").datagrid("getSelected").ACL != undefined) {
 		$.getJSON("../sys/dataPermission/aclTrans/" + aclType, {
-			acl: $("#grid4").datagrid("getSelected").ACL
+			acl: $("#userPermissionGrid").datagrid("getSelected").ACL
 		}, function (response) {
 			if (response.status == FAIL) {
 				$.messager.alert('设置用户数据权限ACL失败', response.message, 'info');
@@ -646,7 +571,7 @@ function showAcl() {
 }
 
 function hideLeft() {
-	var aclType = $('#grid4').datagrid('getSelected').ACLTYPE;
+	var aclType = $('#userPermissionGrid').datagrid('getSelected').ACLTYPE;
 	var treeObj = $.fn.zTree.getZTreeObj("aclTree");
 	var dataGridData = $("#grid7").datagrid("getData");
 	$.each(dataGridData.rows, function(idx, row){
@@ -661,7 +586,7 @@ function hideLeft() {
 }
 
 function grid7DblClickHandler(index,row) {
-	var aclType = $('#grid4').datagrid('getSelected').ACLTYPE;
+	var aclType = $('#userPermissionGrid').datagrid('getSelected').ACLTYPE;
 	$("#grid7").datagrid("deleteRow", index);
 	var treeObj = $.fn.zTree.getZTreeObj("aclTree");
 	if(aclType == "1") {
@@ -682,7 +607,7 @@ function selectDataPermRule() {
             if (response.status == FAIL) {
                 $.messager.alert('设置用户数据权限规则失败', response.message, 'info');
             } else {
-                loadGrid4();
+                loadUserPermissionGrid();
                 $.messager.show({
                     title: '提示',
                     msg: "设置用户数据权限规则成功"
@@ -701,7 +626,7 @@ function aclSelect() {
 	$.each(selected, function(idx, node) {
 		param.push(node.acl);
 	});
-	var row = $('#grid4').datagrid('getSelected');
+	var row = $('#userPermissionGrid').datagrid('getSelected');
 	$.ajax({
 		url:"../sys/dataPermission/acl/" + $("#p_userId").val() + "/" + row.DATAPERMID + "/" + row.DATAPERMRULEID,
 		data:JSON.stringify(param),
@@ -712,7 +637,7 @@ function aclSelect() {
 			if (response.status == FAIL) {
 				$.messager.alert('设置用户数据权限ACL失败', response.message, 'info');
 			} else {
-				loadGrid4();
+				loadUserPermissionGrid();
 				$.messager.show({
 					title: '提示',
 					msg: "设置用户数据权限ACL成功"
@@ -742,46 +667,6 @@ function add1() {
 	loadForm();
 }
 
-function showPre() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex > 0) {
-		window.selected = rowIndex - 1;
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-		loadForm();
-	}
-}
-
-function showNext() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex < $('#mainGrid').datagrid('getRows').length - 1) {
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', rowIndex + 1);
-		window.selected = rowIndex + 1;
-		loadForm();
-	}
-}
-
-function shorFirst() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex > 0) {
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', 0);
-		window.selected = 0;
-		loadForm();
-	}
-}
-
-function showLast() {
-	var row =  $('#mainGrid').datagrid('getSelected');
-	var rowIndex = $('#mainGrid').datagrid('getRowIndex', row);
-	if(rowIndex < $('#mainGrid').datagrid('getRows').length - 1) {
-		window.selected = $('#mainGrid').datagrid('getRows').length - 1;
-		$('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-		loadForm();
-	}
-}
-
 function remove1() {
 	$.messager.confirm('确认删除', '确认删除用户?', function (r) {
 		if (r) {
@@ -806,11 +691,6 @@ function remove1() {
 		}
 	});
 }
-
-function closeWindow() {
-	$("#userWindow").window("close");
-}
-
 
 
 */
@@ -858,35 +738,8 @@ function search1(){
 	});*/
 }
 /*
-function poiExport() {
-	$("<iframe id='poiExport' style='display:none' src='../user/poiExport'>") .appendTo("body");
-}
 
-function expandAll(e) {
-	var zTree = $.fn.zTree.getZTreeObj("tree"),
-		type = e.data.type,
-		nodes = zTree.getSelectedNodes();
-	if (type.indexOf("All")<0 && nodes.length == 0) {
-		alert("请先选择一个父节点");
-	}
-	if (type == "expandAll") {
-		expandNodes(zTree, zTree.getNodes());
-		checkAuthorizedResourceNode();
-	} else if (type == "collapseAll") {
-		zTree.expandAll(false);
-	}
 
-}
-
-function expandNodes(zTree, nodes) {
-	if (!nodes) return;
-	for (var i=0, l=nodes.length; i<l; i++) {
-		zTree.expandNode(nodes[i], true, false, false, true);
-		if (nodes[i].isParent && nodes[i].zAsync) {
-			expandNodes(zTree,  nodes[i].children);
-		}
-	}
-}
 */
 $(function() {
 	//取得登录用户信息
@@ -899,13 +752,6 @@ $(function() {
 
 	
 	/*
-	$("#btnAdd").click(add);
-	$("#btnView").click(view);
-	$("#btnResetPass").click(resetPass);
-	$("#btnDelete").click(remove);
-	$("#btnLock").click(lockUnlock);
-
-	$("#btnSearch1").click(search1);
 
 	$("#btnReset1").click(function(){
 		$("#p input:text").val("");
@@ -932,39 +778,11 @@ $(function() {
 	});
 	$("#btnExport").click(poiExport);
 	
-	var setting = {
-			data: {key: {
-				title:"parentId",
-				name:"nameWithId"
-			}},
-			check: {
-				enable: false
-				//enable: true
-			},
-			async: {
-				enable: true,
-				type: "get",
-				url:"../sys/resource",
-				autoParam:["id"]
-			},
-			callback: {
-				onExpand: onExpand,
-				beforeAsync: beforeAsync,
-				onAsyncSuccess: onAsyncSuccess,
-				onAsyncError: onAsyncError
-			}
-		};
-
-		$.fn.zTree.init($("#tree"), setting);
-
-		window._expandeLevel = $("#f_expandLevel").numberspinner("getValue");
+	
 */
 	/*
 	$("#btnOrganizationSelect").click(organizationSelect);
 	$("#btnExpandAll").bind("click", {type:"expandAll"}, expandAll);
 	$("#btnCollapseAll").bind("click", {type:"collapseAll"}, expandAll);
-	
-	$("#btnAddUserRole").click(addUserRole);
-	$("#btnDeleteUserRole").click(deleteUserRole);
-	$("#btnAddUserRole1").click(addUserRole1);*/
+	;*/
 });
