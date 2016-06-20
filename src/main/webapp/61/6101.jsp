@@ -43,7 +43,7 @@
                 <table id="queryTable">
                     <tr>
                         <td class="label">计划年度</td>
-                        <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/></td>
+                        <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2010"/></td>
                         <td class="label">计划编号</td>
                         <td><input id="f_hcjdId" class="easyui-textbox"/></td>
                         <td class="label">市场主体类型</td>

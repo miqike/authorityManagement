@@ -87,7 +87,7 @@
 	        <table id="queryTable">
 	            <tr>
 	                <td class="label">计划年度</td>
-	                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2016"/></td>
+	                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2010"/></td>
 	                <td class="label">计划编号</td>
 	                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
 	                <td class="label">计划名称</td>
