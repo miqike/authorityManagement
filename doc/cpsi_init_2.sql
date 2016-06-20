@@ -98,6 +98,22 @@ insert into x_codelist(name,value,literal,edit_flag,style,descn)
 select * from sys_user a where exists(select 1 from t_hcrw b where b.zfry_code1=a.zfry and not exists(select 1 from t_hcsxjg c where c.hcrw_id=b.id));
 --查询操作员，条件是此操作员有核查过的企业
 select * from sys_user a where exists(select 1 from t_hcrw b where b.zfry_code1=a.zfry and exists(select 1 from t_hcsxjg c where c.hcrw_id=b.id));
+--查询可核查的企业
+select b.nd ND,b.zch XYDM,b.qymc QYMC, a.zs TXDZ, f.dzyx MAIL, decode(e.sfydwtz,'0','否','是') SFTZGMGQ,
+       (select content from BM_TCKYQK g where g.code=a.yyzk) JYZT, decode(e.sfywzwd,'0','否','是') SFYWZWD,
+       case when (select count(1) from nnb_dwdb g where g.nd=b.nd and g.nbxh=b.nbxh)>0 then 1 else 0 end  SFYDWDBXX,
+       a.cyrs CYRS, c.syzqyhj SYZQYHJ, c.LRZE LRZE, c.zyywsr ZYYWSR, c.jlr JLR, c.nsze NSZE, c.fzze FZZE,f.lxdh lxdh,
+       e.COLGRANUM gxbys_jy, e.COLEMPLNUM  gxbys_gg, e.RETSOLNUM tysbs_jy, e.RETEMPLNUM tysbs_gg, e.DISPERNUM cjrs_jy, e.DISEMPLNUM cjrs_gg, e.UNENUM zjys_jy, e.UNEEMPLNUM zjys_gg,
+       d.RESPARMSIGN dj_frsfdy, null dj_lxdh, d.RESPARSECSIGN dj_qtzw, d.NUMPARM dj_dyzs, null dj_zcdys, null dj_wzrs, d.BNXZDYRS dj_fzdys, null dj_jjfzs, d.parins dj_sfjlzz, null dj_wjlzzyy,
+       c.zcze zcze,f.yzbm YZBM,null yyzsr,null dj_dzzjz,null dj_frdbsfdzzsj
+from nnb_jbqk a,gov_nbcc_jh_qy b,nnb_zczk c,nnb_fgdj d,nnb_qtxx e,nnb_txxx f
+where a.nbxh=b.nbxh and b.nd=a.nd
+      and b.nbxh=c.nbxh and a.nd=c.nd
+      and b.nbxh=d.nbxh and a.nd=d.nd
+      and b.nbxh=e.nbxh and b.nd=e.nd
+      and b.nbxh=f.nbxh and b.nd=f.nd
+      and b.nd=2014
+      and b.zch in(select hcdw_xydm from t_hcrw);
 
 /***
 20160620 修改表结构
