@@ -71,8 +71,9 @@ public class HcjhServiceImpl implements HcjhService {
     }
 
     @Override
-    public Map<String, Object> testDblink() {
+    public Map<String, Object> testDblink(String hcjhId) {
         Map<String, Object> param = Maps.newHashMap();
+        param.put("hcjhId", hcjhId);
         hcjhMapper.testDblink(param);
         return param;
     }

@@ -473,7 +473,8 @@ function selectImportType() {
 }
 
 function testDblink() {
-    $.getJSON("./hcjh/testDblink", null, function (response) {
+	var hcjhId = $("#p_id").val();
+    $.getJSON("./hcjh/testDblink/" + hcjhId, null, function (response) {
         if (response.status == SUCCESS) {
             $("#importReport #_hcrws").text(response.hcrws);
             $("#importReport #_hcrys").text(response.hcrys);

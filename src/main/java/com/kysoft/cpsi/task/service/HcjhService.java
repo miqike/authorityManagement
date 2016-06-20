@@ -12,7 +12,7 @@ public interface HcjhService {
 
 	String save(Hcjh hcjh);
 
-	Map<String, Object> testDblink();
+	Map<String, Object> testDblink(String hcjhId);
 
 	Map<String, Object> importDblink(String hcjhId);
 

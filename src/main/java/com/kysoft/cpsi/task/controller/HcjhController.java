@@ -82,11 +82,11 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/hcjh/testDblink", method = RequestMethod.GET)
-	public Map<String, Object> testDblink() {
+	@RequestMapping(value = "/hcjh/testDblink/{hcjhId}", method = RequestMethod.GET)
+	public Map<String, Object> testDblink(@PathVariable String hcjhId) {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
-			Map<String, Object> report = hcjhService.testDblink();
+			Map<String, Object> report = hcjhService.testDblink(hcjhId);
 			result.putAll(report);
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {

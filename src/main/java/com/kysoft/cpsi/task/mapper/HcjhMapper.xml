@@ -427,6 +427,7 @@
     <select id="testDblink" parameterType="java.util.HashMap" statementType="CALLABLE">
         {
         call prc_testDblink(
+        #{hcjhId,mode=IN,jdbcType=VARCHAR},
         #{hcrws,mode=OUT,jdbcType=INTEGER},
         #{hcrys,mode=OUT,jdbcType=INTEGER}
         )}
