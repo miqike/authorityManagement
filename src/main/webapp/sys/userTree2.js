@@ -205,6 +205,7 @@ function userFormAddHandler(){
 		alert("TODO,有点混了")
     }
 }
+
 function userFormDeleteHandler(){
 	var selected = $("#tabPanel").tabs("getSelected");
 	var tabIndex = $("#tabPanel").tabs("getTabIndex", selected);

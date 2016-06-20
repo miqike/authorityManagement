@@ -165,7 +165,7 @@
                 </tr>
             </table>
         </div>
-        <div id="auditItemList" class="easyui-panel" data-options="fit:true,title:'xx',collapsible:truee></div>
+        <div id="auditItemList" class="easyui-panel" data-options="fit:true,collapsible:true"></div>
     </div>
 </div>
 

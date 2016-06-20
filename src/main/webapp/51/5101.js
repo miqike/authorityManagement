@@ -73,9 +73,11 @@ function grid1ClickHandler() {
 
 function refreshAuditItemList() {
     if ($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
+    	console.log("-----------------")
         $("#auditItemList").panel({
             href: './auditItemList.jsp',
             onLoad: function () {
+            	console.log("++++++++++++")
                 doAuditItemListInit();
             }
         });

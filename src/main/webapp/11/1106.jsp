@@ -97,7 +97,7 @@
         <div style="height:150px;">
             <table id="mainGrid"
                    class="easyui-datagrid"
-                   data-options="offset: { width: -326, height: -640},
+                   data-options="height:148,
                    ctrlSelect:true,method:'get',method:'get'"
                    pagination="false"
                    pagePosition="bottom">
