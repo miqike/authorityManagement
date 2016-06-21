@@ -72,12 +72,11 @@
 </head>
 <body class="easyui-layout" onbeforeunload="closeBrowse();">
 <div data-options="region:'north',border:false" class="north">
-    <div class="logo" style="margin-top:2px;"></div>
+    <div class="logo" style="margin-top:2px;width:32px;"></div>
     <ul id="topMenu"></ul>
-    <div id="pswDiv" style="margin-top:6px;width:380px;">
+    <div id="pswDiv" style="margin-top:6px;width:430px">
         <a><img src="./images/head_subject.png" style="margin-right:5px;"/><span id="userInfo"></span></a>
-<!-- 
-        <a id="msgIcon" style="cursor:pointer;"><img src="./images/icon5.gif" style="margin-right:5px;"/>消息</a>
+        <!-- <a id="msgIcon" style="cursor:pointer;"><img src="./images/icon5.gif" style="margin-right:5px;"/>消息</a> -->
         <span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
         <a class="easyui-tooltip" style="cursor:pointer;" data-options="
                     hideEvent: 'none',
@@ -91,37 +90,14 @@
                         });
                     }">
             <img src="./images/hammer_screwdriver.png" style="margin-right:5px;"/>设置</a>
- -->        <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/>
+            <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/>
         	<span>全屏</span></a>
         <a onclick='logout()' style="cursor:pointer;"><img src="./images/head_out.png" style="margin-right:5px;"/>注销</a>
         <br/>
     </div>
 </div>
-<!-- <div data-options="region:'west',split:true,border:true,title:''" style="width:180px;"> -->
 <div data-options="region:'west',split:true,border:true,title:'功能菜单'" style="width:200px;">
 	<div id="wnav" class="easyui-accordion" data-options="fit:true,border:false,animate:true"> </div>
-	<!-- 
-	<div id="navTabs" class="easyui-tabs" data-options="fit: true, border: false">
-		<div data-options="title: '导航栏', iconCls: 'icon-standard-application-view-tile', refreshable: false, selected: true">
-		    <div id="wnav" class="easyui-accordion" data-options="fit:true,border:false,animate:true"> </div>
-		</div>
-		<div data-options="title: '收藏栏', iconCls: 'icon-hamburg-star', refreshable: false">
-		    <div id="westFavoLayout" class="easyui-layout" data-options="fit: true">
-		        <div data-options="region: 'north', split: false, border: false" style="height: 33px;">
-		            <div class="easyui-toolbar">
-		                <a id="favoMenu_Favo" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-undo'">取消收藏</a>
-		                <a id="favoMenu_Rename" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-edit'">重命名</a>
-		            </div>
-		        </div>
-		        <div data-options="region: 'center', border: false">
-		            <ul id="favoMenu_Tree" style="padding-top: 2px; padding-bottom: 2px;"></ul>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-	</div>
-	 -->
-    
 </div>
 <div data-options="region:'center',border:false" style="margin-left: 0px">
 	<div id="mainTabs_tools" class="tabs-tool">
@@ -130,16 +106,6 @@
                 <td><a id="mainTabs_jumpHome" class="easyui-linkbutton easyui-tooltip" title="跳转至欢迎页" data-options="plain: true, iconCls: 'icon-hamburg-home'"></a></td>
                 <td><div class="datagrid-btn-separator"></div></td>
                 <td><a id="mainTabs_toggleAll" class="easyui-linkbutton easyui-tooltip" title="展开/折叠面板使选项卡最大化" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'"></a></td>
-                <!-- 
-                <td><div class="datagrid-btn-separator"></div></td>
-                <td><a id="mainTabs_closeTab" class="easyui-linkbutton easyui-tooltip" title="关闭当前选中的选项卡" data-options="plain: true, iconCls: 'icon-standard-application-form-delete'"></a></td>
-                <td><a id="mainTabs_closeOther" class="easyui-linkbutton easyui-tooltip" title="关闭除当前选中外的其他所有选项卡" data-options="plain: true, iconCls: 'icon-standard-cancel'"></a></td>
-                <td><div class="datagrid-btn-separator"></div></td>
-                <td><a id="mainTabs_closeLeft" class="easyui-linkbutton easyui-tooltip" title="关闭左侧所有选项卡" data-options="plain: true, iconCls: 'icon-standard-tab-close-left'"></a></td>
-                <td><a id="mainTabs_closeRight" class="easyui-linkbutton easyui-tooltip" title="关闭右侧所有选项卡" data-options="plain: true, iconCls: 'icon-standard-tab-close-right'"></a></td>
-                <td><div class="datagrid-btn-separator"></div></td> 
-                <td><a id="mainTabs_closeAll" class="easyui-linkbutton easyui-tooltip" title="关闭所有选项卡" data-options="plain: true, iconCls: 'icon-standard-cross'"></a></td>
-                -->
             </tr>
         </table>
     </div>
@@ -156,7 +122,7 @@
 <div style="display:none">
     <div id="toolbar" >
         <a id="btnShowChangePwdDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r12_c20',plain:true">修改密码</a>
-        <a id="btnShowRunAsDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r11_c19',plain:true">切换身份</a>
+        <!-- <a id="btnShowRunAsDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r11_c19',plain:true">切换身份</a> -->
         <a id="btnShowThemeDialog" class="easyui-linkbutton easyui-tooltip" data-options="iconCls:'icon2 r16_c15',plain:true">切换主题</a>
     </div>
 </div>
@@ -278,6 +244,3 @@
 <script type="text/javascript" src="./js/husky/husky.common.depreciated.js"></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
-<!-- 
-<script type="text/javascript" src="./js/index-startup.js"></script>
- -->
