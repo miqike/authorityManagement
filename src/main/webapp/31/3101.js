@@ -67,7 +67,7 @@ function grid2ClickHandler() {
     }
     */
 	var plan = $('#grid1').datagrid('getSelected');
-    if ((plan.xdrmc != null || plan.xdrq != null) && $('#grid2').datagrid('getSelections').length > 0) {
+    if (plan != null && (plan.xdrmc != null || plan.xdrq != null) && $('#grid2').datagrid('getSelections').length > 0) {
     	
     	var acceptStatus = getAcceptStatus();
     	if(acceptStatus == 1) { //所有选中任务都是已认领
