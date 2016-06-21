@@ -121,4 +121,19 @@ public class HcrwController extends BaseController {
         }
         return result;
     }
+    @RequestMapping(value = "/{planId}/unAccept", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> unAccept(@PathVariable String planId, @RequestBody List<String> taskIds) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	try {
+    		hcrwService.unAccept(planId, taskIds);
+    		result.put(MESSAGE, "认领任务成功");
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "批量保存失败");
+    	}
+    	return result;
+    }
 }

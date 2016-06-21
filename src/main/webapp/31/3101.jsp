@@ -96,7 +96,7 @@
 	               data-options="singleSelect:true,collapsible:true,height:200,
 					onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
 					url:'../common/query?mapper=hcjhMapper&queryName=query',
-					method:'get'"
+					method:'get',onLoadSuccess:grid1LoadSucessHandler"
 	               toolbar="#gridToolbar1"
 	               sortOrder="asc">
 	            <thead>
@@ -106,9 +106,6 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
 	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
-	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">下达日期
-	                </th>
 	                <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
 	                    formatter="formatDate">计划开始时间
 	                </th>
@@ -129,6 +126,9 @@
 	                    formatter="formatCodeList">审核状态
 	                </th>
 	                <th data-options="field:'shrmc'" halign="center" align="center" sortable="true" width="90">审核人</th> -->
+	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
+	                    formatter="formatDate">下达日期
+	                </th>
 	                <th data-options="field:'xdrmc'" halign="center" align="center" sortable="true" width="90">下达人</th>
 	                <th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250">说明</th>
 	            </tr>
@@ -142,7 +142,7 @@
 	               data-options="disabled:true">审核/取消审核</a> -->
 	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true"
 	               data-options="disabled:true">检查事项</a>
-	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
+	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true"
 	               data-options="disabled:true">下达/取消下达</a>
 	        </div>
 	    </div>
@@ -184,8 +184,8 @@
                 data-options="disabled:true">按检查机关+检查人员排序</a>
              <a href="#" id="btnSort2" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true"
                 data-options="disabled:true">按市场主体类型+检查机关排序</a>
-             <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
-                data-options="disabled:true">认领</a>
+             <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领</a>
+             <a href="#" id="btnUnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">取消认领</a>
              <!-- 
              <a href="#" id="btnShowDetail" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
                 data-options="disabled:true">详细</a> -->

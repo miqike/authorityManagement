@@ -6,6 +6,8 @@ import com.kysoft.cpsi.task.entity.Hcjh;
 import com.kysoft.cpsi.task.mapper.HcjhMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
+
+import net.sf.husky.exception.BaseException;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,21 @@ public class HcjhServiceImpl implements HcjhService {
         } else {
             hcjhMapper.updateAuditById(hcjhId, 1, "", "");
         }
+    }
+    
+    @Override
+    public void dispatch(String hcjhId, Integer xdzt) {
+    	if (xdzt == 0) {
+    		User user = WebUtils.getCurrentUser();
+    		hcjhMapper.updateDispatchById(hcjhId, 1, user.getUserId(), user.getName());
+    	} else {
+    		int yrls = hcrwMapper.selectYrlsByPlanId(hcjhId);
+    		if(yrls == 0) {
+    			hcjhMapper.updateDispatchById(hcjhId, 0, "", "");
+    		} else {
+    			throw new BaseException("下级单位已经认领,不能进行取消下达操作");
+    		}
+    	}
     }
 
     @Override

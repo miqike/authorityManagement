@@ -831,7 +831,13 @@
     </select>
 
 	<update id="updateAccept">
-        UPDATE T_HCRW SET RLR = #{userId}, RLRMC = #{userName},RLRQ = SYSDATE where ID in (
+        UPDATE T_HCRW SET RLR = #{userId}, RLRMC = #{userName}, RLRQ = SYSDATE where ID in (
+	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
+	      select #{taskId} from dual
+	    </foreach>)
+    </update>
+	<update id="updateUnAccept">
+        UPDATE T_HCRW SET RLR = null, RLRMC = null, RLRQ = null where ID in (
 	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
 	      select #{taskId} from dual
 	    </foreach>)

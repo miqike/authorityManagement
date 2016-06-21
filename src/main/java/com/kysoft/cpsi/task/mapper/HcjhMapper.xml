@@ -426,6 +426,20 @@
         SHRMC = #{userName}
         where ID = #{hcjhId,jdbcType=VARCHAR}
     </update>
+    
+    <update id="updateDispatchById" parameterType="com.kysoft.cpsi.task.entity.Hcjh">
+        update T_HCJH
+        set 
+         <if test="xdzt == 1">
+             XDRQ = SYSDATE,
+        </if>
+         <if test="xdzt == 0">
+             XDRQ = null,
+        </if>
+        XDR = #{userId},
+        XDRMC = #{userName}
+        where ID = #{hcjhId,jdbcType=VARCHAR}
+    </update>
 
     <select id="testDblink" parameterType="java.util.HashMap" statementType="CALLABLE">
         {

@@ -47,6 +47,8 @@ public interface HcjhMapper {
 	List<Hcjh> query(Map<String, Object> param);
 
 	void updateAuditById(@Param("hcjhId") String hcjhId, @Param("shzt")Integer shzt, @Param("userId")String userId, @Param("userName")String userName);
+	
+	void updateDispatchById(@Param("hcjhId") String hcjhId, @Param("xdzt")Integer xdzt, @Param("userId")String userId, @Param("userName")String userName);
 
 	Map<String, Object> testDblink(Map<String, Object> paramMap);
 

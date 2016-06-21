@@ -28,27 +28,32 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
     }
 }
 
+function grid1LoadSucessHandler(data) {
+	$('#btnModify').linkbutton('disable');
+    $('#btnDispatch').linkbutton('disable');
+    $('#btnViewCheckList').linkbutton('disable');
+}
+
 function grid1ClickHandler() {
     if ($('#grid1').datagrid('getSelected') != null) {
         $('#btnModify').linkbutton('enable');
-        $('#btnAudit').linkbutton('enable');
+        $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
-        if ($('#grid1').datagrid('getSelected').shzt != 2) {
+        var row = $('#grid1').datagrid('getSelected');
+        if (row.xdrmc == null && row.xdrq == null) {
             $('#btnModify').linkbutton('enable');
-            $('#btnAudit').linkbutton({
-                text: '审核',
-                iconCls: 'icon2 r14_c2'
+            $('#btnDispatch').linkbutton({
+                text: '下达'
             });
         } else {
             $('#btnModify').linkbutton('disable');
-            $('#btnAudit').linkbutton({
-                text: '取消审核',
-                iconCls: 'icon2 r14_c1'
+            $('#btnDispatch').linkbutton({
+                text: '取消下达'
             });
         }
     } else {
         $('#btnModify').linkbutton('disable');
-        $('#btnAudit').linkbutton('disable');
+        $('#btnDispatch').linkbutton('disable');
         $('#btnViewCheckList').linkbutton('disable');
     }
     $('#grid2').datagrid("loadData", {total: 0, rows: []})
@@ -61,12 +66,46 @@ function grid2ClickHandler() {
         $('#btnShowDetail').linkbutton('disable');
     }
     */
-	if ($('#grid2').datagrid('getSelections').length > 0) {
-		$('#btnAccept').linkbutton('enable');
+	var plan = $('#grid1').datagrid('getSelected');
+    if ((plan.xdrmc != null || plan.xdrq != null) && $('#grid2').datagrid('getSelections').length > 0) {
+    	
+    	var acceptStatus = getAcceptStatus();
+    	if(acceptStatus == 1) { //所有选中任务都是已认领
+    		
+    		$('#btnAccept').linkbutton('disable');
+    		$('#btnUnAccept').linkbutton('enable');
+    	} else if(acceptStatus == 0) { //所有选中任务都是未认领
+    		
+    		$('#btnAccept').linkbutton('enable');
+    		$('#btnUnAccept').linkbutton('disable');
+    	} else {
+    		
+    		$('#btnAccept').linkbutton('enable');
+    		$('#btnUnAccept').linkbutton('enable');
+    	}
 	} else {
-        $('#btnAccept').linkbutton('disable');
-    }
-    
+		$('#btnAccept').linkbutton('disable');
+		$('#btnUnAccept').linkbutton('disable');
+	}
+}
+
+
+function getAcceptStatus() {
+	var tasks = $("#grid2").datagrid("getSelections");
+	var accepted = 0;
+	for(var i=0; i<tasks.length; i++) {
+		if(tasks[i].rlr != null && tasks[i].rlrq != null) {
+			++accepted;
+		}
+	}
+	
+	if(accepted == 0) {
+		return 0;
+	} else if (accepted == tasks.length) {
+		return 1;
+	} else {
+		return 2
+	}
 }
 
 function setFormFieldStatus(formId, operation) {
@@ -152,26 +191,26 @@ function doPlanFormInit(data) {
 
 }
 
-function audit() {
-    if (!$(this).linkbutton('options').disabled) {
-        var row = $('#grid1').datagrid('getSelected');
-        if (row) {
-            var action = row.shzt == 1 ? '审核' : '取消审核';
-            $.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
-                if (r) {
-                    $.getJSON("./hcjh/audit/" + row.id + "/" + row.shzt, null, function (response) {
-                        if (response.status == SUCCESS) {
-                            $.messager.alert("提示", action + "成功", 'info');
-                            loadGrid1();
-                        } else {
-                            $.messager.alert("错误", action + '失败: \n' + response.message, 'info');
-                        }
-                    });
-                }
-            });
-        }
-    }
-
+function dispatch() {
+	if (!$(this).linkbutton('options').disabled) {
+		var row = $('#grid1').datagrid('getSelected');
+		if (row) {
+			var xdzt = (row.xdrmc == null && row.xdrq == null)? 0: 1;
+			var action = xdzt == 0 ? '下达' : '取消下达';
+			$.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
+				if (r) {
+					$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
+						if (response.status == SUCCESS) {
+							$.messager.alert("提示", action + "成功", 'info');
+							loadGrid1();
+						} else {
+							$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
+						}
+					});
+				}
+			});
+		}
+	}
 }
 
 function formatZfry(val, row) {
@@ -530,39 +569,47 @@ function sort(order) {
 
 function funcAccept() {
 	if (!$(this).linkbutton('options').disabled) {
-		var selected = $('#grid2').datagrid('getSelections');
-		var validate = true;
-		var datas = new Array();
-		for(var i=0; i<selected.length; i++) {
-			var task = selected[i];
-			datas.push(task.id);
-			if((task.zfryCode1 != userInfo.zfry && task.zfryCode2 != userInfo.zfry) || (task.rlr != null && task.rlr != "")) {
-				validate = false;
-				break;
-			}
-		}
-		if(validate) {
-		    $.ajax({
-		        url: "../51/" + selected[0].hcjhId + "/accept",
-		        type: "POST",
-		        data: JSON.stringify(datas),
-		        dataType: "json",
-		        contentType: 'application/json;charset=utf-8',
-		        success: function (response) {
-		            if (response.status == SUCCESS) {
-		            	loadGrid1();
-		                $('#grid2').datagrid("reload");
-		            } else {
-		                $.messager.alert('失败', response.message, 'info');
-		            }
-		        }
-		    });
-		} else {
-			$.messager.alert("操作提醒", "选中的任务已认领或者没有指定到本人", "warning");
-		}
+		_funcAccept("accept");
+	}
+}
+function funcUnAccept () {
+	if (!$(this).linkbutton('options').disabled) {
+		_funcAccept("unAccept");
 	}
 }
 
+function _funcAccept (operation) {
+	var selected = $('#grid2').datagrid('getSelections');
+	var validate = true;
+	var datas = new Array();
+	for(var i=0; i<selected.length; i++) {
+		var task = selected[i];
+		datas.push(task.id);
+		/*if((task.zfryCode1 != userInfo.zfry && task.zfryCode2 != userInfo.zfry) || (task.rlr != null && task.rlr != "")) {
+			validate = false;
+			break;
+		}*/
+	}
+	//if(validate) {
+	    $.ajax({
+	        url: "../51/" + selected[0].hcjhId + "/" + operation,
+	        type: "POST",
+	        data: JSON.stringify(datas),
+	        dataType: "json",
+	        contentType: 'application/json;charset=utf-8',
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	            	loadGrid1();
+	                $('#grid2').datagrid("reload");
+	            } else {
+	                $.messager.alert('失败', response.message, 'info');
+	            }
+	        }
+	    });
+	/*} else {
+		$.messager.alert("操作提醒", "选中的任务已认领或者没有指定到本人", "warning");
+	}*/
+}
 
 //初始化
 $(function () {
@@ -575,12 +622,13 @@ $(function () {
     
     $("#btnAdd").click(add);
     $("#btnModify").click(modify);
-    //$("#btnAudit").click(audit);
+    $("#btnDispatch").click(dispatch);
     $("#btnViewCheckList").click(viewCheckList);
     
     $("#btnSort1").click(funcSort1);
     $("#btnSort2").click(funcSort2);
     $("#btnAccept").click(funcAccept);
+    $("#btnUnAccept").click(funcUnAccept);
     $("#f_nd").val( new Date().getFullYear());
     clearInput();
    

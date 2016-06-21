@@ -72,6 +72,8 @@ public interface HcrwMapper {
     List<Map<String, Object>> queryTongJiFenXi(Map<String, Object> params);
 
 	void updateAccept(@Param("taskIds") List<String> taskIds, @Param("userId")String userId, @Param("userName")String userName);
+	
+	void updateUnAccept(@Param("taskIds") List<String> taskIds);
 
 	Integer selectYrlsByPlanId(String planId);
 }

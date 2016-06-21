@@ -92,6 +92,12 @@ public class HcrwServiceImpl implements HcrwService {
 		hcrwMapper.updateAccept(taskIds, user.getUserId(), user.getName());
 		hcjhService.reCalcAcceptStatus(planId);
 	}
+	
+	public void unAccept(String planId, List<String> taskIds) {
+		User user = WebUtils.getCurrentUser();
+		hcrwMapper.updateUnAccept(taskIds);
+		hcjhService.reCalcAcceptStatus(planId);
+	}
 
 
 }

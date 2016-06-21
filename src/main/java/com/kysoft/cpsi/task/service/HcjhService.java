@@ -9,6 +9,8 @@ public interface HcjhService {
 	void saveCheckList(String hcjhId, String[] hcsxIds);
 
 	void audit(String hcjhId, Integer shzt);
+	
+	void dispatch(String hcjhId, Integer xdzt);
 
 	String save(Hcjh hcjh);
 
