@@ -339,6 +339,7 @@ function loadGrid1() {
         nd: $('#f_nd').numberspinner("getValue"),
         jhbh: $('#f_jhbh').val(),
         gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
         jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")

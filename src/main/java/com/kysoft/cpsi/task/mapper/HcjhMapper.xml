@@ -355,6 +355,9 @@
             <if test="gsjhbh!=null">
                 AND GSJHBH = #{gsjhbh}
             </if>
+            <if test="cxwh!=null">
+                AND CXWH = #{cxwh}
+            </if>
             <if test="jhmc!=null">
                 AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
             </if>

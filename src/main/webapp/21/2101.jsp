@@ -99,25 +99,29 @@
                     <td><input id="f_gsjhbh" class="easyui-validatebox"/></td>
                     <td class="label">检查人员</td>
                     <td><input id="f_hcry" class="easyui-validatebox"/></td>
-                    <td class="label">企业名称</td>
-                    <td><input id="f_qymc" class="easyui-validatebox"/></td>
+                    <td class="label">抽查文号</td>
+                    <td><input id="f_cxwh" class="easyui-validatebox"/></td>
                 </tr>
                 <tr>
                     <td class="label">统一社会信用代码</td>
                     <td><input id="f_xydm" class="easyui-validatebox"/></td>
+                    <td class="label">企业名称</td>
+                    <td><input id="f_qymc" class="easyui-validatebox"/></td>
                     <td class="label">行业分类</td>
-                    <td><input id="f_hyfl" class="easyui-combobox" codeName="hyfl"/></td>
-                    <td class="label">组织形式</td>
-                    <td><input id="f_zzxs" class="easyui-combobox" codeName="qyzzxs"/></td>
+                	<td><input id="f_hyfl" class="easyui-combobox" codeName="hyfl"/></td>
                 </tr>
                 <tr>
+                    <td class="label">组织形式</td>
+                    <td><input id="f_zzxs" class="easyui-combobox" codeName="qyzzxs"/></td>
                     <td class="label">经营状态</td>
                     <td><input id="f_jyzt" class="easyui-combobox" codeName="jyzt"
                                data-options="panelHeight:120,width:144" style=""/></td>
                     <td class="label">检查结果</td>
                     <td><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
                                data-options="panelHeight:120,width:144" style=""/></td>
-                    <td style="text-align:right" colspan="2">
+                </tr>
+                <tr>
+                    <td style="text-align:right" colspan="6">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>
                         <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -142,7 +146,7 @@
 	            <thead>
 		            <tr>
 		                <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
-		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >所在区域</th>
+		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
 		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
 		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="ztlx"

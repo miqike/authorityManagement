@@ -27,13 +27,6 @@
     <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 
-    <!-- 
-    <script type="text/javascript" src="../js/myJs/common.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
-    <script type="text/javascript" src="../js/myJs/formatter.js"></script>
- -->
     <script type="text/javascript" src="./2102.js"></script>
     <style>
         body {
@@ -83,7 +76,6 @@
     </style>
 </head>
 <body style="padding:5px;">
-<%-- <shiro:hasPermission name="user"> --%>
 <div id="layout" class="easyui-layout" data-options="fit:true">
 
     <div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
@@ -126,8 +118,8 @@
 		            offset: { width: -254, height: -76}">
             <thead>
             <tr>
-                <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
                 <th data-options="field:'dwName',halign:'center',align:'left'" sortable="true" width="180">检查机关</th>
+                <th data-options="field:'gxdwName',halign:'center',align:'left'" sortable="true" width="180">管辖单位</th>
                 <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">姓名</th>
                 <th data-options="field:'zfzh',halign:'center',align:'center'" sortable="true" width="85">执法证号</th>
                 <th data-options="field:'gender',halign:'center',align:'right'" sortable="true" width="50"

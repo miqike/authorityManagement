@@ -125,6 +125,7 @@ $(function () {
             hcry: $("#f_hcry").val(),
             qymc: $("#f_qymc").val(),
             xydm: $("#f_xydm").val(),
+            cxwh: $("#f_cxwh").val(),
             hyfl: $("#f_hyfl").combobox("getValue"),
             qy: $("#f_qy").val(),
             zzxs: $("#f_zzxs").combobox("getValue"),

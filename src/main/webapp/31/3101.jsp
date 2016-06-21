@@ -69,15 +69,19 @@
 	                <td><input id="f_gsjhbh" class="easyui-validatebox"/></td>
 	            </tr>
 	            <tr>
+	            	<td class="label">抽查文号</td>
+	                <td><input id="f_cxwh" class="easyui-validatebox"/></td>
 	                <td class="label">计划名称</td>
 	                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
 	                <td class="label">检查内容</td>
 	                <td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
 	                           data-options="panelHeight:80,width:143,onChange:loadGrid1" style=""/></td>
+	            </tr>
+	            <tr>
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="2" style="text-align-right;">
+	                <td colspan="4" style="text-align-right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -99,8 +103,9 @@
 	            <tr>
 	                <th data-options="field:'nd'" halign="center" align="center" sortable="true" width="50">年度</th>
 	                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="70">计划编号</th>
-	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示计划编号</th>
+	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
+	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
 	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
 	                    formatter="formatDate">下达日期
 	                </th>
@@ -137,9 +142,8 @@
 	               data-options="disabled:true">审核/取消审核</a> -->
 	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true"
 	               data-options="disabled:true">检查事项</a>
-	            <!-- 
 	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
-	               data-options="disabled:true">派发/取消派发</a> -->
+	               data-options="disabled:true">下达/取消下达</a>
 	        </div>
 	    </div>
     </div>
@@ -162,7 +166,7 @@
                  <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
                  <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
                  <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
-                 <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
+                 <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
                  <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
                      formatter="formatZfry">检查人员</th>
                  <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
