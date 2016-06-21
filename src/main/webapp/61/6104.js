@@ -85,7 +85,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
             order: 1
         });
     } else {
-
+        $.messager.alert("提示","请首先选择计划和单位")
     }
 }
 
@@ -105,7 +105,7 @@ $(function () {
         var selected = treeObj.getSelectedNodes();
         var hcjh = $('#grid1').datagrid('getSelected');
         var params = {
-            "pageTitle": selected[0].name + "工商行政管理局\n抽查结果公示表\n（文号）",
+            "pageTitle": selected[0].name + "工商行政管理局\n抽查结果公示表\n（"+$("#grid1").datagrid("getSelected").cxwh+"）",
             "pageTitleFirst": "1",
             "pageFoot": selected[0].name + "工商行政管理局公章\n        年    月    日",
             "pageFootLast": "1",
