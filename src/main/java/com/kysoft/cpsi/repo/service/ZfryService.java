@@ -16,4 +16,8 @@ public interface ZfryService {
     void update(Zfry zfry);
 
     List<Zfry> query(Map<String, Object> params);
+
+	int lock(String code);
+
+	void addSysUser(String code, String userId);
 }

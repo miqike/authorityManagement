@@ -1,12 +1,19 @@
 package com.kysoft.cpsi.repo.service;
 
-import com.kysoft.cpsi.repo.entity.Zfry;
-import com.kysoft.cpsi.repo.mapper.ZfryMapper;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.kysoft.cpsi.repo.entity.Zfry;
+import com.kysoft.cpsi.repo.mapper.ZfryMapper;
+
+import net.sf.husky.exception.BaseException;
+import net.sf.husky.security.entity.User;
+import net.sf.husky.security.service.UserService;
 
 
 /**
@@ -17,6 +24,9 @@ public class ZfryServiceImpl implements ZfryService {
 
     @Resource
     ZfryMapper zfryMapper;
+
+    @Resource
+    UserService userService;
 
     @Override
     public void insert(Zfry zfry) {
@@ -37,4 +47,39 @@ public class ZfryServiceImpl implements ZfryService {
     public List<Zfry> query(Map<String, Object> params) {
         return zfryMapper.query(params);
     }
+
+	@Override
+	public int lock(String code) {
+		Zfry zfry = zfryMapper.selectByPrimaryKey(code);
+        int targetStatus;
+        if(zfry.getZt() == null || zfry.getZt() == 1) {
+        	targetStatus = 2;
+        } else {
+        	targetStatus = 1;
+        }
+        zfryMapper.updateStatusByPrimaryKey(zfry.getCode(), targetStatus);
+        return targetStatus;
+	}
+
+	@Override
+	public void addSysUser(String code, String userId) {
+		User user = userService.findByUserId(userId);
+		if(null != user) {
+			throw new BaseException("用户名已存在!");
+		} else {
+			Zfry zfry = zfryMapper.selectByPrimaryKey(code);
+			user = new User();
+			user.setUserId(userId);
+			user.setName(zfry.getName());
+			user.setEmail(zfry.getMail());
+			user.setMobile(zfry.getMail());
+			user.setCreateTime(new Date());
+			user.setStatus(zfry.getZt());
+			user.setOrgId(zfry.getGxdwId());
+			user.setOrgName(zfry.getGxdwName());
+			user.setZfry(code);
+			userService.add(user);
+			zfryMapper.updateUserIdByPrimaryKey(code, userId);
+		}
+	}
 }

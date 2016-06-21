@@ -29,9 +29,8 @@ function mainGridDblClickHandler(index,row) {
 }
 
 function add(){
-	window.selected = -1;
 	$('#mainGrid').datagrid('unselectAll');
-	showRoleForm("add", row);
+	showRoleForm("add");
 }
 
 
@@ -210,6 +209,7 @@ function saveRole(){
 		    	} else {
 		    		$.husky.refreshParent("mainGrid", data);
 		    	}
+		    	$.messager.show("操作提醒", response.message, "info", "bottomRight");
 			}
 		}, "json");
 	}
