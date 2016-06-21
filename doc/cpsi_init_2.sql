@@ -55,9 +55,11 @@ end;
   初始化核查人员
  */
 delete from t_zfry;
-insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt)
+insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
   select user_id,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-                             null zw,null mobile,null mail,zfzh,null sfzh,1,null whcd,1
+    null zw,null mobile,null mail,zfzh,null sfzh,1,null whcd,1,
+    gxdwdm GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdwdm) gxdw_name,
+    gh user_id
   from xt_user a;
 /**
   初始化操作员
