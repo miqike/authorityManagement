@@ -32,6 +32,7 @@ function grid1LoadSucessHandler(data) {
 	$('#btnModify').linkbutton('disable');
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
+    $('#grid1').datagrid('selectRow', 0);
 }
 
 function grid1ClickHandler() {
