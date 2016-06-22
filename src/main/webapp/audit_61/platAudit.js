@@ -2,9 +2,9 @@ function doInit() {
 	$("#_auditApproach_").html(auditApproach);
 
 	var auditTask = $('#grid1').datagrid('getSelected');
-	if(auditTask.dataLoaded == 0) {
+	/*if(auditTask.dataLoaded == 0) {
 		$.alert("首先需要加载数据");
-	} else {
+	} else {*/
 		var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
 		var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
 		$.post("../audit/getCompareInfo", param,
@@ -25,7 +25,7 @@ function doInit() {
 					
 				}
 			}); 
-	}
+	//}
 }
 
 function trans(val, codeName) {

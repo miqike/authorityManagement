@@ -50,12 +50,15 @@
                 /**/*.html = anon
                 /**/*.js = anon
                 /chromeframe/**/* = anon
+                
 
                 <!--/user/checkUserExist = anon-->
+                /eai = anon
                 /audit/mail/* = anon
                 /weixin/**/* = anon
                 /identiti/**/* = anon
                 /user/*/exist = anon
+                /user/*/retrievePass = anon
                 /jcaptcha* = anon
                 /captcha* = anon
 

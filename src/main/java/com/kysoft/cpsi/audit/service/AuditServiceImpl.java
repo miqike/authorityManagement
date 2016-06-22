@@ -1,12 +1,16 @@
 package com.kysoft.cpsi.audit.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.audit.entity.AnnualReport;
 import com.kysoft.cpsi.audit.entity.MailVerify;
 import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.mapper.*;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import com.kysoft.cpsi.task.service.HcsxjgService;
+
+import net.sf.husky.exception.BaseException;
 import net.sf.husky.log.service.LogService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -171,6 +175,43 @@ public class AuditServiceImpl implements AuditService {
 
         return result;
     }
+
+	@Override
+	public void importData(JSONObject jsonData) {
+		AnnualReport ar = getAnnualReport(jsonData);
+		Integer nd = ar.getNd();
+		String xydm = ar.getXydm();
+		
+		int count = annualReportMapper.selectCountByNdAndXydm(nd, xydm);
+		System.out.println("================\t" + count);
+		if(count == 0) {
+			throw new BaseException("核查任务不存在,请检查年桔和企业统一社会信用代码是否正确录入");
+		} else {
+			annualReportMapper.updateByNdAndXydm(ar);
+		}
+	}
+
+	private AnnualReport getAnnualReport(JSONObject jsonData) {
+		AnnualReport ar = new AnnualReport();
+		ar.setNd(jsonData.getInteger("nd")); //126289223.960000,
+		ar.setXydm(jsonData.getString("xydm")); //'0',
+		ar.setSyzqyhj(jsonData.getFloat("syzqyhj")); //126289223.960000,
+		ar.setLrze(jsonData.getFloat("lrze")); //-1645108.430000,
+		ar.setYyzsr(jsonData.getFloat("yyzsr")); //113022006.660000,
+		ar.setZyywsr(jsonData.getFloat("zyywsr")); //107588461.960000,
+		ar.setJlr(jsonData.getFloat("jlr")); //-1645108.430000,
+		ar.setNsze(jsonData.getFloat("nsze")); //0,
+		ar.setFzze(jsonData.getFloat("fzze")); //19561910.140000,
+		ar.setZcze(jsonData.getFloat("zcze")); //145851134.100000,
+		ar.setTxdz(jsonData.getString("txdz")); //'中关村',
+		ar.setYzbm(jsonData.getString("yzbm")); //'0',
+		ar.setLxdh(jsonData.getString("lxdh")); //'132233221145',
+		ar.setMail(jsonData.getString("dzyx")); //'7700266@qq.com',
+		ar.setCyrs(jsonData.getInteger("crys")); //'10000',
+		ar.setJyzt(jsonData.getString("jyzt")); //'0',
+		//ar.setFzr(jsonData.getString("fzr")); //'大海',
+		return ar;
+	}
 
 
 }
