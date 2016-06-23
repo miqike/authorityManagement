@@ -8,13 +8,13 @@ $(function () {
 });
 
 </script>
-<div id="auditItemAccordion" class="easyui-accordion" data-options="fit:false,border:true,animate:true" > 
-	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', selected:true" style="overflow:auto;">
+<div id="auditItemAccordion" class="easyui-accordion" data-options="fit:true,border:true,animate:true" > 
+	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', fit: true,selected:true" style="overflow:auto;">
 		<div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false, onSelect:auditItemsTabSelectHandler">
 			<div data-options="title: '年报信息', iconCls: 'icon2 r9_c2', refreshable: false, selected: true">
 				<table id="annualAuditItemGrid" class="easyui-datagrid"
-					data-options="collapsible:true,height: 380,	
-				    	onClickRow:annualAuditItemClickHandler,width:805,
+					data-options="collapsible:true,
+				    	onClickRow:annualAuditItemClickHandler,
 						ctrlSelect:true,method:'get',onDblClickRow:annualAuditItemDblClickHandler,
 						toolbar: '#annualAuditItemGridToolbar'" >
 				     <thead>
@@ -38,8 +38,8 @@ $(function () {
 			</div>
 			<div data-options="title: '即时信息', iconCls: 'icon2 r8_c1', refreshable: false">
 				<table id="instanceAuditItemGrid" class="easyui-datagrid"
-					data-options="collapsible:true,	height: 380,
-						onClickRow:instanceAuditItemGridClickHandler,width:805,
+					data-options="collapsible:true,	
+						onClickRow:instanceAuditItemGridClickHandler,
 						ctrlSelect:true,method:'get',onDblClickRow:instanceAuditItemGridDblClickHandler,
 						toolbar: '#instanceAuditItemGridToolbar'" >
 				     <thead>
@@ -68,8 +68,7 @@ $(function () {
 		     style="width: 750px; height: 420px; padding: 10px;">
 			<div id="auditContent" style="padding:10px;"></div>
 			<div id="auditToolbar" style="padding:5px 0px;">
-                <div class="dialog-button calendar-header" style="height: auto; border-top-color: rgb(195, 217, 224);">
-				    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">打开财务审计工具</a>
+                <div class="dialog-button calendar-header" style="height: auto; border-top-color: rgb(195, 217, 224);text-align: left;">
 				    <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
 				    <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
 				    <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>

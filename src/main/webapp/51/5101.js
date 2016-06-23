@@ -42,7 +42,13 @@ function loadMyTask() {
         jhmc: $('#f_jhmc').val()
     }, function (response) {
         if (response.status == SUCCESS) {
-        	 $("#grid1").datagrid("loadData",response);
+        	$("#grid1").datagrid("loadData",response);
+        	$('#p_jhbh').val("");
+			$('#p_jhmc').val("");
+			$('#p_jhxdrq').datebox("clear");
+			$('#p_jhyqwcsj').datebox("clear");
+			$('#p_hcjieguo').combobox("clear");
+			$("#auditItemList").empty();
         }
     });
 }
@@ -50,7 +56,6 @@ function loadMyTask() {
 function grid1ClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
-    $('#p_id').val(hcrw.hcjhId);
     $('#p_jhbh').val(hcrw.jhbh);
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
@@ -60,6 +65,7 @@ function grid1ClickHandler() {
     $('#btnSendHcgzs').linkbutton("enable");
     $('#btnSendZllxtzs').linkbutton("enable");
     $('#btnSendQyzshch').linkbutton("enable");
+    $('#btnOpenEtlTool').linkbutton("enable");
     $('#btnViewDocument').linkbutton("enable");
     $('#btnPrintHeChaJieGuo').linkbutton("enable");
     $('#btnPrintGongShiXinXiGengZheng').linkbutton("enable");
@@ -117,6 +123,19 @@ function _pullData() {
         }
     });
 }
+
+//=============================
+function openEtlTool() {
+    $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+        var qy = $("#grid1").datagrid("getSelected");
+        //用户名&salt&加密后的密码&计划编号&企业注册号&企业名称
+        liexplorer://v00056&123qwe!@#QWE&5e9593e655d55b5cd553735a00961ce1&undefined&610403100018125&杨凌固凌机械科技有限公司
+        var param = "liexplorer://" + response.userId + "&" + response.salt + "&" + response.password + "&" + qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName; 
+        console.log(param)
+        location.replace(param);
+    });
+}
+//=============================
 
 function funcBtnViewDocument() {
     if (!$(this).linkbutton('options').disabled) {
@@ -212,6 +231,7 @@ $(function () {
     $("#btnSearch").click(loadMyTask);
     $("#btnReset").click(funcBtnRest);
     $("#btnPullData").click(funcBtnPullData);
+    $("#btnOpenEtlTool").click(openEtlTool);
     $("#btnViewDocument").click(funcBtnViewDocument);
 
     $("#btnSendHcgzs").click(function () {

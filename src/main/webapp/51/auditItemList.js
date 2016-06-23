@@ -70,39 +70,43 @@ function initAuditItemList() {
 function doAuditItemListInit() {
     window.auditItemDataReady = false;
     var hcrw = $('#grid1').datagrid('getSelected');
-    $.ajax({
-        url: "./" + hcrw.id + "/initStatus",
-        data: {hcrwId: hcrw.id},
-        type: 'GET',
-        success: function (response) {
-            if (response.status == SUCCESS) {
-                if (response.data == 0) {
-                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
-                    //    if (r) {
-                            $.ajax({
-                                url: "./" + hcrw.id + "/init",
-                                type: 'POST',
-                                success: function (response) {
-                                    if (response.status == SUCCESS) {
-                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
-                                        window.auditItemDataReady = true;
-                                        initAuditItemList();
-                                    } else {
-                                        //$.messager.alert('删除失败', response, 'info');
-                                    }
-                                }
-                            });
-                    //    }
-                    //});
-                } else {
-                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
-                    window.auditItemDataReady = true;
-                    initAuditItemList();
-                }
-
-            }
-        }
-    });
+    if(null == hcrw) {
+    	$("#auditItemList").empty();
+    } else {
+	    $.ajax({
+	        url: "./" + hcrw.id + "/initStatus",
+	        data: {hcrwId: hcrw.id},
+	        type: 'GET',
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	                if (response.data == 0) {
+	                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
+	                    //    if (r) {
+	                            $.ajax({
+	                                url: "./" + hcrw.id + "/init",
+	                                type: 'POST',
+	                                success: function (response) {
+	                                    if (response.status == SUCCESS) {
+	                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
+	                                        window.auditItemDataReady = true;
+	                                        initAuditItemList();
+	                                    } else {
+	                                        //$.messager.alert('删除失败', response, 'info');
+	                                    }
+	                                }
+	                            });
+	                    //    }
+	                    //});
+	                } else {
+	                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
+	                    window.auditItemDataReady = true;
+	                    initAuditItemList();
+	                }
+	
+	            }
+	        }
+	    });
+    }
 }
 
 //-----------annual
@@ -131,7 +135,7 @@ function _funcAnnualAudit() {
         $.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
-        //showModalDialog("auditWindow");
+        $("#taskDetailLayout").layout("collapse", "north");
         $("#auditContent").panel({
             href: '../audit_' + customer + '/' + auditItem.page + '.jsp',
             onLoad: function () {
@@ -151,7 +155,6 @@ function annualAuditItemInit() {
         	 $("#annualAuditItemGrid").datagrid("loadData",response);
         }
     });
-    //$("#auditItemAccordion").accordion("select", 0)
 }
 //---------------annual end and instance begin
 
@@ -220,11 +223,9 @@ function _doInit(type) {
     $("#_qymc_").text(qy.hcdwName);
     $("#_hcsxmc_").text(auditItem.name);
 
-    $("#btnOpenEtlTool").show();
     $("#btnSuccess").show();
     $("#btnFail").show();
 
-    $("#btnOpenEtlTool").click(openEtlTool);
     $("#btnSuccess").click(pass);
     $("#btnFail").click(fail);
 
@@ -261,65 +262,6 @@ function addComment(elem) {
 	var content = $(elem).text();
 	$("#k_failReason").text($("#k_failReason").text() + "\n" + content);
 }
-
-//=============================
-/*function openEtlTool() {
-	getUserInfo();
-    if (null != window.userInfo) {
-    	executeFile();
-    } else {
-        $.subscribe("USERINFO_INITIALIZED", executeFile);
-    }
-}*/
-
-function openEtlTool() {
-    $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
-        var qy = $("#grid1").datagrid("getSelected");
-        //用户名&salt&加密后的密码&计划编号&企业注册号&企业名称
-        liexplorer://v00056&123qwe!@#QWE&5e9593e655d55b5cd553735a00961ce1&undefined&610403100018125&杨凌固凌机械科技有限公司
-        var param = "liexplorer://" + response.userId + "&" + response.salt + "&" + response.password + "&" + qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName; 
-        console.log(param)
-        location.replace(param);
-    });
-    
-    /*try {
-        var _file = file;
-        var fso = new ActiveXObject("Scripting.FileSystemObject");
-        if (fso.FileExists(_file)) {
-            var shellActiveXObject = new ActiveXObject("WScript.Shell");
-            if (!shellActiveXObject) {
-                alert('无法创建WScript.Shell');
-                return;
-            }
-            var exePath = "";
-            $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
-                var qy = $("#grid1").datagrid("getSelected");
-                //用户名&salt&加密后的密码&计划单编号&企业注册号&企业名称
-                exePath = file + " " + response.userId + "&" + response.salt + "&" + response.password + "&" + $("#p_id").val() + "&" + qy.hcdwXydm + "&" + qy.hcdwName;
-
-                if (null != paramArray) {
-                    for (var i = 0; i < paramArray.length; i++) {
-                        exePath = exePath + " " + paramArray[i];
-                    }
-                    alert(exePath);
-                }
-
-                shellActiveXObject.Run(exePath, 1, false);
-                shellActiveXObject = null;
-            });
-
-        }
-        else {
-            alert("系统检测到未安装" + file);
-        }
-    }
-    catch (errorObject) {
-        alert("请将站点设置为可信任站点，并将其安全级别设置为低!" + errorObject.message);
-    }*/
-}
-
-
-//=============================
 
 //==通用,通过,失败,返回===
 function pass() {
