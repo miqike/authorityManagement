@@ -208,12 +208,12 @@ $(function() {
                         icons: [{
                             iconCls:'icon2 r22_c16',
                             handler: selectOrganization
-                        }]" style="width:200px;"/></td>
+                        }]" style="width:200px;" disabled/></td>
                 </tr>
                 <tr>
                     <td class="label">单位名称</td>
                     <td colspan="3">
-                        <input id="p_orgName" class="easyui-validatebox" style="width:577px;" data-options="required:true,disabled:true" />
+                        <input id="p_orgName" class="easyui-validatebox" style="width:577px;" data-options="required:true"  disabled/>
                     </td>
                 </tr>
                 <tr>
