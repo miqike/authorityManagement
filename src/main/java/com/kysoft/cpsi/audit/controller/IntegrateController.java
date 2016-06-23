@@ -30,6 +30,9 @@ public class IntegrateController extends BaseController {
         String result = null;
     	try {
         	String _eaiData = StringUtils.substring(eaiData, 0, eaiData.length() - 1);
+        	System.out.println("----------------------");
+        	System.out.println(URLDecoder.decode(_eaiData, "utf-8"));
+        	System.out.println("----------------------");
         	JSONObject jsonData = (JSONObject) JSON.parse(URLDecoder.decode(_eaiData, "utf-8"));
         	auditService.importData(jsonData);
             result = "数据接收成功";

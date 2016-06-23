@@ -263,17 +263,25 @@ function addComment(elem) {
 }
 
 //=============================
-function openEtlTool() {
+/*function openEtlTool() {
 	getUserInfo();
     if (null != window.userInfo) {
-        execute();
+    	executeFile();
     } else {
-        $.subscribe("USERINFO_INITIALIZED", execute);
+        $.subscribe("USERINFO_INITIALIZED", executeFile);
     }
-}
+}*/
 
-function executeFile(file, paramArray) {
-    location.replace("liexplorer://v00056&salt&password&id&xydm&dwmc");
+function openEtlTool() {
+    $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+        var qy = $("#grid1").datagrid("getSelected");
+        //用户名&salt&加密后的密码&计划编号&企业注册号&企业名称
+        liexplorer://v00056&123qwe!@#QWE&5e9593e655d55b5cd553735a00961ce1&undefined&610403100018125&杨凌固凌机械科技有限公司
+        var param = "liexplorer://" + response.userId + "&" + response.salt + "&" + response.password + "&" + qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName; 
+        console.log(param)
+        location.replace(param);
+    });
+    
     /*try {
         var _file = file;
         var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -309,10 +317,7 @@ function executeFile(file, paramArray) {
         alert("请将站点设置为可信任站点，并将其安全级别设置为低!" + errorObject.message);
     }*/
 }
-//更新单位树
-function execute() {
-    executeFile("C:/ky1.0/sjp6.exe");
-}
+
 
 //=============================
 

@@ -51,6 +51,7 @@ function grid1ClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
     $('#p_id').val(hcrw.hcjhId);
+    $('#p_jhbh').val(hcrw.jhbh);
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
     $('#p_jhyqwcsj').datebox("setValue", formatDate(hcrw.jhyqwcsj));
@@ -94,6 +95,7 @@ function clearInput() {
     $("#f_hcjhId").val("");
     $("#f_jhmc").val("");
     $("#p_id").val("");
+    $("#p_jhbh").val("");
     $("#p_jhmc").val("");
     $("#p_xdsj").datebox("setValue", "");
     $("#p_yqwcsj").datebox("setValue", "");
