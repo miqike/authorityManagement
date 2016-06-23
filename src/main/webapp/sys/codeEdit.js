@@ -32,8 +32,8 @@ function loadMainGrid(){
 }
 function mainGridLoadSuccessHandler(){
     //$('#mainGrid').datagrid("selectRow",0);
-    $("#value").textbox("setValue","");
-    $("#literal").textbox("setValue","");
+    $("#value").val("");
+    $("#literal").val("");
 }
 function typeGridButtonHandler() {
     loadMainGrid();
@@ -45,33 +45,32 @@ function mainGridButtonHandler() {
     if(names.length==1) {
         var row = $('#mainGrid').datagrid('getSelected');
         if (row != null) {
-            $('#btnDelete').linkbutton('enable');
-            $("#name").textbox("enable").textbox("setValue", row.name);
-            $("#value").textbox("enable").textbox("setValue", row.value);
-            $("#literal").textbox("enable").textbox("setValue", row.literal);
-            $("#style").textbox("enable").textbox("setValue", row.style);
-            $("#descn").textbox("enable").textbox("setValue", row.descn);
-            $("#editFlag").textbox("enable").textbox("setValue", row.editFlag);
+            $('#btnRemove').linkbutton('enable');
+            $("#name").removeAttr("readonly").removeAttr("disabled").val(row.name);
+            $("#value").attr("readonly", true).attr("disabled", true).val(row.value);
+            $("#literal").removeAttr("readonly").removeAttr("disabled").val(row.literal);
+            $("#style").removeAttr("readonly").removeAttr("disabled").val(row.style);
+            $("#descn").removeAttr("readonly").removeAttr("disabled").val(row.descn);
+            $("#editFlag").removeAttr("readonly").removeAttr("disabled").val(row.editFlag);
             $('#btnSave').linkbutton('enable');
-            window.operateType = "edit";
         } else {
-            $('#btnDelete').linkbutton('disable');
-            $("#name").textbox("disable").textbox("setValue", "");
-            $("#value").textbox("disable").textbox("setValue", "");
-            $("#literal").textbox("disable").textbox("setValue", "");
-            $("#style").textbox("disable").textbox("setValue", "");
-            $("#descn").textbox("disable").textbox("setValue", "");
-            $("#editFlag").textbox("disable").textbox("setValue", "");
+            $('#btnRemove').linkbutton('disable');
+            $("#name").attr("readonly", true).attr("disabled", true).val("");
+            $("#value").attr("readonly", true).attr("disabled", true).val("");
+            $("#literal").attr("readonly", true).attr("disabled", true).val("");
+            $("#style").attr("readonly", true).attr("disabled", true).val("");
+            $("#descn").attr("readonly", true).attr("disabled", true).val("");
+            $("#editFlag").attr("readonly", true).attr("disabled", true).val("");
             $('#btnSave').linkbutton('disable');
         }
     }else{
-        $('#btnDelete').linkbutton('disable');
-        $("#name").textbox("disable").textbox("setValue", "");
-        $("#value").textbox("disable").textbox("setValue", "");
-        $("#literal").textbox("disable").textbox("setValue", "");
-        $("#style").textbox("disable").textbox("setValue", "");
-        $("#descn").textbox("disable").textbox("setValue", "");
-        $("#editFlag").textbox("disable").textbox("setValue", "");
+        $('#btnRemove').linkbutton('disable');
+        $("#name").attr("readonly", true).attr("disabled", true).val("");
+        $("#value").attr("readonly", true).attr("disabled", true).val("");
+        $("#literal").attr("readonly", true).attr("disabled", true).val("");
+        $("#style").attr("readonly", true).attr("disabled", true).val("");
+        $("#descn").attr("readonly", true).attr("disabled", true).val("");
+        $("#editFlag").attr("readonly", true).attr("disabled", true).val("");
         $('#btnSave').linkbutton('disable');
     }
 }
@@ -80,79 +79,61 @@ function add(){
     var row=$('#typeGrid').datagrid('getSelected');
     if(row != null) {
         $('#btnSave').linkbutton('enable');
-        $("#name").textbox("enable").textbox("setValue",row.name);
-        $("#value").textbox("enable").textbox("setValue","");
-        $("#literal").textbox("enable").textbox("setValue","");
-        $("#style").textbox("enable").textbox("setValue",row.style);
-        $("#descn").textbox("enable").textbox("setValue",row.descn);
-        $("#editFlag").textbox("enable").textbox("setValue",row.editFlag);
-        window.operateType="add";
+        $("#name").removeAttr("readonly").removeAttr("disabled").val(row.name);
+        $("#value").removeAttr("readonly").removeAttr("disabled").val("");
+        $("#literal").removeAttr("readonly").removeAttr("disabled").val("");
+        $("#style").removeAttr("readonly").removeAttr("disabled").val(row.style);
+        $("#descn").removeAttr("readonly").removeAttr("disabled").val(row.descn);
+        $("#editFlag").removeAttr("readonly").removeAttr("disabled").val(row.editFlag);
     } else {
-        $.messager.show({
-            title : '提示',
-            msg : "请先选择编码类型"
-        });
+    	$.messager.alert("操作提示", "请先选择编码类型");
     }
 }
 
 function remove(){
-    if(!$(this).linkbutton('options').disabled) {
-        var row = $('#mainGrid').datagrid('getSelected');
-        if (row) {
-            $.messager.confirm('确认删除', '确认删除代码项', function (r) {
-                if (r) {
-                    $.ajax({
-                        url: "../sys/code/" + row.name + "/" + row.value,
-                        type: 'DELETE',
-                        success: function (response) {
-                            if (response.status == SUCCESS) {
-                                //$('#mainGrid').datagrid('reload');
-                                loadMainGrid();
-                            } else {
-                                $.messager.alert('删除失败', response.message, 'info');
-                            }
+    var row = $('#mainGrid').datagrid('getSelected');
+    if (row) {
+        $.messager.confirm('确认删除', '确认删除代码项', function (r) {
+            if (r) {
+                $.ajax({
+                    url: "../sys/code/" + row.name + "/" + row.value,
+                    type: 'DELETE',
+                    success: function (response) {
+                        if (response.status == $.husky.SUCCESS) {
+                            //$('#mainGrid').datagrid('reload');
+                            loadMainGrid();
+                        } else {
+                            $.messager.alert('删除失败', response.message, 'info');
                         }
-                    });
-                }
-            });
-        }else{
-            $.messager.show({
-                title : '提示',
-                msg : "请先选择要删除的数据"
-            });
-        }
+                    }
+                });
+            }
+        });
+    }else{
+    	$.messager.alert("操作提示", "请先选择要删除的编码");
     }
 }
 
 function save () {
-    if(!$("#btnSave").linkbutton('options').disabled) {
-        var row=$('#mainGrid').datagrid('getSelected');
-        if($("#value").textbox("getValue") !="" && $("#literal").textbox("getValue")!=""){
-            $.post("../sys/code/"+window.operateType, {
-                name: $("#name").textbox("getValue"),
-                value: window.operateType=="edit"?row.value+"-"+$("#value").textbox("getValue"):$("#value").textbox("getValue"),
-                literal: window.operateType=="edit"?row.literal+"-"+$("#literal").textbox("getValue"):$("#literal").textbox("getValue"),
-                style: $("#style").textbox("getValue"),
-                descn: $("#descn").textbox("getValue"),
-                editFlag:1
-            }, function(response) {
-                if(response.status == FAIL){
-                    $.messager.alert('错误', response.message, 'error');
-                } else {
-                    //$("#mainGrid").datagrid("reload");
-                    loadMainGrid();
-                    $.messager.show({
-                        title : '提示',
-                        msg : "保存成功"
-                    });
-                }
-            }, "json");
-        }else{
-            $.messager.show({
-                title : '提示',
-                msg : "请输入完整信息"
-            });
-        }
+    var row=$('#mainGrid').datagrid('getSelected');
+    if($("#value").val() !="" && $("#literal").val()!=""){
+        $.post("../sys/code", {
+            name: $("#name").val(),
+            value: $("#value").val(),
+            literal: $("#literal").val(),
+            style: $("#style").val(),
+            descn: $("#descn").val(),
+            editFlag:1
+        }, function(response) {
+            if(response.status == $.husky.FAIL){
+                $.messager.alert('错误', response.message, 'error');
+            } else {
+                loadMainGrid();
+                $.messager.show("操作提醒", "编码保存成功", "info", "bottomRight");
+            }
+        }, "json");
+    }else{
+        $.messager.alert("操作提醒", "请输入完整信息", "error");
     }
 }
 
@@ -172,25 +153,5 @@ function print(leftBianJu,topBianJu,pageRows){
     params["leftMargin"]=6;
 
     listPrint(params,mainGridRow,columnList);
-
 }
 
-$(function () {
-
-    $("#btnAdd").click(add);
-    $("#btnDelete").click(remove);
-    $("#btnSave").click(save);
-    $("#btnPrint").click(function(){
-        print(10,10,10);
-    });
-    $("#btnExport").click(function(){
-        $("<iframe id='poiExport' style='display:none' src='../sys/code/names/poiExport?names=" + getNames().join('-') + "' />").appendTo("body");
-    });
-    $(".datagrid-body").niceScroll({
-        cursorcolor : "lightblue", // 滚动条颜色
-        cursoropacitymax : 3, // 滚动条是否透明
-        horizrailenabled : false, // 是否水平滚动
-        cursorborderradius : 0, // 滚动条是否圆角大小
-        autohidemode : false // 是否隐藏滚动条
-    });
-})

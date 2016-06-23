@@ -5,22 +5,21 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>编码信息维护</title>
-	<link href="../css/content.css" rel="stylesheet"/>
-	<link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-	<link href="../css/themes/icon.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/${theme}/easyui.css" />
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/icon.css" />
+	<link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" >
+	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" >
+	<link rel="stylesheet" href="../css/content.css"/>
 
-	<script type="text/javascript" src="../js/hotkeys.min.js"></script>
 	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-	<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-	<script type="text/javascript" src="../js/lodop/listPrint.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+
 	<script type="text/javascript" src="./codeEdit.js"></script>
-
-	<!-- 打印控件引入定义开始 -->
-	<script type="text/javascript" src="../js/LodopFuncs.js"></script>
 
 	<style>
 		#typePanel>div.datagrid>div.datagrid-wrap {
@@ -50,29 +49,39 @@
 			border-right-width:0px;
 		}
 
+		.validatebox-text {
+	        border-width: 1px;
+	        border-style: solid;
+	        line-height: 17px;
+	        padding-top: 1px;
+	        padding-left: 3px;
+	        padding-bottom: 2px;
+	        padding-right: 3px;
+	        background-attachment: scroll;
+	        background-size: auto;
+	        background-origin: padding-box;
+	        background-clip: border-box;
+	    }
+	
+	    .validatebox-invalid {
+	        border-color: ffa8a8;
+	        background-repeat: repeat-x;
+	        background-position: center bottom;
+	        background-color: fff3f3;
+	        background-image: url("");
+	    }
 	</style>
-
-	<object id="LODOP_OB"
-			classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
-		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
-	</object>
-	<!-- 打印控件引入定义结束 -->
 
 </head>
 <body>
-<div class="noprint" style="margin:5px;height:540px;">
-	<div class="easyui-layout" style="height:600px;">
-		<div id="typePanel" data-options="region:'west',split:false" title="编码类型列表" style="width:310px;">
-			<table id="typeGrid" class="easyui-datagrid" title="" style="width:308px;"
+<div class="noprint" style="margin:5px;">
+	<div class="easyui-layout" style="height:600px;" data-options="fit:true">
+		<div id="typePanel" data-options="region:'west',split:false" title="编码类型列表" style="width:260px;">
+			<table id="typeGrid" class="easyui-datagrid" title="" style="width:258px;"
 				   data-options="ctrlSelect:true,url:'../common/query?mapper=codeMapper&queryName=queryType&editFlag=1',fitColumns: true,method:'get',onClickRow:typeGridButtonHandler">
 				<thead>
 				<tr>
-					<th data-options="field:'name',halign:'center',align:'center'" hidden="true" width="70" >编码类型</th>
-					<th data-options="field:'descn',halign:'center',align:'center'" width="70"></th>
-					<th data-options="field:'style',halign:'center',align:'center'" hidden="true" width="70">样式</th>
-					<th data-options="field:'editFlag',halign:'center',align:'center'" hidden="true" width="70">编辑标志</th>
-					<th data-options="field:'value',halign:'center',align:'center'" hidden="true" width="70">编码</th>
-					<th data-options="field:'literal',halign:'center',align:'left'" hidden="true" width="150">编码名称</th>
+					<th data-options="field:'descn',halign:'center',align:'center', width:250"></th>
 				</tr>
 				</thead>
 			</table>
@@ -80,10 +89,7 @@
 		<div data-options="region:'center',title:''" style="padding-top:0px;margin-left: 0px">
 			<div id="mainGridToolbar">
 				<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">新建</a>
-				<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
-				<!-- <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a>
-				<a href="#" id="btnExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a>
-				 -->
+				<a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
 			</div>
 
 			<table id="mainGrid" class="easyui-datagrid" title="编码维护" style="width:900px;height:300px"
@@ -103,19 +109,19 @@
 				<table width="800px" id="codeTable">
 					<tr style="display:none">
 						<td style="text-align: right">编码名</td>
-						<td><input class="easyui-textbox" id="name"data-options="required:true,disabled:true" style="width:200px;"/></td>
+						<td><input class="easyui-validatebox" id="name"data-options="required:true,disabled:true" style="width:200px;"/></td>
 						<td style="text-align: right">样式</td>
-						<td><input class="easyui-textbox" id="style" style="width:200px;" data-options="disabled:true"/></td>
+						<td><input class="easyui-validatebox" id="style" style="width:200px;" data-options="disabled:true"/></td>
 						<td style="text-align: right">描述</td>
-						<td><input class="easyui-textbox"  id="descn" data-options="disabled:true" style="width:200px;"/></td>
+						<td><input class="easyui-validatebox"  id="descn" data-options="disabled:true" style="width:200px;"/></td>
 						<td style="text-align: right">编辑标志</td>
-						<td><input class="easyui-textbox"  id="editFlag" data-options="disabled:true" style="width:200px;"/></td>
+						<td><input class="easyui-validatebox"  id="editFlag" data-options="disabled:true" style="width:200px;"/></td>
 					</tr>
 					<tr>
 						<td style="text-align: right">编码值</td>
-						<td><input class="easyui-textbox"  id="value" data-options="required:true,disabled:true" style="width:200px;"/></td>
+						<td><input class="easyui-validatebox"  id="value" data-options="required:true,disabled:true" style="width:200px;"/></td>
 						<td style="text-align: right">编码名称</td>
-						<td><input class="easyui-textbox" id="literal" style="width:200px;" data-options="required:true,disabled:true"/></td>
+						<td><input class="easyui-validatebox" id="literal" style="width:200px;" data-options="required:true,disabled:true"/></td>
 						<td><a id="btnSave" class="easyui-linkbutton" data-options="iconCls:'icon-save',width:70,plain:'true',disabled:true">保存</a></td>
 					</tr>
 				</table>
