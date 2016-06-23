@@ -70,39 +70,43 @@ function initAuditItemList() {
 function doAuditItemListInit() {
     window.auditItemDataReady = false;
     var hcrw = $('#grid1').datagrid('getSelected');
-    $.ajax({
-        url: "./" + hcrw.id + "/initStatus",
-        data: {hcrwId: hcrw.id},
-        type: 'GET',
-        success: function (response) {
-            if (response.status == SUCCESS) {
-                if (response.data == 0) {
-                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
-                    //    if (r) {
-                            $.ajax({
-                                url: "./" + hcrw.id + "/init",
-                                type: 'POST',
-                                success: function (response) {
-                                    if (response.status == SUCCESS) {
-                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
-                                        window.auditItemDataReady = true;
-                                        initAuditItemList();
-                                    } else {
-                                        //$.messager.alert('删除失败', response, 'info');
-                                    }
-                                }
-                            });
-                    //    }
-                    //});
-                } else {
-                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
-                    window.auditItemDataReady = true;
-                    initAuditItemList();
-                }
-
-            }
-        }
-    });
+    if(null == hcrw) {
+    	$("#auditItemList").empty();
+    } else {
+	    $.ajax({
+	        url: "./" + hcrw.id + "/initStatus",
+	        data: {hcrwId: hcrw.id},
+	        type: 'GET',
+	        success: function (response) {
+	            if (response.status == SUCCESS) {
+	                if (response.data == 0) {
+	                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
+	                    //    if (r) {
+	                            $.ajax({
+	                                url: "./" + hcrw.id + "/init",
+	                                type: 'POST',
+	                                success: function (response) {
+	                                    if (response.status == SUCCESS) {
+	                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
+	                                        window.auditItemDataReady = true;
+	                                        initAuditItemList();
+	                                    } else {
+	                                        //$.messager.alert('删除失败', response, 'info');
+	                                    }
+	                                }
+	                            });
+	                    //    }
+	                    //});
+	                } else {
+	                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
+	                    window.auditItemDataReady = true;
+	                    initAuditItemList();
+	                }
+	
+	            }
+	        }
+	    });
+    }
 }
 
 //-----------annual
@@ -131,7 +135,7 @@ function _funcAnnualAudit() {
         $.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
-        $("#taskDetailPanel").panel("collapse", true);
+        $("#taskDetailLayout").layout("collapse", "north");
         $("#auditContent").panel({
             href: '../audit_' + customer + '/' + auditItem.page + '.jsp',
             onLoad: function () {

@@ -87,7 +87,7 @@
 	        <table id="queryTable">
 	            <tr>
 	                <td class="label">计划年度</td>
-	                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2010"/></td>
+	                <td><input id="f_nd" class="easyui-numberspinner" data-options="min:2010,onChange:loadMyTask"/></td>
 	                <td class="label">计划编号</td>
 	                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
 	                <td class="label">计划名称</td>
@@ -119,54 +119,57 @@
         </table> 
     </div>
     <div data-options="region:'center'">
-        <div class="easyui-panel" id="taskDetailPanel"
-             data-options="title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
+    
+    	<div id="taskDetailLayout" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
+    		<div data-options="region:'north',split:false,height:152, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
              style="padding-top:5px;width:auto">
-            <table>
-                <tr>
-                    <td class="label" style="width:90px">计划编号</td>
-                    <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                    <td class="label" style="width:90px">计划名称</td>
-                    <td style="width:100px;"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                    
-                    <td class="label" style="width:90px">下达时间</td>
-                    <td style="width:100px;"><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                </tr>
-                <tr>   
-                    <td class="label" style="">计划结束时间</td>
-                    <td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                    <td class="label" style="">检查结果确认</td>
-                    <td ><input id="p_hcjieguo" class="easyui-combobox" 
-                               data-options="width:107" codeName="gsjg" disabled/></td>
-                    <td colspan="2">
-                        <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r10_c20" disabled>更新任务结果</a>
-                        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
-                           plain="true" iconCls="icon-ok" disabled>确认</a></td>
-                </tr>
-                <tr>
-                    <td colspan="8" style="text-align:left">
-                        <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
-                        <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
-                        <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
-                        <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-                        <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
-                        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1"
-                           plain="true" disabled>检查材料</a>
-                        
-                        <a href="javascript:void(0);" id="btnPrintHeChaJieGuo" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r12_c11" disabled>年报公示信息核查结果报告</a>
-                        <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZheng" class="easyui-linkbutton" plain="true"
-                           iconCls="icon2 r12_c11" disabled>公示信息更正审批表</a>
-                    </td>
-                </tr>
-            </table>
+	            <table>
+	                <tr>
+	                    <td class="label" style="width:90px">计划编号</td>
+	                    <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
+	                    <td class="label" style="width:90px">计划名称</td>
+	                    <td style="width:100px;"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
+	                    
+	                    <td class="label" style="width:90px">下达时间</td>
+	                    <td style="width:100px;"><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+	                </tr>
+	                <tr>   
+	                    <td class="label" style="">计划结束时间</td>
+	                    <td><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+	                    <td class="label" style="">检查结果确认</td>
+	                    <td ><input id="p_hcjieguo" class="easyui-combobox" 
+	                               data-options="width:107" codeName="gsjg" disabled/></td>
+	                    <td colspan="2">
+	                        <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+	                        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
+	                           plain="true" iconCls="icon-ok" disabled>确认</a></td>
+	                </tr>
+	                <tr>
+	                    <td colspan="8" style="text-align:left">
+	                        <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
+	                        <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
+	                        <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
+	                        <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r14_c3" disabled>加载在线数据</a>
+	                        <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
+	                        <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1"
+	                           plain="true" disabled>检查材料</a>
+	                        
+	                        <a href="javascript:void(0);" id="btnPrintHeChaJieGuo" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
+	                        <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZheng" class="easyui-linkbutton" plain="true"
+	                           iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
+	                    </td>
+	                </tr>
+	            </table>
+        	</div>
+        	
+        	<div id="auditItemList" data-options="region:'center',fit:true,collapsible:true"></div>
         </div>
-        <div id="auditItemList" class="easyui-panel" data-options="fit:true,collapsible:true"></div>
     </div>
 </div>
 

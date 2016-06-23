@@ -42,7 +42,13 @@ function loadMyTask() {
         jhmc: $('#f_jhmc').val()
     }, function (response) {
         if (response.status == SUCCESS) {
-        	 $("#grid1").datagrid("loadData",response);
+        	$("#grid1").datagrid("loadData",response);
+        	$('#p_jhbh').val("");
+			$('#p_jhmc').val("");
+			$('#p_jhxdrq').datebox("clear");
+			$('#p_jhyqwcsj').datebox("clear");
+			$('#p_hcjieguo').combobox("clear");
+			$("#auditItemList").empty();
         }
     });
 }
@@ -50,7 +56,6 @@ function loadMyTask() {
 function grid1ClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
-    $('#p_id').val(hcrw.hcjhId);
     $('#p_jhbh').val(hcrw.jhbh);
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
