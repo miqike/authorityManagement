@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="../js/jqueryExtend/jquery.function.ztree.js"></script>
 	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
 	<script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
-	<script type="text/javascript" src="sysOrg.js"></script>
+	<script type="text/javascript" src="./sysOrg.js"></script>
 	<link rel="stylesheet" href="../css/content.css"/>
 </head>
 <body>
@@ -39,7 +39,7 @@
 				<a href="#" id="btnEdit" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑</a>
 				<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled="true">保存</a>
 				<a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-undo" plain="true" disabled="true">取消</a>
-				<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true"  disabled="true">删除</a>
+				<a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true"  disabled="true">删除</a>
 				<form action="" id="treeNodeForm" method="post">
 					<div style="display: none">
 						上级单位编码<input class="easyui-validatebox" id="f_parentId" style="width: 100px"/>

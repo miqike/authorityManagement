@@ -44,7 +44,7 @@ function setEditStatus(){
     $("#btnAdd").linkbutton('disable');
     $("#btnAddChild").linkbutton('disable');
     $("#btnEdit").linkbutton('disable');
-    $("#btnDelete").linkbutton('disable');
+    $("#btnRemove").linkbutton('disable');
     $("#btnStop").linkbutton('disable');
     $("#btnSave").linkbutton('enable');
     $("#btnCancel").linkbutton('enable');
@@ -55,14 +55,14 @@ function setReadOnlyStatus(){
     $("#btnAdd").linkbutton('enable');
     $("#btnAddChild").linkbutton('enable');
     $("#btnEdit").linkbutton('enable');
-    $("#btnDelete").linkbutton('enable');
+    $("#btnRemove").linkbutton('enable');
     $("#btnStop").linkbutton('enable');
     $("#btnSave").linkbutton('disable');
     $("#btnCancel").linkbutton('disable');
     $.husky.setFormStatus("treeNodeForm", 'readonly')
 }
 //通用保存函数
-function save(){
+function _save(){
     var data = $.husky.getFormData('treeNodeForm');
 
     var url="../sys/organization";
@@ -100,75 +100,65 @@ function save(){
     }, "json");
 }
 //保存按钮点击事件
-function btnSaveClick() {
-    if ($("#treeNodeForm").form('validate') && !$(this).linkbutton('options').disabled ) {
-        save();
+function save() {
+    if ($("#treeNodeForm").form('validate') ) {
+        _save();
     }
 }
 //取消按钮点击事件
-function btnCancelClick(){
-    if(!$(this).linkbutton('options').disabled) {
-        onTreeClick(null,null,$.zTreeExtendObj.getSelectedNode("tree"),null);
-    }
+function cancel(){
+    onTreeClick(null,null,$.zTreeExtendObj.getSelectedNode("tree"),null);
 }
 //增加本级按钮点击事件
-function btnAddClick(){
-    if(!$(this).linkbutton('options').disabled) {
-        var node=$.zTreeExtendObj.getSelectedNode("tree");
-        if(null == node) {
-        	$.messager.alert("操作提示", "请首先选择同级节点");
-        } else {
-        	$("#treeNodeForm").form('clear');
-        	window.operateType="add";
-        	if(node.getParentNode()!=null){
-        		var parentId = node.getParentNode().id;
-        		$("#f_parentId").val(parentId);
-        		$("#f_id").val(parentId);
-        	} else {
-        		$("#f_parentId").val("0");
-        	}
-        	setEditStatus();
-        }
+function add(){
+    var node=$.zTreeExtendObj.getSelectedNode("tree");
+    if(null == node) {
+    	$.messager.alert("操作提示", "请首先选择同级节点");
+    } else {
+    	$("#treeNodeForm").form('clear');
+    	window.operateType="add";
+    	if(node.getParentNode()!=null){
+    		var parentId = node.getParentNode().id;
+    		$("#f_parentId").val(parentId);
+    		$("#f_id").val(parentId);
+    	} else {
+    		$("#f_parentId").val("0");
+    	}
+    	setEditStatus();
     }
 }
 //添加子节点
-function btnAddChildClick(){
-    if(!$(this).linkbutton('options').disabled) {
-        var node=$.zTreeExtendObj.getSelectedNode("tree");
-        if(null == node){
-            $.messager.alert("操作提示","请首先选择父节点","warning");
-        }else{
-            $("#treeNodeForm").form('clear');
-            window.operateType="addChild";
-            $("#f_id").val(node.id);
-            $("#f_parentId").val(node.id);
-            setEditStatus();
-        }
+function addChild(){
+    var node=$.zTreeExtendObj.getSelectedNode("tree");
+    if(null == node){
+        $.messager.alert("操作提示","请首先选择父节点","warning");
+    }else{
+        $("#treeNodeForm").form('clear');
+        window.operateType="addChild";
+        $("#f_id").val(node.id);
+        $("#f_parentId").val(node.id);
+        setEditStatus();
     }
 }
 //修改按钮点击事件
-function btnEditClick(){
-    if(!$(this).linkbutton('options').disabled) {
-        var node=$.zTreeExtendObj.getSelectedNode("tree");
-        if(null == node){
-            $.messager.alert("警告","请首先选择父节点","warning");
-        }else{
-            window.operateType="edit";
-            setEditStatus();
-        }
+function edit(){
+    var node=$.zTreeExtendObj.getSelectedNode("tree");
+    if(null == node){
+        $.messager.alert("警告","请首先选择父节点","warning");
+    }else{
+        window.operateType="edit";
+        setEditStatus();
     }
 }
 //删除按钮点击事件
-function btnDeleteClick(){
-    if(!$(this).linkbutton('options').disabled) {
-        var node=$.zTreeExtendObj.getSelectedNode("tree");
-        if(null == node){
-            $.messager.alert("警告","请首先选择父节点","warning");
-        }else{
-            window.operateType="delete";
-            save();
-            setReadOnlyStatus();
-        }
+function remove(){
+    var node=$.zTreeExtendObj.getSelectedNode("tree");
+    if(null == node){
+        $.messager.alert("警告","请首先选择父节点","warning");
+    }else{
+        window.operateType="delete";
+        _save();
+        setReadOnlyStatus();
     }
 }
 
@@ -179,13 +169,5 @@ function tabSelectHandler(title, index) {
 
 $(function() {
     $.fn.zTree.init($("#tree"), setting);
-
-    $("#btnAdd").click(btnAddClick);
-    $("#btnAddChild").click(btnAddChildClick);
-    $("#btnEdit").click(btnEditClick);
-    $("#btnDelete").click(btnDeleteClick);
-    $("#btnSave").click(btnSaveClick);
-    $("#btnCancel").click(btnCancelClick);
-
     setReadOnlyStatus();
 });
