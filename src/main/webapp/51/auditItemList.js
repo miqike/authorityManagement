@@ -287,17 +287,18 @@ function executeFile(file, paramArray) {
                 var qy = $("#grid1").datagrid("getSelected");
                 //用户名&salt&加密后的密码&计划单编号&企业注册号&企业名称
                 exePath = file + " " + response.userId + "&" + response.salt + "&" + response.password + "&" + $("#p_id").val() + "&" + qy.hcdwXydm + "&" + qy.hcdwName;
+
+                if (null != paramArray) {
+                    for (var i = 0; i < paramArray.length; i++) {
+                        exePath = exePath + " " + paramArray[i];
+                    }
+                    alert(exePath);
+                }
+
+                shellActiveXObject.Run(exePath, 1, false);
+                shellActiveXObject = null;
             });
 
-            if (null != paramArray) {
-                for (var i = 0; i < paramArray.length; i++) {
-                    exePath = exePath + " " + paramArray[i];
-                }
-                alert(exePath);
-            }
-
-            shellActiveXObject.Run(exePath, 1, false);
-            shellActiveXObject = null;
         }
         else {
             alert("系统检测到未安装" + file);

@@ -68,7 +68,7 @@ delete from sys_user where user_id<>'system';
 delete from sys_user_role a where not exists(select 1 from sys_user b where b.user_id=a.user_id);
 
 insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
-  select gh user_id,null manager_id,full_name name,null email,null mobile,lower(MD5_DIGEST(gh||'000000'||'123qwe!@#QWE')) password,'123qwe!@#QWE' salt,sysdate create_time,
+  select gh user_id,null manager_id,full_name name,null email,null mobile,lower(pkg_hc.MD5_DIGEST(gh||'000000'||'123qwe!@#QWE')) password,'123qwe!@#QWE' salt,sysdate create_time,
          null manager_name,1 status,djjg org_id,0 org_type,1 weight,(select content from bm_djjg b where b.code=a.djjg) org_name,
          user_name zfry
   from xt_user a where gh is not null and gh not in(select gh from(select gh,count(1) from xt_user where gh is not null group by gh having count(1)>1));
@@ -76,7 +76,7 @@ insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
   where a.name in('超级管理员')
         and b.user_id<>'system';
-update sys_user set password=lower(MD5_DIGEST(user_id||'111111'||salt));
+update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
 
 /**
 初始化编码表
