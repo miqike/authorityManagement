@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\liexplorer]
+@="URL:liexplorer Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\liexplorer\DefaultIcon]
+
+[HKEY_CLASSES_ROOT\liexplorer\Shell]
+
+[HKEY_CLASSES_ROOT\liexplorer\Shell\Open]
+
+[HKEY_CLASSES_ROOT\liexplorer\Shell\Open\command]
+@="\"C:\\ky1.0\\sjp6.exe\" \"%1"

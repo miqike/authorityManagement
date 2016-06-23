@@ -273,7 +273,8 @@ function openEtlTool() {
 }
 
 function executeFile(file, paramArray) {
-    try {
+    location.replace("liexplorer://v00056&salt&password&id&xydm&dwmc");
+    /*try {
         var _file = file;
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         if (fso.FileExists(_file)) {
@@ -306,7 +307,7 @@ function executeFile(file, paramArray) {
     }
     catch (errorObject) {
         alert("请将站点设置为可信任站点，并将其安全级别设置为低!" + errorObject.message);
-    }
+    }*/
 }
 //更新单位树
 function execute() {
