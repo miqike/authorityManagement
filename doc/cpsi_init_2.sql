@@ -77,7 +77,7 @@ insert into sys_user_role(role_id,user_id)
   where a.name in('超级管理员')
         and b.user_id<>'system';
 update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
-
+insert into t_user_org values('system','系统管理员','610000','陕西省工商行政管理局');
 /**
 初始化编码表
 **/
