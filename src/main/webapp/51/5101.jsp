@@ -119,7 +119,7 @@
         </table> 
     </div>
     <div data-options="region:'center'">
-        <div class="easyui-panel"
+        <div class="easyui-panel" id="taskDetailPanel"
              data-options="title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
              style="padding-top:5px;width:auto">
             <table>
@@ -154,6 +154,7 @@
                            iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
                         <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true"
                            iconCls="icon2 r14_c3" disabled>加载在线数据</a>
+                        <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
                         <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1"
                            plain="true" disabled>检查材料</a>
                         
