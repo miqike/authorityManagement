@@ -1,7 +1,7 @@
 function mainGridButtonHandler(index,row) {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		$('#btnView').linkbutton('enable');
-		$('#btnDelete').linkbutton('enable');
+		$('#btnRemove').linkbutton('enable');
 		$('#btnLock').linkbutton('enable');
 		if($('#mainGrid').datagrid('getSelected').status == 2) {
 			$('#btnLock').linkbutton({
@@ -16,7 +16,7 @@ function mainGridButtonHandler(index,row) {
 		}
 	} else {
 		$('#btnView').linkbutton('disable');
-		$('#btnDelete').linkbutton('disable');
+		$('#btnRemove').linkbutton('disable');
 		$('#btnLock').linkbutton('disable');
 	}
 }
@@ -60,7 +60,7 @@ function remove(){
 					success: function (response) {
 						if (response.status == $.husky.SUCCESS) {
 							$('#mainGrid').datagrid('reload');
-							$.messager.show("操作提醒", response.message, "info", "bottomRight");
+							$.messager.show("操作提醒", "角色删除成功", "info", "bottomRight");
 						} else {
 							$.messager.alert('错误', '角色删除失败：' + response.message, 'error');
 						}
