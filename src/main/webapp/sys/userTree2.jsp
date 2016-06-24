@@ -17,24 +17,17 @@
 	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
 	<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 	<script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js" ></script>
-
 	<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.ztree.exhide-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
-
-	<!-- <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script> -->
 	<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-	
     <script type="text/javascript" src="../js/formatter.js"></script>
-    <!-- <script type="text/javascript" src="../js/datagrid-filter.js"></script> -->
-
     <script type="text/javascript" src="./userTree2.js"></script>
 	<style type="text/css">
-	   
+	   /* 
 		div #panel .datagrid-wrap{ border: 0px;}
 		div #roleWindow .datagrid-wrap{ border-right: 0px;
 			border-left: 0px;
@@ -55,7 +48,7 @@
 
         #treePanel>div.panel>div {
             border-left-width:0px;
-            border-right-width:0px;
+            border-right-width:1px;
         }
         div.datagrid-wrap {
            border-left-width: 0px;
@@ -75,13 +68,17 @@
         td.label{
         	text-align:right;
         }
+        
+        .panel-header {
+        	padding-right:0px;
+        } */
     </style>
 </head>
-<body style="padding:1px;">
+<body style="padding:5px">
     <div class="easyui-layout" data-options="fit:true">
-        <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:false">
-            <div class="easyui-panel" title="单位列表" style="width:295px;height:145px;padding:5px;"
-                 data-options="iconCls:'icon-search',collapsible:true,collapsed:true">
+        <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:true,width:287">
+            <div class="easyui-panel" title="单位列表" style="padding:5px 0px;"
+                 data-options="iconCls:'icon-search',collapsible:true,collapsed:true,fit:true,">
                 <div id="p">
                     <span style="margin-left:5px;margin-right:0px;">编码</span>
                     <input id="q_ba0101" style="margin:0px 5px 5px 0px; width:100px;"/>

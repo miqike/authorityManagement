@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<script>
-
-</script>
 <div style="width:150px;padding-left:20px;padding-top:20px;">
     <select id="userTheme" class="easyui-combobox" codeName="theme" style="width:150px;">
         <option value="default">默认</option>

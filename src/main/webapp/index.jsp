@@ -127,10 +127,10 @@
     </div>
 </div>
 
+<%--
 <div id="changePwdDialog"></div>
 <div id="changeThemeDialog"></div>
 <div id="runAsDialog"></div>
-<%--
 <div id="runAsWindow" class="easyui-window" title="身份切换" style="padding-left:2px;"
      data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:400,center:true">
     <table>
