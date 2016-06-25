@@ -53,9 +53,9 @@ public interface AnnualReportMapper {
 	AnnualReport selectByPrimaryKey2(String hcrwId);
 
 
-	@Select("select count(HCRW_ID) from T_NB_BD where ND = #{nd} and XYDM = #{xydm}")
-	@ResultType(value = java.lang.Integer.class)
-	int selectCountByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
+	@Select("select HCRW_ID from T_NB_BD where ND = #{nd} and XYDM = #{xydm}")
+	@ResultType(value = java.lang.String.class)
+	String selectCountByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
 
 	void updateByNdAndXydm(AnnualReport ar);
 	

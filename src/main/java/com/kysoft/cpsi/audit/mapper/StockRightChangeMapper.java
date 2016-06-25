@@ -1,5 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+
 import com.kysoft.cpsi.audit.entity.StockRightChange;
 
 public interface StockRightChangeMapper {
@@ -39,4 +43,11 @@ public interface StockRightChangeMapper {
 	 * @mbggenerated  Tue May 31 10:35:29 CST 2016
 	 */
 	int updateByPrimaryKey(StockRightChange record);
+
+	@Delete("delete from T_NB_BD_GQBG where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
+	void deleteByTaskId(String hcrwId);
+	
+	List<StockRightChange> selectByTaskId(String hcrwId);
+	
+	List<StockRightChange> selectByTaskId2(String hcrwId);
 }

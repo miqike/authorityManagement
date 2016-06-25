@@ -165,4 +165,17 @@
       HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <select id="selectByTaskId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_NB_GQBG
+    where HCRW_ID = #{taskId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTaskId2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from T_NB_BD_GQBG
+    where HCRW_ID = #{taskId,jdbcType=VARCHAR}
+  </select>
 </mapper>

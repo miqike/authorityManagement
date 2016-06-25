@@ -14,18 +14,26 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.audit.entity.AnnualReport;
+import com.kysoft.cpsi.audit.entity.Guarantee;
+import com.kysoft.cpsi.audit.entity.Homepage;
+import com.kysoft.cpsi.audit.entity.Investment;
+import com.kysoft.cpsi.audit.entity.License;
 import com.kysoft.cpsi.audit.entity.MailVerify;
 import com.kysoft.cpsi.audit.entity.MailVerifyException;
+import com.kysoft.cpsi.audit.entity.StockRightChange;
+import com.kysoft.cpsi.audit.entity.StockholderContribution;
 import com.kysoft.cpsi.audit.mapper.AnnualReportMapper;
-import com.kysoft.cpsi.audit.mapper.GqbgMapper;
 import com.kysoft.cpsi.audit.mapper.GuaranteeMapper;
 import com.kysoft.cpsi.audit.mapper.HomepageMapper;
 import com.kysoft.cpsi.audit.mapper.InvestmentMapper;
 import com.kysoft.cpsi.audit.mapper.LicenseMapper;
 import com.kysoft.cpsi.audit.mapper.MailVerifyMapper;
+import com.kysoft.cpsi.audit.mapper.StockRightChangeMapper;
 import com.kysoft.cpsi.audit.mapper.StockholderContributionMapper;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
@@ -47,9 +55,6 @@ public class AuditServiceImpl implements AuditService {
     AnnualReportMapper annualReportMapper;
 
     @Resource
-    GqbgMapper gqbgMapper;
-
-    @Resource
     GuaranteeMapper guaranteeMapper;
 
     @Resource
@@ -63,10 +68,14 @@ public class AuditServiceImpl implements AuditService {
 
     @Resource
     StockholderContributionMapper stockholderContributionMapper;
+    
+    @Resource
+    StockRightChangeMapper stockRightChangeMapper;
 
     @Resource
     HcsxjgService hcsxjgService;
 
+    
     @Resource
     LogService logService;
 
@@ -160,8 +169,8 @@ public class AuditServiceImpl implements AuditService {
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
                 break;
             case "股权变更信息":
-                result.put("a", gqbgMapper.selectByTaskId(hcrwId));
-                result.put("b", gqbgMapper.selectByTaskId2(hcrwId));
+                result.put("a", stockRightChangeMapper.selectByTaskId(hcrwId));
+                result.put("b", stockRightChangeMapper.selectByTaskId2(hcrwId));
                 break;
             case "对外提供保证担保信息":
                 result.put("a", guaranteeMapper.selectByTaskId(hcrwId));
@@ -193,14 +202,29 @@ public class AuditServiceImpl implements AuditService {
 		String xydm = ar.getXydm();
 		System.out.println("---------nd-------------" + nd);
 		System.out.println("---------xydm-------------" + xydm);
-		int count = annualReportMapper.selectCountByNdAndXydm(nd, xydm);
-		System.out.println("================\t" + count);
-		if(count == 0) {
+		String hcrwId = annualReportMapper.selectCountByNdAndXydm(nd, xydm);
+		System.out.println("================\t" + hcrwId);
+		if(hcrwId == null) {
 			throw new BaseException("核查任务不存在,请检查年度和企业统一社会信用代码是否正确录入");
 		} else {
 			annualReportMapper.updateByNdAndXydm(ar);
+			//股东出资
+			reportStockholderContribution(hcrwId, jsonData);
+			//对外投资
+			reportInvestment(hcrwId, jsonData);
+			//对外担保
+			reportGuarantee(hcrwId, jsonData);
+			//股权变更
+			reportStockRightChange(hcrwId, jsonData);
+			//网店
+			reportHomepage(hcrwId, jsonData);
+			//行政许可
+			reportLicense(hcrwId, jsonData);
+			
 		}
 	}
+
+	
 
 	private AnnualReport getAnnualReport(JSONObject jsonData) {
 		DecimalFormat df = new DecimalFormat("#.00");
@@ -223,6 +247,191 @@ public class AuditServiceImpl implements AuditService {
 		ar.setJyzt(jsonData.getString("jyzt")); //'0',
 		//ar.setFzr(jsonData.getString("fzr")); //'大海',
 		return ar;
+	}
+	
+	
+	//============================================================================
+	//股东出资
+	private void reportStockholderContribution(String hcrwId, JSONObject jsonData) {
+		stockholderContributionMapper.deleteByTaskId(hcrwId);
+		JSONArray shcArray = jsonData.getJSONArray("gdcz");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<StockholderContribution> shcList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject shc = shcArray.getJSONObject(i);
+				shcList.add(parseStockHolderContribution(shc));
+			}
+			
+			for(int i=0;i<shcList.size(); i++) {
+				stockholderContributionMapper.insert(shcList.get(i));
+			}
+		}
+	}
+
+	private StockholderContribution parseStockHolderContribution(JSONObject shcObj) {
+		StockholderContribution shc = new StockholderContribution();
+		shc.setId(UUID.randomUUID().toString().replace("-", ""));
+		shc.setNd(shcObj.getInteger("nd"));
+		shc.setXydm(shcObj.getString("xydm"));
+		shc.setGd(shcObj.getString("gd"));	//股东
+		shc.setRjcze(shcObj.getFloat("rjcze")); //认缴出资额
+		shc.setSjcze(shcObj.getFloat("sjcze"));		//实缴出资额
+		shc.setRjczdqsj(shcObj.getDate("rjczsqsj")); //认缴出资到期时间
+		shc.setRjczfs(shcObj.getString("rjczfs"));	//认缴出资方式
+		shc.setSjczsj(shcObj.getDate("sjczsj"));	//出资时间
+		shc.setSjczfs(shcObj.getString("sjczfs"));	//出资方式
+		shc.setHcrwId(shcObj.getString("hcrwId"));	//核查任务代码
+		return shc;
+	}
+	
+	//对外投资
+	private void reportInvestment(String hcrwId, JSONObject jsonData) {
+		investmentMapper.deleteByTaskId(hcrwId);
+		JSONArray shcArray = jsonData.getJSONArray("dwtz");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<Investment> investmentList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject investment = shcArray.getJSONObject(i);
+				investmentList.add(parseInvestment(investment));
+			}
+			for(int i=0;i<investmentList.size(); i++) {
+				investmentMapper.insert(investmentList.get(i));
+			}
+		}
+	}
+	
+	private Investment parseInvestment(JSONObject investmentObj) {
+		Investment investment = new Investment();
+		investment.setId(UUID.randomUUID().toString().replace("-", ""));
+		investment.setNd(investmentObj.getInteger("nd"));
+		investment.setXydm(investmentObj.getString("xydm"));
+		investment.setHcrwId(investmentObj.getString("HcrwId")); 	//核查任务代码
+		investment.setTzqymc(investmentObj.getString("Tzqymc"));	//投资设立企业或者购买股权企业名称
+		investment.setTzqyZch(investmentObj.getString("tzqyZch"));		//被投资企业注册号
+		return investment;
+	}
+	
+	//对外担保
+	private void reportGuarantee(String hcrwId, JSONObject jsonData) {
+		guaranteeMapper.deleteByTaskId(hcrwId);
+		JSONArray shcArray = jsonData.getJSONArray("dwdb");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<Guarantee> guaranteeList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject guarantee = shcArray.getJSONObject(i);
+				guaranteeList.add(parseGuarantee(guarantee));
+			}
+			for(int i=0;i<guaranteeList.size(); i++) {
+				guaranteeMapper.insert(guaranteeList.get(i));
+			}
+		}
+		
+	}
+
+	private Guarantee parseGuarantee(JSONObject guaranteeObj) {
+		Guarantee guarantee = new Guarantee();
+		guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
+		guarantee.setNd(guaranteeObj.getInteger("nd"));
+		guarantee.setXydm(guaranteeObj.getString("xydm"));
+		guarantee.setHcrwId(guaranteeObj.getString("HcrwId")); 	//核查任务代码
+		
+		guarantee.setZqr(guaranteeObj.getString("zqr")); 	//债权人
+		guarantee.setZwr(guaranteeObj.getString("zwr")); 	//债务人
+		guarantee.setZzqzl(guaranteeObj.getString("zzqzl")); 	//主债权种类
+		guarantee.setZzqse(guaranteeObj.getFloat("zzqse")); 	//主债权数额
+		guarantee.setLxzwqx(guaranteeObj.getString("lxzwqx")); 	//履行债务的期限
+		guarantee.setBzqj(guaranteeObj.getString("bzqj")); 	//保证的期间
+		guarantee.setBzfs(guaranteeObj.getString("bzfs")); 	//保证的方式
+		guarantee.setBzdbfw(guaranteeObj.getString("bzdbfw")); 	//保证担保的范围
+
+		return guarantee;
+	}
+	
+	//股权变更
+	private void reportStockRightChange(String hcrwId, JSONObject jsonData) {
+		stockRightChangeMapper.deleteByTaskId(hcrwId);
+		
+		JSONArray shcArray = jsonData.getJSONArray("gqbg");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<StockRightChange> stockRightChangeList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject stockRightChange = shcArray.getJSONObject(i);
+				stockRightChangeList.add(parseStockRightChange(stockRightChange));
+			}
+			for(int i=0;i<stockRightChangeList.size(); i++) {
+				stockRightChangeMapper.insert(stockRightChangeList.get(i));
+			}
+		}
+	}
+	
+	private StockRightChange parseStockRightChange(JSONObject stockRightChangeObj) {
+		StockRightChange stockRightChange = new StockRightChange();
+		stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
+		stockRightChange.setNd(stockRightChangeObj.getInteger("nd"));
+		stockRightChange.setXydm(stockRightChangeObj.getString("xydm"));
+		stockRightChange.setHcrwId(stockRightChangeObj.getString("HcrwId")); 	//核查任务代码
+		stockRightChange.setGd(stockRightChangeObj.getString("gd"));	//股东
+		stockRightChange.setBgqGqbl(stockRightChangeObj.getFloat("BgqGqbl"));	//变更前股权比例
+		stockRightChange.setBghGqbl(stockRightChangeObj.getFloat("BghGqbl"));	//变更后股权比例
+		stockRightChange.setBgrq(stockRightChangeObj.getDate("stockRightChangeObj"));	//股权变更日期
+		return stockRightChange;
+	}
+	
+	//网店
+	private void reportHomepage(String hcrwId, JSONObject jsonData) {
+		homepageMapper.deleteByTaskId(hcrwId);
+		
+		JSONArray shcArray = jsonData.getJSONArray("wd");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<Homepage> homepageList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject homepage = shcArray.getJSONObject(i);
+				homepageList.add(parseHomepage(homepage));
+			}
+			for(int i=0;i<homepageList.size(); i++) {
+				homepageMapper.insert(homepageList.get(i));
+			}
+		}
+		
+	}
+	
+	private Homepage parseHomepage(JSONObject investmentObj) {
+		Homepage homepage = new Homepage();
+		homepage.setId(UUID.randomUUID().toString().replace("-", ""));
+		homepage.setNd(investmentObj.getInteger("nd"));
+		homepage.setXydm(investmentObj.getString("xydm"));
+		homepage.setHcrwId(investmentObj.getString("HcrwId")); 	//核查任务代码
+		
+		homepage.setType(investmentObj.getString("type"));	//类型
+		homepage.setName(investmentObj.getString("name"));	//名称
+		homepage.setWz(investmentObj.getString("wz"));		//网址
+		return homepage;
+	}
+	//行政许可
+	private void reportLicense(String hcrwId, JSONObject jsonData) {
+		licenseMapper.deleteByTaskId(hcrwId);
+		JSONArray shcArray = jsonData.getJSONArray("xzxk");
+		if(null != shcArray && shcArray.size() > 0) {
+			List<License> licenseList = Lists.newArrayList();
+			for(int i=0; i<shcArray.size(); i++) {
+				JSONObject license = shcArray.getJSONObject(i);
+				licenseList.add(parseLicense(license));
+			}
+			for(int i=0;i<licenseList.size(); i++) {
+				licenseMapper.insert(licenseList.get(i));
+			}
+		}
+	}
+	
+	private License parseLicense(JSONObject licenseObj) {
+		License license = new License();
+		license.setId(UUID.randomUUID().toString().replace("-", ""));
+		license.setNd(licenseObj.getInteger("nd"));
+		license.setXydm(licenseObj.getString("xydm"));
+		license.setHcrwId(licenseObj.getString("HcrwId")); 	//核查任务代码
+		license.setXkwjmc(licenseObj.getString("xkwjmc"));	//许可文件名称
+		license.setYxq(licenseObj.getString("yxq"));		//有效期至
+		return license;
 	}
 
 }
