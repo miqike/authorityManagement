@@ -53,6 +53,7 @@
     <script src="./common/index.js" type="text/javascript"></script>
     <link href="./common/index.css" rel="stylesheet" />
     <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
+    <link href="./css/bubble.css" rel="stylesheet" type="text/css" >
     <style>
     	.validatebox-text {
 	        border-width: 1px;

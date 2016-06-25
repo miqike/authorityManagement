@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <script>
 function doMessageListDialogInit() {
-	loadInboxGrid();
 }
 
 function loadInboxGrid() {
@@ -37,7 +37,7 @@ function formatMessageStatus(val, row) {
 	}
 }
 </script>
-<div id="messageTab" class="easyui-tabs" style="width:715px;clear:both;" >
+<div id="messageTab" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:messageTabSelectHandler">
     <div title="收件箱" style="padding:5px;" selected="true" iconCls="icon2 r10_c9">
     	<input type="radio" name="messageStatus" value="all" checked style="margin-bottom: 8px;">全部</input>
     	<input type="radio" name="messageStatus" value="readed" >已读</input>
