@@ -527,7 +527,9 @@ function testDblink() {
 function importDblink() {
     if (!$(this).linkbutton('options').disabled) {
         var hcjhId = $("#p_id").val();
+        $.easyui.loading();
         $.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
+            $.easyui.loaded();
             if (response.status == SUCCESS) {
                 $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
                 loadGrid1();
