@@ -1,7 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
-function doInit() {
-	$("#inboxGrid").datagrid({"url": "./message/"});
+function doMessageListDialogInit() {
+	loadInboxGrid();
+}
+
+function loadInboxGrid() {
+    $.getJSON("./message/", null , function (response) {
+        if (response.status == $.husky.SUCCESS) {
+        	$("#inboxGrid").datagrid("loadData", response);
+        }
+    });
 }
 	
 function formatSender(val, row) {
@@ -29,8 +37,8 @@ function formatMessageStatus(val, row) {
 	}
 }
 </script>
-<div id="tabPanel" class="easyui-tabs" style="width:715px;clear:both;" >
-    <div title="收件箱" style="padding:5px;" selected="true">
+<div id="messageTab" class="easyui-tabs" style="width:715px;clear:both;" >
+    <div title="收件箱" style="padding:5px;" selected="true" iconCls="icon2 r10_c9">
     	<input type="radio" name="messageStatus" value="all" checked style="margin-bottom: 8px;">全部</input>
     	<input type="radio" name="messageStatus" value="readed" >已读</input>
     	<input type="radio" name="messageStatus" value="unread" >未读</input>
@@ -57,13 +65,14 @@ function formatMessageStatus(val, row) {
             </thead>
         </table>
         <div id="inboxGridToolbar">
-			<a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true">回复</a>
-			<a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">已读</a>
-			<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true">收藏</a>
-			<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">删除</a>
+			<a href="#" id="btnReplyMessage" class="easyui-linkbutton" iconCls="icon2 r9_c1" plain="true">回复</a>
+			<a href="#" id="btnMarkReaded" class="easyui-linkbutton" iconCls="icon2 r10_c9" plain="true">已读</a>
+			<a href="#" id="btnMovFavoriate" class="easyui-linkbutton" iconCls="icon2 r22_c3" plain="true">收藏</a>
+			<a href="#" id="btnDeleteMessage" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
     </div>
-    <div title="发件箱" style="width:700px;">
+<!--     
+	<div title="发件箱" style="" iconCls="icon2 r10_c10">
         <table id="grid2"
                class="easyui-datagrid"
                data-options="
@@ -84,12 +93,10 @@ function formatMessageStatus(val, row) {
             </thead>
         </table>
     </div>
-    <div title="草稿箱" style="width:700px;padding:5px;">
+    <div title="草稿箱" style="padding:5px;" iconCls="icon2 r9_c9">
     </div>
-    <div title="收藏夹" style="width:700px;padding:5px;">
+    <div title="收藏夹" style="padding:5px;" iconCls="icon2 r3_c14">
     </div>
-
-    <div title="联系人">
-        <a href="#" id="btnEditOrSaveUserRole" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
-    </div>
+ -->
+    <div title="联系人" iconCls="icon2 r11_c19"></div>
 </div>
