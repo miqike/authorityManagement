@@ -251,10 +251,10 @@
 			CONNECT BY PRIOR ID=PARENT_ID
 	    ) 
         <if test="qybm!=null">
-            and exists(select 1 from t_hcrw b where b.qybm = #{qybm} and t_sczt.xydm=b.hcdw_xydm) 
+            and qybm=#{qybm}
         </if>
         <if test="dwId!=null">
-            and exists(select 1 from t_hcrw b where b.hcjg like #{dwId}||'%' and t_sczt.xydm=b.hcdw_xydm)
+            and djjg like #{dwId}||'%'
         </if>
         <if test="jhnd!=null">
             and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
