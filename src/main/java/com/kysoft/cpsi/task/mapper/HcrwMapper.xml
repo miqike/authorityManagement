@@ -527,6 +527,7 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
+        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
         ORDER BY
         <if test="order != null">
             ${sort} ${order},
