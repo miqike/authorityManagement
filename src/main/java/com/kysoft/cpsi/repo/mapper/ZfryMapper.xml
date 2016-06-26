@@ -265,8 +265,8 @@
         from T_ZFRY
         where 
  			DW_ID IN (
-		    	SELECT ID FROM SYS_ORGANIZATION START WITH pkg_hc.fun_CAL_ORG_ID_00(ID) IN (
-					SELECT pkg_hc.FUN_CAL_ORG_ID_00(ORG_ID) FROM T_USER_ORG WHERE USER_ID=#{_userId})
+		    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+					SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 				CONNECT BY PRIOR ID=PARENT_ID
 		    ) 
         <if test="dwId!=null">
