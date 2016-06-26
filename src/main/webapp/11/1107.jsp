@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>相关部门信息维护</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
@@ -36,7 +36,7 @@
 <body>
 <%--<shiro:hasPermission name="<%=privilegeName%>">--%>
 <div class="easyui-layout" style="height:600px;">
-    <div data-options="region:'center',title:''" style="padding-left:30px;padding-top:10px;">
+    <div data-options="region:'center',title:''" style="padding:10px;">
 
         <table id="mainGrid"
                class="easyui-datagrid"
