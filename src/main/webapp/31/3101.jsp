@@ -153,7 +153,7 @@
      <div data-options="region:'center'">
          <table id="grid2"
                 class="easyui-datagrid"
-                data-options="singleSelect:false,collapsible:true,pageSize: 10, pagination: true,fit:true,
+                data-options="ctrlSelect:true,collapsible:true,pageSize: 10, pagination: true,fit:true,
 		onClickRow:grid2ClickHandler,height:400,
 		method:'get'"
                 toolbar="#planGridToolbar"

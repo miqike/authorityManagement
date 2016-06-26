@@ -9,11 +9,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>部门设置</title>
     <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/metro/easyui.css" rel="stylesheet"/>
+    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/themes/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
-    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
@@ -35,10 +34,10 @@
 <body>
 <%--<shiro:hasPermission name="<%=privilegeName%>">--%>
 <div class="easyui-layout" style="height:600px;">
-    <div data-options="region:'west',split:true" title="组织机构" style="width:400px;">
+    <div data-options="region:'west',split:true" title="组织机构" style="width:350px;">
         <ul id="tree" class="ztree"></ul>
     </div>
-    <div data-options="region:'center',title:''" style="padding-left:30px;padding-top:10px;">
+    <div data-options="region:'center',title:''" style="padding:5px">
 
         <table id="mainGrid"
                class="easyui-datagrid"
@@ -50,12 +49,12 @@
             <thead>
             <tr>
                 <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
-                <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="70">单位名称</th>
-                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70">部门编码</th>
+                <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="170">单位名称</th>
+                <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="100">部门编码</th>
                 <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="260">部门名称</th>
                 <th data-options="field:'lxr',halign:'center',align:'center'" sortable="true" width="70">联系人</th>
                 <th data-options="field:'lxdh',halign:'center',align:'right'" sortable="true" width="100">联系电话</th>
-                <th data-options="field:'gsxxfl',halign:'center',align:'right'" sortable="true" width="150"
+                <th data-options="field:'gsxxfl',halign:'center',align:'center'" sortable="true" width="100"
                     codeName="gsxxfl" formatter="formatCodeList">公示信息分类
                 </th>
             </tr>
@@ -84,16 +83,6 @@
 <div id="baseWindow" class="easyui-window" title="部门信息"
      data-options="modal:true,closed:true,iconCls:'icon-search'"
      style="width: 750px; height: 400px; padding: 10px;">
-    <div>
-        <a href="javascript:void(0);" id="btnAdd1" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
-        <a href="javascript:void(0);" id="btnPre" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上一个</a>
-        <a href="javascript:void(0);" id="btnNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下一个</a>
-        <a href="javascript:void(0);" id="btnFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首个</a>
-        <a href="javascript:void(0);" id="btnLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末个</a>
-        <a href="javascript:void(0);" id="btnDelete1" class="easyui-linkbutton" iconCls="icon-remove"
-           plain="true">删除</a>
-        <a href="javascript:void(0);" id="btnClose" class="easyui-linkbutton" iconCls="icon-undo" plain="true">关闭</a>
-    </div>
     <div id="baseInfo" title="基本信息" style="padding:5px;" selected="true">
 
         <div style="display: none">
@@ -127,6 +116,12 @@
                 <td>联系电话</td>
                 <td><input class="easyui-textbox" id="p_lxdh" type="text" style="width:200px;"
                            data-options=""/></td>
+            </tr>
+            <tr>
+                <td>公示信息分类</td>
+                <td>
+                    <input class="easyui-combobox" id="p_gsxxfl" type="text" style="width:200px;" data-options="panelHeight:100" codeName="gsxxfl"/>
+                </td>
             </tr>
         </table>
     </div>
