@@ -46,7 +46,7 @@ function formatMessageStatus(val, row) {
         <table id="inboxGrid"
                class="easyui-datagrid"
                data-options="
-                   singleSelect:true,
+                   singleSelect:false,
                    collapsible:true,
                    selectOnCheck:false,
                    checkOnSelect:false,
@@ -67,7 +67,7 @@ function formatMessageStatus(val, row) {
         <div id="inboxGridToolbar">
 			<a href="#" id="btnReplyMessage" class="easyui-linkbutton" iconCls="icon2 r9_c1" plain="true">回复</a>
 			<a href="#" id="btnMarkReaded" class="easyui-linkbutton" iconCls="icon2 r10_c9" plain="true">已读</a>
-			<a href="#" id="btnMovFavoriate" class="easyui-linkbutton" iconCls="icon2 r22_c3" plain="true">收藏</a>
+			<a href="#" id="btnMoveFavoriate" class="easyui-linkbutton" iconCls="icon2 r22_c3" plain="true">收藏</a>
 			<a href="#" id="btnDeleteMessage" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
     </div>
