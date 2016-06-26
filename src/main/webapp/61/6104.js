@@ -42,7 +42,13 @@ function grid2ClickHandler() {
     }
 }
 function formatZfry(val, row) {
-    return row.zfryName1 + "/" + row.zfryName2;
+	if(row.zfryName1 != null && row.zfryName2 != null ) {
+		return row.zfryName1 + "/" + row.zfryName2;
+	} else if(row.zfryName1 == null ) {
+		return row.zfryName2;
+	} else if(row.zfryName2 == null ) {
+		return row.zfryName1;
+	}
 }
 
 function loadGrid1() {
