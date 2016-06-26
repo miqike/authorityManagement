@@ -269,6 +269,7 @@ $(function() {
             <a href="#" id="btnCollapseAll" class="easyui-linkbutton" iconCls="icon-minus" plain="true">缩回</a>
             <ul id="resTree" class="ztree"></ul>
         </div>
+<!-- 
         <div title="数据权限"">
             <table id="userPermissionGrid"
                    class="easyui-datagrid"
@@ -277,8 +278,8 @@ $(function() {
                        collapsible:true,
                        selectOnCheck:false,
                        onClickRow:userPermissionGridButtonHandler,
-                       checkOnSelect:false">
-                   <!-- toolbar="#userPermissionGridToolbar" > -->
+                       checkOnSelect:false"
+                   	toolbar="#userPermissionGridToolbar" >
                 <thead>
                 <tr>
                     <th data-options="field:'ISDEFAULT'" align="left" width="30" formatter="formatDefaultFlag"></th>
@@ -293,7 +294,6 @@ $(function() {
             </table>
         </div> 
     </div>
-<!-- 
     <div id="userPermissionGridToolbar">
         <a href="#" id="btnEditDataPermission" class="easyui-linkbutton" iconCls="icon-save" plain="true" >保存</a>
         <a href="#" id="btnShowAcl" class="easyui-linkbutton" iconCls="icon2 r5_c16" plain="true" disabled="true">ACL</a>
