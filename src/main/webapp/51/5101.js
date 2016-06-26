@@ -37,7 +37,7 @@ function hcrwStyler(index,row){
 
 function loadMyTask() {
     $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
-    	nd: $('#f_nd').numberspinner("getValue"),
+    	nd: $('#f_nd').val(),
         hcjhId: $('#f_hcjhId').val(),
         jhmc: $('#f_jhmc').val()
     }, function (response) {

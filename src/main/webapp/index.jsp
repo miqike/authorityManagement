@@ -74,7 +74,7 @@
 <div data-options="region:'north',border:false" class="north">
     <div class="logo" style="margin-top:2px;width:32px;"></div>
     <ul id="topMenu"></ul>
-    <div id="pswDiv" style="margin-top:6px;width:430px">
+    <div id="pswDiv" style="margin-top:6px;width:450px">
         <a><img src="./images/head_subject.png" style="margin-right:5px;"/><span id="userInfo"></span></a>
         <!-- <a id="msgIcon" style="cursor:pointer;"><img src="./images/icon5.gif" style="margin-right:5px;"/>消息</a> -->
         <span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>

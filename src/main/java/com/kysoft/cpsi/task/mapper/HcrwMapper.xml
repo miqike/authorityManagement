@@ -522,7 +522,7 @@
             AND ND = #{nd}
         </if>
         <if test="hcjhId">
-            AND HCJH_ID = #{hcjhId}
+            AND JHBH = #{hcjhId}
         </if>
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
