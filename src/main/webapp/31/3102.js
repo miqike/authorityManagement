@@ -162,18 +162,15 @@ function clearInput() {
 }
 
 function loadGrid1() {
-	$.getJSON("../common/query?mapper=hcjhMapper&queryName=query",  {
+	$("#grid1").datagrid("load", {
         nd: $('#f_nd').numberspinner("getValue"),
         jhbh: $('#f_jhbh').val(),
         gsjhbh: $('#f_gsjhbh').val(),
         jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
-    }, function (response) {
-        if (response.status == SUCCESS) {
-        	 $("#grid1").datagrid("loadData",response);
-        }
     });
+	
 }
 
 function funcBtnRest() {

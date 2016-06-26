@@ -93,8 +93,8 @@
 	    <div>
 	        <table id="grid1"
 	               class="easyui-datagrid"
-	               data-options="singleSelect:true,collapsible:true,height:200,
-					onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+	               data-options="singleSelect:true,collapsible:true,height:175,
+					onClickRow:grid1ClickHandler,pagination: false,
 					url:'../common/query?mapper=hcjhMapper&queryName=query',
 					method:'get',onLoadSuccess:grid1LoadSucessHandler"
 	               toolbar="#gridToolbar1"

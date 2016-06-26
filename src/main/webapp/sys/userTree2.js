@@ -120,7 +120,13 @@ function loadForm() {
 }
 
 function add(){
-	showUserWindow("add");
+	var orgTreeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selectedOrgNode = orgTreeObj.getSelectedNodes()[0];
+	if(selectedOrgNode == null || selectedOrgNode == undefined) {
+		$.messager.alert("操作提醒", "请首先选择单位", "info");
+	} else {
+		showUserWindow("add");
+	}
 }
 
 function view(){
@@ -165,7 +171,14 @@ function showUserWindow(operation, data) {
 			$('#tabPanel').tabs('select',0 );
 		},
 		onSave: function (d) {
-			saveUser(operation);
+			var selected = $("#tabPanel").tabs("getSelected");
+			var tabIndex = $("#tabPanel").tabs("getTabIndex", selected);
+			if(tabIndex == 0) {
+				saveUser(operation);
+			} else {
+				//$.messager.show("操作提醒", '现在点确定按钮没卵用', "info", "bottomRight");
+			}
+			
 			return false;
         },
         toolbar: [
