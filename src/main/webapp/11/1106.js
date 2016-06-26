@@ -70,6 +70,7 @@ function refreshOrgTree() {
         },
         callback: {
             onClick: function (event, treeId, treeNode) {
+                $("#deptGrid").datagrid("loadData",[]);
                 queryUser();
             }
         }
