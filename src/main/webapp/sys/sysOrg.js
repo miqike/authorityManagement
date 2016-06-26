@@ -64,6 +64,7 @@ function setReadOnlyStatus(){
 //通用保存函数
 function _save(){
     var data = $.husky.getFormData('treeNodeForm');
+    data.nameWithId=data.id+" "+data.name;
 
     var url="../sys/organization";
     if(window.operateType=="add"){//增加本级
