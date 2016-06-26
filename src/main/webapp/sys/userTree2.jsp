@@ -138,7 +138,7 @@
                 <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
                 <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true" disabled="true">锁定/解锁</a>
                 <!-- <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon-print" plain="true" >打印</a> -->
-                <a href="#" id="btnPoiExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a></div>
+                <!-- <a href="#" id="btnPoiExport" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" >导出</a></div> -->
         </div>
     </div>
 </body>
