@@ -99,7 +99,7 @@
                    class="easyui-datagrid"
                    data-options="height:148,
                    ctrlSelect:true,method:'get',method:'get'"
-                   pagination="false"
+                   pagination="true"
                    pagePosition="bottom">
                 <thead>
                 <tr>
