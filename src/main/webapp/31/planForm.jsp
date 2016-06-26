@@ -110,8 +110,8 @@
                 </tr> -->
                 <tr>
 	                <td class="label">下达日期</td>
-	                <td><input class="easyui-datebox add moddify" id="p_xdrq" style="width:200px;"
-	                               data-options="required:true"/></td>
+	                <td><input class="easyui-datebox" id="p_xdrq" style="width:200px;"
+	                               data-options=""/></td>
                     <td class="label">下达人</td>
                     <td>
                         <input class="easyui-validatebox" id="p_xdrmc" style="width:192px;" data-options=""/>

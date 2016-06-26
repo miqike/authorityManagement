@@ -121,6 +121,7 @@ function setFormFieldStatus(formId, operation) {
     $("#" + formId + " input.easyui-validatebox:not(." + operation + ")").attr("disabled", true);
     $("#" + formId + " input.easyui-combobox:not(." + operation + ")").combobox("disable");
     $("#" + formId + " input.easyui-numberspinner:not(." + operation + ")").numberspinner("disable");
+    $("#" + formId + " input.easyui-datebox:not(." + operation + ")").datebox("disable");
     $("#" + formId + " a.easyui-linkbutton:not(." + operation + ")").linkbutton("disable");
 }
 
@@ -180,8 +181,8 @@ function showPlanForm(data) {
 function doPlanFormInit(data) {
 	$.codeListLoader.parse($('#planTable'))
 	if(null != data) {
-		setFormFieldStatus("planTable", "modify");
 		$.easyuiExtendObj.loadForm('planTable', data);
+		setFormFieldStatus("planTable", "modify");
 		$('#planTable').form("validate");
 	} else {
 		setFormFieldStatus("planTable", "add");
