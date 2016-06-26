@@ -48,9 +48,6 @@ function loadUserPermissionGrid() {
 }
 
 function checkAuthorizedResourceNode(treeNode) {
-	
-	console.log("---------------")
-	console.log(treeNode)
 	var disable = true;
 	var treeObj = $.fn.zTree.getZTreeObj("resTree");
 	var nodes;
@@ -59,7 +56,6 @@ function checkAuthorizedResourceNode(treeNode) {
 	} else {
 		nodes = treeNode.children;
 	}
-	/* 
 	if(nodes.length > 0) {
 		$.each(nodes, function(idx, node) {
 			//treeObj.setChkDisabled(node, false);
@@ -75,7 +71,7 @@ function checkAuthorizedResourceNode(treeNode) {
 				checkAuthorizedResourceNode(node)
 			}
 		})
-	}  */
+	}  
 }
 
 function showUserRoleCandidateDialog() {

@@ -392,15 +392,14 @@ function tabSelectHandler(title, tabIndex) {
 		}
 	} else if (tabIndex == 2) { //选择权限TAB
 		if(userId != "") {
-			$.getJSON("../sys/user/resource/" + userId, {}, function(responseA) {
-				
-				window.ownedResources = responseA.data;
-				if(ownedResources.length=0) {
+			$.getJSON("../sys/user/resource/" + userId, function(_resp){
+				window.ownedResources = _resp.data;
+				checkAuthorizedResourceNode();
+				if(_resp.data.length==0) {
 					$.messager.alert("操作提示", "用户没有任何权限!");
-				} else {
-					checkAuthorizedResourceNode();
 				}
 			});
+			
 		} else {
 			$.messager.alert("操作错误", "请先保存用户基本信息");
 			$('#tabPanel').tabs('select',0 );
