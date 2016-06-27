@@ -68,15 +68,19 @@
         background-color: fff3f3;
         background-image: url("");
     }
+    .icon-hamburg-sign-out {
+	    background: rgba(0, 0, 0, 0) url("./js/jeasyui-extensions-release/icons/icon-hamburg/16x16/sign-out.png") no-repeat scroll center center;
+	}
+
 </style>    
 </head>
 <body class="easyui-layout" onbeforeunload="closeBrowse();">
 <div data-options="region:'north',border:false" class="north">
     <div class="logo" style="margin-top:2px;width:32px;"></div>
     <ul id="topMenu"></ul>
-    <div id="pswDiv" style="margin-top:6px;width:450px">
+    <div id="pswDiv" style="margin-top:6px;width:530px">
         <a><img src="./images/head_subject.png" style="margin-right:5px;"/><span id="userInfo"></span></a>
-        <!-- <a id="msgIcon" style="cursor:pointer;"><img src="./images/icon5.gif" style="margin-right:5px;"/>消息</a> -->
+    	<a id="btnShowMessageListDialog" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r10_c10'"/>消息</a>
         <span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
         <a class="easyui-tooltip" style="cursor:pointer;" data-options="
                     hideEvent: 'none',
@@ -90,9 +94,11 @@
                         });
                     }">
             <img src="./images/hammer_screwdriver.png" style="margin-right:5px;"/>设置</a>
-            <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/>
-        	<span>全屏</span></a>
-        <a onclick='logout()' style="cursor:pointer;"><img src="./images/head_out.png" style="margin-right:5px;"/>注销</a>
+            <a id="btnFullScreen" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'">全屏</a>
+			<a id="btnExit" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-sign-out'" onclick='logout()' >退出</a>
+            <!-- 
+            <a onclick='fullScreen(this)' style="cursor:pointer;"><img src="./css/themes/icons/arrow_out_longer.png" style="margin-right:5px;"/><span>全屏</span></a>
+        	<a onclick='logout()' style="cursor:pointer;"><img src="./images/head_out.png" style="margin-right:5px;"/>注销</a> -->
         <br/>
     </div>
 </div>
@@ -127,78 +133,6 @@
     </div>
 </div>
 
-<%--
-<div id="changePwdDialog"></div>
-<div id="changeThemeDialog"></div>
-<div id="runAsDialog"></div>
-<div id="runAsWindow" class="easyui-window" title="身份切换" style="padding-left:2px;"
-     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:400,center:true">
-    <table>
-        <tr>
-            <td>当前身份:</td>
-            <td>
-                <span id="t_current" style="margin-right:10px;color:blue;font-weight:bold"></span>
-            </td>
-            <td>原身份:</td>
-            <td>
-                <span id="t_last" style="margin-right:10px;color:blueviolet;"></span>
-            </td>
-            <td>
-                <a href="javascript:void(0);" id="btnBackTo" class="easyui-linkbutton" plain="true" iconCls="icon-undo" onclick="switchBack()">切换回原身份</a>
-            </td>
-        </tr>
-    </table>
-    <div id="tabPanelRunAs" class="easyui-tabs" style="width:582px;height:328px">
-        <div title="切换">
-            <table id="fromUserTable" style="padding-left:8px;"></table>
-        </div>
-        <div title="授权">
-            <table id="toUserTable" style="padding-left:8px;"></table>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- 
-<div id="msgWindow" class="easyui-window" title="消息窗口" style="padding-left:2px;"
-     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:400,center:true">
-    <div>
-        <a class="easyui-linkbutton" id="nextMsg" iconCls="icon2 r6_c17" plain="true">下一个</a>
-        <a class="easyui-linkbutton" id="reply" iconCls="icon2 r10_c20" plain="true">回复</a>
-    </div>
-    <div style="padding-top:10px;"><span id="readTime"></span></div>
-    <div style="padding-top:10px;"><span id="readMsg"></span></div>
-</div>
- -->
-<div id="sendMsgWindow" class="easyui-window" title="消息窗口" style="padding-left:2px;"
-     data-options="modal:true,collapsible:false,minimizable:false,maximizable:false,closed:true,closable:true,width:600,height:150,center:true">
-    <div>
-        <a class="easyui-linkbutton" id="sendMsgBtn" iconCls="icon2 r3_c9" plain="true">发送</a>
-    </div>
-    <table>
-        <tr>
-            <td style="text-align: right">接收人</td>
-            <td>
-            	<input type="hidden" id="receiverId" />
-                <input class="easyui-validatebox"
-						id="receiver" style="width: 100px"
-						data-options="required:true,editable:true,
-                            icons:[{
-                                iconCls:'icon-man',
-                                handler: selectReceiver
-                            }]" />
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right">消息内容</td>
-            <td>
-                <input type="text" id="sendMsg" value="" class="easyui-validatebox" data-options="width:400"/>
-            </td>
-        </tr>
-    </table>
-</div>
- --%>
 <div id='Loading' style="position:absolute;z-index:1000;top:0px;left:0px;width:100%;height:100%;background:#DDDDDB;
 	text-align:center;padding-top: 20%;"><h1><image src='./images/loading.gif'/><font color="#15428B">加载中···</font></h1></div>
 

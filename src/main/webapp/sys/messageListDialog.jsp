@@ -2,10 +2,22 @@
 
 <script>
 function doMessageListDialogInit() {
+	$("input:radio[name='messageStatusFilter']").change(function() {
+		loadInboxGrid();
+	});
 }
 
 function loadInboxGrid() {
-    $.getJSON("./message/", null , function (response) {
+	var messageStatusFilter = $("input:radio[name='messageStatusFilter']:checked").val();
+	var param;
+	if (messageStatusFilter == 'all') {
+		param = null;
+	} else if (messageStatusFilter == 'readed') {
+		param = { state: 1};
+	} else {
+		param = { state: 0};
+	}
+    $.getJSON("./message/", param, function (response) {
         if (response.status == $.husky.SUCCESS) {
         	$("#inboxGrid").datagrid("loadData", response);
         }
@@ -39,9 +51,9 @@ function formatMessageStatus(val, row) {
 </script>
 <div id="messageTab" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:messageTabSelectHandler">
     <div title="收件箱" style="padding:5px;" selected="true" iconCls="icon2 r10_c9">
-    	<input type="radio" name="messageStatus" value="all" checked style="margin-bottom: 8px;">全部</input>
-    	<input type="radio" name="messageStatus" value="readed" >已读</input>
-    	<input type="radio" name="messageStatus" value="unread" >未读</input>
+    	<input type="radio" name="messageStatusFilter" value="all" checked style="margin-bottom: 8px;">全部</input>
+    	<input type="radio" name="messageStatusFilter" value="readed" >已读</input>
+    	<input type="radio" name="messageStatusFilter" value="unread" >未读</input>
     	
         <table id="inboxGrid"
                class="easyui-datagrid"
@@ -65,9 +77,10 @@ function formatMessageStatus(val, row) {
             </thead>
         </table>
         <div id="inboxGridToolbar">
+			<a href="#" id="btnWriteMessage" class="easyui-linkbutton" iconCls="icon2 r24_c2" plain="true">写信</a>
 			<a href="#" id="btnReplyMessage" class="easyui-linkbutton" iconCls="icon2 r9_c1" plain="true">回复</a>
 			<a href="#" id="btnMarkReaded" class="easyui-linkbutton" iconCls="icon2 r10_c9" plain="true">已读</a>
-			<a href="#" id="btnMoveFavoriate" class="easyui-linkbutton" iconCls="icon2 r22_c3" plain="true">收藏</a>
+			<!-- <a href="#" id="btnMoveFavoriate" class="easyui-linkbutton" iconCls="icon2 r22_c3" plain="true">收藏</a> -->
 			<a href="#" id="btnDeleteMessage" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
     </div>
