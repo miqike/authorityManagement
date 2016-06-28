@@ -44,13 +44,13 @@ public interface HcrwMapper {
 	 */
 	int updateByPrimaryKey(Hcrw record);
 
-	//根据�?查单位查询任务列�?--3101
+	//根据�?查单位查询任务列�?--3101
     List<Hcrw> queryForOrg(Map<String, Object> param);
 
     //根据信用代码查询任务列表--2101
     List<Hcrw> queryForXydm(Map<String, Object> param);
 
-    //根据�?查人员查询任务列�?--5101
+    //根据�?查人员查询任务列�?--5101
     List<Hcrw> queryForAuditor(Map<String, Object> param);
 
     List<Hcrw> queryForPlan(Map<String, Object> param);
@@ -70,4 +70,6 @@ public interface HcrwMapper {
 	void updateUnAccept(@Param("taskIds") List<String> taskIds);
 
 	Integer selectYrlsByPlanId(String planId);
+
+	void updateStatusByPrimaryKey(@Param("taskId") String hcrwId,  @Param("statusCode")Integer statusCode);
 }

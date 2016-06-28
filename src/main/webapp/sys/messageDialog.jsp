@@ -9,9 +9,8 @@
             <td style="text-align: right">接收人</td>
             <td>
             	<input type="hidden" id="m_receiver" />
-                <input class="easyui-validatebox"
-						id="m_receiverName" style="width: 200px"
-						data-options="required:true,editable:true" />
+                <input class="easyui-validatebox" id="m_receiverName" style="width: 200px" data-options="required:true,editable:true" />
+                <a href="#" id="btnShowUserSelectDialog" class="easyui-linkbutton" iconCls="icon2 r25_c10" plain="true" >选择接收人</a> 
             </td>
         </tr>
         <tr>

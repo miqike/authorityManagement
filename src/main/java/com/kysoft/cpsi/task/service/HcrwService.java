@@ -25,4 +25,6 @@ public interface HcrwService {
 	
 	void unAccept(String planId, List<String> taskIds);
 
+	void setTaskStatus(String hcrwId, Integer statusCode);
+
 }
