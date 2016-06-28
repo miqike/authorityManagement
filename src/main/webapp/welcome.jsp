@@ -78,11 +78,8 @@
         </div>
         <div style="width:30%;height:auto"  data-options="fit:true">
             <div title="帮助" collapsible="true" closable="true" style="padding:5px;">
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-layout.html">企业公示信息智能检查系统简介</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">管理人员操作手册</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-panel.html">检查人员操作手册</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-accordion.html">企业用户手册</a></div>
-                <div class="t-list"><a href="http://www.w3cschool.cc/jeasyui/jeasyui-layout-tabs2.html">基本操作规则</a></div>
+                <div class="t-list"><a href="./help/前端取数(V5.0).doc">数据加载说明</a></div>
+                <div class="t-list"><a href="./help/手工帐取数操作流程.doc">手工帐取数操作流程</a></div>
             </div>
         </div>
     </div>
