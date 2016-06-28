@@ -64,7 +64,7 @@ function queryPlan(node){
 }
 
 function xxxx(orgId) {
-	var year = $("#f_year").numberspinner('getValue');
+	var year = $("#f_year").val();
 	window.planGridKey = {year:year, tOrgId:orgId, excludeSaved: excludeSaved};
 	if(orgId != undefined && orgId != null )
 		refreshFunGrid(orgId);
@@ -163,7 +163,7 @@ function clearInput() {
 
 function loadGrid1() {
 	$("#grid1").datagrid("load", {
-        nd: $('#f_nd').numberspinner("getValue"),
+        nd: $('#f_nd').val(),
         jhbh: $('#f_jhbh').val(),
         gsjhbh: $('#f_gsjhbh').val(),
         jhmc: $('#f_jhmc').val(),

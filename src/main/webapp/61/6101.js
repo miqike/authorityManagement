@@ -12,7 +12,7 @@ $(function () {
             options.url = '../common/query?mapper=hcrwMapper&queryName=queryTongJiFenXi';
             $('#grid2').datagrid('load', {
                 id: selected[0].id,
-                nd: $("#f_nd").numberspinner("getValue"),
+                nd: $("#f_nd").val(),
                 hcjhId: $("#f_hcjdId").textbox("getValue"),
                 ztlx: $("#f_ztlx").combobox("getValue"),
                 hyfl: $("#f_hyfl").combobox("getValue")

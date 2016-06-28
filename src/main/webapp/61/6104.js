@@ -55,7 +55,7 @@ function loadGrid1() {
     var options = $("#grid1").datagrid("options");
     options.url = '../common/query?mapper=hcjhMapper&queryName=query';
     $('#grid1').datagrid('load', {
-        nd: $('#f_nd').numberspinner("getValue"),
+        nd: $('#f_nd').val(),
         jhbh: $('#f_jhbh').textbox("getValue"),
         gsjhbh: $('#f_gsjhbh').textbox("getValue"),
         jhmc: $('#f_jhmc').textbox("getValue"),

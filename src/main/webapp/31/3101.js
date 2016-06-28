@@ -383,7 +383,7 @@ function funcClose5() {
 
 function loadGrid1() {
 	$("#grid1").datagrid("load", {
-        nd: $('#f_nd').numberspinner("getValue"),
+        nd: $('#f_nd').val(),
         jhbh: $('#f_jhbh').val(),
         gsjhbh: $('#f_gsjhbh').val(),
         cxwh: $('#f_cxwh').val(),
@@ -474,7 +474,7 @@ function funcImportPlan() {
 					if(null != selected) {
 						$.getJSON("./hcjh/validate/" + selected.gsjhbh, null, function(response) {
 							if(response.validate) {
-								$("#p_nd").numberspinner("setValue", selected.nd);
+								$("#p_nd").val(selected.nd);
 								$("#p_jhbh").val(selected.gsjhbh);
 								$("#p_jhmc").val(selected.jhmc);
 								$("#p_cxwh").val(selected.cxwh);

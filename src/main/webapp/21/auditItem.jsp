@@ -97,7 +97,7 @@ function docGridClickRowHandler() {
 	            <td><input class="easyui-combobox" id="p_jgcl" style="width:200px;" data-options="panelHeight:100"
 	                       codeName="gsjg"/></td>
             <td class="label">改正期限</td>
-            <td><input class="easyui-numberspinner" id="p_gzqx" data-options="min:0,precision:0"
+            <td><input id="p_gzqx" class="easyui-validatebox" data-options="validType:'integer'"
                        style="width:180px;"/><span style="margin-left:6px;">天</span></td>
         </tr>
         <tr>

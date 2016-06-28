@@ -21,8 +21,8 @@
                 </tr>
                 <tr>
                     <td class="label">计划年度</td>
-                    <td><input class="easyui-numberspinner add" id="p_nd"
-                               data-options="required:true,min:2010" style="width:200px;"/>
+                    <td><input class="easyui-validatebox add" id="p_nd"
+                               data-options="required:true,validType:'integer'" style="width:200px;"/>
                     </td>
                     <td class="label">计划编号</td>
                     <td><input type="hidden" id="p_id"/>
