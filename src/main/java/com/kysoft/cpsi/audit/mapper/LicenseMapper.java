@@ -51,4 +51,6 @@ public interface LicenseMapper {
     @Delete("delete from T_NB_BD_XZXK where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);
 
+	void insert2(License license);
+
 }

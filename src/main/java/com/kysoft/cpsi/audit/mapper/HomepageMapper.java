@@ -51,4 +51,6 @@ public interface HomepageMapper {
     @Delete("delete from T_NB_BD_WD where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);
 
+	void insert2(Homepage homepage);
+
 }

@@ -57,6 +57,14 @@
       #{gd,jdbcType=VARCHAR}, #{bgqGqbl,jdbcType=DECIMAL}, #{bghGqbl,jdbcType=DECIMAL}, 
       #{bgrq,jdbcType=TIMESTAMP}, #{hcrwId,jdbcType=VARCHAR})
   </insert>
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.StockRightChange">
+    insert into T_NB_BD_GQBG (ID, ND, XYDM, 
+      GD, BGQ_GQBL, BGH_GQBL, 
+      BGRQ, HCRW_ID, SJLY)
+    values (#{id,jdbcType=VARCHAR}, #{nd,jdbcType=DECIMAL}, #{xydm,jdbcType=VARCHAR}, 
+      #{gd,jdbcType=VARCHAR}, #{bgqGqbl,jdbcType=DECIMAL}, #{bghGqbl,jdbcType=DECIMAL}, 
+      #{bgrq,jdbcType=TIMESTAMP}, #{hcrwId,jdbcType=VARCHAR}, 2)
+  </insert>
   <insert id="insertSelective" parameterType="com.kysoft.cpsi.audit.entity.StockRightChange">
     <!--
       WARNING - @mbggenerated

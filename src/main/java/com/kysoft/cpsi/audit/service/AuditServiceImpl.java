@@ -220,7 +220,6 @@ public class AuditServiceImpl implements AuditService {
 			reportHomepage(hcrwId, jsonData);
 			//行政许可
 			reportLicense(hcrwId, jsonData);
-			
 		}
 	}
 
@@ -255,59 +254,67 @@ public class AuditServiceImpl implements AuditService {
 	private void reportStockholderContribution(String hcrwId, JSONObject jsonData) {
 		stockholderContributionMapper.deleteByTaskId(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("gdcz");
+		
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<StockholderContribution> shcList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject shc = shcArray.getJSONObject(i);
-				shcList.add(parseStockHolderContribution(shc));
+				shcList.add(parseStockHolderContribution(shc, nd, xydm, hcrwId));
 			}
 			
 			for(int i=0;i<shcList.size(); i++) {
-				stockholderContributionMapper.insert(shcList.get(i));
+				stockholderContributionMapper.insert2(shcList.get(i));
 			}
 		}
 	}
 
-	private StockholderContribution parseStockHolderContribution(JSONObject shcObj) {
+	private StockholderContribution parseStockHolderContribution(JSONObject shcObj, Integer nd, String xydm, String hcrwId) {
 		StockholderContribution shc = new StockholderContribution();
 		shc.setId(UUID.randomUUID().toString().replace("-", ""));
-		shc.setNd(shcObj.getInteger("nd"));
-		shc.setXydm(shcObj.getString("xydm"));
+		shc.setNd(nd);
+		shc.setXydm(xydm);
 		shc.setGd(shcObj.getString("gd"));	//股东
 		shc.setRjcze(shcObj.getFloat("rjcze")); //认缴出资额
-		shc.setSjcze(shcObj.getFloat("sjcze"));		//实缴出资额
 		shc.setRjczdqsj(shcObj.getDate("rjczsqsj")); //认缴出资到期时间
 		shc.setRjczfs(shcObj.getString("rjczfs"));	//认缴出资方式
+		shc.setSjcze(shcObj.getFloat("sjcze"));		//实缴出资额
 		shc.setSjczsj(shcObj.getDate("sjczsj"));	//出资时间
 		shc.setSjczfs(shcObj.getString("sjczfs"));	//出资方式
-		shc.setHcrwId(shcObj.getString("hcrwId"));	//核查任务代码
+		shc.setHcrwId(hcrwId);	//核查任务代码
 		return shc;
 	}
 	
 	//对外投资
 	private void reportInvestment(String hcrwId, JSONObject jsonData) {
 		investmentMapper.deleteByTaskId(hcrwId);
-		JSONArray shcArray = jsonData.getJSONArray("dwtz");
+		JSONArray shcArray = jsonData.getJSONArray("qygmgq");
+		
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<Investment> investmentList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject investment = shcArray.getJSONObject(i);
-				investmentList.add(parseInvestment(investment));
+				investmentList.add(parseInvestment(investment, nd, xydm, hcrwId));
 			}
 			for(int i=0;i<investmentList.size(); i++) {
-				investmentMapper.insert(investmentList.get(i));
+				investmentMapper.insert2(investmentList.get(i));
 			}
 		}
 	}
 	
-	private Investment parseInvestment(JSONObject investmentObj) {
+	private Investment parseInvestment(JSONObject investmentObj, Integer nd, String xydm, String hcrwId) {
 		Investment investment = new Investment();
 		investment.setId(UUID.randomUUID().toString().replace("-", ""));
-		investment.setNd(investmentObj.getInteger("nd"));
-		investment.setXydm(investmentObj.getString("xydm"));
-		investment.setHcrwId(investmentObj.getString("HcrwId")); 	//核查任务代码
-		investment.setTzqymc(investmentObj.getString("Tzqymc"));	//投资设立企业或者购买股权企业名称
-		investment.setTzqyZch(investmentObj.getString("tzqyZch"));		//被投资企业注册号
+		investment.setNd(nd);
+		investment.setXydm(xydm);
+		investment.setHcrwId(hcrwId); 	//核查任务代码
+		investment.setTzqymc(investmentObj.getString("slqymc"));	//投资设立企业或者购买股权企业名称
+		investment.setTzqyZch(investmentObj.getString("zch"));		//被投资企业注册号
 		return investment;
 	}
 	
@@ -315,34 +322,37 @@ public class AuditServiceImpl implements AuditService {
 	private void reportGuarantee(String hcrwId, JSONObject jsonData) {
 		guaranteeMapper.deleteByTaskId(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("dwdb");
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<Guarantee> guaranteeList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject guarantee = shcArray.getJSONObject(i);
-				guaranteeList.add(parseGuarantee(guarantee));
+				guaranteeList.add(parseGuarantee(guarantee, nd, xydm, hcrwId));
 			}
 			for(int i=0;i<guaranteeList.size(); i++) {
-				guaranteeMapper.insert(guaranteeList.get(i));
+				guaranteeMapper.insert2(guaranteeList.get(i));
 			}
 		}
 		
 	}
 
-	private Guarantee parseGuarantee(JSONObject guaranteeObj) {
+	private Guarantee parseGuarantee(JSONObject guaranteeObj, Integer nd, String xydm, String hcrwId) {
 		Guarantee guarantee = new Guarantee();
 		guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
-		guarantee.setNd(guaranteeObj.getInteger("nd"));
-		guarantee.setXydm(guaranteeObj.getString("xydm"));
-		guarantee.setHcrwId(guaranteeObj.getString("HcrwId")); 	//核查任务代码
+		guarantee.setNd(nd);
+		guarantee.setXydm(xydm);
+		guarantee.setHcrwId(hcrwId); 	//核查任务代码
 		
 		guarantee.setZqr(guaranteeObj.getString("zqr")); 	//债权人
 		guarantee.setZwr(guaranteeObj.getString("zwr")); 	//债务人
 		guarantee.setZzqzl(guaranteeObj.getString("zzqzl")); 	//主债权种类
-		guarantee.setZzqse(guaranteeObj.getFloat("zzqse")); 	//主债权数额
+		guarantee.setZzqse(guaranteeObj.getFloat("zzqje")); 	//主债权数额
 		guarantee.setLxzwqx(guaranteeObj.getString("lxzwqx")); 	//履行债务的期限
 		guarantee.setBzqj(guaranteeObj.getString("bzqj")); 	//保证的期间
 		guarantee.setBzfs(guaranteeObj.getString("bzfs")); 	//保证的方式
-		guarantee.setBzdbfw(guaranteeObj.getString("bzdbfw")); 	//保证担保的范围
+		guarantee.setBzdbfw(guaranteeObj.getString("dbfw")); 	//保证担保的范围
 
 		return guarantee;
 	}
@@ -352,27 +362,30 @@ public class AuditServiceImpl implements AuditService {
 		stockRightChangeMapper.deleteByTaskId(hcrwId);
 		
 		JSONArray shcArray = jsonData.getJSONArray("gqbg");
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<StockRightChange> stockRightChangeList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject stockRightChange = shcArray.getJSONObject(i);
-				stockRightChangeList.add(parseStockRightChange(stockRightChange));
+				stockRightChangeList.add(parseStockRightChange(stockRightChange, nd, xydm, hcrwId));
 			}
 			for(int i=0;i<stockRightChangeList.size(); i++) {
-				stockRightChangeMapper.insert(stockRightChangeList.get(i));
+				stockRightChangeMapper.insert2(stockRightChangeList.get(i));
 			}
 		}
 	}
 	
-	private StockRightChange parseStockRightChange(JSONObject stockRightChangeObj) {
+	private StockRightChange parseStockRightChange(JSONObject stockRightChangeObj, Integer nd, String xydm, String hcrwId) {
 		StockRightChange stockRightChange = new StockRightChange();
 		stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
-		stockRightChange.setNd(stockRightChangeObj.getInteger("nd"));
-		stockRightChange.setXydm(stockRightChangeObj.getString("xydm"));
-		stockRightChange.setHcrwId(stockRightChangeObj.getString("HcrwId")); 	//核查任务代码
+		stockRightChange.setNd(nd);
+		stockRightChange.setXydm(xydm);
+		stockRightChange.setHcrwId(hcrwId); 	//核查任务代码
 		stockRightChange.setGd(stockRightChangeObj.getString("gd"));	//股东
-		stockRightChange.setBgqGqbl(stockRightChangeObj.getFloat("BgqGqbl"));	//变更前股权比例
-		stockRightChange.setBghGqbl(stockRightChangeObj.getFloat("BghGqbl"));	//变更后股权比例
+		stockRightChange.setBgqGqbl(stockRightChangeObj.getFloat("bgqbl"));	//变更前股权比例
+		stockRightChange.setBghGqbl(stockRightChangeObj.getFloat("bghbl"));	//变更后股权比例
 		stockRightChange.setBgrq(stockRightChangeObj.getDate("stockRightChangeObj"));	//股权变更日期
 		return stockRightChange;
 	}
@@ -382,25 +395,29 @@ public class AuditServiceImpl implements AuditService {
 		homepageMapper.deleteByTaskId(hcrwId);
 		
 		JSONArray shcArray = jsonData.getJSONArray("wd");
+		
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<Homepage> homepageList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject homepage = shcArray.getJSONObject(i);
-				homepageList.add(parseHomepage(homepage));
+				homepageList.add(parseHomepage(homepage, nd, xydm, hcrwId));
 			}
 			for(int i=0;i<homepageList.size(); i++) {
-				homepageMapper.insert(homepageList.get(i));
+				homepageMapper.insert2(homepageList.get(i));
 			}
 		}
 		
 	}
 	
-	private Homepage parseHomepage(JSONObject investmentObj) {
+	private Homepage parseHomepage(JSONObject investmentObj, Integer nd, String xydm, String hcrwId) {
 		Homepage homepage = new Homepage();
 		homepage.setId(UUID.randomUUID().toString().replace("-", ""));
-		homepage.setNd(investmentObj.getInteger("nd"));
-		homepage.setXydm(investmentObj.getString("xydm"));
-		homepage.setHcrwId(investmentObj.getString("HcrwId")); 	//核查任务代码
+		homepage.setNd(nd);
+		homepage.setXydm(xydm);
+		homepage.setHcrwId(hcrwId); 	//核查任务代码
 		
 		homepage.setType(investmentObj.getString("type"));	//类型
 		homepage.setName(investmentObj.getString("name"));	//名称
@@ -411,26 +428,30 @@ public class AuditServiceImpl implements AuditService {
 	private void reportLicense(String hcrwId, JSONObject jsonData) {
 		licenseMapper.deleteByTaskId(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("xzxk");
+		Integer nd = jsonData.getInteger("nd"); 
+		String xydm = jsonData.getString("xydm");
+		
 		if(null != shcArray && shcArray.size() > 0) {
 			List<License> licenseList = Lists.newArrayList();
 			for(int i=0; i<shcArray.size(); i++) {
 				JSONObject license = shcArray.getJSONObject(i);
-				licenseList.add(parseLicense(license));
+				licenseList.add(parseLicense(license, nd, xydm, hcrwId));
 			}
 			for(int i=0;i<licenseList.size(); i++) {
-				licenseMapper.insert(licenseList.get(i));
+				licenseMapper.insert2(licenseList.get(i));
 			}
 		}
 	}
 	
-	private License parseLicense(JSONObject licenseObj) {
+	private License parseLicense(JSONObject licenseObj, Integer nd, String xydm, String hcrwId) {
 		License license = new License();
 		license.setId(UUID.randomUUID().toString().replace("-", ""));
-		license.setNd(licenseObj.getInteger("nd"));
-		license.setXydm(licenseObj.getString("xydm"));
-		license.setHcrwId(licenseObj.getString("HcrwId")); 	//核查任务代码
+		license.setNd(nd);
+		license.setXydm(xydm);
+		license.setHcrwId(hcrwId); 	//核查任务代码
 		license.setXkwjmc(licenseObj.getString("xkwjmc"));	//许可文件名称
-		license.setYxq(licenseObj.getString("yxq"));		//有效期至
+		license.setYxq(licenseObj.getString("yxq_ks") + " 至 " + licenseObj.getString("yxq_zz") );		//有效期至
+		//license.setDjzt(licenseObj.getString("yxq"));		//有效期至
 		return license;
 	}
 

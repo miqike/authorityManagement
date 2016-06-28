@@ -50,4 +50,6 @@ public interface StockRightChangeMapper {
 	List<StockRightChange> selectByTaskId(String hcrwId);
 	
 	List<StockRightChange> selectByTaskId2(String hcrwId);
+
+	void insert2(StockRightChange stockRightChange);
 }

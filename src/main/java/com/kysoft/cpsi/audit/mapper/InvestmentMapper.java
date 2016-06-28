@@ -51,4 +51,6 @@ public interface InvestmentMapper {
 	@Delete("delete from T_NB_BD_DWTZ where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String taskId);
 
+	void insert2(Investment investment);
+
 }

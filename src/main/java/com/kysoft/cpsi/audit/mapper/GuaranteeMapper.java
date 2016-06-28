@@ -50,4 +50,6 @@ public interface GuaranteeMapper {
     @Delete("delete from T_NB_BD_DWDB where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);
 
+	void insert2(Guarantee guarantee);
+
 }

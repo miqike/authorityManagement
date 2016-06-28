@@ -55,6 +55,14 @@
       #{xkwjmc,jdbcType=VARCHAR}, #{yxq,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.License">
+    insert into T_NB_BD_XZXK (ID, ND, XYDM, 
+      XKWJMC, YXQ, HCRW_ID, SJLY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{nd,jdbcType=NUMERIC}, #{xydm,jdbcType=VARCHAR}, 
+      #{xkwjmc,jdbcType=VARCHAR}, #{yxq,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR}, 2
+      )
+  </insert>
   <insert id="insertSelective" parameterType="com.kysoft.cpsi.audit.entity.License">
     <!--
       WARNING - @mbggenerated

@@ -48,6 +48,20 @@ function formatMessageStatus(val, row) {
 		return "<span style='color:green'>已读</span>";
 	}
 }
+function formatMessageContent(val, row) {
+	console.log(val)
+	if(val == undefined || val == '') {
+		return "";
+	} else {
+		return "<span style='color:green' onclick='javascript:showMessageContent(this);'>详细...</span>";
+	}
+}
+
+function showMessageContent(elem) {
+	console.log(elem)
+}
+
+
 </script>
 <div id="messageTab" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:messageTabSelectHandler">
     <div title="收件箱" style="padding:5px;" selected="true" iconCls="icon2 r10_c9">
@@ -70,9 +84,10 @@ function formatMessageStatus(val, row) {
             <thead>
             <tr>
                 <th data-options="field:'sender'" halign="center" align="center" width="100" formatter="formatSender">发件人</th>
-                <th data-options="field:'title'" halign="center" align="center" width="200" formatter="formatMessageTitle">标题</th>
+                <th data-options="field:'title'" halign="center" align="center" width="380" formatter="formatMessageTitle">标题</th>
                 <th data-options="field:'operateTime'" halign="center" align="center" width="120" formatter="formatDatetime2Min">发件时间</th>
                 <th data-options="field:'state'" halign="center" align="center" width="40" formatter="formatMessageStatus">状态</th>
+                <th data-options="field:'content'" halign="center" align="left" width="40" formatter="formatMessageContent">内容</th>
             </tr>
             </thead>
         </table>

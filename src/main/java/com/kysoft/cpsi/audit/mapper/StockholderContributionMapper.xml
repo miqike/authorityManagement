@@ -62,6 +62,16 @@
       #{rjczfs,jdbcType=VARCHAR}, #{sjcze,jdbcType=NUMERIC}, #{sjczsj,jdbcType=TIMESTAMP}, 
       #{sjczfs,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR})
   </insert>
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.StockholderContribution">
+    insert into T_NB_BD_GDCZ (ID, ND, XYDM, 
+      GD, RJCZE, RJCZDQSJ, 
+      RJCZFS, SJCZE, SJCZSJ, 
+      SJCZFS, HCRW_ID, SJLY)
+    values (#{id,jdbcType=VARCHAR}, #{nd,jdbcType=NUMERIC}, #{xydm,jdbcType=VARCHAR}, 
+      #{gd,jdbcType=VARCHAR}, #{rjcze,jdbcType=NUMERIC}, #{rjczdqsj,jdbcType=TIMESTAMP}, 
+      #{rjczfs,jdbcType=VARCHAR}, #{sjcze,jdbcType=NUMERIC}, #{sjczsj,jdbcType=TIMESTAMP}, 
+      #{sjczfs,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR}, 2)
+  </insert>
   <insert id="insertSelective" parameterType="com.kysoft.cpsi.audit.entity.StockholderContribution">
     <!--
       WARNING - @mbggenerated
