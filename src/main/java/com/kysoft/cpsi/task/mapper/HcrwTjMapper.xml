@@ -191,16 +191,42 @@
   </update>
   
    <select id="queryForOrg" resultMap="BaseResultMap">
-	select <include refid="Base_Column_List" />
-    from T_HCRW_TJ where HCJH_ID=#{hcjhId}
-    AND
-        HCJG IN (
-	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
-				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
-			CONNECT BY PRIOR ID=PARENT_ID
-	    )
-    AND
-    HCJG like concat(#{organization}, '%')
-    ORDER BY HCJGMC
+       select a.hcjh_id,a.zfry_code,a.hcjg,a.zfry_name,a.hcjgmc,a.hcrws,b.rls,b.wcs,b.zlz,b.wwcs from
+       (select HCJH_ID, ZFRY_CODE, HCJG, ZFRY_NAME,
+       HCJGMC, HCRWS, RLS, WCS, ZLZ, WWCS from T_HCRW_TJ where HCJH_ID=#{hcjhId}
+       AND
+       HCJG IN (
+       SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+       SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+       CONNECT BY PRIOR ID=PARENT_ID
+       )
+       AND
+       HCJG like concat(#{organization}, '%')
+       ORDER BY HCJGMC) a,
+       (select zfry_code1 zfry_code,hcjg,sum(decode(rlr,null,0,1)) rls,sum(decode(rwzt,4,1,0)) zlz,sum(decode(hcjieguo,null,0,1)) wcs,sum(decode(hcjieguo,null,1,0)) wwcs from t_hcrw a
+       where HCJH_ID=#{hcjhId}
+       AND
+       HCJG IN (
+       SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+       SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+       CONNECT BY PRIOR ID=PARENT_ID
+       )
+       AND
+       HCJG like concat(#{organization}, '%') and zfry_code1 is not null
+       group by zfry_code1,hcjg
+       union all
+       select zfry_code2 zfry_code,hcjg,sum(decode(rlr,null,0,1)) rls,sum(decode(rwzt,4,1,0)) zlz,sum(decode(hcjieguo,null,0,1)) wcs,sum(decode(hcjieguo,null,1,0)) wwcs from t_hcrw a
+       where HCJH_ID=#{hcjhId}
+       AND
+       HCJG IN (
+       SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+       SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+       CONNECT BY PRIOR ID=PARENT_ID
+       )
+       AND
+       HCJG like concat(#{organization}, '%') and zfry_code2 is not null
+       group by zfry_code2,hcjg) b
+       where a.zfry_code=b.zfry_code and a.hcjg=b.hcjg
+       ORDER BY HCJGMC,zfry_code
   </select>
 </mapper>
