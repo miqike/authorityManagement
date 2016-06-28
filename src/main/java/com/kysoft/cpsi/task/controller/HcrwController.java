@@ -34,6 +34,8 @@ public class HcrwController extends BaseController {
 
         try {
             Hcrw hcrw = hcrwService.getHcrwById(hcrwId);
+            //核查结果为6种,只要设定核查结果,任务设为完成状态:5
+            hcrw.setRwzt(5);
             hcrw.setHcjieguo(jieguo);
             hcrwService.updateHcrw(hcrw);
             result.put(MESSAGE, "更新核查结果成功");
@@ -136,4 +138,22 @@ public class HcrwController extends BaseController {
     	}
     	return result;
     }
+    
+    
+    @RequestMapping(value = "/{hcrwId}/{statusCode}", method = RequestMethod.POST)
+    public Map<String, Object> setTaskStatus(@PathVariable String hcrwId, @PathVariable Integer statusCode) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	try {
+    		hcrwService.setTaskStatus(hcrwId, statusCode);
+    		result.put(MESSAGE, "认领任务成功");
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "批量保存失败");
+    	}
+    	return result;
+    }
+    
+    
 }

@@ -99,5 +99,10 @@ public class HcrwServiceImpl implements HcrwService {
 		hcjhService.reCalcAcceptStatus(planId);
 	}
 
+	@Override
+	public void setTaskStatus(String hcrwId, Integer statusCode) {
+		hcrwMapper.updateStatusByPrimaryKey(hcrwId, statusCode);
+	}
+
 
 }

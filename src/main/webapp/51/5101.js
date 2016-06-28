@@ -212,6 +212,7 @@ function _showDialog(title, url) {
 				if(title == "实地检查告知书") {
 					printShidihechagaozhishu();
 				} else if(title == "责令履行通知书") {
+					setTaskStatus( $("#grid1").datagrid("getSelected").id, 4);
 					printZelingluxingtongzhishu();
 				} else if(title == "年报公示信息核查结果报告") {
                     printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
@@ -220,6 +221,12 @@ function _showDialog(title, url) {
 				}
 			}
 		}]
+	});
+}
+
+function setTaskStatus(taskId, statusCode) {
+	$.post("../51/" + taskId + "/" + statusCode, null, function() {
+		
 	});
 }
 
