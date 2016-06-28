@@ -70,7 +70,7 @@
                            style="width:208px;" codeName="whcd"/></td>
                 <td>状态</td>
                 <td><input class="easyui-combobox add update"  id="p_zt" data-options="panelHeight:70"
-                           style="width:208px;" codeName="zfryStatus"/></td>
+                           style="width:208px;" codeName="userStatus"/></td>
             </tr>
         </table>
     </div>
