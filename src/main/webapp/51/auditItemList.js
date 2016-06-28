@@ -274,11 +274,9 @@ function pass() {
         sm: "正常"
     }, function (response) {
         if (response.status == SUCCESS) {
-            $.messager.show({
-                title: '提示',
-                msg: response.message
-            });
-            $("#annualAuditItemGrid").datagrid("reload");
+            $.messager.show("操作提示", response.message, "info", "bottomRight");
+            //$("#annualAuditItemGrid").datagrid("reload");
+            annualAuditItemInit();
             closeAuditWindow();
         } else {
             $.messager.alert('错误', response.message, 'error');
@@ -316,7 +314,8 @@ function confirmFail () {
 				title: '提示',
 				msg: response.message
 			});
-			$("#annualAuditItemGrid").datagrid("reload");
+//			$("#annualAuditItemGrid").datagrid("reload");
+            annualAuditItemInit();
 			closeAuditWindow();
 		} else {
 			$.messager.alert('错误', response.message, 'error');
