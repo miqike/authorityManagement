@@ -110,6 +110,6 @@ function formatMessageStatus(val, row) {
     </div>
     <div title="收藏夹" style="padding:5px;" iconCls="icon2 r3_c14">
     </div>
- -->
     <div title="联系人" iconCls="icon2 r11_c19"></div>
+ -->
 </div>
