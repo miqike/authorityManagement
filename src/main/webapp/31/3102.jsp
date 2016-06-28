@@ -92,6 +92,7 @@
 				class="easyui-datagrid"
 				data-options="singleSelect:true,collapsible:true,height:200,
 					onClickRow:grid1ClickHandler,pagination: false,
+					url:'../common/query?mapper=hcjhMapper&queryName=query',
 					method:'get'"
 				   toolbar="#gridToolbar1"
 				   style="height: 250px"

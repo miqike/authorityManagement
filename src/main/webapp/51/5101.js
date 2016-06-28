@@ -92,12 +92,13 @@ function refreshAuditItemList() {
 }
 
 function funcBtnRest() {
-    $("#f_nd").val(new Date().getFullYear());
+    $("#f_nd").val("");
     $("#f_hcjhId").val("");
     $("#f_jhmc").val("");
 }
 
 function clearInput() {
+	$("#f_nd").val("");
     $("#f_hcjhId").val("");
     $("#f_jhmc").val("");
     $("#p_id").val("");
@@ -224,7 +225,6 @@ function _showDialog(title, url) {
 
 $(function () {
     clearInput();
-    $("#f_nd").val(new Date().getFullYear());
     $("#btnView").click(showExamHistory);
     loadMyTask();
 

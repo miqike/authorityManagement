@@ -394,6 +394,7 @@ function loadGrid1() {
 }
 
 function clearInput() {
+    $("#f_nd").val("");
     $("#f_id").val("");
     $("#f_jhbh").val("");
     $("#f_gsjhbh").val("");
@@ -403,7 +404,7 @@ function clearInput() {
 }
 
 function funcBtnRest() {
-    $("#f_nd").val( new Date().getFullYear());
+    //$("#f_nd").val( new Date().getFullYear());
     clearInput();
 }
 
@@ -639,7 +640,7 @@ $(function () {
     $("#btnSort2").click(funcSort2);
     $("#btnAccept").click(funcAccept);
     $("#btnUnAccept").click(funcUnAccept);
-    $("#f_nd").val( new Date().getFullYear());
+    //$("#f_nd").val( new Date().getFullYear());
     clearInput();
    
     

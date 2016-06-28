@@ -153,6 +153,7 @@ function loadAuditItemList() {
 }
 
 function clearInput() {
+	$("#f_nd").val("");
 	$("#f_id").val("");
     $("#f_jhbh").val("");
     $("#f_gsjhbh").val("");
@@ -174,7 +175,7 @@ function loadGrid1() {
 }
 
 function funcBtnRest() {
-	$("#f_nd").val( new Date().getFullYear());
+	//$("#f_nd").val( new Date().getFullYear());
     clearInput();
 }
 
@@ -186,7 +187,7 @@ $(function() {
 	$("#btnReset").click(funcBtnRest);
     $("#btnViewCheckList").click(viewCheckList);
 
-    $("#f_nd").val( new Date().getFullYear());
+    //$("#f_nd").val( new Date().getFullYear());
     clearInput();
     loadGrid1();
 });
