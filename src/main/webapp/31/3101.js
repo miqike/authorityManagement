@@ -33,6 +33,22 @@ function grid1LoadSucessHandler(data) {
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
     $('#grid1').datagrid('selectRow', 0);
+    if(window._selectdPlanId_ != undefined) {
+    	$("#grid1").datagrid("selectRow", getRowIndex());
+    }
+}
+
+function getRowIndex() {
+	var rows = $("#grid1").datagrid("getRows");
+	var index;
+	for(var i=0; i<rows.length; i++) {
+		var row = rows[i];
+		if(row.jhbh == window._selectdPlanId_) {
+			index = $("#grid1").datagrid("getRowIndex", row);
+			break;
+		}
+	}
+	return index;
 }
 
 function grid1ClickHandler() {
@@ -204,7 +220,7 @@ function dispatch() {
 					$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
 						if (response.status == SUCCESS) {
 							$.messager.alert("提示", action + "成功", 'info');
-							loadGrid1();
+							loadGrid1(row.id);
 						} else {
 							$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
 						}
@@ -381,7 +397,8 @@ function funcClose5() {
     $("#addAuditItemWindow").window("close");
 }
 
-function loadGrid1() {
+function loadGrid1(hcjhId) {
+	window._selectdPlanId_ = hcjhId;
 	$("#grid1").datagrid("load", {
         nd: $('#f_nd').val(),
         jhbh: $('#f_jhbh').val(),
@@ -444,7 +461,7 @@ function savePlan() {
                 $('#p_id').val(response.id);
                 setReadOnlyStatus();
                 $("#btnImportTask").linkbutton("enable");
-                loadGrid1();
+                loadGrid1(response.id);
             } else {
                 $.messager.alert('失败', response.message, 'info');
             }
@@ -540,7 +557,7 @@ function importDblink() {
             $.easyui.loaded();
             if (response.status == SUCCESS) {
                 $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
-                loadGrid1();
+                loadGrid1(hcjhId);
             }
         });
     }
@@ -610,7 +627,7 @@ function _funcAccept (operation) {
 	        contentType: 'application/json;charset=utf-8',
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
-	            	loadGrid1();
+	            	loadGrid1(selected[0].hcjhId);
 	                $('#grid2').datagrid("reload");
 	            } else {
 	                $.messager.alert('失败', response.message, 'info');
