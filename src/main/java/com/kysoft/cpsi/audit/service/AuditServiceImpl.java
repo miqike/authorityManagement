@@ -284,10 +284,10 @@ public class AuditServiceImpl implements AuditService {
 		shc.setXydm(xydm);
 		shc.setGd(shcObj.getString("gd"));	//股东
 		shc.setRjcze(shcObj.getFloat("rjcze")); //认缴出资额
-		shc.setRjczdqsj(shcObj.getDate("rjczsqsj")); //认缴出资到期时间
+		shc.setRjczdqsj(shcObj.getString("rjczsqsj")); //认缴出资到期时间
 		shc.setRjczfs(shcObj.getString("rjczfs"));	//认缴出资方式
 		shc.setSjcze(shcObj.getFloat("sjcze"));		//实缴出资额
-		shc.setSjczsj(shcObj.getDate("sjczsj"));	//出资时间
+		shc.setSjczsj(shcObj.getString("sjczsj"));	//出资时间
 		shc.setSjczfs(shcObj.getString("sjczfs"));	//出资方式
 		shc.setHcrwId(hcrwId);	//核查任务代码
 		return shc;
@@ -392,7 +392,7 @@ public class AuditServiceImpl implements AuditService {
 		stockRightChange.setGd(stockRightChangeObj.getString("gd"));	//股东
 		stockRightChange.setBgqGqbl(stockRightChangeObj.getFloat("bgqbl"));	//变更前股权比例
 		stockRightChange.setBghGqbl(stockRightChangeObj.getFloat("bghbl"));	//变更后股权比例
-		stockRightChange.setBgrq(stockRightChangeObj.getDate("stockRightChangeObj"));	//股权变更日期
+		stockRightChange.setBgrq(stockRightChangeObj.getString("stockRightChangeObj"));	//股权变更日期
 		return stockRightChange;
 	}
 	
