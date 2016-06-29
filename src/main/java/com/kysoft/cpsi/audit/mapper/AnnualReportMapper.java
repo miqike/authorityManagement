@@ -1,8 +1,6 @@
 package com.kysoft.cpsi.audit.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Delete;
 
 import com.kysoft.cpsi.audit.entity.AnnualReport;
 
@@ -53,10 +51,13 @@ public interface AnnualReportMapper {
 	AnnualReport selectByPrimaryKey2(String hcrwId);
 
 
-	@Select("select HCRW_ID from T_NB_BD where ND = #{nd} and XYDM = #{xydm}")
-	@ResultType(value = java.lang.String.class)
-	String selectCountByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
+//	void updateByNdAndXydm(AnnualReport ar);
 
-	void updateByNdAndXydm(AnnualReport ar);
+	@Delete("DELETE from T_NB_BD where HCRW_ID = #{hcrwId} and SJLY = 2")
+	//T_NB_BD导入数据前先删除之前导入的数据(标志位2)
+	void deleteByTaskId2(String hcrwId);
+
+	//T_NB_BD导入数据(标志位2)
+	void insert2(AnnualReport ar);
 	
 }

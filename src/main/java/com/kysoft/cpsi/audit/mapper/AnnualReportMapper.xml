@@ -560,9 +560,10 @@
     where HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
   </select>
   
-  <update id="updateByNdAndXydm" parameterType="com.kysoft.cpsi.audit.entity.AnnualReport">
+  <!-- <update id="updateByNdAndXydm" parameterType="com.kysoft.cpsi.audit.entity.AnnualReport">
     update T_NB_BD
     <set>
+    	SJLY = 2, 
       <if test="qymc != null">
         QYMC = #{qymc,jdbcType=VARCHAR},
       </if>
@@ -679,5 +680,37 @@
       </if>
     </set>
     where ND = #{nd} and XYDM = #{xydm}
-  </update>
+  </update> -->
+  
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.AnnualReport">
+    insert into T_NB_BD (HCRW_ID, ND, XYDM, 
+      QYMC, TXDZ, MAIL, SFTZGMGQ, 
+      JYZT, SFYWZWD, SFYDWDBXX, 
+      CYRS, SYZQYHJ, LRZE, 
+      ZYYWSR, JLR, NSZE, 
+      FZZE, LXDH, YZBM, ZCZE, 
+      GXBYS_JY, GXBYS_GG, TYSBS_JY, 
+      TYSBS_GG, CJRS_JY, CJRS_GG, 
+      ZJYS_JY, ZJYS_GG, DJ_FRSFDY, 
+      DJ_LXDH, DJ_QTZW, DJ_DYZS, 
+      DJ_ZCDYS, DJ_WZRS, DJ_FZDYS, 
+      DJ_JJFZS, DJ_SFJLZZ, DJ_WJLZZYY, 
+      YYZSR, DJ_DZZJZ, DJ_FRDBSFDZZSJ, SJLY
+      )
+    values (#{hcrwId,jdbcType=VARCHAR}, #{nd,jdbcType=DECIMAL}, #{xydm,jdbcType=VARCHAR}, 
+      #{qymc,jdbcType=VARCHAR}, #{txdz,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, #{sftzgmgq,jdbcType=VARCHAR}, 
+      #{jyzt,jdbcType=VARCHAR}, #{sfywzwd,jdbcType=VARCHAR}, #{sfydwdbxx,jdbcType=VARCHAR}, 
+      #{cyrs,jdbcType=NUMERIC}, #{syzqyhj,jdbcType=NUMERIC}, #{lrze,jdbcType=NUMERIC}, 
+      #{zyywsr,jdbcType=NUMERIC}, #{jlr,jdbcType=NUMERIC}, #{nsze,jdbcType=NUMERIC}, 
+      #{fzze,jdbcType=NUMERIC}, #{lxdh,jdbcType=VARCHAR}, #{yzbm,jdbcType=VARCHAR}, #{zcze,jdbcType=NUMERIC}, 
+      #{gxbysJy,jdbcType=NUMERIC}, #{gxbysGg,jdbcType=NUMERIC}, #{tysbsJy,jdbcType=NUMERIC}, 
+      #{tysbsGg,jdbcType=NUMERIC}, #{cjrsJy,jdbcType=NUMERIC}, #{cjrsGg,jdbcType=NUMERIC}, 
+      #{zjysJy,jdbcType=NUMERIC}, #{zjysGg,jdbcType=NUMERIC}, #{djFrsfdy,jdbcType=VARCHAR}, 
+      #{djLxdh,jdbcType=VARCHAR}, #{djQtzw,jdbcType=NUMERIC}, #{djDyzs,jdbcType=NUMERIC}, 
+      #{djZcdys,jdbcType=NUMERIC}, #{djWzrs,jdbcType=NUMERIC}, #{djFzdys,jdbcType=NUMERIC}, 
+      #{djJjfzs,jdbcType=NUMERIC}, #{djSfjlzz,jdbcType=VARCHAR}, #{djWjlzzyy,jdbcType=VARCHAR}, 
+      #{yyzsr,jdbcType=NUMERIC}, #{djDzzjz,jdbcType=VARCHAR}, #{djFrdbsfdzzsj,jdbcType=VARCHAR}, 2
+      )
+  </insert>
+  
 </mapper>

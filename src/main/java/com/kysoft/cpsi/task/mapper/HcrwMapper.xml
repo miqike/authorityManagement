@@ -560,6 +560,12 @@
         #{hcrwId,mode=IN,jdbcType=VARCHAR}
         )}
     </update>
+    <update id="compareData" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {
+        call prc_bidui_hc(
+        #{hcrwId,mode=IN,jdbcType=VARCHAR}
+        )}
+    </update>
 
     <update id="updateLoadedByPrimaryKey">
         UPDATE T_HCRW SET DATA_LOADED = 1 where HCJH_ID = #{planId,jdbcType=VARCHAR}

@@ -37,6 +37,7 @@ import com.kysoft.cpsi.audit.mapper.StockRightChangeMapper;
 import com.kysoft.cpsi.audit.mapper.StockholderContributionMapper;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.service.HcsxjgService;
 
 import net.sf.husky.exception.BaseException;
@@ -50,6 +51,9 @@ public class AuditServiceImpl implements AuditService {
 
     @Resource
     HcsxMapper hcsxMapper;
+    
+    @Resource
+    HcrwMapper hcrwMapper;
 
     @Resource
     AnnualReportMapper annualReportMapper;
@@ -189,9 +193,6 @@ public class AuditServiceImpl implements AuditService {
             default:
 
         }
-
-        // TODO Auto-generated method stub
-
         return result;
     }
 
@@ -202,12 +203,14 @@ public class AuditServiceImpl implements AuditService {
 		String xydm = ar.getXydm();
 		System.out.println("---------nd-------------" + nd);
 		System.out.println("---------xydm-------------" + xydm);
-		String hcrwId = annualReportMapper.selectCountByNdAndXydm(nd, xydm);
+		String hcrwId = hcrwMapper.selectTaskIdByNdAndXydm(nd, xydm);
 		System.out.println("================\t" + hcrwId);
 		if(hcrwId == null) {
 			throw new BaseException("核查任务不存在,请检查年度和企业统一社会信用代码是否正确录入");
 		} else {
-			annualReportMapper.updateByNdAndXydm(ar);
+			ar.setHcrwId(hcrwId);
+			annualReportMapper.deleteByTaskId2(hcrwId);
+			annualReportMapper.insert2(ar);
 			//股东出资
 			reportStockholderContribution(hcrwId, jsonData);
 			//对外投资
@@ -220,10 +223,13 @@ public class AuditServiceImpl implements AuditService {
 			reportHomepage(hcrwId, jsonData);
 			//行政许可
 			reportLicense(hcrwId, jsonData);
+			
+			//TODO call compare procedure
+			Map<String, Object> param = Maps.newHashMap();
+	        param.put("hcrwId", hcrwId);
+			hcrwMapper.compareData(param);
 		}
 	}
-
-	
 
 	private AnnualReport getAnnualReport(JSONObject jsonData) {
 		DecimalFormat df = new DecimalFormat("#.00");

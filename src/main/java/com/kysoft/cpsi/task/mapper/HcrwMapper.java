@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultType;
+import org.apache.ibatis.annotations.Select;
 
 public interface HcrwMapper {
     /**
@@ -58,6 +60,8 @@ public interface HcrwMapper {
     Integer selectCountByPlanId(String planId);
 
     void pullData(Map<String, Object> param);
+    
+    void compareData(Map<String, Object> param);
 
     void updateLoadedByPrimaryKey(String hcrwId);
 
@@ -72,4 +76,9 @@ public interface HcrwMapper {
 	Integer selectYrlsByPlanId(String planId);
 
 	void updateStatusByPrimaryKey(@Param("taskId") String hcrwId,  @Param("statusCode")Integer statusCode);
+
+	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}")
+	@ResultType(value = java.lang.String.class)
+	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
+	
 }
