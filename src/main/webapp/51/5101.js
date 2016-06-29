@@ -117,8 +117,8 @@ function funcBtnPullData() {
 function _pullData() {
 	var row = $("#grid1").datagrid("getSelected");
     $.getJSON("./" + row.id + "/pull", null, function (response) {
+        $.messager.alert("提示", response.message, 'info');
         if (response.status == SUCCESS) {
-            $.messager.alert("提示", response.message, 'info');
             refreshAuditItemList();
             row.dataLoaded = 1;
         }

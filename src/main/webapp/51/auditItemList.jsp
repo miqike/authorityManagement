@@ -24,7 +24,7 @@ $(function () {
 				             formatter="formatCodeList">检查方式</th>
 				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
 				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">登记/备案内容</th>
-				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">实际内容</th>
+				         <th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="150">实际内容</th>
 				         <!-- <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
 				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th> -->
 				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
