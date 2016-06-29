@@ -73,7 +73,7 @@ function grid1ClickHandler() {
     if (hcrw.dataLoaded == 0) {
         $('#btnPullData').linkbutton("enable");
     } else {
-        $('#btnPullData').linkbutton("disable");
+        $('#btnPullData').linkbutton("enable");
     }
     refreshAuditItemList();
 }
