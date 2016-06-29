@@ -179,3 +179,8 @@
 <script type="text/javascript" src="./js/husky/husky.message.js" ></script>
 <script type="text/javascript" src="./js/formatter.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
+<!-- 
+<script type="text/javascript" src="./js/plugins/ueditor/ueditor1_4_3-utf8-net/ueditor.all.js"></script>
+<script type="text/javascript" src="./js/plugins/ueditor/ueditor1_4_3-utf8-net/ueditor.config.js"></script>
+<script type="text/javascript" src="./js/jeasyui-extensions/jquery.ueditor.js"></script>
+ -->

@@ -49,16 +49,21 @@ function formatMessageStatus(val, row) {
 	}
 }
 function formatMessageContent(val, row) {
-	console.log(val)
-	if(val == undefined || val == '') {
-		return "";
+	if(val != undefined || val == true) {
+		return "<span style='color:orange;cursor:pointer;text-decoration:underline' onclick='javascript:showMessageContent(\"" + row.sendId + "\");'>详细...</span>";
 	} else {
-		return "<span style='color:green' onclick='javascript:showMessageContent(this);'>详细...</span>";
+		return "";
 	}
 }
 
-function showMessageContent(elem) {
-	console.log(elem)
+function showMessageContent(sendId) {
+	$.getJSON("./message/" + sendId, null, function (response) {
+        if (response.status == $.husky.SUCCESS) {
+        	if(response.status == $.husky.SUCCESS) {
+	        	$.messager.alert("详细内容", response.data.content);
+        	}
+        }
+    });
 }
 
 
@@ -84,10 +89,10 @@ function showMessageContent(elem) {
             <thead>
             <tr>
                 <th data-options="field:'sender'" halign="center" align="center" width="100" formatter="formatSender">发件人</th>
-                <th data-options="field:'title'" halign="center" align="center" width="380" formatter="formatMessageTitle">标题</th>
+                <th data-options="field:'title'" halign="center" align="center" width="360" formatter="formatMessageTitle">标题</th>
                 <th data-options="field:'operateTime'" halign="center" align="center" width="120" formatter="formatDatetime2Min">发件时间</th>
                 <th data-options="field:'state'" halign="center" align="center" width="40" formatter="formatMessageStatus">状态</th>
-                <th data-options="field:'content'" halign="center" align="left" width="40" formatter="formatMessageContent">内容</th>
+                <th data-options="field:'hasContent'" halign="center" align="center" width="60" formatter="formatMessageContent">内容</th>
             </tr>
             </thead>
         </table>
