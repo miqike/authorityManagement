@@ -134,7 +134,7 @@
                 <td class="label">下达时间</td>
                 <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
                 <td class="label"  style="width:90px;">计划结束时间</td>
-                <td style="width:100px;"><input id="p_jhyqwcsj" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+                <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
                 <td class="label"  style="width:90px;">检查结果</td>
                 <td ><input id="p_hcjieguo" class="easyui-combobox" 
                            data-options="width:187" codeName="gsjg" disabled/></td>

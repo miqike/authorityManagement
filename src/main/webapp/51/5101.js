@@ -46,7 +46,7 @@ function loadMyTask() {
         	$('#p_jhbh').val("");
 			$('#p_jhmc').val("");
 			$('#p_jhxdrq').datebox("clear");
-			$('#p_jhyqwcsj').datebox("clear");
+			$('#p_jhwcrq').datebox("clear");
 			$('#p_hcjieguo').combobox("clear");
 			$("#auditItemList").empty();
         }
@@ -59,7 +59,7 @@ function grid1ClickHandler() {
     $('#p_jhbh').val(hcrw.jhbh);
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
-    $('#p_jhyqwcsj').datebox("setValue", formatDate(hcrw.jhyqwcsj));
+    $('#p_jhwcrq').datebox("setValue", formatDate(hcrw.jhwcrq));
     $('#p_hcjieguo').combobox("setValue", hcrw.hcjieguo);
 
     $('#btnSendHcgzs').linkbutton("enable");

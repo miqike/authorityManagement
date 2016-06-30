@@ -55,7 +55,7 @@ function loadMyTask() {
 			$('#p_hcdwXydm').val("");
 		    $('#p_hcdwName').val("");
 			$('#p_jhxdrq').datebox("clear");
-			$('#p_jhyqwcsj').datebox("clear");
+			$('#p_jhwcrq').datebox("clear");
 			$('#p_hcjieguo').combobox("clear");
 			$("#auditItemList").empty();
         }
@@ -70,7 +70,7 @@ function myTaskGridClickHandler() {
     $('#p_hcdwXydm').val(hcrw.hcdwXydm);
     $('#p_hcdwName').val(hcrw.hcdwName);
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
-    $('#p_jhyqwcsj').datebox("setValue", formatDate(hcrw.jhyqwcsj));
+    $('#p_jhwcrq').datebox("setValue", formatDate(hcrw.jhwcrq));
     $('#p_hcjieguo').combobox("setValue", hcrw.hcjieguo);
 
     $('#btnSendHcgzs').linkbutton("enable");
