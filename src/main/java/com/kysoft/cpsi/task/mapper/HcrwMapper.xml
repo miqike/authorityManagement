@@ -867,7 +867,7 @@
             and c.hyfl=#{hyfl}
         </if>
         )*100,2) bz_6
-        from sys_organization a
+        from (select * from sys_organization start with id in(select org_id from t_user_org where user_id=#{userId}) connect by prior id=parent_id) a
         start with id=#{id} connect by prior id=parent_id
         group by id,name,level
         order by id
