@@ -593,8 +593,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -608,8 +608,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -623,8 +623,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -637,8 +637,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -652,8 +652,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -667,8 +667,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -681,8 +681,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -696,8 +696,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -711,8 +711,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -725,8 +725,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -740,8 +740,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -755,8 +755,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -769,8 +769,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -784,8 +784,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -799,8 +799,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -813,8 +813,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -828,8 +828,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -843,8 +843,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}
@@ -857,8 +857,8 @@
         <if test="nd!=null">
             and b.nd=#{nd}
         </if>
-        <if test="hcjhId!=null">
-            and b.hcjh_id=#{hcjhId}
+        <if test="jhbh!=null">
+            and b.jhbh=#{jhbh}
         </if>
         <if test="ztlx!=null">
             and c.ztlx=#{ztlx}

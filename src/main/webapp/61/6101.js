@@ -17,7 +17,7 @@ $(function () {
                 id: selected[0].id,
                 userId: userInfo.userId,
                 nd: $("#f_nd").val(),
-                hcjhId: $("#f_hcjdId").textbox("getValue"),
+                jhbh: $("#f_jhbh").textbox("getValue"),
                 ztlx: $("#f_ztlx").combobox("getValue"),
                 hyfl: $("#f_hyfl").combobox("getValue")
             }).datagrid({

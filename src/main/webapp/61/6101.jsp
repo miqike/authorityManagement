@@ -45,7 +45,7 @@
                         <td class="label">计划年度</td>
                         <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
                         <td class="label">计划编号</td>
-                        <td><input id="f_hcjdId" class="easyui-textbox"/></td>
+                        <td><input id="f_jhbh" class="easyui-textbox"/></td>
                         <td class="label">市场主体类型</td>
                         <td><input id="f_ztlx" class="easyui-combobox" codeName="ztlx"/></td>
                     </tr>
