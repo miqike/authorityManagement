@@ -56,26 +56,27 @@ function loadGrid1() {
     options.url = '../common/query?mapper=hcjhMapper&queryName=query';
     $('#grid1').datagrid('load', {
         nd: $('#f_nd').val(),
-        jhbh: $('#f_jhbh').textbox("getValue"),
-        gsjhbh: $('#f_gsjhbh').textbox("getValue"),
-        jhmc: $('#f_jhmc').textbox("getValue"),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        jhmc: $('#f_jhmc').val(),
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
     });
 }
 
 function clearInput() {
+    $("#f_nd").val("");
     $("#f_id").val("");
-    $("#f_jhbh").textbox("setValue", "");
-    $("#f_gsjhbh").textbox("setValue", "");
-    $("#f_jhmc").textbox("setValue", "");
+    $("#f_jhbh").val( "");
+    $("#f_gsjhbh").val( "");
+    $("#f_jhmc").val( "");
     $("#f_nr").combobox("setValue", "");
     $("#f_fl").combobox("setValue", "");
 }
 
-function funcBtnRest() {
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
+function reset() {
     clearInput();
+    loadGrid1();
 }
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var treeObj = $.fn.zTree.getZTreeObj("orgTree");
@@ -98,12 +99,10 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 //初始化
 $(function () {
     $.fn.zTree.init($("#orgTree"), setting);
-
-    $("#f_nd").textbox("setValue", new Date().getFullYear());
     clearInput();
     loadGrid1();
-    $("#btnSearch").click(loadGrid1);
-    $("#btnReset").click(funcBtnRest);
+    //$("#btnSearch").click(loadGrid1);
+    //$("#btnReset").click(funcBtnRest);
 
     $("#btnPrint").click(function () {
         var data = null;
