@@ -47,6 +47,7 @@ public interface InvestmentMapper {
 	List<Investment> selectByTaskId(String hcrwId);
 
     List<Investment> selectByTaskId2(String hcrwId);
+    List<Investment> selectByTaskId3(String hcrwId);
 
 	@Delete("delete from T_NB_BD_DWTZ where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String taskId);

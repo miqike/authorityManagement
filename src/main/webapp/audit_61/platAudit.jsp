@@ -13,8 +13,9 @@
     	<thead>
     	<tr>
     		<th data-options="field:'xm'" halign="center" align="center" width="200" >项目名称</th>
-            <th data-options="field:'a'" halign="center" align="center" width="200" >公示系统内容</th>
-            <th data-options="field:'b'" halign="center" align="center" width="200" >标准内容</th>
+            <th data-options="field:'a'" halign="center" align="center" width="135" >公示系统内容</th>
+            <th data-options="field:'b'" halign="center" align="center" width="135" >登记/备案内容</th>
+            <th data-options="field:'c'" halign="center" align="center" width="135" >实际内容</th>
             <th data-options="field:'result'" halign="center" align="center" width="80" styler="resultStyler">结果</th>
         </tr>
         </thead>

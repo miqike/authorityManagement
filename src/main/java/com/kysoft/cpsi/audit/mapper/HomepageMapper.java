@@ -47,6 +47,7 @@ public interface HomepageMapper {
 	List<Homepage> selectByTaskId(String hcrwId);
 
     List<Homepage> selectByTaskId2(String hcrwId);
+    List<Homepage> selectByTaskId3(String hcrwId);
 
     @Delete("delete from T_NB_BD_WD where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);

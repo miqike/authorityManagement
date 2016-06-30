@@ -46,6 +46,7 @@ public interface GuaranteeMapper {
 	List<Guarantee> selectByTaskId(String hcrwId);
 
     List<Guarantee> selectByTaskId2(String hcrwId);
+    List<Guarantee> selectByTaskId3(String hcrwId);
 
     @Delete("delete from T_NB_BD_DWDB where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);

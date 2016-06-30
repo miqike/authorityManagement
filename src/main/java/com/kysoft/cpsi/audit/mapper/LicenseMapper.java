@@ -47,6 +47,7 @@ public interface LicenseMapper {
 	List<License> selectByTaskId(String hcrwId);
 
     List<License> selectByTaskId2(String hcrwId);
+    List<License> selectByTaskId3(String hcrwId);
 
     @Delete("delete from T_NB_BD_XZXK where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
 	void deleteByTaskId(String hcrwId);

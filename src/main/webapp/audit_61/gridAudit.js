@@ -36,6 +36,11 @@ function doInit() {
 						columns:auditTableColumnsConfig,
 						data:response.b
 					});
+					$("#auditTableC").datagrid({
+						rowStyler:rowStyler,
+						columns:auditTableColumnsConfig,
+						data:response.c
+					});
 				}
 			}); 
 	}
@@ -44,6 +49,7 @@ function doInit() {
 function autoMatch() {
 	var dataA = $("#auditTableA").datagrid("getData")
 	var dataB = $("#auditTableB").datagrid("getData")
+	var dataC = $("#auditTableB").datagrid("getData")
 	
 	if(dataB.rows.length > 0) {
 		for (var i=0; i<dataA.rows.length; i++) {
@@ -71,6 +77,7 @@ function autoMatch() {
 	
 	$("#auditTableA").datagrid("loadData",dataA)
 	$("#auditTableB").datagrid("loadData",dataB)
+	$("#auditTableB").datagrid("loadData",dataC)
 }
 
 function showMatchItems() {

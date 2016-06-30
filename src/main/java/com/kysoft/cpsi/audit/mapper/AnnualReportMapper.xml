@@ -554,10 +554,14 @@
     where HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey2" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 'false' as QUERYID,
-    <include refid="Base_Column_List" />
+    select <include refid="Base_Column_List" />
     from T_NB_BD
-    where HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
+    where HCRW_ID = #{hcrwId,jdbcType=VARCHAR} AND SJLY = 1
+  </select>
+  <select id="selectByPrimaryKey3" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from T_NB_BD
+    where HCRW_ID = #{hcrwId,jdbcType=VARCHAR} AND SJLY = 2
   </select>
   
   <!-- <update id="updateByNdAndXydm" parameterType="com.kysoft.cpsi.audit.entity.AnnualReport">

@@ -145,18 +145,22 @@ public class AuditServiceImpl implements AuditService {
             case "党建信息":
                 result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
+                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
             case "人员信息":
                 result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
+                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
             case "企业网站网店的名称和网址":
                 result.put("a", homepageMapper.selectByTaskId(hcrwId));
                 result.put("b", homepageMapper.selectByTaskId2(hcrwId));
+                result.put("c", homepageMapper.selectByTaskId3(hcrwId));
                 break;
             case "股东出资":
                 result.put("a", stockholderContributionMapper.selectByTaskId(hcrwId));
                 result.put("b", stockholderContributionMapper.selectByTaskId2(hcrwId));
+                result.put("c", stockholderContributionMapper.selectByTaskId3(hcrwId));
                 break;
             case "实缴出资":
 
@@ -164,6 +168,7 @@ public class AuditServiceImpl implements AuditService {
             case "投资设立企业":
                 result.put("a", investmentMapper.selectByTaskId(hcrwId));
                 result.put("b", investmentMapper.selectByTaskId2(hcrwId));
+                result.put("c", investmentMapper.selectByTaskId3(hcrwId));
                 break;
             case "购买股权":
 
@@ -171,18 +176,22 @@ public class AuditServiceImpl implements AuditService {
             case "资产财务":
                 result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
+                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
             case "股权变更信息":
                 result.put("a", stockRightChangeMapper.selectByTaskId(hcrwId));
                 result.put("b", stockRightChangeMapper.selectByTaskId2(hcrwId));
+                result.put("c", stockRightChangeMapper.selectByTaskId3(hcrwId));
                 break;
             case "对外提供保证担保信息":
                 result.put("a", guaranteeMapper.selectByTaskId(hcrwId));
                 result.put("b", guaranteeMapper.selectByTaskId2(hcrwId));
+                result.put("c", guaranteeMapper.selectByTaskId3(hcrwId));
                 break;
             case "行政许可取得、变更、延续信息":
                 result.put("a", licenseMapper.selectByTaskId(hcrwId));
                 result.put("b", licenseMapper.selectByTaskId2(hcrwId));
+                result.put("c", licenseMapper.selectByTaskId3(hcrwId));
                 break;
             case "知识产权出质登记信息":
 

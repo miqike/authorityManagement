@@ -49,6 +49,7 @@ public interface AnnualReportMapper {
 
 
 	AnnualReport selectByPrimaryKey2(String hcrwId);
+	AnnualReport selectByPrimaryKey3(String hcrwId);
 
 
 //	void updateByNdAndXydm(AnnualReport ar);

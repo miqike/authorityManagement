@@ -18,7 +18,10 @@
 	           data-options="collapsible:true,title:'公示内容',ctrlSelect:true">
 	    </table>
 	    <table id="auditTableB"
-	           data-options="collapsible:true,title:'标准内容',ctrlSelect:true">
+	           data-options="collapsible:true,title:'登记/备案内容',ctrlSelect:true">
+	    </table>
+	    <table id="auditTableC"
+	           data-options="collapsible:true,title:'实际内容',ctrlSelect:true">
 	    </table>
 	</div>
 </div>

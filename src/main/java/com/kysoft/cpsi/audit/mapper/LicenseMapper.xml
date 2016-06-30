@@ -162,7 +162,13 @@
         select 'false' as QUERYID,
         <include refid="Base_Column_List" />
         from T_NB_BD_XZXK
-        where HCRW_ID = #{taskId,jdbcType=VARCHAR}
+        where HCRW_ID = #{taskId,jdbcType=VARCHAR} AND SJLY = 1
+    </select>
+    <select id="selectByTaskId3" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List" />
+        from T_NB_BD_XZXK
+        where HCRW_ID = #{taskId,jdbcType=VARCHAR} AND SJLY = 2
     </select>
 
 </mapper>

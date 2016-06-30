@@ -50,4 +50,16 @@ function showInMap2() {
 	
 	$("#mapPanel").panel("expand");
 }
+function showInMap3() {
+	myGeo.getPoint($("#_sjnr_").text(), function(point){
+		if (point) {
+			map.centerAndZoom(point, 14);
+			map.addOverlay(new BMap.Marker(point));
+		}else{
+			alert("您选择地址没有解析到结果!");
+		}
+	});
+	
+	$("#mapPanel").panel("expand");
+}
 

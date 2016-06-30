@@ -78,7 +78,7 @@ function doAuditItemListInit() {
 	        data: {hcrwId: hcrw.id},
 	        type: 'GET',
 	        success: function (response) {
-	            if (response.status == SUCCESS) {
+	            if (response.status == $.husky.SUCCESS) {
 	                if (response.data == 0) {
 	                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
 	                    //    if (r) {
@@ -86,7 +86,7 @@ function doAuditItemListInit() {
 	                                url: "./" + hcrw.id + "/init",
 	                                type: 'POST',
 	                                success: function (response) {
-	                                    if (response.status == SUCCESS) {
+	                                    if (response.status == $.husky.SUCCESS) {
 	                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
 	                                        window.auditItemDataReady = true;
 	                                        initAuditItemList();
@@ -102,7 +102,6 @@ function doAuditItemListInit() {
 	                    window.auditItemDataReady = true;
 	                    initAuditItemList();
 	                }
-	
 	            }
 	        }
 	    });
@@ -121,15 +120,10 @@ function annualAuditItemClickHandler() {
 function annualAuditItemDblClickHandler(index, row) {
     window.selected = index;
     $('#annualAuditItemGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-    _funcAnnualAudit();
+    annualAudit();
 }
 
-function funcAnnualAudit() {
-    if(!$(this).linkbutton('options').disabled) {
-        _funcAnnualAudit();
-    }
-}
-function _funcAnnualAudit() {
+function annualAudit() {
     var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     if (auditItem.page == null) {
         $.alert("未配置比对页面")
@@ -151,7 +145,7 @@ function annualAuditItemInit() {
 		hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 1
     }, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
         	 $("#annualAuditItemGrid").datagrid("loadData",response);
         }
     });
@@ -169,16 +163,10 @@ function instanceAuditItemGridClickHandler() {
 function instanceAuditItemGridDblClickHandler(index, row) {
     window.selected = index;
     $('#instanceAuditItemGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-    _funcInstanceAudit();
+    instanceAudit();
 }
 
-function funcInstanceAudit() {
-    if(!$(this).linkbutton('options').disabled) {
-        _funcInstanceAudit();
-    }
-}
-
-function _funcInstanceAudit() {
+function instanceAudit() {
     var auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
     if (auditItem.page == null) {
         $.alert("未配置比对页面")
@@ -199,7 +187,7 @@ function instanceAuditItemInit() {
 		hcrwId: $('#grid1').datagrid('getSelected').id,
         hclx: 2
     }, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
         	 $("#instanceAuditItemGrid").datagrid("loadData",response);
         }
     });
@@ -224,15 +212,16 @@ function _doInit(type) {
     $("#_qymc_").text(qy.hcdwName);
     $("#_hcsxmc_").text(auditItem.name);
 
-    $("#btnSuccess").show();
+    $("#btnPass").show();
     $("#btnFail").show();
 
-    $("#btnSuccess").click(pass);
+    /*
+    $("#btnPass").click(pass);
     $("#btnFail").click(fail);
 
     $("#btnConfirmFail").click(confirmFail);
     $("#btnCancelFail").click(cancelFail);
-    $("#btnShowPrompt").click(showPrompt);
+    $("#btnShowPrompt").click(showPrompt);*/
     _initPromptForAuditItem(auditItem)
     $("#btnClose").click(closeAuditWindow);
     cancelFail();
@@ -274,7 +263,7 @@ function pass() {
         hcsxmc: $("#_hcsxmc_").text(),
         sm: "正常"
     }, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
             $.messager.show("操作提示", response.message, "info", "bottomRight");
             //$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
@@ -288,6 +277,7 @@ function pass() {
 function fail() {
     $('#auditToolbar').hide();
     $('#failReason').show();
+    $('#k_failReason').val("");
 }
 
 function cancelFail () {
@@ -310,11 +300,8 @@ function confirmFail () {
 		hcsxmc: $("#_hcsxmc_").text(),
 		sm:$("#k_failReason").val()
 	}, function (response) {
-		if (response.status == SUCCESS) {
-			$.messager.show({
-				title: '提示',
-				msg: response.message
-			});
+		if (response.status == $.husky.SUCCESS) {
+			$.messager.show('操作提示', response.message, 'info', "bottomRight");
 //			$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
 			closeAuditWindow();

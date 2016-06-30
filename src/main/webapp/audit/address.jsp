@@ -11,8 +11,10 @@
     <div class="hcsx">检查方法：</div><span style="color:blue; " id="_auditApproach_"></span><br/>
 	<div class="hcsx">公示信息内容：</div><span style="color:blue; " id="_qygsnr_"></span>
 		<a href="#" id="btnShowInMap1" class="easyui-linkbutton" iconCls="icon2 r8_c7" plain="true">在地图上显示</a><br/>
-   	<div class="hcsx">实际应公示信息内容：</div><span style="color:blue; " id="_bznr_"></span>
+   	<div class="hcsx">登记/备案内容：</div><span style="color:blue; " id="_bznr_"></span>
    		<a href="#" id="btnShowInMap2" class="easyui-linkbutton" iconCls="icon2 r8_c7" plain="true">在地图上显示</a><br/>
+   	<div class="hcsx">实际内容：</div><span style="color:blue; " id="_sjnr_"></span>
+   		<a href="#" id="btnShowInMap3" class="easyui-linkbutton" iconCls="icon2 r8_c7" plain="true">在地图上显示</a><br/>
    <div class="hcsx" style="color:black">内容比对结果：</div><span id="_bdjg_"></span>   
 </div>
 <div id="mapPanel" class="easyui-panel" data-options="title:'百度地图', collapsible:true,collapsed:true,width:680">

@@ -48,6 +48,7 @@ public interface StockholderContributionMapper {
 	List<StockholderContribution> selectByTaskId(String hcrwId);
 
     List<StockholderContribution> selectByTaskId2(String hcrwId);
+    List<StockholderContribution> selectByTaskId3(String hcrwId);
 
     
 	@Delete("delete from T_NB_BD_GDCZ where HCRW_ID = #{taskId,jdbcType=VARCHAR}")

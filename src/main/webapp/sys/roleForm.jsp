@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <div id="roleWindow" style="padding: 5px;">
 	<%-- <jsp:include page="iterationBar.jsp"/> --%> 
-	<div id="tabPanel" class="easyui-tabs" style="width:720px;clear:both;" data-options="onSelect:tabSelectHandler">
+	<div id="tabPanel" class="easyui-tabs" style="width:725px;clear:both;" data-options="onSelect:tabSelectHandler">
 		<div title="基本信息" style="padding:5px;" selected="true">
 			<table width="100%" id="roleTable">
 				<tr>
