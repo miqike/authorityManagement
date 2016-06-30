@@ -18,6 +18,7 @@ function doInit() {
 							"xm": auditConfig[i][1],
 							"a": trans(response.a[auditConfig[i][0]], auditConfig[i][2]),
 							"b": trans(response.b[auditConfig[i][0]], auditConfig[i][2]),
+							"c": trans(response.c[auditConfig[i][0]], auditConfig[i][2]),
 							"result": response.a[auditConfig[i][0]] == response.b[auditConfig[i][0]] ? "一致": "不一致"
 						});
 					}
