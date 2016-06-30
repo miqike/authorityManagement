@@ -10,7 +10,7 @@
    <div class="hcsx" style="float:left">检查方法：</div><div style="color:blue; " id="_auditApproach_"></div><br/>
    <div class="hcsx">公示信息内容：</div><span style="color:blue; " id="_qygsnr_"></span><br/>
    <div class="hcsx">登记/备案内容：</div><span style="color:blue; " id="_bznr_"></span><br/>
-   <div class="hcsx">实际内容：</div><span style="color:blue; " id="_bznrssss_"></span><br/>
+   <div class="hcsx">实际内容：</div><span style="color:blue; " id="_sjnr_"></span><br/>
    <div class="hcsx" style="color:black">内容比对结果：</div><span id="_bdjg_"></span>
 </div>
 

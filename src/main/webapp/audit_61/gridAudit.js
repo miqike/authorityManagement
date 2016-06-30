@@ -26,6 +26,7 @@ function doInit() {
 				} else {
 					window.dataA = response.a;
 					window.dataB = response.b;
+					window.dataC = response.c;
 					$("#auditTableA").datagrid({
 						rowStyler:rowStyler,
 						columns:auditTableColumnsConfig,
@@ -60,6 +61,7 @@ function autoMatch() {
 						console.log("matched.....")
 						dataItemA.matched = true;
 						dataItemB.matched = true;
+						dataItemC.matched = true;
 					} 
 				}
 		} 
@@ -71,6 +73,10 @@ function autoMatch() {
 			var dataItemB = dataB.rows[k];
 			if(dataItemB.matched == undefined) {
 				dataItemB.matched = false;
+			} 
+			var dataItemC = dataC.rows[k];
+			if(dataItemC.matched == undefined) {
+				dataItemC.matched = false;
 			} 
 		}
 	}
@@ -84,9 +90,11 @@ function showMatchItems() {
 	if(showFlag) {
 		var dataA = $("#auditTableA").datagrid("getData")
 		var dataB = $("#auditTableB").datagrid("getData")
+		var dataC = $("#auditTableC").datagrid("getData")
 		
 		var _dataA = {total: dataA.total, rows:[]};
 		var _dataB = {total: dataA.total, rows:[]};
+		var _dataC = {total: dataA.total, rows:[]};
 		
 		for (var k=0; k<dataA.rows.length; k++) {
 			var dataItemA = dataA.rows[k];
@@ -97,13 +105,19 @@ function showMatchItems() {
 			if(!dataItemB.matched) {
 				_dataB.rows.push(dataB.rows[k]);
 			} 
+			var dataItemC = dataC.rows[k];
+			if(!dataItemC.matched) {
+				_dataC.rows.push(dataC.rows[k]);
+			} 
 		}
 		$("#auditTableA").datagrid("loadData",_dataA)
 		$("#auditTableB").datagrid("loadData",_dataB)
+		$("#auditTableC").datagrid("loadData",_dataC)
 		window.showFlag = false;
 	} else {
 		$("#auditTableA").datagrid("loadData",dataA)
 		$("#auditTableB").datagrid("loadData",dataB)
+		$("#auditTableC").datagrid("loadData",dataC)
 		window.showFlag = true;
 	}
 }
