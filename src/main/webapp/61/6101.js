@@ -32,4 +32,9 @@ $(function () {
             $.messager.alert("提示", "请选择单位", 'info');
         }
     });
+
+    $("#btnReset").click(function(){
+        $("#queryTable").form("clear");
+        $("#grid2").datagrid("loadData",[]);
+    });
 });

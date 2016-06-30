@@ -57,8 +57,8 @@
                                iconCls="icon-search">统计</a>
                             <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r3_c10">重置</a>
-                            <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
-                               data-options="">打印</a>
+                            <%--<a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
+                               data-options="">打印</a>--%>
                         </td>
                     </tr>
                 </table>
