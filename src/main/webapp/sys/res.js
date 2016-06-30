@@ -127,8 +127,7 @@ function editOrSave () {
 
 function save() {
     if ($("#treeNodeForm").form('validate')) {
-        var data = drillDownForm('treeNodeForm');
-
+        var data = $.husky.getFormData('treeNodeForm');
         $.each($("#treeNodeForm input:hidden"), function(idx, elem) {
             data.zfbz="0";
             data.auditFlag="0";
@@ -231,12 +230,9 @@ function saveResourceRole() {
         contentType: "application/json; charset=utf-8",
         cache:false,
         success: function(response) {
-            if(response.status == SUCCESS) {
+            if(response.status == $.husky.SUCCESS) {
                 //$.messager.alert("提示", "角色授权成功");
-				$.messager.show({
-					title : '提示',
-					msg : "角色授权成功"
-				});
+				$.messager.show('提示',"角色授权成功","info", "bottomRight");
             } else {
                 $.messager.alert("错误", "角色授权失败");
             }
