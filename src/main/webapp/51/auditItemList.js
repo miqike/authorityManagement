@@ -185,7 +185,7 @@ function _funcInstanceAudit() {
     } else {
         $("#auditItemAccordion").accordion("select", 1);
         $("#auditContent").panel({
-            href: '../audit/' + auditItem.page + '.jsp',
+            href: '../audit_' + customer + '/' + auditItem.page + '.jsp',
             onLoad: function () {
                 _doInit("instance");
                 doInit();

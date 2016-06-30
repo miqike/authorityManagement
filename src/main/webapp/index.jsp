@@ -108,7 +108,7 @@
                     <div id="logo"></div>
                     <ul id="topMenu"></ul>
                 </div>
-                <div class="top-bar-right">
+                <div class="top-bar-right" style="width:450px">
                     <!-- <div id="timerSpan" style="float:right"></div> 
                     <div id="themeSpan" style="float:right">
                         <span style="display:inline-block;height:20px;padding-top:2px;" >更换皮肤风格：</span>
@@ -116,10 +116,14 @@
                         <a id="btnHideNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-up'"></a>
                     </div>
                     -->
+                     <div id="infobar" style="padding-top:8px;">
+	                    <span id="userInfo" class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;"></span>
+	                </div>
                     <div id="themeSpan" style="float:right">
                         <!-- 
                         <input id="topSearchbox" name="topSearchbox" class="easyui-searchbox" data-options="width: 350, height: 26, prompt: '请输入您要查找的内容关键词'" />
 	                     -->
+		                
 	                    <a id="btnShowMessageListDialog" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r10_c10'"/>消息</a>
 	        			<span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
 		       			<a id="btnSetting" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r17_c12'"/>设置</a>
