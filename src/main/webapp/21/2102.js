@@ -210,8 +210,10 @@ function zfryFormInitHandler(operation, data) {
 		zfryFormAddHandler();
 	} else {
 		if(null != data) {
-			$.husky.loadForm("zfryTable", data);
-			$.husky.setFormStatus("zfryTable", operation);
+			setTimeout(function() {
+				$.husky.loadForm("zfryTable", data);
+				$.husky.setFormStatus("zfryTable", operation);
+			}, 300);
 		}
 	}
 }
