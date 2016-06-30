@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<script type="text/javascript" src="../audit/email.js"></script>
+<script type="text/javascript" src="../audit_61/email.js"></script>
 <div>
 	<div style="display: none;">
         <span style="color:blue; " id="_hcrwId_"></span>

@@ -2,6 +2,9 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 
 }
 $(function () {
+
+    getUserInfo();
+
     $.fn.zTree.init($("#orgTree"), setting);
 
     $("#btnSearch").click(function () {
@@ -12,6 +15,7 @@ $(function () {
             options.url = '../common/query?mapper=hcrwMapper&queryName=queryTongJiFenXi';
             $('#grid2').datagrid('load', {
                 id: selected[0].id,
+                userId: userInfo.userId,
                 nd: $("#f_nd").val(),
                 hcjhId: $("#f_hcjdId").textbox("getValue"),
                 ztlx: $("#f_ztlx").combobox("getValue"),

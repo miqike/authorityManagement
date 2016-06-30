@@ -3,17 +3,17 @@
              xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
 
     <classpath>
-        <dir name="D:/workspace/cpsi/target/classes">
+        <dir name="D:/projects/husky/cpsi/target/classes">
         </dir>
     </classpath>
 
     <web>
         <link target="/">
-            <dir name="D:/workspace/cpsi/src/main/webapp">
+            <dir name="D:/projects/husky/cpsi/src/main/webapp">
             </dir>
         </link>
         <link target="/">
-            <dir name="D:/workspace/husky-common/src/main/java/META-INF/resources">
+            <dir name="D:/projects/husky/husky-common/src/main/java/META-INF/resources">
             </dir>
         </link>
     </web>
