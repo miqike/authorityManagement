@@ -890,4 +890,8 @@
 	<update id="updateStatusByPrimaryKey">
         UPDATE T_HCRW SET RWZT = #{statusCode} where ID = #{taskId}
     </update>
+        
+	<update id="updateDispatchByPlanId">
+        UPDATE T_HCRW SET JHXDRQ = SYSDATE, JHWCRQ = (SELECT YQWCSJ FROM T_HCJH WHERE ID=#{hcjhId}) where HCJH_ID = #{hcjhId}
+    </update>
 </mapper>

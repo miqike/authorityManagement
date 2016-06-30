@@ -80,5 +80,7 @@ public interface HcrwMapper {
 	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}")
 	@ResultType(value = java.lang.String.class)
 	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
+
+	void updateDispatchByPlanId(@Param("hcjhId") String hcjhId, @Param("xdzt")Integer xdzt);
 	
 }

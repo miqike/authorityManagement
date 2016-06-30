@@ -55,10 +55,12 @@ public class HcjhServiceImpl implements HcjhService {
     	if (xdzt == 0) {
     		User user = WebUtils.getCurrentUser();
     		hcjhMapper.updateDispatchById(hcjhId, 1, user.getUserId(), user.getName());
+    		hcrwMapper.updateDispatchByPlanId(hcjhId, 1);
     	} else {
     		int yrls = hcrwMapper.selectYrlsByPlanId(hcjhId);
     		if(yrls == 0) {
     			hcjhMapper.updateDispatchById(hcjhId, 0, "", "");
+    			hcrwMapper.updateDispatchByPlanId(hcjhId, 0);
     		} else {
     			throw new BaseException("下级单位已经认领,不能进行取消下达操作");
     		}
