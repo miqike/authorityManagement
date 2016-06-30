@@ -132,7 +132,7 @@
                 <th data-options="field:'whcd',halign:'center',align:'center'" sortable="true" width="100"
                     codeName="whcd"
                     formatter="formatCodeList">文化程度</th>
-                <th data-options="field:'zt',halign:'center',align:'center'" sortable="true" width="100"
+                <th data-options="field:'zt',halign:'center',align:'center'" sortable="true" width="50"
                     codeName="zfryStatus" formatter="formatCodeList">状态</th>
                 <th data-options="field:'mobile',halign:'center',align:'center'" sortable="true" width="100">联系电话</th>
                 <th data-options="field:'mail',halign:'center',align:'center'" sortable="true" width="150">电子邮箱</th>

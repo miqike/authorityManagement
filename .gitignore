@@ -1,3 +1,4 @@
 /target/
-/.gitignore
+/pom.xml
 /src/main/java/rebel.xml
+/.gitignore

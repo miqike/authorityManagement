@@ -116,7 +116,7 @@
 					<th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="60" >已认领</th>
 					<th data-options="field:'wrlsl'" halign="center" align="left" sortable="true" width="60" >未认领</th>
 					<!-- <th data-options="field:'jhshr'" halign="center" align="left" sortable="true" width="90" >审核人</th> -->
-					<th data-options="field:'jhxdr'" halign="center" align="left" sortable="true" width="90" >下达人</th>
+					<th data-options="field:'xdrmc'" halign="center" align="left" sortable="true" width="90" >下达人</th>
 					<th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250" >说明</th>
 				</tr>
 				</thead>
