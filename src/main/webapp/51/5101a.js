@@ -22,6 +22,21 @@ function hcrwStyler(index,row){
 	}
 }
 
+function taskStatusStyler(val, row, index) {
+	if (val == 1) {
+		return "background-color:lightgray";
+    } else if (val == 2) {
+        return "background-color:orange";
+    } else if (val == 3) {
+        return "background-color:pink";
+    } else if (val == 4) {
+        return "background-color:red";
+    } else if (val == 5) {
+        return "background-color:green";
+    }
+}
+
+
 function clearInput() {
 	$("#f_nd").val("");
     $("#f_hcjhId").val("");

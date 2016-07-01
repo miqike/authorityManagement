@@ -57,6 +57,21 @@
         	}
             return result;
         }
+        
+        function taskStatusStyler(val, row, index) {
+        	if (val == 1) {
+        		return "background-color:lightgray";
+            } else if (val == 2) {
+                return "background-color:orange";
+            } else if (val == 3) {
+                return "background-color:pink";
+            } else if (val == 4) {
+                return "background-color:red";
+            } else if (val == 5) {
+                return "background-color:green";
+            }
+        }
+        
     </script>
     
     <!--导入首页启动时需要的相应资源文件(首页相应功能的 js 库、css样式以及渲染首页界面的 js 文件)-->
@@ -200,7 +215,7 @@
 				                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="100" formatter="formatDate">下达时间</th>
 				                            <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="100" formatter="formatDate">计划结束时间</th>
 				                            <th data-options="field:'rlrq', halign:'center',align:'center'" width="120" formatter="formatDate">认领时间</th>
-				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList">任务状态</th>
+				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                            <!-- 
 				                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> --> 
 				                        </tr>

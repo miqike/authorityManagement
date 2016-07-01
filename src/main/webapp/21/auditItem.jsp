@@ -80,7 +80,7 @@ function docGridClickRowHandler() {
             <td><input class="easyui-combobox" id="p_xxdb" style="width:200px;" data-options=""
                        codeName="yesno"/></td>
 			<td class="label">比对信息来源</td>
-            <td><input class="easyui-validatebox" id="p_dbxxly" style="width:192px;" data-options=""/></td>                       
+            <td><input class="easyui-combobox" id="p_dbxxly" style="width:200px;" data-options=""  codeName="sjly"/></td>                       
         </tr>
         <tr>
             <td class="label">是否必检项</td>
@@ -91,7 +91,6 @@ function docGridClickRowHandler() {
                        codeName="yesno"/>
             </td>
         </tr>
-        
         <tr>
 	        <td class="label">结果处理</td>
 	            <td><input class="easyui-combobox" id="p_jgcl" style="width:200px;" data-options="panelHeight:100"

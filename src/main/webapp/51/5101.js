@@ -35,6 +35,20 @@ function hcrwStyler(index,row){
 	}
 }
 
+function taskStatusStyler(val, row, index) {
+	if (row.rwzt == 1) {
+		return "background-color:lightgray";
+    } else if (row.rwzt == 2) {
+        return "background-color:orange";
+    } else if (row.rwzt == 3) {
+        return "background-color:pink";
+    } else if (row.rwzt == 4) {
+        return "background-color:red";
+    } else if (row.rwzt == 5) {
+        return "background-color:green";
+    }
+}
+
 function loadMyTask() {
     $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
     	nd: $('#f_nd').val(),

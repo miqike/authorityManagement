@@ -120,10 +120,13 @@
             <th data-options="field:'jgcl',halign:'center',align:'left'" width="70" codeName="gsjg"
                 formatter="formatCodeList">结果处理
             </th>
+            <!-- 
             <th data-options="field:'xxdb',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">登记信息和公示信息比对
-            </th>
-            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="70">比对信息来源</th>
+            </th> 
+            -->
+            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="70" codeName="sjly"
+                formatter="formatCodeList">比对信息来源</th>
             <th data-options="field:'sfxysdhc',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要实地检查
             </th>
@@ -134,9 +137,7 @@
             <th data-options="field:'sfbjxm',halign:'center',align:'left'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否必检项
             </th>
-            <th data-options="field:'zxrq',halign:'center',align:'left'" width="70"
-                formatter="formatDate">注销日期
-            </th>
+            <th data-options="field:'zxrq',halign:'center',align:'left'" width="70" formatter="formatDate">注销日期</th>
             <th data-options="field:'zxsm',halign:'center',align:'left'" width="70">注销说明</th>
         </tr>
         </thead>

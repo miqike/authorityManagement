@@ -33,7 +33,7 @@
     <script type="text/javascript" src="./5101.js"></script>
 
     <script type="text/javascript" src="./auditItemList.js"></script>
-    <script type="text/javascript" src="../audit/gridAudit.js"></script>
+    <script type="text/javascript" src="../audit_61/gridAudit.js"></script>
  <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
     <object id="LODOP_OB"
@@ -109,17 +109,17 @@
 	    </div>
     </div>
     
-    <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'," title="我的检查任务" style="width:340px;">
+    <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'," title="我的检查任务" style="width:310px;">
         <table id="grid1"
                class="easyui-datagrid"
                data-options="collapsible:true,onClickRow:grid1ClickHandler,
-     		rowStyler: hcrwStyler,offset: { width: 0, height: -85},
+     		offset: { width: 0, height: -85},
      		singleSelect:true,ctrlSelect:false,method:'get',
      		pageSize: 20, pagination: true">
             <thead>
 	            <tr>
-	                <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="150">统一社会信用代码</th>
-	                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="170">单位名称</th>
+	                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120" styler="taskStatusStyler">统一社会信用代码</th>
+	                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="184">单位名称</th>
 	            </tr>
             </thead>
         </table> 
