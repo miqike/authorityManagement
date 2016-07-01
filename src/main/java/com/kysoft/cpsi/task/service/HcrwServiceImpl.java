@@ -43,6 +43,7 @@ public class HcrwServiceImpl implements HcrwService {
             hcsxjg.setHcfs(hcsx.getHcff());
             hcsxjg.setPage(hcsx.getPage());
             hcsxjg.setHclx(hcsx.getHclx());
+            hcsxjg.setDbxxly(hcsx.getDbxxly());
             hcsxjg.setHczt(1);
             hcsxjgMapper.insert(hcsxjg);
         }
@@ -57,8 +58,6 @@ public class HcrwServiceImpl implements HcrwService {
         param.put("hcrwId", hcrwId);
         hcrwMapper.pullData(param);
         hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
-        
-        //TODO 处理错误消息..
     }
 
     @Override
