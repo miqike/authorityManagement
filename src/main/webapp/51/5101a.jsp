@@ -33,7 +33,7 @@
     <script type="text/javascript" src="./5101a.js"></script>
 
     <script type="text/javascript" src="./auditItemLista.js"></script>
-    <script type="text/javascript" src="../audit/gridAudit.js"></script>
+    <script type="text/javascript" src="../audit_61/gridAudit.js"></script>
  <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
     <object id="LODOP_OB"
@@ -175,10 +175,10 @@
 	    </div>
 	    
 	    <div data-options="region:'center',split:true" style="width:340px;">
-	        <table id="grid1"
-	               class="easyui-datagrid"
+	        <table id="grid1">
+	               <!-- class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,fit:true,
-	     		singleSelect:true,ctrlSelect:false,method:'get',pageSize: 20, pagination: true">
+	     		singleSelect:true,ctrlSelect:false,method:'get',pageSize: 20, pagination: true"> -->
 	            <thead>
 		            <tr>
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>

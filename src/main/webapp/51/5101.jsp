@@ -110,12 +110,12 @@
     </div>
     
     <div data-options="region:'west',split:true,iconCls:'icon2 r2_c14'," title="我的检查任务" style="width:310px;">
-        <table id="grid1"
-               class="easyui-datagrid"
+        <table id="grid1">
+              <!--  class="easyui-datagrid"
                data-options="collapsible:true,onClickRow:grid1ClickHandler,
      		offset: { width: 0, height: -85},
      		singleSelect:true,ctrlSelect:false,method:'get',
-     		pageSize: 20, pagination: true">
+     		pageSize: 20, pagination: true"> -->
             <thead>
 	            <tr>
 	                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120" styler="taskStatusStyler">统一社会信用代码</th>

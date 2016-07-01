@@ -50,7 +50,7 @@ function taskStatusStyler(val, row, index) {
 }
 
 function loadMyTask() {
-    $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
+    /*$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
     	nd: $('#f_nd').val(),
         hcjhId: $('#f_hcjhId').val(),
         jhmc: $('#f_jhmc').val()
@@ -64,7 +64,21 @@ function loadMyTask() {
 			$('#p_hcjieguo').combobox("clear");
 			$("#auditItemList").empty();
         }
-    });
+    });*/
+	$("#grid1").datagrid({
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor",
+		queryParam: {
+			nd: $('#f_nd').val(),
+			hcjhId: $('#f_hcjhId').val(),
+			jhmc: $('#f_jhmc').val()
+		},
+		collapsible:true,
+		onClickRow:grid1ClickHandler,
+		offset: { width: 0, height: -85},
+		singleSelect:true,ctrlSelect:false,method:'get',
+		pageSize: 20, pagination: true
+	});
+		
 }
 
 function grid1ClickHandler() {
