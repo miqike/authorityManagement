@@ -158,7 +158,7 @@ function refreshAuditItemList() {
 
 function showTaskListWindow() {
 	$("#myTaskListWindow").window({
-        title: "我的任务列表", top: 120, left: 160, width: 750, height: 450,
+        title: "我的任务列表", top: 5, left: $.util.windowSize().width-755, width: 750, height: 450,
         modal:false,
         collapsible:true,
         minimizable:true,
