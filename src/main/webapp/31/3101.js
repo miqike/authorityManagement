@@ -43,7 +43,7 @@ function getRowIndex() {
 	var index;
 	for(var i=0; i<rows.length; i++) {
 		var row = rows[i];
-		if(row.jhbh == window._selectdPlanId_) {
+		if(row.id == window._selectdPlanId_) {
 			index = $("#grid1").datagrid("getRowIndex", row);
 			break;
 		}
