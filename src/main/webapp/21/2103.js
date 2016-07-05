@@ -44,8 +44,9 @@ function save() {
         url = "../21/2103";
     }
     if (window.operateType == "edit") {//修改
-        type = "PUT";
+        type = "POST";
         url = "../21/2103";
+        data._method = "put";
     }
     if (window.operateType == "delete") {//删除
         type = "DELETE";

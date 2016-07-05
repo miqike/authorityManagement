@@ -38,23 +38,6 @@ function mainGridButtonHandler() {
 function mainGridDblClickHandler(index, row) {
     window.selected = index;
     $('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
-    $("#p_userId").textbox("setValue", row.userId).textbox("readonly", "true");
-    $("#p_name").textbox("setValue", row.name);
-    $("#p_orgId").textbox("setValue", row.orgId);
-    $("#p_orgType").combobox('setValue', row.orgType);
-    $("#p_orgName").textbox('setValue', row.orgName);
-    $("#p_managerId").textbox('setValue', row.managerId);
-    $("#p_managerName").textbox('setValue', row.managerName);
-    $("#p_status").combobox("setValue", row.status);
-    $("#p_mobile").textbox("setValue", row.mobile);
-    $("#p_email").textbox("setValue", row.email);
-    showModalDialog("userWindow");
-    $("#btnEditOrSave").parent().css("text-align", " left");
-    $('#userWindow input.easyui-validatebox').validatebox();
-
-    //$("#tg").parent().find("input:checkbox").attr("disabled", true);
-    //$("#grid2").parent().find("input:checkbox").attr("disabled", true);
-    $('#tabPanel').tabs('select', 0);
 }
 
 function formatZfry(val, row) {

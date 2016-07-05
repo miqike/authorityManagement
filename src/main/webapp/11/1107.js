@@ -38,8 +38,9 @@ function save() {
         url = "../11/1107";
     }
     if (window.operateType == "edit") {//修改
-        type = "PUT";
+        type = "POST";
         url = "../11/1107";
+        data._method = "put";
     }
     if (window.operateType == "delete") {//删除
         type = "DELETE";

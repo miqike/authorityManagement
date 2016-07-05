@@ -234,7 +234,8 @@ function save(operation) {
         url = "../21/2102";
     }
     if (operation == "update") {//修改
-        type = "PUT";
+        type = "POST";
+        data._method = "put";
         url = "../21/2102";
     }
     $.ajax({
