@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<!--
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          metadata-complete="false" version="3.0">
+-->
     <display-name>cpsi</display-name>
     <context-param>
         <param-name>webAppRootKey</param-name>
@@ -52,7 +60,6 @@
     <filter>
         <filter-name>springSessionRepositoryFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <async-supported>true</async-supported>
     </filter>
     <filter-mapping>
         <filter-name>springSessionRepositoryFilter</filter-name>
@@ -89,7 +96,6 @@
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-        <async-supported>true</async-supported>
     </filter>
 
     <filter-mapping>
@@ -100,7 +106,6 @@
     <filter>
         <filter-name>Set Character Encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <async-supported>true</async-supported>
         <init-param>
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
@@ -119,7 +124,6 @@
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <async-supported>true</async-supported>
         <init-param>
             <param-name>targetFilterLifecycle</param-name>
             <param-value>true</param-value>
@@ -135,7 +139,6 @@
     <filter>
         <filter-name>DruidWebStatFilter</filter-name>
         <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
-        <async-supported>true</async-supported>
         <init-param>
             <param-name>exclusions</param-name>
             <param-value>/static/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
@@ -241,7 +244,6 @@
     <servlet>
         <servlet-name>weixinServlet</servlet-name>
         <servlet-class>net.sf.husky.weixin.servlet.WxCpServlet</servlet-class>
-        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>weixinServlet</servlet-name>
@@ -252,7 +254,6 @@
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
         <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-        <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
@@ -262,7 +263,6 @@
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <async-supported>true</async-supported>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/conf/spring-mvc.xml</param-value>
@@ -282,27 +282,27 @@
      -->
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
+        <servlet-name>FileServlet</servlet-name>
         <url-pattern>*.css</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
+        <servlet-name>FileServlet</servlet-name>
         <url-pattern>*.gif</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
+        <servlet-name>FileServlet</servlet-name>
         <url-pattern>*.jpg</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
+        <servlet-name>FileServlet</servlet-name>
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <servlet-name>default</servlet-name>
+        <servlet-name>FileServlet</servlet-name>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 

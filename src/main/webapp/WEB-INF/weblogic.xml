@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://www.bea.com/ns/weblogic/90">
+	<context-root>cpsi</context-root>
+
+	<resource-description>
+		<res-ref-name>cpsi</res-ref-name>
+		<jndi-name>cpsi</jndi-name>
+	</resource-description>
+	
+	<!-- 
+		<session-descriptor> 
+			<persistent-store-type>replicated</persistent-store-type> 
+		</session-descriptor> 
+		-->
+	<container-descriptor>
+		<show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+	</container-descriptor>
+
+</weblogic-web-app>
