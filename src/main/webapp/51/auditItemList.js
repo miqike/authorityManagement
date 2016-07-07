@@ -1,11 +1,18 @@
 function formatCompareCol(val, row) {
 	var rc = row.qygsnr;
-	if(rc == val) {
-		return "<span style='color:green;'>" + (val==null?"":val) + "</span>";
-	} else {
-		return "<span style='color:red;'>" + (val==null?"":val) + "</span>";
-	} 
+	if(val != null ) {
+		if(val == "...") {
+			return val;
+		} else {
+			if(rc == val) {
+				return "<span style='color:green;'>" + val + "</span>";
+			} else {
+				return "<span style='color:red;'>" + val + "</span>";
+			} 
+		}
+	}
 }
+
 
 function stylerRegist(val, row, index) {
 	var compareSource = row.dbxxly;
