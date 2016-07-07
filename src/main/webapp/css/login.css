@@ -1,0 +1,112 @@
+*{
+	font-size:12px;
+	font-family: Tahoma,Verdana,微软雅黑,新宋体;
+}
+
+body {
+    /* padding:20px; */
+    font-size:13px;
+    margin:0;
+}
+
+#footer {
+	height: 24px;
+	color: #999;
+	text-align: center;
+	line-height: 24px;
+}
+
+#toolbar{
+	text-align: center;
+}
+
+#lnkRefreshCaptchaImg{
+	font-size:13px;
+	padding-left:5px;
+}
+
+#loginMessage{
+	color:red;
+}
+
+.loginForm table{
+	border-collapse:collapse;
+	border-spacing:0;
+	margin-top:10px;
+}
+	
+.loginForm th,.loginForm td{
+	padding: 5px 0px;
+}
+
+.loginForm th{
+	font-weight:bold;
+	background:#ccc;
+}
+
+.loginForm td:nth-child(odd) {
+	font-weight:bold;
+	width:80px;
+	text-align:right;
+	padding-right: 10px;
+}
+
+input {
+      width:160px;
+  }
+
+.validatebox-text {
+    border-width: 1px;
+    border-style: solid;
+    height: 20px;
+    line-height: 17px;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-bottom: 2px;
+    padding-right: 3px;
+    background-attachment: scroll;
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+}
+
+.validatebox-invalid {
+    border-color: ffa8a8;
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-color: fff3f3;
+    background-image: url("");
+}
+
+.box{
+	width:1024px;
+   	height:659px;	
+	overflow: auto;  
+			margin: auto;  
+	position: absolute;  
+	top: 0; left: 0; bottom: 0; right: 0;  
+
+	background-image:url('../images/logo1.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.loginbox {
+	float: right;
+	padding-right: 30px;
+	margin-right:130px;
+	margin-top:200px;
+}
+
+#loginPanel {
+	background: rgba(255, 255, 255, 0.2) !important;
+	filter: Alpha(opacity = 20);
+	background: #fff;
+}
+
+td.label {
+	color: blue;
+	width:80px;
+	font-weight:bold;
+	text-align:right;
+}

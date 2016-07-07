@@ -1,0 +1,35 @@
+.notification-bubble {
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: all;
+    transition-timing-function: ease;
+
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #f56c7e;
+    background-image: url("../images/notification-bg.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.17) inset, 0 1px 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 9px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 18px;
+    position: relative;
+    right: 1px;
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+    top: -5px;
+    width: 18px;
+    padding-left:3px;
+    padding-right:3px;
+}

@@ -1,0 +1,121 @@
+body {
+	margin:0;
+	padding:0;
+	font:13px/1.5 \5b8b\4f53, Arial, sans-serif;
+	background:#ffffff;
+}
+
+*{font-size:12px; font-family:Tahoma,Verdana,微软雅黑,新宋体}
+
+a{ /*color:Black;*/ text-decoration:none;}
+
+a:hover{ /*color:Red;*/ text-decoration:underline;}
+
+ul,li,p,form{margin:0px; padding:0px;list-style: none;}
+
+div.headtop{
+	height:35px;
+	border-bottom: 1px solid lightblue;
+	/* metro-green*/
+	/*background: #c8d47b;*/
+
+}
+
+div.headtop div.loger{
+	width:170px; height:30px; float:left;
+	background:url("../images/logo.png") no-repeat;
+	background-size:30px 30px;
+	margin-left:5px;
+}
+
+.icon {
+    background: url(../images/tabicons.png) no-repeat;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+#css3menu  {
+	padding:0px; margin:0px;list-type:none; float:left; margin-left:5px;
+}
+
+#css3menu li {
+	float: left;
+	list-style-type: none;
+	padding: 0px 20px;
+	font-size: 14px;
+	line-height: 35px;
+	cursor:pointer;
+	background-color:#6caef5;
+	color: #000;
+}
+
+#css3menu li:hover {
+	-moz-text-decoration-color: -moz-use-text-color;
+	-moz-text-decoration-line: none;
+	-moz-text-decoration-style: solid;
+	background-color: #7a9bbf;
+	color: #fff;
+}
+
+#css3menu li.active {
+	color: black;
+	background-color: orange;
+}
+
+#wnav span.icon {
+	margin:7px 5px 5px 15px;
+}
+
+#wnav li:hover {
+	background-color:#7a9bbf;
+	color: #fff;
+	border:0px solid #99BBE8; 
+	cursor:pointer;
+}
+
+#wnav li.selected{
+	background-color:lightblue;
+}
+
+#wnav div.panel-title {
+	height:20px;
+	font-size: 14px;
+	padding-top: 4px
+}
+
+#wnav div.panel-with-icon {
+	padding-left: 23px;
+}
+
+#pswDiv {
+	float: right;
+    width:500px;
+	margin-top:6px;
+}
+
+#pswDiv a {
+	padding: 0 7px;
+	line-height: 24px;
+}
+
+#pswDiv img {
+	vertical-align: middle;
+	border: 0
+}
+
+#userInfo {
+    margin-left:5px;
+    display:-moz-inline-box;
+    display:inline-block;
+    width:250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.easyui-accordion ul li{ padding:0px;border-bottom:1px solid lightgray; cursor:pointer}

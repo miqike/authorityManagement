@@ -9,7 +9,7 @@ function rowStyler(index,row){
 	}
 }
 
-function doInit() {
+function doInitGrid() {
 	$("#_auditApproach_").html(auditApproach);
 	
 	$("#btnAutoMatch").click(autoMatch);

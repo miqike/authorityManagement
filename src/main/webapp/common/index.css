@@ -1,0 +1,135 @@
+﻿* {
+    font-family: Tahoma,Verdana,微软雅黑,新宋体;
+    font-size: 12px;
+}
+
+body { font:13px/1.5 \5b8b\4f53, Arial, sans-serif;padding: 0; margin: 0; overflow: hidden; }
+.top-bar { position: absolute; width: 100%; height: 35px; top: 0; left: 0; }
+.top-bar-left { position: absolute; /* width: 500px; */ height: 35px; }
+.top-bar-right { position: absolute; width: 400px; height: 35px; right: 0; }
+.top-bar-right #timerSpan { position: absolute; padding-top: 5px; right: 10px; }
+.top-bar-right #themeSpan { position: absolute; width: 350px; top: 4px; right: 5px; text-align: right; }
+
+.top-toolbar { position: absolute; font-weight: normal; padding: 0; width: 100%; height: 28px; top: 35px; left: 0; border-top-width: 1px; border-bottom-width: 0; z-index: 100; }
+.top-toolbar-topmost { top: 0px; height: 27px; border-top-width: 0px; border-bottom-width: 1px; }
+.top-toolbar #infobar { position: absolute; height: 26px; line-height: 26px; left: 10px; }
+.top-toolbar #searchbar { position: absolute; height: 26px; left: 400px; padding-top: 1px; }
+.top-toolbar #buttonbar { position: absolute; height: 26px; right: 5px; padding-top: 1px; text-align: right; }
+
+#navMenu_list { padding: 0px; margin: 0px; }
+#navMenu_list>li { line-height: 26px; list-style-type: none; }
+#navMenu_list>li>div.panel-header { height: 26px; line-height: 26px; padding: 0; margin: 0; font-weight: normal; border-top-width: 1px; border-bottom-width: 0; }
+#navMenu_list>li:first-child>div.panel-header { border-top-width: 0;cursor: pointer;  }
+#navMenu_list>li>div.panel-header a { width: 100%; height: 100%; color: inherit; text-decoration: none; display: inline-block; padding: 0; margin: 0; }
+#navMenu_list>li>div.panel-header a.selected { font-weight: bold; }
+
+.nav-menu { vertical-align: middle; }
+.nav-menu>* { padding-left: 10px; }
+.nav-menu-icon { padding-left: 25px; background-position: left center; }
+
+.tabs-container .tabs-header .tabs-scroller-left { border-top-width: 0; border-left-width: 0; }
+.tabs-container .tabs-header .tabs-scroller-right { border-top-width: 0; border-right-width: 0; }
+.tabs-container .tabs-tool { border-top-width: 0; border-right-width: 0; }
+.tabs-tool table { border-width: 0; border-collapse: collapse; border-spacing: 0; }
+.tabs-tool table td { padding: 0; }
+
+
+/*限制 easyui-tabs 选项卡页签的宽度*/
+/*.tabs-container .tabs-header .tabs-wrap .tabs li a.tabs-inner { max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }*/
+#eastLayout>div.layout-panel-center>div.panel-header { border-top-width: 1px; }
+
+.portlet-list { padding-left: 20px; margin: 5px; line-height: 20px; }
+
+.donate-name {
+    font-weight: bold; line-height: 14px; background-color: rgb(70, 136, 71); color: #fff;
+    padding-top: 2px; padding-bottom: 2px; padding-left: 4px; padding-right: 4px; border-radius: 3px;
+}
+.donate-date { padding: 5px; }
+.donate-total { font-weight: bold; color: Red; }
+
+ul.link-list>li>a { padding-left: 10px; white-space: nowrap; }
+
+div.hidden { visibility: hidden; overflow: hidden; }
+
+/***************husky**************************/
+*{font-size:12px; font-family:Tahoma,Verdana,微软雅黑,新宋体}
+a{ /*color:Black;*/ text-decoration:none;}
+a:hover{ /*color:Red;*/ text-decoration:underline;}
+ul,li,p,form{
+	margin:0px; padding:0px;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+    padding: 0;
+    list-style: outside none none;
+}
+    
+#logo {
+	background: rgba(0, 0, 0, 0) url("../images/logo.jpg") no-repeat scroll 0 0 / 30px 30px;
+	float: left;
+	height: 30px;
+	margin-left: 15px;
+	margin-top:3px;
+	width: 40px;
+}
+
+#topMenu {
+    float: left;
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+#topMenu li {
+    background-color: #6caef5;
+    color: #000;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    line-height: 35px;
+    list-style-type: none;
+    padding: 0 10px;
+}
+
+#topMenu li:hover {
+    background-color: #7a9bbf;
+    color: #fff;
+}
+
+#topMenu li.active {
+    background-color: orange;
+    color: black;
+}
+
+#wnav span.icon {
+    margin: 7px 5px 5px 15px;
+}
+
+#wnav li:hover {
+	background-color:#7a9bbf;
+	color: #fff;
+	border:0px solid #99BBE8; 
+	cursor:pointer;
+}
+
+#wnav li.selected{
+	background-color:lightblue;
+}
+
+#wnav div.panel-title {
+	height:20px;
+	font-size: 14px;
+	padding-top: 4px
+}
+
+#wnav div.panel-with-icon {
+	padding-left: 23px;
+}
+
+.icon {
+    background: rgba(0, 0, 0, 0) url("../images/tabicons.png") no-repeat scroll 0 0;
+    display: inline-block;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+}
+
+.easyui-accordion ul li {

@@ -1,3 +1,29 @@
+function formatCompareCol(val, row) {
+	var rc = row.qygsnr;
+	if(rc == val) {
+		return "<span style='color:green;'>" + (val==null?"":val) + "</span>";
+	} else {
+		return "<span style='color:red;'>" + (val==null?"":val) + "</span>";
+	} 
+}
+
+function stylerRegist(val, row, index) {
+	var compareSource = row.dbxxly;
+	if(compareSource == 1 || compareSource == 3) {
+		return "";
+	} else if(compareSource == 2) {
+		return "background-color:lightgray";
+	}
+}
+
+function stylerActual(val, row, index) {
+	var compareSource = row.dbxxly;
+	if(compareSource == 2 || compareSource == 3) {
+		return "";
+	} else {
+		return "background-color:lightgray;";
+	} 
+}
 
 function stylerHczt(val, row, index) {
     if (val == 1) {
@@ -126,7 +152,7 @@ function annualAuditItemDblClickHandler(index, row) {
 function annualAudit() {
     var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     if (auditItem.page == null) {
-        $.alert("未配置比对页面")
+        $.messager.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
         $("#taskDetailLayout").layout("collapse", "north");
@@ -169,7 +195,7 @@ function instanceAuditItemGridDblClickHandler(index, row) {
 function instanceAudit() {
     var auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
     if (auditItem.page == null) {
-        $.alert("未配置比对页面")
+        $.messager.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
         $("#auditContent").panel({
@@ -211,7 +237,15 @@ function _doInit(type) {
     $("#_sjnr_").text(auditItem.sjnr == null ? "" : auditItem.sjnr);
     $("#_qymc_").text(qy.hcdwName);
     $("#_hcsxmc_").text(auditItem.name);
-
+    $("#_dbxxly_").text($.codeListLoader.getCodeLiteral("sjly", auditItem.dbxxly));
+    
+    if(auditItem.hcjg != "1") {
+		$("#_bdjg_").text("不一致").css("color", "red");
+	} else {
+		$("#_bdjg_").text("一致").css("color", "green");
+	}
+ 
+    
     $("#btnPass").show();
     $("#btnFail").show();
 

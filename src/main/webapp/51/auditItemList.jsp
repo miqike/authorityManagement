@@ -25,8 +25,8 @@ $(function () {
 				         <th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly"
 				             formatter="formatCodeList">比对信息来源</th>
 				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="150">公示内容</th>
-				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">登记/备案内容</th>
-				         <th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="150">实际内容</th>
+				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
+				         <th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
 				         <!-- <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
 				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th> -->
 				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
@@ -51,12 +51,13 @@ $(function () {
 				             formatter="formatCodeList">检查方式</th>
 				         <th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly"
 				             formatter="formatCodeList">比对信息来源</th>
-				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
-				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
-				         <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
-				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th>
-				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">检查结果</th>
-				         <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
+				         <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="150">公示内容</th>
+				         <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
+				         <th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
+				         <!-- <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt"
+				             formatter="formatCodeList"  styler="stylerHczt">检查状态</th> -->
+				         <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
+				         <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
 				     </tr>
 				     </thead>
 				 </table>

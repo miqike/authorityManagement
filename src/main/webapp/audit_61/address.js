@@ -4,12 +4,12 @@ function doInit() {
 	$("#_auditApproach_").text(auditApproach);
     $("#btnShowInMap1").click(showInMap1);
     $("#btnShowInMap2").click(showInMap2);
-    
+    /*
     if($("#_qygsnr_").text() != $("#_bznr_").text()) {
 		$("#_bdjg_").text("不一致").css("color", "red");
 	} else {
 		$("#_bdjg_").text("一致").css("color", "green");
-	}
+	}*/
 }
 
 function showInMap(elem) {

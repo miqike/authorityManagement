@@ -1,4 +1,4 @@
-function doInit() {
+function doInitPlat() {
 	$("#_auditApproach_").html(auditApproach);
 
 	var auditTask = $('#grid1').datagrid('getSelected');

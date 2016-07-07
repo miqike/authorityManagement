@@ -3,15 +3,15 @@ var auditApproach = "电子邮件检查过程:发送测试邮件到客户邮箱,
 function doInit() {
 	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
 	$("#_auditApproach_").html(auditApproach);
-	$("#_mail_").text(auditItem.qygsnr);
-	$("#_mail_").text("coralsea_li@yeah.net");
+	//$("#_mail_").text(auditItem.qygsnr);
+	
 	$("#btnSentVerifyMail").click(sentVerifyMail);
 	$("#btnCloseAuditWindow").click(closeAuditWindow);
-	if($("#_qygsnr_").text() != $("#_bznr_").text()) {
+	/*if($("#_qygsnr_").text() != $("#_bznr_").text()) {
 		$("#_bdjg_").text("不一致").css("color", "red");
 	} else {
 		$("#_bdjg_").text("一致").css("color", "green");
-	}
+	}*/
 	
 	$("#btnSuccess").hide();
 	$("#btnFail").hide();
