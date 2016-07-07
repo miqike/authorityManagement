@@ -18,7 +18,7 @@ function stylerRegist(val, row, index) {
 	if(compareSource == 1 || compareSource == 3) {
 		return "";
 	} else if(compareSource == 2) {
-		return "background-color:lightgray";
+		return "background-color:#ebeced";
 	}
 }
 
@@ -27,7 +27,7 @@ function stylerActual(val, row, index) {
 	if(compareSource == 2 || compareSource == 3) {
 		return "";
 	} else {
-		return "background-color:lightgray;";
+		return "background-color:#ebeced;";
 	} 
 }
 

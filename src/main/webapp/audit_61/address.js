@@ -1,9 +1,10 @@
 var auditApproach = "自行查询";
 
 function doInit() {
-	$("#_auditApproach_").text(auditApproach);
+	doInitSingle();
     $("#btnShowInMap1").click(showInMap1);
     $("#btnShowInMap2").click(showInMap2);
+    $("#btnShowInMap3").click(showInMap3);
     /*
     if($("#_qygsnr_").text() != $("#_bznr_").text()) {
 		$("#_bdjg_").text("不一致").css("color", "red");
@@ -40,6 +41,18 @@ function showInMap1() {
 
 function showInMap2() {
 	myGeo.getPoint($("#_bznr_").text(), function(point){
+		if (point) {
+			map.centerAndZoom(point, 14);
+			map.addOverlay(new BMap.Marker(point));
+		}else{
+			alert("您选择地址没有解析到结果!");
+		}
+	});
+	
+	$("#mapPanel").panel("expand");
+}
+function showInMap3() {
+	myGeo.getPoint($("#_sjnr_").text(), function(point){
 		if (point) {
 			map.centerAndZoom(point, 14);
 			map.addOverlay(new BMap.Marker(point));
