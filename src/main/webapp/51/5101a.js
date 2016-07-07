@@ -32,7 +32,7 @@ function taskStatusStyler(val, row, index) {
     } else if (val == 4) {
         return "background-color:red";
     } else if (val == 5) {
-        return "background-color:green";
+        return "background-color:lightgreen";
     }
 }
 
