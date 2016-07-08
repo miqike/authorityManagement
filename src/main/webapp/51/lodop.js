@@ -1,3 +1,18 @@
+// 将长度转换为毫米形式
+function toMilli(length) {
+    return length.toString() + "mm";
+}
+//按中文方式取得字符串字符个数（两个英文字符同一个汉字）
+function get_length(s) {
+    var char_length = 0;
+    for (var i = 0; i < s.length; i++) {
+        var son_char = s.charAt(i);
+        encodeURI(son_char).length > 2
+            ? char_length += 1
+            : char_length += 0.5;
+    }
+    return char_length;
+}
 //打印企业住所核查函
 function printQiyezhusuohechahan() {
     var columnWidthFull = 190;
@@ -696,7 +711,7 @@ function printGongShiXinXiGengZhengBiao(){
     var columnWidths=[50,75,75];
     var left = 0;
     var top = 0;
-    var rowHeight = 0;
+    var rowHeight ;
     //LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
     var LODOP = getLodop();
     //设置纸张
@@ -775,7 +790,7 @@ function printGongShiXinXiGengZhengBiao(){
     //循环打印内容
     var dataList=$("#annualAuditItemGrid").datagrid("getData").rows;
     for(var i=0;i<dataList.length;i++){
-        if(dataList[i].hcxxfl==1 && dataList[i].qygsnr!=dataList[i].bznr){
+        if(dataList[i].hcxxfl==1 && dataList[i].hcjg==2){
             fontSize=10;
             top = top + rowHeight;
             rowHeight=10;
