@@ -5,78 +5,97 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>资源管理</title>
-    <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/themes/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/themes/icon.css" rel="stylesheet"/>
+
     <link href="../css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript" src="../js/hotkeys.min.js"></script>
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/${theme}/easyui.css" />
+	<link rel="stylesheet" href="../css/jquery-easyui-theme/icon.css" />
+	<link rel="stylesheet" href="../js/jeasyui-extensions-release/jeasyui.extensions.min.css" >
+	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" >
+	<link rel="stylesheet" href="../css/content.css"/>
+
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
+    <!-- 
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-
+    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+ -->
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
+    
     <script type="text/javascript" src="res.js"></script>
-
+<!-- 
     <style type="text/css">
         #tabPanel .tabs-panels{border: 0px}
         #tabPanel .tabs-header{border: 0px}
         div .datagrid-wrap{ border-right: 0px; border-left: 0px; border-bottom: 0px; border-top: 0px}
     </style>
-</head>
+ -->
+ </head>
 <body style="margin: 5px;">
 <%--<shiro:hasPermission name="roleRes">--%>
-<div class="easyui-layout" style="height:560px;">
-    <div data-options="region:'west',split:false" title="资源管理" style="width:300px;padding:10px 5px 5px 20px">
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'west',split:true" title="资源管理" style="width:300px;">
         <ul id="tree" class="ztree"></ul>
     </div>
-    <div data-options="region:'center'" style="overflow: hidden;">
+    <div data-options="region:'center'" style="padding-left:3px;padding-top:3px;padding-right:3px;">
         <div id="tabPanel" class="easyui-tabs" style="clear:both;" data-options="onSelect:tabSelectHandler" >
             <div title="基本信息" style="padding:5px;" selected="true">
+            	<a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加本级</a>
+				<a href="#" id="btnAddChild" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加下级</a>
+				<a href="#" id="btnEdit" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑</a>
+				<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled="true">保存</a>
+				<a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-undo" plain="true" disabled="true">取消</a>
+				<a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true"  disabled="true">删除</a>
+				
                 <form action="" id="treeNodeForm" method="post">
+                <!-- 
                     <a href="#" id="btnAddSibling" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加本级</a>
                     <a href="#" id="btnAddChild" class="easyui-linkbutton" iconCls="icon-add" plain="true" disabled="true">添加下级</a>
                     <a href="#" id="btnEditOrSave" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled="true">编辑</a>
                     <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true"  disabled="true">删除</a>
+                     -->
                     <table style="padding-top:5px">
                         <tr>
                             <td style="text-align:right">资源编码</td>
-                            <td><input class="easyui-textbox" id="f_id" name="id" style="width:300px;" data-options="require:true,disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_id" name="id" style="width:300px;" data-options="require:true,disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">资源名称</td>
-                            <td><input class="easyui-textbox" id="f_name" name="name" style="width:300px;" data-options="require:true,disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_name" name="name" style="width:300px;" data-options="require:true,disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">标识</td>
-                            <td><input class="easyui-textbox" id="f_identity" name="identity" style="width:300px;" data-options="disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_identity" name="identity" style="width:300px;" data-options="disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">URL</td>
-                            <td><input class="easyui-textbox" id="f_url" name="url" style="width:300px;" data-options="disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_url" name="url" style="width:300px;" data-options="disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">排序</td>
-                            <td><input class="easyui-textbox" id="f_weight" name="weight" style="width:300px;" data-options="disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_weight" name="weight" style="width:300px;" data-options="disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">图标</td>
-                            <td><input class="easyui-textbox" id="f_icon" name="icon" style="width:300px;" data-options="disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_icon" name="icon" style="width:300px;" data-options="disabled:true"/></td>
                         </tr>
                         <tr>
                             <td style="text-align:right">父节点</td>
-                            <td><input class="easyui-textbox" id="f_parentId" name="parentId" style="width:100px;" data-options="disabled:true"/>
-                                <input class="easyui-textbox" id="f_parentName" style="width:195px;" data-options="disabled:true"/>
+                            <td><input class="easyui-validatebox" id="f_parentId" name="parentId" style="width:100px;" data-options="disabled:true"/>
+                                <input class="easyui-validatebox" id="f_parentName" style="width:195px;" data-options="disabled:true"/>
                             </td>
                         </tr>
                         <tr>
                             <td style="text-align:right">路径</td>
-                            <td><input class="easyui-textbox" id="f_parentIds" name="parentIds" style="width:300px;" data-options="disabled:true"/></td>
+                            <td><input class="easyui-validatebox" id="f_parentIds" name="parentIds" style="width:300px;" data-options="disabled:true"/></td>
                         </tr>
                     </table>
                 </form>

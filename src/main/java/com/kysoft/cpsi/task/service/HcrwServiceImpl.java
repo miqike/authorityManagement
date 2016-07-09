@@ -103,5 +103,12 @@ public class HcrwServiceImpl implements HcrwService {
 		hcrwMapper.updateStatusByPrimaryKey(hcrwId, statusCode);
 	}
 
+	@Override
+	public void updateDocReadyFlag(String hcrwId, int docReadyReportFlag) {
+		int flag = docReadyReportFlag == 0? 1: 0;
+		User user = WebUtils.getCurrentUser();
+        hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());
+	}
+
 
 }

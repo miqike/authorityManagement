@@ -43,7 +43,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "更新核查结果成功失败");
+            result.put(MESSAGE, "更新核查结果失败");
         }
         return result;
     }
@@ -153,6 +153,22 @@ public class HcrwController extends BaseController {
     		result.put(MESSAGE, "批量保存失败");
     	}
     	return result;
+    }
+    
+    @RequestMapping(value = "/{hcrwId}/docReadyReportFlag", method = RequestMethod.POST)
+    public Map<String, Object> updateDocReadyFlag(@PathVariable String hcrwId, int docReadyReportFlag) {
+        Map<String, Object> result = Maps.newHashMap();
+
+        try {
+            hcrwService.updateDocReadyFlag(hcrwId, docReadyReportFlag);
+            result.put(MESSAGE, "上报操作成功");
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "上报操作失败");
+        }
+        return result;
     }
     
     

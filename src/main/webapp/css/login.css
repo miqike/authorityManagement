@@ -45,7 +45,7 @@ body {
 }
 
 .loginForm td:nth-child(odd) {
-	font-weight:bold;
+	font-weight:normal;
 	width:80px;
 	text-align:right;
 	padding-right: 10px;

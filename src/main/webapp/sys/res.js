@@ -3,7 +3,7 @@
  */
 
 function tabSelectHandler(title, index) {
-    var id = $("#f_id").textbox("getValue");
+    var id = $("#f_id").val();
     if(index == 1) { //选择角色TAB
         if(id != "") {
             $.getJSON("../common/query?mapper=roleMapper&queryName=queryRole", {}, function(response) {
@@ -47,28 +47,28 @@ function _add(sibling) {
     var treeObj = $.fn.zTree.getZTreeObj("tree");
     var nodes = treeObj.getSelectedNodes();
     var selectedNode = nodes[0];
-    $("#treeNodeForm input.easyui-textbox").textbox("enable");
+    $("#treeNodeForm input.easyui-validatebox").removeAttr("readonly").removeAttr("disabled");
     $("#treeNodeForm input.easyui-combobox").combobox("enable");
 
     if(sibling) {
-        $("#parentIds").textbox("setValue", selectedNode.parentIds).textbox("disable");
-        $("#parentId").textbox('setValue', selectedNode.parentId).textbox("disable");
+        $("#parentIds").val(selectedNode.parentIds).attr("readonly", true).attr("disabled", true);
+        $("#parentId").val(selectedNode.parentId).attr("readonly", true).attr("disabled", true);
     } else {
-        $("#parentIds").textbox("setValue", selectedNode.parentIds + selectedNode.id + "/");
-        $("#parentId").textbox('setValue', selectedNode.id).textbox("disable");
+        $("#parentIds").val(selectedNode.parentIds + selectedNode.id + "/");
+        $("#parentId").val(selectedNode.id).attr("readonly", true).attr("disabled", true);
     }
     setParentName();
 
-    $("#btnEditOrSave").linkbutton({
+    $("#btnEdit").linkbutton({
         iconCls:'icon-save',
         text:'保存'
     });
-    $("#btnAddSibling").linkbutton("disable");
+    $("#btnAdd").linkbutton("disable");
     $("#btnAddChild").linkbutton("disable");
-    $("#btnDelete").linkbutton("disable");
+    $("#btnRemove").linkbutton("disable");
 }
 
-function addSibling() {
+function add() {
     _add(true);
 }
 
@@ -104,25 +104,22 @@ function remove() {
     }
 }
 
-function editOrSave () {
-    if( $("#btnEditOrSave").linkbutton("options").text == "编辑") {
-        $("#btnEditOrSave").linkbutton({
-            iconCls:'icon-save',
-            text:'保存'
-        });
+function edit() {
+    $("#btnEdit").linkbutton("disable");
+    $("#btnSave").linkbutton("enable");
+    $("#btnCancel").linkbutton("enable");
 
-        $("#treeNodeForm input.easyui-textbox").textbox("enable");
-        $("#parentIds").textbox("disable");
-        $("#treeNodeForm input.easyui-combobox").combobox("enable");
-    } else {
-        $("#btnEditOrSave").linkbutton({
-            iconCls:'icon-edit',
-            text:'编辑'
-        });
-        $("#treeNodeForm input.easyui-textbox").textbox("disable");
-        $("#treeNodeForm input.easyui-combobox").combobox("disable");
-        save();
-    }
+    $("#treeNodeForm input.easyui-validatebox").removeAttr("readonly").removeAttr("disabled");
+    $("#parentIds").attr("readonly", true).attr("disabled", true);
+    $("#treeNodeForm input.easyui-combobox").combobox("enable");
+}
+
+function cancel() {
+	$("#btnEdit").linkbutton("enable");
+	$("#btnSave").linkbutton("disable");
+	$("#btnCancel").linkbutton("disable");
+    $("#treeNodeForm input.easyui-validatebox").attr("readonly", true).attr("disabled", true);
+    $("#treeNodeForm input.easyui-combobox").combobox("disable");
 }
 
 function save() {
@@ -176,43 +173,44 @@ function filter(treeId, parentNode, childNodes) {
 function beforeClick(treeId, treeNode, clickFlag) {
     className = (className === "dark" ? "":"dark");
 
-    $("#btnEditOrSave").linkbutton({
+    $("#btnEdit").linkbutton({
         iconCls:'icon-edit',
         text:'编辑'
     });
-    $("#treeNodeForm input.easyui-textbox").textbox("disable");
+    $("#treeNodeForm input.easyui-validatebox").attr("readonly", true).attr("disabled", true);
     $("#treeNodeForm input.easyui-combobox").combobox("disable");
 
     return (treeNode.click != false);
 }
 
 function onClick(event, treeId, treeNode, clickFlag) {
+	console.log("----onclcik---")
     event.preventDefault();
     $("#treeNodeForm").form("load", treeNode);
     if(treeNode.icon == null && treeNode.iconSkin != null) {
-        $("#f_icon").textbox("setValue", treeNode.iconSkin);
+        $("#f_icon").val(treeNode.iconSkin);
     }
-    $("#btnAddSibling").linkbutton('enable');
+    $("#btnAdd").linkbutton('enable');
     $("#btnAddChild").linkbutton('enable');
-    $("#btnEditOrSave").linkbutton('enable');
-    $("#btnDelete").linkbutton('enable');
+    $("#btnEdit").linkbutton('enable');
+    $("#btnRemove").linkbutton('enable');
 
     var parent_id = treeNode._parentId;
     setParentName(parent_id);
 
-    $("#treeNodeForm input.easyui-textbox").textbox("disable");
+    $("#treeNodeForm input.easyui-validatebox").attr("readonly", true).attr("disabled", true);
     $("#treeNodeForm input.easyui-combobox").combobox("disable");
     $('#tabPanel').tabs('select',0 );
 }
 
 function setParentName(parent_id) {
-	$("#f_parentId").textbox("setValue", parent_id);
+	$("#f_parentId").val(parent_id);
     var treeObj = $.fn.zTree.getZTreeObj("tree");
-    var parentNode = treeObj.getNodesByParam("id", $("#f_parentId").textbox("getValue"), null);
+    var parentNode = treeObj.getNodesByParam("id", $("#f_parentId").val(), null);
     if(parentNode.length == 1) {
-        $("#f_parentName").textbox("setValue", parentNode[0].name).textbox("disable");
+        $("#f_parentName").val(parentNode[0].name).attr("readonly", true).attr("disabled", true);
     } else {
-        $("#f_parentName").textbox("setValue", "").textbox("disable");
+        $("#f_parentName").val("").attr("readonly", true).attr("disabled", true);
     }
 }
 
@@ -224,7 +222,7 @@ function saveResourceRole() {
     });
 
     $.ajax({
-        url:"../sys/resource/role/" + $("#f_id").textbox("getValue"),
+        url:"../sys/resource/role/" + $("#f_id").val(),
         data:JSON.stringify(param),
         type:"post",
         contentType: "application/json; charset=utf-8",
@@ -260,17 +258,10 @@ function editOrSaveResourceRole() {
 $(function () {
     $("#treeNodeForm").form('clear');
     $.fn.zTree.init($("#tree"), setting);
-    $("#btnAddSibling").click(addSibling);
-    $("#btnAddChild").click(addChild);
-    $("#btnEditOrSave").click(editOrSave);
-    $("#btnDelete").click(remove);
-    $("#btnEditOrSaveResourceRole").click(editOrSaveResourceRole);
+//    $("#btnAdd").click(addSibling);
+//    $("#btnAddChild").click(addChild);
+//    $("#btnEditOrSave").click(editOrSave);
+//    $("#btnRemove").click(remove);
+//    $("#btnEditOrSaveResourceRole").click(editOrSaveResourceRole);
 
-    $(".datagrid-body").niceScroll({
-        cursorcolor : "lightblue", // 滚动条颜色
-        cursoropacitymax : 3, // 滚动条是否透明
-        horizrailenabled : false, // 是否水平滚动
-        cursorborderradius : 0, // 滚动条是否圆角大小
-        autohidemode : false // 是否隐藏滚动条
-    });
 })

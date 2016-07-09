@@ -27,4 +27,6 @@ public interface HcrwService {
 
 	void setTaskStatus(String hcrwId, Integer statusCode);
 
+	void updateDocReadyFlag(String hcrwId, int docReadyReportFlag);
+
 }

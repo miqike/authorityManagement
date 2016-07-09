@@ -9,8 +9,8 @@ function doInit() {
 	
 	$("#btnSentVerifyMail").click(sentVerifyMail);
 	$("#btnCloseAuditWindow").click(closeAuditWindow);
-	$("#btnSuccess").hide();
-	$("#btnFail").hide();
+//	$("#btnSuccess").hide();
+//	$("#btnFail").hide();
 	
 }
 
