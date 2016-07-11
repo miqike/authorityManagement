@@ -128,18 +128,15 @@
          <table id="grid2"
                 class="easyui-datagrid"
                 data-options="ctrlSelect:true,collapsible:true,pageSize: 10, pagination: true,fit:true,
-		onClickRow:myTaskGridClickHandler,height:400,
-		method:'get'"
+					onClickRow:myTaskGridClickHandler,height:400, method:'get'"
                 toolbar="#grid2Toolbar"
-                
                 sortOrder="asc">
              <thead>
              <tr>
-                 <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
                  <th data-options="field:'DOC_READY_REPORT_FLAG'" halign="center" align="center" width="80" codeName="reportDocReadyFlag" formatter="formatCodeList"  styler="docReadyReportFlagStyler">上报标志</th>
                  <th data-options="field:'REPORT_DOC_READY_TIME'" halign="center" align="center" width="100" formatter="formatDate">上报时间</th>
                  <th data-options="field:'DOC_READY_FLAG'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">上传文档状态</th>
-                 <!-- <th data-options="field:''" halign="center" align="left" width="150">序号</th> -->
+                 <th data-options="field:'DOC_READY_FLAG_FUR'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">附加文档状态</th>
                  <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="120">统一社会信用代码</th>
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
@@ -148,9 +145,7 @@
                  <th data-options="field:'HYFL'" halign="center" align="center" width="80" codeName="hyfl" formatter="formatCodeList">行业分类</th>
                  <th data-options="field:'ZZXS'" halign="center" align="center" width="80" codeName="qyzzxs" formatter="formatCodeList">组织形式</th>
                  <th data-options="field:'JYZT'" halign="center" align="center" width="80" codeName="jyzt" formatter="formatCodeList">经营状态</th>
-                 <th data-options="field:'FR'" center="center" align="left" width="80">法人代表</th>
-                 
-                 
+                 <th data-options="field:'FR'" center="center" align="center" width="80">法人代表</th>
              </tr>
              </thead>
          </table>

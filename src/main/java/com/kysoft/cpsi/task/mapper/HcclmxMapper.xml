@@ -42,6 +42,12 @@
         from T_HCCLMX
         where ID = #{id,jdbcType=VARCHAR}
     </select>
+    <select id="selectByPrimaryKey2" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from T_HCCL_FUR
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         <!--
           WARNING - @mbggenerated
@@ -51,6 +57,10 @@
         delete from T_HCCLMX
         where ID = #{id,jdbcType=VARCHAR}
     </delete>
+    <delete id="deleteByPrimaryKey2" parameterType="java.lang.String">
+        delete from T_HCCL_FUR
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
         <!--
           WARNING - @mbggenerated
@@ -58,6 +68,18 @@
           This element was generated on Fri May 27 16:40:14 CST 2016.
         -->
         insert into T_HCCLMX (ID, HCDW_XYDM, HCJHND,
+        NAME, SFBYX, WJLX,
+        HCCL_ID, HCSX_ID, HCRW_ID,
+        MONGO_ID, YHTG, LY,
+        HCSXMC, UPLOAD_TIME)
+        values (#{id,jdbcType=VARCHAR}, #{hcdwXydm,jdbcType=VARCHAR}, #{hcjhnd,jdbcType=DECIMAL},
+        #{name,jdbcType=VARCHAR}, #{sfbyx,jdbcType=DECIMAL}, #{wjlx,jdbcType=DECIMAL},
+        #{hcclId,jdbcType=VARCHAR}, #{hcsxId,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR},
+        #{mongoId,jdbcType=VARCHAR}, #{yhtg,jdbcType=DECIMAL}, #{ly,jdbcType=DECIMAL},
+        #{hcsxmc,jdbcType=VARCHAR}, #{uploadTime,jdbcType=DATE})
+    </insert>
+    <insert id="insert2" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
+        insert into T_HCCL_FUR (ID, HCDW_XYDM, HCJHND,
         NAME, SFBYX, WJLX,
         HCCL_ID, HCSX_ID, HCRW_ID,
         MONGO_ID, YHTG, LY,
@@ -256,4 +278,10 @@
         ORDER BY UPLOAD_TIME DESC
     </select>
 
+    <select id="queryDocFurForTask" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from T_HCCL_FUR WHERE HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
+        ORDER BY NAME ASC
+    </select>
 </mapper>

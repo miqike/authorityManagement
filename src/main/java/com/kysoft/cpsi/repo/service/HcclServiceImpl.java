@@ -1,6 +1,7 @@
 package com.kysoft.cpsi.repo.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -45,6 +46,11 @@ public class HcclServiceImpl implements HcclService {
 	@Override
 	public void delete(String id) {
 		hcclMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Map<String, Object>>  queryForTask2(String hcrwId) {
+		return hcclMapper.queryForTask2(hcrwId);
 	}
 
 }

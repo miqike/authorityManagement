@@ -56,6 +56,7 @@ public class HcjhServiceImpl implements HcjhService {
     		User user = WebUtils.getCurrentUser();
     		hcjhMapper.updateDispatchById(hcjhId, 1, user.getUserId(), user.getName());
     		hcrwMapper.updateDispatchByPlanId(hcjhId, 1);
+    		hcrwMapper.updateRequiredDocByPlanId(hcjhId);
     	} else {
     		int yrls = hcrwMapper.selectYrlsByPlanId(hcjhId);
     		if(yrls == 0) {

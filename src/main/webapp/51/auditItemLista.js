@@ -51,6 +51,29 @@ function stylerHcjg(val, row, index) {
     }
 }
 
+function addAnnualDocFur() {
+	_addDocFur();
+}
+
+function addInstanceDocFur() {
+	_addDocFur();
+}
+
+function _addDocFur() {
+	$.easyui.showDialog({
+        title: "附加核查材料列表",
+        width: 705, height: 410, topMost: false,
+        href: "./addDocFur.jsp",
+        enableSaveButton : true,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		onLoad : function() {
+			doDocFurListInit();
+		}
+    });
+}
+
 function auditItemsTabSelectHandler(title,index) {
     if(canBeSelected(index)) {
         if(window.auditItemDataReady) {

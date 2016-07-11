@@ -24,6 +24,7 @@
 				 </table>
 				 <div id="annualAuditItemGridToolbar">
 				     <a href="#" id="btnAnnualAudit" class="easyui-linkbutton" iconCls="icon2 r17_c20" plain="true" disabled>检查/查看</a>
+				     <a href="#" id="btnAddAnnualDocFur" class="easyui-linkbutton" iconCls="icon2 r8_c18" plain="true" >企业提交附加材料清单</a>
 				 </div>
 			</div>
 			<div data-options="title: '即时信息', iconCls: 'icon2 r8_c1', refreshable: false">
@@ -50,6 +51,7 @@
 				 </table>
 				 <div id="instanceAuditItemGridToolbar">
 				     <a href="#" id="btnInstanceAudit" class="easyui-linkbutton" iconCls="icon2 r17_c20" plain="true" disabled>检查/查看</a>
+				     <a href="#" id="btnAddInstanceDocFur" class="easyui-linkbutton" iconCls="icon2 r8_c18" plain="true" >企业提交附加材料清单</a>
 				 </div>
 			</div>
 		</div>

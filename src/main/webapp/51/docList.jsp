@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
 <script>
 	function formatDocOperation(val, row) {
 		return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";

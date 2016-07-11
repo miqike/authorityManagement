@@ -1,7 +1,10 @@
 package com.kysoft.cpsi.task.service;
 
 import com.kysoft.cpsi.task.entity.Hcclmx;
+import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.mapper.HcclmxMapper;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
+
 import net.sf.husky.attachment.utils.DownloadUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ public class HcclmxServiceImpl implements HcclmxService {
 
     @Resource
     HcclmxMapper hcclmxMapper;
+    
+    @Resource
+    HcrwMapper hcrwMapper;
 
     @Override
     public void delete(String id) {
@@ -33,6 +39,60 @@ public class HcclmxServiceImpl implements HcclmxService {
         hcclmx.setUploadTime(new Date());
         hcclmxMapper.insert(hcclmx);
 
+        calcDoc(hcclmx.getHcrwId());
+    }
+    
+    public void calcDoc(String hcrwId) {
+    	 hcrwMapper.updateHcclStatByPrimaryKey(hcrwId);
+         Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);
+         int uploaded = hcrw.getUploadFiles();
+         int required = hcrw.getRequiredFiles();
+         int docReadyFlag = 0;
+         if(required > 0) {
+         	if(uploaded == required) {
+         		docReadyFlag = 2;
+         	} else if(uploaded > 0) {
+         		docReadyFlag = 1;
+         	} else {
+         		docReadyFlag = 0;
+         	}
+         }
+         hcrwMapper.updateDocReadyFlag(hcrwId, docReadyFlag);
+    }
+    
+    @Override
+    public void delete2(String id) {
+    	Hcclmx hcclmx = hcclmxMapper.selectByPrimaryKey2(id);
+    	hcclmxMapper.deleteByPrimaryKey2(id);
+    	calcDocFur(hcclmx.getHcrwId());
+    	if(null != hcclmx.getMongoId()) {
+    		DownloadUtils.mongoDelete(hcclmx.getMongoId());
+    	}
+    }
+    
+    @Override
+    public void addHcclmx2(Hcclmx hcclmx) {
+    	hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
+    	hcclmxMapper.insert2(hcclmx);
+    	calcDocFur(hcclmx.getHcrwId());
+    }
+    
+    void calcDocFur(String hcrwId) {
+    	hcrwMapper.updateHcclStatByPrimaryKey2(hcrwId);
+    	Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);
+    	int uploaded = hcrw.getUploadFilesFur();
+    	int required = hcrw.getRequiredFilesFur();
+    	int docReadyFlagFur = 0;
+    	if(required > 0) {
+    		if(uploaded == required) {
+    			docReadyFlagFur = 2;
+    		} else if(uploaded > 0) {
+    			docReadyFlagFur = 1;
+    		} else {
+    			docReadyFlagFur = 0;
+    		}
+    	}
+    	hcrwMapper.updateDocReadyFlag2(hcrwId, docReadyFlagFur);
     }
 
 }

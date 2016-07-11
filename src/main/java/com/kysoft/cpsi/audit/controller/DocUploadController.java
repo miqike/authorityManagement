@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Sczt;
+import com.kysoft.cpsi.repo.service.HcclService;
 import com.kysoft.cpsi.repo.service.ScztService;
+import com.kysoft.cpsi.task.service.HcrwService;
 
 /**
  * Created by Tommy on 5/6/2015.
@@ -23,7 +25,13 @@ public class DocUploadController extends net.sf.husky.web.controller.BaseControl
 
     @Resource
     ScztService scztService;
-
+    
+    @Resource
+    HcrwService hcrwService;
+    
+    @Resource
+    HcclService hcclService;
+    
     @RequestMapping(value = "{xydm}", method = RequestMethod.GET)
     public Map<String, Object> load(@PathVariable String xydm) {
         Map<String, Object> result = Maps.newHashMap();
@@ -69,5 +77,19 @@ public class DocUploadController extends net.sf.husky.web.controller.BaseControl
     	}
     	return result;
     }
-    
+
+
+    @RequestMapping(value = "{hcrwId}/furtherDocist", method = RequestMethod.GET)
+    public Map<String, Object> getFurtherDocistt(@PathVariable String hcrwId) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	try {
+    		result.put(DATA, hcclService.queryForTask2(hcrwId));
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "企业登录失败");
+    	}
+    	return result;
+    }
 }

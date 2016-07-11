@@ -21,23 +21,11 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <!-- 
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
- -->
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.extend.js"></script>
     
     <script type="text/javascript" src="res.js"></script>
-<!-- 
-    <style type="text/css">
-        #tabPanel .tabs-panels{border: 0px}
-        #tabPanel .tabs-header{border: 0px}
-        div .datagrid-wrap{ border-right: 0px; border-left: 0px; border-bottom: 0px; border-top: 0px}
-    </style>
- -->
  </head>
 <body style="margin: 5px;">
 <%--<shiro:hasPermission name="roleRes">--%>

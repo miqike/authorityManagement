@@ -14,7 +14,7 @@ function docReadyFlagStyler(val,row,index) {
 		return "background-color:lightgray";
 	} else if(val == 1) {
 		return "";
-	} else {
+	} else if(val == 2)  {
 		return "background-color:lightgreen";
 	}
 }
@@ -69,7 +69,7 @@ function myTaskGridClickHandler() {
 	} else {
 		$('#btnViewDocList').linkbutton('enable');
 		
-		if(task.DOC_READY_FLAG == 2) {
+		if(task.DOC_READY_FLAG == 2 && task.RWZT != 5) {
 			$('#btnReportDocReady').linkbutton('enable')
 		}  else {
 			$('#btnReportDocReady').linkbutton('disable')

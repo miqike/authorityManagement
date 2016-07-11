@@ -50,4 +50,9 @@ public interface HcclMapper {
 	
 	/*查询被检查单位需要上传的检查材料*/
     List<Map<String, Object>> queryForTask(Map<String, Object> params);
+    
+	
+    /*查询被检查单位需要上传的附加检查材料*/
+    List<Map<String, Object>> queryForTask2(String hcrwId);
+    
 }

@@ -1,13 +1,27 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
 	function formatDocOperation(val, row) {
-		return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";
+		if(row.mongoId != null && row.mongoId != undefined) {
+			return "<a href=\"javascript: displayAttachment('"+ row.mongoId + "');\">查看</a>";
+		} else if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
+			return "<a href=\"javascript: displayAttachment('"+ row.MONGO_ID + "');\">查看</a>";
+		} else {
+			return "";
+		}
+	}
+	
+	function sfbyStyler(val,row,index) {
+		if(val == 1) {
+			return "background-color:lightcoral";
+		} else {
+			return "background-color:lightgreen";
+		}
 	}
 	
 	function wjlyStyler(val,row,index) {
 		if(val == 1) {
 			return "background-color:lightgreen";
-		} else {
+		} else if(val == 2)  {
 			return "background-color:orange";
 		}
 	}
@@ -81,6 +95,17 @@
 			    }
 			});
 		 
+		 $.getJSON("../docUpload/" + hcrw.id + "/furtherDocist", function (response) {
+				if (response.status == $.husky.SUCCESS) {
+					if(response.data.length > 0) {
+						$("#furDocgrid").parent().parent().parent().show()
+						$("#furDocgrid").datagrid("loadData",response.data);
+					}  else {
+						$("#furDocgrid").parent().parent().parent().hide();
+					}
+				}
+			});
+		 
 	}
 	
 	function docGridClickRowHandler() {
@@ -102,27 +127,50 @@
         <span style="color:blue; " id="_hcsxId_"></span>
         <span style="color:blue; " id="_qymc_"></span>
     </div>
-    <table id="docGrid"
-           class="easyui-datagrid"
-           data-options="collapsible:true,
-           		singleSelect:true,height:325,width:680,
-           		onClickRow:docGridClickRowHandler,
-				ctrlSelect:false,method:'get',
-				toolbar: '#docGridToolbar'">
-        <thead>
-        <tr>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="110">名称</th>
-            <th data-options="field:'ly',halign:'center',align:'center'" sortable="true" width="80" codeName="wjly" formatter="formatCodeList" styler="wjlyStyler">分类</th>
-            <th data-options="field:'hcsxmc',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>
-            <th data-options="field:'uploadTime',halign:'center',align:'left'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
-            <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="70" codeName="wjlx" formatter="formatCodeList">文件类型</th>
-            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
+    
+    <div id="tabPanel" class="easyui-tabs" style="width:695px;clear:both;" data-options="">
+        <div title="标准核查材料" style="padding:5px;" selected="true">
+		    <table id="docGrid"
+		           class="easyui-datagrid"
+		           data-options="collapsible:true,
+		           		singleSelect:true,height:325,width:680,
+		           		onClickRow:docGridClickRowHandler,
+						ctrlSelect:false,method:'get',
+						toolbar: '#docGridToolbar'">
+		        <thead>
+		        <tr>
+		            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="110">名称</th>
+		            <th data-options="field:'ly',halign:'center',align:'center'" sortable="true" width="80" codeName="wjly" formatter="formatCodeList" styler="wjlyStyler">来源</th>
+		            <th data-options="field:'hcsxmc',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>
+		            <th data-options="field:'uploadTime',halign:'center',align:'left'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
+		            <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="70" codeName="wjlx" formatter="formatCodeList">文件类型</th>
+		            <th data-options="field:'id',halign:'center',align:'left'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        </tbody>
+		    </table>
+		    
+		</div>
+	    <div title="附加核查材料" style="padding:5px;" selected="true">
+			<table id="furDocgrid"
+		           class="easyui-datagrid"
+		           data-options="collapsible:true,
+						ctrlSelect:true,method:'get'"
+		           pagePosition="bottom">
+		        <thead>
+		        <tr>
+		            <th data-options="field:'NAME',halign:'center',align:'left'" sortable="true" width="110">检查材料名称</th>
+		            <th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>
+		            <th data-options="field:'SFBYX',halign:'center',align:'center'" sortable="true" width="70" codeName="yesno" styler="sfbyStyler" formatter="formatCodeList">是否必要项</th>
+		            <th data-options="field:'WJLX',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
+		            <th data-options="field:'UPLOAD_TIME',halign:'center',align:'center'" sortable="true" width="110" formatter="formatDatetime2Min" >上传时间</th>
+		            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70"  formatter="formatDocOperation">操作</th>
+		        </tr>
+		        </thead>
+		    </table>
+	    </div>
+	</div>
 </div>
 <div id="docGridToolbar">
     <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon2 r16_c13" plain="true" >上传</a>

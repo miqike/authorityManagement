@@ -51,18 +51,14 @@ function _add(sibling) {
     $("#treeNodeForm input.easyui-combobox").combobox("enable");
 
     if(sibling) {
-        $("#parentIds").val(selectedNode.parentIds).attr("readonly", true).attr("disabled", true);
-        $("#parentId").val(selectedNode.parentId).attr("readonly", true).attr("disabled", true);
+        $("#f_parentIds").val(selectedNode.parentIds).attr("readonly", true).attr("disabled", true);
+        $("#f_parentId").val(selectedNode.parentId).attr("readonly", true).attr("disabled", true);
     } else {
-        $("#parentIds").val(selectedNode.parentIds + selectedNode.id + "/");
-        $("#parentId").val(selectedNode.id).attr("readonly", true).attr("disabled", true);
+        $("#f_parentIds").val(selectedNode.parentIds + selectedNode.id + "/");
+        $("#f_parentId").val(selectedNode.id).attr("readonly", true).attr("disabled", true);
     }
     setParentName();
 
-    $("#btnEdit").linkbutton({
-        iconCls:'icon-save',
-        text:'保存'
-    });
     $("#btnAdd").linkbutton("disable");
     $("#btnAddChild").linkbutton("disable");
     $("#btnRemove").linkbutton("disable");
