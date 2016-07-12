@@ -65,13 +65,13 @@
            border-bottom-width: 0px;
         }
         
-        td.label{
-        	text-align:right;
-        }
-        
         .panel-header {
         	padding-right:0px;
         } */
+        
+        td.label{
+        	text-align:right;
+        }
     </style>
 </head>
 <body style="padding:5px">
@@ -115,17 +115,18 @@
                    toolbar="#mainGridToolbar">
                 <thead>
                 <tr>
-                    <!--<th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70">ID</th>-->
+                    <!--<th data-options="field:'id',halign:'center',align:'center'" width="70">ID</th>-->
                     <th data-options="field:'orgId',halign:'center',align:'center'" sortable="true" width="70">单位编码</th>
                     <th data-options="field:'orgName',halign:'center',align:'left'" sortable="true" width="260">单位名称</th>
                     <th data-options="field:'userId',halign:'center',align:'center'" sortable="true" width="70">用户代码</th>
                     <th data-options="field:'name',halign:'center',align:'center'" sortable="true" width="70">用户姓名</th>
-                    <th data-options="field:'mobile',halign:'center',align:'right'" sortable="true" width="100">电话</th>
-                    <th data-options="field:'email',halign:'center',align:'right'" sortable="true" width="150">邮箱</th>
+                    <th data-options="field:'mobile',halign:'center',align:'right'" width="100">电话</th>
+                    <th data-options="field:'email',halign:'center',align:'right'" width="150">邮箱</th>
                     <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="70" codeName="userStatus"
                         formatter="formatCodeList">状态</th>
-                    <th data-options="field:'weight',halign:'center',align:'center'" sortable="true" width="70">排名</th>
-                    <!-- <th data-options="field:'managerName',halign:'center',align:'center'" sortable="true" width="70">上级</th> -->
+                    <th data-options="field:'ext1',halign:'center',align:'center'" width="70">扩展</th>
+                    <th data-options="field:'weight',halign:'center',align:'center'" width="70">排名</th>
+                    <!-- <th data-options="field:'managerName',halign:'center',align:'center'" width="70">上级</th> -->
                 </tr>
                 </thead>
                 <tbody>

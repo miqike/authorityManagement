@@ -57,11 +57,13 @@ function _add(sibling) {
         $("#f_parentIds").val(selectedNode.parentIds + selectedNode.id + "/");
         $("#f_parentId").val(selectedNode.id).attr("readonly", true).attr("disabled", true);
     }
-    setParentName();
-
+    setParentName(selectedNode.id);
     $("#btnAdd").linkbutton("disable");
     $("#btnAddChild").linkbutton("disable");
     $("#btnRemove").linkbutton("disable");
+    $("#btnEdit").linkbutton("disable");
+    $("#btnSave").linkbutton("enable");
+    $("#btnCancel").linkbutton("enable");
 }
 
 function add() {
@@ -189,6 +191,8 @@ function onClick(event, treeId, treeNode, clickFlag) {
     $("#btnAdd").linkbutton('enable');
     $("#btnAddChild").linkbutton('enable');
     $("#btnEdit").linkbutton('enable');
+    $("#btnSave").linkbutton('disable');
+    $("#btnCancel").linkbutton('disable');
     $("#btnRemove").linkbutton('enable');
 
     var parent_id = treeNode._parentId;

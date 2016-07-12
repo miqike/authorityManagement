@@ -59,7 +59,7 @@ function reset() {
 
 function loadMyTask() {
     $("#grid1").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor",
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2) ,
 		queryParam: {
 			nd: $('#f_nd').val(),
 			hcjhId: $('#f_hcjhId').val(),
@@ -118,7 +118,6 @@ function goNext() {
 	$.husky.ramble("next", "grid1", "taskDetailTable");
 	refreshAuditItemList();
 }
-
 
 function refreshAuditItemList() {
     if ($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
@@ -288,6 +287,11 @@ function setTaskStatus(taskId, statusCode) {
 }
 
 $(function () {
+	$.husky.getUserInfo();
 	clearInput();
-	showTaskListWindow();
+	if (null != window.userInfo) {
+        showTaskListWindow();
+    } else {
+        $.subscribe("USERINFO_INITIALIZED", showTaskListWindow);
+    }
 });

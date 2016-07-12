@@ -242,6 +242,12 @@ $(function() {
                         <input id="p_weight" class="easyui-numberspinner add update" style="width:208px;" data-options="required:false" />
                     </td>
                 </tr>
+                <tr>
+                    <td class="label">扩展</td>
+                    <td>
+                        <input id="p_ext1" class="easyui-validatebox add update" style="width:208px;" data-options="required:true,panelHeight:80" validType="integer"/>
+                    </td>
+                </tr>
             </table>
         </div>
         <div title="所属角色" >

@@ -50,23 +50,8 @@ function taskStatusStyler(val, row, index) {
 }
 
 function loadMyTask() {
-    /*$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForAuditor",  {
-    	nd: $('#f_nd').val(),
-        hcjhId: $('#f_hcjhId').val(),
-        jhmc: $('#f_jhmc').val()
-    }, function (response) {
-        if (response.status == SUCCESS) {
-        	$("#grid1").datagrid("loadData",response);
-        	$('#p_jhbh').val("");
-			$('#p_jhmc').val("");
-			$('#p_jhxdrq').datebox("clear");
-			$('#p_jhwcrq').datebox("clear");
-			$('#p_hcjieguo').combobox("clear");
-			$("#auditItemList").empty();
-        }
-    });*/
 	$("#grid1").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor",
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2),
 		queryParam: {
 			nd: $('#f_nd').val(),
 			hcjhId: $('#f_hcjhId').val(),

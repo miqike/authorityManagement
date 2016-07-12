@@ -97,19 +97,37 @@
 <div id="toobar1" class="easyui-toolbar">
     <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-search'">任务列表</a>
     <div class="dialog-tool-separator"></div>
-    <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
-	<a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
-	<a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
-	<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
+    <shiro:hasPermission name="5105:btnSendHcgzs">
+    	<a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnSendZllxtzs">
+		<a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnSendQyzshch">
+		<a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnPrintGongShiXinXiGengZhengBiao">
+		<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
+    </shiro:hasPermission>
 </div>
 
 <div id="toobar2" class="easyui-toolbar">
-    <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
-	<a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
+    <shiro:hasPermission name="5105:btnPullData">
+    	<a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnOpenEtlTool">
+    	<a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnViewDocument">
+		<a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
+    </shiro:hasPermission>
     <span>-</span>
-	<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
-	<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+    <shiro:hasPermission name="5105:btnPrintAuditReport">
+		<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="5105:btnUpdateHcjg">
+		<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+    </shiro:hasPermission>
     <span>-</span>
 	
 	<a href="javascript:void(0);" id="btnGoFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首</a>

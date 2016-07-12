@@ -54,9 +54,11 @@ public interface HcrwMapper {
     List<Hcrw> queryForXydm(Map<String, Object> param);
 
     //根据�?????查人员查询任务列�?????--5101
-    List<Hcrw> queryForAuditor(Map<String, Object> param);
+    List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
-    List<Map<String, Object>> queryForAuditor1(Map<String, Object> param);
+    List<Hcrw> queryForAuditor2(Map<String, Object> param);
+    
+    List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
 
     List<Hcrw> queryForPlan(Map<String, Object> param);
 
