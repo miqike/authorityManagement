@@ -11,6 +11,10 @@ function mainGridDblClickHandler(index,row) {
 	view(null);
 }
 
+function mainGridLoadErrorHandler() {
+	alert("---")
+}
+
 function logLevelStyler(value, rowData, rowIndex) {
 	if(value == 'WARN') {
 		return 'background-color:#FFCC00;';
@@ -28,6 +32,8 @@ function loadSuccessHandler(data) {
     if(data.status == SUCCESS) {
         $('#mainGrid').datagrid('unselectAll');
         $('#btnShowDetail').linkbutton('disable');
+    } else {
+    	$.messager.alert("错误", data.stack);
     }
 }
 
@@ -58,7 +64,7 @@ $(function() {
 			operator: $("#f_operator").val(),
 			org: $("#f_org").val(),
 			module: $("#f_module").val(),
-			level: $("#f_level").val(),
+			logLevel: $("#f_logLevel").val(),
 			hostIp: $("#f_hostIp").val(),
 			hostPort: $("#f_hostPort").val(),
 			key: $("#f_key").val()
@@ -81,7 +87,7 @@ $(function() {
 		$("#f_operator").val(""),
 		$("#f_org").val(""),
 		$("#f_module").val(""),
-		$("#f_level").val(""),
+		$("#f_logLevel").val(""),
 		$("#f_hostIp").val(""),
 		$("#f_hostPort").val(""),
 		$("#f_startTime").datetimebox("setValue", ""),

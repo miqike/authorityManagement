@@ -4,12 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../css/content.css" rel="stylesheet" />
-<link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" />
-<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet" />
-<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+
+    <link href="../css/content.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
+
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
+
 <script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
 <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
@@ -18,7 +25,6 @@
 <style type="text/css">
 	#panel .datagrid-wrap{ border-width: 1px 0px 0px 0px;}
 	#queryTable td:nth-child(odd) {text-align:right;}
-	#queryTable input {margin-left:5px;margin-right:10px}
 </style>
 </head>
 <body style="padding:5px;">
@@ -39,7 +45,7 @@
 					<td>模块名称</td>
 					<td><input id="f_module" /></td>
 					<td>日志级别</td>
-					<td><select id="f_level" name="f_level" style="margin-left:5px;">
+					<td><select id="f_logLevel" name="f_level" >
 					    <option ></option>
 					    <option value="DEBUG">DEBUG</option>
 					    <option value="INFO">INFO</option>
@@ -56,9 +62,9 @@
 					<td>关键字</td>
 					<td><input id="f_key" /></td>
 					<td>起始时间</td>
-					<td style="padding-left:5px;"><input id="f_startTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
+					<td ><input id="f_startTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
 					<td>结束时间</td>
-					<td style="padding-left:5px;"><input id="f_endTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
+					<td ><input id="f_endTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
 					<td colspan="2" style="text-align-right;">
 							<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
 							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
