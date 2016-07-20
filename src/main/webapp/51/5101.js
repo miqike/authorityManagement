@@ -143,9 +143,9 @@ function openEtlTool() {
     $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
         var qy = $("#grid1").datagrid("getSelected");
         //用户名&salt&加密后的密码&计划编号&企业注册号&企业名称
-        liexplorer://v00056&123qwe!@#QWE&5e9593e655d55b5cd553735a00961ce1&undefined&610403100018125&杨凌固凌机械科技有限公司
+        //liexplorer://v00056&123qwe!@#QWE&5e9593e655d55b5cd553735a00961ce1&undefined&610403100018125&杨凌固凌机械科技有限公司
         var param = "liexplorer://" + response.userId + "&" + response.salt + "&" + response.password + "&" + qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName; 
-        console.log(param)
+        console.log(param);
         location.replace(param);
     });
 }
