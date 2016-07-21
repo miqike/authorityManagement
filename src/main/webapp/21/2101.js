@@ -120,6 +120,7 @@ $(function () {
             zzxs: $("#f_zzxs").combobox("getValue"),
             jyzt: $("#f_jyzt").combobox("getValue"),
             hcjg: $("#f_hcjg").combobox("getValue"),
+            planType: $("#f_planType").combobox("getValue"),
             jhmc:$("#f_jhmc").val(),
             gsjhbh:$("#f_gsjhbh").val()
         };

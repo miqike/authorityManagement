@@ -116,12 +116,15 @@
                     <td class="label">经营状态</td>
                     <td><input id="f_jyzt" class="easyui-combobox" codeName="jyzt"
                                data-options="panelHeight:120,width:144" style=""/></td>
-                    <td class="label">检查结果</td>
-                    <td><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
-                               data-options="panelHeight:120,width:144" style=""/></td>
+                    <td class="label">计划类型</td>
+                    <td><input id="f_planType" class="easyui-combobox" codeName="planType"
+                               data-options="panelHeight:60,width:144" style=""/></td>
                 </tr>
                 <tr>
-                    <td style="text-align:right" colspan="6">
+                    <td class="label">检查结果</td>
+                    <td colspan="2"><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
+                               data-options="panelHeight:160,width:240" style=""/></td>
+                    <td style="text-align:right" colspan="3">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>
                         <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -197,10 +200,10 @@
             <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th> -->
             <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
             <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
-            <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
-            <th data-options="field:'rlrq'" halign="center" align="left" width="70" formatter="formatDate">认领日期</th>
-            <th data-options="field:'rwzt'" halign="center" align="left" width="70" codeName="jhlb" formatter="formatCodeList">计划完成</th>
-            <th data-options="field:'sjwcrq'" halign="center" align="left" width="70"formatter="formatDate">实际完成</th>
+            <th data-options="field:'nd'" halign="center" align="center" width="70">计划年度</th>
+            <th data-options="field:'jhbh'" halign="center" align="left" width="70" >计划编号</th>
+            <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
+            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
             <th data-options="field:'hcjiegou'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
         </tr>
         </thead>

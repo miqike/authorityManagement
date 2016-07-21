@@ -250,11 +250,11 @@
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID
 	    ) 
-        <if test="qybm!=null">
-            and qybm=#{qybm}
-        </if>
         <if test="dwId!=null">
-            and djjg like #{dwId}||'%'
+            and qybm like #{dwId}||'%'
+        </if>
+        <if test="planType!=null">
+            and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="jhnd!=null">
             and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
