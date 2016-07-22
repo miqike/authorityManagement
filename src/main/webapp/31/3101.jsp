@@ -131,11 +131,14 @@
 	                </th>
 	                <th data-options="field:'xdrmc'" halign="center" align="center" sortable="true" width="90">下达人</th>
 	                <th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250">说明</th>
+	                <th data-options="field:'planType'" halign="center" align="left" sortable="true" width="250" codeName="planType"
+						formatter="formatCodeList">计划类型</th>
 	            </tr>
 	            </thead>
 	        </table>
 	        <div id="gridToolbar1">
-	            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
+	            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加双随机计划</a>
+	            <a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加日常监管计划</a>
 	            <a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
 	               data-options="disabled:true">修改</a>
 	            <!-- <a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true"
