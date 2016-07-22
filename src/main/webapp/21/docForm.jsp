@@ -16,13 +16,17 @@
 	        data: data,
 	        success: function (response) {
 	            if (response.status == SUCCESS) {
-	            	loadDocGrid($("#mainGrid").datagrid("getSelected").id);
-	                $("#mainGrid").datagrid("reload");
-	                $("#addDocWindow").window("close");
-	                $.messager.show({
-						title : '提示',
-						msg : "检查材料保存成功"
-					});
+	                
+	                var auditItem = $("#mainGrid").datagrid("getSelected");
+	            	var rowIndex = $("#mainGrid").datagrid("getRowIndex", auditItem);
+	            	loadDocGrid(auditItem.id);
+	            	
+	        		$('#mainGrid').datagrid('reload');
+	            	setTimeout(function() {$("#mainGrid").datagrid("selectRow", rowIndex);}, 1000);
+	        		//TODO
+	            	$("#addDocWindow").window("close");
+	                $.messager.show("操作提醒", "检查材料保存成功", "info", "bottomRight");
+	        		
 	            } else {
 	                $.messager.alert('检查材料保存失败', response.message, 'error');
 	            }

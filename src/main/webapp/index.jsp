@@ -116,7 +116,6 @@
     </div>
 
     <div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
-        <!-- <div id="northPanel" data-options="region: 'north', border: false" style="height: 64px; overflow: hidden;"> -->
         <div id="northPanel" data-options="region: 'north', border: false" style="height: 35px; overflow: hidden;">
             <div id="topbar" class="top-bar">
                 <div class="top-bar-left">
@@ -124,52 +123,26 @@
                     <ul id="topMenu"></ul>
                 </div>
                 <div class="top-bar-right" style="width:450px">
-                    <!-- <div id="timerSpan" style="float:right"></div> 
-                    <div id="themeSpan" style="float:right">
-                        <span style="display:inline-block;height:20px;padding-top:2px;" >更换皮肤风格：</span>
-                        <select id="themeSelector"></select>
-                        <a id="btnHideNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-up'"></a>
-                    </div>
-                    -->
                      <div id="infobar" style="padding-top:8px;">
 	                    <span id="userInfo" class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;"></span>
 	                </div>
                     <div id="themeSpan" style="float:right">
-                        <!-- 
-                        <input id="topSearchbox" name="topSearchbox" class="easyui-searchbox" data-options="width: 350, height: 26, prompt: '请输入您要查找的内容关键词'" />
-	                     -->
-		                
 	                    <a id="btnShowMessageListDialog" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r10_c10'"/>消息</a>
 	        			<span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
 		       			<a id="btnSetting" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r17_c12'"/>设置</a>
-	                    <a id="btnFullScreen" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'">全屏切换</a>
-	                    <a id="btnExit" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-sign-out'">退出系统</a>
+	                    <a id="btnFullScreen" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'">全屏</a>
+	                    <a id="btnExit" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-sign-out'">退出</a>
 	                    <a id="btnShowNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-down'" style="display: none;"></a>
                     </div>
                 </div>
             </div>
-            <!-- 
-            <div id="toolbar" class="panel-header panel-header-noborder top-toolbar">
-                <div id="infobar">
-                    <span id="userInfo" class="icon-hamburg-user" style="padding-left: 25px; background-position: left center;"></span>
-                </div>
-                <div id="buttonbar">
-                    <a id="btnShowMessageListDialog" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r10_c10'"/>消息</a>
-        			<span id="msgNum" class="notification-bubble" style="background-color: rgb(245, 108, 126); display: inline;"></span>
-	       			<a id="btnSetting" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r17_c12'"/>设置</a>
-                    <a id="btnFullScreen" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-standard-arrow-inout'">全屏切换</a>
-                    <a id="btnExit" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-hamburg-sign-out'">退出系统</a>
-                    <a id="btnShowNorth" class="easyui-linkbutton" data-options="plain: true, iconCls: 'layout-button-down'" style="display: none;"></a>
-                </div>
-            </div> 
-                 -->
         </div>
 
         <div data-options="region: 'west', title: '菜单导航栏', iconCls: 'icon-standard-map', split: true, minWidth: 250, maxWidth: 500" style="width: 250px; padding: 1px;">
              <div id="navTabs_tools" class="tabs-tool">
                 <table>
                     <tr>
-                        <td><!-- <a id="navMenu_refresh" class="easyui-linkbutton easyui-tooltip" title="刷新该选项卡及其导航菜单" data-options="plain: true, iconCls: 'icon-hamburg-refresh'"></a> --></td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
@@ -210,14 +183,11 @@
 				                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
 				                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
 				                            <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检查机关</th>
-				                            <!-- <th data-options="field:'qymc', halign:'center',align:'left'" width="100" >区域名称</th> -->
 				                            <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
 				                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="100" formatter="formatDate">下达时间</th>
 				                            <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="100" formatter="formatDate">计划结束时间</th>
 				                            <th data-options="field:'rlrq', halign:'center',align:'center'" width="120" formatter="formatDate">认领时间</th>
 				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
-				                            <!-- 
-				                            <th data-options="field:'hcjg', halign:'center',align:'left'" width="60" align="center" codeName="hcjg" formatter="formatCodeList">检查结果</th> --> 
 				                        </tr>
 				                        </thead>
 				                    </table>
@@ -240,33 +210,6 @@
                 </div>
             </div>
         </div>
-<!-- 
-        <div data-options="region: 'east', title: '日历', iconCls: 'icon-standard-date', split: false, minWidth: 200, maxWidth: 500" style="width: 220px;">
-            <div id="eastLayout" class="easyui-layout" data-options="fit: true">
-                <div data-options="region: 'north', split: false, border: false" style="height: 220px;">
-                    <div class="easyui-calendar" data-options="fit: true, border: false"></div>
-                </div>
-                <div id="linkPanel" data-options="region: 'center', border: false, title: '友情链接', iconCls: 'icon-hamburg-link', tools: [{ iconCls: 'icon-hamburg-refresh', handler: function () { window.link.reload(); } }]">
-                    <ul id="linkList" class="portlet-list link-list"></ul>
-                </div>
-            </div>
-        </div>
-        <div data-options="region: 'south', title: '关于...', iconCls: 'icon-standard-information', collapsed: true, border: false" style="height: 70px;">
-            <div style="color: #4e5766; padding: 6px 0px 0px 0px; margin: 0px auto; text-align: center; font-size:12px; font-family:微软雅黑;">
-                @2013-2014 Copyright: ChenJianwei Personal.&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="http://www.chenjianwei.org" target="_blank" style="text-decoration: none;">关于 ChenJianwei</a><br />
-                建议使用&nbsp;
-                <a href="http://windows.microsoft.com/zh-CN/internet-explorer/products/ie/home" target="_blank" style="text-decoration: none;">IE(Version 9/10/11)</a>/
-                <a href="https://www.google.com/intl/zh-CN/chrome/browser/" target="_blank" style="text-decoration: none;">Chrome</a>/
-                <a href="http://firefox.com.cn/download/" target="_blank" style="text-decoration: none;">Firefox</a>
-                &nbsp;系列浏览器。
-                <script type="text/javascript">
-                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                    document.write(unescape("%3Cspan id='cnzz_stat_icon_5654850'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5654850%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-            </div>
-        </div>
- -->
     </div>
     
     <div style="display:none">

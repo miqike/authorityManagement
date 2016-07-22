@@ -39,12 +39,13 @@
 					        type: 'DELETE',
 					        success: function (response) {
 					            if (response.status == SUCCESS) {
-					            	$('#docGrid').datagrid('reload');
-					                
-					                $.messager.show({
-					                    title: '提示',
-					                    msg: "文件已删除"
-					                });
+					            	var auditItem = $("#mainGrid").datagrid("getSelected");
+					            	var rowIndex = $("#mainGrid").datagrid("getRowIndex", auditItem);
+					            	loadDocGrid(auditItem.id);
+					        		$('#mainGrid').datagrid('reload');
+					            	setTimeout(function() {$("#mainGrid").datagrid("selectRow", rowIndex);}, 1000);
+					        		//TODO
+					        		$.messager.show("操作提醒", "文件已删除", "info", "bottomRight");
 					            } else {
 					                $.messager.alert('错误', '文件删除失败：' + response.message, 'error');
 					            }

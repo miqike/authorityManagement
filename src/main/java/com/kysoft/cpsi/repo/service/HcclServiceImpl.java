@@ -31,6 +31,19 @@ public class HcclServiceImpl implements HcclService {
 		hccl.setId(UUID.randomUUID().toString().replace("-", ""));
 		hcclMapper.insert(hccl);
 		String hcsxId = hccl.getHcsxId();
+		recalcHcclForHcsx(hcsxId);
+	}
+
+	@Override
+	public void delete(String id) {
+		Hccl hccl = hcclMapper.selectByPrimaryKey(id);
+		String hcsxId = hccl.getHcsxId();
+		
+		hcclMapper.deleteByPrimaryKey(id);
+		recalcHcclForHcsx(hcsxId);
+	}
+	
+	void recalcHcclForHcsx(String hcsxId) {
 		List<Hccl> hcclList = hcclMapper.selectByHcsxId(hcsxId);
 		StringBuilder hcclInHcsx = new StringBuilder();
 		for(int i=0; i<hcclList.size(); i++) {
@@ -39,13 +52,7 @@ public class HcclServiceImpl implements HcclService {
 				hcclInHcsx.append(",");
 			}
 		}
-		
 		hcsxMapper.updateHcclByPrimaryKey(hcsxId, hcclInHcsx.toString());
-	}
-
-	@Override
-	public void delete(String id) {
-		hcclMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
