@@ -1,13 +1,56 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
-	function formatDocOperation(val, row) {
+	function formatDocOperation(val, row, rowIndex) {
 		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
-			return "<a href=\"javascript: displayAttachment('"+ row.MONGO_ID + "');\">查看</a>";
+			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
 		} else {
-			return "";
+			return "<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
 		}
 	}
 	
+	function formatDocOperation2(val, row, rowIndex) {
+		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
+			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+		} else {
+			return "<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+		}
+	}
+	
+	function uploadFile(rowIndex) {
+	    var data = $('#docGrid').datagrid("getData").rows[rowIndex];
+	    if (null != data.MONGO_ID) {
+	        $.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
+	            if (r) {
+	            	showUploadForm(1);
+	            }
+	        });
+	    } else {
+	    	showUploadForm(1);
+	    }
+	}
+
+	function uploadFile2(rowIndex) {
+		var data = $('#furDocgrid').datagrid("getData").rows[rowIndex];
+		if (null != data.MONGO_ID) {
+			$.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
+				if (r) {
+					showUploadForm(2);
+				}
+			});
+		} else {
+			showUploadForm(2);
+		}
+	}
+
+	function showUploadForm(type) {
+		$("#documentWindow").dialog("open");
+	    $("#docPanel").panel({
+	        href: './docFormb.jsp',
+	        onLoad: function () {
+	            doInit(type);
+	        }
+	    });
+	}
 	function sfbyStyler(val,row,index) {
 		if(val == 1) {
 			return "background-color:lightcoral";
@@ -15,7 +58,6 @@
 			return "background-color:lightgreen";
 		}
 	}
-	
 	
 	function wjlyStyler(val,row,index) {
 		if(val == 1) {
@@ -65,7 +107,6 @@
 	}
 	
 	$(function () {
-		//$.codeListLoader.parse($('#docGrid'))
 		doDocListInit();
 	});
 </script>
@@ -116,7 +157,7 @@
 		            <th data-options="field:'SFBYX',halign:'center',align:'center'" sortable="true" width="70" codeName="yesno" styler="sfbyStyler" formatter="formatCodeList">是否必要项</th>
 		            <th data-options="field:'WJLX',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
 		            <th data-options="field:'UPLOAD_TIME',halign:'center',align:'center'" sortable="true" width="110" formatter="formatDatetime2Min" >上传时间</th>
-		            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70"  formatter="formatDocOperation">操作</th>
+		            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70"  formatter="formatDocOperation2">操作</th>
 		        </tr>
 		        </thead>
 		    </table>
@@ -129,3 +170,10 @@
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
  -->
+
+ <div id="documentWindow" title="检查材料" class="easyui-dialog"
+     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
+     style="width: 600px; height: 205px; padding: 10px;">
+    <div id="docPanel" style="padding:10px;"></div>
+</div>
+ 
