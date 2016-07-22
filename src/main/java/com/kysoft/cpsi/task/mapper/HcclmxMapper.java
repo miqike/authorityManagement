@@ -52,7 +52,7 @@ public interface HcclmxMapper {
     List<Hcclmx> queryForTask(Map<String, Object> paramMap);
 
     Hcclmx selectBy(@Param("hcrwId") String hcrwId, @Param("hcsxId") String hcsxId, @Param("hcdwXydm") String hcdwXydm, @Param("hcjhnd") Integer hcjhnd, @Param("hcclId") String hcclId);
-    
+
     List<Hcclmx> queryDocFurForTask(Map<String, Object> paramMap);
 
 	Hcclmx selectByPrimaryKey2(String id);
@@ -60,5 +60,7 @@ public interface HcclmxMapper {
 	void deleteByPrimaryKey2(String id);
 
 	void insert2(Hcclmx hcclmx);
+
+	void updateByPrimaryKeySelective2(Hcclmx hcclmx);
     
 }

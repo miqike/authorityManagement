@@ -236,6 +236,52 @@
         </set>
         where ID = #{id,jdbcType=VARCHAR}
     </update>
+    
+    <update id="updateByPrimaryKeySelective2" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
+        update T_HCCL_FUR
+        <set>
+            <if test="hcdwXydm != null">
+                HCDW_XYDM = #{hcdwXydm,jdbcType=VARCHAR},
+            </if>
+            <if test="hcjhnd != null">
+                HCJHND = #{hcjhnd,jdbcType=DECIMAL},
+            </if>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sfbyx != null">
+                SFBYX = #{sfbyx,jdbcType=DECIMAL},
+            </if>
+            <if test="wjlx != null">
+                WJLX = #{wjlx,jdbcType=DECIMAL},
+            </if>
+            <if test="hcclId != null">
+                HCCL_ID = #{hcclId,jdbcType=VARCHAR},
+            </if>
+            <if test="hcsxId != null">
+                HCSX_ID = #{hcsxId,jdbcType=VARCHAR},
+            </if>
+            <if test="hcrwId != null">
+                HCRW_ID = #{hcrwId,jdbcType=VARCHAR},
+            </if>
+            <if test="mongoId != null">
+                MONGO_ID = #{mongoId,jdbcType=VARCHAR},
+            </if>
+            <if test="yhtg != null">
+                YHTG = #{yhtg,jdbcType=DECIMAL},
+            </if>
+            <if test="ly != null">
+                LY = #{ly,jdbcType=DECIMAL},
+            </if>
+            <if test="hcsxmc != null">
+                HCSXMC = #{hcsxmc,jdbcType=VARCHAR},
+            </if>
+            <if test="uploadTime != null">
+                UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=VARCHAR}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
         <!--
           WARNING - @mbggenerated

@@ -55,4 +55,22 @@ public class DocFurController extends BaseController {
 	}
 	
 	
+	
+	@RequestMapping(value = "/docFur2", method = RequestMethod.POST)
+	public Map<String, Object> updateHcclmx(Hcclmx hcclmx) {
+		
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcclmxService.updateHcclmx2(hcclmx);
+			result.put(MESSAGE, "附加检查材料保存成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "附加检查材料保存失败");
+		}
+		return result;
+	}
+	
+	
 }

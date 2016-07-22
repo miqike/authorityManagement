@@ -168,18 +168,21 @@
   <select id="queryForTask" resultType="java.util.Map">
 	SELECT M.*, N.* FROM    
  	(select a.id hcrw_id, a.hcdw_xydm,a.hcdw_name, d.id hccl_id,d.name hccl_name,
- 		d.hcsxmc, d.sfbyx, d.wjlx, d.yhtg
+ 		d.hcsxmc, d.sfbyx, d.wjlx, d.yhtg, b.nd HCJHND, d.HCSX_ID
         from t_hcrw a,t_hcjh b,t_hcjh_hcsx c,t_hccl d
         where a.hcjh_id=b.id
         and b.id=c.hcjh_id
         and c.hcsx_id=d.HCSX_ID
         and a.id = #{hcrwId} ) M LEFT JOIN (
 	SELECT ID HCCLMX_ID, MONGO_ID,  YHTG, LY, UPLOAD_TIME, HCCL_ID FROM t_hcclmx WHERE hcrw_id=#{hcrwId}) N ON M.HCCL_ID = N.HCCL_ID
+	
+	ORDER BY M.SFBYX DESC, M.HCCL_NAME ASC
     </select>
     
     <select id="queryForTask2" resultType="java.util.Map">
 	SELECT ID, HCDW_XYDM, HCJHND, NAME, SFBYX, WJLX, HCCL_ID, HCSX_ID, HCRW_ID, MONGO_ID, YHTG,
         LY, HCSXMC, UPLOAD_TIME
     from T_HCCL_FUR WHERE hcrw_id=#{hcrwId}
+    ORDER BY SFBYX DESC, NAME ASC
     </select>
 </mapper>

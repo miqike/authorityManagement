@@ -87,7 +87,7 @@ function myTaskGridClickHandler() {
 function viewDocList() {
 	$.easyui.showDialog({
 		title : "检查材料",
-		width : 720,
+		width : 790,
 		height : 420,
 		topMost : false,
 		iconCls:'icon2 r16_c14',

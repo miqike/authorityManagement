@@ -77,6 +77,13 @@ public class HcclmxServiceImpl implements HcclmxService {
     	calcDocFur(hcclmx.getHcrwId());
     }
     
+    @Override
+    public void updateHcclmx2(Hcclmx hcclmx) {
+    	hcclmx.setUploadTime(new Date());
+    	hcclmxMapper.updateByPrimaryKeySelective2(hcclmx);
+    	calcDocFur(hcclmx.getHcrwId());
+    }
+    
     void calcDocFur(String hcrwId) {
     	hcrwMapper.updateHcclStatByPrimaryKey2(hcrwId);
     	Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);
