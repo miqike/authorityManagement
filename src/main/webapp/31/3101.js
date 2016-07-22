@@ -450,6 +450,7 @@ function setReadOnlyStatus() {
 function savePlan() {
     var data = $.easyuiExtendObj.drillDownForm('planTable');
     data.id = $("#p_id").val();
+	data.planType=1;
     var type = "";
     var url = "../31/hcjh";
     $.ajax({
