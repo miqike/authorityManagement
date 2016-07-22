@@ -3,26 +3,24 @@
     function saveDoc() {
     	var type = $("#d_type").val();
         $("#btnSaveDoc").linkbutton("disable");
-        var hcsx = type==1? $("#mainGrid").datagrid("getSelected"): $("#grid2").datagrid("getSelected");
+        var hcsx = type==1? $("#docGrid").datagrid("getSelected"): $("#furDocgrid").datagrid("getSelected");
         var data = {};
         data.hcdwXydm = hcsx.HCDW_XYDM;
         data.hcjhnd = hcsx.HCJHND;
-        data.name = hcsx.HCCL_NAME;
+        data.name = type==1? hcsx.HCCL_NAME: hcsx.NAME;
         data.hcclId = hcsx.HCCL_ID;
         data.hcsxId = hcsx.HCSX_ID;
         data.hcrwId = hcsx.HCRW_ID;
         data.sfbyx = hcsx.SFBYX;
         data.wjlx = hcsx.WJLX;
         data.yhtg = 1;
-        data.ly = 1;
+        data.ly = 2;
         data.hcsxmc = hcsx.HCSXMC;
         data.mongoId = $("#d_mongoId").val();
         
         if(type == 2) data.id=hcsx.ID;
-        var url = type == 1?  "../51/hcclmx" : "../51/docFur";
+        var url = type == 1?  "../51/hcclmx" : "../51/docFur2";
         
-        console.log("type " + type);
-        console.log("url " + url);
         $.ajax({
             url: url,
             type: "POST",
@@ -33,7 +31,7 @@
                     $.messager.show('提示',"检查材料保存成功", "info", "bottomRight");
                     $("#documentWindow").window("close");
                 } else {
-                    $.messager.alert('检查材料保存', response.message, 'error');
+                    $.messager.alert('检查材料保存失败', response.message, 'error');
                 }
             }
         });
@@ -42,10 +40,10 @@
     function doInit(type) {
     	var hcsx = null;
 		if(type == 1) { //标准
-	        var hcsx = $("#mainGrid").datagrid("getSelected");
+	        var hcsx = $("#docGrid").datagrid("getSelected");
 	        $("#d_name").val(hcsx.HCCL_NAME);
 		} else { //附加
-			 var hcsx = $("#grid2").datagrid("getSelected");
+			 var hcsx = $("#furDocgrid").datagrid("getSelected");
 			 $("#d_id").val(hcsx.ID);
 			 $("#d_name").val(hcsx.NAME);
 		}

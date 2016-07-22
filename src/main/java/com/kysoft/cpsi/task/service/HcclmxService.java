@@ -12,4 +12,6 @@ public interface HcclmxService {
 	
 	void addHcclmx2(Hcclmx hcclmx);
 
+	void updateHcclmx2(Hcclmx hcclmx);
+
 }
