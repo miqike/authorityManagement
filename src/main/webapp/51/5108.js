@@ -66,7 +66,7 @@ function showAuditDialog() {
 	
 	$.easyui.showDialog({
 		title : "核查结果审核",
-		width : 560,
+		width : 520,
 		height : 310,
 		topMost : false,
 		iconCls:'icon2 r12_c19',
@@ -78,6 +78,9 @@ function showAuditDialog() {
 		href : "./auditForm.jsp",
 		onLoad : function() {
 			doAuditFormInit();
+		},
+		onSave: function() {
+			auditHcwr();
 		}
 	});
 }

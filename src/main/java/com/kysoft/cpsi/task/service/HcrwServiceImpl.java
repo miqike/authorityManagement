@@ -110,5 +110,13 @@ public class HcrwServiceImpl implements HcrwService {
         hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());
 	}
 
+	@Override
+	public void auditHcrw(Hcrw hcrw) {
+		User auditor = WebUtils.getCurrentUser();
+		hcrw.setAuditor(auditor.getUserId());
+		hcrw.setAuditorName(auditor.getName());
+		hcrwMapper.updateAuditByPrimaryKey(hcrw);
+	}
+
 
 }

@@ -29,4 +29,6 @@ public interface HcrwService {
 
 	void updateDocReadyFlag(String hcrwId, int docReadyReportFlag);
 
+	void auditHcrw(Hcrw hcrw);
+
 }
