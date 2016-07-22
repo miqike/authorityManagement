@@ -36,6 +36,7 @@ function docGridClickRowHandler() {
 <div id="baseInfo" style="padding:10px">
     <div style="display: none">
         <input class="easyui-validatebox" id="p_id" style="width:200px;"/>
+        <input class="easyui-validatebox" id="p_page" style="width:200px;"/>
     </div>
 
     <table width="100%" id="baseTable">
