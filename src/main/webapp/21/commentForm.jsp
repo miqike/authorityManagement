@@ -17,7 +17,7 @@
 	            if (response.status == SUCCESS) {
 	                //$("#commentGrid").datagrid("reload");
 	                loadCommentGrid($("#mainGrid").datagrid("getSelected").id);
-	                $("#mainGrid").datagrid("reload");
+	                //$("#mainGrid").datagrid("reload");
 	                $("#addCommentWindow").window("close");
 	                $.messager.show({
 						title : '提示',
@@ -78,5 +78,8 @@
     	<tr>
     		<td class="label">排序权重</td><td><input class="easyui-validatebox" id="p_weight" validType='integer'/></td>
     	</tr>
-    </table>
+		<tr>
+            <td class="label">比对信息来源</td><td><input class="easyui-combobox" id="p_dbxxly" style="width:200px;" data-options=""  codeName="sjly"/></td>
+		</tr>
+	</table>
 </div>

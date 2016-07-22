@@ -12,7 +12,7 @@
 		$.easyui.showDialog({
     		title : "修改常见问题说明信息",
     		width : 600,
-    		height : 200,
+    		height : 300,
     		topMost : false,
     		enableSaveButton : true,
     		enableApplyButton : false,
@@ -32,7 +32,7 @@
 		if(!$(this).linkbutton('options').disabled) {
 			var row = $('#commentGrid').datagrid('getSelected');
 			if (row) {
-				$.messager.confirm('确认', '确认删除检查材料', function (r) {
+				$.messager.confirm('确认', '确认删除说明？', function (r) {
 					if (r) {
 						$.ajax({
 					        url: "./comment/" + row.id ,
@@ -43,10 +43,12 @@
 					                
 					                $.messager.show({
 					                    title: '提示',
-					                    msg: "文件已删除"
+					                    msg: "说明已删除"
 					                });
+                                    loadCommentGrid($("#mainGrid").datagrid("getSelected").id);
+                                    //$("#mainGrid").datagrid("reload");
 					            } else {
-					                $.messager.alert('错误', '文件删除失败：' + response.message, 'error');
+					                $.messager.alert('错误', '说明删除失败：' + response.message, 'error');
 					            }
 					        }
 					    });
@@ -85,8 +87,9 @@
 				toolbar: '#commentGridToolbar'">
         <thead>
         <tr>
-            <th data-options="field:'content',halign:'center',align:'left'" sortable="true" width="650">常见问题说明</th>
+            <th data-options="field:'content',halign:'center',align:'left'" sortable="true" width="550">常见问题说明</th>
             <th data-options="field:'weight',halign:'center',align:'center'" sortable="true" width="80">排序权重</th>
+            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="90" codeName="sjly" formatter="formatCodeList">比对信息来源</th>
         </tr>
         </thead>
     </table>
