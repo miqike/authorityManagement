@@ -146,18 +146,18 @@
                     <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
                     <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
                     <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
-                    <th data-options="field:'hcdwXydm'" halign="center" align="center" width="150">统一社会信用代码</th>
+                    <th data-options="field:'hcdwXydm'" halign="center" align="center" width="130">统一社会信用代码</th>
 					<th data-options="field:'sjwcrq'" halign="center" align="left" width="70"
                         formatter="formatDate">检查时间
                     </th>
-                    <th data-options="field:'hcjieguo'" halign="center" align="left" width="70"
+                    <th data-options="field:'hcjieguo'" halign="center" align="left" width="150"
                         formatter="formatCodeList" codeName="gsjg">核查结果
                     </th>
                     
                     <!-- 需要增加字段 -->
                     <th data-options="field:'auditResult'" halign="center" align="center" width="120" codeName="yesno" formatter="formatCodeList">是否列入经营异常名录</th>
                     <th data-options="field:'auditComment'" halign="center" align="left" width="110">抽查结果审核意见</th>
-                    <th data-options="field:'auditorName'" halign="center" align="center" width="100" >审核人</th>
+                    <th data-options="field:'auditorName'" halign="center" align="center" width="70" >审核人</th>
                     <th data-options="field:'auditTime'" halign="center" align="center" width="70" formatter="formatDate">审核日期</th>
                 </tr>
                 </thead>

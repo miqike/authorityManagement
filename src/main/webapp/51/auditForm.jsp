@@ -13,7 +13,7 @@
             data: data,
             success: function (response) {
                 if (response.status == $.husky.SUCCESS) {
-                	//doDocListInit();
+                	$('#grid2').datagrid('reload');
                     $.messager.show('提示',"检查结果审核成功", "info", "bottomRight");
                     //$("#documentWindow").window("close");
                 } else {
