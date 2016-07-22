@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>抽查结果公示表</title>
+    <title>抽查结果审核</title>
 	<link href="../css/content.css" rel="stylesheet"/>
 	<link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
 	<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
@@ -91,7 +91,7 @@
         <table id="grid1"
                class="easyui-datagrid"
                data-options="singleSelect:true,collapsible:true,
-				onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+				pageSize: 10, pagination: true,
 				method:'get'"
                style="height: 250px"
                sortOrder="asc">
@@ -155,15 +155,15 @@
                     </th>
                     
                     <!-- 需要增加字段 -->
-                    <th data-options="field:'auditResult'" halign="center" align="left" width="70" codeName="yesno" formatter="formatCodeList">是否列入经营异常名录</th>
-                    <th data-options="field:'auditComment'" halign="center" align="left" width="100">抽查结果审核意见</th>
-                    <th data-options="field:'auditorName'" halign="center" align="left" width="100" >审核人</th>
-                    <th data-options="field:'auditTime'" halign="center" align="left" width="70" formatter="formatDate">审核日期</th>
+                    <th data-options="field:'auditResult'" halign="center" align="center" width="120" codeName="yesno" formatter="formatCodeList">是否列入经营异常名录</th>
+                    <th data-options="field:'auditComment'" halign="center" align="left" width="110">抽查结果审核意见</th>
+                    <th data-options="field:'auditorName'" halign="center" align="center" width="100" >审核人</th>
+                    <th data-options="field:'auditTime'" halign="center" align="center" width="70" formatter="formatDate">审核日期</th>
                 </tr>
                 </thead>
             </table>
             <div id="planGridToolbar">
-                <a href="#" id="btnShowAuditDialog" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true"
+                <a href="#" id="btnShowAuditDialog" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" disabled
                    data-options="">审核</a>
             </div>
         </div>
