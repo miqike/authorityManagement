@@ -153,8 +153,10 @@ function showTaskListWindow() {
 }
 
 function pullData() {
+	$.easyui.loading();
 	var row = $("#grid1").datagrid("getSelected");
 	$.getJSON("./" + row.id + "/pull", null, function (response) {
+		$.easyui.loaded();
 		$.messager.alert("提示", response.message, 'info');
 		if (response.status == $.husky.SUCCESS) {
 			refreshAuditItemList();
