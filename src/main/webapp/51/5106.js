@@ -69,7 +69,9 @@ function myTaskGridClickHandler() {
 	} else {
 		$('#btnViewDocList').linkbutton('enable');
 		
-		if(task.DOC_READY_FLAG == 2 && task.RWZT != 5) {
+		/*if(task.DOC_READY_FLAG == 2 && task.RWZT != 5) {*/
+		//取消对文档上传状态的判断
+		if(task.RWZT != 5) {
 			$('#btnReportDocReady').linkbutton('enable')
 		}  else {
 			$('#btnReportDocReady').linkbutton('disable')
@@ -133,6 +135,19 @@ function reset() {
 
 function reportDocReady() {
 	var task = $('#grid2').datagrid('getSelected');
+	
+	if(task.DOC_READY_FLAG != 2 && $('#btnReportDocReady').linkbutton("options").text == "上报完成") {
+		$.messager.confirm('确认', "该企业要求提供的证明材料尚未提供齐全,是否确认上报完成?", function (r) {
+			if (r) {
+				_reportDocReady(task);
+			}
+		});
+	} else {
+		_reportDocReady(task);
+	}
+}
+
+function _reportDocReady(task) {
 	$.post("./" + task.ID + "/docReadyReportFlag", {
 		docReadyReportFlag: task.DOC_READY_REPORT_FLAG
 	},function(response){
