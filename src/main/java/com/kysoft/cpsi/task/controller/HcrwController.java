@@ -1,25 +1,18 @@
 package com.kysoft.cpsi.task.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.WebUtils;
-
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.service.HcrwService;
-
 import net.sf.husky.utils.HuskyConstants;
 import net.sf.husky.web.controller.BaseController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.WebUtils;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/51")
@@ -37,6 +30,7 @@ public class HcrwController extends BaseController {
             //核查结果为6种,只要设定核查结果,任务设为完成状态:5
             hcrw.setRwzt(5);
             hcrw.setHcjieguo(jieguo);
+            hcrw.setSjwcrq(new Date());
             hcrwService.updateHcrw(hcrw);
             result.put(MESSAGE, "更新核查结果成功");
             result.put(STATUS, SUCCESS);
