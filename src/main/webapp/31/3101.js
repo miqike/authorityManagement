@@ -57,17 +57,21 @@ function grid1ClickHandler() {
         $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
-        if (row.xdrmc == null && row.xdrq == null) {
-            $('#btnModify').linkbutton('enable');
-            $('#btnDispatch').linkbutton({
-                text: '下达'
-            });
-        } else {
-            $('#btnModify').linkbutton('disable');
-            $('#btnDispatch').linkbutton({
-                text: '取消下达'
-            });
+        
+        if(row.planType==1) {
+	        if (row.xdrmc == null && row.xdrq == null) {
+	            $('#btnModify').linkbutton('enable');
+	            $('#btnDispatch').linkbutton({
+	                text: '下达'
+	            });
+	        } else {
+	            $('#btnModify').linkbutton('disable');
+	            $('#btnDispatch').linkbutton({
+	                text: '取消下达'
+	            });
+	        }
         }
+        
     } else {
         $('#btnModify').linkbutton('disable');
         $('#btnDispatch').linkbutton('disable');
@@ -161,12 +165,17 @@ function modify() {
 	if(!$(this).linkbutton('options').disabled) {
 		var row = $('#grid1').datagrid('getSelected');
 		if (row) {
-			showPlanForm(row);
+			if(row.planType==1) {
+				showPlanForm(row);
+			} else {
+				showPlanFormb(row);
+			}
 		}
 	}
 }
 
 function showPlanForm(data) {
+	console.log(data.planType)
 	$.easyui.showDialog({
 		title : "双随机计划信息",
 		width : 750,

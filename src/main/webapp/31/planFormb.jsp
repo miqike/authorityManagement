@@ -6,7 +6,7 @@
 </script>
 <div id="planWindowb" style="padding: 5px;">
 	<%-- <jsp:include page="../sys/iterationBar.jsp"/> --%> 
-	<div id="tabPanelb" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandler">
+	<div id="tabPanelb" class="easyui-tabs" style="width:715px;clear:both;" data-options="onSelect:tabSelectHandlerb">
         <div title="基本信息" style="padding:5px;" selected="true">
             <table width="100%" id="planTableb">
                 <tr>
