@@ -104,20 +104,13 @@
 	                <th data-options="field:'nd'" halign="center" align="center" sortable="true" width="50">年度</th>
 	                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="70">计划编号</th>
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
-	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
+	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
 	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
-	                <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">计划开始时间
-	                </th>
-	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">计划结束时间
-	                </th>
-	                <th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl"
-	                    formatter="formatCodeList">检查分类
-	                </th>
-	                <th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr"
-	                    formatter="formatCodeList">检查内容
-	                </th>
+	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
+					<th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划开始时间</th>
+	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
+	                <th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
+	                <th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">检查内容</th>
 	                <th data-options="field:'hcrwsl'" halign="center" align="left" sortable="true" width="60">任务数</th>
 	                <!-- <th data-options="field:'ypfsl'" halign="center" align="left" sortable="true" width="50">已派发</th> -->
 	                <th data-options="field:'yrlsl'" halign="center" align="left" sortable="true" width="50">已认领</th>
@@ -126,27 +119,20 @@
 	                    formatter="formatCodeList">审核状态
 	                </th>
 	                <th data-options="field:'shrmc'" halign="center" align="center" sortable="true" width="90">审核人</th> -->
-	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">下达日期
-	                </th>
+	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
 	                <th data-options="field:'xdrmc'" halign="center" align="center" sortable="true" width="90">下达人</th>
 	                <th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250">说明</th>
-	                <th data-options="field:'planType'" halign="center" align="left" sortable="true" width="250" codeName="planType"
-						formatter="formatCodeList">计划类型</th>
 	            </tr>
 	            </thead>
 	        </table>
 	        <div id="gridToolbar1">
 	            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加双随机计划</a>
 	            <a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加日常监管计划</a>
-	            <a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
-	               data-options="disabled:true">修改</a>
+	            <a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
 	            <!-- <a href="#" id="btnAudit" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true"
 	               data-options="disabled:true">审核/取消审核</a> -->
-	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true"
-	               data-options="disabled:true">检查事项</a>
-	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true"
-	               data-options="disabled:true">下达/取消下达</a>
+	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
+	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true" data-options="disabled:true">下达/取消下达</a>
 	        </div>
 	    </div>
     </div>
