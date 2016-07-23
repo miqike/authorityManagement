@@ -147,7 +147,14 @@ function add() {
 	if (!$(this).linkbutton('options').disabled) {
 		showPlanForm();
 	}
-	
+}
+
+function addRc() {
+	window.selected = -1;
+	$('#grid1').datagrid('unselectAll');
+	if (!$(this).linkbutton('options').disabled) {
+		showPlanFormb();
+	}
 }
 
 function modify() {
@@ -161,7 +168,7 @@ function modify() {
 
 function showPlanForm(data) {
 	$.easyui.showDialog({
-		title : "检查计划信息",
+		title : "双随机计划信息",
 		width : 750,
 		height : 455,
 		topMost : false,
@@ -174,7 +181,7 @@ function showPlanForm(data) {
 				var tab = $('#tabPanel').tabs('getSelected');
 				var index = $('#tabPanel').tabs('getTabIndex',tab);
 				if(index == 0 && $('#planWindow').form('validate')) {
-					savePlan();
+					savePlan(1);
 				} else if (index == 1) {
 					//saveRoleResource();
 				}
@@ -194,6 +201,41 @@ function showPlanForm(data) {
 	});
 }
 
+function showPlanFormb(data) {
+	$.easyui.showDialog({
+		title : "日常监管计划信息",
+		width : 750,
+		height : 455,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		
+		buttons:[{
+			text:'保存',
+			iconCls : "icon-save",
+			handler:function(){
+				var tab = $('#tabPanelb').tabs('getSelected');
+				var index = $('#tabPanelb').tabs('getTabIndex',tab);
+				if(index == 0 && $('#planWindowb').form('validate')) {
+					savePlan(2);
+				} else if (index == 1) {
+					//saveRoleResource();
+				}
+				return false;
+			}
+		}],
+		
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		
+		href : "./planFormb.jsp",
+		onLoad : function() {
+			doPlanFormInitb(data);
+		}
+	});
+}
+
 function doPlanFormInit(data) {
 	$.codeListLoader.parse($('#planTable'))
 	if(null != data) {
@@ -207,6 +249,31 @@ function doPlanFormInit(data) {
     $("#btnImportTask").click(funcImportTask);
     $("#btnImportPlan").click(funcImportPlan);
 
+}
+
+function doPlanFormInitb(data) {
+	$.codeListLoader.parse($('#planTableb'))
+	if(null != data) {
+		$.easyuiExtendObj.loadForm('planTableb', data);
+		setFormFieldStatus("planTableb", "modify");
+		$('#planTableb').form("validate");
+	} else {
+		setFormFieldStatus("planTableb", "add");
+		$("#k_planType").combobox("setValue", "2");
+		$("#k_fl").combobox("setValue", "1");
+		$("#k_djjg").val(userInfo.orgId);
+		$("#k_djjgmc").val(userInfo.orgName);
+		$("#k_xdr").val(userInfo.userId);
+		$("#k_xdrmc").val(userInfo.name);
+		$("#k_nd").val( new Date().getFullYear());
+		$("#k_ksrq").datebox("setValue", (new Date()).format("YYYY-MM-DD"))
+		$("#k_yqwcsj").datebox("setValue", (new Date()).format("YYYY-MM-DD"));
+		$("#k_xdrq").datebox("setValue", (new Date()).format("YYYY-MM-DD"));
+	}
+	
+	//$("#btnImportTask").click(funcImportTask);
+	//$("#btnImportPlan").click(funcImportPlan);
+	
 }
 
 function dispatch() {
@@ -425,21 +492,8 @@ function funcBtnRest() {
     clearInput();
 }
 
-/*function funcSavePlan() {
-    //debugger;
-    if ($("#planTable").form('validate') && !$(this).linkbutton('options').disabled) {
-        savePlan();
-    }
-}*/
-
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
-    /*$("#btnAdd").linkbutton('enable');
-     $("#btnEdit").linkbutton('enable');
-     $("#btnDelete").linkbutton('enable');
-     $("#btnSave").linkbutton('disable');
-     $("#btnCancel").linkbutton('disable');*/
-
     $("#planTable input.easyui-numberspinner").numberspinner("disable");
     $("#planTable input.easyui-validatebox").attr("readonly", true);
     $("#planTable input.easyui-datebox").datebox("disable");
@@ -447,11 +501,10 @@ function setReadOnlyStatus() {
     $("#planTable input.easyui-combotree").combotree("disable");
 }
 
-function savePlan() {
-    var data = $.easyuiExtendObj.drillDownForm('planTable');
-    data.id = $("#p_id").val();
-	data.planType=1;
-    var type = "";
+function savePlan(planType) {
+    var data = planType==1? $.easyuiExtendObj.drillDownForm('planTable'): $.easyuiExtendObj.drillDownForm('planTableb');
+    data.id = planType==1? $("#p_id").val(): $("#k_id").val();
+	data.planType=planType;
     var url = "../31/hcjh";
     $.ajax({
         url: url,
@@ -650,6 +703,7 @@ $(function () {
     $("#btnReset").click(funcBtnRest);
     
     $("#btnAdd").click(add);
+    $("#btnAddRc").click(addRc);
     $("#btnModify").click(modify);
     $("#btnDispatch").click(dispatch);
     $("#btnViewCheckList").click(viewCheckList);
