@@ -639,6 +639,9 @@
 	    )
 	    
         AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
+      <if test="auditResult !=null ">
+         and audit_result is not null
+      </if>
         ORDER BY
 
         <if test="order == 1">
@@ -647,6 +650,7 @@
         <if test="order ==2">
           hcjg,djjg,hcdw_xydm,ZZXS, HCJGMC
         </if>
+
     </select>
     <select id="queryForXydm" resultMap="BaseResultMap">
         select

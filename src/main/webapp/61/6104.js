@@ -89,7 +89,8 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
-            order: 1
+            order: 1,
+            auditResult:0
         });
     } else {
         $.messager.alert("提示","请首先选择计划和单位")
@@ -127,7 +128,7 @@ $(function () {
         columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20});
         columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "gsjg"});
         //取得数据
-        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + processorOrgId(selected[0].id) + "&order=1", null, function (response) {
+        $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + processorOrgId(selected[0].id) + "&order=1&auditResult=0", null, function (response) {
             if (response.status == 1) {
                 data = response.rows;
                 if(data.length>1){
