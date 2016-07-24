@@ -702,7 +702,7 @@
         <if test="order != null">
             ${sort} ${order},
         </if>
-        hcdw_xydm
+        plan_type desc,jhbh desc,hcdw_xydm
     </select>
     <select id="queryForAuditor2" resultMap="BaseResultMap">
         select
@@ -728,7 +728,7 @@
         <if test="order != null">
             ${sort} ${order},
         </if>
-        hcdw_xydm
+      plan_type desc,jhbh desc,hcdw_xydm
     </select>
 
 	<select id="queryForAuditorM" resultType="java.util.Map">

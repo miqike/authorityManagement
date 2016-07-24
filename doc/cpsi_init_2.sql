@@ -93,6 +93,8 @@ insert into x_codelist(name,value,literal,edit_flag,style,descn)
 delete from x_codelist where name='wzlx';
 insert into x_codelist(name,value,literal,edit_flag,style,descn)
   select 'wzlx',code,content,0,null,'网址类型' from BM_WZLX;
+insert into x_codelist(name,value,literal,edit_flag,style,descn)
+  select 'qylxdl',code,content,0,null,'企业类型大类' from BM_QYDL;
 /**
 开发测试过程中可能需要用到的SQL
  */
