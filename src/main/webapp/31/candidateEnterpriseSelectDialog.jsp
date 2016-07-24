@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
+function checkParam(param) {
+	return param.hcjhId != undefined;
+}
 
 function doCandidateEnterpriseSelectDialogInit() {
 	$("#btnQueryCandidateEnterprise").click(queryCandidateEnterprise);
@@ -20,19 +23,15 @@ function resetCandidateEnterpriseQuery() {
 }
 
 function queryCandidateEnterprise() {
-	var options = $('#candidateEnterpriseGrid').datagrid('options');
-	options.queryParams = {
+	var queryParams = {
 		hcjhId:$("#k_id").val(),
 		qymc: $("#f_qymc").val(),
         zch: $("#f_zch").val(),
         lrrq_a: $("#f_lrrq_a").datebox('getValue'),
         lrrq_b: $("#f_lrrq_b").datebox('getValue')
 	}
-	if(null == options.url) {
-		options.url = '../common/query?mapper=hcrwRcMapper&queryName=selectExclude';
-	} else {
-		$('#candidateEnterpriseGrid').datagrid("reload")
-	}
+	
+	$('#candidateEnterpriseGrid').datagrid("load", queryParams);
 }
 
 function addEnterprise() {
@@ -86,7 +85,8 @@ function addEnterprise() {
 	</div>
     <table id="candidateEnterpriseGrid"
            class="easyui-datagrid"
-           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:20,height:505" >
+           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:20,height:505,onBeforeLoad:checkParam,
+           url:'../common/query?mapper=hcrwRcMapper&queryName=selectExclude'" >
         <thead>
         <tr>
             <th data-options="field:'nbxh',halign:'center',align:'center'" width="106">企业内部序号</th>

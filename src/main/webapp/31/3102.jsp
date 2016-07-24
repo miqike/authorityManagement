@@ -69,15 +69,25 @@
 	                <td><input id="f_gsjhbh" class="easyui-validatebox"/></td>
 	            </tr>
 	            <tr>
+	            	<td class="label">抽查文号</td>
+	                <td><input id="f_cxwh" class="easyui-validatebox"/></td>
 	                <td class="label">计划名称</td>
 	                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
 	                <td class="label">检查内容</td>
 	                <td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
 	                           data-options="panelHeight:80,width:143,onChange:loadGrid1" style=""/></td>
+	            </tr>
+	            <tr>
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="2" style="text-align-right;">
+	                <td class="label">检查机关</td>
+	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
+	                <td class="label">计划类型</td>
+	                <td><input id="f_planType" class="easyui-combobox" codeName="planType"
+	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
+					
+	                <td style="text-align-right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -104,7 +114,9 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
 					<th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
-					 <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
+					<th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">检查机关</th>
+	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
+					<th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
 	                    formatter="formatDate">计划开始时间
 	                </th>
 					<th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>

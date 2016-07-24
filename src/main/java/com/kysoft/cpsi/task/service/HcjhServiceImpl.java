@@ -130,15 +130,12 @@ public class HcjhServiceImpl implements HcjhService {
 
 	@Override
 	public void addEnterprise(String hcjhId, String[] zchs) {
-		System.out.println("-------1 从接口加载--------");
-		System.out.println("-------2 添加到T_HCRW--------");
-		System.out.println("-------3 修改T_HCJH--------");
-		System.out.println("-------4 修改T_HCRW_TJ--------");
-		
-		
+		User zfry = WebUtils.getCurrentUser();
 		Map<String, Object> param = Maps.newHashMap();
         param.put("hcjhId", hcjhId);
         param.put("zchList", StringUtils.join(zchs, ","));
+        param.put("zfryId", zfry.getUserId());
+        param.put("zfryName", zfry.getName());
         hcjhMapper.addTask(param);
         
         

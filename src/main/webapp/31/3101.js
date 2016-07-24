@@ -70,6 +70,8 @@ function grid1ClickHandler() {
 	                text: '取消下达'
 	            });
 	        }
+        } else {
+        	$('#btnDispatch').linkbutton('disable');
         }
         
     } else {
@@ -255,7 +257,6 @@ function doPlanFormInit(data) {
 	
     $("#btnImportTask").click(funcImportTask);
     $("#btnImportPlan").click(funcImportPlan);
-
 }
 
 function doPlanFormInitb(data) {
