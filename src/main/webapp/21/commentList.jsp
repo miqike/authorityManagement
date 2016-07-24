@@ -9,6 +9,7 @@
 	}
 	
 	function funcAddComment() {
+        $("#commentGrid").datagrid("clearSelections");
 		$.easyui.showDialog({
     		title : "修改常见问题说明信息",
     		width : 600,
@@ -27,6 +28,33 @@
             }
     	});
 	}
+    function funcModifyComment() {
+        var sm=$("#commentGrid").datagrid("getSelected");
+        if(sm!=null) {
+            $.easyui.showDialog({
+                title: "修改常见问题说明信息",
+                width: 600,
+                height: 300,
+                topMost: false,
+                enableSaveButton: true,
+                enableApplyButton: false,
+                closeButtonText: "返回",
+                closeButtonIconCls: "icon-undo",
+                href: "./commentForm.jsp",
+                onLoad: function () {
+                    doInit();
+                },
+                onSave: function (d) {
+                    funcSaveComment();
+                }
+            });
+        }else{
+            $.messager.show({
+                title: '提示',
+                msg: "请选择要修改的数据！"
+            });
+        }
+    }
 
 	function funcRemoveComment () {
 		if(!$(this).linkbutton('options').disabled) {
@@ -87,9 +115,9 @@
 				toolbar: '#commentGridToolbar'">
         <thead>
         <tr>
+            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="90" codeName="sjly" formatter="formatCodeList">比对信息来源</th>
             <th data-options="field:'content',halign:'center',align:'left'" sortable="true" width="550">常见问题说明</th>
             <th data-options="field:'weight',halign:'center',align:'center'" sortable="true" width="80">排序权重</th>
-            <th data-options="field:'dbxxly',halign:'center',align:'left'" width="90" codeName="sjly" formatter="formatCodeList">比对信息来源</th>
         </tr>
         </thead>
     </table>
@@ -97,5 +125,6 @@
 </div>
 <div id="commentGridToolbar">
     <a href="#" id="btnAddComment" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+    <a href="#" id="btnModifyComment" class="easyui-linkbutton" iconCls="icon-add" plain="true" >修改</a>
     <a href="#" id="btnRemoveComment" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>

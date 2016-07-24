@@ -1,17 +1,13 @@
 package com.kysoft.cpsi.repo.service;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-
+import com.kysoft.cpsi.repo.entity.AuditItemComment;
+import com.kysoft.cpsi.repo.mapper.AuditItemCommentMapper;
+import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import org.springframework.stereotype.Service;
 
-import com.kysoft.cpsi.repo.entity.AuditItemComment;
-import com.kysoft.cpsi.repo.entity.Hccl;
-import com.kysoft.cpsi.repo.mapper.AuditItemCommentMapper;
-import com.kysoft.cpsi.repo.mapper.HcclMapper;
-import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.UUID;
 
 @Service("auditItemCommentService")
 public class AuditItemCommentServiceImpl implements AuditItemCommentService {
@@ -29,8 +25,12 @@ public class AuditItemCommentServiceImpl implements AuditItemCommentService {
 
 	@Override
 	public void addComment(AuditItemComment comment) {
-		comment.setId(UUID.randomUUID().toString().replace("-", ""));
-		auditItemCommentMapper.insert(comment);
+		if(null==comment.getId() || comment.getId().equals("")) {
+			comment.setId(UUID.randomUUID().toString().replace("-", ""));
+			auditItemCommentMapper.insert(comment);
+		}else{
+			auditItemCommentMapper.updateByPrimaryKey(comment);
+		}
 	}
 
 	@Override

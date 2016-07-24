@@ -414,7 +414,7 @@
             ${sort}
             ${order},
         </if>
-        ND
+        ND desc,jhbh desc
     </select>
     
     <select id="queryPlanAbstract" resultMap="BaseResultMap">

@@ -727,7 +727,7 @@
         <if test="order != null">
             ${sort} ${order},
         </if>
-        hcdw_xydm
+        plan_type desc,jhbh desc,hcdw_xydm
     </select>
     <select id="queryForAuditor2" resultMap="BaseResultMap">
         select
@@ -753,7 +753,7 @@
         <if test="order != null">
             ${sort} ${order},
         </if>
-        hcdw_xydm
+      plan_type desc,jhbh desc,hcdw_xydm
     </select>
 
 	<select id="queryForAuditorM" resultType="java.util.Map">
@@ -771,8 +771,11 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
-        
+        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
+      <if test="docReadyReportFlag!=null">
+        AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
+      </if>
+
         ) m LEFT JOIN 
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY

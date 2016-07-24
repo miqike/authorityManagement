@@ -39,6 +39,18 @@
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
 		$("#d_hcsxId").val(hcsx.id);
 		$("#d_hcsxmc").val(hcsx.name);
+		var doc= $("#docGrid").datagrid("getSelected");
+        console.log(doc);
+        $.easyui.loading();
+        setTimeout(function(){
+            $.easyui.loaded();
+            $("#d_wjlx").combobox();
+            $("#d_sfbyx").combobox();
+            $("#d_yhtg").combobox();
+            if(doc!=null) {
+                $.easyuiExtendObj.loadForm("addDocWindow", doc);
+            }
+        },1000);
 	}
 	
 	function setForm(value) {
@@ -78,13 +90,13 @@
     			<input class="easyui-validatebox" id="d_name" style="width:242px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">文件类型</td><td><input class="easyui-combobox", id="d_wjlx" codeName="wjlx" data-options="panelHeight:100"  style="width:250px;"/></td>
+    		<td class="label">文件类型</td><td><input class="easyui-combobox" id="d_wjlx" codeName="wjlx" data-options="panelHeight:100"  style="width:250px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">是否必要项</td><td><input class="easyui-combobox", id="d_sfbyx" codeName="yesno" data-options="panelHeight:70"  style="width:250px;"/></td>
+    		<td class="label">是否必要项</td><td><input class="easyui-combobox" id="d_sfbyx" codeName="yesno" data-options="panelHeight:70"  style="width:250px;"/></td>
     	</tr>
     	<tr>
-    		<td class="label">是否用户提供</td><td><input class="easyui-combobox", id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" style="width:250px;" /></td>
+    		<td class="label">是否用户提供</td><td><input class="easyui-combobox" id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" style="width:250px;" /></td>
     	</tr>
     </table>
 </div>

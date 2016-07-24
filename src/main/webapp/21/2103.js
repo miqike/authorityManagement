@@ -224,7 +224,8 @@ function funcShowComment() {
 
 function doCommentListInit() {
 	$("#btnAddComment").click(funcAddComment); 
-	$("#btnRemoveComment").click(funcRemoveComment); 
+	$("#btnModifyComment").click(funcModifyComment);
+	$("#btnRemoveComment").click(funcRemoveComment);
 	var auditItem = $("#mainGrid").datagrid("getSelected");
 	$("#_name_comment_").text(auditItem.name);
 	loadCommentGrid(auditItem.id);

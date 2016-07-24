@@ -178,6 +178,8 @@
 				                               pagination:true,pageSize:20, idField:'id'">
 				                        <thead>
 				                        <tr>
+                                            <th data-options="field:'planType', halign:'center',align:'left'" codeName="planType" formatter="formatCodeList" width="100" align="center" >计划类型</th>
+                                            <th data-options="field:'jhbh', halign:'center',align:'left'" width="100" align="center" >计划编号</th>
 				                            <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
 				                            <th data-options="field:'hcdwXydm', halign:'center',align:'center'" width="120" >统一社会信用代码</th>
 				                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>

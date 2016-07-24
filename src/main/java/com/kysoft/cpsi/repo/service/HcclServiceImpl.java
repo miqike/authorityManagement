@@ -1,16 +1,14 @@
 package com.kysoft.cpsi.repo.service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.kysoft.cpsi.repo.entity.Hccl;
 import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Service("hcclService")
 public class HcclServiceImpl implements HcclService {
@@ -28,8 +26,12 @@ public class HcclServiceImpl implements HcclService {
 
 	@Override
 	public void addHccl(Hccl hccl) {
-		hccl.setId(UUID.randomUUID().toString().replace("-", ""));
-		hcclMapper.insert(hccl);
+		if(null==hccl.getId() || hccl.getId().equals("")) {
+			hccl.setId(UUID.randomUUID().toString().replace("-", ""));
+			hcclMapper.insert(hccl);
+		}else{
+			hcclMapper.updateByPrimaryKey(hccl);
+		}
 		String hcsxId = hccl.getHcsxId();
 		recalcHcclForHcsx(hcsxId);
 	}

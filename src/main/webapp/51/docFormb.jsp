@@ -107,10 +107,10 @@
         <td><input class="easyui-validatebox" id="d_hcdwXydm" disabled/></td>
     </tr>
     <tr>
-        <td class="label">检查材料名称</td>
-        <td><input class="easyui-validatebox" id="d_name" data-options="" disabled/></td>
         <td class="label">检查事项名称</td>
         <td><input class="easyui-validatebox" id="d_hcsxmc" data-options="" disabled/></td>
+        <td class="label">检查材料名称</td>
+        <td><input class="easyui-validatebox" id="d_name" data-options="" disabled/></td>
     </tr>
     <tr>
         <td class="label">是否必要项</td>
