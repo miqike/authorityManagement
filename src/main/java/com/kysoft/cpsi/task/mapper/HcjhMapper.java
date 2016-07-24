@@ -53,6 +53,8 @@ public interface HcjhMapper {
 	Map<String, Object> testDblink(Map<String, Object> paramMap);
 
 	Map<String, Object> importDblink(Map<String, Object> paramMap);
+	
+	Map<String, Object> addTask(Map<String, Object> paramMap);
 
 	void updateAcceptStatusByPrimaryKey(@Param("hcjhId") String hcjhId, @Param("yrlsl")int yrlsl);
 	

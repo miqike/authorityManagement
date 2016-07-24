@@ -402,6 +402,12 @@
             <if test="fl!=null">
                 AND FL = #{fl}
             </if>
+            <if test="hcjgmc!=null">
+                AND DJJGMC = #{hcjgmc}
+            </if>
+            <if test="planType!=null">
+                AND PLAN_TYPE = #{planTypel}
+            </if>
         </where>
         ORDER BY
         <if test="order != null">
@@ -489,6 +495,14 @@
         {
         call prc_importDblink(
         #{hcjhId,mode=IN,jdbcType=VARCHAR}
+        )}
+    </select>
+    
+    <select id="addTask" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {
+        call prc_importRcRw (
+        	#{hcjhId,mode=IN,jdbcType=VARCHAR},
+        	#{zchList,mode=IN,jdbcType=VARCHAR}
         )}
     </select>
 

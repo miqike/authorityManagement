@@ -10,6 +10,8 @@ import com.kysoft.cpsi.task.mapper.JhSxMapper;
 import net.sf.husky.exception.BaseException;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -124,5 +126,21 @@ public class HcjhServiceImpl implements HcjhService {
 	public boolean validateGsjh(String gsjhbh) {
 		int count = hcjhMapper.selectCountByGsjhbh(gsjhbh);
 		return count == 0;
+	}
+
+	@Override
+	public void addEnterprise(String hcjhId, String[] zchs) {
+		System.out.println("-------1 从接口加载--------");
+		System.out.println("-------2 添加到T_HCRW--------");
+		System.out.println("-------3 修改T_HCJH--------");
+		System.out.println("-------4 修改T_HCRW_TJ--------");
+		
+		
+		Map<String, Object> param = Maps.newHashMap();
+        param.put("hcjhId", hcjhId);
+        param.put("zchList", StringUtils.join(zchs, ","));
+        hcjhMapper.addTask(param);
+        
+        
 	}
 }

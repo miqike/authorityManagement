@@ -81,7 +81,13 @@
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="4" style="text-align-right;">
+	                <td class="label">检查机关</td>
+	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
+	                <td class="label">计划类型</td>
+	                <td><input id="f_planType" class="easyui-combobox" codeName="planType"
+	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
+					
+	                <td style="text-align-right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -106,6 +112,7 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
 	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
+	                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">检查机关</th>
 	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
 					<th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划开始时间</th>
 	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
@@ -152,15 +159,16 @@
              <tr>
                  <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
                  <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
-                 <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
-                 <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
-                 <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
                  <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
                      formatter="formatZfry">检查人员</th>
+                 <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+                 <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
+                 <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
-                 <th data-options="field:'rlrq'" halign="center" align="left" width="70"
-                     formatter="formatDate">认领日期</th>
+                 <th data-options="field:'rlrq'" halign="center" align="left" width="70" formatter="formatDate">认领日期</th>
+                 <th data-options="field:'clrq'" halign="center" align="left" width="70" formatter="formatDate">成立日期</th>
+                 <th data-options="field:'zs'" halign="center" align="left" width="100">住所</th>
                  <th data-options="field:'jhwcrq'" halign="center" align="left" width="70"
                      formatter="formatDate">计划完成</th>
                  <th data-options="field:'sjwcrq'" halign="center" align="left" width="70"

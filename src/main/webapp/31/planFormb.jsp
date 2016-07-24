@@ -52,19 +52,20 @@
 		
 		$.easyui.showDialog({
 			title : "选择单位",
-			width : 550,
-			height : 350,
+			width : 850,
+			height : 650,
 			topMost : false,
 			enableSaveButton : true,
 			enableApplyButton : false,
+			saveButtonText : "选择",
 			closeButtonText : "返回",
 			closeButtonIconCls : "icon-undo",
 			href : "./candidateEnterpriseSelectDialog.jsp",
 			onLoad : function() {
-				//loadCandidateEnterpriseGrid();
+				doCandidateEnterpriseSelectDialogInit();
 			},
 			onSave : function() {
-				//addEnterprise();
+				addEnterprise();
 				return false;
 			}
 		});

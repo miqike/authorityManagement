@@ -140,4 +140,17 @@ public class HcjhController extends BaseController {
 	}
 	
 	
+	@RequestMapping(value = "/hcjh/addEnterprise/{hcjhId}", method = RequestMethod.PUT)
+	public Map<String, Object> addEnterprise(@PathVariable String hcjhId,  @RequestBody String[] zchs) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.addEnterprise(hcjhId, zchs);
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            result.put(STATUS, FAIL);
+            e.printStackTrace();
+        }
+		return result;
+	}
+	
 }

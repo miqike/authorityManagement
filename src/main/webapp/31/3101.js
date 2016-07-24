@@ -505,8 +505,10 @@ function loadGrid1(hcjhId) {
         gsjhbh: $('#f_gsjhbh').val(),
         cxwh: $('#f_cxwh').val(),
         jhmc: $('#f_jhmc').val(),
+        hcjgmc: $('#f_hcjgmc').val(),
         nr: $('#f_nr').combobox("getValue"),
-        fl: $('#f_fl').combobox("getValue")
+        fl: $('#f_fl').combobox("getValue"),
+        planType: $('#f_planType').combobox("getValue")
     });
 }
 
