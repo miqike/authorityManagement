@@ -175,7 +175,6 @@ function modify() {
 }
 
 function showPlanForm(data) {
-	console.log(data.planType)
 	$.easyui.showDialog({
 		title : "双随机计划信息",
 		width : 750,
@@ -224,10 +223,9 @@ function showPlanFormb(data) {
 			handler:function(){
 				var tab = $('#tabPanelb').tabs('getSelected');
 				var index = $('#tabPanelb').tabs('getTabIndex',tab);
-				if(index == 0 && $('#planWindowb').form('validate')) {
+				if(index == 0 /*&& $('#planWindowb').form('validate')*/) {
 					savePlan(2);
 				} else if (index == 1) {
-					//saveRoleResource();
 				}
 				return false;
 			}
@@ -319,7 +317,7 @@ function formatZfry(val, row) {
 
 function tabSelectHandler(title, index) {
     var planId = $('#p_id').val();
-    if (index == 1) { //选择角色TAB
+    if (index == 1) { 
         if (planId != "") {
             if ($('#p_hcrwsl').val() == "") {
                 $.messager.alert("提示", "任务信息尚未导入");
@@ -341,6 +339,32 @@ function tabSelectHandler(title, index) {
             $('#tabPanel').tabs('select', 0);
         }
     }
+}
+
+function tabSelectHandlerb(title, index) {
+	var planId = $('#k_id').val();
+	if (index == 1) { 
+		if (planId != "") {
+			if ($('#k_hcrwsl').val() == "") {
+				$.messager.alert("提示", "任务信息尚未添加");
+				//$('#tabPanelb').tabs('select', 0);
+				$('#btnImportTask').linkbutton('enable');
+			} else {
+				/*$.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForPlan", {planId:planId }, function(response) {
+                 $("#grid3").datagrid("loadData", response.rows);
+                 });
+				 */
+				var options = $("#grid3b").datagrid("options");
+				options.url = '../common/query?mapper=hcrwMapper&queryName=queryForPlan';
+				$('#grid3b').datagrid('load', {
+					planId: planId
+				});
+			}
+		} else {
+			$.messager.alert("操作错误", "请先保存计划基本信息");
+			$('#tabPanelb').tabs('select', 0);
+		}
+	}
 }
 
 function viewCheckList() {
@@ -497,7 +521,6 @@ function clearInput() {
 }
 
 function funcBtnRest() {
-    //$("#f_nd").val( new Date().getFullYear());
     clearInput();
 }
 
@@ -521,10 +544,15 @@ function savePlan(planType) {
         data: data,
         success: function (response) {
             if (response.status == SUCCESS) {
-                $('#p_id').val(response.id);
-                setReadOnlyStatus();
-                $("#btnImportTask").linkbutton("enable");
+            	if(planType==1) {
+            		$('#p_id').val(response.id);
+            		setReadOnlyStatus();
+            		$("#btnImportTask").linkbutton("enable");
+            	} else {
+            		$('#k_id').val(response.id);
+            	}
                 loadGrid1(response.id);
+                $.messager.show('操作提示', response.message, 'info', "bottomRight");
             } else {
                 $.messager.alert('失败', response.message, 'info');
             }
@@ -704,7 +732,6 @@ function _funcAccept (operation) {
 
 //初始化
 $(function () {
-	
 	getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
     
@@ -732,7 +759,5 @@ $(function () {
     $("#btnImportDblink").click(importDblink);
 
 
-    /*
-     */
 });
 

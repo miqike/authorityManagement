@@ -3,6 +3,78 @@
 	window.navigateBar = {
 		grid: $('#grid1')
 	};
+
+	function showChangeOrgDialog() {
+	    var setting = {
+	        data: {
+	            key: {
+	                title: "parentId",
+	                name: "nameWithId"
+	            }
+	        },
+	        async: {
+	            enable: true,
+	            type: "get",
+	            url: "../sys/organization/getSub",
+	            autoParam: ["id"]
+	        },
+	        callback: {
+	            onClick: function () {
+	                var treeObj = $.fn.zTree.getZTreeObj("orgTreeSelect");
+	                var selected = treeObj.getSelectedNodes();
+	                if (selected.length == 1) {
+	                    $("#btnSelectOrg").linkbutton("enable");
+	                } else {
+	                    $("#btnSelectOrg").linkbutton("disable");
+	                }
+	            }
+	        }
+	    };
+
+	    $.fn.zTree.init($("#orgTreeSelect"), setting);
+	    $('#orgSelectDialog').dialog('open');
+	}
+	
+	function selectOrg() {
+		var treeObj = $.fn.zTree.getZTreeObj("orgTreeSelect");
+	    var selected = treeObj.getSelectedNodes();
+	    if(selected.length == 1) {
+	    	$("#k_djjg").val(selected[0].id);
+	    	$("#k_djjgmc").val(selected[0].name);
+	    	$('#orgSelectDialog').window('close');
+	    } else {
+	    	$.messager.alert("操作提示", "请选择一个单位");
+	    }
+	    
+	}
+	
+	function showAddTaskDialog() {
+		
+		$.easyui.showDialog({
+			title : "选择单位",
+			width : 550,
+			height : 350,
+			topMost : false,
+			enableSaveButton : true,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./candidateEnterpriseSelectDialog.jsp",
+			onLoad : function() {
+				//loadCandidateEnterpriseGrid();
+			},
+			onSave : function() {
+				//addEnterprise();
+				return false;
+			}
+		});
+	}
+	
+	$(function () {
+		$("#btnShowChangeOrgDialog").click(showChangeOrgDialog);
+		$("#btnShowAddTaskDialog").click(showAddTaskDialog);
+		$("#btnSelectOrg").click(selectOrg);
+	});
 </script>
 <div id="planWindowb" style="padding: 5px;">
 	<%-- <jsp:include page="../sys/iterationBar.jsp"/> --%> 
@@ -17,8 +89,9 @@
                     </td>
                     <td class="label">检查单位</td>
                     <td><input type="hidden" id="k_djjg"/>
-                        <input class="easyui-validatebox add modify" id="k_djjgmc" data-options="required:true"
-                               style="width:192px;" />
+                        <input class="easyui-validatebox" id="k_djjgmc" data-options="required:true"
+                               style="width:160px;" />
+                               <a href="#" id="btnShowChangeOrgDialog" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
                     </td>
                 </tr>
                 <tr>
@@ -125,23 +198,35 @@
                    		pageSize: 10, pagination: true,
                        singleSelect:true,
                        collapsible:true,
+                       toolbar: '#grid3bToolbar',
                        selectOnCheck:false,
                        checkOnSelect:false"
                    style="height: 318px">
                 <thead>
                 <tr>
-                    <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">
-                        执法人员
-                    </th>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="200">
-                        统一社会信用代码
-                    </th>
-                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称
-                    </th>
+                    <!-- <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">执法人员</th> -->
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120">统一社会信用代码</th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
+                    <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="150" formatter="formatDate">举报或列入经营异常起始日</th>
+                    <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">终止日</th>
                 </tr>
                 </thead>
             </table>
+            <div id="grid3bToolbar">
+		        <a href="#" id="btnShowAddTaskDialog" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+		    </div>
         </div>
     </div>
 </div>
 	
+<div id="orgSelectDialog" class="easyui-dialog" title="选择单位"
+     style="clear: both; width: 600px; height: 400px;"
+     data-options="iconCls:'icon-edit',modal:true,closed:true">
+    <div style=" display: inline-block; position: relative;padding:5px 10px">
+        <div>
+            <a href="#" id="btnSelectOrg" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+               disabled="true">确定</a>
+        </div>
+        <ul id="orgTreeSelect" class="ztree"></ul>
+    </div>
+</div>	

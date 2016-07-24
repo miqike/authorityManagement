@@ -19,8 +19,8 @@ function sentVerifyMail() {
 	$.post("../audit/sentVerifyMail", {
 		 hcrwId: auditItem.hcrwId,
 		 hcsxId: auditItem.hcsxId,
-//		 mail:auditItem.qygsnr
-		 mail:"coralsea_li@yeah.net"
+		 mail:auditItem.qygsnr
+//		 mail:"coralsea_li@yeah.net"
      }, function(response) {
     	 if (response.status == SUCCESS) {
 			$.messager.show({
