@@ -746,8 +746,11 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
-        
+        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
+      <if test="docReadyReportFlag!=null">
+        AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
+      </if>
+
         ) m LEFT JOIN 
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY

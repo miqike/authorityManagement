@@ -133,6 +133,8 @@
                 sortOrder="asc">
              <thead>
              <tr>
+                 <th data-options="field:'FINANCIAL_DATE'" halign="center" align="center" width="110" formatter="formatDate"  styler="docReadyReportFlagStyler">财务数据导入时间</th>
+                 <th data-options="field:'SELFCHECK_DATE'" halign="center" align="center" width="100" formatter="formatDate"  styler="docReadyReportFlagStyler">自查表导入时间</th>
                  <th data-options="field:'DOC_READY_REPORT_FLAG'" halign="center" align="center" width="80" codeName="reportDocReadyFlag" formatter="formatCodeList"  styler="docReadyReportFlagStyler">上报标志</th>
                  <th data-options="field:'REPORT_DOC_READY_TIME'" halign="center" align="center" width="100" formatter="formatDate">上报时间</th>
                  <th data-options="field:'DOC_READY_FLAG'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">上传文档状态</th>

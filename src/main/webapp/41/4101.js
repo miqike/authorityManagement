@@ -52,7 +52,7 @@ function grid1ClickHandler() {
 
 function loadMyTask(jhbh) {
     $("#grid2").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh,
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh+"&docReadyReportFlag=1",
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
