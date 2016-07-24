@@ -166,6 +166,11 @@ function _reportDocReady(task) {
 $(function () {
     $("#btnSearch").click(loadGrid1);
     clearInput();
-   
+
+	var myDate = new Date();
+	$("#grid1").datagrid("load", {
+		nd: myDate.getFullYear()
+	});
+
 });
 
