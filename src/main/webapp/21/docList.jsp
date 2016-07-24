@@ -9,6 +9,7 @@
 	}
 	
 	function funcAddDoc() {
+        $("#docGrid").datagrid("clearSelections");
 		$.easyui.showDialog({
     		title : "修改抽检事项信息",
     		width : 400,
@@ -27,8 +28,36 @@
             }
     	});
 	}
+    function funcModifyDoc() {
+        var doc=$("#docGrid").datagrid("getSelected");
+        if(null!=doc) {
+            $.easyui.showDialog({
+                title: "修改抽检事项信息",
+                width: 400,
+                height: 280,
+                topMost: false,
+                enableSaveButton: true,
+                enableApplyButton: false,
+                closeButtonText: "返回",
+                closeButtonIconCls: "icon-undo",
+                href: "./docForm.jsp",
+                onLoad: function () {
+                    doInit();
+                },
+                onSave: function (d) {
+                    funcSaveDoc();
+                }
+            });
+        }else{
+            $.messager.show({
+                title: '提示',
+                msg: "请选择要修改的数据！"
+            });
+        }
+    }
 
-	function funcRemoveDoc () {
+
+    function funcRemoveDoc () {
 		if(!$(this).linkbutton('options').disabled) {
 			var row = $('#docGrid').datagrid('getSelected');
 			if (row) {
@@ -59,7 +88,8 @@
 	
 	function doDocListInit() {
 		$("#btnAddDoc").click(funcAddDoc); 
-		$("#btnRemoveDoc").click(funcRemoveDoc); 
+		$("#btnModifyDoc").click(funcModifyDoc);
+		$("#btnRemoveDoc").click(funcRemoveDoc);
 		var auditItem = $("#mainGrid").datagrid("getSelected");
 		$("#_name_").text(auditItem.name);
 		loadDocGrid(auditItem.id);
@@ -106,5 +136,6 @@
 </div>
 <div id="docGridToolbar">
     <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
+    <a href="#" id="btnModifyDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >修改</a>
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>

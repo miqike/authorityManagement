@@ -34,6 +34,10 @@
 		$.codeListLoader.parse($("#addCommentWindow"));
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
 		$("#p_hcsxId").val(hcsx.id);
+		var sm= $("#commentGrid").datagrid("getSelected");
+		if(sm!=null) {
+			$.easyuiExtendObj.loadForm("addCommentWindow", sm);
+		}
 		//$("#p_hcsxmc").val(hcsx.name);
 	}
 	/* 
@@ -66,20 +70,19 @@
 </script>
 <div id="addCommentWindow" style="padding-left:15px; padding-top:15px;">
     <table>
-    	
+		<tr>
+			<td class="label">比对信息来源</td><td><input class="easyui-combobox" id="p_dbxxly" style="width:200px;" data-options=""  codeName="sjly"/></td>
+		</tr>
     	<tr>
     		<td class="label" valign="top" >常见问题说明</td>
     		<td>
     			<input type="hidden" id="p_id" />
     			<input type="hidden" id="p_hcsxId" />
-				<textarea id="p_content" cols="70" rows="2" style="width:475px"></textarea>
+				<textarea id="p_content" cols="70" rows="2" style="width:475px;font-size:13px"></textarea>
 			</td>
     	</tr>
     	<tr>
     		<td class="label">排序权重</td><td><input class="easyui-validatebox" id="p_weight" validType='integer'/></td>
     	</tr>
-		<tr>
-            <td class="label">比对信息来源</td><td><input class="easyui-combobox" id="p_dbxxly" style="width:200px;" data-options=""  codeName="sjly"/></td>
-		</tr>
 	</table>
 </div>

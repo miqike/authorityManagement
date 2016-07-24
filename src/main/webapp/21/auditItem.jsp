@@ -109,12 +109,12 @@ function docGridClickRowHandler() {
         <tr>
             <td class="label" style="vertical-align:top">检查材料</td>
             <td colspan="3">
-            	<textarea id="p_hccl" cols="70" rows="2" style="width:553px" disabled></textarea></td>
+            	<textarea id="p_hccl" cols="70" rows="2" style="width:553px;font-size:13px" disabled></textarea></td>
         </tr>
         <tr>
             <td class="label" style="vertical-align:top">检查方法说明</td>
             <td colspan="3">
-            	<textarea id="p_hcffsm" cols="70" rows="2" style="width:553px"></textarea></td>
+            	<textarea id="p_hcffsm" cols="70" rows="2" style="width:553px;font-size:13px"></textarea></td>
         </tr>
     </table>
 </div>
