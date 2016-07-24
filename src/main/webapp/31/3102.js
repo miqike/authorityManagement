@@ -158,8 +158,10 @@ function clearInput() {
     $("#f_jhbh").val("");
     $("#f_gsjhbh").val("");
     $("#f_jhmc").val("");
+    $("#f_hcjgmc").val("");
     $("#f_nr").combobox("setValue", "");
     $("#f_fl").combobox("setValue", "");
+    $("#f_planType").combobox("setValue", "");
 }
 
 function loadGrid1() {

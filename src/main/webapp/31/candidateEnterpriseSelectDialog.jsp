@@ -50,7 +50,7 @@ function addEnterprise() {
 			success: function(response) {
 				if(response.status == SUCCESS) {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
-					//loadEnterpriseGrid();
+					$("#grid3b").datagrid("reload");;
 					loadCandidateEnterpriseGrid()
 				} else {
 					$.messager.alert("错误", "添加核查单位失败");
