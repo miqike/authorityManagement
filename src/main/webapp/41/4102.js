@@ -205,7 +205,9 @@ function financialValidate(){
          * */
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
             //1:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人
-            var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.JHND+"&"+rw.HCFL==1?"定向":"不定向"+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR;
+            var hcfl=rw.HCFL==1?"定向":"不定向";
+            console.log(hcfl);
+            var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.JHND+"&"+hcfl+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR;
             console.log(param);
             location.replace(param);
         });
@@ -213,6 +215,7 @@ function financialValidate(){
 }
 //初始化
 $(function () {
+    $.husky.getUserInfo();
     $("#btnSearch").click(loadGrid1);
     clearInput();
    $("#btnViewDocList").hide();
