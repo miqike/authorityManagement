@@ -105,6 +105,6 @@ function fixedFormatListPrint(params,data,columnList){
         rowTop = rowTop + rowHeight;
     }
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
 }

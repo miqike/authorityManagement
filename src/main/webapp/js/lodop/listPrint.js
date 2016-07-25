@@ -273,7 +273,7 @@ function listPrint(params, data, columnList) {
             LODOP.SET_PRINT_STYLEA(0, "Alignment", pageFootAlignment);
             LODOP.SET_PRINT_STYLEA(0, "Underline", pageFootUnderline);
         }
-        LODOP.PREVIEW();
-        //LODOP.PRINT();
+        // LODOP.PREVIEW();
+        LODOP.PRINT();
     }
 }

@@ -80,8 +80,8 @@ function printQiyezhusuohechahan() {
     LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
     LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
@@ -240,8 +240,8 @@ function printShidihechagaozhishu() {
     LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
     LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
@@ -411,8 +411,8 @@ function printZelingluxingtongzhishu() {
     LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
     LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
@@ -693,8 +693,8 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
     top = top + rowHeight;
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最下横线
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
@@ -863,8 +863,8 @@ function printGongShiXinXiGengZhengBiao(){
     top = top + rowHeight;
     LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidthFull), toMilli(rowHeight), "    注：个体工商户、农民专业合作社适用此表。");
 
-    LODOP.PREVIEW();
-    //LODOP.PRINT();
+    // LODOP.PREVIEW();
+    LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
