@@ -68,6 +68,7 @@ function loadMyTask() {
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
+		height:370,
 		pageSize: 20, pagination: true
 	});
 }
