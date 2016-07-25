@@ -172,7 +172,7 @@ function importFinancial(){
     }else {
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
             //2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&文件类型(2)
-            var param = "lieFinancial://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&2";
+            var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&2";
             console.log(param);
             location.replace(param);
         });
@@ -187,7 +187,7 @@ function importSelfCheck(){
     }else {
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
             //2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&文件类型(1)
-            var param = "lieSelfCheck://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&1";
+            var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&1";
             console.log(param);
             location.replace(param);
         });
@@ -205,7 +205,7 @@ function financialValidate(){
          * */
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
             //1:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人
-            var param = "lieFinancialValidate://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.JHND+"&"+rw.HCFL==1?"定向":"不定向"+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR;
+            var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.JHND+"&"+rw.HCFL==1?"定向":"不定向"+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR;
             console.log(param);
             location.replace(param);
         });
