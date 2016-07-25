@@ -721,7 +721,7 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where 
+        where PLAN_TYPE = #{planType} AND
         DOC_READY_REPORT_FLAG = 1 AND 
         (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
         <if test="nd!=null">
@@ -744,7 +744,7 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where 
+        where PLAN_TYPE = #{planType} AND
         DOC_READY_REPORT_FLAG = 1  
         AND QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (

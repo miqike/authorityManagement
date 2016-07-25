@@ -57,20 +57,17 @@ function reset() {
     loadMyTask();
 }
 
+function checkParam(param) {
+	return param.planType != undefined;
+}
+
 function loadMyTask() {
-    $("#grid1").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2) ,
-		queryParam: {
-			nd: $('#f_nd').val(),
-			hcjhId: $('#f_hcjhId').val(),
-			jhmc: $('#f_jhmc').val()
-		},
-		collapsible:true,
-		onClickRow:myTaskGridClickHandler,
-		singleSelect:true,ctrlSelect:false,method:'get',
-		height:370,
-		pageSize: 20, pagination: true
-	});
+    $("#grid1").datagrid("load",  {
+		planType: planType,
+		nd: $('#f_nd').val(),
+		hcjhId: $('#f_hcjhId').val(),
+		jhmc: $('#f_jhmc').val()
+	});;
 }
 
 function myTaskGridClickHandler() {
@@ -139,6 +136,9 @@ function refreshAuditItemList() {
 
 
 function showTaskListWindow() {
+	var options = $("#grid1").datagrid("options")
+	options.url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2);
+	
 	$("#myTaskListWindow").window({
         title: "我的任务列表", top: 5, left: $.util.windowSize().width-755, width: 750, height: 450,
         modal:false,

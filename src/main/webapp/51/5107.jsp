@@ -89,7 +89,7 @@
     %>
     <script>
 	    window.customer = '61';
-	    window.planType = 1;
+	    window.planType = 2;
     </script>
 </head>
 <body style="padding:5px;margin-top:-20px;">
