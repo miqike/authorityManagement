@@ -721,9 +721,11 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where PLAN_TYPE = #{planType} AND
-        DOC_READY_REPORT_FLAG = 1 AND 
+        where DOC_READY_REPORT_FLAG = 1 AND 
         (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+        <if test="planType!=null">
+            AND PLAN_TYPE = #{planType}
+        </if>
         <if test="nd!=null">
             AND JHND = #{nd}
         </if>
@@ -750,12 +752,14 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where PLAN_TYPE = #{planType} AND
-        DOC_READY_REPORT_FLAG = 1  
+        where DOC_READY_REPORT_FLAG = 1  
         AND QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
 			CONNECT BY PRIOR ID=PARENT_ID )
+        <if test="planType!=null">
+            AND PLAN_TYPE = #{planType}
+        </if>
         <if test="nd!=null">
             AND JHND = #{nd}
         </if>
