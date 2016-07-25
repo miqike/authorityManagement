@@ -164,36 +164,51 @@ function _reportDocReady(task) {
 
 //鼎信诺调用按钮事件
 function importFinancial(){
+    //财务电子数据导入
     var jh=$("#grid1").datagrid("getSelected");
     var rw=$("#grid2").datagrid("getSelected");
     if(null==jh || null ==rw){
         $.messager.show("操作提醒", '请选择核查计划及核查任务！', "info", "bottomRight");
     }else {
-        var param = "liexplorer://" + jh.id + "&" + rw.hcdwXydm + "&" + rw.hcdwName;
-        console.log(param);
-        location.replace(param);
+        $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+            //2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&文件类型(2)
+            var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&2";
+            console.log(param);
+            location.replace(param);
+        });
     }
 }
 function importSelfCheck(){
+    //企业公示信息自查表导入
     var jh=$("#grid1").datagrid("getSelected");
     var rw=$("#grid2").datagrid("getSelected");
     if(null==jh || null ==rw){
         $.messager.show("操作提醒", '请选择核查计划及核查任务！', "info", "bottomRight");
     }else {
-        var param = "liexplorer://" + jh.id + "&" + rw.hcdwXydm + "&" + rw.hcdwName;
-        console.log(param);
-        location.replace(param);
+        $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+            //2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&文件类型(1)
+            var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&"+rw.HCDW_NAME+"&1";
+            console.log(param);
+            location.replace(param);
+        });
     }
 }
 function financialValidate(){
+    //财务数据验证
     var jh=$("#grid1").datagrid("getSelected");
     var rw=$("#grid2").datagrid("getSelected");
     if(null==jh || null ==rw){
         $.messager.show("操作提醒", '请选择核查计划及核查任务！', "info", "bottomRight");
     }else {
-        var param = "liexplorer://" + jh.id + "&" + rw.hcdwXydm + "&" + rw.hcdwName;
-        console.log(param);
-        location.replace(param);
+        /**
+         * 1表示登陆 2表示导入 可能后期还有3,4,5
+         * */
+        $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+            //1:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人
+            var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.JHND+"&"+rw.HCFL==1?"定向":"不定向"+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR;
+            console.log(param);
+            location.replace(param);
+        });
     }
 }
 //初始化
