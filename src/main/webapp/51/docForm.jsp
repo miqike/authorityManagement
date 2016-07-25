@@ -40,7 +40,7 @@
 		
 		$("#d_hcrwId").val(hcrw.id);
 		$("#d_hcdwXydm").val(hcrw.hcdwXydm);
-		$("#d_hcjhnd").val(hcrw.nd);
+		$("#d_hcjhnd").val(hcrw.jhnd);
 		
 		
 		$("#d_hcsxId").combobox({url: "./" + hcrw.id + "/hcsx", method:'get',valueField: 'VALUE', textField: 'LITERAL',

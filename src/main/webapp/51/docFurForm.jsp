@@ -5,7 +5,7 @@ function doInitDocFurForm() {
 	$.codeListLoader.parse($("#addDocFurWindow"));
 	var hcrw = $("#grid1").datagrid("getSelected");
 	//var hcsx = getAuditItem();
-	$("#d_hcjhnd").val(hcrw.nd);
+	$("#d_hcjhnd").val(hcrw.jhnd);
 	$("#d_hcdwXydm").val(hcrw.hcdwXydm);
 	$("#d_hcrwId").val(hcrw.id);
 	
