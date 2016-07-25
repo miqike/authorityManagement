@@ -36,11 +36,12 @@ function taskStatusStyler(val, row, index) {
     }
 }
 
-
 function clearInput() {
 	$("#f_nd").val("");
     $("#f_hcjhId").val("");
     $("#f_jhmc").val("");
+    $("#f_hcdwXydm").val("");
+    $("#f_hcdwName").val("");
     $("#p_id").val("");
     $("#p_jhbh").val("");
     $("#p_jhmc").val("");
@@ -54,6 +55,8 @@ function reset() {
     $("#f_nd").val("");
     $("#f_hcjhId").val("");
     $("#f_jhmc").val("");
+    $("#f_hcdwXydm").val("");
+    $("#f_hcdwName").val("");
     loadMyTask();
 }
 
@@ -66,7 +69,9 @@ function loadMyTask() {
 		planType: planType,
 		nd: $('#f_nd').val(),
 		hcjhId: $('#f_hcjhId').val(),
-		jhmc: $('#f_jhmc').val()
+		jhmc: $('#f_jhmc').val(),
+		hcdwXydm: $('#f_hcdwXydm').val(),
+		hcdwName: $('#f_hcdwName').val()
 	});;
 }
 

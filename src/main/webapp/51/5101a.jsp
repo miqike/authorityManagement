@@ -181,7 +181,7 @@
 
 <div id="myTaskListWindow" >
 	<div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	    <div data-options="region:'north',split:false,height:42" title="">
+	    <div data-options="region:'north',split:false,height:70" title="">
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
@@ -189,8 +189,14 @@
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
+		            </tr>
+		            <tr>
+		                <td class="label" style="width:70px;">信用代码</td>
+		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
+		                <td class="label" style="width:70px;">企业名称</td>
+		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
-		                <td colspan="2" style="text-align-right;">
+		                <td style="text-align-right;">
 		                    <a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon-search">查找</a>
 		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -204,7 +210,7 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:370,onBeforeLoad:checkParam,pageSize: 20, pagination: true">
+						height:340,onBeforeLoad:checkParam,pageSize: 20, pagination: true">
 	            <thead>
 		            <tr>
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>

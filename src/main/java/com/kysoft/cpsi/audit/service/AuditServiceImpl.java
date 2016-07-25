@@ -147,38 +147,38 @@ public class AuditServiceImpl implements AuditService {
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
                 result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
-            case "人员信息":
+            case "从业人员信息":
                 result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
                 result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
-            case "企业网站网店的名称和网址":
+            case "企业网站及从事经营的网店的名称和网址":
                 result.put("a", homepageMapper.selectByTaskId(hcrwId));
                 result.put("b", homepageMapper.selectByTaskId2(hcrwId));
                 result.put("c", homepageMapper.selectByTaskId3(hcrwId));
                 break;
-            case "股东出资":
+            case "股东或发起人认缴和实缴信息":
                 result.put("a", stockholderContributionMapper.selectByTaskId(hcrwId));
                 result.put("b", stockholderContributionMapper.selectByTaskId2(hcrwId));
                 result.put("c", stockholderContributionMapper.selectByTaskId3(hcrwId));
                 break;
-            case "实缴出资":
+            case "股东或发起人认缴和实缴的出资额等信息":
 
                 break;
-            case "投资设立企业":
+            case "企业投资设立企业、购买股权信息":
                 result.put("a", investmentMapper.selectByTaskId(hcrwId));
                 result.put("b", investmentMapper.selectByTaskId2(hcrwId));
                 result.put("c", investmentMapper.selectByTaskId3(hcrwId));
                 break;
-            case "购买股权":
+            case "有限公司股东股权转让等股权变更信息":
 
                 break;
-            case "资产财务":
+            case "资产总额、负债总额等资产财务数据":
                 result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
                 result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
-            case "股权变更信息":
+            case "有限公司股东股权转让等变更信息":
                 result.put("a", stockRightChangeMapper.selectByTaskId(hcrwId));
                 result.put("b", stockRightChangeMapper.selectByTaskId2(hcrwId));
                 result.put("c", stockRightChangeMapper.selectByTaskId3(hcrwId));

@@ -733,6 +733,12 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
+        <if test="hcdwXydm!=null">
+            AND HCDW_XYDM = #{hcdwXydm}
+        </if>
+        <if test="hcdwName!=null">
+            AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
+        </if>
         AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
         ORDER BY
         <if test="order != null">
@@ -758,6 +764,12 @@
         </if>
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
+        </if>
+        <if test="hcdwXydm!=null">
+            AND HCDW_XYDM = #{hcdwXydm}
+        </if>
+        <if test="hcdwName!=null">
+            AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
         </if>
         AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
         ORDER BY
