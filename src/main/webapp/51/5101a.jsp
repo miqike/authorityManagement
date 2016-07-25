@@ -161,12 +161,14 @@
                 <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
                 <td class="label"  style="width:90px;">检查结果</td>
                 <td ><input id="p_hcjieguo" class="easyui-combobox" 
-                           data-options="width:187" codeName="gsjg" disabled/></td>
+                           data-options="width:187" codeName="gsjg" disabled/>
+                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
+                                                                                 plain="true" iconCls="icon-ok" disabled>确认</a>
+                </td>
                <!--  <td colspan="2">
                     <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
-                       iconCls="icon2 r12_c19" disabled>更新任务结果</a>
-                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
-                       plain="true" iconCls="icon-ok" disabled>确认</a></td> -->
+                       iconCls="icon2 r12_c19" disabled>更新任务结果</a>-->
+                    </td>
             </tr>
         </table>
 	</div>

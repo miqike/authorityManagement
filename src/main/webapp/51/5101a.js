@@ -142,6 +142,7 @@ function showTaskListWindow() {
         title: "我的任务列表", top: 5, left: $.util.windowSize().width-755, width: 750, height: 450,
         modal:false,
         collapsible:true,
+		closable:false,
         minimizable:true,
         border:false,
         autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
