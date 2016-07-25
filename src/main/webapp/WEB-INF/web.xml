@@ -346,6 +346,16 @@
         <url-pattern>*.msi</url-pattern>
     </servlet-mapping> 
     
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.xls</url-pattern>
+    </servlet-mapping> 
+    
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.doc</url-pattern>
+    </servlet-mapping> 
+    
     
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
