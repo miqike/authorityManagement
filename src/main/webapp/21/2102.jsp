@@ -89,7 +89,7 @@
                     <td>姓名</td>
                     <td><input id="f_name" class="easyui-validatebox"/></td>
                     <td>执法(监督)类别</td>
-                    <td><input id="f_zflx" class="easyui-combobox" codeName="zflx"/></td>
+                    <td><input id="f_zflx" class="easyui-combobox" codeName="zfjdlx" data-options="panelHeight:55"/></td>
                 </tr>
                 <tr>
                     <td>计划编号</td>
