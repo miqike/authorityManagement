@@ -725,7 +725,7 @@
         DOC_READY_REPORT_FLAG = 1 AND 
         (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
         <if test="nd!=null">
-            AND ND = #{nd}
+            AND JHND = #{nd}
         </if>
         <if test="hcjhId">
             AND JHBH = #{hcjhId}
@@ -751,7 +751,7 @@
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
 			CONNECT BY PRIOR ID=PARENT_ID )
         <if test="nd!=null">
-            AND ND = #{nd}
+            AND JHND = #{nd}
         </if>
         <if test="hcjhId">
             AND JHBH = #{hcjhId}
