@@ -10,6 +10,7 @@ function doInit() {
         <span style="color:blue; " id="_hcrwId_"></span>
         <span style="color:blue; " id="_hcsxId_"></span>
         <!-- <span style="color:blue; " id="_qymc_"></span> -->
+        <span style="color:blue; " id="_hcjieguo_"></span>
     </div>
     <table>
     	<tr> <td class="hcsx">企业名称：</td><td><span style="color:blue; " id="_qymc_"></span></td></tr>

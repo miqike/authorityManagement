@@ -249,6 +249,7 @@ function _doInit(type) {
 
     $("#_hcrwId_").text(auditItem.hcrwId);
     $("#_hcsxId_").text(auditItem.hcsxId);
+    $("#_hcjieguo_").text(auditItem.hcjieguo);
 
     $("#_qygsnr_").text(auditItem.qygsnr == null ? "" : auditItem.qygsnr);
     $("#_bznr_").text(auditItem.bznr == null ? "" : auditItem.bznr);

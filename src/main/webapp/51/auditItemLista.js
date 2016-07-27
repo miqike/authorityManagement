@@ -260,7 +260,9 @@ function _doInit(type) {
 
     $("#_hcrwId_").text(auditItem.hcrwId);
     $("#_hcsxId_").text(auditItem.hcsxId);
-
+    ///debugger;
+    $("#_hcjieguo_").text(auditItem.hcjg);
+//--------------
     $("#_qygsnr_").text(auditItem.qygsnr == null ? "" : auditItem.qygsnr);
     $("#_bznr_").text(auditItem.bznr == null ? "" : auditItem.bznr);
     $("#_sjnr_").text(auditItem.sjnr == null ? "" : auditItem.sjnr);
@@ -278,17 +280,9 @@ function _doInit(type) {
     $("#btnPass").show();
     $("#btnFail").show();
 
-    /*
-    $("#btnPass").click(pass);
-    $("#btnFail").click(fail);
-
-    $("#btnConfirmFail").click(confirmFail);
-    $("#btnCancelFail").click(cancelFail);
-    $("#btnShowPrompt").click(showPrompt);*/
     $("#k_failReason").val(auditItem.sm);
     
     _initPromptForAuditItem(auditItem)
-    $("#btnClose").click(closeAuditWindow);
     cancelFail();
 }
 
@@ -315,9 +309,7 @@ function constructPromptContent(rows) {
 
 function addComment(elem) {
 	var content = $(elem).text();
-	console.log(content)
 	$("#k_failReason").val($("#k_failReason").val() + "\n" + content);
-	console.log($("#k_failReason").val())
 }
 
 //==通用,通过,失败,返回===
@@ -334,7 +326,7 @@ function pass() {
             $.messager.show("操作提示", response.message, "info", "bottomRight");
             //$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
-            closeAuditWindow();
+            _closeAuditWindow();
         } else {
             $.messager.alert('错误', response.message, 'error');
         }
@@ -345,7 +337,7 @@ function fail() {
     $('#auditToolbar').hide();
     //$('#failReason').show();
     //$('#k_failReason').val("");
-    confirmFail()
+    confirmFail();
 }
 
 function cancelFail () {
@@ -372,7 +364,7 @@ function confirmFail () {
 			$.messager.show('操作提示', response.message, 'info', "bottomRight");
 //			$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
-			closeAuditWindow();
+            _closeAuditWindow();
 		} else {
 			$.messager.alert('错误', response.message, 'error');
 		}
@@ -380,7 +372,14 @@ function confirmFail () {
 }
 
 function closeAuditWindow() {
-    $("#auditContent").empty()
-    $("#auditLog").empty()
-    $("#auditItemAccordion").accordion("select", 0);
+	if($("#_hcjieguo_").text() != 1) {
+		fail();
+	}
+	_closeAuditWindow();
+}
+
+function _closeAuditWindow() {
+	$("#auditContent").empty()
+	$("#auditLog").empty()
+	$("#auditItemAccordion").accordion("select", 0);
 }
