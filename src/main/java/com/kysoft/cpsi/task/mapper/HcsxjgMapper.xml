@@ -230,12 +230,13 @@
 
   <select id="queryForTask" resultMap="ExtendResultMap">
 	select <include refid="Base_Column_List" />,
-      (select hcxxfl from t_hcsx b where b.id=t_hcsxjg.hcsx_id) hcxxfl
-    from T_HCSXJG where HCRW_ID = #{hcrwId} 
+      (select hcxxfl from t_hcsx b where b.id=t_hcsxjg.hcsx_id) hcxxfl,
+      (select code from t_hcsx b where b.id=t_hcsxjg.hcsx_id) code
+    from T_HCSXJG where HCRW_ID = #{hcrwId}
     <if test="hclx != null">
        AND HCLX = #{hclx,jdbcType=NUMERIC}
      </if>
-    ORDER BY HCSX_ID ASC
+    ORDER BY to_number(code),HCSX_ID ASC
   </select>
   
   <select id="selectCountByTaskId" resultType="java.lang.Integer">
