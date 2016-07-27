@@ -108,7 +108,7 @@
 		<a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
     </shiro:hasPermission>
     <shiro:hasPermission name="5105:btnPrintGongShiXinXiGengZhengBiao">
-		<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
+		<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" >公示信息更正审批表</a>
     </shiro:hasPermission>
 </div>
 
@@ -124,7 +124,7 @@
     </shiro:hasPermission>
     <span>-</span>
     <shiro:hasPermission name="5105:btnPrintAuditReport">
-		<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
+		<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
     </shiro:hasPermission>
     <shiro:hasPermission name="5105:btnUpdateHcjg">
 		<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
