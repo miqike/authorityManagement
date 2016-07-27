@@ -8,7 +8,7 @@ function doInit() {
 	doInitSingle();
 	
 	$("#btnSentVerifyMail").click(sentVerifyMail);
-	$("#btnCloseAuditWindow").click(closeAuditWindow);
+//	$("#btnCloseAuditWindow").click(closeAuditWindow);
 //	$("#btnSuccess").hide();
 //	$("#btnFail").hide();
 	
