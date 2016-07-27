@@ -72,13 +72,6 @@ $(function () {
 		     data-options="modal:true,closed:true,iconCls:'icon-search'"
 		     style="width: 750px; height: 420px; padding: 10px;">
 			<div id="auditContent" style="padding:10px;"></div>
-			<div id="auditToolbar" style="padding:5px 0px;">
-                <div class="dialog-button calendar-header" style="height: auto; border-top-color: rgb(195, 217, 224);text-align: left;">
-				    <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
-				    <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
-				    <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
-				</div>
-			</div>
             <div id="failReason" style="display:none;padding:5px;">
 				<span style="font-weight:bold; ">检查项目不通过理由和说明:</span>
 	               <a href="#" id="btnShowPrompt" class="easyui-linkbutton" iconCls="icon2 r11_c18" plain="true">选择常见问题说明</a>
@@ -87,6 +80,13 @@ $(function () {
 	               <a href="#" id="btnConfirmFail" class="easyui-linkbutton" iconCls="icon-ok" plain="true">确定</a>
 	               <a href="#" id="btnCancelFail" class="easyui-linkbutton" iconCls="icon-undo" plain="true">取消</a>
 			
+			</div>
+			<div id="auditToolbar" style="padding:5px 0px;">
+                <div class="dialog-button calendar-header" style="height: auto; border-top-color: rgb(195, 217, 224);text-align: left;">
+				    <a href="#" id="btnSuccess" class="easyui-linkbutton" iconCls="icon-ok" plain="true">通过</a>
+				    <a href="#" id="btnFail" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">不通过</a>
+				    <a href="#" id="btnClose" class="easyui-linkbutton" iconCls="icon2 r3_c4" plain="true">返回</a>
+				</div>
 			</div>
 			<div id="auditLog" style="margin-top:5px;"></div>
 			

@@ -326,12 +326,12 @@ function pass() {
 
 function fail() {
     $('#auditToolbar').hide();
-    $('#failReason').show();
+    //$('#failReason').show();
 }
 
 function cancelFail () {
     $('#auditToolbar').show();
-    $('#failReason').hide();
+    //$('#failReason').hide();
     $("#btnShowPrompt").tooltip("hide");
 }
 

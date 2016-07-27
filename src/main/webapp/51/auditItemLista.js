@@ -285,6 +285,8 @@ function _doInit(type) {
     $("#btnConfirmFail").click(confirmFail);
     $("#btnCancelFail").click(cancelFail);
     $("#btnShowPrompt").click(showPrompt);*/
+    $("#k_failReason").val(auditItem.sm);
+    
     _initPromptForAuditItem(auditItem)
     $("#btnClose").click(closeAuditWindow);
     cancelFail();
@@ -304,7 +306,7 @@ function _initPromptForAuditItem(auditItem) {
 function constructPromptContent(rows) {
 	var content = "";
 	for(var i=0; i<rows.length; i++) {
-		content += "<span class='commentItem' ondblclick='javascript:addComment(this);'>";
+		content += "<span class='commentItem' ondblclick ='addComment(this);'>";
 		content += rows[i].content;
 		content += "</span></br>";
 	}
@@ -313,7 +315,9 @@ function constructPromptContent(rows) {
 
 function addComment(elem) {
 	var content = $(elem).text();
-	$("#k_failReason").text($("#k_failReason").text() + "\n" + content);
+	console.log(content)
+	$("#k_failReason").val($("#k_failReason").val() + "\n" + content);
+	console.log($("#k_failReason").val())
 }
 
 //==通用,通过,失败,返回===
@@ -339,13 +343,14 @@ function pass() {
 
 function fail() {
     $('#auditToolbar').hide();
-    $('#failReason').show();
-    $('#k_failReason').val("");
+    //$('#failReason').show();
+    //$('#k_failReason').val("");
+    confirmFail()
 }
 
 function cancelFail () {
     $('#auditToolbar').show();
-    $('#failReason').hide();
+    //$('#failReason').hide();
     $("#btnShowPrompt").tooltip("hide");
 }
 
