@@ -18,7 +18,7 @@
 
 
 <script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
-<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
+<script type="text/javascript" src="../js/husky/husky.common.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/formatter.js"></script>
 <script type="text/javascript" src="./log.js" ></script>
@@ -103,22 +103,6 @@
 			<tbody>
 			</tbody>
 		</table>
-    </div>
-
-    <div id="popWindow" class="easyui-window" title="详细信息"
-         data-options="modal:true,closed:true,iconCls:'icon-search'"
-         style="width: 750px; height: 430px; padding: 5px;">
-        <div style="width:726px;">
-            <table>
-                <tr>
-                    <td style="text-align: left; width:50px;">描述</td>
-                    <td style="text-align: left;"><span id="message"></span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><textarea id="content" rows="22" style="width:703px;height:310px;" readonly ></textarea></td>
-                </tr>
-            </table>
-        </div>
     </div>
 </body>
 </html>
