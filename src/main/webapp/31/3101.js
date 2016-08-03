@@ -575,7 +575,7 @@ function funcImportPlan() {
 	if (!$(this).linkbutton('options').disabled) {
 		var dialog = $.easyui.showDialog({
 			title : "接口抽查计划信息",
-			width : 650,
+			width : 800,
 			height : 380,
 			topMost : false,
 			iconCls:'icon2 r16_c14',
@@ -593,6 +593,9 @@ function funcImportPlan() {
 								$("#p_jhmc").val(selected.jhmc);
 								$("#p_cxwh").val(selected.cxwh);
 								$("#p_gsjhbh").val(selected.gsjhbh);
+								$("#p_djjg").val(selected.djjg);
+								$("#p_djjgmc").val(selected.djjgmc);
+								
 								$(dialog).dialog("close")
 								return true;
 							} else {

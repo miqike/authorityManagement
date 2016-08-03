@@ -425,8 +425,8 @@
     </select>
     
     <select id="queryPlanAbstract" resultMap="BaseResultMap">
-        select jhxh GSJHBH,nd,jhmc,ccwh CXWH,ccqys HCRWSL from GOV_NBCC_JH
-        ORDER BY jhxh
+        SELECT a.jhxh GSJHBH, a.nd, a.jhmc, a.ccwh CXWH, a.ccqys HCRWSL, a.DJJG, b.name DJJGMC from GOV_NBCC_JH a LEFT JOIN SYS_ORGanization b ON a.djjg=b.id
+        ORDER BY a.jhxh
     </select>
     
     <select id="selectCountByGsjhbh" resultType="java.lang.Integer">
