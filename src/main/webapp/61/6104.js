@@ -51,6 +51,32 @@ function formatZfry(val, row) {
 	}
 }
 
+function search() {
+	loadMyPlan();
+}
+
+function firstLoadMyPlan() {
+	var options = $("#grid1").datagrid("options")
+	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
+	loadMyPlan();
+}
+
+function loadMyPlan() {
+	
+	$("#grid1").datagrid("load", {
+        nd: $('#f_nd').val(),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
+        jhmc: $('#f_jhmc').val(),
+        //hcjgmc: $('#f_hcjgmc').val(),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue")//,
+        //planType: $('#f_planType').combobox("getValue")
+    });
+}
+
+
 function loadGrid1() {
     var options = $("#grid1").datagrid("options");
     options.url = '../common/query?mapper=hcjhMapper&queryName=query';
@@ -99,9 +125,14 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 
 //初始化
 $(function () {
+	$.husky.getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
     clearInput();
-    loadGrid1();
+    if (null != window.userInfo) {
+    	firstLoadMyPlan();
+    } else {
+        $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
+    }
     //$("#btnSearch").click(loadGrid1);
     //$("#btnReset").click(funcBtnRest);
 

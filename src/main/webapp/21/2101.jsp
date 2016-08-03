@@ -24,7 +24,7 @@
 
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
      <script type="text/javascript" src="../js/formatter.js"></script>
 
@@ -145,7 +145,7 @@
 				            enableRowContextMenu: false,
 							toolbar: '#mainGridToolbar',
 			           		pageSize: 100, pagination: true,
-				            offset: { width: -255, height: -185}">
+				            offset: { width: -255, height: -205}">
 	            <thead>
 		            <tr>
 		                <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
