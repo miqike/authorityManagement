@@ -127,7 +127,7 @@
      <div data-options="region:'center'">
          <table id="grid2"
                 class="easyui-datagrid"
-                data-options="ctrlSelect:true,collapsible:true,pageSize: 10, pagination: true,fit:true,
+                data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,fit:true,
 					onClickRow:myTaskGridClickHandler,height:400, method:'get'"
                 toolbar="#grid2Toolbar"
                 sortOrder="asc">

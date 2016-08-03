@@ -91,7 +91,7 @@
         <table id="grid1"
                class="easyui-datagrid"
                data-options="singleSelect:true,collapsible:true,
-				onClickRow:grid1ClickHandler,pageSize: 10, pagination: true,
+				onClickRow:grid1ClickHandler,pageSize: 100, pagination: true,
 				method:'get'"
                style="height: 250px"
                sortOrder="asc">

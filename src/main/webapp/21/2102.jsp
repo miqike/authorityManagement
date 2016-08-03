@@ -115,7 +115,7 @@
 		            enableHeaderContextMenu: false,
 		            enableRowContextMenu: false,
 					toolbar: '#mainGridToolbar',
-	           		pageSize: 20, pagination: true,
+	           		pageSize: 100, pagination: true,
 		            offset: { width: -254, height: -76}">
             <thead>
             <tr>

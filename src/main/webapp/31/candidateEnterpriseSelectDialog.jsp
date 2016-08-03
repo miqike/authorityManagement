@@ -85,7 +85,7 @@ function addEnterprise() {
 	</div>
     <table id="candidateEnterpriseGrid"
            class="easyui-datagrid"
-           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:20,height:505,onBeforeLoad:checkParam,
+           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:100,height:505,onBeforeLoad:checkParam,
            url:'../common/query?mapper=hcrwRcMapper&queryName=selectExclude'" >
         <thead>
         <tr>

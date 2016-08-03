@@ -210,7 +210,7 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,onBeforeLoad:checkParam,pageSize: 20, pagination: true">
+						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true">
 	            <thead>
 		            <tr>
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>

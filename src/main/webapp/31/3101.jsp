@@ -81,11 +81,11 @@
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td class="label">检查机关</td>
-	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
 	                <td class="label">计划类型</td>
 	                <td><input id="f_planType" class="easyui-combobox" codeName="planType"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
+	                <td class="label">任务下达机关</td>
+	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
 					
 	                <td style="text-align-right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
@@ -112,7 +112,7 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
 	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
-	                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">检查机关</th>
+	                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达机关</th>
 	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
 					<th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划开始时间</th>
 	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
@@ -149,7 +149,7 @@
      <div data-options="region:'center'">
          <table id="grid2"
                 class="easyui-datagrid"
-                data-options="ctrlSelect:true,collapsible:true,pageSize: 10, pagination: true,fit:true,
+                data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,fit:true,
 		onClickRow:grid2ClickHandler,height:400,
 		method:'get'"
                 toolbar="#planGridToolbar"
@@ -158,7 +158,7 @@
              <thead>
              <tr>
                  <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
-                 <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+                 <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">任务下达机关</th>
                  <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
                  <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
                      formatter="formatZfry">检查人员</th>
@@ -178,9 +178,9 @@
          </table>
          <div id="planGridToolbar">
              <a href="#" id="btnSort1" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
-                data-options="disabled:true">按检查机关+检查人员排序</a>
+                data-options="disabled:true">按任务下达机关+检查人员排序</a>
              <a href="#" id="btnSort2" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true"
-                data-options="disabled:true">按市场主体类型+检查机关排序</a>
+                data-options="disabled:true">按市场主体类型+任务下达机关排序</a>
              <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领</a>
              <a href="#" id="btnUnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">取消认领</a>
              <!-- 

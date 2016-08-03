@@ -136,6 +136,6 @@
 	<input type="file" name="file" style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0;">
 </a>
 
-<a href="#" id="btnSaveDoc" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
+<a href="#" id="btnSaveDoc" class="easyui-linkbutton" iconCls="icon-save" plain="true" disabled>保存</a>
 <div id="_docPanel" style="padding:10px;"></div>
 <div id="progressbar" style='margin-bottom:10px;display:none'></div>

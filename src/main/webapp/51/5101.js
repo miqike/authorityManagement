@@ -61,7 +61,7 @@ function loadMyTask() {
 		onClickRow:grid1ClickHandler,
 		offset: { width: 0, height: -85},
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 20, pagination: true
+		pageSize: 100, pagination: true
 	});
 		
 }

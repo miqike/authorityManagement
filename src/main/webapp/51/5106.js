@@ -1,5 +1,14 @@
 window.excludeSaved = false;
 
+function formatZfry(val, row) {
+	if(row.ZFRY_NAME1 != null && row.ZFRY_NAME2 != null ) {
+		return row.ZFRY_NAME1 + "/" + row.ZFRY_NAME2;
+	} else if(row.ZFRY_NAME1 == null ) {
+		return row.ZFRY_NAME2;
+	} else if(row.ZFRY_NAME2 == null ) {
+		return row.ZFRY_NAME1;
+	}
+}
 
 function docReadyReportFlagStyler(val,row,index) {
 	if(val == 1) {
@@ -56,7 +65,7 @@ function loadMyTask(jhbh) {
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 20, pagination: false
+		pageSize: 100, pagination: false
 	});
 }
 

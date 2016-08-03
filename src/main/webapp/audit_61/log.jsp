@@ -5,7 +5,7 @@
 	$('#logGird').datagrid({
 	    url:'../sys/log?businessKey=' + auditItem.hcrwId + '-' + auditItem.hcsxId,
 	    method:'get',
-	    pageSize:"50",
+	    pageSize:"100",
 	    pagination:"true",
 	    columns:[[
 	        {field:'operateTime',title:'时间',width:120, halign:'center',align:'center',formatter:datetimeFormatter},

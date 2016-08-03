@@ -144,7 +144,7 @@
 				            enableHeaderContextMenu: false,
 				            enableRowContextMenu: false,
 							toolbar: '#mainGridToolbar',
-			           		pageSize: 20, pagination: true,
+			           		pageSize: 100, pagination: true,
 				            offset: { width: -255, height: -185}">
 	            <thead>
 		            <tr>
@@ -193,17 +193,14 @@
            style="height: 318px">
         <thead>
         <tr>
-            <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
-            <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
-            <!-- 
-            <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
-            <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th> -->
-            <th data-options="field:'qymc'" halign="center" align="left" width="100">区域</th>
-            <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
             <th data-options="field:'nd'" halign="center" align="center" width="70">计划年度</th>
+            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
             <th data-options="field:'jhbh'" halign="center" align="left" width="70" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
-            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
+            <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+            <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+            <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
+            <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
             <th data-options="field:'hcjiegou'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
         </tr>
         </thead>

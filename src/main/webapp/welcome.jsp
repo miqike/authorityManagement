@@ -52,7 +52,7 @@
  -->
                     <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;"
                            data-options="fit:true,border:false,singleSelect:true,method:'get',
-                               pagination:true,pageSize:20, idField:'id'">
+                               pagination:true,pageSize:100, idField:'id'">
                         <thead>
                         <tr>
                             <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
