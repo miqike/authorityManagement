@@ -18,7 +18,7 @@
 	<table id="_userGrid" class="easyui-datagrid"
 		data-options="
 			ctrlSelect:true,collapsible:true,checkOnSelect:false,
-            selectOnCheck:false,pagination:true,method:'get',pageSize:20,
+            selectOnCheck:false,pagination:true,method:'get',pageSize:100,
 			url:'./common/query?mapper=userMapper&queryName=queryUser'"
 		 	style="height: 333px">
 		<thead>

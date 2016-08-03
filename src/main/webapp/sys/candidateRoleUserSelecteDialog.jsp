@@ -24,7 +24,7 @@
                selectOnCheck:false,
                method:'get',
                checkOnSelect:false"
-		pageSize="20" pagination="true" style="height: 333px">
+		pageSize="100" pagination="true" style="height: 333px">
 		<thead>
 			<tr>
 				<th data-options="field:'orgId',halign:'center',align:'left'"

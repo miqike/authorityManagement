@@ -34,7 +34,7 @@ function loadSuccessHandler(data) {
         $('#btnShowDetail').linkbutton('disable');
         $('#f_lastIdString').val(data.rows[data.rows.length - 1].idString);
     } else {
-    	$.messager.alert("错误", data.stack);
+    	$.messager.alert("错误", data.message);
     }
 }
 

@@ -2,7 +2,7 @@
 
 <div id="gxdwSelectDialog">
     <table id="gxdwGrid"
-		style="height: 320px" pageSize="20" 
+		style="height: 320px" pageSize="pageSize=" 
 		pagination="true">
 		<thead>
 			<tr>

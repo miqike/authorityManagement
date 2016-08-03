@@ -354,7 +354,7 @@ $(function() {
                     url:'../common/query?mapper=bi01Mapper&queryName=query'
                     "
                        style="height: 200px"
-                       pageSize="20"
+                       pageSize="100"
                        pagination="true">
                     <thead>
                     <tr>

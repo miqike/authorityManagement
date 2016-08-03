@@ -70,7 +70,7 @@
 				ctrlSelect:true,method:'get',onDblClickRow:mainGridDblClickHandler,
 				url:'../common/query?mapper=userMapper&queryName=queryUser',
 				toolbar: '#mainGridToolbar',
-           		pageSize: 20, pagination: true"
+           		pageSize: 100, pagination: true"
            pagePosition ="bottom" >
         <thead>
         <tr>

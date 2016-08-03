@@ -67,7 +67,7 @@
 				url:'../sys/user/online/'"
            toolbar="#mainGridToolbar"
            style="height: 500px"
-           pageSize="20"
+           pageSize="100"
            pagination="true">
         <thead>
         <tr>

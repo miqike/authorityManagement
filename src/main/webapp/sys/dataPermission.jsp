@@ -53,7 +53,7 @@
 				url:'../common/query?mapper=dataPermissionMapper&queryName=query'"
            toolbar="#mainGridToolbar"
            style="height: 500px"
-           pageSize="20"
+           pageSize="100"
            pagination="true"
            pagePosition ="bottom" >
         <thead>

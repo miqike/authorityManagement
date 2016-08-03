@@ -142,27 +142,28 @@
      style="padding-top:5px;width:auto">
         <table id="taskDetailTable">
             <tr>
-                <td class="label" style="width:90px">计划编号</td>
-                <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                <td class="label" style="width:90px">计划名称</td>
+                <td class="label" style="width:60px">计划编号</td>
+                <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+                <td class="label" style="width:75px">计划名称</td>
                 <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
                 
             </tr>
             <tr>
                 <td class="label">注册号</td>
-                <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                <td class="label" >抽查单位</td>
+                <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+                <td class="label">被抽查企业</td>
                 <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
                 
             </tr>
             <tr>   
-                <td class="label">下达时间</td>
-                <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                <td class="label"  style="width:90px;">计划结束时间</td>
-                <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                <td class="label"  style="width:90px;">检查结果</td>
+                <td class="label">计划年度</td>
+                <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
+                <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
+                <td class="label" >计划下达单位</td>
+                <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>
+                <td class="label"  style="width:50px;">检查结果</td>
                 <td ><input id="p_hcjieguo" class="easyui-combobox" 
-                           data-options="width:187" codeName="gsjg" disabled/>
+                           data-options="width:145" codeName="gsjg" disabled/>
                     <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
                                                                                  plain="true" iconCls="icon-ok" disabled>确认</a>
                 </td>
@@ -185,22 +186,26 @@
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
-		                <td class="label" style="width:70px;">计划年度</td>
+		                <td class="label" style="width:100px;">计划年度</td>
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
+		                <td class="label" style="width:70px;color:red">计划类型?</td>
+		                <td><input id="f_planType" class="easyui-combobox" codeName="planType" data-options="panelHeight:60"/></td>
 		            </tr>
 		            <tr>
-		                <td class="label" style="width:70px;">信用代码</td>
+		                <td class="label" >统一社会信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-		                <td class="label" style="width:70px;">企业名称</td>
+		                <td class="label" >企业名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
-		                <td style="text-align-right;">
+		                <td style="text-align-right;padding-left:15px;" colspan="2">
 		                    <a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon-search">查找</a>
 		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon2 r3_c10">重置</a>
+		                    <a href="javascript:void(0);" id="btnCollapseMyTaskWindow" class="easyui-linkbutton" plain="true"
+		                       iconCls="icon-back">返回</a>
 		                </td>
 		            </tr>
 		        </table>
@@ -210,15 +215,20 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,onBeforeLoad:checkParam,pageSize: 20, pagination: true">
+						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true">
 	            <thead>
 		            <tr>
+			            <th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>
+		                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
+		                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
+		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="170">任务下达单位</th>
+	                
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>
 		                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
 		                <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
-                        <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>
+                        <!-- <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>
                         <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="80" formatter="formatDate">计划结束时间</th>
-                        <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th>
+                        <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th> -->
                         <th data-options="field:'rwzt', halign:'center',align:'center'" width="60" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 		            </tr>
 	            </thead>

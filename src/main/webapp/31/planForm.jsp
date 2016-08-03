@@ -130,7 +130,7 @@
                    class="easyui-datagrid"
                    data-options="
                    		method:'get',
-                   		pageSize: 10, pagination: true,
+                   		pageSize: 100, pagination: true,
                        singleSelect:true,
                        collapsible:true,
                        selectOnCheck:false,

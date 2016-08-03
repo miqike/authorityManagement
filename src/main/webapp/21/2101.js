@@ -76,6 +76,7 @@ function stylerHcjg(val, row, index) {
 
 $(function () {
     $.fn.zTree.init($("#orgTree"), setting);
+    $("#f_jhnd").val(new Date().getFullYear());
     $("#btnView").click(function(){
         showModalDialog("examHistory");
         var qy=$("#mainGrid").datagrid("getSelected");
@@ -89,13 +90,15 @@ $(function () {
         $("#examHistory").window("close");
     });
     $("#btnViewHcsxjg").click(function(){
-        showModalDialog("examHistoryHcsxjg");
-        var rw=$("#grid2").datagrid("getSelected");
-        var options = $("#grid3").datagrid("options");
-        options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
-        $('#grid3').datagrid('load', {
-            hcrwId: rw.id
-        });
+    	var rw=$("#grid2").datagrid("getSelected");
+    	if(null != rw) {
+	    	showModalDialog("examHistoryHcsxjg");
+	        var options = $("#grid3").datagrid("options");
+	        options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
+	        $('#grid3').datagrid('load', {
+	            hcrwId: rw.id
+	        });
+		}
     });
     $("#btnCloseHcsxjg").click(function(){
         $("#examHistoryHcsxjg").window("close");

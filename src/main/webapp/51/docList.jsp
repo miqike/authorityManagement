@@ -113,7 +113,7 @@
            		onClickRow:docGridClickRowHandler,
 				ctrlSelect:false,method:'get',
 				toolbar: '#docGridToolbar',
-           		pageSize: 20, pagination: true">
+           		pageSize: 100, pagination: true">
         <thead>
         <tr>
             <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="110">名称</th>

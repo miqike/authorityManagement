@@ -81,7 +81,7 @@
 				url:'../sys/log',
 				onLoadSuccess: loadSuccessHandler,
 				height:450"
-		    pageSize="50"
+		    pageSize="100"
 			pagination="true">
 			<thead>
 				<tr>

@@ -67,7 +67,7 @@
 				url:'../common/query?mapper=roleMapper&queryName=queryRole'"
 			toolbar="#mainGridToolbar"
 			style="height: 500px" 
-			pageSize="20" 
+			pageSize="100" 
 			queryParams="filter: $('#filter').val()" 
 			pagination="true">
 			<thead>

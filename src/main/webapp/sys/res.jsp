@@ -97,7 +97,7 @@
 					   collapsible:true,onClickRow:roleGridButtonHandler,method:'get'"
                        toolbar="#roleGridToolbar"
                        style="height: 500px"
-                       pageSize="20"
+                       pageSize="100"
                        pagination="true">
                     <thead>
                     <tr>
@@ -121,7 +121,7 @@
                        class="easyui-datagrid"
                        data-options="singleSelect:true,collapsible:true,method:'get'"
                        style="height: 500px"
-                       pageSize="20"
+                       pageSize="100"
                        pagination="true">
                     <thead>
                     <tr>

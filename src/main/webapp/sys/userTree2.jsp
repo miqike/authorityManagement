@@ -110,7 +110,7 @@
                    class="easyui-datagrid"
                    data-options="onClickRow:mainGridButtonHandler,ctrlSelect:true,method:'get',
                    offset: { width: -310, height: -40},onDblClickRow:mainGridDblClickHandler,
-                   onLoadSuccess:mainGridLoadSuccessHandler,pagination:true,pageSize:20"
+                   onLoadSuccess:mainGridLoadSuccessHandler,pagination:true,pageSize:100"
                    queryParams="name: $('#f_name').val()" 
                    toolbar="#mainGridToolbar">
                 <thead>

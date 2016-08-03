@@ -47,8 +47,8 @@ function clearInput() {
     $("#p_jhmc").val("");
     $('#p_hcdwXydm').val("");
     $('#p_hcdwName').val("");
-    $("#p_xdsj").datebox("setValue", "");
-    $("#p_yqwcsj").datebox("setValue", "");
+    $("#p_jhnd").val("");
+    $("#p_djjgmc").val("");
 }
 
 function reset() {
@@ -58,6 +58,10 @@ function reset() {
     $("#f_hcdwXydm").val("");
     $("#f_hcdwName").val("");
     loadMyTask();
+}
+
+function collapseMyTaskWindow() {
+	$("#myTaskListWindow").window("collapse", true);
 }
 
 function checkParam(param) {
@@ -82,8 +86,13 @@ function myTaskGridClickHandler() {
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_hcdwXydm').val(hcrw.hcdwXydm);
     $('#p_hcdwName').val(hcrw.hcdwName);
+    /*
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
     $('#p_jhwcrq').datebox("setValue", formatDate(hcrw.jhwcrq));
+    */
+    $('#p_jhnd').val(hcrw.jhnd);
+    $('#p_djjgmc').val(hcrw.djjgmc);
+    
     $('#p_hcjieguo').combobox("setValue", hcrw.hcjieguo);
 
     $('#btnSendHcgzs').linkbutton("enable");
