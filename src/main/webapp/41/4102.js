@@ -104,6 +104,28 @@ function viewDocList() {
 	});
 }
 
+function search() {
+	loadMyPlan();
+}
+
+function firstLoadMyPlan() {
+	var options = $("#grid1").datagrid("options")
+	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
+}
+
+function loadMyPlan() {
+	
+	$("#grid1").datagrid("load", {
+        nd: $('#f_nd').val(),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
+        jhmc: $('#f_jhmc').val(),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue")
+    });
+}
+
 function loadGrid1(hcjhId) {
 	window._selectdPlanId_ = hcjhId;
 	$("#grid1").datagrid("load", {
@@ -216,8 +238,12 @@ function financialValidate(){
 //初始化
 $(function () {
     $.husky.getUserInfo();
-    $("#btnSearch").click(loadGrid1);
     clearInput();
+    if (null != window.userInfo) {
+    	firstLoadMyPlan();
+    } else {
+        $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
+    }
    $("#btnViewDocList").hide();
    $("#btnReportDocReady").hide();
 });
