@@ -1,5 +1,47 @@
 window.excludeSaved = false;
 
+function collapseMyPlanListWindow() {
+	$("#myPlanListWindow").window("collapse", true);
+}
+
+function showPlanListWindow() {
+	var options = $("#grid1").datagrid("options")
+	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
+	
+	$("#myPlanListWindow").window({
+        title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
+        modal:false,
+        collapsible:true,
+		closable:false,
+        minimizable:true,
+        border:false,
+        autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
+        autoHCenter: false,      //该属性如果设置为 true，则使窗口保持横向居中，默认为 true。
+		onOpen : function() {
+			loadMyPlan();
+		}
+    });
+}
+
+function search() {
+	loadMyPlan();
+}
+
+function loadMyPlan() {
+	$("#grid1").datagrid("load", {
+        nd: $('#f_nd').val(),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
+        jhmc: $('#f_jhmc').val(),
+        hcjgmc: $('#f_hcjgmc').val(),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue"),
+        planType: $('#f_planType').combobox("getValue")
+    });
+}
+
+/*
 function funSubmit(){
 	if(!$(this).linkbutton('options').disabled) {
 		var row = $("#planGrid").datagrid('getSelected');
@@ -7,7 +49,7 @@ function funSubmit(){
 			if(r) {
 				$.post("./submitPlan",{planId: row.bi1501, status: 1},
 					function(response){
-						if(response.status == SUCCESS) {
+						if(response.status == $.husky.SUCCESS) {
 							refreshFunGrid();
 						} else {
                             $.messager.alert("警告", combineErrorMessage(response), "warning");
@@ -17,7 +59,7 @@ function funSubmit(){
 		});
 	}
 }
-
+*/
 function showPlanDetail() {
 	var row = $("#grid1").datagrid('getSelected');
 	/*window.billType = window.billTypeMap[row.ba01861];
@@ -35,13 +77,13 @@ function showPlanDetail() {
 			$('#planDetailGrid').datagrid('loadData',response.rows);
 		});*/
 }
-
+/*
 function depNameChangeHandler() {
 	$('#btnAddItem').linkbutton('enable');
 	var orgId = $("#deptName").combobox('getValue');
 	getBillType(orgId);
 }
-
+*/
 function collapseHandler() {
 	$("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -51,7 +93,7 @@ function expandHandler() {
 	$("div.datagrid-view:not(:last)").parent().css("border-right-width", "0px")
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
-
+/*
 function queryPlan(node){
 	var _orgId = $("#f_deptName").combobox("getValue");
 	if(_orgId != "" ) {
@@ -68,7 +110,7 @@ function xxxx(orgId) {
 	window.planGridKey = {year:year, tOrgId:orgId, excludeSaved: excludeSaved};
 	if(orgId != undefined && orgId != null )
 		refreshFunGrid(orgId);
-}
+}*/
 //================
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
@@ -106,30 +148,24 @@ function grid1ClickHandler() {
 }
 
 function viewCheckList() {
-    if(!$(this).linkbutton('options').disabled) {
-		var row = $('#grid1').datagrid('getSelected');
-		if (row) {
-			showAuditItemList(row);
-		}
+	var row = $('#grid1').datagrid('getSelected');
+	if (row) {
+		$.easyui.showDialog({
+			title : "检查事项",
+			width : 750,
+			height : 400,
+			topMost : false,
+			iconCls:'icon2 r16_c14',
+			enableSaveButton : false,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./auditItemList.jsp",
+			onLoad : function() {
+				doAuditItemListInit(data);
+			}
+		});
 	}
-}
-
-function showAuditItemList(data) {
-	$.easyui.showDialog({
-		title : "检查事项",
-		width : 750,
-		height : 400,
-		topMost : false,
-		iconCls:'icon2 r16_c14',
-		enableSaveButton : false,
-		enableApplyButton : false,
-		closeButtonText : "返回",
-		closeButtonIconCls : "icon-undo",
-		href : "./auditItemList.jsp",
-		onLoad : function() {
-			doAuditItemListInit(data);
-		}
-	});
 }
 
 function doAuditItemListInit(data) {
@@ -141,12 +177,11 @@ function doAuditItemListInit(data) {
 	}
 }
 
-
 function loadAuditItemList() {
 	$.getJSON('../common/query?mapper=hcsxMapper&queryName=queryForPlan',  {
 		hcjhId: $("#grid1").datagrid('getSelected').id
     }, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
         	 $("#grid4").datagrid("loadData",response);
         }
     });
@@ -173,24 +208,21 @@ function loadGrid1() {
         nr: $('#f_nr').combobox("getValue"),
         fl: $('#f_fl').combobox("getValue")
     });
-	
 }
 
-function funcBtnRest() {
-	//$("#f_nd").val( new Date().getFullYear());
+function rest() {
     clearInput();
 }
 
 //初始化
 $(function() {
-	getUserInfo();
+	$.husky.getUserInfo();
 	$.fn.zTree.init($("#orgTree"), setting);
-	$("#btnSearch").click(loadGrid1);
-	$("#btnReset").click(funcBtnRest);
-    $("#btnViewCheckList").click(viewCheckList);
-
-    //$("#f_nd").val( new Date().getFullYear());
     clearInput();
-    loadGrid1();
+    if (null != window.userInfo) {
+        showPlanListWindow();
+    } else {
+        $.subscribe("USERINFO_INITIALIZED", showPlanListWindow);
+    }
 });
 

@@ -1,5 +1,61 @@
 window.excludeSaved = false;
 
+function collapseMyPlanListWindow() {
+	$("#myPlanListWindow").window("collapse", true);
+}
+
+function showPlanListWindow() {
+	var options = $("#grid1").datagrid("options")
+	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
+	
+	$("#myPlanListWindow").window({
+        title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
+        modal:false,
+        collapsible:true,
+		closable:false,
+        minimizable:true,
+        border:false,
+        autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
+        autoHCenter: false,      //该属性如果设置为 true，则使窗口保持横向居中，默认为 true。
+		onOpen : function() {
+			loadMyPlan();
+		}
+    });
+}
+
+function search() {
+	loadMyPlan();
+}
+
+function loadMyPlan() {
+	$("#grid1").datagrid("load", {
+        nd: $('#f_nd').val(),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
+        jhmc: $('#f_jhmc').val(),
+        hcjgmc: $('#f_hcjgmc').val(),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue"),
+        planType: $('#f_planType').combobox("getValue")
+    });
+}
+
+function loadGrid1(hcjhId) {
+	window._selectdPlanId_ = hcjhId;
+	$("#grid1").datagrid("load", {
+        nd: $('#f_nd').val(),
+        jhbh: $('#f_jhbh').val(),
+        gsjhbh: $('#f_gsjhbh').val(),
+        cxwh: $('#f_cxwh').val(),
+        jhmc: $('#f_jhmc').val(),
+        hcjgmc: $('#f_hcjgmc').val(),
+        nr: $('#f_nr').combobox("getValue"),
+        fl: $('#f_fl').combobox("getValue"),
+        planType: $('#f_planType').combobox("getValue")
+    });
+}
+
 function collapseHandler() {
     $("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -293,7 +349,7 @@ function dispatch() {
 			$.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
 				if (r) {
 					$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
-						if (response.status == SUCCESS) {
+						if (response.status == $.husky.SUCCESS) {
 							$.messager.alert("提示", action + "成功", 'info');
 							loadGrid1(row.id);
 						} else {
@@ -369,11 +425,9 @@ function tabSelectHandlerb(title, index) {
 }
 
 function viewCheckList() {
-    if(!$(this).linkbutton('options').disabled) {
-		var row = $('#grid1').datagrid('getSelected');
-		if (row) {
-			showAuditItemList(row);
-		}
+	var row = $('#grid1').datagrid('getSelected');
+	if (row) {
+		showAuditItemList(row);
 	}
 }
 
@@ -410,7 +464,7 @@ function loadAuditItemList() {
 	$.getJSON('../common/query?mapper=hcsxMapper&queryName=queryForPlan',  {
 		hcjhId: $("#grid1").datagrid('getSelected').id
     }, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
         	 $("#grid4").datagrid("loadData",response);
         }
     });
@@ -446,7 +500,7 @@ function funcDelete4() {
 	        dataType: "json",
 	        contentType: 'application/json;charset=utf-8',
 	        success: function (response) {
-	            if (response.status == SUCCESS) {
+	            if (response.status == $.husky.SUCCESS) {
 	            	loadAuditItemList();
 	            } else {
 	                $.messager.alert('失败', response.message, 'info');
@@ -457,7 +511,6 @@ function funcDelete4() {
 }
 
 function funcSave5() {
-
     var checkedRows = $('#grid5').datagrid('getSelections');
     if(checkedRows.length == 0) {
     	$.messager.alert("操作提示", "请首先选择一项或者多项备选核查事项", "info");
@@ -474,7 +527,7 @@ function funcSave5() {
 	        contentType: "application/json; charset=utf-8",
 	        cache: false,
 	        success: function (response) {
-	            if (response.status == SUCCESS) {
+	            if (response.status == $.husky.SUCCESS) {
 	                //$.messager.alert("提示", "用户角色保存成功");
 	
 	            	loadAuditItemList();
@@ -493,24 +546,8 @@ function funcSave5() {
     }
 }
 
-
 function funcClose5() {
     $("#addAuditItemWindow").window("close");
-}
-
-function loadGrid1(hcjhId) {
-	window._selectdPlanId_ = hcjhId;
-	$("#grid1").datagrid("load", {
-        nd: $('#f_nd').val(),
-        jhbh: $('#f_jhbh').val(),
-        gsjhbh: $('#f_gsjhbh').val(),
-        cxwh: $('#f_cxwh').val(),
-        jhmc: $('#f_jhmc').val(),
-        hcjgmc: $('#f_hcjgmc').val(),
-        nr: $('#f_nr').combobox("getValue"),
-        fl: $('#f_fl').combobox("getValue"),
-        planType: $('#f_planType').combobox("getValue")
-    });
 }
 
 function clearInput() {
@@ -525,7 +562,7 @@ function clearInput() {
     $("#f_planType").combobox("setValue", "");
 }
 
-function funcBtnRest() {
+function rest() {
     clearInput();
 }
 
@@ -548,7 +585,7 @@ function savePlan(planType) {
         type: "POST",
         data: data,
         success: function (response) {
-            if (response.status == SUCCESS) {
+            if (response.status == $.husky.SUCCESS) {
             	if(planType==1) {
             		$('#p_id').val(response.id);
             		setReadOnlyStatus();
@@ -624,7 +661,7 @@ function funcImportPlan() {
 
 function doPlanAbstractListInit() {
 	$.getJSON("../common/query?mapper=hcjhMapper&queryName=queryPlanAbstract",  null, function (response) {
-	    if (response.status == SUCCESS) {
+	    if (response.status == $.husky.SUCCESS) {
 	    	 $("#planAbstractGrid").datagrid("loadData",response);
 	    }
 	});
@@ -640,7 +677,7 @@ function selectImportType() {
 function testDblink() {
 	var hcjhId = $("#p_id").val();
     $.getJSON("./hcjh/testDblink/" + hcjhId, null, function (response) {
-        if (response.status == SUCCESS) {
+        if (response.status == $.husky.SUCCESS) {
             $("#importReport #_hcrws").text(response.hcrws);
             $("#importReport #_hcrys").text(response.hcrys);
             $("#importReport").show();
@@ -654,7 +691,7 @@ function importDblink() {
         $.easyui.loading();
         $.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
             $.easyui.loaded();
-            if (response.status == SUCCESS) {
+            if (response.status == $.husky.SUCCESS) {
                 $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
                 loadGrid1(hcjhId);
             }
@@ -662,15 +699,11 @@ function importDblink() {
     }
 }
 
-function funcSort1() {
-	if (!$(this).linkbutton('options').disabled) {
-		sort(1);
-	}
+function sort1() {
+	sort(1);
 }
-function funcSort2() {
-	if (!$(this).linkbutton('options').disabled) {
-		sort(2);
-	}
+function sort2() {
+	sort(2);
 }
 
 function sort(order) {
@@ -694,15 +727,11 @@ function sort(order) {
     
 }
 
-function funcAccept() {
-	if (!$(this).linkbutton('options').disabled) {
-		_funcAccept("accept");
-	}
+function accept() {
+	_funcAccept("accept");
 }
-function funcUnAccept () {
-	if (!$(this).linkbutton('options').disabled) {
-		_funcAccept("unAccept");
-	}
+function unAccept () {
+	_funcAccept("unAccept");
 }
 
 function _funcAccept (operation) {
@@ -725,7 +754,7 @@ function _funcAccept (operation) {
 	        dataType: "json",
 	        contentType: 'application/json;charset=utf-8',
 	        success: function (response) {
-	            if (response.status == SUCCESS) {
+	            if (response.status == $.husky.SUCCESS) {
 	            	loadGrid1(selected[0].hcjhId);
 	                $('#grid2').datagrid("reload");
 	            } else {
@@ -740,31 +769,35 @@ function _funcAccept (operation) {
 
 //初始化
 $(function () {
-	getUserInfo();
+	$.husky.getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
     
-    $("#btnSearch").click(loadGrid1);
-    $("#btnReset").click(funcBtnRest);
+    //$("#btnSearch").click(loadGrid1);
+    //$("#btnReset").click(funcBtnRest);
     
-    $("#btnAdd").click(add);
-    $("#btnAddRc").click(addRc);
-    $("#btnModify").click(modify);
-    $("#btnDispatch").click(dispatch);
-    $("#btnViewCheckList").click(viewCheckList);
+    //$("#btnAdd").click(add);
+    //$("#btnAddRc").click(addRc);
+    //$("#btnModify").click(modify);
+    //$("#btnDispatch").click(dispatch);
+    //$("#btnViewCheckList").click(viewCheckList);
     
-    $("#btnSort1").click(funcSort1);
-    $("#btnSort2").click(funcSort2);
-    $("#btnAccept").click(funcAccept);
-    $("#btnUnAccept").click(funcUnAccept);
+    //$("#btnSort1").click(funcSort1);
+    //$("#btnSort2").click(funcSort2);
+    //$("#btnAccept").click(funcAccept);
+    //$("#btnUnAccept").click(funcUnAccept);
     //$("#f_nd").val( new Date().getFullYear());
     clearInput();
    
-    
+    if (null != window.userInfo) {
+        showPlanListWindow();
+    } else {
+        $.subscribe("USERINFO_INITIALIZED", showPlanListWindow);
+    }
     //$("#btnSavePlan").click(funcSavePlan);
     $("#importTaskWindow input:radio").click(selectImportType);
 
-    $("#btnTestDblink").click(testDblink);
-    $("#btnImportDblink").click(importDblink);
+    //$("#btnTestDblink").click(testDblink);
+    //$("#btnImportDblink").click(importDblink);
 
 
 });
