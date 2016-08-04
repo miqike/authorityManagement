@@ -190,8 +190,6 @@
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
-		                <td class="label" style="width:70px;color:red">计划类型?</td>
-		                <td><input id="f_planType" class="easyui-combobox" codeName="planType" data-options="panelHeight:60"/></td>
 		            </tr>
 		            <tr>
 		                <td class="label" >统一社会信用代码</td>
