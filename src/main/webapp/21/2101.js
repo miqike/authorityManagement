@@ -1,3 +1,11 @@
+function quickSearch (value, name) {
+	console.log(name);
+	console.log(value);
+	var externalParam = {};
+	externalParam[name] = value;
+	search(externalParam);
+}
+
 function collapseHandler() {
     $("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -74,7 +82,7 @@ function stylerHcjg(val, row, index) {
     }
 }
 
-function search() {
+function search(externalParam) {
     var treeObj = $.fn.zTree.getZTreeObj("orgTree");
     var selected = treeObj.getSelectedNodes();
 
@@ -97,6 +105,9 @@ function search() {
         jhmc:$("#f_jhmc").val(),
         gsjhbh:$("#f_gsjhbh").val()
     };
+    if(externalParam != undefined) {
+    	_.extend(options.queryParams, externalParam);
+    }
     $("#mainGrid").datagrid(options);
 }
 
