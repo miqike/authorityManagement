@@ -381,7 +381,6 @@
         select <include refid="Base_Column_List" />
         from T_HCJH a
         <where>
-        	
             <if test="nd!=null">
                 AND ND = #{nd}
             </if>
@@ -394,8 +393,46 @@
             <if test="cxwh!=null">
                 AND CXWH = #{cxwh}
             </if>
+            <if test="nr!=null">
+                AND NR = #{nr}
+            </if>
+            <if test="fl!=null">
+                AND FL = #{fl}
+            </if>
+            <if test="hcjgmc!=null">
+                AND DJJGMC = #{hcjgmc}
+            </if>
+            <if test="planType!=null">
+                AND PLAN_TYPE = #{planType}
+            </if>
             <if test="jhmc!=null">
                 AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
+            </if>
+            AND (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID )) 
+        </where>
+        ORDER BY
+        <if test="order != null">
+            ${sort}
+            ${order},
+        </if>
+        ND desc,jhbh desc
+    </select>
+    
+    <select id="queryExt" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from T_HCJH a
+        <where>
+            <if test="nd!=null">
+                AND ND = #{nd}
+            </if>
+            <if test="jhbh!=null">
+                AND JHBH = #{jhbh}
+            </if>
+            <if test="gsjhbh!=null">
+                AND GSJHBH = #{gsjhbh}
+            </if>
+            <if test="cxwh!=null">
+                AND CXWH = #{cxwh}
             </if>
             <if test="nr!=null">
                 AND NR = #{nr}
@@ -406,15 +443,13 @@
             <if test="hcjgmc!=null">
                 AND DJJGMC = #{hcjgmc}
             </if>
-            <if test="planType==null">
-                AND (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) OR PLAN_TYPE = 1)
+            <if test="planType!=null">
+                AND PLAN_TYPE = #{planType}
             </if>
-            <if test="planType==1">
-                AND PLAN_TYPE = 1
+            <if test="jhmc!=null">
+                AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
             </if>
-            <if test="planType==2">
-                AND PLAN_TYPE = 2 AND (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID )) 
-            </if>
+            AND a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 = #{_userId} OR rw.zfry_code2 = #{_userId})
         </where>
         ORDER BY
         <if test="order != null">
@@ -425,8 +460,8 @@
     </select>
     
     <select id="queryPlanAbstract" resultMap="BaseResultMap">
-        select jhxh GSJHBH,nd,jhmc,ccwh CXWH,ccqys HCRWSL from GOV_NBCC_JH
-        ORDER BY jhxh
+        SELECT a.jhxh GSJHBH, a.nd, a.jhmc, a.ccwh CXWH, a.ccqys HCRWSL, a.DJJG, b.name DJJGMC from GOV_NBCC_JH a LEFT JOIN SYS_ORGanization b ON a.djjg=b.id
+        ORDER BY a.jhxh
     </select>
     
     <select id="selectCountByGsjhbh" resultType="java.lang.Integer">

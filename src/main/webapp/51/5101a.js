@@ -76,7 +76,7 @@ function loadMyTask() {
 		jhmc: $('#f_jhmc').val(),
 		hcdwXydm: $('#f_hcdwXydm').val(),
 		hcdwName: $('#f_hcdwName').val()
-	});;
+	});
 }
 
 function myTaskGridClickHandler() {
@@ -144,10 +144,6 @@ function refreshAuditItemList() {
         doAuditItemListInit();
     }
 }
-
-
-
-
 
 function showTaskListWindow() {
 	var options = $("#grid1").datagrid("options")

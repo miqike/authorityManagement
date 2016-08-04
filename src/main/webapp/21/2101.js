@@ -1,3 +1,9 @@
+function quickSearch (value, name) {
+	var externalParam = {};
+	externalParam[name] = value;
+	search(externalParam);
+}
+
 function collapseHandler() {
     $("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
     $("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -11,7 +17,7 @@ function expandHandler() {
 //zTree点击事件
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var options = $('#mainGrid').datagrid('options');
-    options.url = '../common/query?mapper=scztMapper&queryName=query';
+    options.url = '../common/query?mapper=scztMapper&queryName=query' + (userInfo.ext1 == 1 ? "Ext": "");
     if(treeNode.id.length==8) {
     	options.queryParams = {
     		qybm: treeNode.id
@@ -74,64 +80,76 @@ function stylerHcjg(val, row, index) {
     }
 }
 
+function search(externalParam) {
+    var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+    var selected = treeObj.getSelectedNodes();
+
+    var options = $('#mainGrid').datagrid('options');
+    options.url = '../common/query?mapper=scztMapper&queryName=query' + (userInfo.ext1 == 1 ? "Ext": "");
+    options.queryParams = {
+        dwId: selected.length == 1 ? processorOrgId(selected[0].id) : "",
+        jhnd: $("#f_jhnd").val(),
+        jhbh: $("#f_jhbh").val(),
+        hcry: $("#f_hcry").val(),
+        qymc: $("#f_qymc").val(),
+        xydm: $("#f_xydm").val(),
+        cxwh: $("#f_cxwh").val(),
+        hyfl: $("#f_hyfl").combobox("getValue"),
+        qy: $("#f_qy").val(),
+        zzxs: $("#f_zzxs").combobox("getValue"),
+        jyzt: $("#f_jyzt").combobox("getValue"),
+        hcjg: $("#f_hcjg").combobox("getValue"),
+        planType: $("#f_planType").combobox("getValue"),
+        jhmc:$("#f_jhmc").val(),
+        gsjhbh:$("#f_gsjhbh").val()
+    };
+    if(externalParam != undefined) {
+    	_.extend(options.queryParams, externalParam);
+    }
+    $("#mainGrid").datagrid(options);
+}
+
+
+function reset() {
+    $("#queryTable").form("clear");
+    $('#mainGrid').datagrid('loadData', []);
+}
+
+function view(){
+    showModalDialog("examHistory");
+    var qy=$("#mainGrid").datagrid("getSelected");
+    var options = $("#grid2").datagrid("options");
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
+    $('#grid2').datagrid('load', {
+        hcdwXydm: qy.xydm
+    });
+}
+
+function closeHistory(){
+    $("#examHistory").window("close");
+}
+
+function viewHcsxjg(){
+	var rw=$("#grid2").datagrid("getSelected");
+	if(null != rw) {
+    	showModalDialog("examHistoryHcsxjg");
+        var options = $("#grid3").datagrid("options");
+        options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
+        $('#grid3').datagrid('load', {
+            hcrwId: rw.id
+        });
+	}
+}
+
+function closeHcsxjg(){
+    $("#examHistoryHcsxjg").window("close");
+}
+
+
 $(function () {
+	$.husky.getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
     $("#f_jhnd").val(new Date().getFullYear());
-    $("#btnView").click(function(){
-        showModalDialog("examHistory");
-        var qy=$("#mainGrid").datagrid("getSelected");
-        var options = $("#grid2").datagrid("options");
-        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
-        $('#grid2').datagrid('load', {
-            hcdwXydm: qy.xydm
-        });
-    });
-    $("#btnCloseHistory").click(function(){
-        $("#examHistory").window("close");
-    });
-    $("#btnViewHcsxjg").click(function(){
-    	var rw=$("#grid2").datagrid("getSelected");
-    	if(null != rw) {
-	    	showModalDialog("examHistoryHcsxjg");
-	        var options = $("#grid3").datagrid("options");
-	        options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
-	        $('#grid3').datagrid('load', {
-	            hcrwId: rw.id
-	        });
-		}
-    });
-    $("#btnCloseHcsxjg").click(function(){
-        $("#examHistoryHcsxjg").window("close");
-    });
-
-    $("#btnSearch").click(function () {
-        var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-        var selected = treeObj.getSelectedNodes();
-
-        var options = $('#mainGrid').datagrid('options');
-        options.url = '../common/query?mapper=scztMapper&queryName=query';
-        options.queryParams = {
-            dwId: selected.length == 1 ? processorOrgId(selected[0].id) : "",
-            jhnd: $("#f_jhnd").val(),
-            jhbh: $("#f_jhbh").val(),
-            hcry: $("#f_hcry").val(),
-            qymc: $("#f_qymc").val(),
-            xydm: $("#f_xydm").val(),
-            cxwh: $("#f_cxwh").val(),
-            hyfl: $("#f_hyfl").combobox("getValue"),
-            qy: $("#f_qy").val(),
-            zzxs: $("#f_zzxs").combobox("getValue"),
-            jyzt: $("#f_jyzt").combobox("getValue"),
-            hcjg: $("#f_hcjg").combobox("getValue"),
-            planType: $("#f_planType").combobox("getValue"),
-            jhmc:$("#f_jhmc").val(),
-            gsjhbh:$("#f_gsjhbh").val()
-        };
-        $("#mainGrid").datagrid(options);
-
-    });
-    $("#btnReset").click(function () {
-        $("#queryTable").form("clear");
-        $('#mainGrid').datagrid('loadData', []);
-    });
+    
+    
 });

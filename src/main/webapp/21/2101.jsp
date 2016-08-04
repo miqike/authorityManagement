@@ -15,16 +15,16 @@
     <link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 
     <script type="text/javascript" src="../js/hotkeys.min.js"></script>
+	<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
     <script type="text/javascript" src="../js/jquery/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
     <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-
     <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
+    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
      <script type="text/javascript" src="../js/formatter.js"></script>
 
@@ -145,7 +145,7 @@
 				            enableRowContextMenu: false,
 							toolbar: '#mainGridToolbar',
 			           		pageSize: 100, pagination: true,
-				            offset: { width: -255, height: -185}">
+				            offset: { width: -255, height: -205}">
 	            <thead>
 		            <tr>
 		                <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
@@ -173,9 +173,15 @@
 	        </table>
 	        <div id="mainGridToolbar">
 	            <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r4_c20" plain="true">检查记录</a>
+	            <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
 	        </div>
 	    </div>
     </div>
+</div>
+
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
 </div>
 
 <!-- --------弹出窗口--------------- -->

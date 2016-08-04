@@ -10,14 +10,17 @@
         <div title="基本信息" style="padding:5px;" selected="true">
             <table width="100%" id="planTable">
                 <tr>
-                    <td colspan="3">
+                    <td colspan="2">
                         <!-- <a href="javascript:void(0);" id="btnSavePlan" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a> -->
                         <a href="javascript:void(0);" id="btnImportPlan" class="easyui-linkbutton add"
                            iconCls="icon2 r13_c16" plain="true">导入任务信息</a>
                         <a href="javascript:void(0);" id="btnImportTask" class="easyui-linkbutton"
                            iconCls="icon2 r10_c1" plain="true" disabled>导入任务</a>
                     </td>
-                    <td></td>
+                    <td class="label">检查单位</td>
+                    <td><input type="hidden" id="p_djjg"/>
+                        <input class="easyui-validatebox" id="p_djjgmc" data-options="required:true" style="width:192px;" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="label">计划年度</td>

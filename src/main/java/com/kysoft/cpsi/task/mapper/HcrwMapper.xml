@@ -684,32 +684,33 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 
-
     <select id="queryForOrg" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from T_HCRW where HCJH_ID = #{hcjhId}
-        AND
-        QYBM IN (
+        AND QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
-			CONNECT BY PRIOR ID=PARENT_ID
-	    )
-	    
-        AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
+			CONNECT BY PRIOR ID=PARENT_ID) 
+		AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
       <if test="auditResult !=null ">
          and audit_result is not null
       </if>
+      <if test="xydm!=null">
+          and hcdw_xydm=#{xydm}
+      </if>
+      <if test="qymc!=null">
+          and HCDW_NAME like concat(concat('%', #{qymc}), '%')
+      </if>
         ORDER BY
-
         <if test="order == 1">
           hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
         </if>
         <if test="order ==2">
           hcjg,djjg,hcdw_xydm,ZZXS, HCJGMC
         </if>
-
     </select>
+    
     <select id="queryForXydm" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
@@ -787,8 +788,8 @@
         SELECT m.*, n.FR,n.ZZXS, n.LLR, n.LXDH, n.HYFL FROM (
         select
         <include refid="Base_Column_List" />
-        from T_HCRW
-        where (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+        from T_HCRW 
+        where RLR IS NOT NULL AND RLRQ IS NOT NULL AND (ZFRY_CODE1 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
         <if test="nd!=null">
             AND ND = #{nd}
         </if>
@@ -798,12 +799,15 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
-      <if test="docReadyReportFlag!=null">
-        AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
-      </if>
-
-        ) m LEFT JOIN 
+        <if test="xydm">
+            AND HCDW_XYDM = #{xydm}
+        </if>
+        <if test="qymc!=null">
+            AND HCDW_NAME LIKE concat(concat('%', #{qymc}), '%')
+        </if>
+		<if test="docReadyReportFlag!=null">
+		  AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
+		</if>) m LEFT JOIN 
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY
         <if test="order != null">
