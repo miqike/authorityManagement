@@ -1,5 +1,18 @@
 window.excludeSaved = false;
 
+function quickSearch (value, name) {
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&' + name + "=" + value,
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
+
 function collapseMyPlanListWindow() {
 	$("#myPlanListWindow").window("collapse", true);
 }
@@ -724,7 +737,6 @@ function sort(order) {
     	$("#btnSort1").linkbutton("enable");
     	$("#btnSort2").linkbutton("disable");
     }
-    
 }
 
 function accept() {

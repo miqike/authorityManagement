@@ -177,11 +177,17 @@
                 data-options="disabled:true">按市场主体类型+任务下达机关排序</a>
              <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领</a>
              <a href="#" id="btnUnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">取消认领</a>
+             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
              <!-- 
              <a href="#" id="btnShowDetail" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
                 data-options="disabled:true">详细</a> -->
          </div>
      </div>
+</div>
+
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
 </div>
 
 <div id="myPlanListWindow" >
@@ -302,7 +308,7 @@
 
 </body>
 </html>
-
+<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
@@ -318,5 +324,4 @@
 <script type="text/javascript" src="../js/husky/husky.common.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
-<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="./3101.js"></script>
