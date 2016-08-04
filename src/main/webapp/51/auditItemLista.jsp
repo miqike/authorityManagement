@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <div id="auditItemAccordion" class="easyui-accordion" data-options="fit:true,border:true,animate:true" > 
-	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', fit: true,selected:true" style="overflow:auto;">
+	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', fit: true,selected:true" style="">
 		<!-- <div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false, onSelect:auditItemsTabSelectHandler"> -->
-		<div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false">
+		<div id="auditItemTabs" class="easyui-tabs" data-options="fit: true, border: false" style="overflow:auto;">
 			<div data-options="title: '年报信息', iconCls: 'icon2 r9_c2', refreshable: false, selected: true">
 				<table id="annualAuditItemGrid" class="easyui-datagrid"
 					data-options="collapsible:true, ctrlSelect:true,method:'get',

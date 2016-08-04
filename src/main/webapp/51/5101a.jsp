@@ -96,7 +96,7 @@
 <!-- 
  -->    
 <div id="toobar1" class="easyui-toolbar">
-    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-search'">任务列表</a>
+    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">任务列表</a>
     <div class="dialog-tool-separator"></div>
     <shiro:hasPermission name="5105:btnSendHcgzs">
     	<a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
@@ -204,7 +204,7 @@
 		                       iconCls="icon-search">查找</a>
 		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon2 r3_c10">重置</a>
-		                    <a href="javascript:void(0);" id="btnCollapseMyTaskWindow" class="easyui-linkbutton" plain="true"
+		                    <a href="javascript:void(0);" id="btnMinimizeMyTaskWindow" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon-back">返回</a>
 		                </td>
 		            </tr>

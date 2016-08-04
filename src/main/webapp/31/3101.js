@@ -13,8 +13,42 @@ function quickSearch (value, name) {
     });
 }
 
-function collapseMyPlanListWindow() {
-	$("#myPlanListWindow").window("collapse", true);
+function filterByZfry() {
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&filterByZfry=y',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
+
+
+function goFirst() {
+	$.husky.ramble("first", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goLast() {
+	$.husky.ramble("last", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goPrev() {
+	$.husky.ramble("previous", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goNext() {
+	$.husky.ramble("next", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function minimizeMyPlanListWindow() {
+	$("#myPlanListWindow").window("minimize");
 }
 
 function showPlanListWindow() {
@@ -23,6 +57,7 @@ function showPlanListWindow() {
 	
 	$("#myPlanListWindow").window({
         title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
+        iconCls: 'icon2 r5_c20',
         modal:false,
         collapsible:true,
 		closable:false,
@@ -89,11 +124,11 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
         $("#btnSort1").linkbutton("disable");
         $("#btnSort2").linkbutton("enable");
         //TODO
-        $("#btnAccept").linkbutton("disable");
+        //$("#btnAccept").linkbutton("disable");
     } else {
         $("#btnSort1").linkbutton("disable");
         $("#btnSort2").linkbutton("disable");
-        $("#btnAccept").linkbutton("disable");
+        //$("#btnAccept").linkbutton("disable");
     }
 }
 
@@ -152,18 +187,12 @@ function grid1ClickHandler() {
 }
 
 function grid2ClickHandler() {
-    /*if ($('#grid2').datagrid('getSelected') != null) {
-        $('#btnShowDetail').linkbutton('enable');
-    } else {
-        $('#btnShowDetail').linkbutton('disable');
-    }
-    */
+	/*
 	var plan = $('#grid1').datagrid('getSelected');
     if (plan != null && (plan.xdrmc != null || plan.xdrq != null) && $('#grid2').datagrid('getSelections').length > 0) {
     	
     	var acceptStatus = getAcceptStatus();
     	if(acceptStatus == 1) { //所有选中任务都是已认领
-    		
     		$('#btnAccept').linkbutton('disable');
     		$('#btnUnAccept').linkbutton('enable');
     	} else if(acceptStatus == 0) { //所有选中任务都是未认领
@@ -179,8 +208,8 @@ function grid2ClickHandler() {
 		$('#btnAccept').linkbutton('disable');
 		$('#btnUnAccept').linkbutton('disable');
 	}
+	*/
 }
-
 
 function getAcceptStatus() {
 	var tasks = $("#grid2").datagrid("getSelections");
@@ -715,6 +744,7 @@ function importDblink() {
 function sort1() {
 	sort(1);
 }
+
 function sort2() {
 	sort(2);
 }

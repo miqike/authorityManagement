@@ -1,7 +1,27 @@
 window.excludeSaved = false;
 
-function collapseMyPlanListWindow() {
-	$("#myPlanListWindow").window("collapse", true);
+function goFirst() {
+	$.husky.ramble("first", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goLast() {
+	$.husky.ramble("last", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goPrev() {
+	$.husky.ramble("previous", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function goNext() {
+	$.husky.ramble("next", "grid1", "taskDetailTable");
+	refreshAuditItemList();
+}
+
+function minimizeMyPlanListWindow() {
+	$("#myPlanListWindow").window("minimize");
 }
 
 function showPlanListWindow() {
@@ -10,6 +30,7 @@ function showPlanListWindow() {
 	
 	$("#myPlanListWindow").window({
         title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
+        iconCls: 'icon2 r5_c20',
         modal:false,
         collapsible:true,
 		closable:false,
@@ -41,25 +62,6 @@ function loadMyPlan() {
     });
 }
 
-/*
-function funSubmit(){
-	if(!$(this).linkbutton('options').disabled) {
-		var row = $("#planGrid").datagrid('getSelected');
-		$.messager.confirm("确认", "是否确认提交票据计划?", function(r){
-			if(r) {
-				$.post("./submitPlan",{planId: row.bi1501, status: 1},
-					function(response){
-						if(response.status == $.husky.SUCCESS) {
-							refreshFunGrid();
-						} else {
-                            $.messager.alert("警告", combineErrorMessage(response), "warning");
-						}
-					}, 'json');
-			}
-		});
-	}
-}
-*/
 function showPlanDetail() {
 	var row = $("#grid1").datagrid('getSelected');
 	/*window.billType = window.billTypeMap[row.ba01861];
@@ -77,13 +79,7 @@ function showPlanDetail() {
 			$('#planDetailGrid').datagrid('loadData',response.rows);
 		});*/
 }
-/*
-function depNameChangeHandler() {
-	$('#btnAddItem').linkbutton('enable');
-	var orgId = $("#deptName").combobox('getValue');
-	getBillType(orgId);
-}
-*/
+
 function collapseHandler() {
 	$("div.datagrid-view:not(:last)").parent().css("border-right-width", "1px")
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "1px")
@@ -93,24 +89,6 @@ function expandHandler() {
 	$("div.datagrid-view:not(:last)").parent().css("border-right-width", "0px")
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
-/*
-function queryPlan(node){
-	var _orgId = $("#f_deptName").combobox("getValue");
-	if(_orgId != "" ) {
-		var orgId = new Array();
-		orgId.push(_orgId);
-		xxxx(orgId);
-	} else if(window.orgTreeObj) {
-		queryPlanFromTree();
-	}
-}
-
-function xxxx(orgId) {
-	var year = $("#f_year").val();
-	window.planGridKey = {year:year, tOrgId:orgId, excludeSaved: excludeSaved};
-	if(orgId != undefined && orgId != null )
-		refreshFunGrid(orgId);
-}*/
 //================
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
