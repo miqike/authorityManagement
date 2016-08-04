@@ -60,8 +60,8 @@ function reset() {
     loadMyTask();
 }
 
-function collapseMyTaskWindow() {
-	$("#myTaskListWindow").window("collapse", true);
+function minimizeMyTaskWindow() {
+	$("#myTaskListWindow").window("minimize");
 }
 
 function checkParam(param) {
@@ -220,13 +220,8 @@ function sendQyzshch() {
 function printAuditReport() {
 	printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
 }
-//==============================
-
 
 //=============================
-//=============================
-
-
 function updateHcjg() {
 	$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
 	$("#p_hcjieguo").combobox("enable").combobox("showPanel");

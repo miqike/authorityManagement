@@ -55,89 +55,17 @@
     </style>
 </head>
 <body style="margin:5px;">
+
+<div id="toobar1" class="easyui-toolbar">
+    <a id="btnShowPlanListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">计划列表</a>
+	<a href="javascript:void(0);" id="btnGoFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首</a>
+	<a href="javascript:void(0);" id="btnGoPrev" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上</a>
+	<a href="javascript:void(0);" id="btnGoNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下</a>
+	<a href="javascript:void(0);" id="btnGoLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末</a>
+</div>
+
 <div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	<%-- <div data-options="region:'north',split:false,height:270" title=""  >
-	    <div style="padding: 5px 10px 0px 10px">
-	        <table id="queryTable">
-	            <tr>
-	                <td class="label">计划年度</td>
-	                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/>
-	                </td>
-	                <td class="label">计划编号</td>
-	                <td><input id="f_jhbh" class="easyui-validatebox"/></td>
-	                <td class="label">公示系统计划编号</td>
-	                <td><input id="f_gsjhbh" class="easyui-validatebox"/></td>
-	            </tr>
-	            <tr>
-	            	<td class="label">抽查文号</td>
-	                <td><input id="f_cxwh" class="easyui-validatebox"/></td>
-	                <td class="label">计划名称</td>
-	                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
-	                <td class="label">检查内容</td>
-	                <td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
-	                           data-options="panelHeight:80,width:143,onChange:loadGrid1" style=""/></td>
-	            </tr>
-	            <tr>
-	                <td class="label">检查分类</td>
-	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
-	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td class="label">计划类型</td>
-	                <td><input id="f_planType" class="easyui-combobox" codeName="planType"
-	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td class="label">任务下达机关</td>
-	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
-					
-	                <td style="text-align-right;">
-	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
-	                       iconCls="icon-search">查找</a>
-	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
-	                       iconCls="icon2 r3_c10">重置</a>
-	                </td>
-	            </tr>
-	        </table>
-	    </div>
-	    <div>
-	    
-			<!-- url:'../common/query?mapper=hcjhMapper&queryName=query', -->
-	        <table id="grid1"
-	               class="easyui-datagrid"
-	               data-options="singleSelect:true,collapsible:true,height:175,
-					onClickRow:grid1ClickHandler,pagination: false,
-					url:'${planQueryUrl}',
-					method:'get',onLoadSuccess:grid1LoadSucessHandler"
-	               toolbar="#gridToolbar1"
-	               sortOrder="asc">
-	            <thead>
-	            <tr>
-	                <th data-options="field:'nd'" halign="center" align="center" sortable="true" width="35">年度</th>
-	                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="70">计划编号</th>
-	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
-	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
-	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
-	                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达机关</th>
-	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="65" codeName="planType" formatter="formatCodeList">计划类型</th>
-					<th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划开始时间</th>
-	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
-	                <th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
-	                <th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">检查内容</th>
-	                <th data-options="field:'hcrwsl'" halign="center" align="right" sortable="true" width="45">任务数</th>
-	                <th data-options="field:'yrlsl'" halign="center" align="right" sortable="true" width="45">已认领</th>
-	                <th data-options="field:'wrlsl'" halign="center" align="right" sortable="true" width="45">未认领</th>
-	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="70" formatter="formatDate">下达日期</th>
-	                <th data-options="field:'xdrmc'" halign="center" align="center" sortable="true" width="70">下达人</th>
-	                <th data-options="field:'sm'" halign="center" align="left" sortable="true" width="250">说明</th>
-	            </tr>
-	            </thead>
-	        </table>
-	        <div id="gridToolbar1">
-	            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加双随机计划</a>
-	            <a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加日常监管计划</a>
-	            <a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
-	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
-	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true" data-options="disabled:true">下达/取消下达</a>
-	        </div>
-	    </div>
-    </div> --%>
+	
      <div data-options="region:'west',split:true," title="单位列表" style="width:240px;" >
           <ul id="orgTree" class="ztree"></ul> 
      </div>
@@ -145,13 +73,18 @@
          <table id="grid2"
                 class="easyui-datagrid"
                 data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,fit:true,
-		onClickRow:grid2ClickHandler,height:400,
-		method:'get'"
-                toolbar="#planGridToolbar"
-                
-                sortOrder="asc">
+		onClickRow:grid2ClickHandler,height:400,method:'get',
+		headerContextMenu: [
+                { text: '按任务下达机关+检查人员排序', iconCls: 'icon2 r1_c15', disabled: false, handler: sort1 },
+                { text: '按市场主体类型+任务下达机关排序', iconCls: 'icon2 r1_c13', disabled: false, handler: sort2 },
+                { text: '按检查人员过滤', iconCls: 'icon2 r25_c10', disabled: false, handler: filterByZfry }
+            ],
+         enableHeaderClickMenu: false, enableHeaderContextMenu: true, enableRowContextMenu: false
+		"
+                toolbar="#planGridToolbar" sortOrder="asc">
              <thead>
              <tr>
+             	<th data-options="field:'id',checkbox:true"></th>
                  <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">任务下达机关</th>
                  <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
                  <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
@@ -171,12 +104,14 @@
              </thead>
          </table>
          <div id="planGridToolbar">
+             <!-- 
              <a href="#" id="btnSort1" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                 data-options="disabled:true">按任务下达机关+检查人员排序</a>
              <a href="#" id="btnSort2" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true"
                 data-options="disabled:true">按市场主体类型+任务下达机关排序</a>
-             <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:true">认领</a>
-             <a href="#" id="btnUnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">取消认领</a>
+              -->
+              <a href="#" id="btnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true" data-options="disabled:false">认领</a>
+             <a href="#" id="btnUnAccept" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:false">取消认领</a>
              <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
              <!-- 
              <a href="#" id="btnShowDetail" class="easyui-linkbutton" iconCls="icon2 r5_c10" plain="true"
@@ -228,7 +163,7 @@
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon2 r3_c10">重置</a>
-                       <a href="javascript:void(0);" id="btnCollapseMyPlanListWindow" class="easyui-linkbutton" plain="true"
+                       <a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-back">返回</a>
 	                </td>
 	            </tr>

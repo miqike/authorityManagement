@@ -99,7 +99,7 @@
            pagePosition="bottom">
         <thead>
         <tr>
-            <th data-options="field:'code',halign:'center',align:'center'" width="40">编码</th>
+            <th data-options="field:'code',halign:'center',align:'center'" width="35">编码</th>
             <th data-options="field:'hclx',halign:'center',align:'left'" width="90" codeName="hclx"
                 formatter="formatCodeList" styler="hclxStyler">类型
             </th>
@@ -115,7 +115,7 @@
             <th data-options="field:'hcff',halign:'center',align:'left'" width="70" codeName="hcfs"
                 formatter="formatCodeList" styler="hcffStyler">检查方法
             </th>
-            <th data-options="field:'gsxm',halign:'center',align:'left'" width="70">对应公示项目</th>
+            <th data-options="field:'gsxm',halign:'center',align:'left'" width="80">对应公示项目</th>
             <th data-options="field:'hcffsm',halign:'center',align:'left'" width="70">检查方法说明</th>
             <th data-options="field:'jgcl',halign:'center',align:'left'" width="70" codeName="gsjg"
                 formatter="formatCodeList">结果处理
@@ -127,17 +127,17 @@
             -->
             <th data-options="field:'dbxxly',halign:'center',align:'left'" width="70" codeName="sjly"
                 formatter="formatCodeList">比对信息来源</th>
-            <th data-options="field:'sfxysdhc',halign:'center',align:'left'" width="70" codeName="yesno"
+            <th data-options="field:'sfxysdhc',halign:'center',align:'center'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要实地检查
             </th>
-            <th data-options="field:'sfxyrghd',halign:'center',align:'left'" width="70" codeName="yesno"
+            <th data-options="field:'sfxyrghd',halign:'center',align:'center'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否需要人工核对
             </th>
-            <th data-options="field:'gzqx',halign:'center',align:'left'" width="70">改正期限</th>
-            <th data-options="field:'sfbjxm',halign:'center',align:'left'" width="70" codeName="yesno"
+            <th data-options="field:'gzqx',halign:'center',align:'center'" width="70">改正期限</th>
+            <th data-options="field:'sfbjxm',halign:'center',align:'center'" width="70" codeName="yesno"
                 formatter="formatCodeList">是否必检项
             </th>
-            <th data-options="field:'zxrq',halign:'center',align:'left'" width="70" formatter="formatDate">注销日期</th>
+            <th data-options="field:'zxrq',halign:'center',align:'center'" width="70" formatter="formatDate">注销日期</th>
             <th data-options="field:'zxsm',halign:'center',align:'left'" width="70">注销说明</th>
         </tr>
         </thead>

@@ -702,6 +702,10 @@
       <if test="qymc!=null">
           and HCDW_NAME like concat(concat('%', #{qymc}), '%')
       </if>
+      <if test="filterByZfry!=null">
+          and (ZFRY_CODE1 = #{_userId} OR ZFRY_CODE2 = #{_userId})
+      </if>
+      
         ORDER BY
         <if test="order == 1">
           hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
