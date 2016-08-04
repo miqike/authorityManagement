@@ -173,9 +173,7 @@
 	        </table>
 	        <div id="mainGridToolbar">
 	            <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r4_c20" plain="true">检查记录</a>
-	            <input class="easyui-searchbox" data-options="width: 260, height: 24, 
-	            	prompt: '快速定位', searcher: quickSearch,
-	            	menu:'#mm'" />
+	            <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
 	        </div>
 	    </div>
     </div>

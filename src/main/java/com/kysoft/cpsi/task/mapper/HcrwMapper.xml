@@ -787,8 +787,8 @@
         SELECT m.*, n.FR,n.ZZXS, n.LLR, n.LXDH, n.HYFL FROM (
         select
         <include refid="Base_Column_List" />
-        from T_HCRW
-        where (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+        from T_HCRW 
+        where RLR IS NOT NULL AND RLRQ IS NOT NULL AND (ZFRY_CODE1 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
         <if test="nd!=null">
             AND ND = #{nd}
         </if>
@@ -798,12 +798,15 @@
         <if test="jhmc!=null">
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
-      <if test="docReadyReportFlag!=null">
-        AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
-      </if>
-
-        ) m LEFT JOIN 
+        <if test="xydm">
+            AND HCDW_XYDM = #{xydm}
+        </if>
+        <if test="qymc!=null">
+            AND HCDW_NAME LIKE concat(concat('%', #{qymc}), '%')
+        </if>
+		<if test="docReadyReportFlag!=null">
+		  AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
+		</if>) m LEFT JOIN 
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY
         <if test="order != null">

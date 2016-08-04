@@ -1,6 +1,4 @@
 function quickSearch (value, name) {
-	console.log(name);
-	console.log(value);
 	var externalParam = {};
 	externalParam[name] = value;
 	search(externalParam);

@@ -154,13 +154,19 @@
                 data-options="disabled:true">上报材料查阅</a>
              <a href="#" id="btnReportDocReady" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                 data-options="disabled:true">上报完成/取消完成</a>
+             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
          </div>
      </div>
 </div>
 
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
+</div>
+
 </body>
 </html>
-
+<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
