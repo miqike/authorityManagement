@@ -1193,7 +1193,7 @@
     	UPDATE T_HCRW SET REQUIRED_FILES=
 			(SELECT COUNT(ID) FROM t_hccl hccl  WHERE SFBYX=1 AND hcsx_id in (
 				SELECT ID FROM t_hcsx hcsx RIGHT JOIN (
-				SELECT HCSX_ID, HCJH_ID FROM t_hcjh_hcsx WHERE hcjh_id=#{hcjhId}') 
+				SELECT HCSX_ID, HCJH_ID FROM t_hcjh_hcsx WHERE hcjh_id=#{hcjhId})
 				hcjh_hcsx ON hcsx.ID = hcjh_hcsx.Hcsx_Id
 			)) WHERE HCJH_ID=#{hcjhId}
     </update>
