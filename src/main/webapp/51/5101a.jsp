@@ -93,8 +93,42 @@
     </script>
 </head>
 <body style="padding:5px;margin-top:-20px;">
-<!-- 
- -->    
+<div class="easyui-panel" data-options="height:120, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11',
+	tools: [
+		{iconCls:'icon-first', handler:goFirst},
+		{iconCls:'icon-previous', handler:goPrev},
+		{iconCls:'icon-next', handler:goNext},
+		{iconCls:'icon-last', handler:goLast}
+    ]"
+     style="padding-top:5px;width:auto">
+    <table id="taskDetailTable">
+        <tr>
+            <td class="label" style="width:60px">计划编号</td>
+            <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+            <td class="label" style="width:75px">计划名称</td>
+            <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+        </tr>
+        <tr>
+            <td class="label">注册号</td>
+            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+            <td class="label">被抽查企业</td>
+            <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+            
+        </tr>
+        <tr>   
+            <td class="label">计划年度</td>
+            <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
+            <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
+            <td class="label" >计划下达单位</td>
+            <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>
+            <td class="label"  style="width:50px;">检查结果</td>
+            <td ><input id="p_hcjieguo" class="easyui-combobox" 
+                       data-options="width:145" codeName="gsjg" disabled/>
+                <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+            </td></td>
+        </tr>
+    </table>
+</div>
 <div id="toobar1" class="easyui-toolbar">
     <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">任务列表</a>
     <div class="dialog-tool-separator"></div>
@@ -130,56 +164,18 @@
 		<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
     </shiro:hasPermission>
     <span>-</span>
-	
+<!-- 	
 	<a href="javascript:void(0);" id="btnGoFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首</a>
 	<a href="javascript:void(0);" id="btnGoPrev" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上</a>
 	<a href="javascript:void(0);" id="btnGoNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下</a>
 	<a href="javascript:void(0);" id="btnGoLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末</a>
+ -->
 </div>
-
-<div id="taskDetailLayout" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	<div data-options="region:'north',split:false,height:120, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
-     style="padding-top:5px;width:auto">
-        <table id="taskDetailTable">
-            <tr>
-                <td class="label" style="width:60px">计划编号</td>
-                <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-                <td class="label" style="width:75px">计划名称</td>
-                <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                
-            </tr>
-            <tr>
-                <td class="label">注册号</td>
-                <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-                <td class="label">被抽查企业</td>
-                <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                
-            </tr>
-            <tr>   
-                <td class="label">计划年度</td>
-                <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
-                <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
-                <td class="label" >计划下达单位</td>
-                <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>
-                <td class="label"  style="width:50px;">检查结果</td>
-                <td ><input id="p_hcjieguo" class="easyui-combobox" 
-                           data-options="width:145" codeName="gsjg" disabled/>
-                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
-                                                                                 plain="true" iconCls="icon-ok" disabled>确认</a>
-                </td>
-               <!--  <td colspan="2">
-                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
-                       iconCls="icon2 r12_c19" disabled>更新任务结果</a>-->
-                    </td>
-            </tr>
-        </table>
-	</div>
+ 
+<div class="easyui-panel" data-options="fit:true,collapsible:true">
+	<div id="auditItemList"></div>
+</div>
 	
-	<div data-options="region:'center',fit:true,collapsible:true">
-		<div id="auditItemList"></div>
-	</div>
-</div>
-
 <div id="myTaskListWindow" >
 	<div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
 	    <div data-options="region:'north',split:false,height:70" title="">
@@ -190,8 +186,6 @@
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
-		                <td class="label" style="width:70px;color:red">计划类型?</td>
-		                <td><input id="f_planType" class="easyui-combobox" codeName="planType" data-options="panelHeight:60"/></td>
 		            </tr>
 		            <tr>
 		                <td class="label" >统一社会信用代码</td>

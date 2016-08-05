@@ -7,6 +7,7 @@
 				<table id="annualAuditItemGrid" class="easyui-datagrid"
 					data-options="collapsible:true, ctrlSelect:true,method:'get',
 				    	onClickRow:annualAuditItemClickHandler,onDblClickRow:annualAuditItemDblClickHandler,
+				    	offset: { width: -15, height: -260},
 						toolbar: '#annualAuditItemGridToolbar'" >
 				     <thead>
 				     <tr>
@@ -30,7 +31,8 @@
 			<div data-options="title: '即时信息', iconCls: 'icon2 r8_c1', refreshable: false">
 				<table id="instanceAuditItemGrid" class="easyui-datagrid"
 					data-options="collapsible:true,	ctrlSelect:true,method:'get',
-						onClickRow:instanceAuditItemGridClickHandler,onDblClickRow:instanceAuditItemGridDblClickHandler, 
+						onClickRow:instanceAuditItemGridClickHandler,onDblClickRow:instanceAuditItemGridDblClickHandler,
+						offset: { width: -15, height: -260}, 
 						toolbar: '#instanceAuditItemGridToolbar'" >
 				     <thead>
 				     <tr>
