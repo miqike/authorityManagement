@@ -79,8 +79,8 @@ public class DocUploadController extends net.sf.husky.web.controller.BaseControl
     }
 
 
-    @RequestMapping(value = "{hcrwId}/furtherDocist", method = RequestMethod.GET)
-    public Map<String, Object> getFurtherDocistt(@PathVariable String hcrwId) {
+    @RequestMapping(value = "{hcrwId}/furtherDocList", method = RequestMethod.GET)
+    public Map<String, Object> getFurtherDocList(@PathVariable String hcrwId) {
     	Map<String, Object> result = Maps.newHashMap();
     	try {
     		result.put(DATA, hcclService.queryForTask2(hcrwId));

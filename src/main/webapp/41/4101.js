@@ -52,7 +52,7 @@ function grid1ClickHandler() {
 
 function loadMyTask(jhbh) {
     $("#grid2").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh+"&docReadyReportFlag=1",
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh,//+"&docReadyReportFlag=0",
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
@@ -97,7 +97,7 @@ function viewDocList() {
 		enableApplyButton : false,
 		closeButtonText : "返回",
 		closeButtonIconCls : "icon-undo",
-		href : "./docListb.jsp",
+		href : "../51/docListb.jsp",
 		onLoad : function() {
 			//doDocListInit();
 		}

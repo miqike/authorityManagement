@@ -172,7 +172,7 @@
 	            </thead>
 	        </table>
 	        <div id="mainGridToolbar">
-	            <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r4_c20" plain="true">检查记录</a>
+	            <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r4_c20" plain="true" disabled>检查记录</a>
 	            <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
 	        </div>
 	    </div>
@@ -199,15 +199,16 @@
            data-options="
                singleSelect:true,
                collapsible:true,
+               onClickRow:grid2ButtonHandler,
                selectOnCheck:false,method:'get',
                checkOnSelect:false"
            toolbar="#grid2Toolbar"
            style="height: 318px">
         <thead>
         <tr>
-            <th data-options="field:'nd'" halign="center" align="center" width="70">计划年度</th>
+            <th data-options="field:'nd'" halign="center" align="center" width="60">计划年度</th>
             <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
-            <th data-options="field:'jhbh'" halign="center" align="left" width="70" >计划编号</th>
+            <th data-options="field:'jhbh'" halign="center" align="left" width="60" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
             <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
             <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
@@ -218,9 +219,9 @@
         </thead>
     </table>
     <div id="grid2Toolbar">
-        <a href="#" id="btnViewHcsxjg" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">事项核查结果</a>
-        <a href="#" id="btnViewHcclmx" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">检查材料</a>
-        <a href="#" id="btnCloseHistory" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
+        <a href="#" id="btnViewHcsxjg" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true" disabled>事项核查结果</a>
+        <a href="#" id="btnViewDocList" class="easyui-linkbutton" iconCls="icon2 r9_c2" plain="true" disabled>检查材料</a>
+        <a href="#" id="btnCloseHistory" class="easyui-linkbutton" iconCls="icon-back" plain="true">返回</a>
     </div>
 </div>
 
@@ -239,6 +240,7 @@
     	<tr>
     		<td style="text-align:right">计划编号</td><td><span id="m_jhbh" style="color:blue;margin:0px 5px;"></span></td>
     		<td style="text-align:right">计划名称</td><td><span id="m_hcjgmc" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right"><a href="#" id="btnCloseHcsxjg" class="easyui-linkbutton" iconCls="icon-back" plain="true">返回</a></td>
     	</tr>
     </table>
     
@@ -249,8 +251,7 @@
                collapsible:true,
                selectOnCheck:false,method:'get',
                checkOnSelect:false"
-           toolbar="#grid3Toolbar"
-           style="height: 418px">
+           style="height: 348px">
         <thead>
         <tr>
 			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
@@ -266,9 +267,9 @@
         </tr>
         </thead>
     </table>
-    <div id="grid3Toolbar">
-        <a href="#" id="btnCloseHcsxjg" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
-    </div>
+    <!-- <div id="grid3Toolbar">
+        <a href="#" id="btnCloseHcsxjg" class="easyui-linkbutton" iconCls="icon-back" plain="true">返回</a>
+    </div> -->
 </div>
 </body>
 </html>

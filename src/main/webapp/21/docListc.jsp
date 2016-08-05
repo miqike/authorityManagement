@@ -2,55 +2,20 @@
 <script>
 	function formatDocOperation(val, row, rowIndex) {
 		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
-			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>";
 		} else {
-			return "<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			return "";
 		}
 	}
 	
 	function formatDocOperation2(val, row, rowIndex) {
 		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
-			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>";
 		} else {
-			return "<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			return "";
 		}
 	}
 	
-	function uploadFile(rowIndex) {
-	    var data = $('#docGrid').datagrid("getData").rows[rowIndex];
-	    if (null != data.MONGO_ID) {
-	        $.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
-	            if (r) {
-	            	showUploadForm(1);
-	            }
-	        });
-	    } else {
-	    	showUploadForm(1);
-	    }
-	}
-
-	function uploadFile2(rowIndex) {
-		var data = $('#furDocgrid').datagrid("getData").rows[rowIndex];
-		if (null != data.MONGO_ID) {
-			$.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
-				if (r) {
-					showUploadForm(2);
-				}
-			});
-		} else {
-			showUploadForm(2);
-		}
-	}
-
-	function showUploadForm(type) {
-		$("#documentWindow").dialog("open");
-	    $("#docPanel").panel({
-	        href: '../51/docFormb.jsp',
-	        onLoad: function () {
-	            doInit(type);
-	        }
-	    });
-	}
 	function sfbyStyler(val,row,index) {
 		if(val == 1) {
 			return "background-color:lightcoral";
@@ -78,14 +43,14 @@
 	function doDocListInit() {
 		var hcrw = $("#grid2").datagrid("getSelected");
 		$.getJSON("../common/query?mapper=hcclMapper&queryName=queryForTask",  {
-				hcrwId:hcrw.ID
+				hcrwId:hcrw.id
 			}, function (response) {
 			    if (response.status == $.husky.SUCCESS) {
 			    	 $("#docGrid").datagrid("loadData",response);
 			    }
 			});
 		
-		$.getJSON("../docUpload/" + hcrw.ID + "/furtherDocList", function (response) {
+		$.getJSON("../docUpload/" + hcrw.id + "/furtherDocList", function (response) {
 			if (response.status == $.husky.SUCCESS) {
 				if(response.data.length > 0) {
 					$("#furDocgrid").parent().parent().parent().show()
@@ -164,17 +129,5 @@
 		    </table>
 	    </div>
 	</div>
-</div>
-<!-- 
-<div id="docGridToolbar">
-    <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon2 r16_c13" plain="true" >上传</a>
-    <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
-</div>
- -->
-
- <div id="documentWindow" title="检查材料" class="easyui-dialog"
-     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-     style="width: 600px; height: 205px; padding: 10px;">
-    <div id="docPanel" style="padding:10px;"></div>
 </div>
  

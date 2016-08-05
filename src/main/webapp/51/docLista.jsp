@@ -95,7 +95,7 @@
 			    }
 			});
 		 
-		 $.getJSON("../docUpload/" + hcrw.id + "/furtherDocist", function (response) {
+		 $.getJSON("../docUpload/" + hcrw.id + "/furtherDocList", function (response) {
 				if (response.status == $.husky.SUCCESS) {
 					if(response.data.length > 0) {
 						$("#furDocgrid").parent().parent().parent().show()

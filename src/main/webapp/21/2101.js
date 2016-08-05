@@ -32,13 +32,20 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 
 function mainGridButtonHandler() {
     if ($('#mainGrid').datagrid('getSelected') != null) {
-
+    	$('#btnView').linkbutton('enable');
     } else {
         $('#btnView').linkbutton('disable');
-        $('#btnDelete').linkbutton('disable');
-        $('#btnResetPass').linkbutton('disable');
-        $('#btnLock').linkbutton('disable');
     }
+}
+
+function grid2ButtonHandler() {
+	if ($('#grid2').datagrid('getSelected') != null) {
+		$('#btnViewHcsxjg').linkbutton('enable');
+		$('#btnViewDocList').linkbutton('enable');
+	} else {
+		$('#btnViewHcsxjg').linkbutton('disable');
+		$('#btnViewDocList').linkbutton('disable');
+	}
 }
 
 function mainGridDblClickHandler(index, row) {
@@ -87,10 +94,6 @@ function formatZfry(val, row) {
 	} else if(row.zfryName2 == null ) {
 		return row.zfryName1;
 	}
-}
-
-function poiExport() {
-    $("<iframe id='poiExport' style='display:none' src='../user/poiExport'>").appendTo("body");
 }
 
 function stylerHczt(val, row, index) {
@@ -159,6 +162,8 @@ function view(){
 	    $('#grid2').datagrid('load', {
 	        hcdwXydm: qy.xydm
 	    });
+	    $('#btnViewHcsxjg').linkbutton('disable');
+		$('#btnViewDocList').linkbutton('disable');
 	}
 }
 
@@ -187,6 +192,24 @@ function viewHcsxjg(){
 	}
 }
 
+function viewDocList() {
+	$.easyui.showDialog({
+		title : "检查材料",
+		width : 790,
+		height : 420,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./docListc.jsp",
+		onLoad : function() {
+			//doDocListInit();
+		}
+	});
+}
+
 function closeHcsxjg(){
     $("#examHistoryHcsxjg").window("close");
 }
@@ -194,7 +217,5 @@ function closeHcsxjg(){
 $(function () {
 	$.husky.getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
-    $("#f_jhnd").val(new Date().getFullYear());
-    
-    
+    //$("#f_jhnd").val(new Date().getFullYear());
 });

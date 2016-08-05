@@ -268,8 +268,8 @@
         <if test="qymc!=null">
             and NAME like concat(concat('%', #{qymc}), '%')
         </if>
-        <if test="qybm!=null">
-            and qybm like #{qybm}||'%'
+        <if test="dwId!=null">
+            and qybm like #{dwId}||'%'
         </if>
         <if test="planType!=null">
             and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and t_sczt.xydm=b.hcdw_xydm)
@@ -317,6 +317,9 @@
         <if test="hyfl!=null">
             and hyfl=#{hyfl}
         </if>
+        <if test="dwId!=null">
+            and qybm like #{dwId}||'%'
+        </if>
         <if test="planType!=null">
             and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and t_sczt.xydm=b.hcdw_xydm)
         </if>
@@ -332,9 +335,6 @@
         </if>
         <if test="hcjg!=null">
             and exists(select 1 from t_hcrw b where b.hcjg=#{hcjg} and t_sczt.xydm=b.hcdw_xydm)
-        </if>
-        <if test="qybm!=null">
-            and qybm like #{qybm}||'%'
         </if>
         <if test="qy!=null">
             and QYMC like #{qy}||'%'

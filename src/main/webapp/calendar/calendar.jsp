@@ -85,7 +85,7 @@
 	<a href="#" id="btnEstimate" class="easyui-linkbutton" iconCls="icon2 r24_c2" plain="true" disabled="true">评价</a>
 	<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled="true">删除</a>
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
-	<a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-undo"  plain="true">返回</a>
+	<a href="#" id="btnCancel" class="easyui-linkbutton" iconCls="icon-back"  plain="true">返回</a>
 
 	<table style="padding-top:5px" id="planTable">
 		<tr>
