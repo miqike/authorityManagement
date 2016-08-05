@@ -95,87 +95,82 @@
 <body style="padding:5px;margin-top:-20px;">
 <!-- 
  -->    
-<div id="toobar1" class="easyui-toolbar">
-    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-search'">任务列表</a>
-    <div class="dialog-tool-separator"></div>
-    <shiro:hasPermission name="5105:btnSendHcgzs">
-    	<a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnSendZllxtzs">
-		<a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnSendQyzshch">
-		<a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnPrintGongShiXinXiGengZhengBiao">
-		<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
-    </shiro:hasPermission>
-</div>
-
-<div id="toobar2" class="easyui-toolbar">
-    <shiro:hasPermission name="5105:btnPullData">
-    	<a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnOpenEtlTool">
-    	<a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnViewDocument">
-		<a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
-    </shiro:hasPermission>
-    <span>-</span>
-    <shiro:hasPermission name="5105:btnPrintAuditReport">
-		<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
-    </shiro:hasPermission>
-    <shiro:hasPermission name="5105:btnUpdateHcjg">
-		<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
-    </shiro:hasPermission>
-    <span>-</span>
-	
-	<a href="javascript:void(0);" id="btnGoFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首</a>
-	<a href="javascript:void(0);" id="btnGoPrev" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上</a>
-	<a href="javascript:void(0);" id="btnGoNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下</a>
-	<a href="javascript:void(0);" id="btnGoLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末</a>
-</div>
-
-<div id="taskDetailLayout" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	<div data-options="region:'north',split:false,height:120, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'"
-     style="padding-top:5px;width:auto">
-        <table id="taskDetailTable">
-            <tr>
-                <td class="label" style="width:90px">计划编号</td>
-                <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                <td class="label" style="width:90px">计划名称</td>
-                <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                
-            </tr>
-            <tr>
-                <td class="label">注册号</td>
-                <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
-                <td class="label" >抽查单位</td>
-                <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                
-            </tr>
-            <tr>   
-                <td class="label">下达时间</td>
-                <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                <td class="label"  style="width:90px;">计划结束时间</td>
-                <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-                <td class="label"  style="width:90px;">检查结果</td>
-                <td ><input id="p_hcjieguo" class="easyui-combobox" 
-                           data-options="width:187" codeName="gsjg" disabled/>
-                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton"
-                                                                                 plain="true" iconCls="icon-ok" disabled>确认</a>
-                </td>
-               <!--  <td colspan="2">
-                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true"
-                       iconCls="icon2 r12_c19" disabled>更新任务结果</a>-->
-                    </td>
-            </tr>
-        </table>
+ 
+ <div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
+	<div id="northPanel" data-options="region: 'north', height:174, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11',
+		tools: [
+			{iconCls:'icon-first', handler:goFirst},
+			{iconCls:'icon-previous', handler:goPrev},
+			{iconCls:'icon-next', handler:goNext},
+			{iconCls:'icon-last', handler:goLast}
+	    ]" style="overflow: hidden;">
+ 		
+ 		<table id="taskDetailTable">
+			<tr>
+			    <td class="label" style="width:90px">计划编号</td>
+			    <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
+			    <td class="label" style="width:90px">计划名称</td>
+			    <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+			    
+			</tr>
+			<tr>
+			    <td class="label">注册号</td>
+			    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
+			    <td class="label" >抽查单位</td>
+			    <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+			    
+			</tr>
+			<tr>   
+			    <td class="label">下达时间</td>
+			    <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+			    <td class="label"  style="width:90px;">计划结束时间</td>
+			    <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+			    <td class="label"  style="width:90px;">检查结果</td>
+			    <td ><input id="p_hcjieguo" class="easyui-combobox" data-options="width:187" codeName="gsjg" disabled/>
+			        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+			    </td>
+			    </tr>
+		</table>
+		<div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
+			<div id="toobar1">
+			    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon-search'">任务列表</a>
+			    <div class="dialog-tool-separator"></div>
+			    <shiro:hasPermission name="5105:btnSendHcgzs">
+			    	<a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnSendZllxtzs">
+					<a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnSendQyzshch">
+					<a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnPrintGongShiXinXiGengZhengBiao">
+					<a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" disabled>公示信息更正审批表</a>
+			    </shiro:hasPermission>
+			</div>
+			
+			<div id="toobar2">
+			    <shiro:hasPermission name="5105:btnPullData">
+			    	<a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnOpenEtlTool">
+			    	<a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnViewDocument">
+					<a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
+			    </shiro:hasPermission>
+			    <span>-</span>
+			    <shiro:hasPermission name="5105:btnPrintAuditReport">
+					<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" disabled>年报公示信息核查结果报告</a>
+			    </shiro:hasPermission>
+			    <shiro:hasPermission name="5105:btnUpdateHcjg">
+					<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+			    </shiro:hasPermission>
+			</div>
+		</div>
 	</div>
-	
-	<div data-options="region:'center',fit:true,collapsible:true">
-		<div id="auditItemList"></div>
+	<div data-options="region: 'center'" style="padding: 2px;overflow: hidden;"  data-options="collapsible:true,fit:true">
+		<div id="auditItemList"  style="overflow: hidden;" ></div>
 	</div>
 </div>
 
@@ -201,6 +196,8 @@
 		                       iconCls="icon-search">查找</a>
 		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon2 r3_c10">重置</a>
+		                    <a href="javascript:void(0);" id="btnMinimizeMyTaskWindow" class="easyui-linkbutton" plain="true"
+		                       iconCls="icon-back">返回</a>
 		                </td>
 		            </tr>
 		        </table>
