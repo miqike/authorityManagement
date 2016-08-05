@@ -538,7 +538,7 @@
     </select>
     
     <select id="addTask" parameterType="java.util.HashMap" statementType="CALLABLE">
-        {call pkg_hc.prc_importRcRw (
+        {call pkg_import.prc_importRcRw (
         #{hcjhId,mode=IN,jdbcType=VARCHAR},#{zchList,mode=IN,jdbcType=VARCHAR},
         #{zfryId,mode=IN,jdbcType=VARCHAR},#{zfryName,mode=IN,jdbcType=VARCHAR})}
     </select>
