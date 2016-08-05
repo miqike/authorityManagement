@@ -217,5 +217,5 @@ function closeHcsxjg(){
 $(function () {
 	$.husky.getUserInfo();
     $.fn.zTree.init($("#orgTree"), setting);
-    //$("#f_jhnd").val(new Date().getFullYear());
+    $("#f_jhnd").val(new Date().getFullYear());
 });

@@ -205,9 +205,15 @@
 				                <div class="t-list"><a href="./help/前端取数(V5.0).doc">&lt;检查告知书&gt;</a></div>
 				                <div class="t-list"><a href="./help/手工帐取数操作流程.doc">&lt;实施方案&gt;</a></div>
 				            </div>
+				            <div title="导航" collapsible="true" closable="true" style="padding:5px;">
+				                <img src="images/test.jpg" width="207" height="148" alt="新书架" hspace="10" align="left" usemap="#newbook" border="0">
+									<map name="newbook">
+										<area shape="rect" coords="56,69,78,139" href="javascript:openTabFromMap('5105', '51/5101a.jsp', '双随机计划核查');" alt="双随机计划核查" title="双随机计划核查">
+										<area shape="rect" coords="82,70,103,136" href="javascript:openTabFromMap('4102', '41/4102.jsp', '采集数据导入及验证');"  alt="采集数据导入及验证" title="采集数据导入及验证">
+										<area shape="rect" coords="106,68,128,136" href="javascript:xxxxxxx('4101', '41/4101.jsp', '企业抽查资料上报');" alt="企业抽查资料上报" title="企业抽查资料上报">
+									</map>
+				            </div>
 				        </div>
-                            
-                            
                     </div>
                 </div>
             </div>
@@ -223,3 +229,15 @@
 	</div>
 </body>
 </html>
+<script>
+
+function openTabFromMap(menuId, url, title) {
+	$('#wnav li').removeClass("selected");
+	window.mainpage.mainTabs.addModule({
+		id:menuId, 
+		title:title, 
+		href:url
+	});
+}
+
+</script>

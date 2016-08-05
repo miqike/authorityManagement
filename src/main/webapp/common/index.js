@@ -223,7 +223,6 @@
             });
 
         $(btnFullScreen).click(function () {
-        	console.log(" ------------ ")
             if ($.util.supportsFullScreen) {
                 if ($.util.isFullScreen()) {
                     $.util.cancelFullScreen();
