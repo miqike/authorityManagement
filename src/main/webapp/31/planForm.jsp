@@ -19,7 +19,7 @@
                     </td>
                     <td class="label">检查单位</td>
                     <td><input type="hidden" id="p_djjg"/>
-                        <input class="easyui-validatebox" id="p_djjgmc" data-options="required:true" style="width:192px;" />
+                        <input class="easyui-validatebox" id="p_djjgmc" data-options="" style="width:192px;" />
                     </td>
                 </tr>
                 <tr>

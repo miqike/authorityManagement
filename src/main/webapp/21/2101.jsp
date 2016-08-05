@@ -219,6 +219,7 @@
     </table>
     <div id="grid2Toolbar">
         <a href="#" id="btnViewHcsxjg" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">事项核查结果</a>
+        <a href="#" id="btnViewHcclmx" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">检查材料</a>
         <a href="#" id="btnCloseHistory" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
     </div>
 </div>

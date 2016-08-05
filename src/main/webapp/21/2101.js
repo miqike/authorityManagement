@@ -148,16 +148,18 @@ function reset() {
 }
 
 function view(){
-	$("#examHistory").window("open");
-	/* showModalDialog("examHistory");*/
-    var qy=$("#mainGrid").datagrid("getSelected");
-    $("#p_code").text(qy.xydm);
-    $("#p_name").text(qy.name);
-    var options = $("#grid2").datagrid("options");
-    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
-    $('#grid2').datagrid('load', {
-        hcdwXydm: qy.xydm
-    });
+	var qy=$("#mainGrid").datagrid("getSelected");
+	if(null != qy) {
+		$("#examHistory").window("open");
+		/* showModalDialog("examHistory");*/
+	    $("#p_code").text(qy.xydm);
+	    $("#p_name").text(qy.name);
+	    var options = $("#grid2").datagrid("options");
+	    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
+	    $('#grid2').datagrid('load', {
+	        hcdwXydm: qy.xydm
+	    });
+	}
 }
 
 function closeHistory(){

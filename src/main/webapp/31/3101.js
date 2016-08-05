@@ -248,28 +248,22 @@ function setFormFieldStatus(formId, operation) {
 function add() {
 	window.selected = -1;
 	$('#grid1').datagrid('unselectAll');
-	if (!$("#btnAdd").linkbutton('options').disabled) {
-		showPlanForm();
-	}
+	showPlanForm();
 }
 
 function addRc() {
 	window.selected = -1;
 	$('#grid1').datagrid('unselectAll');
-	if (!$("#btnAddRc").linkbutton('options').disabled) {
-		showPlanFormb();
-	}
+	showPlanFormb();
 }
 
 function modify() {
-	if(!$(this).linkbutton('options').disabled) {
-		var row = $('#grid1').datagrid('getSelected');
-		if (row) {
-			if(row.planType==1) {
-				showPlanForm(row);
-			} else {
-				showPlanFormb(row);
-			}
+	var row = $('#grid1').datagrid('getSelected');
+	if (row) {
+		if(row.planType==1) {
+			showPlanForm(row);
+		} else {
+			showPlanFormb(row);
 		}
 	}
 }
@@ -383,24 +377,22 @@ function doPlanFormInitb(data) {
 }
 
 function dispatch() {
-	if (!$(this).linkbutton('options').disabled) {
-		var row = $('#grid1').datagrid('getSelected');
-		if (row) {
-			var xdzt = (row.xdrmc == null && row.xdrq == null)? 0: 1;
-			var action = xdzt == 0 ? '下达' : '取消下达';
-			$.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
-				if (r) {
-					$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
-						if (response.status == $.husky.SUCCESS) {
-							$.messager.alert("提示", action + "成功", 'info');
-							loadGrid1(row.id);
-						} else {
-							$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
-						}
-					});
-				}
-			});
-		}
+	var row = $('#grid1').datagrid('getSelected');
+	if (row) {
+		var xdzt = (row.xdrmc == null && row.xdrq == null)? 0: 1;
+		var action = xdzt == 0 ? '下达' : '取消下达';
+		$.messager.confirm(action + '确认', '请确认是否对本计划进行<' + action + '>操作?', function (r) {
+			if (r) {
+				$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
+					if (response.status == $.husky.SUCCESS) {
+						$.messager.alert("提示", action + "成功", 'info');
+						loadGrid1(row.id);
+					} else {
+						$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
+					}
+				});
+			}
+		});
 	}
 }
 
@@ -513,16 +505,14 @@ function loadAuditItemList() {
 }
 
 function funcAdd4() {
-    if (!$(this).linkbutton('options').disabled) {
-        var row = $("#grid1").datagrid('getSelected');
-        showModalDialog("addAuditItemWindow");
-        var options = $("#grid5").datagrid("options");
-        options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlanCandidate';
-        $('#grid5').datagrid('load', {
-            hcjhId: row.id,
-            nr: row.nr
-        });
-    }
+    var row = $("#grid1").datagrid('getSelected');
+    showModalDialog("addAuditItemWindow");
+    var options = $("#grid5").datagrid("options");
+    options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlanCandidate';
+    $('#grid5').datagrid('load', {
+        hcjhId: row.id,
+        nr: row.nr
+    });
 }
 
 
@@ -645,60 +635,56 @@ function savePlan(planType) {
 
 }
 function funcImportTask() {
-    if (!$(this).linkbutton('options').disabled) {
-        showModalDialog("importTaskWindow");
-    }
+    $("#importTaskWindow").window("open");
 }
 
 function funcImportPlan() {
-	if (!$(this).linkbutton('options').disabled) {
-		var dialog = $.easyui.showDialog({
-			title : "接口抽查计划信息",
-			width : 800,
-			height : 380,
-			topMost : false,
-			iconCls:'icon2 r16_c14',
-			
-			buttons:[{
-				text:'确定',
-				iconCls : "icon-ok",
-				handler:function(){
-					var selected = $('#planAbstractGrid').datagrid("getSelected");
-					if(null != selected) {
-						$.getJSON("./hcjh/validate/" + selected.gsjhbh, null, function(response) {
-							if(response.validate) {
-								$("#p_nd").val(selected.nd);
-								$("#p_jhbh").val(selected.gsjhbh);
-								$("#p_jhmc").val(selected.jhmc);
-								$("#p_cxwh").val(selected.cxwh);
-								$("#p_gsjhbh").val(selected.gsjhbh);
-								$("#p_djjg").val(selected.djjg);
-								$("#p_djjgmc").val(selected.djjgmc);
-								
-								$(dialog).dialog("close")
-								return true;
-							} else {
-								$.messager.alert("操作提示", "该公示计划曾经导入,不能重复导入");
-								return false;
-							}
-						});
-					} else {
-						$.messager.alert("操作提示", "请首先选择一项公示计划");
-						return false;
-					}
+	var dialog = $.easyui.showDialog({
+		title : "接口抽查计划信息",
+		width : 800,
+		height : 380,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		
+		buttons:[{
+			text:'确定',
+			iconCls : "icon-ok",
+			handler:function(){
+				var selected = $('#planAbstractGrid').datagrid("getSelected");
+				if(null != selected) {
+					$.getJSON("./hcjh/validate/" + selected.gsjhbh, null, function(response) {
+						if(response.validate) {
+							$("#p_nd").val(selected.nd);
+							$("#p_jhbh").val(selected.gsjhbh);
+							$("#p_jhmc").val(selected.jhmc);
+							$("#p_cxwh").val(selected.cxwh);
+							$("#p_gsjhbh").val(selected.gsjhbh);
+							$("#p_djjg").val(selected.djjg);
+							$("#p_djjgmc").val(selected.djjgmc);
+							
+							$(dialog).dialog("close")
+							return true;
+						} else {
+							$.messager.alert("操作提示", "该公示计划曾经导入,不能重复导入");
+							return false;
+						}
+					});
+				} else {
+					$.messager.alert("操作提示", "请首先选择一项公示计划");
+					return false;
 				}
-			}],
-			
-			enableSaveButton : false,
-			enableApplyButton : false,
-			closeButtonText : "返回",
-			closeButtonIconCls : "icon-undo",
-			href : "./planAbstractList.jsp",
-			onLoad : function() {
-				doPlanAbstractListInit();
 			}
-		});
-	}
+		}],
+		
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./planAbstractList.jsp",
+		onLoad : function() {
+			doPlanAbstractListInit();
+		}
+	});
 }
 
 function doPlanAbstractListInit() {
@@ -728,17 +714,15 @@ function testDblink() {
 }
 
 function importDblink() {
-    if (!$(this).linkbutton('options').disabled) {
-        var hcjhId = $("#p_id").val();
-        $.easyui.loading();
-        $.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
-            $.easyui.loaded();
-            if (response.status == $.husky.SUCCESS) {
-                $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
-                loadGrid1(hcjhId);
-            }
-        });
-    }
+    var hcjhId = $("#p_id").val();
+    $.easyui.loading();
+    $.getJSON("./hcjh/importDblink/" + hcjhId, null, function (response) {
+        $.easyui.loaded();
+        if (response.status == $.husky.SUCCESS) {
+            $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
+            loadGrid1(hcjhId);
+        }
+    });
 }
 
 function sort1() {
