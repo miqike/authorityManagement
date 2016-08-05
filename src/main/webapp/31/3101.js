@@ -506,7 +506,7 @@ function loadAuditItemList() {
 
 function funcAdd4() {
     var row = $("#grid1").datagrid('getSelected');
-    showModalDialog("addAuditItemWindow");
+    $("#addAuditItemWindow").window("open");
     var options = $("#grid5").datagrid("options");
     options.url = '../common/query?mapper=hcsxMapper&queryName=queryForPlanCandidate';
     $('#grid5').datagrid('load', {
