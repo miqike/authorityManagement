@@ -38,68 +38,74 @@ declare
 begin
   delete from sys_organization;
   insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
-    select code id,content name,sjcode2 parent_id,1 type,null contacts,null phone,djjgjc brief_name  from(
-      select a.*,case when sjcode='0' and code not in('100000','610000') then '610000' else sjcode end sjcode2
-      from bm_djjg a where code not in('100000')
-      start with sjcode='0' connect by prior code=sjcode
-    ) start with sjcode2='0' connect by prior code=sjcode2;
+    select code id,content name,sjcode parent_id,1 type,null contacts,null phone,djjgjc brief_name  from bm_djjg;
 
   for o in cur_org loop
     insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
-      select code id,content name,o.id parent_id,1 type,null contacts,null phone,null brief_name from BM_gxdw where code like o.id||'%' and length(code)=8;
+      select code id,content name,o.id parent_id,1 type,null contacts,null phone,null brief_name from BM_gxdw where code like o.id||'%';
   end loop;
 end;
 /
-
+--插入市局
+insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
+  values(500,'重庆市工商局',null,1,null,null,'市局');
 /**
-  初始化核查人员
+  初始化核查人员 有人员属于多个管辖单位的情况，此次将这些人员过滤掉了
  */
 delete from t_zfry;
 insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
-  select user_id,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-    null zw,null mobile,null mail,zfzh,null sfzh,1,null whcd,1,
-    gxdwdm GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdwdm) gxdw_name,
+  select distinct user_id code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
+    null zw,null mobile,null mail,null zfzh,null sfzh,1,null whcd,1,
+    gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
     gh user_id
-  from xt_user a;
+  from xt_user a
+  where user_id not in(select code from(select count(1),c.code from(
+select distinct user_id code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
+    null zw,null mobile,null mail,null zfzh,null sfzh,1,null whcd,1,
+    gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
+    gh user_id
+  from xt_user a
+) c group by c.code having count(1)>1));
+/*
+merge into t_zfry 
+  using(
+    select trim(user_id) code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
+        null zw,null mobile,null mail,null zfzh,null sfzh,1 zflx,null whcd,1 zt,
+        gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
+        gh user_id
+        from xt_user a
+  ) i_zfry
+  on(i_zfry.code=t_zfry.code)  
+  WHEN MATCHED THEN 
+          update set name=i_zfry.full_name
+  WHEN NOT MATCHED THEN 
+      insert(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
+        values(i_zfry.code,i_zfry.full_name,i_zfry.gender,i_zfry.dw_id,i_zfry.dw_name,i_zfry.zw,i_zfry.mobile,i_zfry.mail,i_zfry.zfzh,i_zfry.sfzh,i_zfry.zflx,i_zfry.whcd,i_zfry.zt,i_zfry.GXDW_ID,i_zfry.GXDW_NAME,i_zfry.user_id);
+*/
 /**
   初始化操作员
  */
 delete from sys_user where user_id<>'system';
 delete from sys_user_role a where not exists(select 1 from sys_user b where b.user_id=a.user_id);
 
-declare
-  v_cnt number;
-  v_cnt2 number;
-begin
-  for o in(select * from xt_user where gh is not null and djjg is not null) loop
-    select count(1) into v_cnt from sys_user where user_id=o.gh;
-    if(v_cnt=0) then
-      insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
-      values(o.gh,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.gh||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
-                  null,1,o.djjg,0,1,(select content from bm_djjg b where b.code=o.djjg) ,
-             o.user_name);
-      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
-      if(v_cnt2=0) then
-        insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.gh,o.full_name,o.djjg,(select content from bm_djjg b where b.code=o.djjg));
-      end if;
-    else
-      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
-      if(v_cnt2=0) then
-        insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.gh,o.full_name,o.djjg,(select content from bm_djjg b where b.code=o.djjg));
-      end if;
-    end if;
-  end loop;
-end;
-/
-
+insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
+  select user_id,null manager_id,name,null email,null mobile,lower(pkg_hc.MD5_DIGEST(user_id||'000000'||'123qwe!@#QWE')) password,'123qwe!@#QWE' salt,sysdate create_time,
+         null manager_name,1 status,dw_id org_id,0 org_type,1 weight,(select content from bm_djjg b where b.code=a.dw_id) org_name,
+         name zfry
+  from t_zfry a where user_id is not null ;
+/*  
+insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
+  select distinct gh user_id,null manager_id,full_name name,null email,null mobile,lower(pkg_hc.MD5_DIGEST(gh||'000000'||'123qwe!@#QWE')) password,'123qwe!@#QWE' salt,sysdate create_time,
+         null manager_name,1 status,djjg org_id,0 org_type,1 weight,(select content from bm_djjg b where b.code=a.djjg) org_name,
+         user_name zfry
+  from xt_user a where gh is not null and gh not in(select gh from(select gh,count(1) from xt_user where gh is not null group by gh having count(1)>1));
+*/
 insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
-  where a.name in('超级管理员')
+  where a.id=1
         and b.user_id<>'system';
 update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
-insert into t_user_org values('system','系统管理员','610000','陕西省工商行政管理局');
+insert into t_user_org values('system','系统管理员','500','重庆市工商局');
 /**
 初始化编码表
 **/

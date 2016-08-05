@@ -248,7 +248,7 @@ function setFormFieldStatus(formId, operation) {
 function add() {
 	window.selected = -1;
 	$('#grid1').datagrid('unselectAll');
-	if (!$(this).linkbutton('options').disabled) {
+	if (!$("#btnAdd").linkbutton('options').disabled) {
 		showPlanForm();
 	}
 }
@@ -256,7 +256,7 @@ function add() {
 function addRc() {
 	window.selected = -1;
 	$('#grid1').datagrid('unselectAll');
-	if (!$(this).linkbutton('options').disabled) {
+	if (!$("#btnAddRc").linkbutton('options').disabled) {
 		showPlanFormb();
 	}
 }
