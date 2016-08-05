@@ -46,6 +46,39 @@ function mainGridDblClickHandler(index, row) {
     $('#mainGrid').datagrid('unselectAll').datagrid('selectRow', window.selected);
 }
 
+function formatCompareCol(val, row) {
+	var rc = row.qygsnr;
+	if(val != null ) {
+		if(val == "...") {
+			return val;
+		} else {
+			if(rc == val) {
+				return "<span style='color:green;'>" + val + "</span>";
+			} else {
+				return "<span style='color:red;'>" + val + "</span>";
+			} 
+		}
+	}
+}
+
+function stylerRegist(val, row, index) {
+	var compareSource = row.dbxxly;
+	if(compareSource == 1 || compareSource == 3) {
+		return "";
+	} else if(compareSource == 2) {
+		return "background-color:#ebeced";
+	}
+}
+
+function stylerActual(val, row, index) {
+	var compareSource = row.dbxxly;
+	if(compareSource == 2 || compareSource == 3) {
+		return "";
+	} else {
+		return "background-color:#ebeced;";
+	} 
+}
+
 function formatZfry(val, row) {
 	if(row.zfryName1 != null && row.zfryName2 != null ) {
 		return row.zfryName1 + "/" + row.zfryName2;
@@ -109,15 +142,17 @@ function search(externalParam) {
     $("#mainGrid").datagrid(options);
 }
 
-
 function reset() {
     $("#queryTable").form("clear");
     $('#mainGrid').datagrid('loadData', []);
 }
 
 function view(){
-    showModalDialog("examHistory");
+	$("#examHistory").window("open");
+	/* showModalDialog("examHistory");*/
     var qy=$("#mainGrid").datagrid("getSelected");
+    $("#p_code").text(qy.xydm);
+    $("#p_name").text(qy.name);
     var options = $("#grid2").datagrid("options");
     options.url = '../common/query?mapper=hcrwMapper&queryName=queryForXydm';
     $('#grid2').datagrid('load', {
@@ -132,7 +167,16 @@ function closeHistory(){
 function viewHcsxjg(){
 	var rw=$("#grid2").datagrid("getSelected");
 	if(null != rw) {
-    	showModalDialog("examHistoryHcsxjg");
+    	$("#examHistoryHcsxjg").window("open");
+    	
+    	$("#m_code").text(rw.hcdwXydm);
+        $("#m_name").text(rw.hcdwName);
+        
+        $("#m_jhnd").text(rw.jhnd);
+        $("#m_planType").text(rw.planType == 1 ? "双随机": "日常监管");
+        $("#m_jhbh").text(rw.jhbh);
+        $("#m_hcjgmc").text(rw.hcjgmc);
+        
         var options = $("#grid3").datagrid("options");
         options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';
         $('#grid3').datagrid('load', {
@@ -144,7 +188,6 @@ function viewHcsxjg(){
 function closeHcsxjg(){
     $("#examHistoryHcsxjg").window("close");
 }
-
 
 $(function () {
 	$.husky.getUserInfo();

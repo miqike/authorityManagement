@@ -719,7 +719,7 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW where hcdw_xydm=#{hcdwXydm}
-        ORDER BY JHWCRQ
+        ORDER BY JHND DESC
     </select>
 
     <select id="queryForAuditor1" resultMap="BaseResultMap">
