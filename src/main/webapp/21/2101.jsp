@@ -187,7 +187,13 @@
 <!-- --------弹出窗口--------------- -->
 <div id="examHistory" class="easyui-window" title="企业检查记录"
      data-options="modal:true,closed:true,iconCls:'icon2 r4_c20'"
-     style="width: 880px; height: 400px; ">
+     style="width: 880px; height: 390px; ">
+    <table>
+    	<tr>
+    		<td>社会统一信息代码/注册号</td><td><span id="p_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td>企业(机构)名称</td><td><span id="p_name" style="color:blue;margin:0px 5px;"></span></td>
+    	</tr>
+    </table> 
     <table id="grid2"
            class="easyui-datagrid"
            data-options="
@@ -213,6 +219,7 @@
     </table>
     <div id="grid2Toolbar">
         <a href="#" id="btnViewHcsxjg" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">事项核查结果</a>
+        <a href="#" id="btnViewHcclmx" class="easyui-linkbutton" iconCls="icon2 r3_c20" plain="true">检查材料</a>
         <a href="#" id="btnCloseHistory" class="easyui-linkbutton" iconCls="icon-undo" plain="true">返回</a>
     </div>
 </div>
@@ -220,6 +227,21 @@
 <div id="examHistoryHcsxjg" class="easyui-window" title="事项核查结果列表"
      data-options="modal:true,closed:true,iconCls:'icon2 r3_c20'"
      style="width: 850px; height: 500px;">
+    <table>
+    	<tr>
+    		<td style="text-align:right" >社会统一信息代码/注册号</td><td><span id="m_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right">企业(机构)名称</td><td><span id="m_name" style="color:blue;margin:0px 5px;"></span></td>
+    	</tr>
+    	<tr>
+    		<td style="text-align:right">计划类型</td><td><span id="m_planType" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right">计划年度</td><td><span id="m_jhnd" style="color:blue;margin:0px 5px;"></span></td>
+    	</tr>
+    	<tr>
+    		<td style="text-align:right">计划编号</td><td><span id="m_jhbh" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right">计划名称</td><td><span id="m_hcjgmc" style="color:blue;margin:0px 5px;"></span></td>
+    	</tr>
+    </table>
+    
     <table id="grid3"
            class="easyui-datagrid"
            data-options="
@@ -231,13 +253,16 @@
            style="height: 418px">
         <thead>
         <tr>
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
-            <th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方式</th>
-            <th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="70">公示内容</th>
-            <th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="150">标准内容</th>
-            <th data-options="field:'hczt',halign:'center',align:'center'" sortable="true" width="100" codeName="xmzt" formatter="formatCodeList"  styler="stylerHczt">检查状态</th>
-            <th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="100" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">检查结果</th>
-            <th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >结果说明</th>
+			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
+			<th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方式</th>
+			<th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly"
+			    formatter="formatCodeList">比对信息来源</th>
+			<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="180">公示内容</th>
+			<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
+			<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
+			<th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
+			<th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
+
         </tr>
         </thead>
     </table>
