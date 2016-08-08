@@ -187,6 +187,7 @@ function funcShowDocWindow() {
 	if(auditItem != null) {
 		$.easyui.showDialog({
 			title : "抽检材料清单",
+			iconCls: 'icon2 r8_c14',
 			width : 750,
 			height : 420,
 			topMost : false,

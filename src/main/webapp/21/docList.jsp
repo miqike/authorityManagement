@@ -11,7 +11,8 @@
 	function funcAddDoc() {
         $("#docGrid").datagrid("clearSelections");
 		$.easyui.showDialog({
-    		title : "修改抽检事项信息",
+    		title : "增加抽检材料信息",
+    		iconCls: 'icon2 r8_c14',
     		width : 400,
     		height : 280,
     		topMost : false,
@@ -21,7 +22,7 @@
     		closeButtonIconCls : "icon-undo",
     		href : "./docForm.jsp",
     		onLoad : function() {
-    			doInit();
+    			doInit("add");
     		},
     		onSave: function (d) {
     			funcSaveDoc();
@@ -32,7 +33,8 @@
         var doc=$("#docGrid").datagrid("getSelected");
         if(null!=doc) {
             $.easyui.showDialog({
-                title: "修改抽检事项信息",
+                title: "修改抽检材料信息",
+                iconCls: 'icon2 r8_c14',
                 width: 400,
                 height: 280,
                 topMost: false,
@@ -42,7 +44,7 @@
                 closeButtonIconCls: "icon-undo",
                 href: "./docForm.jsp",
                 onLoad: function () {
-                    doInit();
+                    doInit("modify");
                 },
                 onSave: function (d) {
                     funcSaveDoc();
@@ -124,7 +126,7 @@
         <thead>
         <tr>
             <!-- <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="120">序号</th> -->
-            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">材料名称</th>
+            <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="250">材料名称</th>
             <th data-options="field:'sfbyx',halign:'center',align:'center'" sortable="true" width="80"codeName="yesno" formatter="formatCodeList">是否必要项</th>
             <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
             <th data-options="field:'yhtg',halign:'center',align:'center'" sortable="true" width="80" codeName="yesno" formatter="formatCodeList">是否用户提供</th>
@@ -136,6 +138,6 @@
 </div>
 <div id="docGridToolbar">
     <a href="#" id="btnAddDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >新增</a>
-    <a href="#" id="btnModifyDoc" class="easyui-linkbutton" iconCls="icon-add" plain="true" >修改</a>
+    <a href="#" id="btnModifyDoc" class="easyui-linkbutton" iconCls="icon-edit" plain="true" >修改</a>
     <a href="#" id="btnRemoveDoc" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 </div>
