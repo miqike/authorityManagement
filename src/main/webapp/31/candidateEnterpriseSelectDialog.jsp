@@ -48,7 +48,7 @@ function addEnterprise() {
 			contentType: "application/json; charset=utf-8",
 			cache:false,
 			success: function(response) {
-				if(response.status == SUCCESS) {
+				if(response.status == $.husky.SUCCESS) {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
 					$("#grid3b").datagrid("reload");;
 					loadCandidateEnterpriseGrid()
