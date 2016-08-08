@@ -408,7 +408,9 @@
             <if test="jhmc!=null">
                 AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
             </if>
-            AND (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID )) 
+            AND (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID )
+              or id in(select distinct hcjh_id from t_hcrw where DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ))
+            )
         </where>
         ORDER BY
         <if test="order != null">
