@@ -72,9 +72,9 @@
 	}
 	
 	$(function () {
-		$("#btnShowChangeOrgDialog").click(showChangeOrgDialog);
+		/* $("#btnShowChangeOrgDialog").click(showChangeOrgDialog);
 		$("#btnShowAddTaskDialog").click(showAddTaskDialog);
-		$("#btnSelectOrg").click(selectOrg);
+		$("#btnSelectOrg").click(selectOrg); */
 	});
 </script>
 <div id="planWindowb" style="padding: 5px;">
