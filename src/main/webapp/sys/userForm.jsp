@@ -243,9 +243,9 @@ $(function() {
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">扩展</td>
+                    <td class="label">权限</td>
                     <td>
-                        <input id="p_ext1" class="easyui-validatebox add update" style="width:208px;" data-options="required:true,panelHeight:80" validType="integer"/>
+                        <input id="p_ext1" class="easyui-combobox add update" style="width:208px;" codeName="userExt1" data-options="required:true,panelHeight:80" />
                     </td>
                 </tr>
             </table>
