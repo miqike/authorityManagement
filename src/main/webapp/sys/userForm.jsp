@@ -243,9 +243,10 @@ $(function() {
                     </td>
                 </tr>
                 <tr>
-                    <td class="label">权限</td>
+                    <td class="label">数据权限</td>
                     <td>
-                        <input id="p_ext1" class="easyui-combobox add update" style="width:208px;" codeName="userExt1" data-options="required:true,panelHeight:80" />
+                        <input id="p_ext1" type="checkbox" class="add update" style="" checkedValue="2"/>
+                        <!-- <input id="p_ext1" class="easyui-combobox add update" style="width:208px;" codeName="userExt1" data-options="required:true,panelHeight:80" /> -->
                     </td>
                 </tr>
             </table>

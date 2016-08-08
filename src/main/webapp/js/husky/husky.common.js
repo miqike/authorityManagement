@@ -85,6 +85,7 @@ jQuery.husky = {
         elem.find("input.easyui-combobox").combobox("clear");
         elem.find("div.easyui-progressbar").progressbar("clear");
         elem.find("textarea").val("");
+        //elem.find("input:checkbox").removeAttr("checked");
 
         if(null != data) {
     		$.each(elem.find("input"), function (idx, _elem) {
@@ -114,12 +115,8 @@ jQuery.husky = {
     					_e.datetimebox("setValue", datetimeFormatter(datetime));
     				}
     			} else if (_e.hasClass("easyui-combobox")) {
-    				//var flag = _e.combobox('options').readonly;
-    				//_e.combobox({hasDownArrow: !flag, disabled: flag});
     				_e.combobox("clear").combobox("setValue", data[_elem.id.split("_")[1]]);
     			} else if (_e.hasClass("easyui-filebox")) {
-    				//var flag = _e.filebox('options').readonly;
-    				//_e.filebox({hasDownArrow: !flag, disabled: flag});
     				_e.filebox("clear").filebox("disable"); 
     			}
     		});
@@ -137,6 +134,15 @@ jQuery.husky = {
     		
     		$.each(elem.find("textarea"), function (idx, _elem) {
     			$(_elem).val(data[_elem.id.split("_")[1]]);
+    		});
+    		$.each(elem.find("input:checkbox"), function (idx, _elem) {
+    			
+    			if(data[_elem.id.split("_")[1]] == $(_elem).attr("checkedValue")) {
+    				_elem.checked = true;
+				} else {
+					_elem.checked = false;
+					//$(_elem).removeAttr("checked");
+				}
     		});
     		elem.form("validate");
             //window.operate = 'update';
