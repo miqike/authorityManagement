@@ -182,6 +182,27 @@ function showAuditItemForm(data) {
     setEditStatus();
 }
 
+function showEnterpriseTypeWindow() {
+	var auditItem = $("#mainGrid").datagrid("getSelected");
+	if(auditItem != null) {
+		$.easyui.showDialog({
+			title : "关联企业组织形式",
+			iconCls: 'icon2 r8_c14',
+			width : 750,
+			height : 420,
+			topMost : false,
+			enableSaveButton : false,
+			enableApplyButton : false,
+			closeButtonText : "返回",
+			closeButtonIconCls : "icon-undo",
+			href : "./enterpriseTypeList.jsp",
+			onLoad : function() {
+				doEnterpriseTypeListInit();
+			}
+		});
+	}
+}
+
 function funcShowDocWindow() {
 	var auditItem = $("#mainGrid").datagrid("getSelected");
 	if(auditItem != null) {
@@ -237,12 +258,14 @@ function mainGridButtonHandler() {
 		$('#btnView').linkbutton('enable');
 		$('#btnDelete').linkbutton('enable');
 		$('#btnDisable').linkbutton('enable');
+		$('#btnShowEnterpriseTypeWindow').linkbutton('enable');
 		$('#btnShowDocWindow').linkbutton('enable');
 		$('#btnShowComment').linkbutton('enable');
 	} else {
 		$('#btnView').linkbutton('disable');
 		$('#btnDelete').linkbutton('disable');
 		$('#btnDisable').linkbutton('disable');
+		$('#btnShowEnterpriseTypeWindow').linkbutton('disable');
 		$('#btnShowDocWindow').linkbutton('disable');
 		$('#btnShowComment').linkbutton('disable');
 	}
@@ -301,6 +324,7 @@ $(function () {
     $("#btnView").click(funcView);
     $("#btnDelete").click(btnDeleteClick);
     $("#btnDisable").click(funcDisable);
+    $("#btnShowEnterpriseTypeWindow").click(showEnterpriseTypeWindow);
     $("#btnShowDocWindow").click(funcShowDocWindow);
     $("#btnShowComment").click(funcShowComment);
 

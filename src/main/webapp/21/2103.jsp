@@ -107,9 +107,9 @@
                 formatter="formatCodeList" styler="hcxxflStyler">检查信息分类
             </th>
             <th data-options="field:'name',halign:'center',align:'left'" width="150">名称</th>
-            <th data-options="field:'qyzzxs',halign:'center',align:'left'" width="100" codeName="qyzzxs"
+            <!-- <th data-options="field:'qyzzxs',halign:'center',align:'left'" width="100" codeName="qyzzxs"
                 formatter="formatCodeList">企业组织形式
-            </th>
+            </th> -->
             <th data-options="field:'descript',halign:'center',align:'left'" width="150">描述</th>
             <th data-options="field:'hccl',halign:'center',align:'left'" width="70">检查材料</th>
             <th data-options="field:'hcff',halign:'center',align:'left'" width="70" codeName="hcfs"
@@ -147,6 +147,7 @@
         <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true" disabled>编辑</a>
         <a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
         <a href="#" id="btnDisable" class="easyui-linkbutton" iconCls="icon-print" plain="true" disabled>注销/取消注销</a>
+        <a href="#" id="btnShowEnterpriseTypeWindow" class="easyui-linkbutton" iconCls="icon2 r22_c14" plain="true" disabled>企业组织形式</a>
         <a href="#" id="btnShowDocWindow" class="easyui-linkbutton" iconCls="icon2 r8_c14" plain="true" disabled>检查材料清单</a>
         <a href="#" id="btnShowComment" class="easyui-linkbutton" iconCls="icon2 r8_c15" plain="true" disabled>常见问题说明</a>
     </div>
