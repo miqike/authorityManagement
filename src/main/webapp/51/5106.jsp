@@ -139,7 +139,7 @@
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
                  <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
-                 <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="ztlx" formatter="formatCodeList">市场主体类型</th>
+                 <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">市场主体类型</th>
                  <th data-options="field:'HYFL'" halign="center" align="center" width="80" codeName="hyfl" formatter="formatCodeList">行业分类</th>
                  <th data-options="field:'ZZXS'" halign="center" align="center" width="80" codeName="qyzzxs" formatter="formatCodeList">组织形式</th>
                  <th data-options="field:'JYZT'" halign="center" align="center" width="80" codeName="jyzt" formatter="formatCodeList">经营状态</th>

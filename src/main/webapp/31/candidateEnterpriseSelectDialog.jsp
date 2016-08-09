@@ -5,21 +5,24 @@ function checkParam(param) {
 }
 
 function doCandidateEnterpriseSelectDialogInit() {
-	$("#btnQueryCandidateEnterprise").click(queryCandidateEnterprise);
-	$("#btnResetCandidateEnterpriseQuery").click(resetCandidateEnterpriseQuery);
-	loadCandidateEnterpriseGrid();
+	//$("#btnQueryCandidateEnterprise").click(queryCandidateEnterprise);
+	//$("#btnResetCandidateEnterpriseQuery").click(resetCandidateEnterpriseQuery);
+	//loadCandidateEnterpriseGrid();
 }
 
 function loadCandidateEnterpriseGrid() {
-	$("#f_qymc").val('');
+	/* $("#f_qymc").val('');
     $("#f_zch").val('');
     $("#f_lrrq_a").datebox('clear');
-    $("#f_lrrq_b").datebox('clear');
+    $("#f_lrrq_b").datebox('clear'); */
     queryCandidateEnterprise();
 }
 
 function resetCandidateEnterpriseQuery() {
-	loadCandidateEnterpriseGrid()
+	$("#f_qymc").val('');
+    $("#f_zch").val('');
+    $("#f_lrrq_a").datebox('clear');
+    $("#f_lrrq_b").datebox('clear');
 }
 
 function queryCandidateEnterprise() {
@@ -30,8 +33,11 @@ function queryCandidateEnterprise() {
         lrrq_a: $("#f_lrrq_a").datebox('getValue'),
         lrrq_b: $("#f_lrrq_b").datebox('getValue')
 	}
-	
-	$('#candidateEnterpriseGrid').datagrid("load", queryParams);
+	if(queryParams.qymc == "" && queryParams.zch== "") {
+		$.messager.alert("操作提示", "必须输入企业名称或者注册号进行查询")
+	} else {
+		$('#candidateEnterpriseGrid').datagrid("load", queryParams);
+	}
 }
 
 function addEnterprise() {
@@ -48,7 +54,7 @@ function addEnterprise() {
 			contentType: "application/json; charset=utf-8",
 			cache:false,
 			success: function(response) {
-				if(response.status == SUCCESS) {
+				if(response.status == $.husky.SUCCESS) {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
 					$("#grid3b").datagrid("reload");;
 					loadCandidateEnterpriseGrid()

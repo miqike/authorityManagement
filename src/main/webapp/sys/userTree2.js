@@ -1,5 +1,12 @@
 window.queryChild=false;
 
+function formatExt1(val, row) {
+	if(val == 1) {
+		return "<input type='checkbox' disabled/>";
+	} else {
+		return "<input type='checkbox' checked disabled/>";
+	}
+}
 
 //更新单位树
 function refreshOrgTree(){
@@ -164,6 +171,11 @@ function showUserWindow(operation, data) {
 			} else {
 				if(null != data) {
 					$.husky.loadForm("userTable", data);
+					/*if(data.ext1 == 2) {
+						$("#p_ext1").attr("checked",'true');
+					} else {
+						$("#p_ext1").removeAttr("checked");
+					}*/
 					$.husky.setFormStatus("userTable", operation);
 				}
 				
@@ -425,6 +437,7 @@ function reset() {
 function saveUser(operation){
 	if($('#userTable').form('validate')) {
 		var data = $.husky.getFormData("userTable");
+		data.ext1 = $('#p_ext1')[0].checked ? $('#p_ext1').attr("checkedValue"): "1";
 		if(operation == 'update') {
 			data._method = 'put';
 		}

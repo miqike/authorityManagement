@@ -123,7 +123,7 @@
                     <th data-options="field:'mobile',halign:'center',align:'right'" width="100">电话</th>
                     <th data-options="field:'email',halign:'center',align:'right'" width="150">邮箱</th>
                     <th data-options="field:'status',halign:'center',align:'center'" sortable="true" width="60" codeName="userStatus" formatter="formatCodeList">状态</th>
-                    <th data-options="field:'ext1',halign:'center',align:'center'" width="60" codeName="userExt1" formatter="formatCodeList">权限</th>
+                    <th data-options="field:'ext1',halign:'center',align:'center'" width="60" formatter="formatExt1">数据权限</th>
                     <th data-options="field:'weight',halign:'center',align:'center'" width="50">排名</th>
                     <!-- <th data-options="field:'managerName',halign:'center',align:'center'" width="70">上级</th> -->
                 </tr>

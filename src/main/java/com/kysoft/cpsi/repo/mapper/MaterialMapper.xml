@@ -112,10 +112,17 @@
   <select id="selectCandidateByHcsxId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from T_MATERIAL WHERE ID NOT IN(
-		SELECT MATERIAL_ID FROM T_HCCL WHERE HCSX_ID = #{hcsx_id}
-	)
+		SELECT MATERIAL_ID FROM T_HCCL WHERE HCSX_ID = #{hcsxId}
+	) order by name
   </select>
-  <select id="selectAll"  resultMap="BaseResultMap">
+	
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from T_MATERIAL order by name
+  </select>
+
+  <select id="selectAll_temp"  resultMap="BaseResultMap">
+
     select <include refid="Base_Column_List" />
     from T_MATERIAL
     ORDER BY

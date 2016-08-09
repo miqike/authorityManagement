@@ -12,10 +12,7 @@
             <dir name="D:/workspace/cpsi/src/main/webapp">
             </dir>
         </link>
-        <link target="/">
-            <dir name="D:/workspace/husky-common/src/main/java/META-INF/resources">
-            </dir>
-        </link>
+        
     </web>
 
 </application>
