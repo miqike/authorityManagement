@@ -35,6 +35,13 @@
 	
 	function _initEnterpriseTypeGrid() {
 		$("#enterpriseTypeGrid").datagrid("loadData", $.codeListLoader.data.qylxdl);
+		$.getJSON("../common/query?mapper=auditItemEnterpriseTypeMapper&queryName=queryForAuditItem",  {
+			hcsxId:$("#mainGrid").datagrid("getSelected").id
+		}, function (response) {
+		    if (response.status == SUCCESS) {
+		    	console.log(response)
+		    }
+		});
 	}
 	
 </script>
@@ -48,8 +55,7 @@
     
     <table id="enterpriseTypeGrid"
            class="easyui-datagrid"
-           data-options="collapsible:true,
-				singleSelect:true,height:300,width:450,
+           data-options="collapsible:true,height:300,width:450,
 				ctrlSelect:false,method:'get'">
         <thead>
         <tr>

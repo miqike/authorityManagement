@@ -56,4 +56,5 @@ public interface MaterialMapper {
 	List<Material> selectCandidateByHcsxId(String hcsxId);
 
 	List<Material> selectAll();
+	
 }

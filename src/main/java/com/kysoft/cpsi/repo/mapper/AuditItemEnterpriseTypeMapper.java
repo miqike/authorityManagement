@@ -1,5 +1,8 @@
 package com.kysoft.cpsi.repo.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kysoft.cpsi.repo.entity.AuditItemEnterpriseType;
 import com.kysoft.cpsi.repo.entity.AuditItemEnterpriseTypeKey;
 
@@ -51,4 +54,6 @@ public interface AuditItemEnterpriseTypeMapper {
      * @mbggenerated Mon Aug 08 17:16:05 CST 2016
      */
     int updateByPrimaryKey(AuditItemEnterpriseType record);
+    
+    List<AuditItemEnterpriseType> queryForAuditItem(Map<String, Object> param);
 }
