@@ -47,7 +47,7 @@
 				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
 				method: 'get',
-				url:'../common/query?mapper=materialMapper&queryName=selectAll',
+				url:'../common/query?mapper=materialMapper&queryName=query',
            		pageSize: 100, pagination: true"
 		pagePosition="bottom">
 		<thead>
@@ -56,7 +56,7 @@
 				<th data-options="field:'name',halign:'center',align:'left'"
 					width="250">材料名称</th>
 				<th data-options="field:'type',halign:'center',align:'left'"
-					width="250" codeName="hcxxfl" formatter="formatCodeList">材料类型
+					width="250" codeName="wjlx" formatter="formatCodeList">材料类型
 				</th>
 			</tr>
 		</thead>
@@ -88,11 +88,7 @@
 					<td>材料类型</td>
 					<td><input class="easyui-validatebox add" id="f_type"
 						data-options="required:true" style="width: 200px;" /></td>
-
 				</tr>
-
-
-
 			</table>
 			<a href="#" id="add_save" class="easyui-linkbutton"
 				iconCls="icon-save" plain="true" onClick="addWindowSave()">保存</a> 
