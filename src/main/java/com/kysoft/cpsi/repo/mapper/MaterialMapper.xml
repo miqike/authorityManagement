@@ -115,8 +115,14 @@
 		SELECT MATERIAL_ID FROM T_HCCL WHERE HCSX_ID = #{hcsx_id}
 	)
   </select>
-  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectAll"  resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from T_MATERIAL
+    ORDER BY
+	<if test="order != null">
+		${sort} 
+		${order}, 
+	</if>
+	NAME
   </select>
 </mapper>

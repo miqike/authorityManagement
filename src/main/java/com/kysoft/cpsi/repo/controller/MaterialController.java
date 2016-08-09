@@ -1,6 +1,7 @@
 package com.kysoft.cpsi.repo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Material;
 import com.kysoft.cpsi.repo.service.MaterialService;
 
@@ -47,6 +49,7 @@ public class MaterialController extends BaseController {
 		return result;
 	}
 	
+	
 
 	@RequestMapping(value = "/hccl/{id}", method = RequestMethod.DELETE)
 	public Map<String, Object> delete(@PathVariable String id) {
@@ -62,4 +65,50 @@ public class MaterialController extends BaseController {
 		}
 		return result;
 	}*/
+	
+	@RequestMapping(value = "/addMaterial/{id}", method = RequestMethod.POST)
+	public Map<String, Object> addMaterial(Material material) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			materialService.add(material);
+			result.put(MESSAGE, "核查材料添加成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查材料添加失败");
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/updateMaterial", method = RequestMethod.PUT)
+	public Map<String, Object> updateMaterial(Material material) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			materialService.updateMaterial(material);
+			result.put(MESSAGE, "核查材料修改成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查材料修改失败");
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/deleteMaterialById", method = RequestMethod.DELETE)
+	public Map<String, Object> deleteMaterialById(String id) {
+		
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			materialService.deleteMaterial(id);
+			result.put(MESSAGE, "核查材料删除成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查材料删除失败");
+		}
+		return result;
+	}
 }

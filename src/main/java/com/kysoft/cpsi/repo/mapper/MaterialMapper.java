@@ -1,6 +1,7 @@
 package com.kysoft.cpsi.repo.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kysoft.cpsi.repo.entity.Material;
 
@@ -55,5 +56,5 @@ public interface MaterialMapper {
 
 	List<Material> selectCandidateByHcsxId(String hcsxId);
 
-	List<Material> selectAll();
+	List<Material> selectAll(Map<String, Object> param);
 }

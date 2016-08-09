@@ -22,7 +22,24 @@ public class MaterialServiceImpl implements MaterialService {
 
 	@Override
 	public List<Material> getAllMaterial() {
-		return materialMapper.selectAll();
+		return null;//materialMapper.selectAll();
+	}
+
+	@Override
+	public void add(Material material) {
+		
+		materialMapper.insert(material);
+	}
+
+	@Override
+	public void updateMaterial(Material material) {
+		materialMapper.updateByPrimaryKey(material);
+		
+	}
+
+	@Override
+	public void deleteMaterial(String id) {
+		materialMapper.deleteByPrimaryKey(id);
 	}
 
 
