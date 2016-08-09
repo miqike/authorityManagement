@@ -56,7 +56,8 @@ public interface MaterialMapper {
 
 	List<Material> selectCandidateByHcsxId(String hcsxId);
 
-
-	List<Material> selectAll_temp(Map<String, Object> param);
+	List<Material> selectAll();
+	
+	List<Material> query(Map<String, Object> param);
 	
 }

@@ -121,8 +121,7 @@
     from T_MATERIAL order by name
   </select>
 
-  <select id="selectAll_temp"  resultMap="BaseResultMap">
-
+  <select id="query"  resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from T_MATERIAL
     ORDER BY

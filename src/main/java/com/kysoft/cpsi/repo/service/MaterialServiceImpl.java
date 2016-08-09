@@ -22,7 +22,7 @@ public class MaterialServiceImpl implements MaterialService {
 
 	@Override
 	public List<Material> getAllMaterial() {
-		return null;//materialMapper.selectAll();
+		return materialMapper.selectAll();
 	}
 
 	@Override
