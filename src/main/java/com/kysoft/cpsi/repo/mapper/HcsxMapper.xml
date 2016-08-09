@@ -376,8 +376,12 @@
         select 'false' as QUERYID,
         <include refid="Base_Column_List" />
         from T_HCSX where ID in (
-        SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
-        SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}))
+        	SELECT HCSX_ID FROM T_HCJH_HCSX WHERE HCJH_ID = (
+        	SELECT HCJH_ID FROM T_HCRW WHERE ID= #{hcrwId}))
+        AND ID IN (
+            SELECT HCSX_ID FROM t_hcsx_qylx WHERE ztlx_id = (SELECT ztlx FROM t_hcrw WHERE ID= #{hcrwId})
+        )
+        
         order by to_number(CODE) 
     </select>
 

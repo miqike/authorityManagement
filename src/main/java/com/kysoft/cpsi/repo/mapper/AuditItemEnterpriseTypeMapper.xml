@@ -127,5 +127,8 @@
     ORDER BY qylx_id
   </select>
   
+  <delete id="deleteByHcsxId">
+  	DELETE FROM T_HCSX_QYLX WHERE HCSX_ID=#{hcsxId}
+  </delete>
   
 </mapper>

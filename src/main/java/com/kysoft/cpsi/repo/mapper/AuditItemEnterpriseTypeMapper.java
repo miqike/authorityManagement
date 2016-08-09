@@ -56,4 +56,6 @@ public interface AuditItemEnterpriseTypeMapper {
     int updateByPrimaryKey(AuditItemEnterpriseType record);
     
     List<Map<String, Object>>  queryForAuditItem(Map<String, Object> param);
+
+	void deleteByHcsxId(String hcsxId);
 }

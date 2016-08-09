@@ -6,27 +6,25 @@
 
 		var param = new Array();
 		$.each(selectedNodes, function(idx, elem) {
-			param.push(
-				{
-					ztlxId: elem.QYLX_ID,
-					ztlxName: elem.QYLX_NAME,
-					hcsxId: hcsx.id,
-					hcsxName: hcsx.name
+			param.push(elem.QYLX_ID);
+		});
+		
+		$.ajax({
+			url: "./auditItemEnterpriseType/" + hcsx.id,
+			data: JSON.stringify(param),
+			type: "post",
+			contentType: "application/json; charset=utf-8",
+			cache: false,
+			success: function (response) {
+				if (response.status == SUCCESS) {
+					$('#grid2').datagrid('reload');
+					//$.messager.alert("提示", "操作成功", 'info');
+					$.messager.show("操作提醒", response.message, "info", "bottomRight");
+				} else {
+					$.messager.alert('提示', response.message, 'error');
 				}
-		);
-
-		$.post("./auditItemEnterpriseType/" + hcsx.id, {
-			resourceIds:param.join(',')
-		}, function(response){
-			if(response.status == SUCCESS) {
-				$.messager.show({
-					title : '提示',
-					msg : "成功"
-				});
-			} else {
-				$.messager.alert("错误", "失败", 'error');
 			}
-		}, "json");
+		});
 	}
 
 	function doEnterpriseTypeListInit() {
