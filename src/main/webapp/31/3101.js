@@ -55,7 +55,7 @@ function showPlanListWindow() {
 	
 	var options = $("#grid1").datagrid("options")
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
-	console.trace();
+	
 	$("#myPlanListWindow").window({
         title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
         iconCls: 'icon2 r5_c20',
@@ -77,8 +77,10 @@ function search() {
 }
 
 function reset() {
+	window.qFlag = false;
 	$.husky.loadForm("queryTable", {});
-	//loadMyPlan();
+	loadMyPlan();
+	window.qFlag = true;
 }
 
 function loadMyPlan() {
@@ -97,17 +99,9 @@ function loadMyPlan() {
 
 function loadGrid1(hcjhId) {
 	window._selectdPlanId_ = hcjhId;
-	$("#grid1").datagrid("load", {
-        nd: $('#f_nd').val(),
-        jhbh: $('#f_jhbh').val(),
-        gsjhbh: $('#f_gsjhbh').val(),
-        cxwh: $('#f_cxwh').val(),
-        jhmc: $('#f_jhmc').val(),
-        hcjgmc: $('#f_hcjgmc').val(),
-        nr: $('#f_nr').combobox("getValue"),
-        fl: $('#f_fl').combobox("getValue"),
-        planType: $('#f_planType').combobox("getValue")
-    });
+	if(window.qFlag) {
+		loadMyPlan();
+	}
 }
 
 function collapseHandler() {
