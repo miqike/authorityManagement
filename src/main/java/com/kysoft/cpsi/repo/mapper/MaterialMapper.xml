@@ -113,10 +113,11 @@
     select <include refid="Base_Column_List" />
     from T_MATERIAL WHERE ID NOT IN(
 		SELECT MATERIAL_ID FROM T_HCCL WHERE HCSX_ID = #{hcsx_id}
-	)
+	) order by name
   </select>
+  
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
-    from T_MATERIAL
+    from T_MATERIAL order by name
   </select>
 </mapper>

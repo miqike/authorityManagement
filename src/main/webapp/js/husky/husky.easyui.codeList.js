@@ -199,6 +199,7 @@ function formatCodeList(value, row) {
 				success: function(response){
 					extend(codeListLoader.data, response.data);
 					codeList = codeListLoader.data[codeName];
+					$.publish("INCREMENT_CODELIST_INITIALIZED", null);
 				}
 			});
 		} 

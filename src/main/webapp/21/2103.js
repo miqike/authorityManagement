@@ -188,16 +188,20 @@ function showEnterpriseTypeWindow() {
 		$.easyui.showDialog({
 			title : "关联企业组织形式",
 			iconCls: 'icon2 r8_c14',
-			width : 750,
-			height : 420,
+			width : 470,
+			height : 380,
 			topMost : false,
-			enableSaveButton : false,
+			enableSaveButton : true,
 			enableApplyButton : false,
+			saveButtonText : "保存",
 			closeButtonText : "返回",
 			closeButtonIconCls : "icon-undo",
 			href : "./enterpriseTypeList.jsp",
 			onLoad : function() {
 				doEnterpriseTypeListInit();
+			},
+			onSave : function() {
+				doEnterpriseTypeListSave();
 			}
 		});
 	}

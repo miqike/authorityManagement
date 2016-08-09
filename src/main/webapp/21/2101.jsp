@@ -152,7 +152,7 @@
 		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
 		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
-		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="ztlx"
+		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="qylxdl"
 		                    formatter="formatCodeList">市场主体类型
 		                </th>
 		                <th data-options="field:'hyfl',halign:'center',align:'center'" sortable="true" width="100"

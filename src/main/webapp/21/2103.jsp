@@ -120,11 +120,6 @@
             <th data-options="field:'jgcl',halign:'center',align:'left'" width="70" codeName="gsjg"
                 formatter="formatCodeList">结果处理
             </th>
-            <!-- 
-            <th data-options="field:'xxdb',halign:'center',align:'left'" width="70" codeName="yesno"
-                formatter="formatCodeList">登记信息和公示信息比对
-            </th> 
-            -->
             <th data-options="field:'dbxxly',halign:'center',align:'left'" width="70" codeName="sjly"
                 formatter="formatCodeList">比对信息来源</th>
             <th data-options="field:'sfxysdhc',halign:'center',align:'center'" width="70" codeName="yesno"

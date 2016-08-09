@@ -47,7 +47,7 @@
                         <td class="label">计划编号</td>
                         <td><input id="f_jhbh" class="easyui-textbox"/></td>
                         <td class="label">市场主体类型</td>
-                        <td><input id="f_ztlx" class="easyui-combobox" codeName="ztlx"/></td>
+                        <td><input id="f_ztlx" class="easyui-combobox" codeName="qylxdl"/></td>
                     </tr>
                     <tr>
                         <td class="label">行业分类</td>
