@@ -55,5 +55,5 @@ public interface AuditItemEnterpriseTypeMapper {
      */
     int updateByPrimaryKey(AuditItemEnterpriseType record);
     
-    List<AuditItemEnterpriseType> queryForAuditItem(Map<String, Object> param);
+    List<Map<String, Object>>  queryForAuditItem(Map<String, Object> param);
 }
