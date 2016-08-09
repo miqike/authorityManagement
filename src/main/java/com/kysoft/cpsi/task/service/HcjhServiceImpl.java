@@ -140,4 +140,9 @@ public class HcjhServiceImpl implements HcjhService {
         
         
 	}
+
+	@Override
+	public void delete(String hcjhId) {
+		hcjhMapper.deleteByPrimaryKey(hcjhId);
+	}
 }

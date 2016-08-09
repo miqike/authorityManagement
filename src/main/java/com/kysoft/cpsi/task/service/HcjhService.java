@@ -26,6 +26,8 @@ public interface HcjhService {
 
 	void addEnterprise(String hcjhId, String[] zchs);
 
+	void delete(String hcjhId);
+
 //	Map<String, Object> updateAcceptStatus(Map<String, Object> result);
 
 }

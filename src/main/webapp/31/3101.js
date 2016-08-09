@@ -52,9 +52,10 @@ function minimizeMyPlanListWindow() {
 }
 
 function showPlanListWindow() {
+	
 	var options = $("#grid1").datagrid("options")
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
-	
+	console.trace();
 	$("#myPlanListWindow").window({
         title: "我的计划列表", top: 5, left: $.util.windowSize().width-905, width: 900, height: 450,
         iconCls: 'icon2 r5_c20',
@@ -73,6 +74,11 @@ function showPlanListWindow() {
 
 function search() {
 	loadMyPlan();
+}
+
+function reset() {
+	$.husky.loadForm("queryTable", {});
+	//loadMyPlan();
 }
 
 function loadMyPlan() {
@@ -134,6 +140,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 
 function grid1LoadSucessHandler(data) {
 	$('#btnModify').linkbutton('disable');
+	$('#btnRemove').linkbutton('disable');
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
     $('#grid1').datagrid('selectRow', 0);
@@ -162,6 +169,12 @@ function grid1ClickHandler() {
         $('#btnViewCheckList').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
         
+        if(row.hcrwsl != undefined && row.hcrwsl > 0) {
+        	$('#btnRemove').linkbutton('disable');
+        } else {
+        	$('#btnRemove').linkbutton('enable');
+        }
+        
         if(row.planType==1) {
 	        if (row.xdrmc == null && row.xdrq == null) {
 	            $('#btnModify').linkbutton('enable');
@@ -187,28 +200,6 @@ function grid1ClickHandler() {
 }
 
 function grid2ClickHandler() {
-	/*
-	var plan = $('#grid1').datagrid('getSelected');
-    if (plan != null && (plan.xdrmc != null || plan.xdrq != null) && $('#grid2').datagrid('getSelections').length > 0) {
-    	
-    	var acceptStatus = getAcceptStatus();
-    	if(acceptStatus == 1) { //所有选中任务都是已认领
-    		$('#btnAccept').linkbutton('disable');
-    		$('#btnUnAccept').linkbutton('enable');
-    	} else if(acceptStatus == 0) { //所有选中任务都是未认领
-    		
-    		$('#btnAccept').linkbutton('enable');
-    		$('#btnUnAccept').linkbutton('disable');
-    	} else {
-    		
-    		$('#btnAccept').linkbutton('enable');
-    		$('#btnUnAccept').linkbutton('enable');
-    	}
-	} else {
-		$('#btnAccept').linkbutton('disable');
-		$('#btnUnAccept').linkbutton('disable');
-	}
-	*/
 }
 
 function getAcceptStatus() {
@@ -265,6 +256,28 @@ function modify() {
 		} else {
 			showPlanFormb(row);
 		}
+	}
+}
+
+function remove() {
+	var row = $('#grid1').datagrid('getSelected');
+	if (row) {
+		$.messager.confirm('确认', "确认是否删除该计划", function (r) {
+			if (r) {
+				$.ajax({
+			        url: "./hcjh/" + row.id,
+			        type: "DELETE",
+			        success: function (response) {
+			            if (response.status == $.husky.SUCCESS) {
+			            	$.messager.show("操作提醒", response.message, "info", "bottomRight");
+			            	$('#grid1').datagrid("reload");
+			            } else {
+			                $.messager.alert('失败', response.message, 'info');
+			            }
+			        }
+			    });
+			}
+		});
 	}
 }
 

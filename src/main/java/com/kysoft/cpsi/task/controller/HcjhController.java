@@ -43,6 +43,22 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/hcjh/{hcjhId}", method = RequestMethod.DELETE)
+	public Map<String, Object> delete(@PathVariable String hcjhId) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.delete(hcjhId);
+			result.put(STATUS, SUCCESS);
+			result.put(MESSAGE, "核查计划删除成功");
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "核查计划删除失败");
+			result.put(STACK, e);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	@RequestMapping(value = "/hcjh/hcsx/{hcjhId}", method = RequestMethod.PUT)
 	public Map<String, Object> saveCheckList(@PathVariable String hcjhId,  @RequestBody String[] hcsxIds) {
 		Map<String, Object> result = Maps.newHashMap();
