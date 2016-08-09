@@ -33,7 +33,29 @@
 	src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/formatter.js"></script>
 <script type="text/javascript" src="./2106.js"></script>
+<style type="text/css">
+.validatebox-text {
+        border-width: 1px;
+        border-style: solid;
+        line-height: 17px;
+        padding-top: 1px;
+        padding-left: 3px;
+        padding-bottom: 2px;
+        padding-right: 3px;
+        background-attachment: scroll;
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+    }
 
+    .validatebox-invalid {
+        border-color: ffa8a8;
+        background-repeat: repeat-x;
+        background-position: center bottom;
+        background-color: fff3f3;
+        background-image: url("");
+    }
+</style>
 </head>
 <body style="padding: 5px;">
 
@@ -86,8 +108,8 @@
 				</tr>
 				<tr>
 					<td>材料类型</td>
-					<td><input class="easyui-validatebox add" id="f_type"
-						data-options="required:true" style="width: 200px;" /></td>
+					<td><input class="easyui-combobox add" id="f_type"
+						data-options="required:true" style="width: 200px;" codeName="wjlx"/></td>
 				</tr>
 			</table>
 			<a href="#" id="add_save" class="easyui-linkbutton"
@@ -110,9 +132,8 @@
 				</tr>
 				<tr>
 					<td>材料类型</td>
-					<td><input class="easyui-validatebox add" id="f_type"
-						data-options="required:true" style="width: 200px;" /></td>
-
+					<td><input class="easyui-combobox add" id="f_type"
+						data-options="required:true" style="width: 200px;" codeName="wjlx"/></td>
 				</tr>
 
 

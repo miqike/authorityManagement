@@ -10,13 +10,16 @@ function mainGridButtonHandler() {
 function updateMaterial(){
 	var data=$("#mainGrid").datagrid("getSelected");
 	if(data!=null){
+		//debugger;
 		$("#editWindow").window("open");
+		$.husky.loadForm("editWindow", data);
+		/*
 		$("#editWindow #f_name").val(data.name);
 		if(data.type==1){
 			$("#editWindow #f_type").val("一般检查信息");
 		}else{
 			$("#editWindow #f_type").val("重点检查信息");
-		}
+		}*/
 	}
 }
 
@@ -142,7 +145,6 @@ function addWindowSave(){
 }
 
 function closeAddWindow(){
-	
 	$("#addWindow").window("close");
 	$("#f_id").val("");
 	$("#f_name").val("");
