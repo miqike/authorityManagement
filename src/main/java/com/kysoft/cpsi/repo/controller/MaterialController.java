@@ -66,7 +66,7 @@ public class MaterialController extends BaseController {
 		return result;
 	}*/
 	
-	@RequestMapping(value = "/addMaterial/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/addMaterial", method = RequestMethod.POST)
 	public Map<String, Object> addMaterial(Material material) {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
