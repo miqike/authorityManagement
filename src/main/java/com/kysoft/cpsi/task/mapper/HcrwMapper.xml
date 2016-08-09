@@ -727,7 +727,10 @@
         <include refid="Base_Column_List" />
         from T_HCRW
         where DOC_READY_REPORT_FLAG = 1 AND 
-        (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+        (
+           (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
+           or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=0)
+        )
         <if test="planType!=null">
             AND PLAN_TYPE = #{planType}
         </if>
