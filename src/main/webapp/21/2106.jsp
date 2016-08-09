@@ -64,7 +64,7 @@
 		data-options="collapsible:true,
            		singleSelect: true,
            		onClickRow:mainGridButtonHandler,
-           		width: 1300,height:500,
+           		width: 1500,height:800,
            		offset: { width: -50, height: -50},
 				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
