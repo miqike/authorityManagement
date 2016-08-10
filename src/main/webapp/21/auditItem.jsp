@@ -1,14 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script>
 function doAuditItemFormInit(operation) {
-	$.codeListLoader.parse($("#baseInfo"));
 	if(operation == "edit") {
-    	$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
-    	$("#p_zxrq").datebox("disable")
+		$.subscribe("INCREMENT_CODELIST_INITIALIZED", function() {
+			$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
+	    	$("#p_zxrq").datebox("disable");
+		});
 	} else {
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
-		console.log(hcsx);	
 	}
+	$.codeListLoader.parse($("#baseInfo"));
 }
 
 function docGridClickRowHandler() {

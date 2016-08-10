@@ -632,7 +632,8 @@ function savePlan(planType) {
             	} else {
             		$('#k_id').val(response.id);
             	}
-                loadGrid1(response.id);
+            	$("#grid1").datagrid("reload")
+                //loadGrid1(response.id);
                 $.messager.show('操作提示', response.message, 'info', "bottomRight");
             } else {
                 $.messager.alert('失败', response.message, 'info');
