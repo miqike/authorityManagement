@@ -64,7 +64,7 @@
 		data-options="collapsible:true,
            		singleSelect: true,
            		onClickRow:mainGridButtonHandler,
-           		width: 1000,height:400,
+           		width: 1500,height:800,
            		offset: { width: -50, height: -50},
 				ctrlSelect:true,method:'get',
 				toolbar: '#mainGridToolbar',
@@ -125,6 +125,11 @@
 		<div id="materialInfo" title="基本信息" style="padding: 5px;"
 			selected="true">
 			<table width="100%" id="addTable">
+			<tr>
+					<td>材料编码</td>
+					<td><input class="easyui-validatebox add" id="f_id"
+						data-options="required:true" style="width: 200px;" /></td>
+				</tr>
 				<tr>
 					<td>材料名称</td>
 					<td><input class="easyui-validatebox add" id="f_name"

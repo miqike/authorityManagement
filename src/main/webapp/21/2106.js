@@ -24,21 +24,24 @@ function updateMaterial(){
 }
 
 function editWindowSave(){
-	var data=$("#mainGrid").datagrid("getSelected");
-	if($("#editWindow #f_type").val()=="重点检查信息"){
+//	var data=$("#mainGrid").datagrid("getSelected");
+	/*if($("#editWindow #f_type").val()=="重点检查信息"){
 		$("#f_type").val('2');
 	}else{
 		$("#f_type").val('1');
-	}
-	var newData={
+	}*/
+	/*var newData={
 			id:data.id,
 			name:$("#editWindow  #f_name").val(),
 			type:$("#f_type").val()
-	};
+	};*/
+    var formData=$.husky.getFormData("editWindow");
+    
+    console.info(formData);
 	 $.ajax({
 	        url:"../21/updateMaterial",
 	        type: "put",
-	        data: newData,
+	        data: formData,
 	        success: function (response) {
 	        	if(response.status==1){
 	        		$.messager.show({
@@ -95,7 +98,8 @@ function deleteMaterial(){
 }
 
 function saveMaterial(){
-	if($("#f_type").val()=="重点检查信息"){
+	
+	/*if($("#f_type").val()=="重点检查信息"){
 		$("#f_type").val("2");
 	}else{
 		$("#f_type").val("1");
@@ -105,17 +109,18 @@ function saveMaterial(){
 			name:$("#f_name").val(),
 			type:$("#f_type").val()
 	};
-	console.info(data);
+	console.info(data);*/
+	 var formData=$.husky.getFormData("addWindow");
 	 $.ajax({
 	        url:"../21/addMaterial",
 	        type: "post",
-	        data: data,
+	        data: formData,
 	        success: function (response) {
 	        	if(response.status==1){
 	        		$.messager.show({
 		        		title:'提示',
 		        		msg:'添加成功',
-		        		timeout:5000,
+		        		timeout:1000,
 		        		showType:'slide'
 		        	});
 	        	}else{
@@ -135,6 +140,7 @@ function saveMaterial(){
 function add(){
 	
 	$("#addWindow").window("open");
+	
 }
 function addWindowSave(){
 	saveMaterial();
