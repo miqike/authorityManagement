@@ -207,7 +207,7 @@
         <thead>
         <tr>
             <th data-options="field:'nd'" halign="center" align="center" width="60">计划年度</th>
-            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
+            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
             <th data-options="field:'jhbh'" halign="center" align="left" width="60" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
             <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
