@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <td class="label">检查结果</td>
-                    <td colspan="2"><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
+                    <td colspan="2"><input id="f_hcjieguo" class="easyui-combobox" codeName="gsjg"
                                data-options="panelHeight:160,width:240" style=""/></td>
                     <td style="text-align:right" colspan="3">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
@@ -214,7 +214,7 @@
             <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
             <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
             <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
-            <th data-options="field:'hcjiegou'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
+            <th data-options="field:'hcjieguo'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
         </tr>
         </thead>
     </table>
@@ -261,7 +261,7 @@
 			<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="180">公示内容</th>
 			<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
 			<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
-			<th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
+			<th data-options="field:'hcjieguo',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
 			<th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
 
         </tr>
