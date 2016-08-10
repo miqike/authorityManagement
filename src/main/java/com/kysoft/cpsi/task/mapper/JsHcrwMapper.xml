@@ -566,4 +566,42 @@
       JS_GS_FLAG = #{jsGsFlag,jdbcType=DECIMAL}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+
+    <select id="query" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_JS_HCRW
+        where (
+        (ZFRY_CODE =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) )
+        or (ZFRY_CODE is null and djjg= (select org_id from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1 )
+        or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
+        )
+        <if test="docReadyFlag!=null">
+            AND PLAN_TYPE = #{docReadyFlag}
+        </if>
+        <if test="nd!=null">
+            AND nd = #{nd}
+        </if>
+        <if test="hcdwXydm!=null">
+            AND HCDW_XYDM = #{hcdwXydm}
+        </if>
+        <if test="hcdwName!=null">
+            AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
+        </if>
+        <if test="jsGsFlag!=null">
+            AND JS_GS_FLAG =#{jsGsFlag}
+        </if>
+        <if test="hcjgmc!=null">
+            AND hcjgmc like '%'||#{hcjgmc}||'%'
+        </if>
+        <if test="zfryCode!=null">
+            AND zfry_code = #{zfryCode}
+        </if>
+        ORDER BY
+        <if test="order != null">
+            ${sort} ${order},
+        </if>
+        hcdw_xydm
+    </select>
+
 </mapper>

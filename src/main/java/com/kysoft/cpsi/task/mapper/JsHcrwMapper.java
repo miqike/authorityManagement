@@ -2,6 +2,9 @@ package com.kysoft.cpsi.task.mapper;
 
 import com.kysoft.cpsi.task.entity.JsHcrw;
 
+import java.util.List;
+import java.util.Map;
+
 public interface JsHcrwMapper {
 
 	/**
@@ -39,4 +42,7 @@ public interface JsHcrwMapper {
 	 * @mbggenerated  Tue Aug 09 10:06:05 CST 2016
 	 */
 	int updateByPrimaryKey(JsHcrw record);
+
+	List<JsHcrw> query(Map<String, Object> param);
+
 }
