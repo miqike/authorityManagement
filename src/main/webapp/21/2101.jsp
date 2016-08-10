@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <td class="label">检查结果</td>
-                    <td colspan="2"><input id="f_hcjg" class="easyui-combobox" codeName="gsjg"
+                    <td colspan="2"><input id="f_hcjieguo" class="easyui-combobox" codeName="gsjg"
                                data-options="panelHeight:160,width:240" style=""/></td>
                     <td style="text-align:right" colspan="3">
                         <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
@@ -148,12 +148,12 @@
 				            offset: { width: -255, height: -205}">
 	            <thead>
 		            <tr>
-		                <th data-options="field:'djjg',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
+		                <th data-options="field:'djjgMc',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
 		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
 		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
 		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="qylxdl"
-		                    formatter="formatCodeList">市场主体类型
+		                    formatter="formatCodeList">企业类型
 		                </th>
 		                <th data-options="field:'hyfl',halign:'center',align:'center'" sortable="true" width="100"
 		                    codeName="hyfl" formatter="formatCodeList">行业分类
@@ -207,14 +207,14 @@
         <thead>
         <tr>
             <th data-options="field:'nd'" halign="center" align="center" width="60">计划年度</th>
-            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="jhlx" formatter="formatCodeList">计划类型</th>
+            <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
             <th data-options="field:'jhbh'" halign="center" align="left" width="60" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
             <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
             <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
             <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
             <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
-            <th data-options="field:'hcjiegou'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
+            <th data-options="field:'hcjieguo'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>
         </tr>
         </thead>
     </table>
@@ -261,7 +261,7 @@
 			<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="180">公示内容</th>
 			<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
 			<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
-			<th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
+			<th data-options="field:'hcjieguo',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
 			<th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
 
         </tr>

@@ -104,15 +104,13 @@
 	                <th data-options="field:'gsjhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 	                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="130">计划名称</th>
 	                <th data-options="field:'cxwh'" halign="center" align="center" sortable="true" width="130">抽查文号</th>
-	                <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">计划开始时间
-	                </th>
-	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">下达日期
-	                </th>
-	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80"
-	                    formatter="formatDate">计划结束时间
-	                </th>
+	                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">计划下达单位</th>
+	                <th data-options="field:'planType'" halign="center" align="center" sortable="true" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
+	                <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划开始时间 </th>
+	                <th data-options="field:'xdrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">下达日期</th>
+	                <th data-options="field:'yqwcsj'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">计划结束时间</th>
+	                <th data-options="field:'fl'" halign="center" align="center" sortable="true" width="60" codeName="hcfl" formatter="formatCodeList">检查分类</th>
+	                <th data-options="field:'nr'" halign="center" align="center" sortable="true" width="60" codeName="hcnr" formatter="formatCodeList">检查内容</th>
 	            </tr>
 	            </thead>
 	        </table>
@@ -142,11 +140,13 @@
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
                  <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
-                 <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">市场主体类型</th>
+                 <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">企业类型</th>
                  <th data-options="field:'HYFL'" halign="center" align="center" width="80" codeName="hyfl" formatter="formatCodeList">行业分类</th>
                  <th data-options="field:'ZZXS'" halign="center" align="center" width="80" codeName="qyzzxs" formatter="formatCodeList">组织形式</th>
                  <th data-options="field:'JYZT'" halign="center" align="center" width="80" codeName="jyzt" formatter="formatCodeList">经营状态</th>
-                 <th data-options="field:'FR'" center="center" align="center" width="80">法人代表</th>
+                 <th data-options="field:'FR'" center="center" align="center" width="70">法人代表</th>
+                 <th data-options="field:'ZFRY_NAME1'" center="center" align="center" width="90" formatter="formatZfry">检查人员</th>
+                 <th data-options="field:'QYMC'" center="center" align="center" width="80">管辖单位</th>
              </tr>
              </thead>
          </table>
@@ -155,8 +155,14 @@
                 data-options="disabled:true">上报材料查阅</a>
              <a href="#" id="btnReportDocReady" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                 data-options="disabled:true">上报完成/取消完成</a>
+             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
          </div>
      </div>
+</div>
+
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
 </div>
 
 </body>

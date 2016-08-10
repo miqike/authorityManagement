@@ -237,6 +237,7 @@
 
     <resultMap id="ExtendResultMap" extends="BaseResultMap" type="com.kysoft.cpsi.repo.entity.Sczt">
         <result column="HCRWS" jdbcType="DECIMAL" property="hcrws"/>
+        <result column="DJJGMC" jdbcType="DECIMAL" property="djjgMc"/>
     </resultMap>
 
     <select id="query" resultMap="ExtendResultMap">
@@ -278,15 +279,15 @@
             and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="jhbh!=null">
-            and exists(select 1 from t_hcrw b where b.hcjh_id=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="hcry!=null">
             and exists(select 1 from t_hcrw b where (b.ZFRY_NAME1 like #{hcry}||'%' or b.ZFRY_NAME2 like #{hcry}||'%')
             and
             t_sczt.xydm=b.hcdw_xydm)
         </if>
-        <if test="hcjg!=null">
-            and exists(select 1 from t_hcrw b where b.hcjg=#{hcjg} and t_sczt.xydm=b.hcdw_xydm)
+        <if test="hcjieguo!=null">
+            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="jhmc!=null">
             and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.jhmc like '%'||#{jhmc}||'%')
@@ -300,7 +301,9 @@
         ORDER BY NAME
     </select>
     <select id="queryExt" resultMap="ExtendResultMap">
-        select 'false' as QUERYID, <include refid="Base_Column_List"/> ,(select count(1) from t_hcrw b where b.hcdw_xydm=t_sczt.xydm) hcrws
+        select 'false' as QUERYID, <include refid="Base_Column_List"/>, 
+        (SELECT NAME FROM SYS_ORGANIZATION t WHERE t.id=DJJG) DJJGMC,
+        (select count(1) from t_hcrw b where b.hcdw_xydm=t_sczt.xydm) hcrws
         from T_SCZT where 1=1
         <if test="xydm!=null">
             and xydm=#{xydm}
@@ -327,14 +330,14 @@
             and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="jhbh!=null">
-            and exists(select 1 from t_hcrw b where b.hcjh_id=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="hcry!=null">
             and exists(select 1 from t_hcrw b where (b.ZFRY_NAME1 like #{hcry}||'%' or b.ZFRY_NAME2 like #{hcry}||'%')
             and t_sczt.xydm=b.hcdw_xydm)
         </if>
-        <if test="hcjg!=null">
-            and exists(select 1 from t_hcrw b where b.hcjg=#{hcjg} and t_sczt.xydm=b.hcdw_xydm)
+        <if test="hcjieguo!=null">
+            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and t_sczt.xydm=b.hcdw_xydm)
         </if>
         <if test="qy!=null">
             and QYMC like #{qy}||'%'
