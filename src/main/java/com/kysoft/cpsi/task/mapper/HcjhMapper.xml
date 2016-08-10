@@ -456,6 +456,8 @@
             (a.DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) and  (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
             or (a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 = #{_userId} OR rw.zfry_code2 = #{_userId}))
             )
+            
+            OR XDR = #{_userId}
         </where>
         ORDER BY
         <if test="order != null">
