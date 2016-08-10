@@ -452,6 +452,7 @@
                 AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
             </if>
             AND a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 = #{_userId} OR rw.zfry_code2 = #{_userId})
+            OR XDR=#{_userId}
         </where>
         ORDER BY
         <if test="order != null">

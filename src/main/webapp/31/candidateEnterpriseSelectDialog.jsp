@@ -100,10 +100,10 @@ function addEnterprise() {
             <th data-options="field:'qymc',halign:'center',align:'left'" width="200">名称</th>
             <th data-options="field:'fddbr',halign:'center',align:'center'" width="70">法人</th>
             <th data-options="field:'qylxdl',halign:'center',align:'center'" width="106" codeName="qylxdl" formatter="formatCodeList">类型大类</th>
-            <th data-options="field:'djjg',halign:'center',align:'left'" width="80">登记机构</th>
-            <th data-options="field:'gxdw',halign:'center',align:'center'" width="80">管辖单位</th>
+            <th data-options="field:'djjgMc',halign:'center',align:'left'" width="80">登记机构</th>
+            <th data-options="field:'gxdwMc',halign:'center',align:'center'" width="80">管辖单位</th>
             <th data-options="field:'qyzzxs',halign:'center',align:'center'" width="106" codeName="zzxs" formatter="formatCodeList">组织形式</th>
-            <th data-options="field:'jdjg',halign:'center',align:'left'" width="80">做出决定机关</th>
+            <th data-options="field:'jdjgMc',halign:'center',align:'left'" width="80">做出决定机关</th>
             <th data-options="field:'lrrq',halign:'center',align:'center'" width="80" formatter="formatDate">列入日期</th>
             <th data-options="field:'lrsy',halign:'center',align:'center'" width="106">列入事由</th>
                 
