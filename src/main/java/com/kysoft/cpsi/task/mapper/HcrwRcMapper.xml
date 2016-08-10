@@ -177,12 +177,12 @@
       </if>
       <if test="lrrq_a != null">
 	    <![CDATA[
-        and lrrq > to_date(#{lrrq_a,jdbcType=DATE},'yyyy-mm-dd')  
+        and lrrq >= to_date(#{lrrq_a,jdbcType=DATE},'yyyy-mm-dd')  
 	    ]]>
       </if>
       <if test="lrrq_b != null">
 	    <![CDATA[
-        and lrrq < to_date(#{lrrq_b,jdbcType=DATE},'yyyy-mm-dd')
+        and lrrq <= to_date(#{lrrq_b,jdbcType=DATE},'yyyy-mm-dd')
 	    ]]>
       </if>
       	and zch not in (SELECT HCDW_XYDM FROM t_hcrw WHERE hcjh_id=#{hcjhId,jdbcType=VARCHAR})
