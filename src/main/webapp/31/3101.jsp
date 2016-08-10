@@ -203,11 +203,11 @@
 	        </table>
 	        <div id="gridToolbar1">
 	            <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加双随机计划</a>
-	            <a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加日常监管计划</a>
+	            <a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon2 r1_c6" plain="true">增加日常监管计划</a>
 	            <a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a>
 	            <a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" data-options="disabled:true">删除</a>
 	            <a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
-	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true" data-options="disabled:true">下达/取消下达</a>
+	            <a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r16_c19" plain="true" data-options="disabled:true">下达/取消下达</a>
 	        </div> 
 	    </div>
 	</div>
