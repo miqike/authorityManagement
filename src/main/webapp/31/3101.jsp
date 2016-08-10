@@ -87,10 +87,10 @@
              	<th data-options="field:'id',checkbox:true"></th>
                  <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">任务下达机关</th>
                  <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
-                 <th data-options="field:'zfryCode1'" halign="center" align="left" width="100"
+                 <th data-options="field:'zfryCode1'" halign="center" align="center" width="100"
                      formatter="formatZfry">检查人员</th>
                  <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
-                 <th data-options="field:'hcdwXydm'" halign="center" align="left" width="180">统一社会信用代码</th>
+                 <th data-options="field:'hcdwXydm'" halign="center" align="center" width="100">统一社会信用代码</th>
                  <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'rlrmc'" halign="center" align="left" width="70">认领人</th>
                  <th data-options="field:'rlrq'" halign="center" align="left" width="70" formatter="formatDate">认领日期</th>

@@ -1,5 +1,25 @@
 window.excludeSaved = false;
 
+function quickSearch(value, name) {
+	var row = $('#grid1').datagrid('getSelected');
+	$("#grid2").datagrid({
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + row.jhbh + "&" + name + "=" + value,
+		collapsible:true,
+		onClickRow:myTaskGridClickHandler,
+		singleSelect:true,ctrlSelect:false,method:'get',
+		pageSize: 100, pagination: false
+	});
+}
+
+function formatZfry(val, row) {
+	if(row.ZFRY_NAME1 != null && row.ZFRY_NAME2 != null ) {
+		return row.ZFRY_NAME1 + "/" + row.ZFRY_NAME2;
+	} else if(row.ZFRY_NAME1 == null ) {
+		return row.ZFRY_NAME2;
+	} else if(row.ZFRY_NAME2 == null ) {
+		return row.ZFRY_NAME1;
+	}
+}
 
 function docReadyReportFlagStyler(val,row,index) {
 	if(val == 1) {
@@ -187,11 +207,19 @@ function _reportDocReady(task) {
 //初始化
 $(function () {
 	$.husky.getUserInfo();
-    clearInput();
+	var myDate = new Date();
+	
+	clearInput();
+	   
     if (null != window.userInfo) {
     	firstLoadMyPlan();
     } else {
         $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
     }
+    
+	/*$("#grid1").datagrid("load", {
+		nd: myDate.getFullYear()
+	});*/
+
 });
 

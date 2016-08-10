@@ -57,8 +57,8 @@
         <thead>
         <tr>
         	<th data-options="field:'HCSX_ID',checkbox:true"></th>
-			<th data-options="field:'QYLX_ID',halign:'center',align:'center'" sortable="true" width="130">企业组织形式编码</th>
-            <th data-options="field:'QYLX_NAME',halign:'center',align:'left'" sortable="true" width="250">名称</th>
+			<th data-options="field:'QYLX_ID',halign:'center',align:'center'" sortable="true" width="100">企业类型编码</th>
+            <th data-options="field:'QYLX_NAME',halign:'center',align:'left'" sortable="true" width="250">企业类型名称</th>
         </tr>
         </thead>
         <tbody>

@@ -186,7 +186,7 @@ function showEnterpriseTypeWindow() {
 	var auditItem = $("#mainGrid").datagrid("getSelected");
 	if(auditItem != null) {
 		$.easyui.showDialog({
-			title : "关联企业组织形式",
+			title : "关联企业类型",
 			iconCls: 'icon2 r8_c14',
 			width : 470,
 			height : 380,
