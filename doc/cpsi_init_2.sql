@@ -56,10 +56,10 @@ end;
  */
 delete from t_zfry;
 insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
-  select user_id,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-    null zw,null mobile,null mail,zfzh,null sfzh,1,null whcd,1,
+  select user_id code,full_name name ,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
+    null zw,null mobile,null mail,zfzh,null sfzh,1 zflx,null whcd,1 zt,
     gxdwdm GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdwdm) gxdw_name,
-    gh user_id
+    user_name user_id
   from xt_user a;
 /**
   初始化操作员
@@ -71,23 +71,23 @@ declare
   v_cnt number;
   v_cnt2 number;
 begin
-  for o in(select * from xt_user where gh is not null and djjg is not null) loop
-    select count(1) into v_cnt from sys_user where user_id=o.gh;
+  for o in(select * from xt_user where user_name is not null) loop
+    select count(1) into v_cnt from sys_user where user_id=o.user_name;
     if(v_cnt=0) then
-      insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
-      values(o.gh,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.gh||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
-                  null,1,o.djjg,0,1,(select content from bm_djjg b where b.code=o.djjg) ,
-             o.user_name);
-      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
+      insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry,ext1)
+      values(o.user_name,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.user_name||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
+                  null,1,case when o.djjg is null then '610000' else o.djjg end,0,1,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end) ,
+             o.user_name,1);
+      select count(1) into v_cnt2 from t_user_org where user_id=o.user_name and org_id=o.djjg;
       if(v_cnt2=0) then
         insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.gh,o.full_name,o.djjg,(select content from bm_djjg b where b.code=o.djjg));
+        values(o.user_name,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
       end if;
     else
-      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
+      select count(1) into v_cnt2 from t_user_org where user_id=o.user_name and org_id=case when o.djjg is null then '610000' else o.djjg end;
       if(v_cnt2=0) then
         insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.gh,o.full_name,o.djjg,(select content from bm_djjg b where b.code=o.djjg));
+        values(o.user_name,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
       end if;
     end if;
   end loop;
@@ -115,6 +115,7 @@ insert into x_codelist(name,value,literal,edit_flag,style,descn)
 delete from x_codelist where name='wzlx';
 insert into x_codelist(name,value,literal,edit_flag,style,descn)
   select 'wzlx',code,content,0,null,'网址类型' from BM_WZLX;
+delete from x_codelist where name='qylxdl';
 insert into x_codelist(name,value,literal,edit_flag,style,descn)
   select 'qylxdl',code,content,0,null,'企业类型大类' from BM_QYDL;
 /**

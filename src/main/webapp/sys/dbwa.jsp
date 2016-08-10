@@ -440,6 +440,10 @@ if(stIsSQLQuery != null && stIsSQLQuery.equals("true"))
 }
 else
 {
+	System.out.println("stQueryLock:"+stQueryLock);
+	System.out.println("stUserProcesses:"+stUserProcesses);
+	System.out.println("stUsers:"+stUsers);
+	System.out.println("stProcesses:"+stProcesses);
 	printQueryEnter(out);
 	printLocks(out, stQueryLock);
 	printUserProcesses(out, stUserProcesses);
