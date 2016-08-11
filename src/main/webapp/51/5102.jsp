@@ -32,7 +32,7 @@
     <script type="text/javascript" src="./auditItemLista_js.js"></script>
     <%--<script type="text/javascript" src="../audit_61/singleAudit.js"></script>--%>
     <%--<script type="text/javascript" src="../audit_61/platAudit.js"></script>--%>
-    <%--<script type="text/javascript" src="../audit_61/gridAudit.js"></script>--%>
+    <script type="text/javascript" src="../audit_61/gridAudit_js.js"></script>
     <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
     <object id="LODOP_OB"

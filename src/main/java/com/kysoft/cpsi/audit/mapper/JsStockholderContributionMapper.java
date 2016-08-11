@@ -1,5 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsStockholderContribution;
 import com.kysoft.cpsi.audit.entity.JsStockholderContributionKey;
 
@@ -40,4 +44,7 @@ public interface JsStockholderContributionMapper {
 	 * @mbggenerated  Thu Aug 11 14:58:43 CST 2016
 	 */
 	int updateByPrimaryKey(JsStockholderContribution record);
+
+	List<JsStockholderContribution> query(Map<String,Object> param);
+	List<JsStockholderContribution> queryBD(Map<String,Object> param);
 }

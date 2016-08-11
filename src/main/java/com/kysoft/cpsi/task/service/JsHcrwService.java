@@ -10,6 +10,6 @@ public interface JsHcrwService {
     void update(JsHcrw jsHcrw);
     void renLing(String id,int zt);
     Integer getTaskInitStatus(String hcrwId);
-    List<JsHcsxjg> pullData(String hcrwId);
+    List<JsHcsxjg> pullData(String hcrwId,Integer reNewFlag);
 
 }

@@ -165,4 +165,16 @@
       and GD = #{gd,jdbcType=VARCHAR}
       and BGRQ = #{bgrq,jdbcType=TIMESTAMP}
   </update>
+
+  <select id="query" resultMap="BaseResultMap">
+    select 'false' as QUERYID, <include refid="Base_Column_List"/>
+    from T_JS_GQBG where hcrw_id=#{hcrwId}
+  </select>
+  <select id="queryBD" resultMap="BaseResultMap">
+    select 'false' as QUERYID, <include refid="Base_Column_List"/>
+    from T_JS_BD_GQBG where hcrw_id=#{hcrwId}
+    <if test="sjly!=null">
+      and sjly=#{sjly}
+    </if>
+  </select>
 </mapper>

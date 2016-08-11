@@ -78,10 +78,10 @@ public class JsHcrwController extends BaseController {
 
     //加载在线数据
     @RequestMapping(value = "/js/{hcrwId}/pull", method = RequestMethod.GET)
-    public Map<String, Object> pullData(@PathVariable String hcrwId) {
+    public Map<String, Object> pullData(@PathVariable String hcrwId,Integer reNewFlag) {
         Map<String, Object> result = Maps.newHashMap();
         try {
-            result.put(DATA, jsHcrwService.pullData(hcrwId));
+            result.put(DATA, jsHcrwService.pullData(hcrwId,reNewFlag));
             result.put(MESSAGE, "检查任务在线数据加载成功");
             result.put(STATUS, SUCCESS);
         } catch (Exception e) {

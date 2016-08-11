@@ -1,5 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsZscq;
 import com.kysoft.cpsi.audit.entity.JsZscqKey;
 
@@ -40,4 +44,7 @@ public interface JsZscqMapper {
 	 * @mbggenerated  Thu Aug 11 14:58:43 CST 2016
 	 */
 	int updateByPrimaryKey(JsZscq record);
+
+	List<JsZscq> query(Map<String,Object> param);
+	List<JsZscq> queryBD(Map<String,Object> param);
 }

@@ -189,4 +189,16 @@
     where XYDM = #{xydm,jdbcType=VARCHAR}
       and XZCFJDSWH = #{xzcfjdswh,jdbcType=VARCHAR}
   </update>
+
+  <select id="query" resultMap="BaseResultMap">
+    select 'false' as QUERYID, <include refid="Base_Column_List"/>
+    from T_JS_XZCF where hcrw_id=#{hcrwId}
+  </select>
+  <select id="queryBD" resultMap="BaseResultMap">
+    select 'false' as QUERYID, <include refid="Base_Column_List"/>
+    from T_JS_BD_XZCF where hcrw_id=#{hcrwId}
+    <if test="sjly!=null">
+      and sjly=#{sjly}
+    </if>
+  </select>
 </mapper>

@@ -1,3 +1,4 @@
+
 function formatCompareCol(val, row) {
 	var rc = row.qygsnr;
 	if(val != null ) {
@@ -123,6 +124,7 @@ function initAuditItemList() {
 }
 
 function doAuditItemListInit() {
+    $('#btnAnnualAuditJs').click(instanceAuditJs);
     $.easyui.loading();
     window.auditItemDataReady = false;
     var hcrw = $('#myTaskGrid').datagrid('getSelected');
@@ -131,7 +133,7 @@ function doAuditItemListInit() {
     } else {
 	    $.ajax({
 	        url: "./js/" + hcrw.id + "/pull",
-	        data: {hcrwId: hcrw.id},
+	        data: {"reNewFlag":window.hcsxJgRenewFlag},
 	        type: 'GET',
 	        success: function (response) {
                 $.easyui.loaded();
@@ -148,9 +150,9 @@ function doAuditItemListInit() {
 //-----------annual
 function annualAuditItemClickHandler() {
     if ($('#annualAuditItemGrid').datagrid('getSelected') != null) {
-        $('#btnAnnualAudit').linkbutton('enable');
+        $('#btnAnnualAuditJs').linkbutton('enable');
     } else {
-        $('#btnAnnualAudit').linkbutton('disable');
+        $('#btnAnnualAuditJs').linkbutton('disable');
     }
 }
 
@@ -203,16 +205,16 @@ function instanceAuditItemGridDblClickHandler(index, row) {
     instanceAudit();
 }
 
-function instanceAudit() {
-    var auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
+function instanceAuditJs() {
+    var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     if (auditItem.page == null) {
         $.messager.alert("未配置比对页面")
     } else {
         $("#auditItemAccordion").accordion("select", 1);
         $("#auditContent").panel({
-            href: '../js/audit_' + customer + '/' + auditItem.page + '.jsp',
+            href: '../audit_' + customer + '/' + auditItem.page + '_js.jsp',
             onLoad: function () {
-                _doInit("instance");
+                _doInit();
                 doInit();
             }
         });
@@ -231,13 +233,8 @@ function instanceAuditItemInit() {
 }
 
 //================instance end=========
-function _doInit(type) {
-    var auditItem = null;
-    if(type=="annual") {
-        auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
-    }  else {
-        auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
-    }
+function _doInit() {
+    var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
     var qy = $("#myTaskGrid").datagrid("getSelected");
 
     $("#_hcrwId_").text(auditItem.hcrwId);
@@ -264,7 +261,7 @@ function _doInit(type) {
 
     $("#k_failReason").val(auditItem.sm);
     
-    _initPromptForAuditItem(auditItem)
+    _initPromptForAuditItem(auditItem);
     cancelFail();
 }
 
