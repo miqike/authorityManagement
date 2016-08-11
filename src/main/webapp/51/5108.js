@@ -22,7 +22,6 @@ function search() {
 }
 
 function firstLoadMyPlan() {
-	console.log("-------------------")
 	var options = $("#grid1").datagrid("options")
 	console.log(options.url)
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
@@ -103,7 +102,12 @@ function showAuditDialog() {
 			doAuditFormInit();
 		},
 		onSave: function() {
-			auditHcwr();
+			if($("#auditTable").form("validate")) {
+				auditHcwr();
+				return true;
+			} else {
+	    		return false;
+			}
 		}
 	});
 }

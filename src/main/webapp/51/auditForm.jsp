@@ -7,6 +7,7 @@
         data.hcjieguo = $("#d_hcjieguo").combobox("getValue");
         data.auditResult = $("#d_auditResult").combobox("getValue");
         data.auditComment = $("#d_auditComment").val();
+        
         $.ajax({
             url: "../51/" + hcrw.id + "/audit",
             type: "POST",
@@ -50,11 +51,11 @@
 	    </tr>
 	    <tr>
 	        <td class="label">核查结果</td>
-	        <td colspan="3"><input class="easyui-combobox" id="d_hcjieguo" data-options="panelHeight:180" style="width:346px;" codeName="gsjg" /></td>
+	        <td colspan="3"><input class="easyui-combobox" id="d_hcjieguo" data-options="panelHeight:180, required:true" style="width:346px;" codeName="gsjg" /></td>
 	    </tr>
 	    <tr>
 	        <td class="label">是否列入经营异常名录</td>
-	        <td><input class="easyui-combobox" id="d_auditResult" data-options="panelHeight:60" codeName="yesno" /></td>
+	        <td><input class="easyui-combobox" id="d_auditResult" data-options="panelHeight:60, required:true" codeName="yesno" /></td>
 	    </tr>
 	    <tr>
 	        <td class="label">审核人</td>
