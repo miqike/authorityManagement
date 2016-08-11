@@ -28,19 +28,19 @@ public class HcsxServiceImpl implements HcsxService {
             hcsx.setId(UUID.randomUUID().toString().replace("-", ""));
         }
         hcsxMapper.insert(hcsx);
-        MongoLogger.info("hcsx", "增加核查事项",null,hcsx.getId());
+        MongoLogger.info("repo", "增加核查事项",null,hcsx.getId());
     }
 
     @Override
     public void delete(String id) {
         hcsxMapper.deleteByPrimaryKey(id);
-        MongoLogger.info("hcsx", "删除核查事项",null,id);
+        MongoLogger.info("repo", "删除核查事项",null,id);
     }
 
     @Override
     public void update(Hcsx hcsx) {
         hcsxMapper.updateByPrimaryKey(hcsx);
-        MongoLogger.info("hcsx", "修改查事项",null,hcsx.getId());
+        MongoLogger.info("repo", "修改查事项",null,hcsx.getId());
     }
 
     @Override
@@ -51,6 +51,6 @@ public class HcsxServiceImpl implements HcsxService {
 	@Override
 	public void disable(String hcsxId, Integer disableFlag, String zxsm) {
 		hcsxMapper.updateDisable(hcsxId, disableFlag, zxsm);
-		 MongoLogger.info("hcsx", "注销核查事项",null,hcsxId);
+		 MongoLogger.info("repo", "注销核查事项",null,hcsxId);
 	}
 }
