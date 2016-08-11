@@ -729,6 +729,7 @@ function importDblink() {
         if (response.status == $.husky.SUCCESS) {
             $.messager.alert("提示", "数据导入成功,导入任务: " + response.hcrws, 'info');
             loadGrid1(hcjhId);
+            $("#p_hcrwsl").val(response.hcrws);
         }
     });
 }
