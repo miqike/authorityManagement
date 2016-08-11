@@ -140,41 +140,45 @@
             </table>
         </div>
         <div title="即时信息核查" style="width:700px;">
-            <table id="taskDetailTable">
-                <tr>
-                    <td class="label">注册号</td>
-                    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-                    <td class="label">被抽查企业名称</td>
-                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                </tr>
-                <tr>
-                    <td class="label"  style="width:50px;">检查结果</td>
-                    <td colspan="3"><input id="p_hcjieguo" class="easyui-combobox"
-                                data-options="width:145" codeName="gsjg" disabled/>
-                        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
-                    </td></td>
-                </tr>
-            </table>
-            <div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
-                <div id="toobar1" >
-                    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">显示任务列表</a>
-                    <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
-                    <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
-                    <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
-                    <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" >公示信息更正审批表</a>
-                </div>
-                <div id="toobar2">
-                    <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-                    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
-                    <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
-                    <span>-</span>
-                    <a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
-                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
-                </div>
-            </div>
-            <div data-options="region: 'center'" style="padding: 2px;overflow: hidden;"  data-options="collapsible:true,fit:true">
-                <div id="auditItemList"  style="overflow: hidden;" ></div>
-            </div>
+        
+        	<div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
+				<div id="northPanel" data-options="region: 'north', height:174, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="overflow: hidden;">
+		            <table id="taskDetailTable">
+		                <tr>
+		                    <td class="label">注册号</td>
+		                    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+		                    <td class="label">被抽查企业名称</td>
+		                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+		                </tr>
+		                <tr>
+		                    <td class="label"  style="width:50px;">检查结果</td>
+		                    <td colspan="3"><input id="p_hcjieguo" class="easyui-combobox"
+		                                data-options="width:145" codeName="gsjg" disabled/>
+		                        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+		                    </td></td>
+		                </tr>
+		            </table>
+		            <div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
+		                <div id="toobar1" >
+		                    <a id="btnShowTaskListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">显示任务列表</a>
+		                    <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
+		                    <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
+		                    <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
+		                    <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" >公示信息更正审批表</a>
+		                </div>
+		                <div id="toobar2">
+		                    <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
+		                    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
+		                    <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
+		                    <span>-</span>
+		                    <a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
+		                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+		                </div>
+					</div>
+				</div>
+	            <div data-options="region: 'center'" style="padding: 2px;overflow: hidden;"  data-options="collapsible:true,fit:true">
+	                <div id="auditItemList"  style="overflow: hidden;" ></div>
+	            </div>
         </div>
     </div>
 </div>
