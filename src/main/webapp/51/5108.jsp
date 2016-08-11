@@ -10,6 +10,23 @@
 	<link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
 	<link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
+<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
+
+<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="../js/formatter.js"></script>
+
+<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="../js/husky.orgTree.js"></script>
+
+<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+<script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
+<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+<script type="text/javascript" src="./5108.js"></script>
     <style>
 
         td.label {
@@ -178,22 +195,3 @@
 
 </body>
 </html>
-<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-
-<script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-<script type="text/javascript" src="../js/formatter.js"></script>
-
-<script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
-<script type="text/javascript" src="../js/husky.orgTree.js"></script>
-
-<script type="text/javascript" src="../js/husky/husky.common.js"></script>
-<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-<script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
-<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-
-
-<script type="text/javascript" src="./5108.js"></script>
