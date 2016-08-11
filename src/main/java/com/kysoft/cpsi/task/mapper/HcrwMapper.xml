@@ -704,6 +704,7 @@
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID) 
 		AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
+      and ((zfry_code1=#{_userId} or zfry_code2=#{_userId}) and (select ext1 from sys_user where user_id=#{_userId})=2)
       <if test="auditResult !=null ">
          and audit_result is not null
       </if>
@@ -740,7 +741,7 @@
         where DOC_READY_REPORT_FLAG = 1 AND 
         (
            (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
-           or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
+           or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
         )
         <if test="planType!=null">
             AND PLAN_TYPE = #{planType}

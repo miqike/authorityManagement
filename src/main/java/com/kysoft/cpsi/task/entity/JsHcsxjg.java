@@ -303,4 +303,15 @@ public class JsHcsxjg extends JsHcsxjgKey {
 	public void setSjGsSj(Date sjGsSj) {
 		this.sjGsSj = sjGsSj;
 	}
+
+	private Integer hcxxfl;
+
+	public Integer getHcxxfl() {
+		return hcxxfl;
+	}
+
+	public void setHcxxfl(Integer hcxxfl) {
+		this.hcxxfl = hcxxfl;
+	}
+
 }

@@ -29,12 +29,10 @@
     <script type="text/javascript" src="./lodop.js"></script>
     <script type="text/javascript" src="./5102.js"></script>
 
-<%--
-    <script type="text/javascript" src="./auditItemLista.js"></script>
-    <script type="text/javascript" src="../audit_61/singleAudit.js"></script>
-    <script type="text/javascript" src="../audit_61/platAudit.js"></script>
-    <script type="text/javascript" src="../audit_61/gridAudit.js"></script>
---%>
+    <script type="text/javascript" src="./auditItemLista_js.js"></script>
+    <%--<script type="text/javascript" src="../audit_61/singleAudit.js"></script>--%>
+    <%--<script type="text/javascript" src="../audit_61/platAudit.js"></script>--%>
+    <%--<script type="text/javascript" src="../audit_61/gridAudit.js"></script>--%>
     <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
     <object id="LODOP_OB"
@@ -205,9 +203,9 @@
         </div>
 
         <div data-options="region:'center',split:true" style="width:340px;">
-            <table id=" myTaskGrid" class="easyui-datagrid"
-                   data-options="collapsible:true,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true">
+            <table id="myTaskGrid" class="easyui-datagrid"
+                   data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
+						height:340,pageSize: 100, pagination: true">
                 <thead>
                 <tr>
                     <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>

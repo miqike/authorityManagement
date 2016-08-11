@@ -45,4 +45,9 @@ public interface JsHcrwMapper {
 
 	List<JsHcrw> query(Map<String, Object> param);
 
+	void pullData(Map<String, Object> param);
+
+	void updateLoadedByPrimaryKey(String hcrwId);
+
+    void compareData(Map<String, Object> param);
 }
