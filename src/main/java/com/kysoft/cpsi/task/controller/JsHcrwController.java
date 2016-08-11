@@ -42,10 +42,10 @@ public class JsHcrwController extends BaseController {
         String renLingMessage;
         if(zt==1){
             renLingMessage="认领";
-            MongoLogger.info("task", "认领操作成功");
+//            MongoLogger.info("task", "认领操作成功");
         }else{
             renLingMessage="取消认领";
-            MongoLogger.info("task", "取消认领");
+//            MongoLogger.info("task", "取消认领");
         }
         try {
             jsHcrwService.renLing(id,zt);
