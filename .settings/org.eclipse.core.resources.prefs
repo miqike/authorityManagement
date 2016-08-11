@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
-encoding//src/test/java=UTF-8
-encoding//src/test/resources=UTF-8
+encoding//src/main/webapp/WEB-INF/conf/resources.properties=UTF-8
+encoding//src/main/webapp/audit_default/email.jsp=UTF-8
+encoding//src/main/webapp/gaozhishu/qiyezhusuo.jsp=UTF-8
+encoding//src/main/webapp/gaozhishu/shidihecha.jsp=UTF-8
+encoding//src/main/webapp/gaozhishu/zelingluxing.jsp=UTF-8
+encoding//src/main/webapp/sys/userForm.jsp=UTF-8
 encoding/<project>=UTF-8
