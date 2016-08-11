@@ -16,7 +16,7 @@ function expandHandler() {
 
 //zTree点击事件
 function onTreeClick(event, treeId, treeNode, clickFlag) {
-    var options = $('#mainGrid').datagrid('options');
+    /*var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=scztMapper&queryName=query' + (userInfo.ext1 == 1 ? "Ext": "");
     if(treeNode.id.length==8) {
     	options.queryParams = {
@@ -27,7 +27,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
 	        dwId: processorOrgId(treeNode.id)
 	    };
     }
-    $("#mainGrid").datagrid(options);
+    $("#mainGrid").datagrid(options);*/
 }
 
 function mainGridButtonHandler() {
