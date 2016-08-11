@@ -46,6 +46,7 @@ public class DocFurController extends BaseController {
 			hcclmxService.addHcclmx2(hcclmx);
 			result.put(MESSAGE, "附加检查材料保存成功");
 			result.put(STATUS, SUCCESS);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			result.put(STATUS, FAIL);

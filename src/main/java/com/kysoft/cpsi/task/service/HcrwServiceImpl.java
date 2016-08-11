@@ -8,6 +8,7 @@ import com.kysoft.cpsi.task.entity.Hcsxjg;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.HcsxjgMapper;
 
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
 
@@ -90,12 +91,14 @@ public class HcrwServiceImpl implements HcrwService {
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateAccept(taskIds, user.getUserId(), user.getName());
 		hcjhService.reCalcAcceptStatus(planId);
+		MongoLogger.info("task", "用户认领任务", null);
 	}
 	
 	public void unAccept(String planId, List<String> taskIds) {
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateUnAccept(taskIds);
 		hcjhService.reCalcAcceptStatus(planId);
+		MongoLogger.info("task", "用户取消认领任务", null);
 	}
 
 	@Override
