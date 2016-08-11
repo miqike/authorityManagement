@@ -1,19 +1,26 @@
 package com.kysoft.cpsi.task.service;
 
+import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.JsHcrw;
+import com.kysoft.cpsi.task.entity.JsHcsxjg;
 import com.kysoft.cpsi.task.mapper.JsHcrwMapper;
+import com.kysoft.cpsi.task.mapper.JsHcsxjgMapper;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Service("jsHcrwService")
 public class JsHcrwServiceImpl implements JsHcrwService {
 
     @Resource
     JsHcrwMapper jsHcrwMapper;
+    @Resource
+    JsHcsxjgMapper jsHcsxjgMapper;
 
     @Override
     public void update(JsHcrw jsHcrw) {
@@ -41,6 +48,26 @@ public class JsHcrwServiceImpl implements JsHcrwService {
             jsHcrw.setZfryName("");
             jsHcrw.setRwzt(1);//未认领
             jsHcrwMapper.updateByPrimaryKey(jsHcrw);
+        }
+    }
+
+    @Override
+    public Integer getTaskInitStatus(String hcrwId) {
+        return jsHcsxjgMapper.selectCountByTaskId(hcrwId);
+    }
+
+    @Override
+    public List<JsHcsxjg> pullData(String hcrwId) {
+        Map<String, Object> param = Maps.newHashMap();
+        param.put("hcrwId", hcrwId);
+        List<JsHcsxjg> hcsxjgs=jsHcsxjgMapper.queryForTask(param);
+        if(hcsxjgs.size()>0){
+            return hcsxjgs;
+        }else{
+            jsHcrwMapper.pullData(param);
+            jsHcrwMapper.compareData(param);
+            hcsxjgs=jsHcsxjgMapper.queryForTask(param);
+            return hcsxjgs;
         }
     }
 }

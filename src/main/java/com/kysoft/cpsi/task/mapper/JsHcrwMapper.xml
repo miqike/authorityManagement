@@ -604,4 +604,21 @@
         hcdw_xydm
     </select>
 
+  <update id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
+    {
+    call pkg_import.prc_import_js_hc(
+    #{hcrwId,mode=IN,jdbcType=VARCHAR},2
+    )}
+  </update>
+
+  <update id="updateLoadedByPrimaryKey">
+    UPDATE T_JS_HCRW SET DATA_LOADED = 1 where ID = #{hcrwId,jdbcType=VARCHAR}
+  </update>
+
+    <update id="compareData" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {
+        call pkg_hc.prc_bidui_js_hc(
+        #{hcrwId,mode=IN,jdbcType=VARCHAR}
+        )}
+    </update>
 </mapper>

@@ -6,6 +6,7 @@ import com.kysoft.cpsi.task.service.JsHcrwService;
 
 import net.sf.husky.log.MongoLogger;
 import net.sf.husky.web.controller.BaseController;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,6 +55,39 @@ public class JsHcrwController extends BaseController {
             e.printStackTrace();
             result.put(STATUS, FAIL);
             result.put(MESSAGE, renLingMessage+"操作失败");
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/js/{hcrwId}/initStatus", method = RequestMethod.GET)
+    public Map<String, Object> getHcrwInitStatus(@PathVariable String hcrwId) {
+        Map<String, Object> result = Maps.newHashMap();
+
+        try {
+            Integer count = jsHcrwService.getTaskInitStatus(hcrwId);
+            result.put(MESSAGE, "检查列表项初始成功");
+            result.put(STATUS, SUCCESS);
+            result.put(DATA, count);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "检查列表项初始失败");
+        }
+        return result;
+    }
+
+    //加载在线数据
+    @RequestMapping(value = "/js/{hcrwId}/pull", method = RequestMethod.GET)
+    public Map<String, Object> pullData(@PathVariable String hcrwId) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+            result.put(DATA, jsHcrwService.pullData(hcrwId));
+            result.put(MESSAGE, "检查任务在线数据加载成功");
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "检查任务在线数据加载失败");
         }
         return result;
     }

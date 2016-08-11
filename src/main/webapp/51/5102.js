@@ -14,10 +14,6 @@ function taskStatusStyler(val, row, index) {
     }
 }
 
-function checkParam(param) {
-    return param.planType != undefined;
-}
-
 function tabSelectHandler(title, index) {
     if (index == 0) {
         if(window.firstFlag==0){
@@ -48,12 +44,12 @@ function myTaskGridClickHandler() {
     $('#btnPullData').linkbutton("enable");
     refreshAuditItemList();
 }
-//刷新核查任务中
+//显示指定任务的核查事项列表
 function refreshAuditItemList() {
     if ($("#annualAuditItemGrid").length == 0 && $("#instanceAuditItemGrid").length == 0) {
         $("#auditItemList").panel({
             fit:true,
-            href: './auditItemLista.jsp',
+            href: './auditItemLista_js.jsp',
             onLoad: function () {
                 doAuditItemListInit();
             }
@@ -62,9 +58,11 @@ function refreshAuditItemList() {
         doAuditItemListInit();
     }
 }
-
 //加载核查任务
 function loadMyTask() {
+    var options = $("#myTaskGrid").datagrid("options");
+    options.url = "../common/query?mapper=jsHcrwMapper&queryName=query&zfryCode="+userInfo.userId;
+
     $("#myTaskGrid").datagrid("load",  {
         hcdwXydm: $('#f_hcdwXydm').val(),
         hcdwName: $('#f_hcdwName').val()
@@ -86,13 +84,6 @@ function minimizeMyTaskWindow() {
 }
 //打开核查任务窗口
 function showTaskListWindow() {
-    var options = $("#myTaskGrid").datagrid("options");
-    if (null != window.userInfo) {
-        options.url = "../common/query?mapper=jsHcrwMapper&queryName=query&zfryCode="+userInfo.userId;
-    } else {
-        $.subscribe("USERINFO_INITIALIZED", loadMyTask);
-    }
-
     $("#myTaskListWindow").window({
         title: "我的任务列表", top: 5, left: $.util.windowSize().width-755, width: 750, height: 450,
         modal:false,
@@ -137,6 +128,20 @@ function unRenLing(){
         });
     }
 }
+//加载在线数据按钮点击事件
+function pullData() {
+    // $.easyui.loading();
+    var row = $("#myTaskGrid").datagrid("getSelected");
+    $.getJSON("./js/" + row.id + "/pull", null, function (response) {
+        // $.easyui.loaded();
+        $.messager.alert("提示", response.message, 'info');
+        if (response.status == $.husky.SUCCESS) {
+            refreshAuditItemList();
+            row.dataLoaded = 1;
+        }
+    });
+}
+
 //未公示任务查找
 function searchWGS(){
     loadWGSTask();

@@ -1,3 +1,33 @@
+function quickSearch (value, name) {
+	/*var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&' + name + "=" + value,
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });*/
+	
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+    var selected = treeObj.getSelectedNodes()
+    var hcjh = $('#grid1').datagrid('getSelected');
+    if (selected.length == 1 && hcjh != null) {
+
+        var options = $("#grid2").datagrid("options");
+        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&' + name + "=" + value,
+        $('#grid2').datagrid('load', {
+            hcjhId: hcjh.id,
+            organization: processorOrgId(selected[0].id),
+            order: 1
+        });
+    } else {
+        $.messager.alert("提示","请首先选择计划和单位")
+    }
+    
+}
+
 function queryPlan(node) {
     var _orgId = $("#f_deptName").combobox("getValue");
     if (_orgId != "") {
@@ -22,11 +52,8 @@ function search() {
 }
 
 function firstLoadMyPlan() {
-	console.log("-------------------")
 	var options = $("#grid1").datagrid("options")
-	console.log(options.url)
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
-	console.log(options.url)
 	loadMyPlan();
 }
 
@@ -103,7 +130,12 @@ function showAuditDialog() {
 			doAuditFormInit();
 		},
 		onSave: function() {
-			auditHcwr();
+			if($("#auditTable").form("validate")) {
+				auditHcwr();
+				return true;
+			} else {
+	    		return false;
+			}
 		}
 	});
 }

@@ -241,8 +241,9 @@
     </resultMap>
 
     <select id="query" resultMap="ExtendResultMap">
-        select 'false' as QUERYID,
-        <include refid="Base_Column_List"/>, (select count(1) from t_hcrw b where b.hcdw_xydm=t_sczt.xydm) hcrws
+        select 'false' as QUERYID, <include refid="Base_Column_List"/>, 
+        (SELECT NAME FROM SYS_ORGANIZATION t WHERE t.id=DJJG) DJJGMC,
+        (select count(1) from t_hcrw b where b.hcdw_xydm=t_sczt.xydm) hcrws
         from T_SCZT where QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})

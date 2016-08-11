@@ -47,13 +47,13 @@ public interface HcrwMapper {
 	 */
 	int updateByPrimaryKey(Hcrw record);
 
-	//根据�???????查单位查询任务列�???????--3101
+	//根据�???????查单位查询任务列�???????--3101
     List<Hcrw> queryForOrg(Map<String, Object> param);
 
     //根据信用代码查询任务列表--2101
     List<Hcrw> queryForXydm(Map<String, Object> param);
 
-    //根据�???????查人员查询任务列�???????--5101
+    //根据�???????查人员查询任务列�???????--5101
     List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
@@ -106,7 +106,7 @@ public interface HcrwMapper {
 	@Update("UPDATE T_HCRW SET DOC_READY_FLAG_FUR = #{docReadyFlagFur} WHERE ID=#{hcrwId}")
 	void updateDocReadyFlag2(@Param("hcrwId")String hcrwId, @Param("docReadyFlagFur")int docReadyFlagFur);
 
-	@Update("UPDATE T_HCRW SET AUDIT_RESULT = #{auditResult}, AUDIT_COMMENT = #{auditComment},  AUDITOR = #{auditor}, HCJIEGUO=#{hcjieguo}, AUDITOR_NAME = #{auditorName},  AUDIT_TIME = SYSDATE WHERE ID=#{id}")
+	@Update("UPDATE T_HCRW SET AUDIT_RESULT = #{auditResult}, AUDIT_COMMENT = #{auditComment}, AUDITOR = #{auditor}, HCJIEGUO=#{hcjieguo}, AUDITOR_NAME = #{auditorName}, SJWCRQ = #{sjwcrq}, AUDIT_TIME = SYSDATE WHERE ID=#{id}")
 	void updateAuditByPrimaryKey(Hcrw hcrw);
 
 }

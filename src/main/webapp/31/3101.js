@@ -393,7 +393,8 @@ function dispatch() {
 				$.getJSON("./hcjh/dispatch/" + row.id + "/" + xdzt, null, function (response) {
 					if (response.status == $.husky.SUCCESS) {
 						$.messager.alert("提示", action + "成功", 'info');
-						loadGrid1(row.id);
+						//loadGrid1(row.id);
+						$("#grid1").datagrid("reload");
 					} else {
 						$.messager.alert("错误", action + '失败: \n' + response.message, 'info');
 					}
