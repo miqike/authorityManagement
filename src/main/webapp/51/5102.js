@@ -1,4 +1,5 @@
 window.firstFlag=1;//是否页面初始化标志，用于某些方法在初始化时不能调用标志
+window.hcsxJgRenewFlag=0;//是否需要重新生成核查事项结果数据标志 0不需要 1需要
 
 function taskStatusStyler(val, row, index) {
     if (val == 1) {
@@ -42,6 +43,7 @@ function myTaskGridClickHandler() {
     $('#btnPrintGongShiXinXiGengZheng').linkbutton("enable");
 
     $('#btnPullData').linkbutton("enable");
+    window.hcsxJgRenewFlag=0;
     refreshAuditItemList();
 }
 //显示指定任务的核查事项列表
@@ -130,16 +132,8 @@ function unRenLing(){
 }
 //加载在线数据按钮点击事件
 function pullData() {
-    // $.easyui.loading();
-    var row = $("#myTaskGrid").datagrid("getSelected");
-    $.getJSON("./js/" + row.id + "/pull", null, function (response) {
-        // $.easyui.loaded();
-        $.messager.alert("提示", response.message, 'info');
-        if (response.status == $.husky.SUCCESS) {
-            refreshAuditItemList();
-            row.dataLoaded = 1;
-        }
-    });
+    window.hcsxJgRenewFlag=1;
+    refreshAuditItemList();
 }
 
 //未公示任务查找

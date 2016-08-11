@@ -57,16 +57,23 @@ public class JsHcrwServiceImpl implements JsHcrwService {
     }
 
     @Override
-    public List<JsHcsxjg> pullData(String hcrwId) {
+    public List<JsHcsxjg> pullData(String hcrwId,Integer reNewFlag) {
         Map<String, Object> param = Maps.newHashMap();
         param.put("hcrwId", hcrwId);
         List<JsHcsxjg> hcsxjgs=jsHcsxjgMapper.queryForTask(param);
-        if(hcsxjgs.size()>0){
-            return hcsxjgs;
+        if(reNewFlag==0) {
+            if (hcsxjgs.size() > 0) {
+                return hcsxjgs;
+            } else {
+                jsHcrwMapper.pullData(param);
+                jsHcrwMapper.compareData(param);
+                hcsxjgs = jsHcsxjgMapper.queryForTask(param);
+                return hcsxjgs;
+            }
         }else{
             jsHcrwMapper.pullData(param);
             jsHcrwMapper.compareData(param);
-            hcsxjgs=jsHcsxjgMapper.queryForTask(param);
+            hcsxjgs = jsHcsxjgMapper.queryForTask(param);
             return hcsxjgs;
         }
     }

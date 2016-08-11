@@ -699,12 +699,14 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW where HCJH_ID = #{hcjhId}
-        AND QYBM IN (
+        AND (
+          (QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
-			CONNECT BY PRIOR ID=PARENT_ID) 
-		AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
-      and ((zfry_code1=#{_userId} or zfry_code2=#{_userId}) and (select ext1 from sys_user where user_id=#{_userId})=2)
+			CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
+        or ((zfry_code1=#{_userId} or zfry_code2=#{_userId}) and (select ext1 from sys_user where user_id=#{_userId})=2)
+        )
+        AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
       <if test="auditResult !=null ">
          and audit_result is not null
       </if>

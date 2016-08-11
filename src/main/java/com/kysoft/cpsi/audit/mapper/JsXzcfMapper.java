@@ -1,5 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsXzcf;
 import com.kysoft.cpsi.audit.entity.JsXzcfKey;
 
@@ -40,4 +44,7 @@ public interface JsXzcfMapper {
 	 * @mbggenerated  Thu Aug 11 14:58:43 CST 2016
 	 */
 	int updateByPrimaryKey(JsXzcf record);
+
+	List<JsXzcf> query(Map<String,Object> param);
+	List<JsXzcf> queryBD(Map<String,Object> param);
 }

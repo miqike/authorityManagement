@@ -1,7 +1,11 @@
 package com.kysoft.cpsi.audit.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.kysoft.cpsi.audit.entity.JsGqbg;
 import com.kysoft.cpsi.audit.entity.JsGqbgKey;
+import com.kysoft.cpsi.audit.entity.JsLicense;
 
 public interface JsGqbgMapper {
 
@@ -40,4 +44,8 @@ public interface JsGqbgMapper {
 	 * @mbggenerated  Thu Aug 11 14:58:43 CST 2016
 	 */
 	int updateByPrimaryKey(JsGqbg record);
+
+	List<JsGqbg> query(Map<String,Object> param);
+	List<JsGqbg> queryBD(Map<String,Object> param);
+
 }

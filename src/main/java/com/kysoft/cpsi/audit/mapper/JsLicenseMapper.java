@@ -3,6 +3,9 @@ package com.kysoft.cpsi.audit.mapper;
 import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsLicenseKey;
 
+import java.util.List;
+import java.util.Map;
+
 public interface JsLicenseMapper {
 
 	/**
@@ -40,4 +43,7 @@ public interface JsLicenseMapper {
 	 * @mbggenerated  Thu Aug 11 14:58:43 CST 2016
 	 */
 	int updateByPrimaryKey(JsLicense record);
+
+	List<JsLicense> query(Map<String,Object> param);
+	List<JsLicense> queryBD(Map<String,Object> param);
 }
