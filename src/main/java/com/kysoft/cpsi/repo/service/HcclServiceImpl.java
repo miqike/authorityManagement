@@ -3,6 +3,9 @@ package com.kysoft.cpsi.repo.service;
 import com.kysoft.cpsi.repo.entity.Hccl;
 import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+
+import net.sf.husky.log.MongoLogger;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,8 +32,10 @@ public class HcclServiceImpl implements HcclService {
 		if(null==hccl.getId() || hccl.getId().equals("")) {
 			hccl.setId(UUID.randomUUID().toString().replace("-", ""));
 			hcclMapper.insert(hccl);
+			 MongoLogger.info("hcsx", "增加核查材料");
 		}else{
 			hcclMapper.updateByPrimaryKey(hccl);
+			 MongoLogger.info("hcsx", "修改核查材料",null,hccl.getId());
 		}
 		String hcsxId = hccl.getHcsxId();
 		recalcHcclForHcsx(hcsxId);
@@ -42,6 +47,7 @@ public class HcclServiceImpl implements HcclService {
 		String hcsxId = hccl.getHcsxId();
 		
 		hcclMapper.deleteByPrimaryKey(id);
+		 MongoLogger.info("hcsx", "删除核查材料",null,id);
 		recalcHcclForHcsx(hcsxId);
 	}
 	

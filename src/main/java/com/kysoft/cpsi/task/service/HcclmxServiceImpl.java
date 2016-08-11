@@ -6,6 +6,8 @@ import com.kysoft.cpsi.task.mapper.HcclmxMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 
 import net.sf.husky.attachment.utils.DownloadUtils;
+import net.sf.husky.log.MongoLogger;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,6 +28,7 @@ public class HcclmxServiceImpl implements HcclmxService {
         Hcclmx hcclmx = hcclmxMapper.selectByPrimaryKey(id);
         hcclmxMapper.deleteByPrimaryKey(id);
         DownloadUtils.mongoDelete(hcclmx.getMongoId());
+//        MongoLogger.info("task", "用户删除附加核查材料", null, id);
     }
 
     @Override
@@ -38,7 +41,7 @@ public class HcclmxServiceImpl implements HcclmxService {
         hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
         hcclmx.setUploadTime(new Date());
         hcclmxMapper.insert(hcclmx);
-
+        MongoLogger.info("task", "附加核查材料添加成功");
         calcDoc(hcclmx.getHcrwId());
     }
     
@@ -68,6 +71,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     	if(null != hcclmx.getMongoId()) {
     		DownloadUtils.mongoDelete(hcclmx.getMongoId());
     	}
+    	 MongoLogger.info("task", "删除附加核查材料", null, id);
     }
     
     @Override
@@ -75,6 +79,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     	hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
     	hcclmxMapper.insert2(hcclmx);
     	calcDocFur(hcclmx.getHcrwId());
+    	 MongoLogger.info("task", "添加附加核查材料");
     }
     
     @Override

@@ -12,6 +12,7 @@ import com.kysoft.cpsi.repo.entity.Zfry;
 import com.kysoft.cpsi.repo.mapper.ZfryMapper;
 
 import net.sf.husky.exception.BaseException;
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.security.service.UserService;
 
@@ -31,6 +32,7 @@ public class ZfryServiceImpl implements ZfryService {
     @Override
     public void insert(Zfry zfry) {
         zfryMapper.insert(zfry);
+        MongoLogger.info("ccxxk", "增加执法人员");
     }
 
     @Override
@@ -41,6 +43,7 @@ public class ZfryServiceImpl implements ZfryService {
     @Override
     public void update(Zfry zfry) {
         zfryMapper.updateByPrimaryKey(zfry);
+        MongoLogger.info("ccxxk", "修改执法人员");
     }
 
     @Override
@@ -54,8 +57,10 @@ public class ZfryServiceImpl implements ZfryService {
         int targetStatus;
         if(zfry.getZt() == null || zfry.getZt() == 1) {
         	targetStatus = 2;
+        	MongoLogger.info("ccxxk", "注销执法人员");
         } else {
         	targetStatus = 1;
+        	MongoLogger.info("ccxxk", "取消注销执法人员");
         }
         zfryMapper.updateStatusByPrimaryKey(zfry.getCode(), targetStatus);
         return targetStatus;

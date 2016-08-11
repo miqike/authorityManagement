@@ -3,6 +3,8 @@ package com.kysoft.cpsi.task.controller;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.task.entity.JsHcrw;
 import com.kysoft.cpsi.task.service.JsHcrwService;
+
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,8 +41,10 @@ public class JsHcrwController extends BaseController {
         String renLingMessage;
         if(zt==1){
             renLingMessage="认领";
+            MongoLogger.info("task", "认领操作成功");
         }else{
             renLingMessage="取消认领";
+            MongoLogger.info("task", "取消认领");
         }
         try {
             jsHcrwService.renLing(id,zt);

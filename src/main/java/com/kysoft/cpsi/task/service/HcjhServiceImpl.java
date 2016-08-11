@@ -60,11 +60,13 @@ public class HcjhServiceImpl implements HcjhService {
     		hcjhMapper.updateDispatchById(hcjhId, 1, user.getUserId(), user.getName());
     		hcrwMapper.updateDispatchByPlanId(hcjhId, 1);
     		hcrwMapper.updateRequiredDocByPlanId(hcjhId);
+    		MongoLogger.info("task", "用户下达核查计划", null, hcjhId);
     	} else {
     		int yrls = hcrwMapper.selectYrlsByPlanId(hcjhId);
     		if(yrls == 0) {
     			hcjhMapper.updateDispatchById(hcjhId, 0, "", "");
     			hcrwMapper.updateDispatchByPlanId(hcjhId, 0);
+    			MongoLogger.info("task", "用户取消下达核查计划", null, hcjhId);
     		} else {
     			throw new BaseException("下级单位已经认领,不能进行取消下达操作");
     		}
@@ -124,6 +126,8 @@ public class HcjhServiceImpl implements HcjhService {
 	public void deleteCheckList(String hcjhId, String[] hcsxIds) {
 		 if (hcsxIds.length > 0)
 	            jhSxMapper.deleteBatch(hcjhId, hcsxIds);
+		 MongoLogger.info("task", "用户删除核查事项" + hcsxIds.length, null, hcjhId);
+		 
 	}
 
 	@Override
@@ -148,5 +152,6 @@ public class HcjhServiceImpl implements HcjhService {
 	@Override
 	public void delete(String hcjhId) {
 		hcjhMapper.deleteByPrimaryKey(hcjhId);
+		MongoLogger.info("task", "用户删除核查计划", null,hcjhId);
 	}
 }

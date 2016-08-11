@@ -4,6 +4,8 @@ import com.google.common.collect.Maps;
 import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.service.AuditService;
 import com.kysoft.cpsi.task.service.HcsxjgService;
+
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.log.service.LogService;
 import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +70,7 @@ public class AuditController extends BaseController {
             hcsxjgService.complete(hcrwId, hcsxId, hcjg, sm);
             result.put(MESSAGE, "检查[" + qymc + "]的" + "[" + hcsxmc + "]完成");
             result.put(STATUS, SUCCESS);
+          
         } catch (MailVerifyException e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
