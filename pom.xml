@@ -8,19 +8,9 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>4.2.6.RELEASE</spring.version>
-        <shiro.version>1.2.4</shiro.version>
-        <fastjson.version>1.2.11</fastjson.version>
-        <druid.version>1.0.18</druid.version>
 
         <poi.version>3.14</poi.version>
-        <jedis.version>2.8.1</jedis.version>
         <!-- <activiti.version>5.19.0.2</activiti.version> -->
-
-        <slf4j.version>1.7.21</slf4j.version>
-        <commons-lang3.version>3.4</commons-lang3.version>
-        <jackson.version>2.7.1</jackson.version>
-        <guava.version>19.0</guava.version>
         <servlet.version>3.1.0</servlet.version>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -192,6 +182,11 @@
             <version>1.5.5</version>
         </dependency>
 
+		<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${poi.version}</version>
+        </dependency>
     </dependencies>
 
     <scm>
