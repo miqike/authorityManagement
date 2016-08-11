@@ -7,6 +7,7 @@
         data.hcjieguo = $("#d_hcjieguo").combobox("getValue");
         data.auditResult = $("#d_auditResult").combobox("getValue");
         data.auditComment = $("#d_auditComment").val();
+        data.sjwcrq = $("#d_sjwcrq").datebox("getValue");
         
         $.ajax({
             url: "../51/" + hcrw.id + "/audit",
@@ -25,7 +26,13 @@
     }
 
     function doAuditFormInit() {
-    	$.husky.loadForm("auditTable", $("#grid2").datagrid("getSelected"));
+    	var task = $("#grid2").datagrid("getSelected");
+    	$.husky.loadForm("auditTable", task);
+    	if(task.auditResult == null) {
+    		$("#d_sjwcrq").datebox("setValue", dateFormatter(new Date()));
+  			$("#d_auditorName").val(userInfo.name);
+  			$("#d_auditTime").datebox("setValue", dateFormatter(new Date()));
+    	}
     } 
 
     $(function () {
@@ -47,7 +54,7 @@
 	        <td class="label">统一社会信用代码</td>
 	        <td><input class="easyui-validatebox" id="d_hcdwXydm" disabled/></td>
 	        <td class="label">检查时间</td>
-	        <td><input class="easyui-datebox" id="d_sjwcrq" data-options="" disabled/></td>
+	        <td><input class="easyui-datebox" id="d_sjwcrq" data-options="" /></td>
 	    </tr>
 	    <tr>
 	        <td class="label">核查结果</td>
@@ -61,7 +68,7 @@
 	        <td class="label">审核人</td>
 	        <td><input class="easyui-validatebox" id="d_auditorName" data-options="" disabled/></td>
 	        <td class="label">审核日期</td>
-	        <td><input class="easyui-datebox" id="d_hcjieguo" data-options="" disabled/></td>
+	        <td><input class="easyui-datebox" id="d_auditTime" data-options="" disabled/></td>
 	    </tr>
 	    <tr>
 	        <td class="label" valign="top">审核意见</td>

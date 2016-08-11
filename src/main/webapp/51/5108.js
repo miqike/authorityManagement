@@ -23,9 +23,7 @@ function search() {
 
 function firstLoadMyPlan() {
 	var options = $("#grid1").datagrid("options")
-	console.log(options.url)
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
-	console.log(options.url)
 	loadMyPlan();
 }
 
