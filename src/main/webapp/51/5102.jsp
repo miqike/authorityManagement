@@ -13,8 +13,8 @@
     <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-    <script type="text/javascript"
-            src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>
+    <%--<script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=2a0e3002d891662913ceb7d47fb9c188"></script>--%>
 
     <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
@@ -29,10 +29,12 @@
     <script type="text/javascript" src="./lodop.js"></script>
     <script type="text/javascript" src="./5102.js"></script>
 
+<%--
     <script type="text/javascript" src="./auditItemLista.js"></script>
     <script type="text/javascript" src="../audit_61/singleAudit.js"></script>
     <script type="text/javascript" src="../audit_61/platAudit.js"></script>
     <script type="text/javascript" src="../audit_61/gridAudit.js"></script>
+--%>
     <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
     <object id="LODOP_OB"
@@ -103,7 +105,11 @@
                         <td class="label">核查机关</td>
                         <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
                         <td style="text-align:right;">
-                            <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
+                            <a href="javascript:void(0);" id="btnRenLing" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r9_c5">认领</a>
+                            <a href="javascript:void(0);" id="btnUnRenLing" class="easyui-linkbutton" plain="true"
+                               iconCls="icon2 r9_c4">取消认领</a>
+                            <a href="javascript:void(0);" id="btnSearchWGS" class="easyui-linkbutton" plain="true"
                                iconCls="icon-search">查找</a>
                             <a href="javascript:void(0);" id="btnResetWGS" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r3_c10">重置</a>
@@ -130,7 +136,7 @@
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
                     <th data-options="field:'rlr',halign:'center',align:'left'" sortable="true" width="100">认领人</th>
                     <th data-options="field:'rlrq',halign:'center',align:'left'" sortable="true" width="80" formatter="formatDate">认领日期</th>
-                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200" formatter="formatDate">检查机关名称</th>
+                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200">检查机关名称</th>
                 </tr>
                 </thead>
             </table>
@@ -138,25 +144,14 @@
         <div title="即时信息核查" style="width:700px;">
             <table id="taskDetailTable">
                 <tr>
-                    <td class="label" style="width:60px">计划编号</td>
-                    <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-                    <td class="label" style="width:75px">计划名称</td>
-                    <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
-                </tr>
-                <tr>
                     <td class="label">注册号</td>
                     <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-                    <td class="label">被抽查企业</td>
-                    <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+                    <td class="label">被抽查企业名称</td>
+                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
                 </tr>
                 <tr>
-                    <td class="label">计划年度</td>
-                    <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
-                    <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
-                    <td class="label" >计划下达单位</td>
-                    <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>
                     <td class="label"  style="width:50px;">检查结果</td>
-                    <td ><input id="p_hcjieguo" class="easyui-combobox"
+                    <td colspan="3"><input id="p_hcjieguo" class="easyui-combobox"
                                 data-options="width:145" codeName="gsjg" disabled/>
                         <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
                     </td></td>
@@ -186,16 +181,10 @@
     </div>
 </div>
 <div id="myTaskListWindow" >
-    <div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
+    <div class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
         <div data-options="region:'north',split:false,height:70" title="">
             <div style="padding: 5px 10px 0px 10px">
                 <table id="queryTable">
-                    <tr>
-                        <td class="label" style="width:100px;">计划年度</td>
-                        <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-                        <td class="label" style="width:70px;">计划编号</td>
-                        <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
-                    </tr>
                     <tr>
                         <td class="label" >统一社会信用代码</td>
                         <td><input id="o_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
@@ -216,22 +205,15 @@
         </div>
 
         <div data-options="region:'center',split:true" style="width:340px;">
-            <table id="grid1" class="easyui-datagrid"
+            <table id=" myTaskGrid" class="easyui-datagrid"
                    data-options="collapsible:true,singleSelect:true,ctrlSelect:false,method:'get',
 						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true">
                 <thead>
                 <tr>
-                    <th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>
-                    <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
-                    <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
-                    <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="170">任务下达单位</th>
-
                     <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
                     <th data-options="field:'zfryName', halign:'center',align:'center'" width="100" >检查人员</th>
-                    <!-- <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>
-                    <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="80" formatter="formatDate">计划结束时间</th>
-                    <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th> -->
+                    <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th>
                     <th data-options="field:'rwzt', halign:'center',align:'center'" width="60" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
                 </tr>
                 </thead>
