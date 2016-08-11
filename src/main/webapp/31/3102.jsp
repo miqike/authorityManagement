@@ -57,7 +57,7 @@
 <body style="margin:5px;">
 
 <div id="toobar1" class="easyui-toolbar">
-    <a id="btnShowPlanListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">计划列表</a>
+    <a id="btnShowPlanListWindow" class="easyui-linkbutton" data-options="plain: true, iconCls: 'icon2 r5_c20'">选择计划列表</a>
 	<a href="javascript:void(0);" id="btnGoFirst" class="easyui-linkbutton" iconCls="icon-first" plain="true">首</a>
 	<a href="javascript:void(0);" id="btnGoPrev" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上</a>
 	<a href="javascript:void(0);" id="btnGoNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下</a>
