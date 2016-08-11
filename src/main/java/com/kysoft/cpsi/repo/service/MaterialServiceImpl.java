@@ -31,20 +31,20 @@ public class MaterialServiceImpl implements MaterialService {
 	public void add(Material material) {
 		
 		materialMapper.insert(material);
-		 MongoLogger.info("hccl", "增加核查材料");
+		 MongoLogger.info("repo", "增加核查材料");
 	}
 
 	@Override
 	public void updateMaterial(Material material) {
 		materialMapper.updateByPrimaryKey(material);
-		MongoLogger.info("hccl", "修改核查材料",null,material.getId());
+		MongoLogger.info("repo", "修改核查材料",null,material.getId());
 
 	}
 
 	@Override
 	public void deleteMaterial(String id) {
 		materialMapper.deleteByPrimaryKey(id);
-		MongoLogger.info("hccl", "删除核查材料",null,id);
+		MongoLogger.info("repo", "删除核查材料",null,id);
 	}
 
 

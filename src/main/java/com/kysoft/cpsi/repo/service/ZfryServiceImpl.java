@@ -32,7 +32,7 @@ public class ZfryServiceImpl implements ZfryService {
     @Override
     public void insert(Zfry zfry) {
         zfryMapper.insert(zfry);
-        MongoLogger.info("ccxxk", "增加执法人员");
+        MongoLogger.info("repo", "增加执法人员");
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ZfryServiceImpl implements ZfryService {
     @Override
     public void update(Zfry zfry) {
         zfryMapper.updateByPrimaryKey(zfry);
-        MongoLogger.info("ccxxk", "修改执法人员");
+        MongoLogger.info("repo", "修改执法人员");
     }
 
     @Override
@@ -57,10 +57,10 @@ public class ZfryServiceImpl implements ZfryService {
         int targetStatus;
         if(zfry.getZt() == null || zfry.getZt() == 1) {
         	targetStatus = 2;
-        	MongoLogger.info("ccxxk", "注销执法人员");
+        	MongoLogger.info("repo", "注销执法人员");
         } else {
         	targetStatus = 1;
-        	MongoLogger.info("ccxxk", "取消注销执法人员");
+        	MongoLogger.info("repo", "取消注销执法人员");
         }
         zfryMapper.updateStatusByPrimaryKey(zfry.getCode(), targetStatus);
         return targetStatus;

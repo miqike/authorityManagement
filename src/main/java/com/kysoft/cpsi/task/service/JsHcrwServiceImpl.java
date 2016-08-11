@@ -5,6 +5,8 @@ import com.kysoft.cpsi.task.entity.JsHcrw;
 import com.kysoft.cpsi.task.entity.JsHcsxjg;
 import com.kysoft.cpsi.task.mapper.JsHcrwMapper;
 import com.kysoft.cpsi.task.mapper.JsHcsxjgMapper;
+
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,7 @@ public class JsHcrwServiceImpl implements JsHcrwService {
             jsHcrw.setZfryName(user.getName());
             jsHcrw.setRwzt(2);//已认领
             jsHcrwMapper.updateByPrimaryKey(jsHcrw);
+            MongoLogger.info("task", "认领操作成功");
         }else{
             JsHcrw jsHcrw = jsHcrwMapper.selectByPrimaryKey(id);
             jsHcrw.setRlr("");
@@ -48,6 +51,7 @@ public class JsHcrwServiceImpl implements JsHcrwService {
             jsHcrw.setZfryName("");
             jsHcrw.setRwzt(1);//未认领
             jsHcrwMapper.updateByPrimaryKey(jsHcrw);
+            MongoLogger.info("task", "取消认领操作");
         }
     }
 
