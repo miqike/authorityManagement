@@ -1,5 +1,14 @@
 package com.kysoft.cpsi.task.service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import com.kysoft.cpsi.task.entity.Hcjh;
@@ -8,17 +17,9 @@ import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
 
 import net.sf.husky.exception.BaseException;
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
-
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Service("hcjhService")
 public class HcjhServiceImpl implements HcjhService {
@@ -73,9 +74,11 @@ public class HcjhServiceImpl implements HcjhService {
     @Override
     public String save(Hcjh hcjh) {
         if (hcjh.getId() != null && !hcjh.getId().equals("")) {
+        	MongoLogger.info("task", "用户对计划进行修改", null, hcjh.getId());
             hcjhMapper.updateByPrimaryKey(hcjh);
         } else {
             hcjh.setId(UUID.randomUUID().toString().replace("-", ""));
+            MongoLogger.info("task", "用户创建新计划", null, hcjh.getId());
             hcjhMapper.insert(hcjh);
             
             insertAvailableAuditItem(hcjh.getId(), hcjh.getNr());
@@ -89,6 +92,7 @@ public class HcjhServiceImpl implements HcjhService {
     void insertAvailableAuditItem(String hcjhId, Integer nr) {
     	
     	List<String> hcsxIdList = hcsxMapper.selectAvailableAuditItemId(hcjhId, nr);
+    	MongoLogger.info("task", "系统为新计划添加核查事项: " + hcsxIdList.size(), null, hcjhId);
     	jhSxMapper.insertBatch(hcjhId, hcsxIdList.toArray());
     }
 
