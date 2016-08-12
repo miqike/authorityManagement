@@ -3,9 +3,9 @@ function toMilli(length) {
     return length.toString() + "mm";
 }
 
-function doZelingluxingtongzhishuInit() {
+function doZelingluxingtongzhishuInit(dataGridId) {
     var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
-    var qy = $("#grid1").datagrid("getSelected");
+    var qy = $("#"+dataGridId).datagrid("getSelected");
 
     $("#zeling_hcrwId").text(qy.id);
 

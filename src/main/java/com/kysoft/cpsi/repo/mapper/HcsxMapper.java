@@ -1,11 +1,10 @@
 package com.kysoft.cpsi.repo.mapper;
 
-import java.util.List;
-import java.util.Map;
-
+import com.kysoft.cpsi.repo.entity.Hcsx;
 import org.apache.ibatis.annotations.Param;
 
-import com.kysoft.cpsi.repo.entity.Hcsx;
+import java.util.List;
+import java.util.Map;
 
 public interface HcsxMapper {
     
@@ -64,5 +63,5 @@ public interface HcsxMapper {
 
 	List<String> selectAvailableAuditItemId(@Param("hcjhId") String hcjhId, @Param("nr") Integer nr);
 
-	
+	List<Map> getJsHcsxCode();
 }

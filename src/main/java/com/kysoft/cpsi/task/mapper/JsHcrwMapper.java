@@ -1,6 +1,8 @@
 package com.kysoft.cpsi.task.mapper;
 
 import com.kysoft.cpsi.task.entity.JsHcrw;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -50,4 +52,13 @@ public interface JsHcrwMapper {
 	void updateLoadedByPrimaryKey(String hcrwId);
 
     void compareData(Map<String, Object> param);
+
+	@Update("UPDATE T_JS_HCRW SET UPLOAD_FILES = (SELECT COUNT(ID) FROM t_hcclmx WHERE hcrw_id=#{hcrwId} AND sfbyx=1) WHERE ID=#{hcrwId}")
+	void updateHcclStatByPrimaryKey(String hcrwId);
+
+    @Update("UPDATE T_JS_HCRW SET DOC_READY_FLAG = #{docReadyFlag} WHERE ID=#{hcrwId}")
+    void updateDocReadyFlag(@Param("hcrwId")String hcrwId, @Param("docReadyFlag")int docReadyFlag);
+
+    @Update("UPDATE T_JS_HCRW SET REQUIRED_FILES_FUR = (SELECT COUNT(ID) FROM t_hccl_fur WHERE hcrw_id=#{hcrwId} AND sfbyx=1), UPLOAD_FILES_FUR = (SELECT COUNT(ID) FROM t_hccl_fur WHERE hcrw_id=#{hcrwId} AND sfbyx=1 AND MONGO_ID IS NOT NULL) WHERE ID=#{hcrwId}")
+    void updateHcclStatByPrimaryKey2(String hcrwId);
 }

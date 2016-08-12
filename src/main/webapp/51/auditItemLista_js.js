@@ -64,7 +64,7 @@ function _addDocFur() {
 	$.easyui.showDialog({
         title: "附加核查材料列表",
         width: 705, height: 410, topMost: false,
-        href: "./addDocFur.jsp",
+        href: "./addDocFur_js.jsp",
         enableSaveButton : true,
 		enableApplyButton : false,
 		closeButtonText : "返回",
@@ -182,7 +182,7 @@ function annualAudit() {
 function annualAuditItemInit() {
 	$.getJSON("../common/query?mapper=jsHcsxjgMapper&queryName=queryForTask",  {
 		hcrwId: $('#myTaskGrid').datagrid('getSelected').id,
-        hclx: 1
+        hclx: 2
     }, function (response) {
         if (response.status == $.husky.SUCCESS) {
         	 $("#annualAuditItemGrid").datagrid("loadData",response);

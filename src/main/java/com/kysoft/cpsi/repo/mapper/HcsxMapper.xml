@@ -407,4 +407,8 @@
         </if>
         where ID = #{hcsxId,jdbcType=VARCHAR}
     </update>
+
+  <select id="getJsHcsxCode" resultType="java.util.Map">
+    select 'hcsx' as name, a.ID as value , a.NAME as literal from t_hcsx a where hclx=2
+  </select>
 </mapper>

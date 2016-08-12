@@ -257,15 +257,15 @@ function _showDialog(title, url) {
 		href : url,
 		onLoad : function() {
             if(title == "实地检查告知书") {
-                doShidihechagaozhishuInit();
+                doShidihechagaozhishuInit("grid1");
             } else if(title == "责令履行通知书") {
-                doZelingluxingtongzhishuInit();
+                doZelingluxingtongzhishuInit("grid1");
             } else if(title == "年报公示信息核查结果报告") {
             	printAuditReport();
             }else if(title == "公示信息更正审批表") {
                 printGongShiXinXiGengZhengBiao();
             }else {
-                doQiyezhusuohechahanInit();
+                doQiyezhusuohechahanInit("grid1");
             }
 
 		},

@@ -89,7 +89,7 @@
         window.planType = 1;
     </script>
 </head>
-<body>
+<body style="padding:5px;margin-top:-20px;">
 
 <div id="planWindow" style="padding: 5px;">
     <%-- <jsp:include page="../sys/iterationBar.jsp"/> --%>
@@ -142,7 +142,7 @@
         <div title="即时信息核查" style="width:700px;">
         
         	<div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
-				<div id="northPanel" data-options="region: 'north', height:174, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="overflow: hidden;">
+				<div id="northPanel" data-options="region: 'north', height:154, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="overflow: hidden;">
 		            <table id="taskDetailTable">
 		                <tr>
 		                    <td class="label">注册号</td>
@@ -164,15 +164,14 @@
 		                    <a href="javascript:void(0);" id="btnSendHcgzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r10_c20" disabled>实地检查告知书</a>
 		                    <a href="javascript:void(0);" id="btnSendZllxtzs" class="easyui-linkbutton" plain="true" iconCls="icon2 r16_c20" disabled>责令履行通知书</a>
 		                    <a href="javascript:void(0);" id="btnSendQyzshch" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c11" disabled>企业住所检查函</a>
-		                    <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiao" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" >公示信息更正审批表</a>
+		                    <a href="javascript:void(0);" id="btnPrintGongShiXinXiGengZhengBiaoJs" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c19" >公示信息更正审批表</a>
 		                </div>
 		                <div id="toobar2">
 		                    <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
 		                    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
 		                    <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
 		                    <span>-</span>
-		                    <a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
-		                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>更新任务结果</a>
+		                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19">更新任务结果</a>
 		                </div>
 					</div>
 				</div>

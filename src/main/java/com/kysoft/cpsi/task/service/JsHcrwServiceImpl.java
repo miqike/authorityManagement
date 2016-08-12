@@ -1,11 +1,11 @@
 package com.kysoft.cpsi.task.service;
 
 import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.mapper.HcsxMapper;
 import com.kysoft.cpsi.task.entity.JsHcrw;
 import com.kysoft.cpsi.task.entity.JsHcsxjg;
 import com.kysoft.cpsi.task.mapper.JsHcrwMapper;
 import com.kysoft.cpsi.task.mapper.JsHcsxjgMapper;
-
 import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
@@ -23,6 +23,8 @@ public class JsHcrwServiceImpl implements JsHcrwService {
     JsHcrwMapper jsHcrwMapper;
     @Resource
     JsHcsxjgMapper jsHcsxjgMapper;
+    @Resource
+    HcsxMapper hcsxMapper;
 
     @Override
     public void update(JsHcrw jsHcrw) {
@@ -80,5 +82,20 @@ public class JsHcrwServiceImpl implements JsHcrwService {
             hcsxjgs = jsHcsxjgMapper.queryForTask(param);
             return hcsxjgs;
         }
+    }
+
+    @Override
+    public JsHcrw getHcrwById(String hcrwId) {
+        return jsHcrwMapper.selectByPrimaryKey(hcrwId);
+    }
+
+    @Override
+    public void updateHcrw(JsHcrw jsHcrw) {
+        jsHcrwMapper.updateByPrimaryKey(jsHcrw);
+    }
+
+    @Override
+    public List<Map> getHcsxCode() {
+        return hcsxMapper.getJsHcsxCode();
     }
 }
