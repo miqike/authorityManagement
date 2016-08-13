@@ -168,7 +168,7 @@
 		                </div>
 		                <div id="toobar2">
 		                    <a href="javascript:void(0);" id="btnPullData" class="easyui-linkbutton" plain="true" iconCls="icon2 r14_c3" disabled>加载在线数据</a>
-		                    <a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>
+		                    <%--<a href="#" id="btnOpenEtlTool" class="easyui-linkbutton" iconCls="icon2 r5_c5" plain="true">财务数据核查</a>--%>
 		                    <a href="#" id="btnViewDocument" class="easyui-linkbutton" iconCls="icon2 r17_c1" plain="true" disabled>检查材料</a>
 		                    <span>-</span>
 		                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19">更新任务结果</a>

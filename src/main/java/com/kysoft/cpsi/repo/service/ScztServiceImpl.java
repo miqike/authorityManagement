@@ -109,4 +109,9 @@ public class ScztServiceImpl implements ScztService {
 			loginTokenMapper.updateByPrimaryKeySelective(loginToken);
 		}
 	}
+
+	@Override
+	public Sczt queryByXydm(String xydm) {
+		return scztMapper.selectByPrimaryKey(xydm);
+	}
 }

@@ -178,12 +178,22 @@ function pullData() {
 }
 
 function openEtlTool() {
+    //财务数据验证
 	$.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
+	    debugger;
 		var qy = $("#grid1").datagrid("getSelected");
-		//1:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人
-		var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password+"&"+qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName+"&"+qy.jhmc+"&"+qy.jhnd+"&"+qy.hcfl==1?"定向":"不定向"+"&"+qy.hgjgmc+"&"+qy.zfryName1+"&"+qy.fr+"&"+qy.fr;
-		console.log(param);
-		location.replace(param);
+        $.getJSON("../21/2101/xydm",{"xydm":qy.hcdwXydm},function(responseQy){
+            debugger;
+            if(responseQy.status==$.husky.SUCCESS) {
+                var hcfl=qy.hcfl == 1 ? "定向" : "不定向";
+                //1:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人
+                var param = "lieKysoft://1:" + response.userId + "&" + response.salt + "&" + response.password + "&" + qy.jhbh + "&" + qy.hcdwXydm + "&" + qy.hcdwName + "&" + qy.jhmc + "&" + qy.jhnd + "&" + hcfl + "&" + qy.hcjgmc + "&" + qy.zfryName1 + "&" + responseQy.data.fr + "&" + responseQy.data.fr;
+                console.log(param);
+                location.replace(param);
+            }else{
+                $.messager.alert("提示", response.message, 'info');
+            }
+        });
 	});
 }
 

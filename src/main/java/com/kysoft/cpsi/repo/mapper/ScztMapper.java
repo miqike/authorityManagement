@@ -54,4 +54,6 @@ public interface ScztMapper {
 
     /*查询被检查单位需要上传的检查材料*/
     List<Map<String, Object>> queryHccl(Map<String, Object> params);
+
+    List<Sczt> selectByXydm(Map<String, Object> params);
 }

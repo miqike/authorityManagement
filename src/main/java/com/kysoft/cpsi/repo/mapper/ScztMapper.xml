@@ -377,4 +377,10 @@
         ORDER BY a.id
     </select>
 
+    <select id="selectByXydm" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from T_SCZT
+        where XYDM = #{xydm,jdbcType=VARCHAR}
+    </select>
 </mapper>
