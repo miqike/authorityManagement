@@ -192,6 +192,7 @@ function importFinancial(){
     if(null==jh || null ==rw){
         $.messager.show("操作提醒", '请选择核查计划及核查任务！', "info", "bottomRight");
     }else {
+        var hcfl=rw.HCFL==1?"定向":"不定向";
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
 			//2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人&文件类型(2)
 			var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.ND+"&"+hcfl+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR+"&2";
@@ -207,6 +208,7 @@ function importSelfCheck(){
     if(null==jh || null ==rw){
         $.messager.show("操作提醒", '请选择核查计划及核查任务！', "info", "bottomRight");
     }else {
+        var hcfl=rw.HCFL==1?"定向":"不定向";
         $.getJSON("../user/" + userInfo.userId + "/all", null, function (response) {
 			//2:用户名&salt&加密后的密码&计划编号&企业注册号&企业名称&计划名称&计划年度&检查分类&检查机关&核查人&法人代表/负责人&文件类型(1)
 			var param = "lieKysoft://2:" + response.userId + "&" + response.salt + "&" + response.password+"&"+rw.JHBH+"&"+rw.HCDW_XYDM+"&" +rw.HCDW_NAME+"&"+rw.JHMC+"&"+rw.ND+"&"+hcfl+"&"+rw.HCJGMC+"&"+rw.ZFRY_NAME1+"&"+rw.FR+"&"+rw.FR+"&1";
