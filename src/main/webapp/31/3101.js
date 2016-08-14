@@ -162,6 +162,15 @@ function grid1ClickHandler() {
         $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
+        console.info(row);
+        if(row.planType==1){
+        	planType="双随机";
+        }else{
+        	planType="日常监管";
+        }
+        $("#f_planTypeShow").val(planType);
+        $("#f_jhmcShow").val(row.jhmc);
+        $("#f_jhbhShow").val(row.jhbh);
         
         if(row.hcrwsl != undefined && row.hcrwsl > 0) {
         	$('#btnRemove').linkbutton('disable');
@@ -189,6 +198,10 @@ function grid1ClickHandler() {
         $('#btnModify').linkbutton('disable');
         $('#btnDispatch').linkbutton('disable');
         $('#btnViewCheckList').linkbutton('disable');
+        $("#f_planTypeShow").val("");
+        $("#f_jhmcShow").val("");
+        $("#f_jhbhShow").val("");
+        
     }
     $('#grid2').datagrid("loadData", {total: 0, rows: []})
 }
@@ -803,6 +816,48 @@ function _funcAccept (operation) {
 	}*/
 }
 
+
+//查询已认领
+function done(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg1',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+	
+}
+//查询未认领
+function notDo(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg2',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
+
+//查询全部
+function queryAll(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();

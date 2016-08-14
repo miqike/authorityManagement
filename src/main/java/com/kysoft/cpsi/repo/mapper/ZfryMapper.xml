@@ -283,6 +283,9 @@
             or
             T_ZFRY.code=b.zfry_code2))
         </if>
+         <if test="userId != null">
+            and USER_ID=#{userId}
+        </if>
         order by code
     </select>
 

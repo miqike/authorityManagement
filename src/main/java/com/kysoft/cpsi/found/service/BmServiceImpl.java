@@ -2,6 +2,9 @@ package com.kysoft.cpsi.found.service;
 
 import com.kysoft.cpsi.found.entity.Bm;
 import com.kysoft.cpsi.found.mapper.BmMapper;
+
+import net.sf.husky.log.MongoLogger;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,16 +28,19 @@ public class BmServiceImpl implements BmService {
             bm.setId(UUID.randomUUID().toString().replace("-", ""));
         }
         bmMapper.insert(bm);
+        MongoLogger.info("found", "增加部门",null);
     }
 
     @Override
     public void delete(String id) {
         bmMapper.deleteByPrimaryKey(id);
+        MongoLogger.info("found", "删除部门",null,id);
     }
 
     @Override
     public void update(Bm bm) {
         bmMapper.updateByPrimaryKey(bm);
+        MongoLogger.info("found", "修改部门",null,bm.getId());
     }
 
     @Override
