@@ -162,7 +162,6 @@ function grid1ClickHandler() {
         $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
-        console.info(row);
         if(row.planType==1){
         	planType="双随机";
         }else{
@@ -806,6 +805,7 @@ function _funcAccept (operation) {
 	            if (response.status == $.husky.SUCCESS) {
 	            	loadGrid1(selected[0].hcjhId);
 	                $('#grid2').datagrid("reload");
+	                $.messager.show('操作提示', response.message, 'info', "bottomRight");
 	            } else {
 	                $.messager.alert('失败', response.message, 'info');
 	            }
