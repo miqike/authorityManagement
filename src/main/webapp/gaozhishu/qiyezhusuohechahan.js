@@ -3,8 +3,8 @@ function toMilli(length) {
     return length.toString() + "mm";
 }
 
-function doQiyezhusuohechahanInit() {
-    var qy = $("#grid1").datagrid("getSelected");
+function doQiyezhusuohechahanInit(dataGridId) {
+    var qy = $("#"+dataGridId).datagrid("getSelected");
     $("#zhusuo_hcrwId").text(qy.id);
     $("#zhusuo_qymc").val(qy.hcdwName);
     $("#zhusuo_gljmc").val(qy.hcjgmc);

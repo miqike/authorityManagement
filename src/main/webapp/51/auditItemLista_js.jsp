@@ -2,7 +2,7 @@
 <div id="auditItemAccordion" class="easyui-accordion" data-options="fit:true,border:true,animate:true" > 
 	<div title="检查事项列表" data-options="iconCls:'icon2 r4_c20', fit: true,selected:true" style="overflow: auto;">
 		<table id="annualAuditItemGrid" class="easyui-datagrid"
-			   data-options="collapsible:true, ctrlSelect:true,method:'get',
+			   data-options="collapsible:true, ctrlSelect:true,method:'get',height:200,width:200,
 				    	onClickRow:annualAuditItemClickHandler,onDblClickRow:annualAuditItemDblClickHandler,
 				    	offset: { width: -25, height: -255},
 						toolbar: '#annualAuditItemGridToolbar'" >
@@ -12,9 +12,9 @@
 				<th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方式</th>
 				<th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly"
 					formatter="formatCodeList">比对信息来源</th>
-				<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">即时内容</th>
-				<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="180">公示内容</th>
-				<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
+				<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="100" formatter="formatCompareCol" styler="stylerRegist">即时内容</th>
+				<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="100">公示内容</th>
+				<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="100" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
 				<th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
 				<th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
 			</tr>

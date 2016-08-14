@@ -24,4 +24,6 @@ public interface ScztService {
 	String sendToken(String xydm, String mobile);
 
 	void login(String xydm, String tokenId, String token);
+
+    Sczt queryByXydm(String xydm);
 }

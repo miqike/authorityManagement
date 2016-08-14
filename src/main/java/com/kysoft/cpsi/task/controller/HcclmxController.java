@@ -1,19 +1,16 @@
 package com.kysoft.cpsi.task.controller;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.task.entity.Hcclmx;
+import com.kysoft.cpsi.task.service.HcclmxService;
+import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Maps;
-import com.kysoft.cpsi.task.entity.Hcclmx;
-import com.kysoft.cpsi.task.service.HcclmxService;
-
-import net.sf.husky.web.controller.BaseController;
+import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/51")
@@ -53,5 +50,20 @@ public class HcclmxController extends BaseController {
 		}
 		return result;
 	}
-	
+
+	@RequestMapping(value = "/js/hcclmx", method = RequestMethod.POST)
+	public Map<String, Object> addHcclmxJs(Hcclmx hcclmx) {
+
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcclmxService.addHcclmxJs(hcclmx);
+			result.put(MESSAGE, "检查材料保存成功");
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "检查材料保存失败");
+		}
+		return result;
+	}
 }
