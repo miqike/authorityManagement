@@ -14,6 +14,23 @@ function taskStatusStyler(val, row, index) {
         return "background-color:lightgreen";
     }
 }
+//更新任务结果按钮点击事件
+function updateHcjg() {
+    $("#btnConfirmUpdateHcjg").show().linkbutton("enable");
+    $("#p_hcjieguo").combobox("enable").combobox("showPanel");
+}
+//确认任务核查结果按钮点击事件
+function confirmUpdateHcjg() {
+    var row = $("#myTaskGrid").datagrid("getSelected");
+    $.post("../51/js/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
+        $.messager.alert("提示", response.message, 'info');
+
+        $("#btnUpdateHcjg").linkbutton("enable");
+        $("#btnConfirmUpdateHcjg").hide();
+        $("#p_hcjieguo").combobox("disable");
+        loadMyTask();
+    })
+}
 
 function tabSelectHandler(title, index) {
     if (index == 0) {
@@ -26,6 +43,81 @@ function tabSelectHandler(title, index) {
         showTaskListWindow()
     }
 }
+//实地检查告知书按钮点击事件
+function sendHcgzs() {
+    _showDialog("实地检查告知书", "../gaozhishu/shidihecha.jsp");
+}
+//责令履行通知书
+function sendZllxtzs() {
+    _showDialog("责令履行通知书", "../gaozhishu/zelingluxing.jsp");
+}
+//企业住所调查函
+function sendQyzshch() {
+    _showDialog("企业住所调查函", "../gaozhishu/qiyezhusuo.jsp");
+}
+function _showDialog(title, url) {
+    $.easyui.showDialog({
+        title : title,
+        width : 650,
+        height : 520,
+        topMost : false,
+        iconCls:'icon2 r16_c14',
+        enableSaveButton : false,
+        enableApplyButton : false,
+        closeButtonText : "返回",
+        closeButtonIconCls : "icon-undo",
+        href : url,
+        onLoad : function() {
+            if(title == "实地检查告知书") {
+                doShidihechagaozhishuInit("myTaskGrid");
+            } else if(title == "责令履行通知书") {
+                doZelingluxingtongzhishuInit("myTaskGrid");
+            } else if(title == "年报公示信息核查结果报告") {
+                printAuditReport();
+            }else if(title == "公示信息更正审批表") {
+                printGongShiXinXiGengZhengBiao();
+            }else {
+                doQiyezhusuohechahanInit("myTaskGrid");
+            }
+
+        },
+        buttons:[{
+            text:'打印',
+            iconCls:'icon-print',
+            handler:function(){
+                if(title == "实地检查告知书") {
+                    printShidihechagaozhishu();
+                } else if(title == "责令履行通知书") {
+                    setTaskStatus( $("#grid1").datagrid("getSelected").id, 4);
+                    printZelingluxingtongzhishu();
+                } else if(title == "年报公示信息核查结果报告") {
+                    printAuditReport();
+                }else {
+                    printQiyezhusuohechahan();
+                }
+            }
+        }]
+    });
+}
+//检查材料按钮点击事件
+function viewDocument() {
+    $.easyui.showDialog({
+        title : "检查材料",
+        width : 720,
+        height : 420,
+        topMost : false,
+        iconCls:'icon2 r16_c14',
+        enableSaveButton : false,
+        enableApplyButton : false,
+        closeButtonText : "返回",
+        closeButtonIconCls : "icon-undo",
+        href : "./docLista_js.jsp",
+        onLoad : function() {
+            // doDocListInit();
+        }
+    });
+}
+
 //我的核查任务表格点击事件
 function myTaskGridClickHandler() {
     //控制四个按钮显示

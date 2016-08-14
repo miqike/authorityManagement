@@ -23,6 +23,24 @@ truncate table T_TOKEN;
 
 truncate table T_USER_ORG;
 commit;
+truncate table T_JS_BD_GDCZ;
+truncate table T_JS_BD_GQBG;
+truncate table T_JS_BD_XZCF;
+truncate table T_JS_BD_XZXK;
+truncate table T_JS_BD_ZSCQ;
+truncate table T_JS_GDCZ;
+truncate table T_JS_GQBG;
+truncate table T_JS_GS_GDCZ;
+truncate table T_JS_GS_GQBG;
+truncate table T_JS_GS_XZCF;
+truncate table T_JS_GS_XZXK;
+truncate table T_JS_GS_ZSCQ;
+truncate table T_JS_HCRW;
+truncate table T_JS_HCSXJG;
+truncate table T_JS_XZCF;
+truncate table T_JS_XZXK;
+truncate table T_JS_ZSCQ;
+
  */
 /**
 根据接口表初始化数据库

@@ -52,6 +52,7 @@ public interface HcclmxMapper {
     List<Hcclmx> queryForTask(Map<String, Object> paramMap);
 
     Hcclmx selectBy(@Param("hcrwId") String hcrwId, @Param("hcsxId") String hcsxId, @Param("hcdwXydm") String hcdwXydm, @Param("hcjhnd") Integer hcjhnd, @Param("hcclId") String hcclId);
+    Hcclmx selectJsBy(@Param("hcrwId") String hcrwId, @Param("hcsxId") String hcsxId, @Param("hcdwXydm") String hcdwXydm, @Param("hcclId") String hcclId);
 
     List<Hcclmx> queryDocFurForTask(Map<String, Object> paramMap);
 

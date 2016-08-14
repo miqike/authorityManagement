@@ -46,7 +46,7 @@ function mainGridButtonHandler(index,row) {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		$('#btnView').linkbutton('enable');
 		$('#btnTrans').linkbutton('enable');
-		
+		$('#btnDeleteZfry').linkbutton('enable');
 		if($('#mainGrid').datagrid('getSelected').zt == 1) {
 			$('#btnLock').linkbutton({
 				text:'注销'
@@ -66,6 +66,7 @@ function mainGridButtonHandler(index,row) {
 		$('#btnLock').linkbutton('disable');
 		$('#btnAddSysUser').linkbutton('disable');
 		$('#btnTrans').linkbutton('disable');
+		$('#btnDeleteZfry').linkbutton('disable');
 	}
 }
 
@@ -92,9 +93,11 @@ function setEditStatus() {
 //设置页面为不可编辑状态
 function setReadOnlyStatus() {
     $("#btnAdd").linkbutton('enable');
+    $("#btndelete").linkbutton('disable');
     $("#btnSave").linkbutton('disable');
     $("#btnCancel").linkbutton('disable');
     if ($("#mainGrid").datagrid("getSelected") != null) {
+    	 $("#btndelete").linkbutton('enable');
         $("#btnView").linkbutton("enable");
         $("#btnLock").linkbutton("enable");
         $("#btnTrans").linkbutton("enable");
@@ -102,12 +105,14 @@ function setReadOnlyStatus() {
         $("#btnView").linkbutton("disable");
         $("#btnLock").linkbutton("disable");
         $("#btnTrans").linkbutton("disable");
+        $("#btnDelete").linkbutton('disable');
     }
     $("#zfryTable input.easyui-validatebox").attr("readonly", true);
     $("#zfryTable input.easyui-datebox").datebox("disable");
     $("#zfryTable input.easyui-combobox").combobox("disable");
     $("#zfryTable input.easyui-combotree").combotree("disable");
 }
+
 
 //删除按钮点击事件
 function lock() {
@@ -129,6 +134,9 @@ function lock() {
 		});
 	}
 }
+
+
+
 
 function addSysUser () {
 	$.easyui.showDialog({
@@ -164,6 +172,8 @@ function add(){
 	$('#mainGrid').datagrid('unselectAll');
 	showZfryForm("add");
 }
+
+
 
 
 function view(){
@@ -286,10 +296,12 @@ function loadMainGrid() {
         dwId: selected.length == 1 ? processorOrgId(selected[0].id) : "",
         name: $("#f_name").val(),
         zflx: $("#f_zflx").combobox("getValue"),
-        jhid: $("#f_jhid").val()
+        jhid: $("#f_jhid").val(),
+        userId:$("#f_userId").val()
+       
     };
     $("#mainGrid").datagrid(options);
-
+    console.info( options.queryParams);
 }
 
 function reset() {
@@ -353,3 +365,30 @@ $(function () {
 
     
 });
+
+function deleteZfry(){
+	 
+	    	var row = $("#mainGrid").datagrid("getSelected");
+	    	console.info(row);
+			if(null != row) {
+				$.messager.confirm("请确人是否删除该检查项?", function (c) { if(c){
+					$.ajax({
+				        url: "../21/2102?code="+row.code,
+				        type: "DELETE",
+				        success: function (response) {
+				            if (response.status =='1') {
+				                
+				                $("#btnView").linkbutton("disable");
+				                $("#btnDelete").linkbutton("disable");
+				                $("#mainGrid").datagrid("reload");
+				                $.messager.alert('成功', response.message, 'info');
+				            } else {
+				                $.messager.alert('失败', response.message, 'info');
+				            }
+				        }
+				    });
+					
+				}});
+			}
+	    }
+

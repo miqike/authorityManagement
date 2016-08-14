@@ -324,6 +324,17 @@
         ORDER BY UPLOAD_TIME DESC
     </select>
 
+    <select id="selectJsBy" resultMap="BaseResultMap">
+        select 'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from T_HCCLMX
+        WHERE HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
+        and hcsx_id = #{hcsxId,jdbcType=VARCHAR}
+        and hcdw_Xydm = #{hcdwXydm,jdbcType=VARCHAR}
+        and hccl_Id = #{hcclId,jdbcType=VARCHAR}
+        ORDER BY UPLOAD_TIME DESC
+    </select>
+
     <select id="queryDocFurForTask" parameterType="java.lang.String" resultMap="BaseResultMap">
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>

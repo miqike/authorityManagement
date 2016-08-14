@@ -48,8 +48,13 @@ public interface HcrwMapper {
 	int updateByPrimaryKey(Hcrw record);
 
 	//根据�???????查单位查询任务列�???????--3101
+	 //查询已认领
+    List<Hcrw> queryForOrg1(Map<String, Object> param);
+    //查询未认领
+    List<Hcrw> queryForOrg2(Map<String, Object> param);
+  
+    
     List<Hcrw> queryForOrg(Map<String, Object> param);
-
     //根据信用代码查询任务列表--2101
     List<Hcrw> queryForXydm(Map<String, Object> param);
 

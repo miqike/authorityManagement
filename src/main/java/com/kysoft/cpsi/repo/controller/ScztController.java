@@ -1,19 +1,17 @@
 package com.kysoft.cpsi.repo.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.entity.Sczt;
+import com.kysoft.cpsi.repo.service.ScztService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
 
-import com.google.common.collect.Maps;
-import com.kysoft.cpsi.repo.entity.Sczt;
-import com.kysoft.cpsi.repo.service.ScztService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Tommy on 5/6/2015.
@@ -40,6 +38,22 @@ public class ScztController extends net.sf.husky.web.controller.BaseController {
     		result.put(MESSAGE, "查询失败");
     	}
     	return result;
+    }
+
+    @RequestMapping(value = "/xydm", method = RequestMethod.GET)
+    public Map<String, Object> queryByXydm(String xydm) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+            Sczt queryResult = scztService.queryByXydm(xydm);
+            result.put(MESSAGE, "查询企业法人成功");
+            result.put(STATUS, SUCCESS);
+            result.put(DATA, queryResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "查询企业法人失败");
+        }
+        return result;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
