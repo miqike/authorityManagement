@@ -57,6 +57,21 @@ public class HcrwController extends BaseController {
     	}
     	return result;
     }
+    @RequestMapping(value = "/{hcrwId}/cancelAudit", method = RequestMethod.POST)
+    public Map<String, Object> cancelAuditHcrw(@PathVariable String hcrwId) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	
+    	try {
+    		hcrwService.cancelAuditHcrw(hcrwId);
+    		result.put(MESSAGE, "取消审核成功");
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "取消审核失败");
+    	}
+    	return result;
+    }
 
     @RequestMapping(value = "/queryForOrg", method = RequestMethod.GET)
     public List<Hcrw> queryForOrg(ServletRequest request) {

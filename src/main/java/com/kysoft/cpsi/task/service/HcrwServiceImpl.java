@@ -121,5 +121,10 @@ public class HcrwServiceImpl implements HcrwService {
 		hcrwMapper.updateAuditByPrimaryKey(hcrw);
 	}
 
+	@Override
+	public void cancelAuditHcrw(String hcrwId) {
+		hcrwMapper.updateCancelAuditByPrimaryKey(hcrwId);
+	}
+
 
 }
