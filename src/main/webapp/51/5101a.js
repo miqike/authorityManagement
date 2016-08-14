@@ -233,14 +233,21 @@ function printAuditReport() {
 
 //=============================
 function updateHcjg() {
-	$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
-	$("#p_hcjieguo").combobox("enable").combobox("showPanel");
+	var row = $("#grid1").datagrid("getSelected");
+	if(row.auditResult != null) {
+		$.messager.alert("操作提示", "检查结果已经审核通过,不能修改!");
+	} else {
+		$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
+		$("#p_hcjieguo").combobox("enable").combobox("showPanel");
+	}
 }
 
 function confirmUpdateHcjg() {
+	console.log("3333")
 	var row = $("#grid1").datagrid("getSelected");
 	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
 		$.messager.alert("提示", response.message, 'info');
+		console.log("4444")
 		
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
