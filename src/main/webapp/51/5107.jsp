@@ -188,7 +188,7 @@
 		            <tr>
 		                <td class="label" style="width:70px;">信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-		                <td class="label" style="width:70px;">企业名称</td>
+		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
 		                <td style="text-align-right;">
