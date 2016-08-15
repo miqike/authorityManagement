@@ -28,19 +28,19 @@ public class BmServiceImpl implements BmService {
             bm.setId(UUID.randomUUID().toString().replace("-", ""));
         }
         bmMapper.insert(bm);
-        MongoLogger.info("found", "增加部门",null);
+        MongoLogger.info("found", "用户增加部门: " + bm.getOrgName(),null, bm.getId());
     }
 
     @Override
     public void delete(String id) {
         bmMapper.deleteByPrimaryKey(id);
-        MongoLogger.info("found", "删除部门",null,id);
+        MongoLogger.info("found", "用户删除部门",null,id);
     }
 
     @Override
     public void update(Bm bm) {
         bmMapper.updateByPrimaryKey(bm);
-        MongoLogger.info("found", "修改部门",null,bm.getId());
+        MongoLogger.info("found", "用户修改部门: " + bm.getOrgName(),null,bm.getId());
     }
 
     @Override

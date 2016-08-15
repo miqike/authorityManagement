@@ -94,19 +94,19 @@ public class HcrwServiceImpl implements HcrwService {
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateAccept(taskIds, user.getUserId(), user.getName());
 		hcjhService.reCalcAcceptStatus(planId);
-		MongoLogger.info("task", "用户认领任务");
+		MongoLogger.info("task", "用户认领任务: " + taskIds.size(), null, planId);
 	}
 	
 	public void unAccept(String planId, List<String> taskIds) {
 		hcrwMapper.updateUnAccept(taskIds);
 		hcjhService.reCalcAcceptStatus(planId);
-		MongoLogger.info("task", "用户取消认领任务");
+		MongoLogger.info("task", "用户取消认领任务: " + taskIds.size(), null, planId);
 	}
 
 	@Override
 	public void setTaskStatus(String hcrwId, Integer statusCode) {
 		hcrwMapper.updateStatusByPrimaryKey(hcrwId, statusCode);
-		MongoLogger.info("task", "用户修改任务状态: " + statusCode);
+		MongoLogger.info("task", "用户修改任务状态: " + statusCode, null, hcrwId);
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class HcrwServiceImpl implements HcrwService {
 		int flag = docReadyReportFlag == 0? 1: 0;
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());
-		MongoLogger.info("task", "用户对任务进行上报操作: " + docReadyReportFlag);
+		MongoLogger.info("task", "用户对任务进行上报操作: " + docReadyReportFlag, null, hcrwId);
 	}
 
 	@Override
