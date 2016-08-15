@@ -29,26 +29,39 @@ function filterByZfry() {
 
 function goFirst() {
 	$.husky.ramble("first", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goLast() {
 	$.husky.ramble("last", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goPrev() {
 	$.husky.ramble("previous", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goNext() {
 	$.husky.ramble("next", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function minimizeMyPlanListWindow() {
+	loadPlanAbstract();
 	$("#myPlanListWindow").window("minimize");
+}
+
+function loadPlanAbstract() {
+	var row = $('#grid1').datagrid('getSelected');
+    if(row.planType==1){
+    	planType="双随机";
+    }else{
+    	planType="日常监管";
+    }
+    $("#f_planTypeShow").val(planType);
+    $("#f_jhmcShow").val(row.jhmc);
+    $("#f_jhbhShow").val(row.jhbh);
 }
 
 function showPlanListWindow() {

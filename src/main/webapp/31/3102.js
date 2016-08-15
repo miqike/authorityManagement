@@ -2,26 +2,39 @@ window.excludeSaved = false;
 
 function goFirst() {
 	$.husky.ramble("first", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goLast() {
 	$.husky.ramble("last", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goPrev() {
 	$.husky.ramble("previous", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goNext() {
 	$.husky.ramble("next", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function minimizeMyPlanListWindow() {
+	loadPlanAbstract();
 	$("#myPlanListWindow").window("minimize");
+}
+
+function loadPlanAbstract() {
+	var row = $('#grid1').datagrid('getSelected');
+    if(row.planType==1){
+    	planType="双随机";
+    }else{
+    	planType="日常监管";
+    }
+    $("#f_planTypeShow").val(planType);
+    $("#f_jhmcShow").val(row.jhmc);
+    $("#f_jhbhShow").val(row.jhbh);
 }
 
 function showPlanListWindow() {
@@ -62,10 +75,6 @@ function loadMyPlan() {
     });
 }
 
-
-
-
-
 function showPlanDetail() {
 	var row = $("#grid1").datagrid('getSelected');
 	/*window.billType = window.billTypeMap[row.ba01861];
@@ -94,9 +103,6 @@ function expandHandler() {
 	$("div.datagrid-view:nth-child(1)").parent().css("border-bottom-width", "0px")
 }
 //================
-
-
-
 
 function onTreeClick(event, treeId, treeNode, clickFlag) {
 	 var treeObj = $.fn.zTree.getZTreeObj("orgTree");
@@ -132,22 +138,6 @@ function grid1ClickHandler() {
     $('#grid2').datagrid("loadData", {total: 0, rows: []})
 }
 
-
-//确认按钮
- function ok(){
-	 var row = $('#grid1').datagrid('getSelected');
-     console.info(row);
-     if(row.planType==1){
-     	planType="双随机";
-     }else{
-     	planType="日常监管";
-     }
-     $("#f_planTypeShow").val(planType);
-     $("#f_jhmcShow").val(row.jhmc);
-     $("#f_jhbhShow").val(row.jhbh);
-     
-     minimizeMyPlanListWindow();
- }
 function viewCheckList() {
 	var row = $('#grid1').datagrid('getSelected');
 	if (row) {

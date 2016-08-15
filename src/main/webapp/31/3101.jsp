@@ -76,11 +76,11 @@ td.label {
 				<tr>
 					<td class="label">计划类型</td>
 					<td><input id="f_planTypeShow" class="easyui-validatebox"
-						codeName="planType" /></td>
+						codeName="planType"  disabled/></td>
 					<td class="label">计划名称</td>
-					<td><input id="f_jhmcShow" class="easyui-validatebox" width: 260 /></td>
+					<td><input id="f_jhmcShow" class="easyui-validatebox" width: 260  disabled/></td>
 					<td class="label">计划编号</td>
-					<td><input id="f_jhbhShow" class="easyui-validatebox" /></td>
+					<td><input id="f_jhbhShow" class="easyui-validatebox"  disabled/></td>
 				</tr>
 			</table>
 		</div>

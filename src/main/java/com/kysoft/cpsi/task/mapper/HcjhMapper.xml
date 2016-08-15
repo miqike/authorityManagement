@@ -552,6 +552,10 @@
         #{hcjhId,mode=IN,jdbcType=VARCHAR},#{zchList,mode=IN,jdbcType=VARCHAR},
         #{zfryId,mode=IN,jdbcType=VARCHAR},#{zfryName,mode=IN,jdbcType=VARCHAR})}
     </select>
+    
+    <select id="removeTask" parameterType="java.util.HashMap" statementType="CALLABLE">
+        {call pkg_import.prc_removeRcRw (#{hcjhId,mode=IN,jdbcType=VARCHAR},#{hcrwList,mode=IN,jdbcType=VARCHAR})}
+    </select>
 
 	<update id="updateAcceptStatusByPrimaryKey">
         update T_HCJH

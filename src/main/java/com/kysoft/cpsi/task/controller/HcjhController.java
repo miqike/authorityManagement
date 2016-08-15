@@ -169,4 +169,17 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/hcjh/removeEnterprise/{hcjhId}", method = RequestMethod.PUT)
+	public Map<String, Object> removeEnterprise(@PathVariable String hcjhId,  @RequestBody String[] hcrwIds) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.removeEnterprise(hcjhId, hcrwIds);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 }

@@ -71,6 +71,48 @@
 		});
 	}
 	
+	function removeTaskFromPlan() {
+		var tasks = $('#grid3b').datagrid('getSelections');
+	    var taskIds = new Array();
+	    var flag = true;
+	    for (var i = 0; i < tasks.length; i++) {
+	    	if(tasks[i].rwzt < 5) {
+	    		taskIds.push(tasks[i].id);
+	    	} else {
+	    		flag = false;
+	    		break;
+	    	}
+	    }
+	    if(flag) {
+	    	$.ajax({
+				url:"../31/hcjh/removeEnterprise/" +$("#k_id").val(),
+				data:JSON.stringify(taskIds),
+				type:"put",
+				contentType: "application/json; charset=utf-8",
+				cache:false,
+				success: function(response) {
+					if(response.status == $.husky.SUCCESS) {
+						$.messager.show("操作提醒", "移除核查单位成功", "info", "bottomRight");
+						$("#grid1").datagrid("reload");
+						$("#grid3b").datagrid("reload");;
+					} else {
+						$.messager.alert("错误", "移除核查单位失败");
+					}
+				}
+			});
+	    } else {
+	    	$.messager.alert("操作提示", "选中任务中有已完成任务,不能进行删除操作");
+	    }
+	}
+	
+	function grid3bClickHandler() {
+		if ($('#grid3b').datagrid('getSelections').length > 0) {
+			$("#btnRemoveTaskFromPlan").linkbutton("enable");
+		} else {
+			$("#btnRemoveTaskFromPlan").linkbutton("disable");
+		}
+	}
+	
 	$(function () {
 		/* $("#btnShowChangeOrgDialog").click(showChangeOrgDialog);
 		$("#btnShowAddTaskDialog").click(showAddTaskDialog);
@@ -197,9 +239,10 @@
                    data-options="
                    		method:'get',
                    		pageSize: 100, pagination: true,
-                       singleSelect:true,
+                       singleSelect:false,
                        collapsible:true,
                        toolbar: '#grid3bToolbar',
+                       onClickRow:grid3bClickHandler,
                        selectOnCheck:false,
                        checkOnSelect:false"
                    style="height: 318px">
@@ -215,6 +258,7 @@
             </table>
             <div id="grid3bToolbar">
 		        <a href="#" id="btnShowAddTaskDialog" class="easyui-linkbutton" iconCls="icon-add" plain="true">新增</a>
+		        <a href="#" id="btnRemoveTaskFromPlan" class="easyui-linkbutton" iconCls="icon-remove" plain="true" disabled>删除</a>
 		    </div>
         </div>
     </div>

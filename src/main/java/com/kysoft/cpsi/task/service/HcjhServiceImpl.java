@@ -145,9 +145,18 @@ public class HcjhServiceImpl implements HcjhService {
         param.put("zfryId", zfry.getUserId());
         param.put("zfryName", zfry.getName());
         hcjhMapper.addTask(param);
-        
-        
+        MongoLogger.info("task", "用户为日常监管计划增加被核查单位: " + zchs.length, null, hcjhId);
 	}
+	
+	@Override
+	public void removeEnterprise(String hcjhId, String[] hcrwIds) {
+		Map<String, Object> param = Maps.newHashMap();
+		param.put("hcjhId", hcjhId);
+		param.put("hcrwList", StringUtils.join(hcrwIds, ","));
+		hcjhMapper.removeTask(param);
+		MongoLogger.info("task", "用户从日常监管计划中移除被核查单位: " + hcrwIds.length, null, hcjhId);
+	}
+	
 
 	@Override
 	public void delete(String hcjhId) {

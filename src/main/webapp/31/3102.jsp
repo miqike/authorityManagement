@@ -67,11 +67,11 @@
 				<tr>
 					<td class="label">计划类型</td>
 					<td><input id="f_planTypeShow" class="easyui-validatebox"
-						codeName="planType" /></td>
+						codeName="planType" disabled/></td>
 					<td class="label">计划名称</td>
-					<td><input id="f_jhmcShow" class="easyui-validatebox" width: 260 /></td>
+					<td><input id="f_jhmcShow" class="easyui-validatebox" width: 260  disabled/></td>
 					<td class="label">计划编号</td>
-					<td><input id="f_jhbhShow" class="easyui-validatebox" /></td>
+					<td><input id="f_jhbhShow" class="easyui-validatebox"  disabled/></td>
 				</tr>
 			</table>
 		</div>
@@ -149,8 +149,6 @@
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon2 r3_c10">重置</a>
-	                    <a href="javascript:void(0);" id="btnOk" class="easyui-linkbutton" plain="true"
-	                   iconCls="icon-ok">确认</a>
                        <a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow" class="easyui-linkbutton" plain="true"
 	                        iconCls="icon-back">返回</a>
 	                </td>
