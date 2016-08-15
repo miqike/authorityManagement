@@ -182,6 +182,8 @@
         <div id="planGridToolbar">
             <a href="#" id="btnShowAuditDialog" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" disabled
                data-options="">审核</a>
+            <a href="#" id="btnCancelAuditStatus" class="easyui-linkbutton" iconCls="icon2 r12_c20" plain="true" disabled
+               data-options="">取消审核</a>
             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
         </div>
     </div>

@@ -57,6 +57,21 @@ public class HcrwController extends BaseController {
     	}
     	return result;
     }
+    @RequestMapping(value = "/{hcrwId}/cancelAudit", method = RequestMethod.POST)
+    public Map<String, Object> cancelAuditHcrw(@PathVariable String hcrwId) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	
+    	try {
+    		hcrwService.cancelAuditHcrw(hcrwId);
+    		result.put(MESSAGE, "取消审核成功");
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "取消审核失败");
+    	}
+    	return result;
+    }
 
     @RequestMapping(value = "/queryForOrg", method = RequestMethod.GET)
     public List<Hcrw> queryForOrg(ServletRequest request) {
@@ -129,7 +144,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "批量保存失败");
+            result.put(MESSAGE, "认领任务失败");
         }
         return result;
     }
@@ -139,12 +154,12 @@ public class HcrwController extends BaseController {
     	Map<String, Object> result = Maps.newHashMap();
     	try {
     		hcrwService.unAccept(planId, taskIds);
-    		result.put(MESSAGE, "认领任务成功");
+    		result.put(MESSAGE, "取消认领任务成功");
     		result.put(STATUS, SUCCESS);
     	} catch (Exception e) {
     		e.printStackTrace();
     		result.put(STATUS, FAIL);
-    		result.put(MESSAGE, "批量保存失败");
+    		result.put(MESSAGE, "取消认领任务失败");
     	}
     	return result;
     }
@@ -155,12 +170,12 @@ public class HcrwController extends BaseController {
     	Map<String, Object> result = Maps.newHashMap();
     	try {
     		hcrwService.setTaskStatus(hcrwId, statusCode);
-    		result.put(MESSAGE, "认领任务成功");
+    		result.put(MESSAGE, "修改任务状态成功");
     		result.put(STATUS, SUCCESS);
     	} catch (Exception e) {
     		e.printStackTrace();
     		result.put(STATUS, FAIL);
-    		result.put(MESSAGE, "批量保存失败");
+    		result.put(MESSAGE, "修改任务状态失败");
     	}
     	return result;
     }

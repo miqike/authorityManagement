@@ -79,6 +79,25 @@ function loadMyTask() {
 	});
 }
 
+function myTaskGridLoadSucessHandler(data) {
+    if($('#p_jhbh').val() != "") {
+    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+    }
+}
+
+function getRowIndex(jhbh) {
+	var rows = $("#grid1").datagrid("getRows");
+	var index;
+	for(var i=0; i<rows.length; i++) {
+		var row = rows[i];
+		if(row.jhbh == jhbh) {
+			index = $("#grid1").datagrid("getRowIndex", row);
+			break;
+		}
+	}
+	return index;
+}
+
 function myTaskGridClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
@@ -233,15 +252,19 @@ function printAuditReport() {
 
 //=============================
 function updateHcjg() {
-	$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
-	$("#p_hcjieguo").combobox("enable").combobox("showPanel");
+	var row = $("#grid1").datagrid("getSelected");
+	if(row.auditResult != null) {
+		$.messager.alert("操作提示", "检查结果已经审核通过,不能修改!");
+	} else {
+		$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
+		$("#p_hcjieguo").combobox("enable").combobox("showPanel");
+	}
 }
 
 function confirmUpdateHcjg() {
 	var row = $("#grid1").datagrid("getSelected");
 	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
 		$.messager.alert("提示", response.message, 'info');
-		
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");

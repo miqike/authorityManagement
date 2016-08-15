@@ -184,7 +184,7 @@
 		            <tr>
 		                <td class="label" >统一社会信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-		                <td class="label" >企业名称</td>
+		                <td class="label" >单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
 		                <td style="text-align-right;padding-left:15px;" colspan="2">
@@ -203,7 +203,7 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true">
+						height:340,onBeforeLoad:checkParam,onLoadSuccess:myTaskGridLoadSucessHandler,pageSize: 100, pagination: true">
 	            <thead>
 		            <tr>
 			            <th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>

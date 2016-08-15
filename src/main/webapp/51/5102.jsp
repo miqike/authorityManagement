@@ -189,7 +189,7 @@
                     <tr>
                         <td class="label" >统一社会信用代码</td>
                         <td><input id="o_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-                        <td class="label" >企业名称</td>
+                        <td class="label" >单位名称</td>
                         <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 
                         <td style="text-align:right;padding-left:15px;" colspan="2">

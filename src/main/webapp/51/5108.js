@@ -40,11 +40,41 @@ function queryPlan(node) {
 }
 
 function grid2ClickHandler() {
-    if ($('#grid2').datagrid('getSelected') != null) {
-        $('#btnShowAuditDialog').linkbutton('enable');
+	var task = $('#grid2').datagrid('getSelected');
+    if (task != null) {
+    	if(task.auditResult == null) {
+    		$('#btnShowAuditDialog').linkbutton('enable');
+    		$('#btnCancelAuditStatus').linkbutton('disable');
+    	} else {
+    		$('#btnShowAuditDialog').linkbutton('disable');
+    		$('#btnCancelAuditStatus').linkbutton('enable');
+    	}
     } else {
+    	$('#btnCancelAuditStatus').linkbutton('disable');
         $('#btnShowAuditDialog').linkbutton('disable');
     }
+}
+
+function cancelAuditStatus() {
+        var hcrw = $("#grid2").datagrid("getSelected");
+        if(null != hcrw) {
+        	$.messager.confirm('确认', "是否确认取消审核?", function (r) {
+    			if (r) {
+    				$.ajax({
+    					url: "../51/" + hcrw.id + "/cancelAudit",
+    					type: "POST",
+    					success: function (response) {
+    						if (response.status == $.husky.SUCCESS) {
+    							$('#grid2').datagrid('reload');
+    							$.messager.show('提示',"取消审核成功", "info", "bottomRight");
+    						} else {
+    							$.messager.alert('取消审核失败', response.message, 'error');
+    						}
+    					}
+    				});
+    			}
+        	});
+        }
 }
 
 function search() {
