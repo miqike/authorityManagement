@@ -238,6 +238,8 @@ td.label {
 								sortable="true" width="170">计划名称</th>
 							<th data-options="field:'cxwh'" halign="center" align="center"
 								sortable="true" width="130">抽查文号</th>
+							<th data-options="field:'statement'" halign="center" align="center"
+								sortable="true" width="60" formatter="formatDocOperation">实施方案</th>
 							<th data-options="field:'djjgmc'" halign="center" align="center"
 								sortable="true" width="130">任务下达机关</th>
 							<th data-options="field:'planType'" halign="center"
@@ -270,17 +272,13 @@ td.label {
 				</table>
 				<div id="gridToolbar1">
 					<a href="#" id="btnAdd" class="easyui-linkbutton"
-						iconCls="icon-add" plain="true">增加双随机计划</a> <a href="#"
-						id="btnAddRc" class="easyui-linkbutton" iconCls="icon2 r1_c6"
-						plain="true">增加日常监管计划</a> <a href="#" id="btnModify"
-						class="easyui-linkbutton" iconCls="icon-edit" plain="true"
-						data-options="disabled:true">修改</a> <a href="#" id="btnRemove"
-						class="easyui-linkbutton" iconCls="icon-remove" plain="true"
-						data-options="disabled:true">删除</a> <a href="#"
-						id="btnViewCheckList" class="easyui-linkbutton"
-						iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
-					<a href="#" id="btnDispatch" class="easyui-linkbutton"
-						iconCls="icon2 r16_c19" plain="true" data-options="disabled:true">下达/取消下达</a>
+						iconCls="icon-add" plain="true">增加双随机计划</a> 
+					<a href="#" id="btnAddRc" class="easyui-linkbutton" iconCls="icon2 r1_c6" plain="true">增加日常监管计划</a> 
+					<a href="#" id="btnModify" class="easyui-linkbutton" iconCls="icon-edit" plain="true" data-options="disabled:true">修改</a> 
+					<a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" data-options="disabled:true">删除</a> 
+					<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
+					<a href="#" id="btnShowAddPlanStatmentDialog" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" data-options="disabled:true">上传实施方案</a>
+					<a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r16_c19" plain="true" data-options="disabled:true">下达/取消下达</a>
 				</div>
 			</div>
 		</div>
@@ -317,6 +315,12 @@ td.label {
 		</div>
 	</div>
 
+<!-- --------弹出窗口--------------- -->
+<div id="documentWindow" title="实施方案" class="easyui-dialog"
+     data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
+     style="width: 600px; height: 205px; padding: 10px;">
+    <div id="docPanel" style="padding:10px;"></div>
+</div>
 </body>
 </html>
 <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
@@ -330,6 +334,7 @@ td.label {
 <script type="text/javascript"
 	src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
+<script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
 <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
 <script type="text/javascript" src="../js/formatter.js"></script>
 

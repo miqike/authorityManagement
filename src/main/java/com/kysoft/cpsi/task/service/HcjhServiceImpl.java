@@ -16,6 +16,7 @@ import com.kysoft.cpsi.task.mapper.HcjhMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
 
+import net.sf.husky.attachment.utils.DownloadUtils;
 import net.sf.husky.exception.BaseException;
 import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
@@ -162,5 +163,17 @@ public class HcjhServiceImpl implements HcjhService {
 	public void delete(String hcjhId) {
 		hcjhMapper.deleteByPrimaryKey(hcjhId);
 		MongoLogger.info("task", "用户删除核查计划", null,hcjhId);
+	}
+
+	@Override
+	public void updateStatement(String hcjhId, String statement) {
+		Hcjh hcjh = hcjhMapper.selectByPrimaryKey(hcjhId);
+		
+		if(null != hcjh.getStatement()) {
+			DownloadUtils.mongoDelete(hcjh.getStatement());
+		}
+		
+		hcjhMapper.updateStatement(hcjhId, statement);
+		
 	}
 }

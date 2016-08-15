@@ -182,4 +182,18 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/hcjh/statement/{hcjhId}", method = RequestMethod.POST)
+	public Map<String, Object> updateStatement(@PathVariable String hcjhId, String statement) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.updateStatement(hcjhId, statement);
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            result.put(STATUS, FAIL);
+            e.printStackTrace();
+        }
+		return result;
+	}
+	
+	
 }

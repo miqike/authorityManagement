@@ -30,6 +30,8 @@ public interface HcjhService {
 
 	void delete(String hcjhId);
 
+	void updateStatement(String hcjhId, String statement);
+
 //	Map<String, Object> updateAcceptStatus(Map<String, Object> result);
 
 }

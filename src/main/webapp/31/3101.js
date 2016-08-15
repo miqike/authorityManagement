@@ -26,6 +26,17 @@ function filterByZfry() {
     });
 }
 
+function displayAttachment(mongoId) {
+    $("<iframe id='download' style='display:none' src='../display?mongoId=" + mongoId + "'/>").appendTo("body");
+}
+
+function formatDocOperation(value, rowData, rowIndex) {
+	if (null == rowData.statement) {
+	    return "";
+	} else {
+	    return "<a href=\"javascript: displayAttachment('" + rowData.statement + "');\">查看</a>";
+	}
+}
 
 function goFirst() {
 	$.husky.ramble("first", "grid1", "taskDetailTable");
@@ -150,10 +161,12 @@ function grid1LoadSucessHandler(data) {
 	$('#btnRemove').linkbutton('disable');
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
+    $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
     $('#grid1').datagrid('selectRow', 0);
     if(window._selectdPlanId_ != undefined) {
     	$("#grid1").datagrid("selectRow", getRowIndex());
     }
+    grid1ClickHandler();
 }
 
 function getRowIndex() {
@@ -174,6 +187,7 @@ function grid1ClickHandler() {
         $('#btnModify').linkbutton('enable');
         $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
+        $('#btnShowAddPlanStatmentDialog').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
         if(row.planType==1){
         	planType="双随机";
@@ -210,6 +224,7 @@ function grid1ClickHandler() {
         $('#btnModify').linkbutton('disable');
         $('#btnDispatch').linkbutton('disable');
         $('#btnViewCheckList').linkbutton('disable');
+        $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
         $("#f_planTypeShow").val("");
         $("#f_jhmcShow").val("");
         $("#f_jhbhShow").val("");
@@ -496,6 +511,31 @@ function viewCheckList() {
 	if (row) {
 		showAuditItemList(row);
 	}
+}
+
+function showAddPlanStatmentDialog() {
+	var row = $('#grid1').datagrid('getSelected');
+	if (row != null) {
+		if(row.statement != null) {
+			$.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
+				if (r) {
+					showUploadForm();
+				}
+			});
+		} else {
+			showUploadForm();
+		}
+	}
+}
+
+function showUploadForm() {
+	$("#documentWindow").dialog("open");
+    $("#docPanel").panel({
+        href: './docForm.jsp',
+        onLoad: function () {
+            doInit();
+        }
+    });
 }
 
 function showAuditItemList(data) {
