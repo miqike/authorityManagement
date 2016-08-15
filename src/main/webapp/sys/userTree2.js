@@ -144,6 +144,7 @@ function view(){
 }
 
 function showUserWindow(operation, data) {
+	window.operation = operation;
 	$.easyui.showDialog({
 		title : "用户信息",
 		width : 780,
@@ -186,7 +187,7 @@ function showUserWindow(operation, data) {
 			var selected = $("#tabPanel").tabs("getSelected");
 			var tabIndex = $("#tabPanel").tabs("getTabIndex", selected);
 			if(tabIndex == 0) {
-				saveUser(operation);
+				saveUser();
 			} else {
 				//$.messager.show("操作提醒", '现在点确定按钮没卵用', "info", "bottomRight");
 			}
@@ -434,7 +435,8 @@ function reset() {
 	$("#f_name").val("");
 }
 
-function saveUser(operation){
+function saveUser(){
+	console.log(window.operation)
 	if($('#userTable').form('validate')) {
 		var data = $.husky.getFormData("userTable");
 		data.ext1 = $('#p_ext1')[0].checked ? $('#p_ext1').attr("checkedValue"): "1";
@@ -445,6 +447,7 @@ function saveUser(operation){
 			if(response.status == $.husky.FAIL){
 				$.messager.alert('错误', $.husky.combineErrorMessage(response.message), 'error');
 			} else {
+				window.operation = 'update';
 				var grid = $("#mainGrid");
 		    	var row = grid.datagrid("getSelected");
 		    	if(null==row) { //新增,设置查找条件,重新加载grid,选中
