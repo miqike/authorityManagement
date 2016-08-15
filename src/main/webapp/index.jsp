@@ -181,6 +181,7 @@
                                             <th data-options="field:'planType', halign:'center',align:'left'" codeName="planType" formatter="formatCodeList" width="70" align="center" >计划类型</th>
                                             <th data-options="field:'jhbh', halign:'center',align:'left'" width="70" align="center" >计划编号</th>
 				                            <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
+				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                            <th data-options="field:'hcdwXydm', halign:'center',align:'center'" width="120" >统一社会信用代码</th>
 				                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
 				                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
@@ -189,7 +190,6 @@
 				                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="70" formatter="formatDate">下达时间</th>
 				                            <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="70" formatter="formatDate">计划结束时间</th>
 				                            <th data-options="field:'rlrq', halign:'center',align:'center'" width="70" formatter="formatDate">认领时间</th>
-				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                        </tr>
 				                        </thead>
 				                    </table>

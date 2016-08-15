@@ -857,7 +857,10 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where DOC_READY_REPORT_FLAG = 1  
+        where 
+         <![CDATA[
+	        DOC_READY_REPORT_FLAG = 1 AND RWZT < 5
+	    ]]>
         AND QYBM IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
