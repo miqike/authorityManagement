@@ -79,6 +79,25 @@ function loadMyTask() {
 	});
 }
 
+function myTaskGridLoadSucessHandler(data) {
+    if($('#p_jhbh').val() != "") {
+    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+    }
+}
+
+function getRowIndex(jhbh) {
+	var rows = $("#grid1").datagrid("getRows");
+	var index;
+	for(var i=0; i<rows.length; i++) {
+		var row = rows[i];
+		if(row.jhbh == jhbh) {
+			index = $("#grid1").datagrid("getRowIndex", row);
+			break;
+		}
+	}
+	return index;
+}
+
 function myTaskGridClickHandler() {
     //控制四个按钮显示
     var hcrw = $('#grid1').datagrid('getSelected');
@@ -243,12 +262,9 @@ function updateHcjg() {
 }
 
 function confirmUpdateHcjg() {
-	console.log("3333")
 	var row = $("#grid1").datagrid("getSelected");
 	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
 		$.messager.alert("提示", response.message, 'info');
-		console.log("4444")
-		
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");
