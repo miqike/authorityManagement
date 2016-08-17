@@ -923,6 +923,23 @@
         </if>
         hcdw_xydm
     </select>
+	<select id="queryForPlanAndAuditor" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_HCRW
+        where 
+        	QYBM IN (
+	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
+			CONNECT BY PRIOR ID=PARENT_ID )
+			AND HCJH_ID = #{hcjhId,jdbcType=VARCHAR}
+        	and (zfry_code1=#{zfryCode,jdbcType=VARCHAR} or zfry_code2=#{zfryCode,jdbcType=VARCHAR}) 
+        ORDER BY
+        <if test="order != null">
+            ${sort} ${order},
+        </if>
+      plan_type desc,jhbh desc,hcdw_xydm
+    </select>
     
     <select id="queryForPlan" resultMap="BaseResultMap">
         select

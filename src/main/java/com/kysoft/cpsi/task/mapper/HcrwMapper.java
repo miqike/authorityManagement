@@ -65,6 +65,8 @@ public interface HcrwMapper {
     
     List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
 
+    List<Map<String, Object>> queryForPlanAndAuditor(Map<String, Object> param);
+
     List<Hcrw> queryForPlan(Map<String, Object> param);
 
     Integer selectCountByPlanId(String planId);
