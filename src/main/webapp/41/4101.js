@@ -190,7 +190,7 @@ function reportDocReady() {
 }
 
 function _reportDocReady(task) {
-	$.post("./" + task.ID + "/docReadyReportFlag", {
+	$.post("../51/" + task.ID + "/docReadyReportFlag", {
 		docReadyReportFlag: task.DOC_READY_REPORT_FLAG
 	},function(response){
 		if(response.status == $.husky.FAIL){

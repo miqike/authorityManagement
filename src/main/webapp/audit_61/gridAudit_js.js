@@ -15,7 +15,7 @@ function doInitGrid() {
 
 	var auditTask = $('#myTaskGrid').datagrid('getSelected');
 	if(auditTask.dataLoaded == 0) {
-		$.alert("首先需要加载数据");
+		$.messager.alert('失败', "首先需要加载数据", 'info');
 	} else {
 		var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
 		var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};

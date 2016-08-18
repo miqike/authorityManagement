@@ -23,6 +23,23 @@ truncate table T_TOKEN;
 
 truncate table T_USER_ORG;
 commit;
+truncate table T_JS_BD_GDCZ;
+truncate table T_JS_BD_GQBG;
+truncate table T_JS_BD_XZCF;
+truncate table T_JS_BD_XZXK;
+truncate table T_JS_BD_ZSCQ;
+truncate table T_JS_GDCZ;
+truncate table T_JS_GQBG;
+truncate table T_JS_GS_GDCZ;
+truncate table T_JS_GS_GQBG;
+truncate table T_JS_GS_XZCF;
+truncate table T_JS_GS_XZXK;
+truncate table T_JS_GS_ZSCQ;
+truncate table T_JS_HCRW;
+truncate table T_JS_HCSXJG;
+truncate table T_JS_XZCF;
+truncate table T_JS_XZXK;
+truncate table T_JS_ZSCQ;
  */
 /**
 根据接口表初始化数据库
@@ -48,7 +65,7 @@ end;
 /
 --插入市局
 insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
-  values(500,'重庆市工商局',null,1,null,null,'市局');
+  values(500,'重庆市工商局',0,1,null,null,'市局');
 /**
   初始化核查人员 有人员属于多个管辖单位的情况，此次将这些人员过滤掉了
  */
@@ -88,10 +105,10 @@ merge into t_zfry
 delete from sys_user where user_id<>'system';
 delete from sys_user_role a where not exists(select 1 from sys_user b where b.user_id=a.user_id);
 
-insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)
+insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry,ext1)
   select user_id,null manager_id,name,null email,null mobile,lower(pkg_hc.MD5_DIGEST(user_id||'000000'||'123qwe!@#QWE')) password,'123qwe!@#QWE' salt,sysdate create_time,
          null manager_name,1 status,dw_id org_id,0 org_type,1 weight,(select content from bm_djjg b where b.code=a.dw_id) org_name,
-         name zfry
+         code zfry,1
   from t_zfry a where user_id is not null ;
 /*  
 insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry)

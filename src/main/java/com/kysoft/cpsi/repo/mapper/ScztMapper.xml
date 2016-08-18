@@ -355,7 +355,7 @@
         <if test="gsjhbh!=null">
             and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.gsjhbh =#{gsjhbh})
         </if>
-        AND XYDM IN (SELECT DISTINCT RW.HCDW_XYDM FROM T_HCRW RW WHERE RW.ZFRY_CODE1 = #{_userId} OR RW.ZFRY_CODE2 = #{_userId})
+        AND XYDM IN (SELECT DISTINCT RW.HCDW_XYDM FROM T_HCRW RW WHERE RW.ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId}) OR RW.ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId}))
         ORDER BY NAME
     </select>
 

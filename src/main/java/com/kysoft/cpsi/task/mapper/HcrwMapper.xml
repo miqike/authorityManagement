@@ -704,7 +704,7 @@
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
-        or ((zfry_code1=#{_userId} or zfry_code2=#{_userId}) and (select ext1 from sys_user where user_id=#{_userId})=2)
+        or ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId})=2)
         )
         AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
       <if test="auditResult !=null ">
@@ -717,7 +717,7 @@
           and HCDW_NAME like concat(concat('%', #{qymc}), '%')
       </if>
       <if test="filterByZfry!=null">
-          and (ZFRY_CODE1 = #{_userId} OR ZFRY_CODE2 = #{_userId})
+          and (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId}) OR ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId}))
       </if>
       
         ORDER BY
@@ -779,7 +779,7 @@
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
 			CONNECT BY PRIOR ID=PARENT_ID )
-        and((zfry_code1=#{_userId,jdbcType=VARCHAR} or zfry_code2=#{_userId,jdbcType=VARCHAR}) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
+        and((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
         <if test="planType!=null">
             AND PLAN_TYPE = #{planType}
         </if>
