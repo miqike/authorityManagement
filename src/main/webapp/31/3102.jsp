@@ -62,6 +62,19 @@
 	<a href="javascript:void(0);" id="btnGoPrev" class="easyui-linkbutton" iconCls="icon-previous" plain="true">上</a>
 	<a href="javascript:void(0);" id="btnGoNext" class="easyui-linkbutton" iconCls="icon-next" plain="true">下</a>
 	<a href="javascript:void(0);" id="btnGoLast" class="easyui-linkbutton" iconCls="icon-last" plain="true">末</a>
+	<div id="showPlan">
+			<table>
+				<tr>
+					<td class="label">计划类型</td>
+					<td><input id="f_planTypeShow" class="easyui-validatebox"
+						codeName="planType" disabled/></td>
+					<td class="label">计划名称</td>
+					<td><input id="f_jhmcShow" class="easyui-validatebox" width: 260  disabled/></td>
+					<td class="label">计划编号</td>
+					<td><input id="f_jhbhShow" class="easyui-validatebox"  disabled/></td>
+				</tr>
+			</table>
+		</div>
 </div>
 
 <div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
@@ -74,6 +87,7 @@
 		<table id="grid2"
 			class="easyui-datagrid"
 			data-options="singleSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:true,
+				onDblClickRow:grid2DblClickHandler,
 				method:'get'"
 			   toolbar="#planGridToolbar"
 			   style="height: 285px"
@@ -137,7 +151,7 @@
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon2 r3_c10">重置</a>
                        <a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow" class="easyui-linkbutton" plain="true"
-	                       iconCls="icon-back">返回</a>
+	                        iconCls="icon-back">返回</a>
 	                </td>
 	            </tr>
 	        </table>
@@ -198,4 +212,5 @@
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
 <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
+<script type="text/javascript" src="../js/formatter.js" ></script>
 <script type="text/javascript" src="./3102.js" ></script>

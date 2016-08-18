@@ -94,6 +94,8 @@
                 <tr>
                     <td>计划编号</td>
                     <td><input id="f_jhid" class="easyui-validatebox"/></td>
+                    <td>系统账号</td>
+                    <td><input id="f_userId" class="easyui-validatebox"  data-options="panelHeight:55"/></td>
                     <td colspan="2" style="text-align: right ">
                         <a href="javascript:void(0);" id="btnLoadMainGrid" class="easyui-linkbutton" plain="true"
                            iconCls="icon-search">查找</a>
@@ -145,6 +147,7 @@
         <div id="mainGridToolbar">
             <a href="#" id="btnAdd" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加</a>
             <a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+             <a href="#" id="btnDeleteZfry" class="easyui-linkbutton" iconCls="icon-remove"  plain="true" disabled>删除</a>
             <a href="#" id="btnAddSysUser" class="easyui-linkbutton" iconCls="icon2 r25_c8" plain="true" disabled>添加操作员</a>
             <a href="#" id="btnLock" class="easyui-linkbutton" iconCls="icon2 r14_c1" plain="true">注销</a>
             <!-- <a href="#" id="btnTrans" class="easyui-linkbutton" iconCls="icon2 r14_c6" plain="true">调转</a> -->

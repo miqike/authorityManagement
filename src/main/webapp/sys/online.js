@@ -18,7 +18,7 @@ function mainGridButtonHandler(index, row) {
 }
 
 function loadSuccessHandler(data) {
-    if(data.status == SUCCESS) {
+    if(data.status == $.husky.SUCCESS) {
         $('#mainGrid').datagrid('unselectAll');
         $('#btnInvalidate').linkbutton('disable');
     } else {
@@ -44,7 +44,7 @@ function invalidate() {
                         contentType: "application/json; charset=utf-8",
                         cache: false,
                         success: function (response) {
-                            if (response.status == SUCCESS) {
+                            if (response.status == $.husky.SUCCESS) {
                                 $('#mainGrid').datagrid('reload');
                                 $.messager.show({
                                     title: '提示',
@@ -61,20 +61,19 @@ function invalidate() {
 	}
 }
 
-$(function() {
-	
-	$("#btnInvalidate").click(invalidate);
+function reset(){
+	$("#f_name").val('');
+	$("#f_organization").val('');
+}
 
-	$("#btnReset").click(function(){
-		$("#f_name").val('');
-		$("#f_organization").val('');
+function search(){
+	$('#mainGrid').datagrid('load',{
+		name: $('#f_name').val()//,
+		//organization: processorOrgId($('#f_organization').val())
 	});
-	$("#btnSearch").click(function(){
-		$('#mainGrid').datagrid('load',{
-			name: $('#f_name').val(),
-			organization: processorOrgId($('#f_organization').val())
-		});
-	});
+}
+
+$(function() {
 	
 	$(".datagrid-body").niceScroll({
 	    cursorcolor : "lightblue", // 滚动条颜色

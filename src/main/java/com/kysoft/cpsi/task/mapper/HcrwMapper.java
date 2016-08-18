@@ -48,8 +48,13 @@ public interface HcrwMapper {
 	int updateByPrimaryKey(Hcrw record);
 
 	//根据�???????查单位查询任务列�???????--3101
+	 //查询已认领
+    List<Hcrw> queryForOrg1(Map<String, Object> param);
+    //查询未认领
+    List<Hcrw> queryForOrg2(Map<String, Object> param);
+  
+    
     List<Hcrw> queryForOrg(Map<String, Object> param);
-
     //根据信用代码查询任务列表--2101
     List<Hcrw> queryForXydm(Map<String, Object> param);
 
@@ -59,6 +64,8 @@ public interface HcrwMapper {
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
     
     List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
+
+    List<Map<String, Object>> queryForPlanAndAuditor(Map<String, Object> param);
 
     List<Hcrw> queryForPlan(Map<String, Object> param);
 
@@ -108,5 +115,8 @@ public interface HcrwMapper {
 
 	@Update("UPDATE T_HCRW SET AUDIT_RESULT = #{auditResult}, AUDIT_COMMENT = #{auditComment}, AUDITOR = #{auditor}, HCJIEGUO=#{hcjieguo}, AUDITOR_NAME = #{auditorName}, SJWCRQ = #{sjwcrq}, AUDIT_TIME = SYSDATE WHERE ID=#{id}")
 	void updateAuditByPrimaryKey(Hcrw hcrw);
+
+	@Update("UPDATE T_HCRW SET AUDIT_RESULT = null, AUDIT_COMMENT = null, AUDITOR = null, HCJIEGUO=null, AUDITOR_NAME = null, SJWCRQ = null, AUDIT_TIME = null WHERE ID=#{id}")
+	void updateCancelAuditByPrimaryKey(String hcrwId);
 
 }

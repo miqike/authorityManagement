@@ -181,6 +181,7 @@
                                             <th data-options="field:'planType', halign:'center',align:'left'" codeName="planType" formatter="formatCodeList" width="70" align="center" >计划类型</th>
                                             <th data-options="field:'jhbh', halign:'center',align:'left'" width="70" align="center" >计划编号</th>
 				                            <th data-options="field:'jhmc', halign:'center',align:'left'" width="100" align="center" >计划名称</th>
+				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                            <th data-options="field:'hcdwXydm', halign:'center',align:'center'" width="120" >统一社会信用代码</th>
 				                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
 				                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
@@ -189,7 +190,6 @@
 				                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="70" formatter="formatDate">下达时间</th>
 				                            <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="70" formatter="formatDate">计划结束时间</th>
 				                            <th data-options="field:'rlrq', halign:'center',align:'center'" width="70" formatter="formatDate">认领时间</th>
-				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                        </tr>
 				                        </thead>
 				                    </table>
@@ -203,7 +203,6 @@
 				            </div>
 				            <div title="下载" collapsible="true" closable="true" style="padding:5px;">
 				                <div class="t-list"><a href="./help/前端取数(V5.0).doc">&lt;检查告知书&gt;</a></div>
-				                <div class="t-list"><a href="./help/手工帐取数操作流程.doc">&lt;实施方案&gt;</a></div>
 				            </div>
 				            <div title="导航" collapsible="true" closable="true" style="padding:5px;">
 				                <img src="images/test.jpg" width="207" height="148" alt="新书架" hspace="10" align="left" usemap="#newbook" border="0">

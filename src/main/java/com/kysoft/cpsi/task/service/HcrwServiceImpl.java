@@ -48,6 +48,7 @@ public class HcrwServiceImpl implements HcrwService {
             hcsxjg.setHczt(1);
             hcsxjgMapper.insert(hcsxjg);
         }
+        MongoLogger.info("task", "用户对核查任务进行初始操作,初始核查事项: " + hcsxList.size());
         if(pullDataFlag == 1) {
         	pullData(hcrwId);
         }
@@ -59,6 +60,7 @@ public class HcrwServiceImpl implements HcrwService {
         param.put("hcrwId", hcrwId);
         hcrwMapper.pullData(param);
         hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
+        MongoLogger.info("task", "用户对核查任务进行数据加载操作");
     }
 
     @Override
@@ -74,6 +76,7 @@ public class HcrwServiceImpl implements HcrwService {
     @Override
     public void updateHcrw(Hcrw hcrw) {
         hcrwMapper.updateByPrimaryKey(hcrw);
+        MongoLogger.info("task", "用户更新任务检查结果: " + hcrw.getHcjieguo());
     }
 
     @Override
@@ -91,19 +94,19 @@ public class HcrwServiceImpl implements HcrwService {
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateAccept(taskIds, user.getUserId(), user.getName());
 		hcjhService.reCalcAcceptStatus(planId);
-		MongoLogger.info("task", "用户认领任务", null);
+		MongoLogger.info("task", "用户认领任务: " + taskIds.size(), null, planId);
 	}
 	
 	public void unAccept(String planId, List<String> taskIds) {
-		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateUnAccept(taskIds);
 		hcjhService.reCalcAcceptStatus(planId);
-		MongoLogger.info("task", "用户取消认领任务", null);
+		MongoLogger.info("task", "用户取消认领任务: " + taskIds.size(), null, planId);
 	}
 
 	@Override
 	public void setTaskStatus(String hcrwId, Integer statusCode) {
 		hcrwMapper.updateStatusByPrimaryKey(hcrwId, statusCode);
+		MongoLogger.info("task", "用户修改任务状态: " + statusCode, null, hcrwId);
 	}
 
 	@Override
@@ -111,6 +114,7 @@ public class HcrwServiceImpl implements HcrwService {
 		int flag = docReadyReportFlag == 0? 1: 0;
 		User user = WebUtils.getCurrentUser();
 		hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());
+		MongoLogger.info("task", "用户对任务进行上报操作: " + docReadyReportFlag, null, hcrwId);
 	}
 
 	@Override
@@ -119,6 +123,13 @@ public class HcrwServiceImpl implements HcrwService {
 		hcrw.setAuditor(auditor.getUserId());
 		hcrw.setAuditorName(auditor.getName());
 		hcrwMapper.updateAuditByPrimaryKey(hcrw);
+		MongoLogger.info("task", "用户对任务结果进行审核");
+	}
+
+	@Override
+	public void cancelAuditHcrw(String hcrwId) {
+		hcrwMapper.updateCancelAuditByPrimaryKey(hcrwId);
+		MongoLogger.info("task", "用户取消对任务结果的审核");
 	}
 
 

@@ -26,29 +26,53 @@ function filterByZfry() {
     });
 }
 
+function displayAttachment(mongoId) {
+    $("<iframe id='download' style='display:none' src='../display?mongoId=" + mongoId + "'/>").appendTo("body");
+}
+
+function formatDocOperation(value, rowData, rowIndex) {
+	if (null == rowData.statement) {
+	    return "";
+	} else {
+	    return "<a href=\"javascript: displayAttachment('" + rowData.statement + "');\">查看</a>";
+	}
+}
 
 function goFirst() {
 	$.husky.ramble("first", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goLast() {
 	$.husky.ramble("last", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goPrev() {
 	$.husky.ramble("previous", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goNext() {
 	$.husky.ramble("next", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function minimizeMyPlanListWindow() {
+	loadPlanAbstract();
 	$("#myPlanListWindow").window("minimize");
+}
+
+function loadPlanAbstract() {
+	var row = $('#grid1').datagrid('getSelected');
+    if(row.planType==1){
+    	planType="双随机";
+    }else{
+    	planType="日常监管";
+    }
+    $("#f_planTypeShow").val(planType);
+    $("#f_jhmcShow").val(row.jhmc);
+    $("#f_jhbhShow").val(row.jhbh);
 }
 
 function showPlanListWindow() {
@@ -137,10 +161,12 @@ function grid1LoadSucessHandler(data) {
 	$('#btnRemove').linkbutton('disable');
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
+    $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
     $('#grid1').datagrid('selectRow', 0);
     if(window._selectdPlanId_ != undefined) {
     	$("#grid1").datagrid("selectRow", getRowIndex());
     }
+    grid1ClickHandler();
 }
 
 function getRowIndex() {
@@ -161,7 +187,16 @@ function grid1ClickHandler() {
         $('#btnModify').linkbutton('enable');
         $('#btnDispatch').linkbutton('enable');
         $('#btnViewCheckList').linkbutton('enable');
+        $('#btnShowAddPlanStatmentDialog').linkbutton('enable');
         var row = $('#grid1').datagrid('getSelected');
+        if(row.planType==1){
+        	planType="双随机";
+        }else{
+        	planType="日常监管";
+        }
+        $("#f_planTypeShow").val(planType);
+        $("#f_jhmcShow").val(row.jhmc);
+        $("#f_jhbhShow").val(row.jhbh);
         
         if(row.hcrwsl != undefined && row.hcrwsl > 0) {
         	$('#btnRemove').linkbutton('disable');
@@ -189,6 +224,11 @@ function grid1ClickHandler() {
         $('#btnModify').linkbutton('disable');
         $('#btnDispatch').linkbutton('disable');
         $('#btnViewCheckList').linkbutton('disable');
+        $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
+        $("#f_planTypeShow").val("");
+        $("#f_jhmcShow").val("");
+        $("#f_jhbhShow").val("");
+        
     }
     $('#grid2').datagrid("loadData", {total: 0, rows: []})
 }
@@ -471,6 +511,31 @@ function viewCheckList() {
 	if (row) {
 		showAuditItemList(row);
 	}
+}
+
+function showAddPlanStatmentDialog() {
+	var row = $('#grid1').datagrid('getSelected');
+	if (row != null) {
+		if(row.statement != null) {
+			$.messager.confirm('覆盖文件', '确认覆盖文件？', function (r) {
+				if (r) {
+					showUploadForm();
+				}
+			});
+		} else {
+			showUploadForm();
+		}
+	}
+}
+
+function showUploadForm() {
+	$("#documentWindow").dialog("open");
+    $("#docPanel").panel({
+        href: './docForm.jsp',
+        onLoad: function () {
+            doInit();
+        }
+    });
 }
 
 function showAuditItemList(data) {
@@ -793,6 +858,7 @@ function _funcAccept (operation) {
 	            if (response.status == $.husky.SUCCESS) {
 	            	loadGrid1(selected[0].hcjhId);
 	                $('#grid2').datagrid("reload");
+	                $.messager.show('操作提示', response.message, 'info', "bottomRight");
 	            } else {
 	                $.messager.alert('失败', response.message, 'info');
 	            }
@@ -803,6 +869,48 @@ function _funcAccept (operation) {
 	}*/
 }
 
+
+//查询已认领
+function done(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg1',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+	
+}
+//查询未认领
+function notDo(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg2',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
+
+//查询全部
+function queryAll(){
+	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+	var selected = treeObj.getSelectedNodes()
+	var options = $("#grid2").datagrid("options");
+	var hcjh = $('#grid1').datagrid('getSelected');
+    options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg',
+    $('#grid2').datagrid('load', {
+        hcjhId: hcjh.id,
+        organization: processorOrgId(selected[0].id),
+        order:1
+    });
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();

@@ -48,12 +48,27 @@ public class HcrwController extends BaseController {
     	
     	try {
     		hcrwService.auditHcrw(hcrw);
-    		result.put(MESSAGE, "更新核查结果成功");
+    		result.put(MESSAGE, "审核成功");
     		result.put(STATUS, SUCCESS);
     	} catch (Exception e) {
     		e.printStackTrace();
     		result.put(STATUS, FAIL);
-    		result.put(MESSAGE, "更新核查结果失败");
+    		result.put(MESSAGE, "审核失败");
+    	}
+    	return result;
+    }
+    @RequestMapping(value = "/{hcrwId}/cancelAudit", method = RequestMethod.POST)
+    public Map<String, Object> cancelAuditHcrw(@PathVariable String hcrwId) {
+    	Map<String, Object> result = Maps.newHashMap();
+    	
+    	try {
+    		hcrwService.cancelAuditHcrw(hcrwId);
+    		result.put(MESSAGE, "取消审核成功");
+    		result.put(STATUS, SUCCESS);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		result.put(STATUS, FAIL);
+    		result.put(MESSAGE, "取消审核失败");
     	}
     	return result;
     }
@@ -71,7 +86,6 @@ public class HcrwController extends BaseController {
 
         try {
             Integer count = hcrwService.getTaskInitStatus(hcrwId);
-            result.put(MESSAGE, "检查列表项初始成功");
             result.put(STATUS, SUCCESS);
             result.put(DATA, count);
         } catch (Exception e) {
@@ -129,7 +143,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "批量保存失败");
+            result.put(MESSAGE, "认领任务失败");
         }
         return result;
     }
@@ -139,12 +153,12 @@ public class HcrwController extends BaseController {
     	Map<String, Object> result = Maps.newHashMap();
     	try {
     		hcrwService.unAccept(planId, taskIds);
-    		result.put(MESSAGE, "认领任务成功");
+    		result.put(MESSAGE, "取消认领任务成功");
     		result.put(STATUS, SUCCESS);
     	} catch (Exception e) {
     		e.printStackTrace();
     		result.put(STATUS, FAIL);
-    		result.put(MESSAGE, "批量保存失败");
+    		result.put(MESSAGE, "取消认领任务失败");
     	}
     	return result;
     }
@@ -155,12 +169,12 @@ public class HcrwController extends BaseController {
     	Map<String, Object> result = Maps.newHashMap();
     	try {
     		hcrwService.setTaskStatus(hcrwId, statusCode);
-    		result.put(MESSAGE, "认领任务成功");
+    		result.put(MESSAGE, "修改任务状态成功");
     		result.put(STATUS, SUCCESS);
     	} catch (Exception e) {
     		e.printStackTrace();
     		result.put(STATUS, FAIL);
-    		result.put(MESSAGE, "批量保存失败");
+    		result.put(MESSAGE, "修改任务状态失败");
     	}
     	return result;
     }

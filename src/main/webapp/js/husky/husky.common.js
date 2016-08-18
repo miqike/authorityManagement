@@ -283,6 +283,7 @@ jQuery.husky = {
     },
     
     getTargetRowIndex: function(grid, direction, oriRowIndex, rowCount) {
+    	var targetRowIndex = 0;
     	if(oriRowIndex == -1) { //新增状态
     		if(direction == "first" || direction == "previous") {
     			targetRowIndex = 0;

@@ -31,4 +31,6 @@ public interface HcrwService {
 
 	void auditHcrw(Hcrw hcrw);
 
+	void cancelAuditHcrw(String hcrwId);
+
 }

@@ -3,6 +3,9 @@ package com.kysoft.cpsi.found.controller;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.found.entity.Bm;
 import com.kysoft.cpsi.found.service.BmService;
+
+import net.sf.husky.log.MongoLogger;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +50,7 @@ public class BmController extends net.sf.husky.web.controller.BaseController {
             result.put(MESSAGE, "保存成功");
             result.put(STATUS, SUCCESS);
             bmService.insert(bm);
+           
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
@@ -62,6 +66,7 @@ public class BmController extends net.sf.husky.web.controller.BaseController {
             result.put(MESSAGE, "修改成功");
             result.put(STATUS, SUCCESS);
             bmService.update(bm);
+           
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
@@ -77,6 +82,7 @@ public class BmController extends net.sf.husky.web.controller.BaseController {
             result.put(MESSAGE, "删除成功");
             result.put(STATUS, SUCCESS);
             bmService.delete(id);
+          
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);

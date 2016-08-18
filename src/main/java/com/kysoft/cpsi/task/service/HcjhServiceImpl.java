@@ -16,6 +16,7 @@ import com.kysoft.cpsi.task.mapper.HcjhMapper;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.JhSxMapper;
 
+import net.sf.husky.attachment.utils.DownloadUtils;
 import net.sf.husky.exception.BaseException;
 import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
@@ -145,13 +146,34 @@ public class HcjhServiceImpl implements HcjhService {
         param.put("zfryId", zfry.getUserId());
         param.put("zfryName", zfry.getName());
         hcjhMapper.addTask(param);
-        
-        
+        MongoLogger.info("task", "用户为日常监管计划增加被核查单位: " + zchs.length, null, hcjhId);
 	}
+	
+	@Override
+	public void removeEnterprise(String hcjhId, String[] hcrwIds) {
+		Map<String, Object> param = Maps.newHashMap();
+		param.put("hcjhId", hcjhId);
+		param.put("hcrwList", StringUtils.join(hcrwIds, ","));
+		hcjhMapper.removeTask(param);
+		MongoLogger.info("task", "用户从日常监管计划中移除被核查单位: " + hcrwIds.length, null, hcjhId);
+	}
+	
 
 	@Override
 	public void delete(String hcjhId) {
 		hcjhMapper.deleteByPrimaryKey(hcjhId);
 		MongoLogger.info("task", "用户删除核查计划", null,hcjhId);
+	}
+
+	@Override
+	public void updateStatement(String hcjhId, String statement) {
+		Hcjh hcjh = hcjhMapper.selectByPrimaryKey(hcjhId);
+		
+		if(null != hcjh.getStatement()) {
+			DownloadUtils.mongoDelete(hcjh.getStatement());
+		}
+		
+		hcjhMapper.updateStatement(hcjhId, statement);
+		
 	}
 }

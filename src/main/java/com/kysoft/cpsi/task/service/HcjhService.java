@@ -25,8 +25,12 @@ public interface HcjhService {
 	boolean validateGsjh(String gsjhbh);
 
 	void addEnterprise(String hcjhId, String[] zchs);
+	
+	void removeEnterprise(String hcjhId, String[] hcrwIds);
 
 	void delete(String hcjhId);
+
+	void updateStatement(String hcjhId, String statement);
 
 //	Map<String, Object> updateAcceptStatus(Map<String, Object> result);
 

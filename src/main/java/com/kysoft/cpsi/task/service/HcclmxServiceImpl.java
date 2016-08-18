@@ -106,7 +106,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     	if(null != hcclmx.getMongoId()) {
     		DownloadUtils.mongoDelete(hcclmx.getMongoId());
     	}
-    	 MongoLogger.info("task", "删除附加核查材料", null, id);
+    	 MongoLogger.info("task", "用户删除附加核查材料: " + id, null, hcclmx.getHcrwId());
     }
     
     @Override
@@ -114,14 +114,14 @@ public class HcclmxServiceImpl implements HcclmxService {
     	hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
     	hcclmxMapper.insert2(hcclmx);
     	calcDocFur(hcclmx.getHcrwId());
-    	 MongoLogger.info("task", "添加附加核查材料");
+    	 MongoLogger.info("task", "用户添加附加核查材料: " + hcclmx.getHcclId(), null, hcclmx.getHcrwId());
     }
     @Override
     public void addJsHcclmx2(Hcclmx hcclmx) {
         hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
         hcclmxMapper.insert2(hcclmx);
         calcJsDocFur(hcclmx.getHcrwId());
-        MongoLogger.info("task", "添加附加核查材料");
+        MongoLogger.info("task", "用户添加附加核查材料: " + hcclmx.getHcclId(), null, hcclmx.getHcrwId());
     }
 
     @Override

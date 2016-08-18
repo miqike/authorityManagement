@@ -1,27 +1,61 @@
 window.excludeSaved = false;
 
+function grid2DblClickHandler(index, row) {
+    window.selected = index;
+    $('#grid2').datagrid('unselectAll').datagrid('selectRow', window.selected);
+    var hcrwTj = $('#grid2').datagrid('getSelected');
+    $.easyui.showDialog({
+		title : "核查任务 - " + hcrwTj.zfryName,
+		width : 790,
+		height : 420,
+		topMost : false,
+		iconCls:'icon2 r16_c14',
+		enableSaveButton : false,
+		enableApplyButton : false,
+		closeButtonText : "返回",
+		closeButtonIconCls : "icon-undo",
+		href : "./userTaskList.jsp",
+		onLoad : function() {
+			doUserTaskListInit();
+		}
+	});
+}
+
 function goFirst() {
 	$.husky.ramble("first", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goLast() {
 	$.husky.ramble("last", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goPrev() {
 	$.husky.ramble("previous", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function goNext() {
 	$.husky.ramble("next", "grid1", "taskDetailTable");
-	refreshAuditItemList();
+	loadPlanAbstract();
 }
 
 function minimizeMyPlanListWindow() {
+	loadPlanAbstract();
 	$("#myPlanListWindow").window("minimize");
+}
+
+function loadPlanAbstract() {
+	var row = $('#grid1').datagrid('getSelected');
+    if(row.planType==1){
+    	planType="双随机";
+    }else{
+    	planType="日常监管";
+    }
+    $("#f_planTypeShow").val(planType);
+    $("#f_jhmcShow").val(row.jhmc);
+    $("#f_jhbhShow").val(row.jhbh);
 }
 
 function showPlanListWindow() {

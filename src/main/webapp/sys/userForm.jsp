@@ -137,22 +137,14 @@ function initResTree(){
 		}},
 		check: {
 			enable: false
-			//enable: true
 		},
 		async: {
 			enable: true,
 			type: "get",
-			url:"../sys/resource",
+			url:"../sys/resource/noUrl",
 			autoParam:["id"]
-		},
-		callback: {
-			onExpand: onExpand,
-			beforeAsync: beforeAsync,
-			onAsyncSuccess: onAsyncSuccess,
-			onAsyncError: onAsyncError
 		}
 	};
-
 	$.fn.zTree.init($("#resTree"), setting);
 }
 
