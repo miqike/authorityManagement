@@ -53,7 +53,7 @@
                 <td><input class="easyui-validatebox add update"  id="p_mail" data-options=""
                            style="width:200px;"/></td>
                 <td>执法证号</td>
-                <td><input class="easyui-validatebox add update"  id="p_zfzh" data-options=""
+                <td><input class="easyui-validatebox add update"  id="p_zfzh" data-options="required:true"
                            style="width:200px;"/></td>
             </tr>
             <tr>

@@ -770,6 +770,9 @@ function doPlanAbstractListInit() {
 	$.getJSON("../common/query?mapper=hcjhMapper&queryName=queryPlanAbstract",  null, function (response) {
 	    if (response.status == $.husky.SUCCESS) {
 	    	 $("#planAbstractGrid").datagrid("loadData",response);
+	    	 if(response.rows.length == 0) {
+	    		 $.messager.alert("操作提示", "业务系统尚未推送抽查企业名单或抽查任务中没有您的任务,请到业务系统中确认");
+	    	 }
 	    }
 	});
 }
