@@ -77,7 +77,7 @@ function btnDeleteClick() {
     if (!$(this).linkbutton('options').disabled) {
     	var row = $("#mainGrid").datagrid("getSelected");
 		if(null != row) {
-			$.messager.confirm("请确人是否删除该检查项?", function (c) { if(c){
+			$.messager.confirm("请确认是否删除该检查项?", function (c) { if(c){
 				$.ajax({
 			        url: "../21/2103?id=" + row.id,
 			        type: "DELETE",
@@ -108,7 +108,7 @@ function funcDisable() {
 					disableAuditItem(1, row.id, text);
 				}});
 			} else {
-				$.messager.confirm("请确人是否取消注销?", function (c) { if(c){
+				$.messager.confirm("请确认是否取消注销?", function (c) { if(c){
 					disableAuditItem(0, row.id);
 				}});
 			}

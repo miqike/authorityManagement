@@ -373,7 +373,7 @@ function deleteZfry(){
 	    	var row = $("#mainGrid").datagrid("getSelected");
 	    	console.info(row);
 			if(null != row) {
-				$.messager.confirm("请确人是否删除该检查项?", function (c) { if(c){
+				$.messager.confirm("请确认是否删除该检查项?", function (c) { if(c){
 					$.ajax({
 				        url: "../21/2102?code="+row.code,
 				        type: "DELETE",

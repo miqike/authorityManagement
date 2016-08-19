@@ -74,7 +74,7 @@ function deleteMaterial(){
 	 var data=$("#mainGrid").datagrid("getSelected");
 	 
 	 if(null != data) {
-			$.messager.confirm("请确人是否删除该检查材料?", function (c) { if(c){
+			$.messager.confirm("请确认是否删除该检查材料?", function (c) { if(c){
 				$.ajax({
 			        url: "../21/deleteMaterialById?id=" + data.id,
 			        type: "DELETE",
