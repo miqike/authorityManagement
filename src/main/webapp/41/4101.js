@@ -5,10 +5,17 @@ function quickSearch(value, name) {
 	$("#grid2").datagrid({
 		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + row.jhbh + "&" + name + "=" + value,
 		collapsible:true,
+		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
 		pageSize: 100, pagination: false
 	});
+}
+
+function grid2LoadSucessHandler(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "您尚未认领抽查任务,请到<<计划任务分配管理>>中先认领分配给您的企业名单");
+	}
 }
 
 function formatZfry(val, row) {
@@ -74,6 +81,7 @@ function loadMyTask(jhbh) {
     $("#grid2").datagrid({
 		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh,//+"&docReadyReportFlag=0",
 		collapsible:true,
+		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
 		pageSize: 100, pagination: false

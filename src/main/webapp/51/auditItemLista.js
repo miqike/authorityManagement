@@ -120,6 +120,7 @@ function initAuditItemList() {
     } else {
         $("#auditItemTabs").tabs("enableTab", 0);
         $("#auditItemTabs").tabs("enableTab", 1);
+        $("#auditItemTabs").tabs("select", 0);
         annualAuditItemInit()
     }
 }
@@ -137,23 +138,19 @@ function doAuditItemListInit() {
 	        success: function (response) {
 	            if (response.status == $.husky.SUCCESS) {
 	                if (response.data == 0) {
-	                    //$.messager.confirm('确认', '检查列表尚未生成,是否认生成检查列表?', function (r) {
-	                    //    if (r) {
-	                            $.ajax({
-	                                url: "./" + hcrw.id + "/init",
-	                                type: 'POST',
-	                                success: function (response) {
-	                                    if (response.status == $.husky.SUCCESS) {
-	                                        $.publish("AUDITITEM_DATA_INITIALIZED", null);
-	                                        window.auditItemDataReady = true;
-	                                        initAuditItemList();
-	                                    } else {
-	                                        //$.messager.alert('删除失败', response, 'info');
-	                                    }
-	                                }
-	                            });
-	                    //    }
-	                    //});
+                        $.ajax({
+                            url: "./" + hcrw.id + "/init",
+                            type: 'POST',
+                            success: function (response) {
+                                if (response.status == $.husky.SUCCESS) {
+                                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
+                                    window.auditItemDataReady = true;
+                                    initAuditItemList();
+                                } else {
+                                    //$.messager.alert('删除失败', response, 'info');
+                                }
+                            }
+                        });
 	                } else {
 	                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
 	                    window.auditItemDataReady = true;
@@ -203,9 +200,23 @@ function annualAuditItemInit() {
         hclx: 1
     }, function (response) {
         if (response.status == $.husky.SUCCESS) {
-        	 $("#annualAuditItemGrid").datagrid("loadData",response);
+        	$("#annualAuditItemGrid").datagrid("loadData",response);
+        	if(!checkFinicialDataImport(response.rows)) {
+        		$.messager.alert("操作提示", "您尚未导入财务报表数据信息,请执行<<采集数据导入及验证>>后再核查");
+        	}
         }
     });
+}
+
+function checkFinicialDataImport(data) {
+	var result = false;
+	for(var i=0; i<data.length; i++) {
+		if (data[i].page == "finicial" && data[i].sjnr != null && data[i].sjnr != "" && data[i].sjnr != undefined ) {
+			result = true;
+			break;
+		}
+	}
+	return result;
 }
 //---------------annual end and instance begin
 

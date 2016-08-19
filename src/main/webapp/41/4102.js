@@ -54,10 +54,17 @@ function loadMyTask(jhbh) {
     $("#grid2").datagrid({
 		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh,
 		collapsible:true,
+		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
 		pageSize: 100, pagination: false
 	});
+}
+
+function grid2LoadSucessHandler(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "请到<<企业上传资料催报管理>>中检查核查企业是否已经执行上报完成");
+	}
 }
 
 function myTaskGridClickHandler() {

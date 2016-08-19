@@ -69,6 +69,11 @@ function addEnterprise() {
 	}
 }
 
+function candidateEnterpriseGridLoadSucessHandler(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "业务系统尚未推送列入经营异常名录的企业或名单中没有您可访问的数据,请到业务系统中确认");
+	}
+}
 
 </script>
 
@@ -93,7 +98,7 @@ function addEnterprise() {
     <table id="candidateEnterpriseGrid"
            class="easyui-datagrid"
            data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:100,height:505,onBeforeLoad:checkParam,
-           url:'../common/query?mapper=hcrwRcMapper&queryName=selectExclude'" >
+           url:'../common/query?mapper=hcrwRcMapper&queryName=selectExclude',onLoadSuccess:candidateEnterpriseGridLoadSucessHandler" >
         <thead>
         <tr>
             <th data-options="field:'nbxh',halign:'center',align:'center'" width="106">企业内部序号</th>

@@ -80,9 +80,13 @@ function loadMyTask() {
 }
 
 function myTaskGridLoadSucessHandler(data) {
-    if($('#p_jhbh').val() != "") {
-    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
-    }
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "请到<<企业上传资料催报管理>>中检查核查企业是否已经执行上报完成");
+	} else {
+	    if($('#p_jhbh').val() != "") {
+	    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+	    }
+	}
 }
 
 function getRowIndex(jhbh) {
