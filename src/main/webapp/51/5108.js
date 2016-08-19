@@ -58,22 +58,26 @@ function grid2ClickHandler() {
 function cancelAuditStatus() {
         var hcrw = $("#grid2").datagrid("getSelected");
         if(null != hcrw) {
-        	$.messager.confirm('确认', "是否确认取消审核?", function (r) {
-    			if (r) {
-    				$.ajax({
-    					url: "../51/" + hcrw.id + "/cancelAudit",
-    					type: "POST",
-    					success: function (response) {
-    						if (response.status == $.husky.SUCCESS) {
-    							$('#grid2').datagrid('reload');
-    							$.messager.show('提示',"取消审核成功", "info", "bottomRight");
-    						} else {
-    							$.messager.alert('取消审核失败', response.message, 'error');
-    						}
-    					}
-    				});
-    			}
-        	});
+        	if(hcrw.auditor != userInfo.userId) {
+        		$.messager.alert("操作提示", "该信息审核人不是本人操作,不允许操作");
+        	} else {
+        		$.messager.confirm('确认', "是否确认取消审核?", function (r) {
+        			if (r) {
+        				$.ajax({
+        					url: "../51/" + hcrw.id + "/cancelAudit",
+        					type: "POST",
+        					success: function (response) {
+        						if (response.status == $.husky.SUCCESS) {
+        							$('#grid2').datagrid('reload');
+        							$.messager.show('提示',"取消审核成功", "info", "bottomRight");
+        						} else {
+        							$.messager.alert('取消审核失败', response.message, 'error');
+        						}
+        					}
+        				});
+        			}
+        		});
+        	}
         }
 }
 

@@ -153,8 +153,7 @@
         <table id="grid2"
                class="easyui-datagrid"
                data-options="singleSelect:true,collapsible:true,pageSize: 100, pagination: true,
-	onClickRow:grid2ClickHandler,
-	method:'get'"
+					onClickRow:grid2ClickHandler,offset: { width: -252, height: -206},method:'get'"
                toolbar="#planGridToolbar"
                style="height: 285px"
                sortOrder="asc">
