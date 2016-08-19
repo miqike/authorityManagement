@@ -163,10 +163,11 @@ function showUserWindow(operation, data) {
 				if(orgTreeObj.getSelectedNodes().length == 1) {
 					$.husky.loadForm("userTable", {
 						orgId: selectedOrgNode.id,
-						orgName: selectedOrgNode.name
+						orgName: selectedOrgNode.name,
+						status: 1
 					});
 				} else {
-					$.husky.loadForm("userTable", {});
+					$.husky.loadForm("userTable", {status: 1});
 				}
 				$("#mainGrid").datagrid("unselectAll");
 			} else {
