@@ -89,6 +89,16 @@ function myTaskGridLoadSucessHandler(data) {
 	}
 }
 
+function myTaskGridLoadSucessHandlerb(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "当前不存在要核查的任务,请到<<计划任务分配管理>>中建立任务选择要核查的移出企业名单");
+	} else {
+		if($('#p_jhbh').val() != "") {
+			$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+		}
+	}
+}
+
 function getRowIndex(jhbh) {
 	var rows = $("#grid1").datagrid("getRows");
 	var index;
