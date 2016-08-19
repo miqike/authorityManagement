@@ -1,47 +1,29 @@
 package com.kysoft.cpsi.audit.service;
 
-import java.text.DecimalFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.audit.entity.*;
+import com.kysoft.cpsi.audit.mapper.*;
+import com.kysoft.cpsi.repo.entity.Hcsx;
+import com.kysoft.cpsi.repo.mapper.HcsxMapper;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
+import com.kysoft.cpsi.task.service.HcsxjgService;
+import net.sf.husky.exception.BaseException;
+import net.sf.husky.log.service.LogService;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.kysoft.cpsi.audit.entity.AnnualReport;
-import com.kysoft.cpsi.audit.entity.Guarantee;
-import com.kysoft.cpsi.audit.entity.Homepage;
-import com.kysoft.cpsi.audit.entity.Investment;
-import com.kysoft.cpsi.audit.entity.License;
-import com.kysoft.cpsi.audit.entity.MailVerify;
-import com.kysoft.cpsi.audit.entity.MailVerifyException;
-import com.kysoft.cpsi.audit.entity.StockRightChange;
-import com.kysoft.cpsi.audit.entity.StockholderContribution;
-import com.kysoft.cpsi.audit.mapper.AnnualReportMapper;
-import com.kysoft.cpsi.audit.mapper.GuaranteeMapper;
-import com.kysoft.cpsi.audit.mapper.HomepageMapper;
-import com.kysoft.cpsi.audit.mapper.InvestmentMapper;
-import com.kysoft.cpsi.audit.mapper.LicenseMapper;
-import com.kysoft.cpsi.audit.mapper.MailVerifyMapper;
-import com.kysoft.cpsi.audit.mapper.StockRightChangeMapper;
-import com.kysoft.cpsi.audit.mapper.StockholderContributionMapper;
-import com.kysoft.cpsi.repo.entity.Hcsx;
-import com.kysoft.cpsi.repo.mapper.HcsxMapper;
-import com.kysoft.cpsi.task.mapper.HcrwMapper;
-import com.kysoft.cpsi.task.service.HcsxjgService;
-
-import net.sf.husky.exception.BaseException;
-import net.sf.husky.log.service.LogService;
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.text.DecimalFormat;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Service("auditService")
 public class AuditServiceImpl implements AuditService {
@@ -158,12 +140,11 @@ public class AuditServiceImpl implements AuditService {
                 result.put("c", homepageMapper.selectByTaskId3(hcrwId));
                 break;
             case "股东或发起人认缴和实缴信息":
-                result.put("a", stockholderContributionMapper.selectByTaskId(hcrwId));
-                result.put("b", stockholderContributionMapper.selectByTaskId2(hcrwId));
-                result.put("c", stockholderContributionMapper.selectByTaskId3(hcrwId));
                 break;
             case "股东或发起人认缴和实缴的出资额等信息":
-
+				result.put("a", stockholderContributionMapper.selectByTaskId(hcrwId));
+				result.put("b", stockholderContributionMapper.selectByTaskId2(hcrwId));
+				result.put("c", stockholderContributionMapper.selectByTaskId3(hcrwId));
                 break;
             case "企业投资设立企业、购买股权信息":
                 result.put("a", investmentMapper.selectByTaskId(hcrwId));
@@ -171,6 +152,9 @@ public class AuditServiceImpl implements AuditService {
                 result.put("c", investmentMapper.selectByTaskId3(hcrwId));
                 break;
             case "有限公司股东股权转让等股权变更信息":
+				result.put("a", stockRightChangeMapper.selectByTaskId(hcrwId));
+				result.put("b", stockRightChangeMapper.selectByTaskId2(hcrwId));
+				result.put("c", stockRightChangeMapper.selectByTaskId3(hcrwId));
 
                 break;
             case "资产总额、负债总额等资产财务数据":
@@ -178,17 +162,14 @@ public class AuditServiceImpl implements AuditService {
                 result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
                 result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
                 break;
-            case "有限公司股东股权转让等变更信息":
-                result.put("a", stockRightChangeMapper.selectByTaskId(hcrwId));
-                result.put("b", stockRightChangeMapper.selectByTaskId2(hcrwId));
-                result.put("c", stockRightChangeMapper.selectByTaskId3(hcrwId));
+            case "有限公司股东股权转让等变更信息"://即时
                 break;
             case "对外提供保证担保信息":
                 result.put("a", guaranteeMapper.selectByTaskId(hcrwId));
                 result.put("b", guaranteeMapper.selectByTaskId2(hcrwId));
                 result.put("c", guaranteeMapper.selectByTaskId3(hcrwId));
                 break;
-            case "行政许可取得、变更、延续信息":
+            case "行政许可取得、变更、延续信息"://即时
                 result.put("a", licenseMapper.selectByTaskId(hcrwId));
                 result.put("b", licenseMapper.selectByTaskId2(hcrwId));
                 result.put("c", licenseMapper.selectByTaskId3(hcrwId));
