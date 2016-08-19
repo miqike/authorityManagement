@@ -239,7 +239,7 @@
                    data-options="
                    		method:'get',
                    		pageSize: 100, pagination: true,
-                       singleSelect:false,
+                       ctrlSelect:true,
                        collapsible:true,
                        toolbar: '#grid3bToolbar',
                        onClickRow:grid3bClickHandler,
