@@ -105,15 +105,16 @@ function initAuditItemList() {
     $("#btnUpdateHcjg").linkbutton("enable");
     $("#btnConfirmUpdateHcjg").hide();
 
-    $("#auditItemAccordion").accordion("select", 0);
     var hcrw = $('#grid1').datagrid('getSelected');
     if(hcrw.nr == 1) {
         $("#auditItemTabs").tabs("enableTab", 0);
         $("#auditItemTabs").tabs("disableTab", 1);
+        $("#auditItemAccordion").accordion("select", 0);
         annualAuditItemInit();
     } else if(hcrw.nr == 2) {
         $("#auditItemTabs").tabs("disableTab", 0);
         $("#auditItemTabs").tabs("enableTab", 1);
+        $("#auditItemAccordion").accordion("select", 1);
         instanceAuditItemInit()
     } else {
         $("#auditItemTabs").tabs("enableTab", 0);
