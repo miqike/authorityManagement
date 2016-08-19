@@ -62,6 +62,11 @@ public interface HcrwMapper {
     List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
+
+    // below 2 interface only used for welcome page 's my task list
+    List<Hcrw> queryForUser1(Map<String, Object> param);
+    
+    List<Hcrw> queryForUser2(Map<String, Object> param);
     
     List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
 

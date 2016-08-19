@@ -91,9 +91,9 @@
         
         var todoTaskGridOptions = $("#todoTaskGrid").datagrid("options");
         if(userInfo.ext1 == 1) {
-        	todoTaskGridOptions.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor1';
+        	todoTaskGridOptions.url = './common/query?mapper=hcrwMapper&queryName=queryForUser1';
         } else {
-        	todoTaskGridOptions.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor2';
+        	todoTaskGridOptions.url = './common/query?mapper=hcrwMapper&queryName=queryForUser2';
         } 
     });
     
