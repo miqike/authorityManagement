@@ -150,17 +150,17 @@
 				<div id="northPanel" data-options="region: 'north', height:154, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="overflow: hidden;">
 		            <table id="taskDetailTable">
 		                <tr>
-		                    <td class="label">统一社会信用代码</td>
+		                    <td class="label" style="width:120px;">统一社会信用代码</td>
 		                    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
-		                    <td class="label">被抽查企业名称</td>
-		                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
+		                    <td class="label" style="width:120px;">被抽查企业名称</td>
+		                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:284px;"/></td>
 		                </tr>
 		                <tr>
 		                    <td class="label"  style="width:50px;">检查结果</td>
 		                    <td colspan="3"><input id="p_hcjieguo" class="easyui-combobox"
-		                                data-options="width:145" codeName="gsjg" disabled/>
+		                                data-options="width:245" codeName="gsjg" disabled/>
 		                        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
-		                    </td></td>
+		                    </td>
 		                </tr>
 		            </table>
 		            <div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
