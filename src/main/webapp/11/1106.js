@@ -95,11 +95,26 @@ function selectOrganization() {
             autoParam: ["id"]
         },
         callback: {
+            beforeClick: function (treeId, treeNode, clickFlag) {
+            	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+            	var exists = $("#deptGrid").datagrid("getData").rows;
+        		var validate = idDescent(treeObj, treeNode, exists);
+        		if(validate == -1) {
+        			$.messager.alert("操作提示", "已经设置了该单位权限");
+        			return false;
+        		} else if(validate == -2) {
+        			$.messager.alert("操作提示", "已经设置了上级单位权限");
+        			return false;
+        		} else {
+        			return true;
+        		}
+            },
+            
             onClick: function () {
                 var treeObj = $.fn.zTree.getZTreeObj("orgTreeSelect");
                 var selected = treeObj.getSelectedNodes();
                 if (selected.length == 1) {
-                    $("#btnOrganizationSelect").linkbutton("enable");
+               		$("#btnOrganizationSelect").linkbutton("enable");
                 } else {
                     $("#btnOrganizationSelect").linkbutton("disable");
                 }
@@ -109,11 +124,43 @@ function selectOrganization() {
 
     $.fn.zTree.init($("#orgTreeSelect"), setting);
     $('#organizationSelectDialog').dialog('open');
+}
 
+function idDescent(treeObj, treeNode, exists) {
+	var result = 0;
+	for(var i=0; i<exists.length; i++) {
+		result = _idDescent(treeObj, treeNode, exists[i]);
+		if(result < 0) {
+			break;
+		}
+	}
+	
+	return result;
+}
+
+function _idDescent(treeObj, treeNode, exist) {
+	var result = 0;
+	if(treeNode.id == exist.orgId) {
+		result = -1;
+	} else {
+		var parent = treeNode.getParentNode();
+		debugger;
+		while(parent != null) {
+			if(parent.id == exist.orgId) {
+				result = -2;
+				break;
+			} else {
+				parent = parent.getParentNode();
+			}
+			
+		}
+	}
+	return result;
 }
 
 function organizationSelect() {
-    var treeObj = $.fn.zTree.getZTreeObj("orgTreeSelect");
+    //if(validate()) {
+	var treeObj = $.fn.zTree.getZTreeObj("orgTreeSelect");
     var selected = treeObj.getSelectedNodes();
     var datas = new Array();
     var user = $("#mainGrid").datagrid("getSelected");
@@ -125,7 +172,8 @@ function organizationSelect() {
         data.orgName = selected[i].name;
         datas.push(data);
     }
-    $.ajax({
+
+	$.ajax({
         url: "../11/1106/batch",
         type: "POST",
         data: JSON.stringify(datas),
@@ -140,6 +188,7 @@ function organizationSelect() {
             }
         }
     });
+    //}
 }
 
 function expandNodes(zTree, nodes) {
@@ -256,31 +305,5 @@ $(function () {
         }
     });
 
-    var setting = {
-        data: {
-            key: {
-                title: "parentId",
-                name: "nameWithId"
-            }
-        },
-        check: {
-            enable: false
-            //enable: true
-        },
-        async: {
-            enable: true,
-            type: "get",
-            url: "../sys/resource",
-            autoParam: ["id"]
-        },
-        callback: {
-            onExpand: onExpand,
-            beforeAsync: beforeAsync,
-            onAsyncSuccess: onAsyncSuccess,
-            onAsyncError: onAsyncError
-        }
-    };
-
-    $.fn.zTree.init($("#tree"), setting);
 
 });
