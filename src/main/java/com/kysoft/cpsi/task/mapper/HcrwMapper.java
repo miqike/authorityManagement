@@ -119,4 +119,7 @@ public interface HcrwMapper {
 	@Update("UPDATE T_HCRW SET AUDIT_RESULT = null, AUDIT_COMMENT = null, AUDITOR = null, HCJIEGUO=null, AUDITOR_NAME = null, SJWCRQ = null, AUDIT_TIME = null WHERE ID=#{id}")
 	void updateCancelAuditByPrimaryKey(String hcrwId);
 
+	List<Hcrw> queryForUser1(Map<String, Object> param);
+	List<Hcrw> queryForUser2(Map<String, Object> param);
+
 }
