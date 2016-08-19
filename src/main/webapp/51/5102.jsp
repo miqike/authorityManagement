@@ -102,8 +102,8 @@
                         <td><input id="f_hcdwXydm" class="easyui-validatebox" style=""/></td>
                         <td class="label">登记机关</td>
                         <td><input id="f_djjgmc" class="easyui-validatebox" style=""/></td>
-                        <td class="label">登记机关</td>
-                        <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
+                        <!-- <td class="label">核查机关</td>
+                        <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td> -->
                         <td style="text-align:right;">
                             <a href="javascript:void(0);" id="btnRenLing" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r9_c5">认领</a>
@@ -124,7 +124,9 @@
                    data-options="
                    		method:'get',
                    		pageSize: 100, pagination: true,
+                   		offset: {  height: -105},
                        singleSelect:true,
+                       onLoadSuccess:gridWGSLoadSucessHandler,
                        collapsible:true,
                        selectOnCheck:false,
                        checkOnSelect:false"
@@ -186,7 +188,7 @@
 </div>
 <div id="myTaskListWindow" >
     <div class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-        <div data-options="region:'north',split:false,height:70" title="">
+        <div data-options="region:'north',split:false,height:42" title="">
             <div style="padding: 5px 10px 0px 10px">
                 <table id="queryTable">
                     <tr>
@@ -211,7 +213,7 @@
         <div data-options="region:'center',split:true" style="width:340px;">
             <table id="myTaskGrid" class="easyui-datagrid"
                    data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,pageSize: 100, pagination: true">
+						height:370,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandler">
                 <thead>
                 <tr>
                     <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>

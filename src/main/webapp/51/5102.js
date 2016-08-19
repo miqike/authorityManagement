@@ -1,6 +1,18 @@
 window.firstFlag=1;//是否页面初始化标志，用于某些方法在初始化时不能调用标志
 window.hcsxJgRenewFlag=0;//是否需要重新生成核查事项结果数据标志 0不需要 1需要
 
+function gridWGSLoadSucessHandler(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "业务系统尚未传递未公示即时信息的企业名单,无法操作");
+	}
+}
+
+function myTaskGridLoadSucessHandler(data) {
+	if(data.rows.length == 0) {
+		$.messager.alert("操作提示", "请先在<<未按规定公示即时信息企业>>名单中认领要核查的企业名单");
+	}
+}
+
 function taskStatusStyler(val, row, index) {
     if (val == 1) {
         return "background-color:lightgray";
