@@ -22,7 +22,7 @@ function doInitGrid() {
 		$.post("../js/audit/getCompareInfo", param,
 			function(response){
 				if(response.a == null ) {
-					$.alert("未找到公示数据");
+					$.messager.alert("未找到公示数据");
 				} else {
 					window.dataA = response.a;
 					window.dataB = response.b;
