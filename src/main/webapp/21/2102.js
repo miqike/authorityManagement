@@ -149,7 +149,6 @@ function addSysUser () {
 		closeButtonIconCls : "icon-undo",
 		
         onSave: function (d) {
-        	console.log("2222-----------")
         	var userId = $("#k_userId").val();
         	var zfry = $("#mainGrid").datagrid("getSelected");
         	if(userId != "") {
