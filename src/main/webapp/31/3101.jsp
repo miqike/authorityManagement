@@ -213,7 +213,7 @@ td.label {
 								<a href="javascript:void(0);" id="btnReset"
 								class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
 								<a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow"
-								class="easyui-linkbutton" plain="true" iconCls="icon-back">返回</a>
+								class="easyui-linkbutton" plain="true" iconCls="icon-back">确认返回</a>
 							</td>
 						</tr>
 					</table>
