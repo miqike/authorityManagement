@@ -62,11 +62,6 @@ public interface HcrwMapper {
     List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
-
-    // below 2 interface only used for welcome page 's my task list
-    List<Hcrw> queryForUser1(Map<String, Object> param);
-    
-    List<Hcrw> queryForUser2(Map<String, Object> param);
     
     List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
 
@@ -123,5 +118,8 @@ public interface HcrwMapper {
 
 	@Update("UPDATE T_HCRW SET AUDIT_RESULT = null, AUDIT_COMMENT = null, AUDITOR = null, HCJIEGUO=null, AUDITOR_NAME = null, SJWCRQ = null, AUDIT_TIME = null WHERE ID=#{id}")
 	void updateCancelAuditByPrimaryKey(String hcrwId);
+
+	List<Hcrw> queryForUser1(Map<String, Object> param);
+	List<Hcrw> queryForUser2(Map<String, Object> param);
 
 }

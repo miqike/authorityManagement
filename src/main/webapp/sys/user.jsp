@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
+    <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.core-3.5.min.js"></script>
     <script type="text/javascript" src="../js/jquery.ztree.excheck-3.5.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>

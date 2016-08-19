@@ -494,11 +494,3 @@ if(typeof(hotkeys) != 'undefined') {
 		top.layoutFullScreen();
 });
 }
-
-function processorOrgId(orgId) {
-	var result = orgId;
-	while(result.endsWith("000")) {
-		result = result.substr(0,result.length - 2);
-	}
-	return result;
-}

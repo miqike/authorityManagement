@@ -21,6 +21,7 @@
 
     <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
 
+    <script type="text/javascript" src="../js/husky.orgTree.js"></script>
     <script type="text/javascript" src="../js/husky/husky.common.js"></script>
     <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>

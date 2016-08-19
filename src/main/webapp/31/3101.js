@@ -703,7 +703,7 @@ function savePlan(planType) {
             	} else {
             		$('#k_id').val(response.id);
             	}
-            	$("#grid1").datagrid("reload")
+            	$("#grid1").datagrid("reload");
                 //loadGrid1(response.id);
                 $.messager.show('操作提示', response.message, 'info', "bottomRight");
             } else {

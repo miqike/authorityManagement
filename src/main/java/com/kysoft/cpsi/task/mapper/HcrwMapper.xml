@@ -700,7 +700,7 @@
         <include refid="Base_Column_List" />
         from T_HCRW where HCJH_ID = #{hcjhId}
         AND (
-          (QYBM IN (
+          (DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
@@ -740,7 +740,7 @@
         <include refid="Base_Column_List" />
         from T_HCRW where HCJH_ID = #{hcjhId}
         AND (
-          (QYBM IN (
+          (DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
@@ -778,7 +778,7 @@
         <include refid="Base_Column_List" />
         from T_HCRW where HCJH_ID = #{hcjhId}
         AND (
-          (QYBM IN (
+          (DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
 			CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
@@ -858,8 +858,10 @@
         <include refid="Base_Column_List" />
         from T_HCRW
         where 
-	        DOC_READY_REPORT_FLAG = 1
-        AND QYBM IN (
+         <![CDATA[
+	        DOC_READY_REPORT_FLAG = 1 AND RWZT < 5
+	    ]]>
+        AND DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
 			CONNECT BY PRIOR ID=PARENT_ID )
@@ -925,8 +927,8 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW
-        where 
-        	QYBM IN (
+        where
+      DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
 			CONNECT BY PRIOR ID=PARENT_ID )
@@ -950,48 +952,6 @@
         RLRQ
     </select>
 
-
-	<select id="queryForUser1" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from T_HCRW
-        where  
-	        <![CDATA[
-		        RWZT < 5
-		    ]]>
-	    	AND 
-        (
-           (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
-           or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
-        )
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
-        ORDER BY
-        <if test="order != null">
-            ${sort} ${order},
-        </if>
-        plan_type desc,jhbh desc,hcdw_xydm
-    </select>
-    <select id="queryForUser2" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from T_HCRW
-        where 
-         <![CDATA[
-	        RWZT < 5
-	    ]]>
-        AND QYBM IN (
-	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
-				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
-			CONNECT BY PRIOR ID=PARENT_ID )
-        and ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
-        ORDER BY
-        <if test="order != null">
-            ${sort} ${order},
-        </if>
-      plan_type desc,jhbh desc,hcdw_xydm
-    </select>
-    
     <select id="selectCountByPlanId" resultType="java.lang.Integer">
         select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR}
     </select>
@@ -1358,6 +1318,46 @@
 				hcjh_hcsx ON hcsx.ID = hcjh_hcsx.Hcsx_Id
 			)) WHERE HCJH_ID=#{hcjhId}
     </update>
-    
-    
+
+  <select id="queryForUser1" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_HCRW
+    where
+    <![CDATA[
+		        RWZT < 5
+		    ]]>
+    AND
+    (
+    (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+    or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR}) CONNECT BY PRIOR ID=PARENT_ID ) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
+    )
+    AND RLR IS NOT NULL AND RLRQ IS NOT NULL
+    ORDER BY
+    <if test="order != null">
+      ${sort} ${order},
+    </if>
+    plan_type desc,jhbh desc,hcdw_xydm
+  </select>
+  <select id="queryForUser2" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_HCRW
+    where
+    <![CDATA[
+	        RWZT < 5
+	    ]]>
+    AND QYBM IN (
+    SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+    SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
+    CONNECT BY PRIOR ID=PARENT_ID )
+    and ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=2)
+    AND RLR IS NOT NULL AND RLRQ IS NOT NULL
+    ORDER BY
+    <if test="order != null">
+      ${sort} ${order},
+    </if>
+    plan_type desc,jhbh desc,hcdw_xydm
+  </select>
+
 </mapper>

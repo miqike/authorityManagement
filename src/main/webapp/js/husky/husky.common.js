@@ -29,14 +29,6 @@ jQuery.husky = {
 	    }
 	},
 	
-	processorOrgId: function(orgId) {
-		var result = orgId;
-		while(result.endsWith("000")) {
-			result = result.substr(0,result.length - 2);
-		}
-		return result;
-	},
-	
 	removeIdBeforeSlash: function(text) {
 	    if (text != undefined) {
 	        var result = "";

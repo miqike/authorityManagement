@@ -105,10 +105,8 @@ function myTaskGridClickHandler() {
     $('#p_jhmc').val(hcrw.jhmc);
     $('#p_hcdwXydm').val(hcrw.hcdwXydm);
     $('#p_hcdwName').val(hcrw.hcdwName);
-    /*
     $('#p_jhxdrq').datebox("setValue", formatDate(hcrw.jhxdrq));
     $('#p_jhwcrq').datebox("setValue", formatDate(hcrw.jhwcrq));
-    */
     $('#p_jhnd').val(hcrw.jhnd);
     $('#p_djjgmc').val(hcrw.djjgmc);
     

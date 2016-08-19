@@ -43,7 +43,7 @@ function queryUser(){
 		var options = $("#mainGrid").datagrid("options");
 		options.url = '../common/query?mapper=userMapper&queryName=queryUserForOrg';
 		$('#mainGrid').datagrid('load',{
-			organization: $.husky.processorOrgId(selected[0].id),
+			organization: processorOrgId(selected[0].id),
 			name:$('#f_name').val()
 		});
 	} else {
