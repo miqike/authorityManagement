@@ -162,7 +162,7 @@ $(function () {
         $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + processorOrgId(selected[0].id) + "&order=1&auditResult=0", null, function (response) {
             if (response.status == 1) {
                 data = response.rows;
-                if(data.length>1){
+                if(data.length>0){
                     listPrint(params, data, columnList);
                 }else{
                     $.messager.show({

@@ -594,6 +594,15 @@
         <if test="hcjgmc!=null">
             AND hcjgmc like '%'||#{hcjgmc}||'%'
         </if>
+      <if test="hcjg!=null">
+        AND hcjg = #{hcjg}
+      </if>
+      <if test="djjgmc!=null">
+        AND djjgmc like '%'||#{hcjgmc}||'%'
+      </if>
+      <if test="djjg!=null">
+        AND djjg = #{djjg}
+      </if>
         <if test="zfryCode!=null">
             AND zfry_code = #{zfryCode}
         </if>

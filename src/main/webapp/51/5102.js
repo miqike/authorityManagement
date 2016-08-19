@@ -169,7 +169,7 @@ function loadWGSTask() {
     $("#gridWGS").datagrid("load",  {
         jsGsFlag: 0,
         hcdwXydm:$('#f_hcdwXydm').val(),
-        hcjgmc:$('#f_hcjgmc').val()
+        djjgmc:$('#f_djjgmc').val()
     });
 }
 //隐藏核查任务窗口

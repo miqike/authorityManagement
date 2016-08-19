@@ -23,7 +23,6 @@
     <result column="JDJG_MC" jdbcType="VARCHAR" property="jdjgMc" />
     <result column="LRRQ" jdbcType="TIMESTAMP" property="lrrq" />
     <result column="LRSY" jdbcType="VARCHAR" property="lrsy" />
-    <result column="LRSY2" jdbcType="VARCHAR" property="lrsy2" />
   </resultMap>
   
   <sql id="Base_Column_List">
@@ -41,13 +40,13 @@
       DJJG_MC, GXDW, GXDW_MC, 
       CLRQ, ZS, QYZZXS, 
       JDJG, JDJG_MC, LRRQ, 
-      LRSY, LRSY2)
+      LRSY)
     values (#{nbxh,jdbcType=VARCHAR}, #{zch,jdbcType=VARCHAR}, #{qymc,jdbcType=VARCHAR}, 
       #{fddbr,jdbcType=VARCHAR}, #{qylxdl,jdbcType=VARCHAR}, #{djjg,jdbcType=VARCHAR}, 
       #{djjgMc,jdbcType=VARCHAR}, #{gxdw,jdbcType=VARCHAR}, #{gxdwMc,jdbcType=VARCHAR}, 
       #{clrq,jdbcType=TIMESTAMP}, #{zs,jdbcType=VARCHAR}, #{qyzzxs,jdbcType=VARCHAR}, 
       #{jdjg,jdbcType=VARCHAR}, #{jdjgMc,jdbcType=VARCHAR}, #{lrrq,jdbcType=TIMESTAMP}, 
-      #{lrsy,jdbcType=VARCHAR}, #{lrsy2,jdbcType=VARCHAR})
+      #{lrsy,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kysoft.cpsi.task.entity.HcrwRc">
     <!--
@@ -105,9 +104,6 @@
       <if test="lrsy != null">
         LRSY,
       </if>
-      <if test="lrsy2 != null">
-        LRSY2,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="nbxh != null">
@@ -157,9 +153,6 @@
       </if>
       <if test="lrsy != null">
         #{lrsy,jdbcType=VARCHAR},
-      </if>
-      <if test="lrsy2 != null">
-        #{lrsy2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

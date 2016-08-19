@@ -100,8 +100,8 @@
                     <tr>
                         <td class="label">企业注册号码</td>
                         <td><input id="f_hcdwXydm" class="easyui-validatebox" style=""/></td>
-                        <td class="label">核查机关</td>
-                        <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
+                        <td class="label">登记机关</td>
+                        <td><input id="f_djjgmc" class="easyui-validatebox" style=""/></td>
                         <td style="text-align:right;">
                             <a href="javascript:void(0);" id="btnRenLing" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r9_c5">认领</a>
@@ -134,7 +134,7 @@
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
                     <th data-options="field:'rlr',halign:'center',align:'left'" sortable="true" width="100">认领人</th>
                     <th data-options="field:'rlrq',halign:'center',align:'left'" sortable="true" width="80" formatter="formatDate">认领日期</th>
-                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200">检查机关名称</th>
+                    <th data-options="field:'djjgmc',halign:'center',align:'left'" sortable="true" width="200">登记机关名称</th>
                 </tr>
                 </thead>
             </table>
@@ -189,7 +189,7 @@
                     <tr>
                         <td class="label" >统一社会信用代码</td>
                         <td><input id="o_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-                        <td class="label" >单位名称</td>
+                        <td class="label" >企业名称</td>
                         <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 
                         <td style="text-align:right;padding-left:15px;" colspan="2">
@@ -212,7 +212,7 @@
                 <thead>
                 <tr>
                     <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>
-                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">企业名称</th>
                     <th data-options="field:'zfryName', halign:'center',align:'center'" width="100" >检查人员</th>
                     <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th>
                     <th data-options="field:'rwzt', halign:'center',align:'center'" width="60" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>

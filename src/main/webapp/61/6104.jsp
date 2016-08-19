@@ -169,9 +169,6 @@
                     <th data-options="field:'rlrq'" halign="center" align="left" sortable="true" width="70"
                         formatter="formatDate">认领日期
                     </th>
-                    <th data-options="field:'rwzt'" halign="center" align="left" sortable="true" width="70"
-                        codeName="jhlb" formatter="formatCodeList">计划完成
-                    </th>
                     <th data-options="field:'sjwcrq'" halign="center" align="left" sortable="true" width="70"
                         formatter="formatDate">实际完成
                     </th>
