@@ -245,7 +245,7 @@ public class AuditServiceImpl implements AuditService {
 		AnnualReport ar = new AnnualReport();
 		ar.setNd(jsonData.getInteger("nd")); //126289223.960000,
 		ar.setXydm(jsonData.getString("xydm")); //'0',
-		ar.setSyzqyhj(Float.valueOf(df.format(jsonData.getFloat("syzqyhj")/1000))); //126289223.960000,
+		ar.setSyzqyhj(Float.valueOf(df.format(jsonData.getFloat("syzqyhj")/10000))); //126289223.960000,
 		ar.setLrze(Float.valueOf(df.format(jsonData.getFloat("lrze")/10000))); //-1645108.430000,
 		ar.setYyzsr(Float.valueOf(df.format(jsonData.getFloat("yyzsr")/10000))); //113022006.660000,
 		ar.setZyywsr(Float.valueOf(df.format(jsonData.getFloat("zyywsr")/10000))); //107588461.960000,
