@@ -76,11 +76,9 @@
 </head>
 <body style="padding:5px;">
 <div class="easyui-layout" data-options="fit:true" >
-    <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:true">
-        <div style="float:left;margin:0px 5px; solid: lightgray">
-            <ul id='orgTree' class="ztree" ></ul>
-        </div>
-    </div>
+	<div data-options="region:'west',split:true" title="单位列表" style="width:300px;">
+		<ul id="orgTree" class="ztree"></ul>
+	</div>
     <div data-options="region:'center'" data-options="fit:true">
         <div style="margin-bottom:3px;margin-top:5px;">
             <span style="margin-left:8px;margin-right:0px;">用户代码/姓名:</span>
