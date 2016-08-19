@@ -210,6 +210,13 @@
 						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
 	            <thead>
 		            <tr>
+		            
+		            	<th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>
+		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
+		                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
+		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="170">任务下达单位</th>
+		            
+		            
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>
 		                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
 		                <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
