@@ -86,15 +86,15 @@
         <div style="padding: 5px 10px 0px 10px">
             <table id="queryTable">
                 <tr>
-                    <td>姓名</td>
+                    <td class="label">姓名</td>
                     <td><input id="f_name" class="easyui-validatebox"/></td>
-                    <td>执法(监督)类别</td>
+                    <td class="label">执法(监督)类别</td>
                     <td><input id="f_zflx" class="easyui-combobox" codeName="zfjdlx" data-options="panelHeight:55"/></td>
                 </tr>
                 <tr>
-                    <td>计划编号</td>
+                    <td class="label">计划编号</td>
                     <td><input id="f_jhid" class="easyui-validatebox"/></td>
-                    <td>系统账号</td>
+                    <td class="label">系统账号</td>
                     <td><input id="f_userId" class="easyui-validatebox"  data-options="panelHeight:55"/></td>
                     <td colspan="2" style="text-align: right ">
                         <a href="javascript:void(0);" id="btnLoadMainGrid" class="easyui-linkbutton" plain="true"
