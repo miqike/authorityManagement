@@ -858,9 +858,7 @@
         <include refid="Base_Column_List" />
         from T_HCRW
         where 
-         <![CDATA[
-	        DOC_READY_REPORT_FLAG = 1 AND RWZT < 5
-	    ]]>
+         DOC_READY_REPORT_FLAG = 1
         AND DJJG IN (
 	    	SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
 				SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId,jdbcType=VARCHAR})
