@@ -50,7 +50,6 @@ function queryUser(){
 	}
 }
 
-
 function mainGridButtonHandler() {
 	if($('#mainGrid').datagrid('getSelected') != null) {
 		$('#btnView').linkbutton('enable');
