@@ -149,7 +149,7 @@ function addSysUser () {
 		closeButtonIconCls : "icon-undo",
 		
         onSave: function (d) {
-        	var userId = $("#f_userId").val();
+        	var userId = $("#k_userId").val();
         	var zfry = $("#mainGrid").datagrid("getSelected");
         	if(userId != "") {
         		$.post("./2102/" + zfry.code + "/" + userId, function(response){
@@ -162,6 +162,9 @@ function addSysUser () {
         				return false;
         			}
         		});
+        	} else {
+        		$.messager.alert("用户名不能为空!");
+        		return false;
         	}
         }
     });
@@ -301,7 +304,6 @@ function loadMainGrid() {
        
     };
     $("#mainGrid").datagrid(options);
-    console.info( options.queryParams);
 }
 
 function reset() {

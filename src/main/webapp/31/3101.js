@@ -59,8 +59,13 @@ function goNext() {
 }
 
 function minimizeMyPlanListWindow() {
-	loadPlanAbstract();
-	$("#myPlanListWindow").window("minimize");
+	var row = $('#grid1').datagrid('getSelected');
+	if(row != null) {
+		loadPlanAbstract();
+		$("#myPlanListWindow").window("minimize");
+	} else {
+		$.messager.alert("操作提示", "必须首先选择一个计划才能进行下一步操作");
+	}
 }
 
 function loadPlanAbstract() {

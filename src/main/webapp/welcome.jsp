@@ -126,14 +126,14 @@ function formatZfry(val, row) {
 	}
     return result;
 }
-
+/* 
 function loadMyTask() {
     var options = $("#todoTaskGrid").datagrid("options");
-    options.url = './common/query?mapper=hcrwMapper&queryName=queryForAuditor';
+    options.url = './common/query?mapper=hcrwMapper&queryName=queryForUser';
 }
-
+ */
 $(function(){
-    loadMyTask();
+    //loadMyTask();
 });
 
 </script>

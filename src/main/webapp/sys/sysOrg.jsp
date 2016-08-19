@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="easyui-layout" data-options="fit:true">
-	<div data-options="region:'west',split:true" title="组织机构" style="width:400px;">
+	<div data-options="region:'west',split:true" title="单位列表" style="width:400px;">
 		<ul id="tree" class="ztree"></ul>
 	</div>
 	<div data-options="region:'center',title:''" style="padding-left:10px;padding-top:10px;">

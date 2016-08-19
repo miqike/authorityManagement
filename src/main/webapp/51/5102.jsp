@@ -98,10 +98,12 @@
             <div style="padding: 5px 10px 0px 10px">
                 <table id="queryWGSTable">
                     <tr>
-                        <td class="label">企业注册号码</td>
+                        <td class="label">统一社会信用代码</td>
                         <td><input id="f_hcdwXydm" class="easyui-validatebox" style=""/></td>
                         <td class="label">登记机关</td>
                         <td><input id="f_djjgmc" class="easyui-validatebox" style=""/></td>
+                        <td class="label">登记机关</td>
+                        <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
                         <td style="text-align:right;">
                             <a href="javascript:void(0);" id="btnRenLing" class="easyui-linkbutton" plain="true"
                                iconCls="icon2 r9_c5">认领</a>
@@ -131,10 +133,11 @@
                 <tr>
                     <th data-options="field:'zfryName'" halign="center" align="center" width="100" >执法人员</th>
                     <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="200">统一社会信用代码</th>
-                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
+                    <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">企业名称</th>
                     <th data-options="field:'rlr',halign:'center',align:'left'" sortable="true" width="100">认领人</th>
                     <th data-options="field:'rlrq',halign:'center',align:'left'" sortable="true" width="80" formatter="formatDate">认领日期</th>
                     <th data-options="field:'djjgmc',halign:'center',align:'left'" sortable="true" width="200">登记机关名称</th>
+                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200">登记机关</th>
                 </tr>
                 </thead>
             </table>
@@ -145,7 +148,7 @@
 				<div id="northPanel" data-options="region: 'north', height:154, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11'" style="overflow: hidden;">
 		            <table id="taskDetailTable">
 		                <tr>
-		                    <td class="label">注册号</td>
+		                    <td class="label">统一社会信用代码</td>
 		                    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
 		                    <td class="label">被抽查企业名称</td>
 		                    <td ><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
