@@ -144,7 +144,6 @@ function _idDescent(treeObj, treeNode, exist) {
 		result = -1;
 	} else {
 		var parent = treeNode.getParentNode();
-		debugger;
 		while(parent != null) {
 			if(parent.id == exist.orgId) {
 				result = -2;
