@@ -170,11 +170,11 @@
             <div id="mainTabs" class="easyui-tabs" data-options="fit: true, border: true, showOption: true, enableNewTabMenu: true, tools: '#mainTabs_tools', enableJumpTabMenu: true, onSelect:tabsOnSelectHandler">
                 <div id="homePanel" data-options="title: '主页', iconCls: 'icon-hamburg-home'">
                     <div id="portal" class="easyui-portal" data-options="fit: true, border: false">
-                        <div style="width:70%;height:400px;" class="easyui-panel" data-options="fit:true">
+                        <div style="width:70%;height:auto" class="easyui-panel" data-options="fit:true">
 				            <div id="taskTabPanel" class="easyui-tabs" data-options="fit:true">
 				                <div id="todoTaskGridDiv" title="待办任务" data-options="closable:false,collapsible:true" selected="true">
 				                    <table id="todoTaskGrid" class="easyui-datagrid" style="width:auto;"
-				                           data-options="fit:true,border:false,singleSelect:true,method:'get',
+				                           data-options="fit:true,border:false,singleSelect:true,method:'get',height:900,
 				                               pagination:true,pageSize:100, idField:'id'">
 				                        <thead>
 				                        <tr>
