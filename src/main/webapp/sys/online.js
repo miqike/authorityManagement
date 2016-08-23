@@ -73,14 +73,3 @@ function search(){
 	});
 }
 
-$(function() {
-	
-	$(".datagrid-body").niceScroll({
-	    cursorcolor : "lightblue", // 滚动条颜色
-	    cursoropacitymax : 3, // 滚动条是否透明
-	    horizrailenabled : false, // 是否水平滚动
-	    cursorborderradius : 0, // 滚动条是否圆角大小
-	    autohidemode : false // 是否隐藏滚动条
-	});
-
-});

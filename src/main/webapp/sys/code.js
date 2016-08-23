@@ -125,21 +125,7 @@ function saveCode(){
     return false;
 }
 
-$(function () {
+function search(){
+    $('#mainGrid').datagrid('load',{name: $('#f_name').val().toUpperCase()});
+}
 
-    $("#btnAdd").click(add);
-    $("#btnView").click(view);
-    $("#btnDelete").click(remove);
-    $("#btnDuplicate").click(duplicate);
-    $("#btnEditOrSave").click(editOrSave);
-    $("#btnSearch").click(function(){
-        $('#mainGrid').datagrid('load',{name: $('#f_name').val().toUpperCase()});
-    });
-    $(".datagrid-body").niceScroll({
-        cursorcolor : "lightblue", // 滚动条颜色
-        cursoropacitymax : 3, // 滚动条是否透明
-        horizrailenabled : false, // 是否水平滚动
-        cursorborderradius : 0, // 滚动条是否圆角大小
-        autohidemode : false // 是否隐藏滚动条
-    });
-})

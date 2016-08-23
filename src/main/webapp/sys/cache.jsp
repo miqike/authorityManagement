@@ -5,17 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>缓存监控列表</title>
-	<link href="../css/content.css" rel="stylesheet" />
-	<link href="../css/themes/${theme}/easyui.css" rel="stylesheet" />
-	<link href="../css/themes/icon.css" rel="stylesheet" />
+    <link href="../css/content.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
+    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
-	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js" ></script>
-	<script type="text/javascript" src="../js/jquery.easyui.min.js" ></script>
-	<script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
-	<script type="text/javascript" src="../js/husky/husky.easyui.extend.depreciated.js" ></script>
+	<script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
 
-	<script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
 	<script type="text/javascript" src="../js/datagrid-detailview.js" ></script>
 	<script type="text/javascript" src="./cache.js" ></script>
 	<style>
@@ -23,19 +22,19 @@
 		div #popWindow .datagrid-wrap{ border: 0px;}
 	</style>
 </head>
-<body style="padding-top: 5px; padding-left:5px;">
-	<div id="panel" class="easyui-panel" title="缓存列表" >
+<body style="padding: 5px;">
+	<div id="panel" class="easyui-panel" title="" data-options="fit:true," >
 		<table id="mainGrid"
 			class="easyui-datagrid"
 			data-options="singleSelect:true,collapsible:true,onClickRow:mainGridButtonHandler,
 				method:'get',url:'../sys/cache'"
 			toolbar="#mainGridToolbar"
-			style="height: 500px"
+			style="height: 310px"
 			pagination="false">
 			<thead>
 				<tr>
 					<th data-options="field:'cacheName',halign:'center',align:'center'" sortable="true" width="200">名字</th>
-                    <th data-options="field:'objectCount',halign:'center',align:'right'" sortable="true" width="100">总对象数</th>
+					<th data-options="field:'objectCount',halign:'center',align:'right'" sortable="true" width="100">总对象数</th>
 					<th data-options="field:'cacheHits',halign:'center',align:'right'" sortable="true" width="70">命中数</th>
 					<th data-options="field:'cacheHitPercent',halign:'center',align:'right'" sortable="true" width="70" formatter="formatPercentage">命中率 %</th>
 					<th data-options="field:'cacheMisses',halign:'center',align:'right'" sortable="true" width="70">未命中数</th>
@@ -51,7 +50,7 @@
 		</table>
 		<div id="mainGridToolbar">
 			<a href="#" id="btnView" class="easyui-linkbutton" iconCls="icon2 r2_c10" plain="true" disabled="true">详细</a>
-			<a href="#" id="btnClear" class="easyui-linkbutton" iconCls="icon-clear" plain="true" >清空</a>
+			<a href="#" id="btnClear" class="easyui-linkbutton" iconCls="icon2 r26_c1" plain="true" >清空</a>
 			<a href="#" id="btnRefresh" class="easyui-linkbutton" iconCls="icon-reload" plain="true" >刷新</a>
 		</div>
 	</div>
@@ -82,7 +81,7 @@
 			</tbody>
 		</table>
 		<div id="cacheGridToolbar">
-			<a href="#" id="btnDelete" class="easyui-linkbutton" iconCls="icon-remove" plain="true" >删除</a>
+			<a href="#" id="btnRemove" class="easyui-linkbutton" iconCls="icon-remove" plain="true" >删除</a>
 			<a href="#" id="btnRefresh1" class="easyui-linkbutton" iconCls="icon-reload" plain="true" >刷新</a>
 		</div>
 	</div>

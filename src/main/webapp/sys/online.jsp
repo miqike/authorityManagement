@@ -7,7 +7,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>在线用户列表</title>
-
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
@@ -19,20 +18,12 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-    <script type="text/javascript" src="../js/jquery.nicescroll.min.js"></script>
-
-    <script type="text/javascript" src="../js/husky.orgTree.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+	<script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-    <script type="text/javascript" src="../js/formatter.js"></script>
     <script type="text/javascript" src="./online.js"></script>
     <style>
-        body {
-            margin:0;
-            padding:5px;
-            font:13px/1.5 \5b8b\4f53, Arial, sans-serif;
-        }
 
         div .datagrid-wrap{ border-right: 0px; border-left: 0px; border-bottom: 0px}
 
@@ -49,8 +40,8 @@
     </script>
     
 </head>
-<body>
-<div id="panel" class="easyui-panel" title="" >
+<body style="padding:5px;">
+	<div id="panel" class="easyui-panel" title="">
     <div style="margin-bottom:3px;margin-top:5px;">
         <span style="margin-left:8px;margin-right:0px;">用户名/姓名:</span>
         <input id="f_name" style="margin-left:5px;margin-right:10px; padding-right: 3px;"/>
@@ -66,11 +57,9 @@
     <table id="mainGrid"
            class="easyui-datagrid"
            data-options="singleSelect:false,collapsible:true,onClickRow:mainGridButtonHandler,onLoadSuccess:loadSuccessHandler,
-				method:'get',
+				method:'get',offset: {height: -48, width:-20},height:400,
 				url:'../common/query?mapper=userOnlineMapper&queryName=query'"
-				url:'../sys/user/online/'"
            toolbar="#mainGridToolbar"
-           style="height: 500px"
            pageSize="100"
            pagination="true">
         <thead>

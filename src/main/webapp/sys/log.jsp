@@ -16,12 +16,10 @@
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
 	<script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
 
-
-<script type="text/javascript" src="../js/jquery.nicescroll.min.js" ></script>
-<script type="text/javascript" src="../js/husky/husky.common.js"></script>
-<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-<script type="text/javascript" src="../js/formatter.js"></script>
-<script type="text/javascript" src="./log.js" ></script>
+	<script type="text/javascript" src="../js/husky/husky.common.js"></script>
+	<script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
+	<script type="text/javascript" src="../js/formatter.js"></script>
+	<script type="text/javascript" src="./log.js" ></script>
 <style type="text/css">
 	#panel .datagrid-wrap{ border-width: 1px 0px 0px 0px;}
 	#queryTable td:nth-child(odd) {text-align:right;}
@@ -78,6 +76,7 @@
 			class="easyui-datagrid" 
 			data-options="singleSelect:true,collapsible:true,onClickRow:mainGridButtonHandler,
 				onDblClickRow:mainGridDblClickHandler,method:'get',
+				offset: {height: -103, width:-20},
 				url:'../sys/log',
 				onLoadSuccess: loadSuccessHandler,
 				height:450"
