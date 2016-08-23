@@ -93,12 +93,14 @@ function leftMenuItemClickHandler() {
 	var tabTitle = $(this).find('span.nav').text();
 	var url = $(this).attr("rel");
 	var menuId = $(this).attr("ref");
+	var iconCls = $(this).find("span:first").attr("class");
 	$('#wnav li').removeClass("selected");
 	$(this).addClass("selected");
 	window.mainpage.mainTabs.addModule({
 		id:menuId, 
 		title:tabTitle, 
-		href:url
+		href:url,
+		iconCls: iconCls
 	});
 }
 

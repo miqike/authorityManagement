@@ -78,8 +78,8 @@
                         </tr>
                         <tr>
                             <td style="text-align:right">父节点</td>
-                            <td><input class="easyui-validatebox" id="f_parentId" name="parentId" style="width:100px;" data-options="disabled:true"/>
-                                <input class="easyui-validatebox" id="f_parentName" style="width:195px;" data-options="disabled:true"/>
+                            <td><input class="easyui-validatebox" id="f_parentId" name="parentId" style="width:90px;" data-options="disabled:true"/>
+                                <input class="easyui-validatebox" id="f_parentName" style="width:196px;" data-options="disabled:true"/>
                             </td>
                         </tr>
                         <tr>
