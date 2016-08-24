@@ -66,39 +66,7 @@ end;
 --插入市局
 insert into sys_organization(id,name,parent_id,type,contacts,phone,brief_name)
   values(500,'重庆市工商局',0,1,null,null,'市局');
-/**
-  初始化核查人员 有人员属于多个管辖单位的情况，此次将这些人员过滤掉了
- */
-delete from t_zfry;
-insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
-  select distinct user_id code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-    null zw,null mobile,null mail,null zfzh,null sfzh,1,null whcd,1,
-    gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
-    gh user_id
-  from xt_user a
-  where user_id not in(select code from(select count(1),c.code from(
-select distinct user_id code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-    null zw,null mobile,null mail,null zfzh,null sfzh,1,null whcd,1,
-    gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
-    gh user_id
-  from xt_user a
-) c group by c.code having count(1)>1));
-/*
-merge into t_zfry 
-  using(
-    select trim(user_id) code,full_name,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-        null zw,null mobile,null mail,null zfzh,null sfzh,1 zflx,null whcd,1 zt,
-        gxdw GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdw) gxdw_name,
-        gh user_id
-        from xt_user a
-  ) i_zfry
-  on(i_zfry.code=t_zfry.code)  
-  WHEN MATCHED THEN 
-          update set name=i_zfry.full_name
-  WHEN NOT MATCHED THEN 
-      insert(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
-        values(i_zfry.code,i_zfry.full_name,i_zfry.gender,i_zfry.dw_id,i_zfry.dw_name,i_zfry.zw,i_zfry.mobile,i_zfry.mail,i_zfry.zfzh,i_zfry.sfzh,i_zfry.zflx,i_zfry.whcd,i_zfry.zt,i_zfry.GXDW_ID,i_zfry.GXDW_NAME,i_zfry.user_id);
-*/
+
 /**
   初始化操作员
  */

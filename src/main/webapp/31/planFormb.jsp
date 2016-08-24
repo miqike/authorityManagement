@@ -53,7 +53,7 @@
 		$.easyui.showDialog({
 			title : "选择单位",
 			width : 850,
-			height : 650,
+			height : 450,
 			topMost : false,
 			enableSaveButton : true,
 			enableApplyButton : false,
