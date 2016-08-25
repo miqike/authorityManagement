@@ -11,7 +11,7 @@ truncate table T_NB_BD_GQBG;
 truncate table T_NB_BD_GDCZ;
 truncate table T_NB_BD_DWTZ;
 truncate table T_NB_BD_DWDB;
-delete from T_NB_BD;
+truncate table T_NB_BD;
 truncate table T_NB;
 truncate table t_hcrw;
 truncate table T_HCRW_TJ;
@@ -20,9 +20,8 @@ truncate table T_HCJH;
 truncate table T_HCSXJG;
 truncate table T_SCZT;
 truncate table T_TOKEN;
-
-truncate table T_USER_ORG;
-commit;
+truncate table T_JS_HCRW;
+truncate table T_JS_HCSXJG;
 truncate table T_JS_BD_GDCZ;
 truncate table T_JS_BD_GQBG;
 truncate table T_JS_BD_XZCF;
@@ -30,13 +29,6 @@ truncate table T_JS_BD_XZXK;
 truncate table T_JS_BD_ZSCQ;
 truncate table T_JS_GDCZ;
 truncate table T_JS_GQBG;
-truncate table T_JS_GS_GDCZ;
-truncate table T_JS_GS_GQBG;
-truncate table T_JS_GS_XZCF;
-truncate table T_JS_GS_XZXK;
-truncate table T_JS_GS_ZSCQ;
-truncate table T_JS_HCRW;
-truncate table T_JS_HCSXJG;
 truncate table T_JS_XZCF;
 truncate table T_JS_XZXK;
 truncate table T_JS_ZSCQ;
@@ -70,15 +62,33 @@ end;
 /
 
 /**
-  初始化核查人员
+  初始化核查人员 xt_user.user_name字段有重复 xt_user.gh字段有重复
  */
 delete from t_zfry;
-insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
-  select user_id code,full_name name ,null gender,djjg dw_id,(select content from bm_djjg b where b.code=a.djjg) dw_name,
-    null zw,null mobile,null mail,zfzh,null sfzh,1 zflx,null whcd,1 zt,
-    gxdwdm GXDW_ID,(select content from bm_gxdw b where b.code=a.gxdwdm) gxdw_name,
-    user_name user_id
-  from xt_user a;
+declare
+  cursor xtuser IS
+     select * from xt_user;
+  v_cnt number;
+  v_djjgmc varchar2(1000);
+  v_gxdwmc varchar2(1000);
+BEGIN
+  for o in xtuser LOOP
+    select count(1) into v_cnt from t_zfry where code=o.user_name;
+    if(v_cnt=0) THEN
+      insert into t_zfry(code,name,gender,dw_id,dw_name,zw,mobile,mail,zfzh,sfzh,zflx,whcd,zt,GXDW_ID,GXDW_NAME,user_id)
+        values(o.user_name,o.full_name,null,
+                           o.djjg,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end),
+                           null,null,null,o.zfzh,null,1,null,1,
+               o.gxdwdm,(select content from bm_gxdw b where b.code=case when o.djjg is null then '610000' else o.gxdwdm end),o.gh);
+    ELSE
+      update t_zfry set name=o.full_name,dw_id=o.djjg,dw_name=(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end),
+        GXDW_ID=o.gxdwdm,GXDW_NAME=(select content from bm_gxdw b where b.code=case when o.djjg is null then '610000' else o.gxdwdm end),
+      user_id=o.gh where code=o.user_name;
+    END IF;
+  END LOOP;
+END;
+/
+
 /**
   初始化操作员
  */
@@ -89,23 +99,23 @@ declare
   v_cnt number;
   v_cnt2 number;
 begin
-  for o in(select * from xt_user where user_name is not null) loop
-    select count(1) into v_cnt from sys_user where user_id=o.user_name;
+  for o in(select * from xt_user where gh is not null) loop
+    select count(1) into v_cnt from sys_user where user_id=o.gh;
     if(v_cnt=0) then
       insert into sys_user(user_id,manager_id,name,email,mobile,password,salt,create_time,manager_name,status,org_id,org_type,weight,org_name,zfry,ext1)
-      values(o.user_name,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.user_name||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
+      values(o.gh,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.user_name||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
                   null,1,case when o.djjg is null then '610000' else o.djjg end,0,1,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end) ,
-             o.user_name,1);
-      select count(1) into v_cnt2 from t_user_org where user_id=o.user_name and org_id=o.djjg;
+             o.user_name,2);
+      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
       if(v_cnt2=0) then
         insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.user_name,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
+        values(o.gh,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
       end if;
     else
-      select count(1) into v_cnt2 from t_user_org where user_id=o.user_name and org_id=case when o.djjg is null then '610000' else o.djjg end;
+      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=case when o.djjg is null then '610000' else o.djjg end;
       if(v_cnt2=0) then
         insert into t_user_org(user_id,user_name,org_id,org_name)
-        values(o.user_name,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
+        values(o.gh,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));
       end if;
     end if;
   end loop;
@@ -115,7 +125,7 @@ end;
 insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
   where a.name in('超级管理员')
-        and b.user_id<>'system';
+        and b.user_id<>'system' and user_id not in(select user_id  from sys_user);
 update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
 insert into t_user_org values('system','系统管理员','610000','陕西省工商行政管理局');
 /**
