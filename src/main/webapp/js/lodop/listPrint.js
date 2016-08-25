@@ -169,6 +169,7 @@ function listPrint(params, data, columnList) {
         LODOP.SET_PRINTER_INDEX(-1);
         LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
         LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+        LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
 
         //每页标题
         if (pageTitleFirst == "1") {
