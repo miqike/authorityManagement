@@ -126,10 +126,12 @@ function initAuditItemList() {
 }
 
 function doAuditItemListInit() {
+    $.easyui.loading();
     window.auditItemDataReady = false;
     var hcrw = $('#grid1').datagrid('getSelected');
     if(null == hcrw) {
     	$("#auditItemList").empty();
+        $.easyui.loaded();
     } else {
 	    $.ajax({
 	        url: "./" + hcrw.id + "/initStatus",
@@ -142,6 +144,7 @@ function doAuditItemListInit() {
                             url: "./" + hcrw.id + "/init",
                             type: 'POST',
                             success: function (response) {
+                                $.easyui.loaded();
                                 if (response.status == $.husky.SUCCESS) {
                                     $.publish("AUDITITEM_DATA_INITIALIZED", null);
                                     window.auditItemDataReady = true;
@@ -152,6 +155,7 @@ function doAuditItemListInit() {
                             }
                         });
 	                } else {
+                        $.easyui.loaded();
 	                    $.publish("AUDITITEM_DATA_INITIALIZED", null);
 	                    window.auditItemDataReady = true;
 	                    initAuditItemList();

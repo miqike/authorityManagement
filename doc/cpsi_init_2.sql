@@ -124,8 +124,8 @@ end;
 
 insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
-  where a.name in('超级管理员')
-        and b.user_id<>'system' and user_id not in(select user_id  from sys_user);
+  where a.name in('测试人员')
+        and b.user_id<>'system' and user_id not in(select user_id  from sys_user_role);
 update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
 insert into t_user_org values('system','系统管理员','610000','陕西省工商行政管理局');
 /**

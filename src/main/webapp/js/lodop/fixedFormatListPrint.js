@@ -74,6 +74,7 @@ function fixedFormatListPrint(params,data,columnList){
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     rowTop=rowHeight*startRow;//根据给定的开始行数，计算开始打印的行位置

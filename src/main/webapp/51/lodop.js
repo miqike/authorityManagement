@@ -30,6 +30,7 @@ function printQiyezhusuohechahan() {
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     //开始打印
@@ -80,8 +81,8 @@ function printQiyezhusuohechahan() {
     LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
     LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
 
-    // LODOP.PREVIEW();
-    LODOP.PRINT();
+    LODOP.PREVIEW();
+    // LODOP.PRINT();
     var data = {};
     data.moduleName = "gaozhishu";
     data.desc = "打印通知书";
@@ -107,6 +108,7 @@ function printShidihechagaozhishu() {
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     //开始打印
@@ -269,6 +271,7 @@ function printZelingluxingtongzhishu() {
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     //开始打印
@@ -517,6 +520,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     var qy=$("#grid1").datagrid("getSelected");
@@ -721,6 +725,7 @@ function printGongShiXinXiGengZhengBiao(){
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     var qy=$("#grid1").datagrid("getSelected");
@@ -891,6 +896,7 @@ function printGongShiXinXiGengZhengBiaoJs(){
     LODOP.SET_PRINTER_INDEX(-1);
     LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
     LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+    LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
     //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
     var qy=$("#myTaskGrid").datagrid("getSelected");
