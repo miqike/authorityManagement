@@ -132,8 +132,7 @@
                     </td>
                     <td class="label">检查单位</td>
                     <td><input type="hidden" id="k_djjg"/>
-                        <input class="easyui-validatebox" id="k_djjgmc" data-options="required:true"
-                               style="width:160px;" />
+                        <input class="easyui-validatebox" id="k_djjgmc" data-options="required:true,readonly:true,novalidate:true" style="width:160px;" />
                                <a href="#" id="btnShowChangeOrgDialog" class="easyui-linkbutton" iconCls="icon-edit" plain="true"></a>
                     </td>
                 </tr>

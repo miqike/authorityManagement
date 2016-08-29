@@ -369,7 +369,7 @@ function showPlanFormb(data) {
 			handler:function(){
 				var tab = $('#tabPanelb').tabs('getSelected');
 				var index = $('#tabPanelb').tabs('getTabIndex',tab);
-				if(index == 0 /*&& $('#planWindowb').form('validate')*/) {
+				if(index == 0 && $('#planWindowb').form('validate')) {
 					savePlan(2);
 				} else if (index == 1) {
 				}
