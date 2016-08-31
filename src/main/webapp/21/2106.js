@@ -37,19 +37,14 @@ function editWindowSave(){
 	};*/
     var formData=$.husky.getFormData("editWindow");
     
-    console.info(formData);
 	 $.ajax({
 	        url:"../21/updateMaterial",
 	        type: "put",
 	        data: formData,
 	        success: function (response) {
 	        	if(response.status==1){
-	        		$.messager.show({
-		        		title:'提示',
-		        		msg:'修改成功',
-		        		timeout:5000,
-		        		showType:'slide'
-		        	});
+	        		$.messager.show('操作提示', '修改核查材料成功', "info", "bottomRight");
+	        		$("#mainGrid").datagrid("reload");
 	        	}else{
 	        		$.messager.show({
 		        		title:'提示',
@@ -58,8 +53,7 @@ function editWindowSave(){
 		        		showType:'slide'
 		        	});
 	        	}
-	        	
-}
+	        }
 	 });
 	 $("#editWindow").window("close");
 	 $("#mainGrid").datagrid("reload");

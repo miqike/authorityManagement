@@ -186,4 +186,14 @@ public class Hccl {
 	public void setMaterialId(String materialId) {
 		this.materialId = materialId;
 	}
+	
+	private Integer dxnType;
+	
+	public Integer getDxnType() {
+		return dxnType;
+	}
+
+	public void setDxnType(Integer dxnType) {
+		this.dxnType = dxnType;
+	}
 }

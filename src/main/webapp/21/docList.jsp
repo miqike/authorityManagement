@@ -130,6 +130,7 @@
             <th data-options="field:'sfbyx',halign:'center',align:'center'" sortable="true" width="80"codeName="yesno" formatter="formatCodeList">是否必要项</th>
             <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="100" codeName="wjlx" formatter="formatCodeList">文件类型</th>
             <th data-options="field:'yhtg',halign:'center',align:'center'" sortable="true" width="80" codeName="yesno" formatter="formatCodeList">是否用户提供</th>
+            <th data-options="field:'dxnType',halign:'center',align:'center'" sortable="true" width="120" codeName="dxnType" formatter="formatCodeList">鼎鑫诺数据标志</th>
                 
         </tr>
         </thead>

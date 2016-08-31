@@ -77,8 +77,10 @@
 
 				<th data-options="field:'name',halign:'center',align:'left'"
 					width="250">材料名称</th>
-				<th data-options="field:'type',halign:'center',align:'left'"
-					width="250" codeName="wjlx" formatter="formatCodeList">材料类型
+				<th data-options="field:'type',halign:'center',align:'center'"
+					width="150" codeName="wjlx" formatter="formatCodeList">材料类型
+				<th data-options="field:'dxnType',halign:'center',align:'center'"
+					width="150" codeName="dxnType" formatter="formatCodeList">鼎鑫诺数据标志
 				</th>
 			</tr>
 		</thead>
@@ -126,22 +128,25 @@
 			selected="true">
 			<table width="100%" id="addTable">
 			<tr>
-					<td>材料编码</td>
+					<td style="text-align:right;">材料编码</td>
 					<td><input class="easyui-validatebox add" id="f_id"
 						data-options="required:true" style="width: 200px;" /></td>
 				</tr>
 				<tr>
-					<td>材料名称</td>
+					<td style="text-align:right;">材料名称</td>
 					<td><input class="easyui-validatebox add" id="f_name"
 						data-options="required:true" style="width: 200px;" /></td>
 				</tr>
 				<tr>
-					<td>材料类型</td>
+					<td style="text-align:right;">材料类型</td>
 					<td><input class="easyui-combobox add" id="f_type"
 						data-options="required:true" style="width: 200px;" codeName="wjlx"/></td>
 				</tr>
-
-
+				<tr>
+					<td style="text-align:right;">鼎鑫诺数据标志</td>
+					<td><input class="easyui-combobox add" id="f_dxnType"
+						data-options="panelHeight:70" style="width: 200px;" codeName="dxnType"/></td>
+				</tr>
 
 			</table>
 			<a href="#" id="editWindowSave" class="easyui-linkbutton"
