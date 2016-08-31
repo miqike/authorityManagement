@@ -79,11 +79,11 @@ BEGIN
         values(o.user_name,o.full_name,null,
                            o.djjg,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end),
                            null,null,null,o.zfzh,null,1,null,1,
-               o.gxdwdm,(select content from bm_gxdw b where b.code=case when o.djjg is null then '610000' else o.gxdwdm end),o.gh);
+               o.gxdwdm,(select content from bm_gxdw b where b.code=case when o.gxdwdm is null then '610000' else o.gxdwdm end),o.gh);
     ELSE
       update t_zfry set name=o.full_name,dw_id=o.djjg,dw_name=(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end),
-        GXDW_ID=o.gxdwdm,GXDW_NAME=(select content from bm_gxdw b where b.code=case when o.djjg is null then '610000' else o.gxdwdm end),
-      user_id=o.gh where code=o.user_name;
+        GXDW_ID=o.gxdwdm,GXDW_NAME=(select content from bm_gxdw b where b.code=case when o.gxdwdm is null then '610000' else o.gxdwdm end),
+      user_id1236=o.gh where code=o.user_name;
     END IF;
   END LOOP;
 END;
