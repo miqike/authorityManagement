@@ -20,14 +20,17 @@ function docReadyFlagStyler(val,row,index) {
 }
 
 function grid1LoadSucessHandler(data) {
-    $('#grid1').datagrid('selectRow', 0);
+    //$('#grid1').datagrid('selectRow', 0);
     if(window._selectdPlanId_ != undefined) {
     	$("#grid1").datagrid("selectRow", getRowIndex());
+    	//loadMyTask(_selectdPlanId_);
     } else {
+    	/*
     	var plan = $("#grid1").datagrid("getSelected");
     	window._selectdPlanId_ = plan.jhbh;
+    	*/
     }
-    loadMyTask(_selectdPlanId_);
+    //loadMyTask(_selectdPlanId_);
 }
 
 function getRowIndex() {
