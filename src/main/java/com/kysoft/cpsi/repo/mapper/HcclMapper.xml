@@ -198,7 +198,7 @@
         and a.id = #{hcrwId} ) M LEFT JOIN (
 	SELECT ID HCCLMX_ID, MONGO_ID,  YHTG, LY, UPLOAD_TIME, HCCL_ID FROM t_hcclmx WHERE hcrw_id=#{hcrwId}) N ON M.HCCL_ID = N.HCCL_ID
 	
-	ORDER BY M.SFBYX DESC, M.HCCL_NAME ASC
+	ORDER BY M.SFBYX DESC, M.HCSXMC ASC
     </select>
     
     <select id="queryForTask2" resultType="java.util.Map">
