@@ -96,7 +96,7 @@
 			<tr>
 				<!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
 				<th data-options="field:'hcjgmc'" halign="center" align="left" width="250">任务下达机关</th>
-				<th data-options="field:'zfryName'" halign="center" align="left" width="70">检查人员</th>
+				<th data-options="field:'zfryName'" halign="center" align="left" width="120">检查人员</th>
 				<th data-options="field:'hcrws'" halign="center" align="left" width="70">检查任务数</th>
 				<th data-options="field:'rls'" halign="center" align="left" width="60">认领数</th>
 				<th data-options="field:'wcs'" halign="center" align="left" width="60">已完成数</th>

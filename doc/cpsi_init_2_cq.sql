@@ -33,7 +33,7 @@ BEGIN
     ELSE
       update t_zfry set name=o.full_name,dw_id=o.djjg,dw_name=(select content from bm_djjg b where b.code=case when o.djjg is null then '500' else o.djjg end),
         GXDW_ID=o.gxdwdm,GXDW_NAME=(select content from bm_gxdw b where b.code=case when o.gxdwdm is null then '500' else o.gxdwdm end),
-      user_id1236=o.gh where code=o.user_name;
+      user_id=o.gh where code=o.user_name;
     END IF;
   END LOOP;
 END;
@@ -74,7 +74,7 @@ end;
 
 insert into sys_user_role(role_id,user_id)
   select a.id,b.user_id from sys_role a,sys_user b
-  where a.name in('测试人员')
+  where a.id in(319)
         and b.user_id<>'system' and user_id not in(select user_id  from sys_user_role);
 update sys_user set password=lower(pkg_hc.MD5_DIGEST(user_id||'111111'||salt));
 insert into t_user_org values('system','系统管理员','500','重庆市工商行政管理局');
