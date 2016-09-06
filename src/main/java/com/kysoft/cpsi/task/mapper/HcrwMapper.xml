@@ -763,7 +763,7 @@
           and (ZFRY_CODE1 = (select zfry from sys_user where user_id=#{_userId}) OR ZFRY_CODE2 = (select zfry from sys_user where user_id=#{_userId}))
       </if>
       
-     and rlrmc is not null
+        and rlrmc is not null
       
         ORDER BY
         <if test="order == 1">

@@ -422,7 +422,7 @@
             AND (
               (a.DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) and  (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
               or xdr=#{_userId}
-            or (a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 =  (select zfry from sys_user where user_id=#{_userId}) OR rw.zfry_code2 =  (select zfry from sys_user where user_id=#{_userId})) )
+            or (a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 =  (select zfry from sys_user where user_id=#{_userId}) OR rw.zfry_code2 =  (select zfry from sys_user where user_id=#{_userId}) or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) and  (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1) ))
             )
         </where>
         ORDER BY
@@ -467,7 +467,7 @@
             AND (
             (a.DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) and  (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1)
             or xdr=#{_userId}
-            or (a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 = (select zfry from sys_user where user_id=#{_userId}) OR rw.zfry_code2 =  (select zfry from sys_user where user_id=#{_userId})))
+            or (a.ID IN (SELECT DISTINCT HCJH_ID FROM t_hcrw rw WHERE rw.zfry_code1 =  (select zfry from sys_user where user_id=#{_userId}) OR rw.zfry_code2 =  (select zfry from sys_user where user_id=#{_userId}) or (DJJG IN ( SELECT ID FROM SYS_ORGANIZATION START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID ) and  (select ext1 from sys_user where user_id=#{_userId,jdbcType=VARCHAR})=1) ))
             )
             
             OR XDR = #{_userId}
