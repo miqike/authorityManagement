@@ -128,6 +128,8 @@
 						ctrlSelect:false,method:'get'">
 		        <thead>
 		        <tr>
+		            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
+		            <th data-options="field:'UPLOAD_TIME',halign:'center',align:'center'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
 					<th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>
 		            <th data-options="field:'HCCL_NAME',halign:'center',align:'left'" sortable="true" width="110">材料名称</th>
 		            <th data-options="field:'SFBYX',halign:'center',align:'center'" sortable="true" width="70" codeName="yesno" formatter="formatCodeList" styler="sfbyStyler">是否必要项</th>
@@ -135,8 +137,6 @@
 		            <th data-options="field:'YHTG',halign:'center',align:'center'" sortable="true" width="90" codeName="yesno" formatter="formatCodeList" styler="sfbyStyler">是否用户提供</th>
 		            <th data-options="field:'DXN_TYPE',halign:'center',align:'center'" sortable="true" width="90" codeName="dxnType" formatter="formatCodeList" >财务核查数据标志</th>
 		            <th data-options="field:'LY',halign:'center',align:'center'" sortable="true" width="70" codeName="wjly" formatter="formatCodeList">数据来源</th>
-		            <th data-options="field:'UPLOAD_TIME',halign:'center',align:'center'" sortable="true" width="110" formatter="formatDatetime2Min">上传时间</th>
-		            <th data-options="field:'id',halign:'center',align:'center'" sortable="true" width="70" formatter="formatDocOperation">显示</th>
 		<!-- 
 		            <th data-options="field:'LY',halign:'center',align:'center'" sortable="true" width="80" codeName="wjly" formatter="formatCodeList" styler="wjlyStyler">分类</th>
 		            <th data-options="field:'wjlx',halign:'center',align:'center'" sortable="true" width="70" codeName="wjlx" formatter="formatCodeList">文件类型</th>
