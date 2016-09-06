@@ -309,7 +309,7 @@
         select 'false' as QUERYID,
         <include refid="Base_Column_List"/>
         from T_HCCLMX WHERE HCRW_ID = #{hcrwId,jdbcType=VARCHAR}
-        ORDER BY UPLOAD_TIME DESC
+        ORDER BY HCSXMC ASC
     </select>
 
     <select id="selectBy" resultMap="BaseResultMap">
