@@ -80,7 +80,7 @@
 				<th data-options="field:'type',halign:'center',align:'center'"
 					width="150" codeName="wjlx" formatter="formatCodeList">材料类型
 				<th data-options="field:'dxnType',halign:'center',align:'center'"
-					width="150" codeName="dxnType" formatter="formatCodeList">鼎鑫诺数据标志
+					width="150" codeName="dxnType" formatter="formatCodeList">财务核查数据标志
 				</th>
 			</tr>
 		</thead>
@@ -143,7 +143,7 @@
 						data-options="required:true" style="width: 200px;" codeName="wjlx"/></td>
 				</tr>
 				<tr>
-					<td style="text-align:right;">鼎鑫诺数据标志</td>
+					<td style="text-align:right;">财务核查数据标志</td>
 					<td><input class="easyui-combobox add" id="f_dxnType"
 						data-options="panelHeight:70" style="width: 200px;" codeName="dxnType"/></td>
 				</tr>

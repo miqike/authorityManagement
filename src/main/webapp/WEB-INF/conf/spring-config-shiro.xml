@@ -44,6 +44,7 @@
                 /login.html = anon
 
                 /css/** = anon
+                /download/** = anon
                 /js/** = anon
                 /images/** = anon
                 /index.jsp = authc,sysUser

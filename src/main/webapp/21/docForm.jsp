@@ -132,5 +132,8 @@
     	<tr>
     		<td class="label">是否用户提供</td><td><input class="easyui-combobox" id="d_yhtg" codeName="yesno"  data-options="panelHeight:70" style="width:250px;" /></td>
     	</tr>
+		<tr>
+			<td class="label">财务核查方式</td><td><input class="easyui-combobox" id="d_dxnType" codeName="dxnType"  data-options="panelHeight:70" style="width:250px;" /></td>
+		</tr>
     </table>
 </div>

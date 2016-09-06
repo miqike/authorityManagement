@@ -6,7 +6,7 @@
 alter table T_HCCL add dxn_type INTEGER;
 -- Add comments to the columns
 comment on column T_HCCL.dxn_type
-  is '鼎鑫诺关联标志: 1:电子财务数据,2:报表数据';
+  is '财务核查关联标志: 1:电子财务数据,2:报表数据';
 --------------------------------
 --  Changed table t_material  --
 --------------------------------
