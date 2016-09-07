@@ -122,4 +122,13 @@ public interface HcrwMapper {
 	List<Hcrw> queryForUser1(Map<String, Object> param);
 	List<Hcrw> queryForUser2(Map<String, Object> param);
 
+	void updateAudit(@Param("taskIds") List<String> taskIds, 
+		@Param("auditResult") int auditResult,
+		@Param("auditComment") String auditComment,
+		@Param("auditor") String auditor,
+		@Param("auditorName") String auditorName,
+		@Param("hcjieguo") int hcjieguo );
+
+	void updateCancelAudit(@Param("taskIds") List<String> taskIds);
+	
 }

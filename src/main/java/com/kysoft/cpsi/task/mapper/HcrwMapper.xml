@@ -725,7 +725,12 @@
       <if test="filterByZfry!=null">
           and (ZFRY_CODE1 =  (select zfry from sys_user where user_id=#{_userId}) OR ZFRY_CODE2 =  (select zfry from sys_user where user_id=#{_userId}))
       </if>
-      
+      <if test="filterByAuditResult==2">
+      		AND AUDIT_RESULT IS NOT NULL
+      </if>
+      <if test="filterByAuditResult==3">
+      		AND AUDIT_RESULT IS NULL
+      </if>
         ORDER BY
         <if test="order == 1">
           hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
@@ -1292,6 +1297,7 @@
 	      select #{taskId} from dual
 	    </foreach>)
     </update>
+	
     
 	<update id="updateStatusByPrimaryKey">
         UPDATE T_HCRW SET RWZT = #{statusCode} where ID = #{taskId}
@@ -1360,4 +1366,27 @@
     plan_type desc,jhbh desc,hcdw_xydm
   </select>
 
+    <update id="updateAudit">
+        UPDATE T_HCRW set AUDIT_RESULT=#{auditResult},
+		AUDIT_COMMENT=#{auditComment},
+	    AUDITOR=#{auditor},
+	    AUDITOR_NAME=#{auditorName},
+	    AUDIT_TIME=SYSDATE,
+	    HCJIEGUO=#{hcjieguo} 
+	    WHERE ID IN  (
+	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
+	      select #{taskId} from dual
+	    </foreach>)
+    </update>
+    
+    <update id="updateCancelAudit">
+    
+    	UPDATE T_HCRW SET AUDIT_RESULT = null, 
+    		AUDIT_COMMENT = null, AUDITOR = null, HCJIEGUO=null, 
+    		AUDITOR_NAME = null, SJWCRQ = null, AUDIT_TIME = null 
+    	WHERE ID IN  (
+	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
+	      select #{taskId} from dual
+	    </foreach>)
+    </update>
 </mapper>

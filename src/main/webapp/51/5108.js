@@ -40,15 +40,26 @@ function queryPlan(node) {
 }
 
 function grid2ClickHandler() {
-	var task = $('#grid2').datagrid('getSelected');
-    if (task != null) {
-    	if(task.auditResult == null) {
+	var tasks = $('#grid2').datagrid('getSelections');
+	var filterByAuditResult = $("input[name='filterByAuditResult']:checked").val();
+    if (tasks.length > 0) {
+    	if(filterByAuditResult == 1) {
+    		$('#btnShowAuditDialog').linkbutton('enable');
+    		$('#btnCancelAuditStatus').linkbutton('enable');
+    	} else if(filterByAuditResult == 2)  {
+    		$('#btnShowAuditDialog').linkbutton('disable');
+    		$('#btnCancelAuditStatus').linkbutton('enable');
+    	} else {
+    		$('#btnShowAuditDialog').linkbutton('enable');
+    		$('#btnCancelAuditStatus').linkbutton('disable');
+    	}
+    	/*if(task.auditResult == null) {
     		$('#btnShowAuditDialog').linkbutton('enable');
     		$('#btnCancelAuditStatus').linkbutton('disable');
     	} else {
     		$('#btnShowAuditDialog').linkbutton('disable');
     		$('#btnCancelAuditStatus').linkbutton('enable');
-    	}
+    	}*/
     } else {
     	$('#btnCancelAuditStatus').linkbutton('disable');
         $('#btnShowAuditDialog').linkbutton('disable');
@@ -56,16 +67,28 @@ function grid2ClickHandler() {
 }
 
 function cancelAuditStatus() {
-        var hcrw = $("#grid2").datagrid("getSelected");
-        if(null != hcrw) {
-        	if(hcrw.auditor != userInfo.userId) {
-        		$.messager.alert("操作提示", "该信息审核人不是本人操作,不允许操作");
-        	} else {
+        //var hcrw = $("#grid2").datagrid("getSelected");
+        
+        var tasks = $("#grid2").datagrid("getSelections");
+        var hcrwId = new Array();
+        for(var i=0; i<tasks.length; i++) {
+        	hcrwId.push(tasks[i].id);
+        }
+        
+        //if(null != hcrw) {
+       	if(tasks.length > 0) {
+        	//if(hcrw.auditor != userInfo.userId) {
+        	//	$.messager.alert("操作提示", "该信息审核人不是本人操作,不允许操作");
+        	//} else {
         		$.messager.confirm('确认', "是否确认取消审核?", function (r) {
         			if (r) {
         				$.ajax({
-        					url: "../51/" + hcrw.id + "/cancelAudit",
+        					//url: "../51/" + hcrw.id + "/cancelAudit",
+        		            url: "../51/batchCancelAudit",
+        		            data: JSON.stringify(hcrwId),
+        		            dataType: "json",
         					type: "POST",
+        					contentType: 'application/json;charset=utf-8',
         					success: function (response) {
         						if (response.status == $.husky.SUCCESS) {
         							$('#grid2').datagrid('reload');
@@ -77,7 +100,7 @@ function cancelAuditStatus() {
         				});
         			}
         		});
-        	}
+        	//}
         }
 }
 
@@ -139,6 +162,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
+            filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
             order: 1
         });
     } else {
@@ -184,5 +208,20 @@ $(function () {
     } else {
         $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
     }
+    $("input[name='filterByAuditResult']").change(function(){
+    	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+        var selected = treeObj.getSelectedNodes()
+        var hcjh = $('#grid1').datagrid('getSelected');
+        if (selected.length == 1 && hcjh != null) {
+            var options = $("#grid2").datagrid("options");
+            options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
+            $('#grid2').datagrid('load', {
+                hcjhId: hcjh.id,
+                organization: processorOrgId(selected[0].id),
+                filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
+                order: 1
+            });
+        }
+    });
 });
 
