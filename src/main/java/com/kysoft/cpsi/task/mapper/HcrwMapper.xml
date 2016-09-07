@@ -902,7 +902,11 @@
         (select a.mongo_id from t_hcclmx a,t_hccl b,t_hcjh_hcsx d where a.hccl_id=b.id and a.hcsx_id=d.hcsx_id and c.hcjh_id=d.hcjh_id and a.hcrw_id=c.id and b.dxn_type=1) mongoid_1,
         (select a.mongo_id from t_hcclmx a,t_hccl b,t_hcjh_hcsx d where a.hccl_id=b.id and a.hcsx_id=d.hcsx_id and c.hcjh_id=d.hcjh_id and a.hcrw_id=c.id and b.dxn_type=2) mongoid_2
       from T_HCRW c
-        where RLR IS NOT NULL AND RLRQ IS NOT NULL AND (ZFRY_CODE1 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+        where RLR IS NOT NULL AND RLRQ IS NOT NULL
+          AND (
+            (ZFRY_CODE1 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}) or ZFRY_CODE2 = (select zfry from sys_user where user_id=#{_userId,jdbcType=VARCHAR}))
+            or  (exists(select 1 from ( SELECT ID FROM SYS_ORGANIZATION  START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID  ) e where e.id=c.djjg) and (select ext1 from sys_user where user_id=#{_userId})=1)
+          )
         <if test="nd!=null">
             AND ND = #{nd}
         </if>
