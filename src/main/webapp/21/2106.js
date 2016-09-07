@@ -39,7 +39,7 @@ function editWindowSave(){
     
 	 $.ajax({
 	        url:"../21/updateMaterial",
-	        type: "put",
+	        type: "post",
 	        data: formData,
 	        success: function (response) {
 	        	if(response.status==1){

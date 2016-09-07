@@ -173,7 +173,7 @@
       HCSXMC = #{hcsxmc,jdbcType=VARCHAR},
       YHTG = #{yhtg,jdbcType=NUMERIC},
       MATERIAL_ID = #{materialId,jdbcType=VARCHAR},
-      DXN_TYPE = #{dxnType,jdbcType=NUMERIC},
+      DXN_TYPE = #{dxnType,jdbcType=NUMERIC}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   

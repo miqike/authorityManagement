@@ -1,20 +1,17 @@
 package com.kysoft.cpsi.repo.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import com.google.common.collect.Maps;
+import com.kysoft.cpsi.repo.entity.Material;
+import com.kysoft.cpsi.repo.service.MaterialService;
+import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Maps;
-import com.kysoft.cpsi.repo.entity.Material;
-import com.kysoft.cpsi.repo.service.MaterialService;
-
-import net.sf.husky.web.controller.BaseController;
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/21")
@@ -81,7 +78,7 @@ public class MaterialController extends BaseController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/updateMaterial", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updateMaterial", method = RequestMethod.POST)
 	public Map<String, Object> updateMaterial(Material material) {
 		Map<String, Object> result = Maps.newHashMap();
 		try {
