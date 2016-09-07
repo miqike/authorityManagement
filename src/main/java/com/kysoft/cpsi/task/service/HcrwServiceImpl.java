@@ -1,5 +1,6 @@
 package com.kysoft.cpsi.task.service;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
@@ -12,9 +13,12 @@ import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -130,6 +134,23 @@ public class HcrwServiceImpl implements HcrwService {
 	public void cancelAuditHcrw(String hcrwId) {
 		hcrwMapper.updateCancelAuditByPrimaryKey(hcrwId);
 		MongoLogger.info("task", "用户取消对任务结果的审核");
+	}
+
+	@Override
+	public void batchAuditHcrw(Hcrw hcrw) {
+		User auditor = WebUtils.getCurrentUser();
+		hcrw.setAuditor(auditor.getUserId());
+		hcrw.setAuditorName(auditor.getName());
+		String[] id = hcrw.getId().split(",");
+		
+		hcrwMapper.updateAudit(Arrays.asList(id), hcrw.getAuditResult(), hcrw.getAuditComment(), 
+				auditor.getUserId(), auditor.getName(), hcrw.getHcjieguo());
+	}
+
+	@Override
+	public void batchCancelAuditHcrw(List<String> taskIds) {
+		// TODO Auto-generated method stub
+		hcrwMapper.updateCancelAudit(taskIds);		
 	}
 
 

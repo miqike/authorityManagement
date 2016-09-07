@@ -152,7 +152,7 @@
     <div data-options="region:'center'">
         <table id="grid2"
                class="easyui-datagrid"
-               data-options="singleSelect:true,collapsible:true,pageSize: 100, pagination: true,
+               data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,
 					onClickRow:grid2ClickHandler,offset: { width: -252, height: -206},method:'get'"
                toolbar="#planGridToolbar"
                style="height: 285px"
@@ -163,12 +163,8 @@
                 <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
                 <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
                 <th data-options="field:'hcdwXydm'" halign="center" align="center" width="130">统一社会信用代码</th>
-	<th data-options="field:'sjwcrq'" halign="center" align="left" width="70"
-                    formatter="formatDate">检查时间
-                </th>
-                <th data-options="field:'hcjieguo'" halign="center" align="left" width="150"
-                    formatter="formatCodeList" codeName="gsjg">核查结果
-                </th>
+				<th data-options="field:'sjwcrq'" halign="center" align="left" width="70" formatter="formatDate">检查时间</th>
+                <th data-options="field:'hcjieguo'" halign="center" align="left" width="150" formatter="formatCodeList" codeName="gsjg">核查结果</th>
                 
                 <!-- 需要增加字段 -->
                 <th data-options="field:'auditResult'" halign="center" align="center" width="120" codeName="yesno" formatter="formatCodeList">是否列入经营异常名录</th>
@@ -184,6 +180,9 @@
             <a href="#" id="btnCancelAuditStatus" class="easyui-linkbutton" iconCls="icon2 r12_c20" plain="true" disabled
                data-options="">取消审核</a>
             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
+            <input type="radio" name="filterByAuditResult" value="1" style="margin:1px 3px 3px 5px" checked/>全部
+            <input type="radio" name="filterByAuditResult" value="2" style="margin:1px 3px 3px 5px"/>已审核
+            <input type="radio" name="filterByAuditResult" value="3" style="margin:1px 3px 3px 5px"/>未审核
         </div>
     </div>
 

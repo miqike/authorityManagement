@@ -33,4 +33,8 @@ public interface HcrwService {
 
 	void cancelAuditHcrw(String hcrwId);
 
+	void batchAuditHcrw(Hcrw hcrw);
+	
+	void batchCancelAuditHcrw(List<String> taskIds);
+
 }

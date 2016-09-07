@@ -150,6 +150,30 @@ function loadGrid2() {
     });
 }
 
+
+function grid2LoadSuccessHandler(data) {
+	//data.rows.push({hcrws:10000,rls:3333})
+	//console.log(data)
+	var hcrws = 0, rls = 0, wcs = 0, zlz = 0, wwcs = 0;
+	for (var i=0; i<data.rows.length; i++) {
+		var row = data.rows[i];
+		hcrws += row.hcrws;
+		rls += row.rls;
+		wcs += row.wcs;
+		zlz += row.zlz;
+		wwcs += row.wwcs;
+	}
+	$("#grid2").datagrid('appendRow', {
+		hcrws:hcrws,
+		rls:rls,
+		wcs:wcs,
+		zlz:zlz,
+		wwcs:wwcs, 
+		hcjgmc:'统计'}
+	);
+}
+
+
 function grid1ClickHandler() {
     if ($('#grid1').datagrid('getSelected') != null) {
         $('#btnViewCheckList').linkbutton('enable');

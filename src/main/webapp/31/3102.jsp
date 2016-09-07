@@ -87,7 +87,7 @@
 		<table id="grid2"
 			class="easyui-datagrid"
 			data-options="singleSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:true,
-				onDblClickRow:grid2DblClickHandler,
+				onDblClickRow:grid2DblClickHandler,onLoadSuccess:grid2LoadSuccessHandler,rownumbers:true,
 				method:'get'"
 			   toolbar="#planGridToolbar"
 			   style="height: 285px"

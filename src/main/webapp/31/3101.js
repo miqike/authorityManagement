@@ -241,6 +241,17 @@ function grid1ClickHandler() {
 function grid2ClickHandler() {
 }
 
+function grid2LoadSuccessHandler(data) {
+	var rls = 0;
+	for (var i=0; i<data.rows.length; i++) {
+		var row = data.rows[i];
+		if(row.rlr != undefined) {
+			++rls; 
+		}
+	}
+	$("#d_rls").text(rls);
+}
+
 function getAcceptStatus() {
 	var tasks = $("#grid2").datagrid("getSelections");
 	var accepted = 0;

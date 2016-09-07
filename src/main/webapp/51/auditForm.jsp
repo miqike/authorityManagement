@@ -1,16 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <script>
     function auditHcwr() {
-        var hcrw = $("#grid2").datagrid("getSelected");
+        var tasks = $("#grid2").datagrid("getSelections");
+        var hcrwId = new Array();
+        for(var i=0; i<tasks.length; i++) {
+        	hcrwId.push(tasks[i].id);
+        }
+        
         var data = {};
-        data.id = hcrw.id;
+        data.id = hcrwId.join(",");
         data.hcjieguo = $("#d_hcjieguo").combobox("getValue");
         data.auditResult = $("#d_auditResult").combobox("getValue");
         data.auditComment = $("#d_auditComment").val();
-        data.sjwcrq = $("#d_sjwcrq").datebox("getValue");
+        //data.sjwcrq = $("#d_sjwcrq").datebox("getValue");
         
         $.ajax({
-            url: "../51/" + hcrw.id + "/audit",
+            //url: "../51/" + hcrw.id + "/audit",
+            url: "../51/batchAudit",
             type: "POST",
             data: data,
             success: function (response) {
@@ -41,7 +47,7 @@
 </script>
 <div style="padding:5px;">
 	<table id="auditTable">
-	    <tr>
+	    <!-- <tr>
 	        <td class="label">检查机关</td>
 	        <td colspan="3">
 	            <input class="easyui-validatebox" id="d_hcjgmc" style="width:337px;" disabled/>
@@ -55,7 +61,7 @@
 	        <td><input class="easyui-validatebox" id="d_hcdwXydm" disabled/></td>
 	        <td class="label">检查时间</td>
 	        <td><input class="easyui-datebox" id="d_sjwcrq" data-options="" /></td>
-	    </tr>
+	    </tr> -->
 	    <tr>
 	        <td class="label">核查结果</td>
 	        <td colspan="3"><input class="easyui-combobox" id="d_hcjieguo" data-options="panelHeight:180, required:true" style="width:346px;" codeName="gsjg" /></td>
