@@ -96,7 +96,7 @@ td.label {
 		<div data-options="region:'center'">
 			<table id="grid2" class="easyui-datagrid"
 				data-options="ctrlSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:true,
-		onClickRow:grid2ClickHandler,height:400,method:'get',onLoadSuccess:grid2LoadSuccessHandler,
+		onClickRow:grid2ClickHandler,height:400,method:'get',rownumbers:true,
 		headerContextMenu: [
                 { text: '按任务下达机关+检查人员排序', iconCls: 'icon2 r1_c15', disabled: false, handler: sort1 },
                 { text: '按市场主体类型+任务下达机关排序', iconCls: 'icon2 r1_c13', disabled: false, handler: sort2 },
@@ -157,7 +157,7 @@ td.label {
 				<a id="btnNotDo" href="#" onClick="notDo()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">未认领</a>
 				<a id="btnAll" href="#" onClick="queryAll()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">全部</a>
 				
-				<span>已认领数:</span><span id='d_rls'>3333</span>
+				<!-- <span>已认领数:</span><span id='d_rls'>3333</span> -->
 			
 			</div>
 		</div>

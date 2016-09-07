@@ -20,7 +20,7 @@
         <result column="YHTG" jdbcType="DECIMAL" property="yhtg"/>
         <result column="LY" jdbcType="DECIMAL" property="ly"/>
         <result column="HCSXMC" jdbcType="VARCHAR" property="hcsxmc"/>
-        <result column="UPLOAD_TIME" jdbcType="DATE" property="uploadTime"/>
+        <result column="UPLOAD_TIME"  property="uploadTime"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--
@@ -76,7 +76,7 @@
         #{name,jdbcType=VARCHAR}, #{sfbyx,jdbcType=DECIMAL}, #{wjlx,jdbcType=DECIMAL},
         #{hcclId,jdbcType=VARCHAR}, #{hcsxId,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR},
         #{mongoId,jdbcType=VARCHAR}, #{yhtg,jdbcType=DECIMAL}, #{ly,jdbcType=DECIMAL},
-        #{hcsxmc,jdbcType=VARCHAR}, #{uploadTime,jdbcType=DATE})
+        #{hcsxmc,jdbcType=VARCHAR}, #{uploadTime})
     </insert>
     <insert id="insert2" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
         insert into T_HCCL_FUR (ID, HCDW_XYDM, HCJHND,
@@ -88,7 +88,7 @@
         #{name,jdbcType=VARCHAR}, #{sfbyx,jdbcType=DECIMAL}, #{wjlx,jdbcType=DECIMAL},
         #{hcclId,jdbcType=VARCHAR}, #{hcsxId,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR},
         #{mongoId,jdbcType=VARCHAR}, #{yhtg,jdbcType=DECIMAL}, #{ly,jdbcType=DECIMAL},
-        #{hcsxmc,jdbcType=VARCHAR}, #{uploadTime,jdbcType=DATE})
+        #{hcsxmc,jdbcType=VARCHAR}, #{uploadTime})
     </insert>
     <insert id="insertSelective" parameterType="com.kysoft.cpsi.task.entity.Hcclmx">
         <!--
@@ -231,7 +231,7 @@
                 HCSXMC = #{hcsxmc,jdbcType=VARCHAR},
             </if>
             <if test="uploadTime != null">
-                UPLOAD_TIME = #{uploadTime,jdbcType=DATE},
+                UPLOAD_TIME = #{uploadTime},
             </if>
         </set>
         where ID = #{id,jdbcType=VARCHAR}
@@ -277,7 +277,7 @@
                 HCSXMC = #{hcsxmc,jdbcType=VARCHAR},
             </if>
             <if test="uploadTime != null">
-                UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
+                UPLOAD_TIME = #{uploadTime},
             </if>
         </set>
         where ID = #{id,jdbcType=VARCHAR}
@@ -301,7 +301,7 @@
         YHTG = #{yhtg,jdbcType=DECIMAL},
         LY = #{ly,jdbcType=DECIMAL},
         HCSXMC = #{hcsxmc,jdbcType=VARCHAR},
-        UPLOAD_TIME = #{uploadTime,jdbcType=DATE}
+        UPLOAD_TIME = #{uploadTime}
         where ID = #{id,jdbcType=VARCHAR}
     </update>
 
