@@ -13,38 +13,39 @@ function doInitGrid() {
 	$("#_auditApproach_").html(auditApproach);
 	$("#btnAutoMatch").click(autoMatch);
 
-	var auditTask = $('#myTaskGrid').datagrid('getSelected');
-	if(auditTask.dataLoaded == 0) {
+	// var auditTask = $('#myTaskGrid').datagrid('getSelected');
+	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
+	var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
+	$.post("../js/audit/getCompareInfo", param,
+		function(response){
+			if(response.a == null ) {
+				$.messager.alert("未找到公示数据");
+			} else {
+				window.dataA = response.a;
+				window.dataB = response.b;
+				window.dataC = response.c;
+				$("#auditTableA").datagrid({
+					rowStyler:rowStyler,
+					columns:auditTableColumnsConfig,
+					data:response.a
+				});
+				$("#auditTableB").datagrid({
+					rowStyler:rowStyler,
+					columns:auditTableColumnsConfig,
+					data:response.b
+				});
+				$("#auditTableC").datagrid({
+					rowStyler:rowStyler,
+					columns:auditTableColumnsConfig,
+					data:response.c
+				});
+			}
+		});
+	/*if(auditTask.dataLoaded == 0) {
 		$.messager.alert('失败', "首先需要加载数据", 'info');
 	} else {
-		var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
-		var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
-		$.post("../js/audit/getCompareInfo", param,
-			function(response){
-				if(response.a == null ) {
-					$.messager.alert("未找到公示数据");
-				} else {
-					window.dataA = response.a;
-					window.dataB = response.b;
-					window.dataC = response.c;
-					$("#auditTableA").datagrid({
-						rowStyler:rowStyler,
-						columns:auditTableColumnsConfig,
-						data:response.a
-					});
-					$("#auditTableB").datagrid({
-						rowStyler:rowStyler,
-						columns:auditTableColumnsConfig,
-						data:response.b
-					});
-					$("#auditTableC").datagrid({
-						rowStyler:rowStyler,
-						columns:auditTableColumnsConfig,
-						data:response.c
-					});
-				}
-			}); 
-	}
+
+	}*/
 }
 
 function autoMatch() {
