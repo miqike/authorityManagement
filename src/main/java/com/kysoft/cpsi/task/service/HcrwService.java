@@ -1,5 +1,6 @@
 package com.kysoft.cpsi.task.service;
 
+import com.alibaba.fastjson.JSONArray;
 import com.kysoft.cpsi.task.entity.Hcrw;
 
 import java.util.List;
@@ -37,4 +38,5 @@ public interface HcrwService {
 	
 	void batchCancelAuditHcrw(List<String> taskIds);
 
+	JSONArray getHcsxJg(String hcrwId);
 }

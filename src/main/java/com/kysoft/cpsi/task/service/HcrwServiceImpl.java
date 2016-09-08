@@ -1,6 +1,6 @@
 package com.kysoft.cpsi.task.service;
 
-import com.google.common.collect.Lists;
+import com.alibaba.fastjson.JSONArray;
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.entity.Hcsx;
 import com.kysoft.cpsi.repo.mapper.HcsxMapper;
@@ -8,16 +8,13 @@ import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.entity.Hcsxjg;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import com.kysoft.cpsi.task.mapper.HcsxjgMapper;
-
 import net.sf.husky.log.MongoLogger;
 import net.sf.husky.security.entity.User;
 import net.sf.husky.utils.WebUtils;
-
-import org.apache.ibatis.annotations.Param;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -152,6 +149,15 @@ public class HcrwServiceImpl implements HcrwService {
 		// TODO Auto-generated method stub
 		hcrwMapper.updateCancelAudit(taskIds);		
 	}
+
+    @Override
+    public JSONArray getHcsxJg(String hcrwId) {
+        Map<String,Object> param=new HashedMap();
+        param.put("hcrwId",hcrwId);
+        hcrwMapper.getHcsxJgData(param);
+        JSONArray resultStr=JSONArray.parseArray(param.get("resultStr").toString());
+        return resultStr;
+    }
 
 
 }

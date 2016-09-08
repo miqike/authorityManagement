@@ -226,6 +226,21 @@ public class HcrwController extends BaseController {
         }
         return result;
     }
-    
-    
+
+    @RequestMapping(value = "/{hcrwId}/getHcsxJg", method = RequestMethod.GET)
+    public Map<String, Object> getHcsxJg(@PathVariable String hcrwId) {
+        Map<String, Object> result = Maps.newHashMap();
+        try {
+            result.put(DATA,hcrwService.getHcsxJg(hcrwId));
+            result.put(MESSAGE, "取得核查结果数据成功");
+            result.put(STATUS, SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.put(DATA,"[]");
+            result.put(STATUS, FAIL);
+            result.put(MESSAGE, "取得核查结果数据失败");
+        }
+        return result;
+    }
+
 }

@@ -277,30 +277,30 @@
             and qybm like #{dwId}||'%'
         </if>
         <if test="planType!=null">
-            and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="jhnd!=null">
-            and exists(select 1 from t_hcrw b where b.jhnd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.jhnd=#{jhnd} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="jhbh!=null">
-            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="hcry!=null">
             and exists(select 1 from t_hcrw b where (b.ZFRY_NAME1 like #{hcry}||'%' or b.ZFRY_NAME2 like #{hcry}||'%')
             and
-            t_sczt.xydm=b.hcdw_xydm)
+            a.xydm=b.hcdw_xydm)
         </if>
         <if test="hcjieguo!=null">
-            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="jhmc!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.jhmc like '%'||#{jhmc}||'%')
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.jhmc like '%'||#{jhmc}||'%')
         </if>
         <if test="cxwh!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.cxwh = #{cxwh})
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.cxwh = #{cxwh})
         </if>
         <if test="gsjhbh!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.gsjhbh =#{gsjhbh})
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.gsjhbh =#{gsjhbh})
         </if>
         ORDER BY NAME
     </select>
@@ -328,20 +328,20 @@
             and qybm like #{dwId}||'%'
         </if>
         <if test="planType!=null">
-            and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.PLAN_TYPE=#{planType} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="jhnd!=null">
-            and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.nd=#{jhnd} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="jhbh!=null">
-            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.jhbh=#{jhbh} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="hcry!=null">
             and exists(select 1 from t_hcrw b where (b.ZFRY_NAME1 like #{hcry}||'%' or b.ZFRY_NAME2 like #{hcry}||'%')
-            and t_sczt.xydm=b.hcdw_xydm)
+            and a.xydm=b.hcdw_xydm)
         </if>
         <if test="hcjieguo!=null">
-            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and t_sczt.xydm=b.hcdw_xydm)
+            and exists(select 1 from t_hcrw b where b.hcjieguo=#{hcjieguo} and a.xydm=b.hcdw_xydm)
         </if>
         <if test="qy!=null">
             and QYMC like #{qy}||'%'
@@ -350,13 +350,13 @@
             and NAME like concat(concat('%', #{qymc}), '%')
         </if>
         <if test="jhmc!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.jhmc like '%'||#{jhmc}||'%')
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.jhmc like '%'||#{jhmc}||'%')
         </if>
         <if test="cxwh!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.cxwh = #{cxwh})
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.cxwh = #{cxwh})
         </if>
         <if test="gsjhbh!=null">
-            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and t_sczt.xydm=b.hcdw_xydm and c.gsjhbh =#{gsjhbh})
+            and exists(select 1 from t_hcrw b,t_hcjh c where b.hcjh_id=c.id and a.xydm=b.hcdw_xydm and c.gsjhbh =#{gsjhbh})
         </if>
         AND (
             (exists(select 1 from ( SELECT ID FROM SYS_ORGANIZATION  START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId}) CONNECT BY PRIOR ID=PARENT_ID  ) e where e.id=a.djjg) and (select ext1 from sys_user where user_id=#{_userId})=1)

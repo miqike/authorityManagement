@@ -130,5 +130,7 @@ public interface HcrwMapper {
 		@Param("hcjieguo") int hcjieguo );
 
 	void updateCancelAudit(@Param("taskIds") List<String> taskIds);
-	
+
+	void getHcsxJgData(Map<String, Object> param);
+
 }

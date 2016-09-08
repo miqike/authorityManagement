@@ -1393,4 +1393,10 @@
 	      select #{taskId} from dual
 	    </foreach>)
     </update>
+
+
+  <select id="getHcsxJgData" parameterType="java.util.HashMap" statementType="CALLABLE">
+    {call pkg_hc.prc_gethcsxjg(#{hcrwId,mode=IN,jdbcType=VARCHAR},#{resultStr,mode=OUT,jdbcType=VARCHAR})}
+  </select>
+
 </mapper>
