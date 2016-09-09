@@ -533,7 +533,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
             LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
             top = top + 10;
-            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划编号："+qy.jhbh+"    计划名称："+qy.jhmc+"    检查时间："+qy.jhxdrq);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划编号："+qy.jhbh+"    计划名称："+qy.jhmc+"    检查时间："+formatDate(qy.jhxdrq));
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
             LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
             LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
