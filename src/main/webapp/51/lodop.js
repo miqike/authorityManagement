@@ -89,7 +89,7 @@ function printQiyezhusuohechahan() {
     data.message = "打印企业住所检查函";
     data.businessKey = $("#zhusuo_hcrwId").text();
     $.post("../sys/log", data, function (response) {
-        console.log(response.message);
+        //console.log(response.message);
     });
 }
 //打印实地核查告知书
@@ -250,7 +250,7 @@ function printShidihechagaozhishu() {
     data.message = "打印实地检查告知书";
     data.businessKey = $("#shidi_hcrwId").text();
     $.post("../sys/log", data, function (response) {
-        console.log(response.message);
+        //console.log(response.message);
     });
 
 }
@@ -422,7 +422,7 @@ function printZelingluxingtongzhishu() {
     data.message = "打印责令履行公示义务通知书";
     data.businessKey = $("#zeling_hcrwId").text();
     $.post("../sys/log", data, function (response) {
-        console.log(response.message);
+        //console.log(response.message);
     });
 }
 
@@ -472,16 +472,26 @@ function writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,t
 }
 function getDataFromDataList(xh,dataList,zhongDian){
     var data=[];
-    var relationShip=[{"source":"购买股权","dest":"企业投资设立企业、购买股权信息"},{"source":"实缴出资","dest":"股东或发起人认缴和实缴的出资额、出资时间、出资方式等信息"},
-        {"source":"股权变更信息","dest":"有限公司股东股权转让等股权变更信息"}, {"source":"资产总额（万元）","dest":"资产总额（万元）"},
-        {"source":"负债总额（万元）","dest":"负债总额（万元）"},{"source":"所有者权益合计（万元）","dest":"所有者权益合计（万元）"},
-        {"source":"营业总收入（万元）","dest":"营业总收入（万元）"},{"source":"主营业务收入（万元）","dest":"主营业务收入（万元）"},
-        {"source":"利润总额（万元）","dest":"利润总额（万元）"},{"source":"净利润（万元）","dest":"净利润（万元）"},
-        {"source":"纳税总额（万元）","dest":"纳税总额（万元）"},{"source":"对外提供保证担保信息","dest":"对外提供保证担保信息"},
-        {"source":"企业通信地址","dest":"企业通信地址"},{"source":"邮政编码","dest":"邮政编码"},
-        {"source":"联系电话","dest":"联系电话"},{"source":"电子邮箱","dest":"电子邮箱"},
-        {"source":"企业网站网店的名称和网址","dest":"企业网站以及从事网络经营的网店名称、网址等信息"},{"source":"存续状态","dest":"企业开业、歇业、清算等存续状态"},
-        {"source":"人员信息","dest":"从业人数"},{"source":"党建信息","dest":"党建信息"}
+    var relationShip=[{"source":"企业投资设立企业、购买股权信息","dest":"企业投资设立企业、购买股权信息"},
+        {"source":"股东或发起人认缴和实缴的出资额等信息","dest":"股东或发起人认缴和实缴的出资额、出资时间、出资方式等信息"},
+        {"source":"有限公司股东股权转让等股权变更信息","dest":"有限公司股东股权转让等股权变更信息"},
+        {"source":"资产总额（万元）","dest":"资产总额（万元）"},
+        {"source":"负债总额（万元）","dest":"负债总额（万元）"},
+        {"source":"所有者权益合计（万元）","dest":"所有者权益合计（万元）"},
+        {"source":"营业总收入（万元）","dest":"营业总收入（万元）"},
+        {"source":"主营业务收入（万元）","dest":"主营业务收入（万元）"},
+        {"source":"利润总额（万元）","dest":"利润总额（万元）"},
+        {"source":"净利润（万元）","dest":"净利润（万元）"},
+        {"source":"纳税总额（万元）","dest":"纳税总额（万元）"},
+        {"source":"对外提供保证担保信息","dest":"对外提供保证担保信息"},
+        {"source":"企业通信地址","dest":"企业通信地址"},
+        {"source":"邮政编码","dest":"邮政编码"},
+        {"source":"联系电话","dest":"联系电话"},
+        {"source":"电子邮箱","dest":"电子邮箱"},
+        {"source":"企业网站及从事经营的网店的名称和网址","dest":"企业网站以及从事网络经营的网店名称、网址等信息"},
+        {"source":"存续状态","dest":"企业开业、歇业、清算等存续状态"},
+        {"source":"从业人员信息","dest":"从业人数"},
+        {"source":"党建信息","dest":"党建信息"}
     ];
     data[0]=xh;
     data[1]=zhongDian;
@@ -615,41 +625,49 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(4,dataList,"");//["4","","资产总额（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(5,dataList,"");//["5","","负债总额（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(6,dataList,"");//["6","","所有者权益合计（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(7,dataList,"");//["7","","营业总收入（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(8,dataList,"");//["8","","主营业务收入（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(9,dataList,"");//["9","","利润总额（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(10,dataList,"");//["10","","净利润（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(11,dataList,"");//["11","","纳税总额（万元）","","","","",""];
+            data[5]=currencyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
@@ -707,7 +725,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data.message = "打印企业年报公示信息核查结果报告";
             data.businessKey = $("#zeling_hcrwId").text();
             $.post("../sys/log", data, function (response) {
-                console.log(response.message);
+                //console.log(response.message);
             });
         }else{
             $.messager.show("操作提醒", '查询核查结果数据失败', "info", "bottomRight");
@@ -884,7 +902,7 @@ function printGongShiXinXiGengZhengBiao(){
     data.message = "打印企业年报公示信息核查结果报告";
     data.businessKey = $("#zeling_hcrwId").text();
     $.post("../sys/log", data, function (response) {
-        console.log(response.message);
+        //console.log(response.message);
     });
 }
 //即时核查公示信息更正审批表
@@ -1055,6 +1073,6 @@ function printGongShiXinXiGengZhengBiaoJs(){
     data.message = "打印企业年报公示信息核查结果报告";
     data.businessKey = $("#zeling_hcrwId").text();
     $.post("../sys/log", data, function (response) {
-        console.log(response.message);
+        //console.log(response.message);
     });
 }
