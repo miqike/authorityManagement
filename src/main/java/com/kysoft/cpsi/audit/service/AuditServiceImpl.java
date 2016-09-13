@@ -238,7 +238,7 @@ public class AuditServiceImpl implements AuditService {
 		ar.setYzbm(jsonData.getString("yzbm")); //'0',
 		ar.setLxdh(jsonData.getString("lxdh")); //'132233221145',
 		ar.setMail(jsonData.getString("dzyx")); //'7700266@qq.com',
-		ar.setCyrs(jsonData.getInteger("crys")); //'10000',
+		ar.setCyrs(Integer.parseInt(jsonData.getString("cyrs"))); //'10000',
 		ar.setJyzt(jsonData.getString("jyzt")); //'0',
 		//ar.setFzr(jsonData.getString("fzr")); //'大海',
 		return ar;
