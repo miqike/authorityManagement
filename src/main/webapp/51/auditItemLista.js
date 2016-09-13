@@ -299,7 +299,7 @@ function _doInit(type) {
 
     $("#k_failReason").val(auditItem.sm);
     
-    _initPromptForAuditItem(auditItem)
+    _initPromptForAuditItem(auditItem);
     cancelFail();
 }
 
@@ -344,6 +344,7 @@ function pass() {
             //$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
             _closeAuditWindow();
+            $("#btnShowPrompt").tooltip("destroy");
         } else {
             $.messager.alert('错误', response.message, 'error');
         }
@@ -396,7 +397,7 @@ function closeAuditWindow() {
 }
 
 function _closeAuditWindow() {
-	$("#auditContent").empty()
-	$("#auditLog").empty()
+	$("#auditContent").empty();
+	$("#auditLog").empty();
 	$("#auditItemAccordion").accordion("select", 0);
 }
