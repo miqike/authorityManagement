@@ -12,23 +12,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <!--[if lt IE 7]>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1"/><![endif]-->
-    <meta http-equiv="X-UA-Compatible" content="IE=100" />
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <%@ include file="/common/meta.jsp" %> 
     <title>企业公示信息智能检查系统</title>
     <!-- <link href="./css/jquery-easyui-theme/default/easyui.css" rel="stylesheet" type="text/css" /> -->
     <link id="easyuiTheme" rel="stylesheet" type="text/css" href="./css/jquery-easyui-theme/${theme}/easyui.css">
     <link href="./js/jeasyui-extensions-release/icons/icon-all.css" rel="stylesheet" type="text/css" />
-    <script src="./js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js" type="text/javascript"></script>
-    <script src="./js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
-    <script src="./js/jeasyui-extensions-release/jquery.jdirk.min.js" type="text/javascript"></script>
     <link href="./js/jeasyui-extensions-release/jeasyui.extensions.min.css" rel="stylesheet" type="text/css" />
-    <script src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js" type="text/javascript"></script>
-    <script src="./js/formatter.js" type="text/javascript"></script>
     <%
         MenuRepository menuRepository = SpringUtils.getBean(MenuRepository.class);
         MessageService messageService = SpringUtils.getBean(MessageService.class);
@@ -44,38 +33,7 @@
         }
         String initData = JSON.toJSONString(result);
     %>
-    <script>
-    	var ctx = ".";
-    	
-        eval("var initData = " + '<%= initData %>');
-        var sessionId = '<%=currentUser.getSession().getId() %>';
-        
-        function formatZfry(val, row) {
-        	var result = row.zfryName1 == null? "": row.zfryName1;
-        	if(row.zfryName2 != null) {
-        		result =  result + "/" + row.zfryName2;
-        	}
-            return result;
-        }
-        
-        function taskStatusStyler(val, row, index) {
-        	if (val == 1) {
-        		return "background-color:lightgray";
-            } else if (val == 2) {
-                return "background-color:orange";
-            } else if (val == 3) {
-                return "background-color:pink";
-            } else if (val == 4) {
-                return "background-color:red";
-            } else if (val == 5) {
-                return "background-color:green";
-            }
-        }
-        
-    </script>
-    
-    <!--导入首页启动时需要的相应资源文件(首页相应功能的 js 库、css样式以及渲染首页界面的 js 文件)-->
-    <script src="./common/index.js" type="text/javascript"></script>
+
     <link href="./common/index.css" rel="stylesheet" />
     <link href="./css/jquery-easyui-theme/icon.css" rel="stylesheet" type="text/css" />
     <link href="./css/bubble.css" rel="stylesheet" type="text/css" >
@@ -102,11 +60,7 @@
 	        background-image: url("");
 	    }
     </style>
-    <script src="./js/husky/husky.common.js" type="text/javascript" ></script>
-    <script src="./js/husky/husky.message.js" type="text/javascript" ></script>
-    <script src="./js/husky/husky.easyui.codeList.js" type="text/javascript" ></script>
-    <script src="./js/husky/husky.index.js" type="text/javascript"></script>
-    <script src="./common/index-startup.js"></script>
+
 </head>
 <body>
 
@@ -228,15 +182,55 @@
 	</div>
 </body>
 </html>
-<script>
-
-function openTabFromMap(menuId, url, title) {
-	$('#wnav li').removeClass("selected");
-	window.mainpage.mainTabs.addModule({
-		id:menuId, 
-		title:title, 
-		href:url
-	});
-}
-
-</script>
+    
+    <script src="./js/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-easyui-1.3.6/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="./js/jeasyui-extensions-release/jquery.jdirk.min.js" type="text/javascript"></script>
+    <script src="./js/jeasyui-extensions-release/jeasyui.extensions.all.min.js" type="text/javascript"></script>
+    <script src="./js/formatter.js" type="text/javascript"></script>
+    <script>
+    	var ctx = ".";
+    	
+        eval("var initData = " + '<%= initData %>');
+        var sessionId = '<%=currentUser.getSession().getId() %>';
+        
+        function formatZfry(val, row) {
+        	var result = row.zfryName1 == null? "": row.zfryName1;
+        	if(row.zfryName2 != null) {
+        		result =  result + "/" + row.zfryName2;
+        	}
+            return result;
+        }
+        
+        function taskStatusStyler(val, row, index) {
+        	if (val == 1) {
+        		return "background-color:lightgray";
+            } else if (val == 2) {
+                return "background-color:orange";
+            } else if (val == 3) {
+                return "background-color:pink";
+            } else if (val == 4) {
+                return "background-color:red";
+            } else if (val == 5) {
+                return "background-color:green";
+            }
+        }
+        
+        function openTabFromMap(menuId, url, title) {
+        	$('#wnav li').removeClass("selected");
+        	window.mainpage.mainTabs.addModule({
+        		id:menuId, 
+        		title:title, 
+        		href:url
+        	});
+        }
+    </script>
+    
+    <!--导入首页启动时需要的相应资源文件(首页相应功能的 js 库、css样式以及渲染首页界面的 js 文件)-->
+    <script src="./common/index.js" type="text/javascript"></script>
+    <script src="./js/husky/husky.common.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.message.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.easyui.codeList.js" type="text/javascript" ></script>
+    <script src="./js/husky/husky.index.js" type="text/javascript"></script>
+    <script src="./common/index-startup.js"></script>

@@ -4,7 +4,7 @@
  */
 jQuery.easyuiExtendObj = {
     
-	function removeIdBeforeSlash(text) {
+	removeIdBeforeSlash: function (text) {
 	    if (text != undefined) {
 	        var result = "";
 	        var array;
@@ -28,7 +28,7 @@ jQuery.easyuiExtendObj = {
 	        }
 	        return result;
 	    }
-	}
+	},
 
     /**
      * 向页面加载数据
