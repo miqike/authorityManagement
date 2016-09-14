@@ -97,10 +97,13 @@ public class JsHcrwController extends BaseController {
         try {
             JsHcrw hcrw = jsHcrwService.getHcrwById(hcrwId);
             //核查结果为6种,只要设定核查结果,任务设为完成状态:5
-            hcrw.setRwzt(5);
+            if(jieguo==null) {
+                hcrw.setRwzt(2);
+            }else{
+                hcrw.setRwzt(5);
+            }
             hcrw.setHcjieguo(jieguo);
             hcrw.setSjwcrq(new Date());
-            hcrw.setRwzt(2);
             jsHcrwService.updateHcrw(hcrw);
             result.put(MESSAGE, "更新核查结果成功");
             result.put(STATUS, SUCCESS);
