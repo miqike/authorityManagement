@@ -299,7 +299,7 @@ function _doInit(type) {
 
     $("#k_failReason").val(auditItem.sm);
     
-    _initPromptForAuditItem(auditItem)
+    _initPromptForAuditItem(auditItem);
     cancelFail();
 }
 
@@ -308,7 +308,7 @@ function _initPromptForAuditItem(auditItem) {
 	$.getJSON(url, null, function(response){
 		$.easyui.tooltip.init($("#btnShowPrompt"), { 
 	    	content: constructPromptContent(response.rows), 
-	    	position:"right",showEvent:null,hideEvent:null,
+	    	position:"right",showEvent:"mouseenter",hideEvent:"mouseleave",
 	    	trackMouse: false
 		});
 	});
@@ -344,6 +344,7 @@ function pass() {
             //$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
             _closeAuditWindow();
+            $("#btnShowPrompt").tooltip("hide");
         } else {
             $.messager.alert('错误', response.message, 'error');
         }
@@ -396,7 +397,7 @@ function closeAuditWindow() {
 }
 
 function _closeAuditWindow() {
-	$("#auditContent").empty()
-	$("#auditLog").empty()
+	$("#auditContent").empty();
+	$("#auditLog").empty();
 	$("#auditItemAccordion").accordion("select", 0);
 }

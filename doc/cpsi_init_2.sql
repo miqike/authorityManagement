@@ -83,7 +83,7 @@ BEGIN
     ELSE
       update t_zfry set name=o.full_name,dw_id=o.djjg,dw_name=(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end),
         GXDW_ID=o.gxdwdm,GXDW_NAME=(select content from bm_gxdw b where b.code=case when o.gxdwdm is null then '610000' else o.gxdwdm end),
-      user_id1236=o.gh where code=o.user_name;
+      user_id=o.gh where code=o.user_name;
     END IF;
   END LOOP;
 END;
@@ -106,7 +106,7 @@ begin
       values(o.gh,null,o.full_name ,null,null,lower(pkg_hc.MD5_DIGEST(o.user_name||'000000'||'123qwe!@#QWE')),'123qwe!@#QWE',sysdate,
                   null,1,case when o.djjg is null then '610000' else o.djjg end,0,1,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end) ,
              o.user_name,2);
-      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=o.djjg;
+      select count(1) into v_cnt2 from t_user_org where user_id=o.gh and org_id=case when o.djjg is null then '610000' else o.djjg end;
       if(v_cnt2=0) then
         insert into t_user_org(user_id,user_name,org_id,org_name)
         values(o.gh,o.full_name,case when o.djjg is null then '610000' else o.djjg end,(select content from bm_djjg b where b.code=case when o.djjg is null then '610000' else o.djjg end));

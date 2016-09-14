@@ -273,13 +273,13 @@ function _doInit(type) {
     $("#btnConfirmFail").click(confirmFail);
     $("#btnCancelFail").click(cancelFail);
     $("#btnShowPrompt").click(showPrompt);
-    _initPromptForAuditItem(auditItem)
+    _initPromptForAuditItem(auditItem);
     $("#btnClose").click(closeAuditWindow);
     cancelFail();
 }
 
 function _initPromptForAuditItem(auditItem) {
-	var url = "../common/query?mapper=auditItemCommentMapper&queryName=queryForAuditItem&hcsxId=" + auditItem.hcsxId
+	var url = "../common/query?mapper=auditItemCommentMapper&queryName=queryForAuditItem&hcsxId=" + auditItem.hcsxId;
 	$.getJSON(url, null, function(response){
 		$.easyui.tooltip.init($("#btnShowPrompt"), { 
 	    	content: constructPromptContent(response.rows), 
@@ -365,7 +365,7 @@ function confirmFail () {
 }
 
 function closeAuditWindow() {
-    $("#auditContent").empty()
-    $("#auditLog").empty()
+    $("#auditContent").empty();
+    $("#auditLog").empty();
     $("#auditItemAccordion").accordion("select", 0);
 }
