@@ -152,6 +152,6 @@ function print(leftBianJu,topBianJu,pageRows){
     params["topMargin"]=3;
     params["leftMargin"]=6;
 
-    listPrint(params,mainGridRow,columnList);
+    $.lodopCommonPrint.listPrint(params,mainGridRow,columnList);
 }
 

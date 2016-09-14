@@ -136,7 +136,7 @@ $(function () {
     //$("#btnSearch").click(loadGrid1);
     //$("#btnReset").click(funcBtnRest);
 
-    $("#btnPrint").click(function () {
+    $("#btnPrintCCJGGSB").click(function () {
         var data = null;
         var treeObj = $.fn.zTree.getZTreeObj("orgTree");
         var selected = treeObj.getSelectedNodes();
@@ -149,21 +149,21 @@ $(function () {
             "titleHeight": 40,
             "pageRows": 24,
             "firstPageRows": 15,
-            "pageWidth": 297, "pageHeight": 210,
-            "pageName": "", "pageOrient": 1
+            "pageWidth": 210, "pageHeight": 297,
+            "pageName": "CreateCustomPage", "pageOrient": 2
         };
         var columnList = [];
         columnList.push({"fieldName": "hcdwName", "header": "企业名称", "colWidth": 80});
-        columnList.push({"fieldName": "hcdwXydm", "header": "注册号", "colWidth": 80});
-        columnList.push({"fieldName": "hcjgmc", "header": "检查机关", "colWidth": 80});
-        columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20});
+        columnList.push({"fieldName": "hcdwXydm", "header": "注册号", "colWidth": 60});
+        columnList.push({"fieldName": "hcjgmc", "header": "检查机关", "colWidth": 60});
+        columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20,"codeName": "date"});
         columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "gsjg"});
         //取得数据
         $.getJSON("../common/query?mapper=hcrwMapper&queryName=queryForOrg&hcjhId=" + hcjh.id + "&organization=" + processorOrgId(selected[0].id) + "&order=1&auditResult=0", null, function (response) {
             if (response.status == 1) {
                 data = response.rows;
                 if(data.length>0){
-                    listPrint(params, data, columnList);
+                    $.lodopCommonPrint.listPrint(params, data, columnList);
                 }else{
                     $.messager.show({
                         title : '提示',

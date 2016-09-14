@@ -166,6 +166,6 @@
     <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
 </object>
 <!-- 打印控件引入定义结束 -->
-<script type="text/javascript" src="../js/lodop/listPrint.js"></script>
+<script type="text/javascript" src="../js/lodop/lodopCommonPrint.js"></script>
 
 <script type="text/javascript" src="./6101.js"></script>

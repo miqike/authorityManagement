@@ -803,7 +803,7 @@ $(function() {
         columnList.push({"header":"单位编码","fieldName":"orgId","codeName":null,"colWidth":40});
         columnList.push({"header":"单位名称","fieldName":"orgName","codeName":null,"colWidth":80});
 
-        listPrint(params,$("#mainGrid").datagrid("getRows"),columnList);
+	   $.lodopCommonPrint.listPrint(params,$("#mainGrid").datagrid("getRows"),columnList);
 	});
 	$("#btnExport").click(poiExport);
 	

@@ -141,11 +141,11 @@
         <div data-options="region:'center'">
             <table id="grid2"
                    class="easyui-datagrid"
-                   data-options="singleSelect:true,collapsible:true,pageSize: 10, pagination: true,
+                   data-options="singleSelect:true,collapsible:true,pageSize: 100, pagination: true,
 					onClickRow:grid2ClickHandler,
 					method:'get'"
                    toolbar="#planGridToolbar"
-                   style="height: 285px"
+                   style=""
                    sortOrder="asc">
                 <thead>
                 <tr>
@@ -179,7 +179,7 @@
                 </thead>
             </table>
             <div id="planGridToolbar">
-                <a href="#" id="btnPrint" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
+                <a href="#" id="btnPrintCCJGGSB" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                    data-options="">打印</a>
             </div>
         </div>
@@ -213,6 +213,6 @@
     <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
 </object>
 <!-- 打印控件引入定义结束 -->
-<script type="text/javascript" src="../js/lodop/listPrint.js"></script>
+<script type="text/javascript" src="../js/lodop/lodopCommonPrint.js"></script>
 
 <script type="text/javascript" src="./6104.js"></script>
