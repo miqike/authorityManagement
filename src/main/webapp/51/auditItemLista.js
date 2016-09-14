@@ -308,7 +308,7 @@ function _initPromptForAuditItem(auditItem) {
 	$.getJSON(url, null, function(response){
 		$.easyui.tooltip.init($("#btnShowPrompt"), { 
 	    	content: constructPromptContent(response.rows), 
-	    	position:"right",showEvent:"mouseenter",hideEvent:"mouseleave",
+	    	position:"right",showEvent:null,hideEvent:null,
 	    	trackMouse: false
 		});
 	});
