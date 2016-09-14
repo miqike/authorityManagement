@@ -308,7 +308,7 @@ function _initPromptForAuditItem(auditItem) {
 	$.getJSON(url, null, function(response){
 		$.easyui.tooltip.init($("#btnShowPrompt"), { 
 	    	content: constructPromptContent(response.rows), 
-	    	position:"right",showEvent:null,hideEvent:null,
+	    	position:"right",showEvent:"mouseenter",hideEvent:"mouseleave",
 	    	trackMouse: false
 		});
 	});
@@ -344,7 +344,7 @@ function pass() {
             //$("#annualAuditItemGrid").datagrid("reload");
             annualAuditItemInit();
             _closeAuditWindow();
-            $("#btnShowPrompt").tooltip("destroy");
+            $("#btnShowPrompt").tooltip("hide");
         } else {
             $.messager.alert('错误', response.message, 'error');
         }
