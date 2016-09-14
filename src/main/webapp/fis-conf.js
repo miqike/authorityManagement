@@ -1,3 +1,5 @@
+// fis3 release -d D:\workspace\cpsi\target\webapp
+
 // fis.match('::packager', {
 //   spriter: fis.plugin('csssprites')
 // });
