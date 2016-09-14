@@ -1,0 +1,15 @@
+CPSI
+    修改resource.properties文件内容
+    修改web.xml中文件servlet-mapping
+    修改husky.orgTree.js文件中processorOrgId方法内容
+        重庆  000
+        陕西  00
+
+CPSI_PUB
+    修改resource.properties文件内容
+    修改web.xml中文件servlet-mapping
+    修改4101.js中download方法内容
+        src='http://192.168.5.199/cpsi/"
+    修改husky.orgTree.js文件中processorOrgId方法内容
+        重庆  000
+        陕西  00
