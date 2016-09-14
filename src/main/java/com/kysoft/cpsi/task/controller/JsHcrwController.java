@@ -91,7 +91,7 @@ public class JsHcrwController extends BaseController {
     }
 
     @RequestMapping(value = "/{hcrwId}/jieguo", method = RequestMethod.POST)
-    public Map<String, Object> updateJieguo(@PathVariable String hcrwId, int jieguo) {
+    public Map<String, Object> updateJieguo(@PathVariable String hcrwId, Integer jieguo) {
         Map<String, Object> result = Maps.newHashMap();
 
         try {
@@ -100,6 +100,7 @@ public class JsHcrwController extends BaseController {
             hcrw.setRwzt(5);
             hcrw.setHcjieguo(jieguo);
             hcrw.setSjwcrq(new Date());
+            hcrw.setRwzt(2);
             jsHcrwService.updateHcrw(hcrw);
             result.put(MESSAGE, "更新核查结果成功");
             result.put(STATUS, SUCCESS);
