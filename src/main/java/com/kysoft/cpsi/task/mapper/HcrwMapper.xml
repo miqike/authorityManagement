@@ -1386,8 +1386,8 @@
     <update id="updateCancelAudit">
     
     	UPDATE T_HCRW SET AUDIT_RESULT = null, 
-    		AUDIT_COMMENT = null, AUDITOR = null, HCJIEGUO=null, 
-    		AUDITOR_NAME = null, SJWCRQ = null, AUDIT_TIME = null 
+    		AUDIT_COMMENT = null, AUDITOR = null,
+    		AUDITOR_NAME = null, AUDIT_TIME = null
     	WHERE ID IN  (
 	    <foreach collection="taskIds" index="index" item="taskId" separator="UNION ALL">
 	      select #{taskId} from dual

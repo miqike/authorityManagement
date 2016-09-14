@@ -57,9 +57,16 @@ function addEnterprise() {
 				if(response.status == $.husky.SUCCESS) {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
 					$("#grid1").datagrid("reload");
-					$("#grid3b").datagrid("reload");;
-					loadCandidateEnterpriseGrid();
-				} else {
+					$("#grid3b").datagrid("reload");
+//					loadCandidateEnterpriseGrid();
+                    var item = $('#candidateEnterpriseGrid').datagrid('getRows');
+                    if (item) {
+                        for (var i = item.length - 1; i >= 0; i--) {
+                            var index = $('#candidateEnterpriseGrid').datagrid('getRowIndex', item[i]);
+                            $('#candidateEnterpriseGrid').datagrid('deleteRow', index);
+                        }
+                    }
+                } else {
 					$.messager.alert("错误", "添加核查单位失败");
 				}
 			}

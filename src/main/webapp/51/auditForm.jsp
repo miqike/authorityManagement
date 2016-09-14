@@ -64,7 +64,7 @@
 	    </tr> -->
 	    <tr>
 	        <td class="label">核查结果</td>
-	        <td colspan="3"><input class="easyui-combobox" id="d_hcjieguo" data-options="panelHeight:180, required:true" style="width:346px;" codeName="gsjg" /></td>
+	        <td colspan="3"><input class="easyui-combobox" id="d_hcjieguo" data-options="panelHeight:180, required:true" style="width:346px;" codeName="gsjg" disabled /></td>
 	    </tr>
 	    <tr>
 	        <td class="label">是否列入经营异常名录</td>
