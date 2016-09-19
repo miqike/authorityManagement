@@ -33,7 +33,7 @@
     </style>
 </head>
 <body style="margin:5px;">
-<div id="panel" class="easyui-panel" title="" style="overflow: hidden;height:600px;">
+<div id="panel" class="easyui-panel" title="" data-options="fit:true" style="overflow: hidden">
     <div id="layout" class="easyui-layout" data-options="fit:true">
         <div data-options="region:'west',split:true" title="单位列表" style="width:240px;">
             <ul id="orgTree" class="ztree"></ul>
@@ -65,8 +65,7 @@
             </div>
             <table id="grid2"
                    class="easyui-datagrid"
-                   data-options="singleSelect:true,collapsible:true,method:'get'"
-                   style="height: 485px"
+                   data-options="singleSelect:true,collapsible:true,method:'get',fit:false,offset: { width: -80, height: -220}"
                    sortOrder="asc">
                 <thead>
                 <tr>

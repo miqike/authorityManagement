@@ -86,7 +86,7 @@
 				<!-- onUnselect:disableUpdateAndDeleteButton" -->
 		<table id="grid2"
 			class="easyui-datagrid"
-			data-options="singleSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:true,
+			data-options="singleSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:false,offset: { width: -255, height: -50},
 				onDblClickRow:grid2DblClickHandler,onLoadSuccess:grid2LoadSuccessHandler,rownumbers:true,
 				method:'get'"
 			   toolbar="#planGridToolbar"

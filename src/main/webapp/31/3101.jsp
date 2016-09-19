@@ -95,8 +95,8 @@ td.label {
 		</div>
 		<div data-options="region:'center'">
 			<table id="grid2" class="easyui-datagrid"
-				data-options="ctrlSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:true,
-		onClickRow:grid2ClickHandler,height:400,method:'get',rownumbers:true,
+				data-options="ctrlSelect:false,collapsible:true,pageSize: 100, pagination: true,fit:false,
+		onClickRow:grid2ClickHandler,offset: { width: -255, height: -50},method:'get',rownumbers:true,
 		headerContextMenu: [
                 { text: '按任务下达机关+检查人员排序', iconCls: 'icon2 r1_c15', disabled: false, handler: sort1 },
                 { text: '按市场主体类型+任务下达机关排序', iconCls: 'icon2 r1_c13', disabled: false, handler: sort2 },

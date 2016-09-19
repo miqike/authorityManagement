@@ -2,14 +2,14 @@
   初始化组织机构表
   将管辖单位放到登记机构下
  */
-delete from sys_organization
+delete from sys_organization;
 
 insert into sys_organization (id,name,parent_id,type,contacts,phone,brief_name)
 select code id,content name,case when code='500' and sjcode is null then '0' else sjcode end parent_id,1 type ,null contacts,null phone,jc brief_name from (
 select code,content,null jc,cast(sjcode as varchar2(100)) sjcode from bm_gxdw where code not in(select code from bm_djjg)
 union all
 select code,content,djjgjc jc,cast(sjcode as varchar2(100)) sjcode from bm_djjg
-)
+);
 
 /**
   初始化核查人员 xt_user.user_name字段有重复 xt_user.gh字段有重复
