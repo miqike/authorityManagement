@@ -32,10 +32,17 @@
 		});
 		
 	}
-	
-	// 百度地图API功能
-	var map = new BMap.Map("map");
-	
-	// 创建地址解析器实例
-	var myGeo = new BMap.Geocoder();
+
+    // 百度地图API功能
+    var map ;
+    var myGeo;
+    try
+    {
+        map = new BMap.Map("map");
+        // 创建地址解析器实例
+        myGeo = new BMap.Geocoder();
+    }catch(e)
+    {
+        $.messager.show("操作提醒", '解析地图需要能连接到互联网', "info", "bottomRight");
+    }
 </script>
