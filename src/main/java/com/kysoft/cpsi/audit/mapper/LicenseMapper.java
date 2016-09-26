@@ -1,10 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
 import com.kysoft.cpsi.audit.entity.License;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
 
 public interface LicenseMapper {
 
@@ -49,8 +48,8 @@ public interface LicenseMapper {
     List<License> selectByTaskId2(String hcrwId);
     List<License> selectByTaskId3(String hcrwId);
 
-    @Delete("delete from T_NB_BD_XZXK where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
-	void deleteByTaskId(String hcrwId);
+    @Delete("delete from T_NB_BD_XZXK where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=2")
+	void deleteByTaskId2(String hcrwId);
 
 	void insert2(License license);
 

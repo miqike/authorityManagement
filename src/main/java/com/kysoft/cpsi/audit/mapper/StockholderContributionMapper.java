@@ -1,11 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
 import com.kysoft.cpsi.audit.entity.StockholderContribution;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Update;
 
 public interface StockholderContributionMapper {
 
@@ -51,8 +49,8 @@ public interface StockholderContributionMapper {
     List<StockholderContribution> selectByTaskId3(String hcrwId);
 
     
-	@Delete("delete from T_NB_BD_GDCZ where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
-	void deleteByTaskId(String taskId);
+	@Delete("delete from T_NB_BD_GDCZ where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=2")
+	void deleteByTaskId2(String taskId);
 
 	void insert2(StockholderContribution stockholderContribution);
 

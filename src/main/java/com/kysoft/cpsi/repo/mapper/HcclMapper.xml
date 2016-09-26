@@ -207,4 +207,10 @@
     from T_HCCL_FUR WHERE hcrw_id=#{hcrwId}
     ORDER BY SFBYX DESC, NAME ASC
     </select>
+
+  <select id="getDXNHcsx" resultType="java.util.Map">
+    SELECT DISTINCT *
+    from T_HCCL WHERE dxn_type =2
+  </select>
+
 </mapper>

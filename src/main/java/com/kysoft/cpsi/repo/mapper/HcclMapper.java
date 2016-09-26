@@ -1,9 +1,9 @@
 package com.kysoft.cpsi.repo.mapper;
 
+import com.kysoft.cpsi.repo.entity.Hccl;
+
 import java.util.List;
 import java.util.Map;
-
-import com.kysoft.cpsi.repo.entity.Hccl;
 
 public interface HcclMapper {
 
@@ -47,11 +47,12 @@ public interface HcclMapper {
 
 	List<Hccl> queryForAuditItem(Map<String, Object> param);
 	
-	/*查询被检查单位需要上传的�?查材�?*/
+	/*查询被检查单位需要上传的�?查材�?*/
     List<Map<String, Object>> queryForTask(Map<String, Object> params);
     
 	
-    /*查询被检查单位需要上传的附加�?查材�?*/
+    /*查询被检查单位需要上传的附加�?查材�?*/
     List<Map<String, Object>> queryForTask2(String hcrwId);
-    
+
+	List<Map<String, Object>> getDXNHcsx(Map<String, Object> params);
 }

@@ -248,7 +248,7 @@ public class AuditServiceImpl implements AuditService {
 	//============================================================================
 	//股东出资
 	private void reportStockholderContribution(String hcrwId, JSONObject jsonData) {
-		stockholderContributionMapper.deleteByTaskId(hcrwId);
+		stockholderContributionMapper.deleteByTaskId2(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("gdcz");
 		
 		Integer nd = jsonData.getInteger("nd"); 
@@ -285,7 +285,7 @@ public class AuditServiceImpl implements AuditService {
 	
 	//对外投资
 	private void reportInvestment(String hcrwId, JSONObject jsonData) {
-		investmentMapper.deleteByTaskId(hcrwId);
+		investmentMapper.deleteByTaskId2(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("qygmgq");
 		
 		Integer nd = jsonData.getInteger("nd"); 
@@ -316,7 +316,7 @@ public class AuditServiceImpl implements AuditService {
 	
 	//对外担保
 	private void reportGuarantee(String hcrwId, JSONObject jsonData) {
-		guaranteeMapper.deleteByTaskId(hcrwId);
+		guaranteeMapper.deleteByTaskId2(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("dwdb");
 		Integer nd = jsonData.getInteger("nd"); 
 		String xydm = jsonData.getString("xydm");
@@ -355,7 +355,7 @@ public class AuditServiceImpl implements AuditService {
 	
 	//股权变更
 	private void reportStockRightChange(String hcrwId, JSONObject jsonData) {
-		stockRightChangeMapper.deleteByTaskId(hcrwId);
+		stockRightChangeMapper.deleteByTaskId2(hcrwId);
 		
 		JSONArray shcArray = jsonData.getJSONArray("gqbg");
 		Integer nd = jsonData.getInteger("nd"); 
@@ -422,7 +422,7 @@ public class AuditServiceImpl implements AuditService {
 	}
 	//行政许可
 	private void reportLicense(String hcrwId, JSONObject jsonData) {
-		licenseMapper.deleteByTaskId(hcrwId);
+		licenseMapper.deleteByTaskId2(hcrwId);
 		JSONArray shcArray = jsonData.getJSONArray("xzxk");
 		Integer nd = jsonData.getInteger("nd"); 
 		String xydm = jsonData.getString("xydm");

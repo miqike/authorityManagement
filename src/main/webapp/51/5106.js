@@ -205,6 +205,15 @@ function _reportDocReady(task) {
 	});
 }
 
+function importExcel(){
+	$("#selfCheckDocumentWindow").dialog("open");
+	$("#selfCheckDocPanel").panel({
+		href: '../51/selfCheckForm.jsp',
+		onLoad: function () {
+			doInit();
+		}
+	});
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();

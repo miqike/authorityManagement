@@ -1,10 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
 import com.kysoft.cpsi.audit.entity.Guarantee;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
 
 public interface GuaranteeMapper {
     /**
@@ -48,8 +47,8 @@ public interface GuaranteeMapper {
     List<Guarantee> selectByTaskId2(String hcrwId);
     List<Guarantee> selectByTaskId3(String hcrwId);
 
-    @Delete("delete from T_NB_BD_DWDB where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
-	void deleteByTaskId(String hcrwId);
+    @Delete("delete from T_NB_BD_DWDB where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=2")
+	void deleteByTaskId2(String hcrwId);
 
 	void insert2(Guarantee guarantee);
 

@@ -1,10 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
 import com.kysoft.cpsi.audit.entity.Investment;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
 
 public interface InvestmentMapper {
 
@@ -49,8 +48,8 @@ public interface InvestmentMapper {
     List<Investment> selectByTaskId2(String hcrwId);
     List<Investment> selectByTaskId3(String hcrwId);
 
-	@Delete("delete from T_NB_BD_DWTZ where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
-	void deleteByTaskId(String taskId);
+	@Delete("delete from T_NB_BD_DWTZ where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=2")
+	void deleteByTaskId2(String taskId);
 
 	void insert2(Investment investment);
 

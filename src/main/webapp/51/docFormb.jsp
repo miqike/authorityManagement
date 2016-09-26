@@ -77,6 +77,7 @@
                 onProgress: function (id, fileName, loaded, total) {
                     var percentLoaded = (loaded / total) * 100;
                     $("#progressbar").progressBar(percentLoaded);
+                    $("#btnSaveDoc").linkbutton("disable");
                 },
                 // display a fancy message
                 onComplete: function (id, fileName, response) {

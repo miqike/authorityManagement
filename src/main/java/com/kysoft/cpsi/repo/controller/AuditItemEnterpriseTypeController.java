@@ -1,19 +1,12 @@
 package com.kysoft.cpsi.repo.controller;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.google.common.collect.Maps;
 import com.kysoft.cpsi.repo.service.AuditItemEnterpriseTypeService;
-
 import net.sf.husky.web.controller.BaseController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/21")
@@ -23,7 +16,7 @@ public class AuditItemEnterpriseTypeController extends BaseController {
 	AuditItemEnterpriseTypeService auditItemEnterpriseTypeService;
 	
 	@RequestMapping(value = "/auditItemEnterpriseType/{hcsxId}", method = RequestMethod.POST)
-	public Map<String, Object> save( @RequestBody Integer[] ztlxId, @PathVariable String hcsxId) {
+	public Map<String, Object> save( @RequestBody String[] ztlxId, @PathVariable String hcsxId) {
 		
 		Map<String, Object> result = Maps.newHashMap();
 		try {
