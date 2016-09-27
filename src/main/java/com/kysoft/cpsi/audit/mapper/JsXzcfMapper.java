@@ -1,11 +1,11 @@
 package com.kysoft.cpsi.audit.mapper;
 
-import java.util.List;
-import java.util.Map;
-
-import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsXzcf;
 import com.kysoft.cpsi.audit.entity.JsXzcfKey;
+import org.apache.ibatis.annotations.Delete;
+
+import java.util.List;
+import java.util.Map;
 
 public interface JsXzcfMapper {
 
@@ -47,4 +47,9 @@ public interface JsXzcfMapper {
 
 	List<JsXzcf> query(Map<String,Object> param);
 	List<JsXzcf> queryBD(Map<String,Object> param);
+
+	@Delete("delete from T_JS_BD_XZCF where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=5")
+	void deleteByTaskId2(String taskId);
+
+	void insert2(JsXzcf jsXzcf);
 }

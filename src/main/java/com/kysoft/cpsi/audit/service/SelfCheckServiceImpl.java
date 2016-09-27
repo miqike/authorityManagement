@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 @Service("selfCheckService")
@@ -46,8 +48,24 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     LogService logService;
 
     @Resource
+    JsStockholderContributionMapper jsStockholderContributionMapper;
+
+    @Resource
+    JsGqbgMapper jsGqbgMapper;
+
+    @Resource
+    JsXzcfMapper jsXzcfMapper;
+
+    @Resource
+    JsLicenseMapper jsLicenseMapper;
+
+    @Resource
+    JsZscqMapper jsZscqMapper;
+
+    @Resource
     HcrwMapper hcrwMapper;
 
+    //年报基本信息
     private void nianbao(Hcrw hcrw, Sheet sheetZCFZB, Sheet sheetZCB, Sheet sheetLRB){
         /**
          * 可能的数据错误
@@ -83,12 +101,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         //插入新数据
         annualReportMapper.insert2(annualReport);
     }
+    //年报-股东出资
     private void gudongchuzi(Hcrw hcrw,Sheet sheetGDCZ){
         stockholderContributionMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheetGDCZ.getLastRowNum();
         for(int i=6;i<rowNum;i++){
-            if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(3)).equals("")) {
+            if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).equals("")) {
                 StockholderContribution stockholderContribution = new StockholderContribution();
                 stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
                 stockholderContribution.setNd(hcrw.getNd());
@@ -105,6 +124,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             }
         }
     }
+    //年报-股权变更
     private void guquanbiangeng(Hcrw hcrw,Sheet sheetGQBG){
         stockRightChangeMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
@@ -124,28 +144,30 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             }
         }
     }
+    //年报-对外投资
     private void duiwaitouzi(Hcrw hcrw,Sheet sheetDWTZ){
         investmentMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheetDWTZ.getLastRowNum();
-        for(int i=6;i<rowNum;i++){
+        for(int i=5;i<rowNum;i++){
             if(null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).equals("")) {
                 Investment investment = new Investment();
                 investment.setId(UUID.randomUUID().toString().replace("-", ""));
                 investment.setNd(hcrw.getNd());
                 investment.setHcrwId(hcrw.getId());
                 investment.setXydm(hcrw.getHcdwXydm());
-                investment.setTzqymc(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)));
-                investment.setTzqyZch(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(4)));
+                investment.setTzqymc(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(2)));
+                investment.setTzqyZch(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)));
                 investmentMapper.insert2(investment);
             }
         }
     }
+    //年报-对外担保
     private void duiwandanbao(Hcrw hcrw,Sheet sheetDWDB){
         guaranteeMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheetDWDB.getLastRowNum();
-        for(int i=6;i<rowNum;i++){
+        for(int i=5;i<rowNum;i++){
             if(null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).equals("")) {
                 Guarantee guarantee = new Guarantee();
                 guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -165,12 +187,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
 
     }
+    //年报-行政许可
     private void xingzhengxuke(Hcrw hcrw,Sheet sheetXZXK){
         licenseMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheetXZXK.getLastRowNum();
-        for(int i=6;i<rowNum;i++){
-            if(null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(3)).equals("")) {
+        for(int i=5;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).equals("")) {
                 License license = new License();
                 license.setId(UUID.randomUUID().toString().replace("-", ""));
                 license.setNd(hcrw.getNd());
@@ -183,6 +206,127 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
 
+    //即时-股东出资
+    private void jsGudongchuzhi(Hcrw hcrw,Sheet sheet) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        jsStockholderContributionMapper.deleteByTaskId2(hcrw.getId());
+        // 得到总行数
+        int rowNum = sheet.getLastRowNum();
+        for(int i=6;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                JsStockholderContribution jsStockholderContribution = new JsStockholderContribution();
+                jsStockholderContribution.setId("");
+                jsStockholderContribution.setHcrwId(hcrw.getId());
+                jsStockholderContribution.setXydm(hcrw.getHcdwXydm());
+                jsStockholderContribution.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
+                jsStockholderContribution.setBgrq(null);
+                jsStockholderContribution.setRje( null);
+                jsStockholderContribution.setSje( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
+                jsStockholderContribution.setGssj( null);
+                jsStockholderContribution.setRjczfs( null);
+                jsStockholderContribution.setRjcze(null);
+                jsStockholderContribution.setRjczrq(null);
+                jsStockholderContribution.setSjczfs( POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)));
+                jsStockholderContribution.setSjcze(Float.parseFloat(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
+                jsStockholderContribution.setSjczrq(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
+                jsStockholderContributionMapper.insert2(jsStockholderContribution);
+            }
+        }
+    }
+    //即时-股权变更
+    private void jsGuquanbiangeng(Hcrw hcrw,Sheet sheet) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        jsGqbgMapper.deleteByTaskId2(hcrw.getId());
+        // 得到总行数
+        int rowNum = sheet.getLastRowNum();
+        for(int i=6;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                JsGqbg jsGqbg = new JsGqbg();
+                jsGqbg.setId("");
+                jsGqbg.setHcrwId(hcrw.getId());
+                jsGqbg.setXydm(hcrw.getHcdwXydm());
+                jsGqbg.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
+                jsGqbg.setBgrq((sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)))));
+                jsGqbg.setBgqbl( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
+                jsGqbg.setBghbl( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
+                jsGqbg.setGssj( null);
+                jsGqbgMapper.insert2(jsGqbg);
+            }
+        }
+    }
+    //即时-行政处罚
+    private void jsXingzhengchufa(Hcrw hcrw,Sheet sheet) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        jsXzcfMapper.deleteByTaskId2(hcrw.getId());
+        // 得到总行数
+        int rowNum = sheet.getLastRowNum();
+        for(int i=6;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                JsXzcf jsXzcf = new JsXzcf();
+                jsXzcf.setId("");
+                jsXzcf.setHcrwId(hcrw.getId());
+                jsXzcf.setXydm(hcrw.getHcdwXydm());
+                jsXzcf.setXzcfjdswh(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
+                jsXzcf.setWflx(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
+                jsXzcf.setXzcfnr(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4)));
+                jsXzcf.setCfjg(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)));
+                jsXzcf.setCfrq(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(6))));
+                jsXzcf.setBz(null);
+                jsXzcf.setGssj( null);
+                jsXzcfMapper.insert2(jsXzcf);
+            }
+        }
+    }
+    //即时-行政许可
+    private void jsXingzhengxuke(Hcrw hcrw,Sheet sheet) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        jsLicenseMapper.deleteByTaskId2(hcrw.getId());
+        // 得到总行数
+        int rowNum = sheet.getLastRowNum();
+        for(int i=5;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                JsLicense jsXjsLicensecf = new JsLicense();
+                jsXjsLicensecf.setId("");
+                jsXjsLicensecf.setHcrwId(hcrw.getId());
+                jsXjsLicensecf.setXydm(hcrw.getHcdwXydm());
+                jsXjsLicensecf.setXkwjbh(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
+                jsXjsLicensecf.setXkwjmc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
+                jsXjsLicensecf.setYxqKs(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
+                jsXjsLicensecf.setYxqJs(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5))));
+                jsXjsLicensecf.setXkjg(POIUtils.getStringCellValue(sheet.getRow(i).getCell(6)));
+                jsXjsLicensecf.setXknr("");
+                jsXjsLicensecf.setZt(POIUtils.getStringCellValue(sheet.getRow(i).getCell(7)));
+                jsXjsLicensecf.setXq(null);
+                jsXjsLicensecf.setHdrq(null);
+                jsXjsLicensecf.setGssj( null);
+                jsLicenseMapper.insert2(jsXjsLicensecf);
+            }
+        }
+    }
+    //即时-知识产权出质
+    private void jsZhishichanquan(Hcrw hcrw,Sheet sheet) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        jsZscqMapper.deleteByTaskId2(hcrw.getId());
+        // 得到总行数
+        int rowNum = sheet.getLastRowNum();
+        for(int i=5;i<rowNum;i++){
+            if(null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                JsZscq jsZscq = new JsZscq();
+                jsZscq.setId("");
+                jsZscq.setHcrwId(hcrw.getId());
+                jsZscq.setXydm(hcrw.getHcdwXydm());
+                jsZscq.setQymc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
+                jsZscq.setZl(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4)));
+                jsZscq.setCzrmc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)));
+                jsZscq.setZqrmc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(6)));
+                jsZscq.setZqdjrq(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(7))));
+                jsZscq.setZt(POIUtils.getStringCellValue(sheet.getRow(i).getCell(8)));
+                jsZscq.setBhqk(POIUtils.getStringCellValue(sheet.getRow(i).getCell(9)));
+                jsZscq.setGssj( null);
+                jsZscqMapper.insert2(jsZscq);
+            }
+        }
+    }
 	@Override
 	public void uploadSelfCheckData(InputStream is, String hcrwId, String fileName) throws Exception {
         Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
@@ -210,6 +354,12 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         //行政许可
         xingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
+
+        jsGudongchuzhi(hcrw,workbook.getSheet("股东及出资信息"));
+        jsGuquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
+        jsXingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
+        jsZhishichanquan(hcrw,workbook.getSheet("知识产权出质登记信息"));
+        jsXingzhengchufa(hcrw,workbook.getSheet("受到行政处罚信息"));
 
         workbook.close();
 	}

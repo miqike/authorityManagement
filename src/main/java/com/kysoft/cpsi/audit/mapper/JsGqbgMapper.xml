@@ -177,4 +177,13 @@
       and sjly=#{sjly}
     </if>
   </select>
+
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.JsGqbg">
+  insert into T_JS_BD_GQBG (XYDM, GD, BGRQ,
+    BGQBL, BGHBL, GSSJ,
+    HCRW_ID, ID,SJLY)
+    values (#{xydm,jdbcType=VARCHAR}, #{gd,jdbcType=VARCHAR}, #{bgrq,jdbcType=TIMESTAMP},
+    #{bgqbl,jdbcType=DECIMAL}, #{bghbl,jdbcType=DECIMAL}, #{gssj,jdbcType=TIMESTAMP},
+    #{hcrwId,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR},5)
+  </insert>
 </mapper>

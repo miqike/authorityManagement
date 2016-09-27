@@ -1,11 +1,11 @@
 package com.kysoft.cpsi.audit.mapper;
 
-import java.util.List;
-import java.util.Map;
-
-import com.kysoft.cpsi.audit.entity.JsLicense;
 import com.kysoft.cpsi.audit.entity.JsZscq;
 import com.kysoft.cpsi.audit.entity.JsZscqKey;
+import org.apache.ibatis.annotations.Delete;
+
+import java.util.List;
+import java.util.Map;
 
 public interface JsZscqMapper {
 
@@ -47,4 +47,9 @@ public interface JsZscqMapper {
 
 	List<JsZscq> query(Map<String,Object> param);
 	List<JsZscq> queryBD(Map<String,Object> param);
+
+	@Delete("delete from T_JS_BD_ZSCQ where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=5")
+	void deleteByTaskId2(String taskId);
+
+	void insert2(JsZscq jsZscq);
 }

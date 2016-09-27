@@ -212,4 +212,15 @@
       and sjly=#{sjly}
     </if>
   </select>
+
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.JsZscq">
+    insert into T_JS_BD_ZSCQ(XYDM, CZRMC, ZL,
+      QYMC, ZQRMC, ZQDJRQ,
+      ZT, GSSJ, BHQK, HCRW_ID,
+      ID,SJLY)
+      values (#{xydm,jdbcType=VARCHAR}, #{czrmc,jdbcType=VARCHAR}, #{zl,jdbcType=VARCHAR},
+      #{qymc,jdbcType=VARCHAR}, #{zqrmc,jdbcType=VARCHAR}, #{zqdjrq,jdbcType=TIMESTAMP},
+      #{zt,jdbcType=VARCHAR}, #{gssj,jdbcType=TIMESTAMP}, #{bhqk,jdbcType=VARCHAR}, #{hcrwId,jdbcType=VARCHAR},
+      #{id,jdbcType=VARCHAR},5)
+  </insert>
 </mapper>

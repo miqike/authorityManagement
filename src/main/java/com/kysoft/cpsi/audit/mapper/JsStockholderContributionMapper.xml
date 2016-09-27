@@ -248,4 +248,17 @@
       and sjly=#{sjly}
     </if>
   </select>
+
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.JsStockholderContribution">
+    insert into T_JS_BD_GDCZ(XYDM, GD, BGRQ,
+      RJE, SJE, GSSJ, RJCZFS,
+      RJCZE, RJCZRQ, SJCZFS,
+      SJCZE, SJCZRQ, HCRW_ID,
+      ID,SJLY)
+      values (#{xydm,jdbcType=VARCHAR}, #{gd,jdbcType=VARCHAR}, #{bgrq,jdbcType=TIMESTAMP},
+      #{rje,jdbcType=DECIMAL}, #{sje,jdbcType=DECIMAL}, #{gssj,jdbcType=TIMESTAMP}, #{rjczfs,jdbcType=VARCHAR},
+      #{rjcze,jdbcType=NUMERIC}, #{rjczrq,jdbcType=TIMESTAMP}, #{sjczfs,jdbcType=VARCHAR},
+      #{sjcze,jdbcType=NUMERIC}, #{sjczrq,jdbcType=TIMESTAMP}, #{hcrwId,jdbcType=VARCHAR},
+      #{id,jdbcType=VARCHAR},5)
+  </insert>
 </mapper>

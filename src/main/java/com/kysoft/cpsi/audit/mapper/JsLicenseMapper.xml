@@ -234,4 +234,15 @@
       and sjly=#{sjly}
     </if>
   </select>
+
+  <insert id="insert2" parameterType="com.kysoft.cpsi.audit.entity.JsLicense">
+    insert into T_JS_BD_XZXK (XYDM, XKWJBH, YXQ_KS,
+    YXQ_JS, XKWJMC, XKJG,
+    XKNR, ZT, GSSJ, XQ,
+    HCRW_ID, HDRQ, ID,SJLY)
+    values (#{xydm,jdbcType=VARCHAR}, #{xkwjbh,jdbcType=VARCHAR}, #{yxqKs,jdbcType=TIMESTAMP},
+    #{yxqJs,jdbcType=TIMESTAMP}, #{xkwjmc,jdbcType=VARCHAR}, #{xkjg,jdbcType=VARCHAR},
+    #{xknr,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, #{gssj,jdbcType=TIMESTAMP}, #{xq,jdbcType=VARCHAR},
+    #{hcrwId,jdbcType=VARCHAR}, #{hdrq,jdbcType=TIMESTAMP}, #{id,jdbcType=VARCHAR},5)
+  </insert>
 </mapper>

@@ -1,11 +1,11 @@
 package com.kysoft.cpsi.audit.mapper;
 
-import java.util.List;
-import java.util.Map;
-
 import com.kysoft.cpsi.audit.entity.JsGqbg;
 import com.kysoft.cpsi.audit.entity.JsGqbgKey;
-import com.kysoft.cpsi.audit.entity.JsLicense;
+import org.apache.ibatis.annotations.Delete;
+
+import java.util.List;
+import java.util.Map;
 
 public interface JsGqbgMapper {
 
@@ -48,4 +48,8 @@ public interface JsGqbgMapper {
 	List<JsGqbg> query(Map<String,Object> param);
 	List<JsGqbg> queryBD(Map<String,Object> param);
 
+	@Delete("delete from T_JS_BD_GQBH where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=5")
+	void deleteByTaskId2(String taskId);
+
+	void insert2(JsGqbg jsGqbg);
 }
