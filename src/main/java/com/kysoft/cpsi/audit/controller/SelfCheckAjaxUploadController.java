@@ -5,10 +5,7 @@
  */
 package com.kysoft.cpsi.audit.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
+import java.io.*;
 import java.net.URLDecoder;
 import java.util.Map;
 
@@ -62,11 +59,25 @@ public class SelfCheckAjaxUploadController {
         String filename = request.getHeader("X-File-Name");
         try {
             is = request.getInputStream();
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = is.read(buffer)) > -1 ) {
+                baos.write(buffer, 0, len);
+            }
+            baos.flush();
+
+            // 打开一个新的输入流
+            InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
+            InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
+
             //处理文件内容
-            selfCheckService.uploadSelfCheckData(request,hcrwId,filename);
+            selfCheckService.uploadSelfCheckData(is2,hcrwId,filename);
 
             //将文件保存到MONGODB中
-            String mongoId = FileUploadUtils.mongoUpload(is, filename, owner, ownerKey);
+            String mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
 
             FileUploadUtils.updateOwner(owner, col, ownerKey, mongoId);
 

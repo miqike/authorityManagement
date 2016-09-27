@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.UUID;
 
@@ -184,14 +184,14 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
 
 	@Override
-	public void uploadSelfCheckData(HttpServletRequest request, String hcrwId, String fileName) throws Exception {
+	public void uploadSelfCheckData(InputStream is, String hcrwId, String fileName) throws Exception {
         Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
         Workbook workbook=null;
         if (fileName.endsWith("xls")) {
-            POIFSFileSystem fs=new POIFSFileSystem(request.getInputStream());
+            POIFSFileSystem fs=new POIFSFileSystem(is);
             workbook = new HSSFWorkbook(fs);
         } else if (fileName.endsWith("xlsx")) {
-            workbook = new XSSFWorkbook(request.getInputStream());
+            workbook = new XSSFWorkbook(is);
         }
         //年报数据
         nianbao(hcrw,workbook.getSheet("资产负债表"),workbook.getSheet("企业公示信息自查表"),workbook.getSheet("利润表"));

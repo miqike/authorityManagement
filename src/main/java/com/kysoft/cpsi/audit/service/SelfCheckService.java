@@ -1,9 +1,9 @@
 package com.kysoft.cpsi.audit.service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 
 public interface SelfCheckService {
 
-	void uploadSelfCheckData(HttpServletRequest request, String hcrwId, String fileName) throws Exception;
+	void uploadSelfCheckData(InputStream is, String hcrwId, String fileName) throws Exception;
 
 }
