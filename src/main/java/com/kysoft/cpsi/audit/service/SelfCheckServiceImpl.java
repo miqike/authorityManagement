@@ -208,7 +208,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
     //即时-股东出资
     private void jsGudongchuzhi(Hcrw hcrw,Sheet sheet) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         jsStockholderContributionMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
@@ -219,7 +219,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 jsStockholderContribution.setHcrwId(hcrw.getId());
                 jsStockholderContribution.setXydm(hcrw.getHcdwXydm());
                 jsStockholderContribution.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
-                jsStockholderContribution.setBgrq(null);
+                jsStockholderContribution.setBgrq(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
                 jsStockholderContribution.setRje( null);
                 jsStockholderContribution.setSje( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
                 jsStockholderContribution.setGssj( null);
@@ -235,7 +235,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
     //即时-股权变更
     private void jsGuquanbiangeng(Hcrw hcrw,Sheet sheet) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         jsGqbgMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
@@ -246,7 +246,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 jsGqbg.setHcrwId(hcrw.getId());
                 jsGqbg.setXydm(hcrw.getHcdwXydm());
                 jsGqbg.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
-                jsGqbg.setBgrq((sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)))));
+                jsGqbg.setBgrq(sdf.parse(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5))));
                 jsGqbg.setBgqbl( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
                 jsGqbg.setBghbl( new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
                 jsGqbg.setGssj( null);
@@ -256,7 +256,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
     //即时-行政处罚
     private void jsXingzhengchufa(Hcrw hcrw,Sheet sheet) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         jsXzcfMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
@@ -279,7 +279,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
     //即时-行政许可
     private void jsXingzhengxuke(Hcrw hcrw,Sheet sheet) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         jsLicenseMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheet.getLastRowNum();
@@ -305,7 +305,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
     //即时-知识产权出质
     private void jsZhishichanquan(Hcrw hcrw,Sheet sheet) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         jsZscqMapper.deleteByTaskId2(hcrw.getId());
         // 得到总行数
         int rowNum = sheet.getLastRowNum();

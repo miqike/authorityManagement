@@ -77,7 +77,6 @@
                 },
                 // display a fancy message
                 onComplete: function (id, fileName, response) {
-                    console.log(response);
                     if(response.status==1){
                         $("#d_mongoId").val(response.mongoId);
                         $("#progressbar").hide();
