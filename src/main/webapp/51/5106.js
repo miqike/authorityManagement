@@ -210,7 +210,7 @@ function importExcel(){
 	$("#selfCheckDocPanel").panel({
 		href: '../51/selfCheckForm.jsp',
 		onLoad: function () {
-			doInit();
+			doInitSelfCheck();
 		}
 	});
 }

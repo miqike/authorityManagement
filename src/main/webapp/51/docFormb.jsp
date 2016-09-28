@@ -40,10 +40,10 @@
     function doInit(type) {
     	var hcsx = null;
 		if(type == 1) { //标准
-	        var hcsx = $("#docGrid").datagrid("getSelected");
+	        hcsx = $("#docGrid").datagrid("getSelected");
 	        $("#d_name").val(hcsx.HCCL_NAME);
 		} else { //附加
-			 var hcsx = $("#furDocgrid").datagrid("getSelected");
+			 hcsx = $("#furDocgrid").datagrid("getSelected");
 			 $("#d_id").val(hcsx.ID);
 			 $("#d_name").val(hcsx.NAME);
 		}
