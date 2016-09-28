@@ -1,10 +1,9 @@
 package com.kysoft.cpsi.audit.mapper;
 
 import com.kysoft.cpsi.audit.entity.Homepage;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Delete;
 
 public interface HomepageMapper {
 
@@ -49,7 +48,7 @@ public interface HomepageMapper {
     List<Homepage> selectByTaskId2(String hcrwId);
     List<Homepage> selectByTaskId3(String hcrwId);
 
-    @Delete("delete from T_NB_BD_WD where HCRW_ID = #{taskId,jdbcType=VARCHAR}")
+    @Delete("delete from T_NB_BD_WD where HCRW_ID = #{taskId,jdbcType=VARCHAR} and sjly=2")
 	void deleteByTaskId(String hcrwId);
 
 	void insert2(Homepage homepage);

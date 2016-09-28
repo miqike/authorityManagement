@@ -82,7 +82,7 @@
                         $("#progressbar").hide();
                         $("#btnSaveDoc").linkbutton("enable");
                     }else{
-                        $.messager.show("操作提醒", "文件上传处理失败", "info", "bottomRight");
+                        $.messager.show("操作提醒",response.message, "info", "bottomRight");
                     }
                 }
             });

@@ -87,11 +87,11 @@ public class SelfCheckAjaxUploadController {
             result.put("message","文件保存成功");
 
         }catch (Exception ex) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.setStatus(HttpServletResponse.SC_OK);
             ex.printStackTrace();
             result.put("status",-1);
             result.put("mongoId","");
-            result.put("message", ExceptionUtils.getStackTrace(ex));
+            result.put("message", ex.getMessage());
             MongoLogger.warn("企业自查表数据上传",ExceptionUtils.getStackTrace(ex),hcrwId);
         } finally {
             try {

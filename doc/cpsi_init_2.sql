@@ -131,7 +131,7 @@ insert into t_user_org values('system','系统管理员','610000','陕西省工�
 /**
 初始化编码表
 **/
-delete from x_codelist where name='ztlx';
+delete from x_codelist where name='ztlx';--与qylxdl相同
 insert into x_codelist(name,value,literal,edit_flag,style,descn)
   select 'ztlx',code,content,0,null,'企业主体类型' from bm_qydl;
 delete from x_codelist where name='jyzt';
@@ -169,24 +169,3 @@ where a.nbxh=b.nbxh and b.nd=a.nd
       and b.nbxh=f.nbxh and b.nd=f.nd
       and b.nd=2014
       and b.zch in(select hcdw_xydm from t_hcrw);
-
-/***
-20160620 修改表结构
- */
-alter table cpsi.t_nb add yyzsr number(10,2);
-comment on column cpsi.t_nb.yyzsr is '营业总收入';
-alter table cpsi.t_nb add dj_dzzjz integer;
-alter table cpsi.t_nb add dj_frdbsfdzzsj integer;
-comment on column cpsi.t_nb.dj_dzzjz is '党组织建制';
-comment on column cpsi.t_nb.dj_frdbsfdzzsj is '法人代表是否为党组织书记';
-alter table cpsi.t_nb_dwtz add tzqy_zch varchar2(100);
-comment on column cpsi.t_nb_dwtz.tzqy_zch is '被投资企业注册号';
-
-alter table cpsi.t_nb_bd add yyzsr number(10,2);
-comment on column cpsi.t_nb_bd.yyzsr is '营业总收入';
-alter table cpsi.t_nb_bd add dj_dzzjz integer;
-alter table cpsi.t_nb_bd add dj_frdbsfdzzsj integer;
-comment on column cpsi.t_nb_bd.dj_dzzjz is '党组织建制';
-comment on column cpsi.t_nb_bd.dj_frdbsfdzzsj is '法人代表是否为党组织书记';
-alter table cpsi.t_nb_bd_dwtz add tzqy_zch varchar2(100);
-comment on column cpsi.t_nb_bd_dwtz.tzqy_zch is '被投资企业注册号';
