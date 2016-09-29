@@ -2,10 +2,12 @@ package com.kysoft.cpsi.audit.service;
 
 import com.kysoft.cpsi.audit.entity.*;
 import com.kysoft.cpsi.audit.mapper.*;
+import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
 import net.sf.husky.log.service.LogService;
 import net.sf.husky.utils.POIUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -20,6 +22,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Service("selfCheckService")
@@ -66,6 +69,10 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
     @Resource
     HcrwMapper hcrwMapper;
+
+    @Resource
+    HcclMapper hcclMapper;
+
     /**
      * 可能的数据错误
      * 从业人数：只能是数值
@@ -98,7 +105,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             //插入新数据
             homepageMapper.insert2(homepage);
         }catch(Exception e){
-            throw new RuntimeException("[企业公示信息自查表]处理出错;");
+            e.printStackTrace();
+            throw new RuntimeException("[企业公示信息自查表][网址信息部分]数据导入处理出错;");
         }
     }
     //年报基本信息
@@ -114,10 +122,27 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setHcrwId(hcrw.getId());
 
             annualReport.setSyzqyhj(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
-            annualReport.setLrze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(25).getCell(3))) / 10000)));
+
+            //计算利润总额
+            Float lrze=Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(9).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(12).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(13).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(14).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(15).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(16).getCell(3)))
+                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(18).getCell(3)))
+                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(19).getCell(3)))
+                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(21).getCell(3)))
+                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(23).getCell(3)))
+                    ;
+            annualReport.setLrze(Float.parseFloat(decimalFormat.format(lrze / 10000)));
+            //计算净利润
+            Float jlr=lrze-Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(26).getCell(3)));
+            annualReport.setJlr(Float.parseFloat(decimalFormat.format(jlr / 10000)));
+
             annualReport.setYyzsr(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
             annualReport.setZyywsr(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(7).getCell(3))) / 10000)));
-            annualReport.setJlr(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(27).getCell(3))) / 10000)));
             annualReport.setNsze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetZCB.getRow(9).getCell(5))) / 10000)));
             annualReport.setFzze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(35).getCell(10))) / 10000)));
             annualReport.setZcze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))) / 10000)));
@@ -135,7 +160,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             //插入新数据
             annualReportMapper.insert2(annualReport);
         }catch(Exception e){
-            throw new RuntimeException("[企业公示信息自查表]处理出错;");
+            throw new RuntimeException("[企业公示信息自查表]数据导入处理出错;");
         }
     }
     //年报-股东出资
@@ -162,7 +187,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[股东及出资信息]处理出错;");
+            throw new RuntimeException("[股东及出资信息]数据导入处理出错;");
         }
     }
     //年报-股权变更
@@ -179,14 +204,14 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     stockRightChange.setHcrwId(hcrw.getId());
                     stockRightChange.setXydm(hcrw.getHcdwXydm());
                     stockRightChange.setGd(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)));
-                    stockRightChange.setBghGqbl(Float.parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3))));
+                    stockRightChange.setBgqGqbl(Float.parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3))));
                     stockRightChange.setBghGqbl(Float.parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(4))));
                     stockRightChange.setBgrq(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(5)));
                     stockRightChangeMapper.insert2(stockRightChange);
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[股东股权转让等股权变更信息]处理出错;");
+            throw new RuntimeException("[股东股权转让等股权变更信息]数据导入处理出错;");
         }
     }
     //年报-对外投资
@@ -208,7 +233,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[企业投资设立企业、购买股权信息]处理出错;");
+            throw new RuntimeException("[企业投资设立企业、购买股权信息]数据导入处理出错;");
         }
     }
     //年报-对外担保
@@ -236,7 +261,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[对外担保信息]处理出错;");
+            throw new RuntimeException("[对外担保信息]数据导入处理出错;");
         }
     }
     //年报-行政许可
@@ -258,7 +283,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[行政许可取得、变更、延续信息]处理出错;");
+            throw new RuntimeException("[行政许可取得、变更、延续信息]数据导入处理出错;");
         }
     }
 
@@ -289,7 +314,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[股东及出资信息](即时)处理出错;");
+            throw new RuntimeException("[股东及出资信息](即时)数据导入处理出错;");
         }
     }
     //即时-股权变更
@@ -313,7 +338,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[股东股权转让等股权变更信息](即时)处理出错;");
+            throw new RuntimeException("[股东股权转让等股权变更信息](即时)数据导入处理出错;");
         }
     }
     //即时-行政处罚
@@ -339,7 +364,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[受到行政处罚信息](即时)处理出错;");
+            throw new RuntimeException("[受到行政处罚信息](即时)数据导入处理出错;");
         }
     }
     //即时-行政许可
@@ -368,7 +393,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[行政许可取得、变更、延续信息](即时)处理出错;");
+            throw new RuntimeException("[行政许可取得、变更、延续信息](即时)数据导入处理出错;");
         }
     }
     //即时-知识产权出质
@@ -395,8 +420,35 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
-            throw new RuntimeException("[知识产权出质登记信息](即时)处理出错;");
+            throw new RuntimeException("[知识产权出质登记信息](即时)数据导入处理出错;");
         }
+    }
+    private void validateExcel(Workbook workbook) throws Exception{
+        Sheet sheetZCFZB = workbook.getSheet("资产负债表");
+        Sheet sheetLRB = workbook.getSheet("利润表");
+        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
+
+        }else{
+            throw new RuntimeException("[资产负债表E49不等于J49;");
+        }
+        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))))<0.00000001){
+
+        }else{
+            throw new RuntimeException("[资产负债表F49不等于K49;");
+        }
+
+        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001){
+
+        }else{
+            throw new RuntimeException("[利润表D41不等于资产负债表K47;");
+        }
+
+        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
+
+        }else{
+            throw new RuntimeException("[利润表E41不等于资产负债表J47;");
+        }
+
     }
 	@Override
     @Transactional
@@ -410,6 +462,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             workbook = new XSSFWorkbook(is);
         }
 
+        //校验表数据
+        validateExcel(workbook);
         //网址
         nianbaoWangzhiwangdian(hcrw,workbook.getSheet("企业公示信息自查表"));
         //年报数据
@@ -438,4 +492,11 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         workbook.close();
     }
+
+    @Override
+    public Map<String, Object> getDXNHccl() {
+        Map<String, Object> params=new HashedMap();
+        return hcclMapper.getDXNHcsx(params).get(0);
+    }
+
 }

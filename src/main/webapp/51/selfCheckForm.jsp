@@ -79,7 +79,7 @@
                     if(response.status==1){
                         $("#self_mongoId").val(response.mongoId);
                         $("#progressbarSelfCheck").hide();
-                        $("#btnSaveDoc").linkbutton("enable");
+                        $("#btnSaveDocSelfCheck").linkbutton("enable");
                     }else{
                         $.messager.show("操作提醒",response.message, "info", "bottomRight");
                     }

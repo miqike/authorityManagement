@@ -39,6 +39,7 @@
 
     function doInit(type) {
     	var hcsx = null;
+        var hcrw=$("#grid2").datagrid("getSelected");
 		if(type == 1) { //标准
 	        hcsx = $("#docGrid").datagrid("getSelected");
 	        $("#d_name").val(hcsx.HCCL_NAME);
@@ -61,7 +62,8 @@
             window.uploader = new qq.FileUploaderBasic({
                 button: document.getElementById('btnUpload'),
                 allowedExtensions: [],
-                action: '../ajaxUpload',
+                action: '../selfCheckUpload',
+//                action: '../ajaxUpload',
                 multiple: false,
                 debug: false,
 
@@ -69,7 +71,10 @@
                     uploader.setParams({
                         owner: "AUTHOR",
                         col: "BI0511",
-                        ownerKey: "#datagridBi05"
+                        ownerKey: "#datagridBi05",
+                        hcrwId:hcrw.ID,
+                        hcclName:type == 1?hcsx.HCCL_NAME:hcsx.NAME,
+                        hcsxmc:hcsx.HCSXMC
                     });
                     $("#progressbar").show().width('260px');
                 },
@@ -81,10 +86,13 @@
                 },
                 // display a fancy message
                 onComplete: function (id, fileName, response) {
-                    //$("#a_name").val(fileName);
-                    $("#d_mongoId").val(response.mongoId);
-                    $("#progressbar").hide();
-                    $("#btnSaveDoc").linkbutton("enable");
+                    if(response.status==1){
+                        $("#d_mongoId").val(response.mongoId);
+                        $("#progressbar").hide();
+                        $("#btnSaveDoc").linkbutton("enable");
+                    }else{
+                        $.messager.show("操作提醒",response.message, "info", "bottomRight");
+                    }
                 }
             });
         });
