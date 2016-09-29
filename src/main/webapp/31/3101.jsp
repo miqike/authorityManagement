@@ -280,6 +280,7 @@ td.label {
 					<a href="#" id="btnViewCheckList" class="easyui-linkbutton" iconCls="icon2 r5_c20" plain="true" data-options="disabled:true">检查事项</a>
 					<a href="#" id="btnShowAddPlanStatmentDialog" class="easyui-linkbutton" iconCls="icon2 r1_c13" plain="true" data-options="disabled:true">上传实施方案</a>
 					<a href="#" id="btnDispatch" class="easyui-linkbutton" iconCls="icon2 r16_c19" plain="true" data-options="disabled:true">下达/取消下达</a>
+					<a href="#" id="btnShowCandidateEnterpriseSelectDialog" class="easyui-linkbutton" iconCls="icon-search" plain="true" data-options="disabled:true">移出企业查询</a>
 				</div>
 			</div>
 		</div>

@@ -169,6 +169,19 @@ public class HcjhController extends BaseController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/hcjh/addEnterpriseShortcut/{hcjhId}", method = RequestMethod.PUT)
+	public Map<String, Object> addEnterpriseShortcut(@PathVariable String hcjhId,  @RequestBody String[] zchs) {
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			hcjhService.addEnterpriseShortcut(hcjhId, zchs);
+			result.put(STATUS, SUCCESS);
+		} catch (Exception e) {
+			result.put(STATUS, FAIL);
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	@RequestMapping(value = "/hcjh/removeEnterprise/{hcjhId}", method = RequestMethod.PUT)
 	public Map<String, Object> removeEnterprise(@PathVariable String hcjhId,  @RequestBody String[] hcrwIds) {
 		Map<String, Object> result = Maps.newHashMap();

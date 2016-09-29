@@ -33,6 +33,13 @@ function queryCandidateEnterprise() {
         lrrq_a: $("#f_lrrq_a").datebox('getValue'),
         lrrq_b: $("#f_lrrq_b").datebox('getValue')
 	}
+	
+	if($("#k_id").length != 0) {
+		queryParams.hcjhId = $("#k_id").val();
+	} else {
+		queryParams.hcjhId = $("#grid1").datagrid("getSelected").id;
+	}
+	
 	if(queryParams.qymc == "" && queryParams.zch== "") {
 		$.messager.alert("操作提示", "必须输入企业名称或者注册号进行查询")
 	} else {
@@ -58,7 +65,6 @@ function addEnterprise() {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
 					$("#grid1").datagrid("reload");
 					$("#grid3b").datagrid("reload");
-//					loadCandidateEnterpriseGrid();
                     var item = $('#candidateEnterpriseGrid').datagrid('getRows');
                     if (item) {
                         for (var i = item.length - 1; i >= 0; i--) {
@@ -67,6 +73,35 @@ function addEnterprise() {
                         }
                     }
                 } else {
+					$.messager.alert("错误", "添加核查单位失败");
+				}
+			}
+		}); 
+	} else {
+		$.messager.alert("操作提醒", "请首先选择需要核查的企业");
+	}
+}
+
+//添加经营异常企业快捷操作,此处获得计划编号和原有操作不同
+function addEnterpriseShortcut() {
+	var rows = $('#candidateEnterpriseGrid').datagrid('getSelections');
+	if(rows.length > 0) {
+		var param = new Array();
+		$.each(rows, function(idx, elem) {
+			param.push(elem.zch);
+		});
+		 $.ajax({
+			url:"../31/hcjh/addEnterpriseShortcut/" + $("#grid1").datagrid("getSelected").id,
+			data:JSON.stringify(param),
+			type:"put",
+			contentType: "application/json; charset=utf-8",
+			cache:false,
+			success: function(response) {
+				if(response.status == $.husky.SUCCESS) {
+					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
+					$("#grid1").datagrid("reload");
+					console.log(" Close this dialog")
+				} else {
 					$.messager.alert("错误", "添加核查单位失败");
 				}
 			}
@@ -104,7 +139,7 @@ function candidateEnterpriseGridLoadSucessHandler(data) {
 	</div>
     <table id="candidateEnterpriseGrid"
            class="easyui-datagrid"
-           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:100,height:505,onBeforeLoad:checkParam,
+           data-options="collapsible:true,ctrlSelect:true, method:'get',fit:false,pagination:true, pageSize:100,height:305,onBeforeLoad:checkParam,
            url:'../common/query?mapper=hcrwRcMapper&queryName=selectExclude',onLoadSuccess:candidateEnterpriseGridLoadSucessHandler" >
         <thead>
         <tr>

@@ -150,6 +150,19 @@ public class HcjhServiceImpl implements HcjhService {
 	}
 	
 	@Override
+	//快捷方式,增加日常监管被核查单位,同时认领
+	public void addEnterpriseShortcut(String hcjhId, String[] zchs) {
+		User zfry = WebUtils.getCurrentUser();
+		Map<String, Object> param = Maps.newHashMap();
+		param.put("hcjhId", hcjhId);
+		param.put("zchList", StringUtils.join(zchs, ","));
+		param.put("zfryId", zfry.getUserId());
+		param.put("zfryName", zfry.getName());
+		hcjhMapper.addTaskShortcut(param);
+		MongoLogger.info("task", "用户为日常监管计划增加并认领被核查单位: " + zchs.length, null, hcjhId);
+	}
+	
+	@Override
 	public void removeEnterprise(String hcjhId, String[] hcrwIds) {
 		Map<String, Object> param = Maps.newHashMap();
 		param.put("hcjhId", hcjhId);
