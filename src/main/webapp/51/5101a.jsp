@@ -174,18 +174,18 @@
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
-		                <td class="label" style="width:100px;">计划年度</td>
+		                <td class="label" style="width:70px;">计划年度</td>
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
 		            </tr>
 		            <tr>
-		                <td class="label" >统一社会信用代码</td>
+		                <td class="label" style="width:70px;">信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
-		                <td class="label" >单位名称</td>
+		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
-		                <td style="text-align-right;padding-left:15px;" colspan="2">
+		                <td style="text-align-right;" >
 		                    <a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon-search">查找</a>
 		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
