@@ -458,29 +458,34 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     private void validateExcel(Workbook workbook) throws Exception{
         Sheet sheetZCFZB = workbook.getSheet("资产负债表");
         Sheet sheetLRB = workbook.getSheet("利润表");
+        String errorMsg="";
+
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
 
         }else{
-            throw new RuntimeException("[资产负债表E49不等于J49;");
+            errorMsg=errorMsg+"[资产负债表E49不等于J49] ";
         }
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))))<0.00000001){
 
         }else{
-            throw new RuntimeException("[资产负债表F49不等于K49;");
+            errorMsg=errorMsg+"[资产负债表F49不等于K49] ";
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001){
 
         }else{
-            throw new RuntimeException("[利润表D41不等于资产负债表K47;");
+            errorMsg=errorMsg+"[利润表D41不等于资产负债表K47] ";
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
 
         }else{
-            throw new RuntimeException("[利润表E41不等于资产负债表J47;");
+            errorMsg=errorMsg+"[利润表E41不等于资产负债表J47] ";
         }
 
+        if(!errorMsg.equals("")){
+            throw new RuntimeException(errorMsg);
+        }
     }
 	@Override
     @Transactional

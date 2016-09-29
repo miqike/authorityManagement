@@ -91,7 +91,7 @@
                         $("#progressbar").hide();
                         $("#btnSaveDoc").linkbutton("enable");
                     }else{
-                        $.messager.show("操作提醒",response.message, "info", "bottomRight");
+                        $.messager.alert('自查表保存失败', response.message, 'error');
                     }
                 }
             });
