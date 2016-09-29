@@ -63,5 +63,8 @@ public interface HcclmxMapper {
 	void insert2(Hcclmx hcclmx);
 
 	void updateByPrimaryKeySelective2(Hcclmx hcclmx);
-    
+
+    void deleteByMaterialId(@Param("hcrwId") String hcrwId, @Param("materialId") String materialId);
+    void insertByMaterialId(@Param("materialId") String materialId,@Param("hcdwXydm") String hcdwXydm, @Param("hcjhnd") Integer hcjhnd, @Param("hcrwId") String hcrwId, @Param("mongoId") String mongoId);
+
 }

@@ -1,5 +1,7 @@
 package com.kysoft.cpsi.task.service;
 
+import com.kysoft.cpsi.repo.entity.Hccl;
+import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.task.entity.Hcclmx;
 import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.entity.JsHcrw;
@@ -26,6 +28,9 @@ public class HcclmxServiceImpl implements HcclmxService {
     @Resource
     JsHcrwMapper jsHcrwMapper;
 
+    @Resource
+    HcclMapper hcclMapper;
+
     @Override
     public void delete(String id) {
         Hcclmx hcclmx = hcclmxMapper.selectByPrimaryKey(id);
@@ -36,6 +41,11 @@ public class HcclmxServiceImpl implements HcclmxService {
 
     @Override
     public void addHcclmx(Hcclmx hcclmx) {
+        Hccl hccl=hcclMapper.selectByPrimaryKey(hcclmx.getHcclId());
+
+        hcclmxMapper.deleteByMaterialId(hcclmx.getHcrwId(),hccl.getMaterialId());
+        hcclmxMapper.insertByMaterialId(hccl.getMaterialId(),hcclmx.getHcdwXydm(),hcclmx.getHcjhnd(),hcclmx.getHcrwId(),hcclmx.getMongoId());
+/*
         Hcclmx oldHcclmx = hcclmxMapper.selectBy(hcclmx.getHcrwId(), hcclmx.getHcsxId(), hcclmx.getHcdwXydm(), hcclmx.getHcjhnd(), hcclmx.getHcclId());
         if (null != oldHcclmx) {
             hcclmxMapper.deleteByPrimaryKey(oldHcclmx.getId());
@@ -44,6 +54,7 @@ public class HcclmxServiceImpl implements HcclmxService {
         hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
         hcclmx.setUploadTime(new Date());
         hcclmxMapper.insert(hcclmx);
+*/
         MongoLogger.info("task", "附加核查材料添加成功");
         calcDoc(hcclmx.getHcrwId());
     }
