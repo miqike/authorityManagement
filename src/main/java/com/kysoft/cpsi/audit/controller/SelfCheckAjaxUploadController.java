@@ -50,7 +50,8 @@ public class SelfCheckAjaxUploadController {
      */
     @RequestMapping(value = "selfCheckUpload", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> ajaxUpload(HttpServletRequest request, HttpServletResponse response, String owner, String col, String ownerKey, String hcrwId) {
+    public Map<String,Object> ajaxUpload(HttpServletRequest request, HttpServletResponse response, String owner, String col, String ownerKey,
+                                         String hcrwId,String hcclName,String hcsxmc) {
 
         Map<String,Object> result=new HashedMap();
 
@@ -59,25 +60,31 @@ public class SelfCheckAjaxUploadController {
         String filename = request.getHeader("X-File-Name");
         try {
             is = request.getInputStream();
+            String mongoId=null;
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Map<String,Object> dxn=selfCheckService.getDXNHccl();
+            if(hcclName.equals(dxn.get("NAME").toString()) && hcsxmc.equals(dxn.get("HCSXMC").toString())) {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = is.read(buffer)) > -1 ) {
-                baos.write(buffer, 0, len);
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = is.read(buffer)) > -1) {
+                    baos.write(buffer, 0, len);
+                }
+                baos.flush();
+
+                // 打开一个新的输入流
+                InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
+                InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
+
+                //处理文件内容
+                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename);
+
+                //将文件保存到MONGODB中
+                mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
+            }else{
+                mongoId = FileUploadUtils.mongoUpload(is, filename, owner, ownerKey);
             }
-            baos.flush();
-
-            // 打开一个新的输入流
-            InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
-            InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
-
-            //处理文件内容
-            selfCheckService.uploadSelfCheckData(is2,hcrwId,filename);
-
-            //将文件保存到MONGODB中
-            String mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
 
             FileUploadUtils.updateOwner(owner, col, ownerKey, mongoId);
 
