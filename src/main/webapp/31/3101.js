@@ -167,6 +167,7 @@ function grid1LoadSucessHandler(data) {
     $('#btnDispatch').linkbutton('disable');
     $('#btnViewCheckList').linkbutton('disable');
     $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
+    $('#btnShowCandidateEnterpriseSelectDialog').linkbutton('disable');
     $('#grid1').datagrid('selectRow', 0);
     if(window._selectdPlanId_ != undefined) {
     	$("#grid1").datagrid("selectRow", getRowIndex());
@@ -196,8 +197,10 @@ function grid1ClickHandler() {
         var row = $('#grid1').datagrid('getSelected');
         if(row.planType==1){
         	planType="双随机";
+        	$('#btnShowCandidateEnterpriseSelectDialog').linkbutton('disable');
         }else{
         	planType="日常监管";
+        	$('#btnShowCandidateEnterpriseSelectDialog').linkbutton('enable');
         }
         $("#f_planTypeShow").val(planType);
         $("#f_jhmcShow").val(row.jhmc);
@@ -230,6 +233,7 @@ function grid1ClickHandler() {
         $('#btnDispatch').linkbutton('disable');
         $('#btnViewCheckList').linkbutton('disable');
         $('#btnShowAddPlanStatmentDialog').linkbutton('disable');
+        $('#btnShowCandidateEnterpriseSelectDialog').linkbutton('disable');
         $("#f_planTypeShow").val("");
         $("#f_jhmcShow").val("");
         $("#f_jhbhShow").val("");
@@ -930,6 +934,33 @@ function queryAll(){
         order:1
     });
 }
+
+function showCandidateEnterpriseSelectDialog() {
+	var candidateEnterpriseSelectDialog =
+	$.easyui.showDialog({
+		title : "快速选择待核查移出企业",
+		iconCls: 'icon2 r25_c12',
+		width : 850,
+		height : 450,
+		topMost : false,
+		enableSaveButton : true,
+		enableApplyButton : false,
+		enableCloseButton : false,
+		saveButtonText : "选择并认领",
+		//closeButtonText : "返回",
+		//closeButtonIconCls : "icon-undo",
+		href : "./candidateEnterpriseSelectDialog.jsp",
+		onLoad : function() {
+			doCandidateEnterpriseSelectDialogInit();
+		},
+		onSave : function() {
+			addEnterpriseShortcut();
+			candidateEnterpriseSelectDialog.dialog("destroy");
+			return false;
+		}
+	});
+}
+
 //初始化
 $(function () {
 	$.husky.getUserInfo();
