@@ -1,15 +1,13 @@
 package com.kysoft.cpsi.repo.service;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.kysoft.cpsi.repo.entity.Material;
 import com.kysoft.cpsi.repo.mapper.MaterialMapper;
-
 import net.sf.husky.log.MongoLogger;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MaterialServiceImpl implements MaterialService {
@@ -29,7 +27,7 @@ public class MaterialServiceImpl implements MaterialService {
 
 	@Override
 	public void add(Material material) {
-		
+		material.setId(UUID.randomUUID().toString().replace("-",""));
 		materialMapper.insert(material);
 		 MongoLogger.info("repo", "增加核查材料");
 	}

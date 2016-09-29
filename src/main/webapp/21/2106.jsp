@@ -101,7 +101,7 @@
 				<tr>
 					<td>材料编码</td>
 					<td><input class="easyui-validatebox add" id="f_id"
-						data-options="required:true" style="width: 200px;" /></td>
+						data-options="required:true" style="width: 200px;" disabled /></td>
 				</tr>
 				<tr>
 					<td>材料名称</td>
@@ -124,27 +124,27 @@
 
 <div id="editWindow" class="easyui-window" title="编辑材料信息" closed="true"
 		minimizable="false" maximizable="false" collapsible="false">
-		<div id="materialInfo" title="基本信息" style="padding: 5px;"
+		<div id="materialInfoUpdate" title="基本信息" style="padding: 5px;"
 			selected="true">
-			<table width="100%" id="addTable">
+			<table width="100%" id="editTable">
 			<tr>
 					<td style="text-align:right;">材料编码</td>
-					<td><input class="easyui-validatebox add" id="f_id"
-						data-options="required:true" style="width: 200px;" /></td>
+					<td><input class="easyui-validatebox add" id="u_id"
+						data-options="required:true" style="width: 200px;" disabled /></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;">材料名称</td>
-					<td><input class="easyui-validatebox add" id="f_name"
+					<td><input class="easyui-validatebox add" id="u_name"
 						data-options="required:true" style="width: 200px;" /></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;">材料类型</td>
-					<td><input class="easyui-combobox add" id="f_type"
+					<td><input class="easyui-combobox add" id="u_type"
 						data-options="required:true" style="width: 200px;" codeName="wjlx"/></td>
 				</tr>
 				<tr>
 					<td style="text-align:right;">财务核查数据标志</td>
-					<td><input class="easyui-combobox add" id="f_dxnType"
+					<td><input class="easyui-combobox add" id="u_dxnType"
 						data-options="panelHeight:70" style="width: 200px;" codeName="dxnType"/></td>
 				</tr>
 

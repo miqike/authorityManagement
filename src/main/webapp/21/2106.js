@@ -156,10 +156,10 @@ function reset() {
 }
 
 function view(){
-	var qy=$("#mainGrid").datagrid("getSelected");
+	/*var qy=$("#mainGrid").datagrid("getSelected");
 	if(null != qy) {
 		$("#examHistory").window("open");
-		/* showModalDialog("examHistory");*/
+		/!* showModalDialog("examHistory");*!/
 	    $("#p_code").text(qy.xydm);
 	    $("#p_name").text(qy.name);
 	    var options = $("#grid2").datagrid("options");
@@ -169,7 +169,7 @@ function view(){
 	    });
 	    $('#btnViewHcsxjg').linkbutton('disable');
 		$('#btnViewDocList').linkbutton('disable');
-	}
+	}*/
 }
 
 $(function () {
