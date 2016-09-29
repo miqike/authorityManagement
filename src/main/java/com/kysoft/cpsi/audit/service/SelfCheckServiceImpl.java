@@ -5,6 +5,8 @@ import com.kysoft.cpsi.audit.mapper.*;
 import com.kysoft.cpsi.repo.mapper.HcclMapper;
 import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.mapper.HcrwMapper;
+import net.sf.husky.exception.ExceptionUtils;
+import net.sf.husky.log.MongoLogger;
 import net.sf.husky.log.service.LogService;
 import net.sf.husky.utils.POIUtils;
 import org.apache.commons.collections.map.HashedMap;
@@ -86,6 +88,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             return null;
         }
     }
+    private Float parseFloat(String floatStr){
+        if(null !=floatStr && !floatStr.equals("")){
+            return Float.parseFloat(floatStr);
+        }else{
+            return Float.parseFloat("0.00");
+        }
+    }
     //年报网址网店
     private void nianbaoWangzhiwangdian(Hcrw hcrw, Sheet sheetZCB){
 
@@ -106,6 +115,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             homepageMapper.insert2(homepage);
         }catch(Exception e){
             e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 网址 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[企业公示信息自查表][网址信息部分]数据导入处理出错;");
         }
     }
@@ -121,31 +131,31 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setQymc(hcrw.getHcdwName());
             annualReport.setHcrwId(hcrw.getId());
 
-            annualReport.setSyzqyhj(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
+            annualReport.setSyzqyhj(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
 
             //计算利润总额
-            Float lrze=Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(9).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(12).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(13).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(14).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(15).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(16).getCell(3)))
-                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(18).getCell(3)))
-                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(19).getCell(3)))
-                    +Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(21).getCell(3)))
-                    -Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(23).getCell(3)))
+            Float lrze=parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(9).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(12).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(13).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(14).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(15).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(16).getCell(3)))
+                    +parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(18).getCell(3)))
+                    +parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(19).getCell(3)))
+                    +parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(21).getCell(3)))
+                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(23).getCell(3)))
                     ;
-            annualReport.setLrze(Float.parseFloat(decimalFormat.format(lrze / 10000)));
+            annualReport.setLrze(parseFloat(decimalFormat.format(lrze / 10000)));
             //计算净利润
-            Float jlr=lrze-Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(26).getCell(3)));
-            annualReport.setJlr(Float.parseFloat(decimalFormat.format(jlr / 10000)));
+            Float jlr=lrze-parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(26).getCell(3)));
+            annualReport.setJlr(parseFloat(decimalFormat.format(jlr / 10000)));
 
-            annualReport.setYyzsr(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
-            annualReport.setZyywsr(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(7).getCell(3))) / 10000)));
-            annualReport.setNsze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getStringCellValue(sheetZCB.getRow(9).getCell(5))) / 10000)));
-            annualReport.setFzze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(35).getCell(10))) / 10000)));
-            annualReport.setZcze(Float.parseFloat(decimalFormat.format(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))) / 10000)));
+            annualReport.setYyzsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
+            annualReport.setZyywsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(7).getCell(3))) / 10000)));
+            annualReport.setNsze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetZCB.getRow(9).getCell(5))) / 10000)));
+            annualReport.setFzze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(35).getCell(10))) / 10000)));
+            annualReport.setZcze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))) / 10000)));
 
             annualReport.setTxdz(POIUtils.getStringCellValue(sheetZCB.getRow(6).getCell(3)));
             annualReport.setYzbm(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(5)));
@@ -160,6 +170,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             //插入新数据
             annualReportMapper.insert2(annualReport);
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 年报基本信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[企业公示信息自查表]数据导入处理出错;");
         }
     }
@@ -180,13 +192,15 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     stockholderContribution.setRjcze(null);
                     stockholderContribution.setRjczdqsj(null);
                     stockholderContribution.setRjczfs(null);
-                    stockholderContribution.setSjcze(Float.parseFloat(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(3))));
+                    stockholderContribution.setSjcze(parseFloat(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(3))));
                     stockholderContribution.setSjczsj(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(4)));
                     stockholderContribution.setSjczfs(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(5)));
                     stockholderContributionMapper.insert2(stockholderContribution);
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 股东及出资信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[股东及出资信息]数据导入处理出错;");
         }
     }
@@ -204,13 +218,15 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     stockRightChange.setHcrwId(hcrw.getId());
                     stockRightChange.setXydm(hcrw.getHcdwXydm());
                     stockRightChange.setGd(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)));
-                    stockRightChange.setBgqGqbl(Float.parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3))));
-                    stockRightChange.setBghGqbl(Float.parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(4))));
+                    stockRightChange.setBgqGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3))));
+                    stockRightChange.setBghGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(4))));
                     stockRightChange.setBgrq(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(5)));
                     stockRightChangeMapper.insert2(stockRightChange);
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 股东股权转让等股权变更信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[股东股权转让等股权变更信息]数据导入处理出错;");
         }
     }
@@ -233,6 +249,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 企业投资设立企业、购买股权信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[企业投资设立企业、购买股权信息]数据导入处理出错;");
         }
     }
@@ -252,7 +270,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     guarantee.setZqr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)));
                     guarantee.setZwr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(3)));
                     guarantee.setZzqzl(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(4)));
-                    guarantee.setZzqse(Float.parseFloat(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(5))));
+                    guarantee.setZzqse(parseFloat(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(5))));
                     guarantee.setLxzwqx(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(6)));
                     guarantee.setBzqj(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(7)));
                     guarantee.setBzfs(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(8)));
@@ -261,6 +279,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 对外担保信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[对外担保信息]数据导入处理出错;");
         }
     }
@@ -283,6 +303,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 行政许可取得、变更、延续信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[行政许可取得、变更、延续信息]数据导入处理出错;");
         }
     }
@@ -308,12 +330,14 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     jsStockholderContribution.setRjcze(null);
                     jsStockholderContribution.setRjczrq(null);
                     jsStockholderContribution.setSjczfs(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)));
-                    jsStockholderContribution.setSjcze(Float.parseFloat(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
+                    jsStockholderContribution.setSjcze(parseFloat(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
                     jsStockholderContribution.setSjczrq(getDateValue(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
                     jsStockholderContributionMapper.insert2(jsStockholderContribution);
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 股东及出资信息 即时 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[股东及出资信息](即时)数据导入处理出错;");
         }
     }
@@ -338,6 +362,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 股东股权转让等股权变更信息 即时 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[股东股权转让等股权变更信息](即时)数据导入处理出错;");
         }
     }
@@ -364,6 +390,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 受到行政处罚信息 即时 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[受到行政处罚信息](即时)数据导入处理出错;");
         }
     }
@@ -393,6 +421,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 行政许可取得、变更、延续信息 即时 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[行政许可取得、变更、延续信息](即时)数据导入处理出错;");
         }
     }
@@ -420,30 +450,32 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 }
             }
         }catch(Exception e){
+            e.printStackTrace();
+            MongoLogger.warn("企业自查表数据上传 知识产权出质登记信息 即时 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
             throw new RuntimeException("[知识产权出质登记信息](即时)数据导入处理出错;");
         }
     }
     private void validateExcel(Workbook workbook) throws Exception{
         Sheet sheetZCFZB = workbook.getSheet("资产负债表");
         Sheet sheetLRB = workbook.getSheet("利润表");
-        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
+        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
 
         }else{
             throw new RuntimeException("[资产负债表E49不等于J49;");
         }
-        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))))<0.00000001){
+        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))))<0.00000001){
 
         }else{
             throw new RuntimeException("[资产负债表F49不等于K49;");
         }
 
-        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001){
+        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001){
 
         }else{
             throw new RuntimeException("[利润表D41不等于资产负债表K47;");
         }
 
-        if(Math.abs(Float.parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-Float.parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
+        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
 
         }else{
             throw new RuntimeException("[利润表E41不等于资产负债表J47;");
