@@ -476,6 +476,14 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         Sheet sheetLRB = workbook.getSheet("利润表");
         String errorMsg="";
 
+        if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4))).compareTo(new BigDecimal("0"))==0
+                && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))).compareTo(new BigDecimal("0"))==0
+                && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))).compareTo(new BigDecimal("0"))==0
+                && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))).compareTo(new BigDecimal("0"))==0){
+            errorMsg=errorMsg+"[资产负债表E49 F49 J49 K49不能全为0] ";
+        }else{
+        }
+
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
 
         }else{
