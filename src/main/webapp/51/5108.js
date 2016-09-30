@@ -20,7 +20,8 @@ function quickSearch (value, name) {
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
-            order: 1
+            order: 1,
+            sjwcrqNullFlag:0
         });
     } else {
         $.messager.alert("提示","请首先选择计划和单位")
@@ -163,7 +164,8 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
             filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
-            order: 1
+            order: 1,
+            sjwcrqNullFlag:0
         });
     } else {
         $.messager.alert("提示","请首先选择计划和单位")
@@ -210,7 +212,7 @@ $(function () {
     }
     $("input[name='filterByAuditResult']").change(function(){
     	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-        var selected = treeObj.getSelectedNodes()
+        var selected = treeObj.getSelectedNodes();
         var hcjh = $('#grid1').datagrid('getSelected');
         if (selected.length == 1 && hcjh != null) {
             var options = $("#grid2").datagrid("options");
@@ -219,7 +221,8 @@ $(function () {
                 hcjhId: hcjh.id,
                 organization: processorOrgId(selected[0].id),
                 filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
-                order: 1
+                order: 1,
+                sjwcrqNullFlag:0
             });
         }
     });

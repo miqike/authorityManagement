@@ -731,6 +731,10 @@
       <if test="filterByAuditResult==3">
       		AND AUDIT_RESULT IS NULL
       </if>
+      <if test="sjwcrqNullFlag!=null">
+        and sjwcrq is not null
+      </if>
+
         ORDER BY
         <if test="order == 1">
           hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
