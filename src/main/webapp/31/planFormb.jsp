@@ -248,7 +248,7 @@
                 <thead>
                 <tr>
                     <!-- <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">执法人员</th> -->
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120">统一社会信用代码</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="140">统一社会信用代码</th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称</th>
                     <th data-options="field:'lrrq'" halign="center" align="center" sortable="true" width="150" formatter="formatDate">举报或列入经营异常起始日</th>
                     <th data-options="field:'ksrq'" halign="center" align="center" sortable="true" width="80" formatter="formatDate">终止日</th>

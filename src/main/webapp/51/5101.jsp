@@ -124,7 +124,7 @@
      		pageSize: 20, pagination: true"> -->
             <thead>
 	            <tr>
-	                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120" styler="taskStatusStyler">统一社会信用代码</th>
+	                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="140" styler="taskStatusStyler">统一社会信用代码</th>
 	                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="184">单位名称</th>
 	            </tr>
             </thead>

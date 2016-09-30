@@ -136,7 +136,7 @@
                  <th data-options="field:'REPORT_DOC_READY_TIME'" halign="center" align="center" width="100" formatter="formatDate">上报时间</th>
                  <th data-options="field:'DOC_READY_FLAG'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">上传文档状态</th>
                  <th data-options="field:'DOC_READY_FLAG_FUR'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">附加文档状态</th>
-                 <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="120">统一社会信用代码</th>
+                 <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="140">统一社会信用代码</th>
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
                  <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
                  <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>

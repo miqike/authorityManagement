@@ -134,7 +134,7 @@
                 <thead>
                 <tr>
                     <th data-options="field:'zfryName'" halign="center" align="center" width="100" >执法人员</th>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="200">统一社会信用代码</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="140">统一社会信用代码</th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">企业名称</th>
                     <th data-options="field:'rlr',halign:'center',align:'left'" sortable="true" width="100">认领人</th>
                     <th data-options="field:'rlrq',halign:'center',align:'left'" sortable="true" width="80" formatter="formatDate">认领日期</th>
@@ -216,7 +216,7 @@
 						height:370,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandler">
                 <thead>
                 <tr>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="115">统一社会信用代码</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="140">统一社会信用代码</th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">企业名称</th>
                     <th data-options="field:'zfryName', halign:'center',align:'center'" width="100" >检查人员</th>
                     <th data-options="field:'rlrq', halign:'center',align:'center'" width="80" formatter="formatDate">认领时间</th>

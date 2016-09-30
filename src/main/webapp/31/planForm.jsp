@@ -141,12 +141,8 @@
                    style="height: 318px">
                 <thead>
                 <tr>
-                    <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">
-                        执法人员
-                    </th>
-                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="200">
-                        统一社会信用代码
-                    </th>
+                    <th data-options="field:'id'" halign="center" align="center" width="100" formatter="formatZfry">执法人员</th>
+                    <th data-options="field:'hcdwXydm',halign:'center',align:'left'" sortable="true" width="140">统一社会信用代码</th>
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">单位名称
                     </th>
                 </tr>
