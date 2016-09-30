@@ -172,6 +172,10 @@ function formatCode(value, codeName) {
 }
 
 //格式化货币
+function moneyFormatter(val){
+    var result=parseFloat(val);
+    return result.formatMoney(2,"","","");
+}
 function currencyFormatter(val) {
 	if(val == undefined) {
 		return "";

@@ -542,69 +542,87 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             //开始打印
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业年报公示信息核查结果报告");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "黑体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 18);
             top = top + 10;
-            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划编号："+qy.jhbh+"    计划名称："+qy.jhmc+"    检查时间："+formatDate(qy.jhxdrq));
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight),"检查机关："+qy.hcjgmc);
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
             LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
-            top = top + 10;
-            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业名称："+qy.hcdwName+"    注册号/社会统一信用代码："+qy.hcdwXydm);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight),"检查时间："+formatDate(qy.jhxdrq));
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
             LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
-            top = top + 10;
-            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "抽查结果："+$.codeListLoader.getCodeLiteral("gsjg",qy.hcjieguo)+"    检查机关："+qy.hcjgmc);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划名称："+qy.jhmc);
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
             LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", 12);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight),"计划编号："+qy.jhbh);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight),  "企业名称："+qy.hcdwName);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "注册号/社会统一信用代码："+qy.hcdwXydm);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight), "抽查结果："+$.codeListLoader.getCodeLiteral("gsjg",qy.hcjieguo));
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
 
             //打印表格头
-            var fontSize=10;
+            var fontSize;//内容行字号
+            var fontSizeOfTitle=9;//标题行字号
             rowHeight=8;
-            top = top + rowHeight;
+            top = top + 5;
             var colLeft=0;
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最上横线
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "序号");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[0]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[0]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[0];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[1]), toMilli(rowHeight), "检查信息分类");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[1]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[1]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[1];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[2]), toMilli(rowHeight), "检查项目");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[2]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[2]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[2];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[3]), toMilli(rowHeight), "公示内容");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[3]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[3]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[3];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[4]), toMilli(rowHeight), "登记/备案内容");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[4]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[4]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[4];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[5]), toMilli(rowHeight), "实际内容");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[5]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[5]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[5];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[6]), toMilli(rowHeight), "对比结果");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[6]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[6]), 0, 1);//竖线
             colLeft=colLeft+columnWidths[6];
             LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[7]), toMilli(rowHeight), "问题描述");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(columnWidthFull), toMilli(top + rowHeight ), toMilli(columnWidthFull), 0, 2);//竖线
 
             top = top + rowHeight;
@@ -627,49 +645,65 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(4,dataList,"");//["4","","资产总额（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(5,dataList,"");//["5","","负债总额（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(6,dataList,"");//["6","","所有者权益合计（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(7,dataList,"");//["7","","营业总收入（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(8,dataList,"");//["8","","主营业务收入（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(9,dataList,"");//["9","","利润总额（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(10,dataList,"");//["10","","净利润（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(11,dataList,"");//["11","","纳税总额（万元）","","","","",""];
-            data[5]=currencyFormatter(data[5]);
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
             writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
             top = top + rowHeight;
             rowHeight=10;
