@@ -178,6 +178,12 @@
 		                <td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">计划编号</td>
 		                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
+						<td style="text-align:center;" >
+							<a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
+							   iconCls="icon-search">查找</a>
+							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
+							   iconCls="icon2 r3_c10">重置</a>
+						</td>
 		            </tr>
 		            <tr>
 		                <td class="label" style="width:70px;">信用代码</td>
@@ -185,11 +191,7 @@
 		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
 		                
-		                <td style="text-align-right;" >
-		                    <a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
-		                       iconCls="icon-search">查找</a>
-		                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
-		                       iconCls="icon2 r3_c10">重置</a>
+		                <td style="text-align:center;" >
 		                    <a href="javascript:void(0);" id="btnMinimizeMyTaskWindow" class="easyui-linkbutton" plain="true"
 		                       iconCls="icon-back">确认返回</a>
 		                </td>

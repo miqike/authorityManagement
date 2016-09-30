@@ -175,16 +175,16 @@ td.label {
 		<div id="panel" class="easyui-layout" data-options="fit:true"
 			style="overflow: hidden;">
 			<div data-options="region:'north',split:false,height:95" title="">
-				<div style="padding: 5px 10px 0px 10px">
+				<div style="padding: 0px 0px 0px 0px">
 					<table id="queryTable">
 						<tr>
 							<td class="label">计划年度</td>
-							<td><input id="f_nd" class="easyui-validatebox"
-								data-options="validType:'integer'" /></td>
+							<td><input id="f_nd" class="easyui-validatebox" data-options="validType:'integer'" /></td>
 							<td class="label">计划编号</td>
 							<td><input id="f_jhbh" class="easyui-validatebox" /></td>
 							<td class="label">公示系统计划编号</td>
 							<td><input id="f_gsjhbh" class="easyui-validatebox" /></td>
+							<td style=""><a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a></td>
 						</tr>
 						<tr>
 							<td class="label">抽查文号</td>
@@ -192,30 +192,17 @@ td.label {
 							<td class="label">计划名称</td>
 							<td><input id="f_jhmc" class="easyui-validatebox" /></td>
 							<td class="label">检查内容</td>
-							<td><input id="f_nr" class="easyui-combobox" codeName="hcnr"
-								data-options="panelHeight:80,width:143,onChange:loadGrid1"
-								style="" /></td>
+							<td><input id="f_nr" class="easyui-combobox" codeName="hcnr" data-options="panelHeight:80,width:143,onChange:loadGrid1" style="" /></td>
+							<td style=""><a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a></td>
 						</tr>
 						<tr>
 							<td class="label">检查分类</td>
-							<td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
-								data-options="panelHeight:60,width:143,onChange:loadGrid1"
-								style="" /></td>
+							<td><input id="f_fl" class="easyui-combobox" codeName="hcfl" data-options="panelHeight:60,width:143,onChange:loadGrid1" style="" /></td>
 							<td class="label">计划类型</td>
-							<td><input id="f_planType" class="easyui-combobox"
-								codeName="planType"
-								data-options="panelHeight:60,width:143,onChange:loadGrid1"
-								style="" /></td>
+							<td><input id="f_planType" class="easyui-combobox" codeName="planType" data-options="panelHeight:60,width:143,onChange:loadGrid1" style="" /></td>
 							<td class="label">任务下达机关</td>
 							<td><input id="f_hcjgmc" class="easyui-validatebox" style="" /></td>
-
-							<td style=""><a href="javascript:void(0);" id="btnSearch"
-								class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
-								<a href="javascript:void(0);" id="btnReset"
-								class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-								<a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow"
-								class="easyui-linkbutton" plain="true" iconCls="icon-back">确认返回</a>
-							</td>
+							<td style=""><a href="javascript:void(0);" id="btnMinimizeMyPlanListWindow" class="easyui-linkbutton" plain="true" iconCls="icon-back">确认返回</a> </td>
 						</tr>
 					</table>
 				</div>
