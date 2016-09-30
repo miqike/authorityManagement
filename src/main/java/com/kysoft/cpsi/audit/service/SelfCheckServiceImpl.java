@@ -487,17 +487,12 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             errorMsg=errorMsg+"[资产负债表F49不等于K49] ";
         }
 
-        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001){
+        if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001
+                || parseBigDecimal(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3))).compareTo(
+                parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))).subtract(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9)))))==0){
 
         }else{
-            errorMsg=errorMsg+"[利润表D41不等于资产负债表K47] ";
-        }
-
-        if(parseBigDecimal(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3))).compareTo(
-                parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))).add(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9)))))==0){
-
-        }else{
-            errorMsg=errorMsg+"[利润表D41不等于资产表K47-J47] ";
+            errorMsg=errorMsg+"[利润表D41应该等于资产负债表K47 或者 利润表D41应该等于资产表K47-J47] ";
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
@@ -584,7 +579,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(9))).compareTo(
                 parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(37).getCell(9))).add(
-                        parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(39).getCell(9)))).add(
+                        parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(38).getCell(9)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(41).getCell(9)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(43).getCell(9)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(44).getCell(9)))).add(
@@ -596,7 +591,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))).compareTo(
                 parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(37).getCell(10))).add(
-                        parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(39).getCell(10)))).add(
+                        parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(38).getCell(10)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(41).getCell(10)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(43).getCell(10)))).add(
                         parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(44).getCell(10)))).add(
