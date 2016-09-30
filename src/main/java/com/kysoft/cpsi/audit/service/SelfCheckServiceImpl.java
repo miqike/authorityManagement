@@ -493,6 +493,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             errorMsg=errorMsg+"[利润表D41不等于资产负债表K47] ";
         }
 
+        if(parseBigDecimal(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3))).compareTo(
+                parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))).add(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9)))))==0){
+
+        }else{
+            errorMsg=errorMsg+"[利润表D41不等于资产表K47-J47] ";
+        }
+
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
 
         }else{
