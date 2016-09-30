@@ -114,6 +114,10 @@ public class HcrwServiceImpl implements HcrwService {
 	public void updateDocReadyFlag(String hcrwId, int docReadyReportFlag) {
 		int flag = docReadyReportFlag == 0? 1: 0;
 		User user = WebUtils.getCurrentUser();
+        Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
+        if(hcrw.getRwzt()==5 && docReadyReportFlag==1){
+            throw new RuntimeException("任务已经完成，不能取消上报");
+        }
 		hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());
 		MongoLogger.info("task", "用户对任务进行上报操作: " + docReadyReportFlag, null, hcrwId);
 	}

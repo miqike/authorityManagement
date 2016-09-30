@@ -226,7 +226,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "上报操作失败");
+            result.put(MESSAGE, "上报操作失败；"+e.getMessage());
         }
         return result;
     }
