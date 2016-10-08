@@ -515,7 +515,7 @@ function getDataFromDataList(xh,dataList,zhongDian){
 }
 function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
     $("#gaozhishuWindow").window("close");
-    var columnWidths=[10,25,25,25,25,25,25,35];
+    var columnWidths=[5,15,30,45,45,45,10,0];//195
     var columnWidthFull = columnWidths[0]+columnWidths[1]+columnWidths[2]+columnWidths[3]+columnWidths[4]+columnWidths[5]+columnWidths[6]+columnWidths[7];
 
     var left = 0;
@@ -580,7 +580,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             //打印表格头
             var fontSize;//内容行字号
             var fontSizeOfTitle=9;//标题行字号
-            rowHeight=8;
+            rowHeight=12;
             top = top + 5;
             var colLeft=0;
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最上横线
