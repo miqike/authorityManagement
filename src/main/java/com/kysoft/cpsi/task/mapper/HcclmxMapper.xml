@@ -343,12 +343,12 @@
     </select>
 
     <delete id="deleteByMaterialId">
-        delete from t_hcclmx where (hccl_id,hcsx_id) in(select hccl_id,hcsx_id from t_hccl where  material_id=#{materialId}) and hcrw_id=#{hcrwId}
+        delete from t_hcclmx where (hccl_id,hcsx_id) in(select b.id,b.hcsx_id from t_hccl b where  material_id=#{materialId}) and hcrw_id=#{hcrwId}
     </delete>
 
     <insert id="insertByMaterialId" >
         insert into t_hcclmx(ID,HCDW_XYDM,HCJHND,NAME,SFBYX,WJLX,HCCL_ID,HCSX_ID,HCRW_ID,MONGO_ID,YHTG,LY,HCSXMC,UPLOAD_TIME)
-        select replace(sys_guid(),'-','') id,#{hcdwXydm} hcdw_xydm,#{hcjhnd} hcjhnd,b.name name,a.sfbyx,a.wjlx,a.id,a.hcsx_id,#{hcrwId} hcrw_id,#{mongoId} mongo_id,a.yhtg,2 ly,a.hcsxmc,sysdate
+        select replace(sys_guid(),'-','') id,#{hcdwXydm} hcdw_xydm,#{hcjhnd} hcjhnd,b.name name,a.sfbyx sfbyx,a.wjlx wjlx,a.id hccl_id,a.hcsx_id,#{hcrwId} hcrw_id,#{mongoId} mongo_id,a.yhtg,2 ly,a.hcsxmc,sysdate UPLOAD_TIME
         from t_hccl a,t_material b where a.material_id=#{materialId} and a.material_id=b.id
     </insert>
 </mapper>
