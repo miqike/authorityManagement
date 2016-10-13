@@ -115,7 +115,7 @@ public class HcrwServiceImpl implements HcrwService {
 		int flag = docReadyReportFlag == 0? 1: 0;
 		User user = WebUtils.getCurrentUser();
         Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
-        if(hcrw.getRwzt()==5 && docReadyReportFlag==1){
+        if(null != hcrw.getRwzt() && hcrw.getRwzt()==5 && docReadyReportFlag==1){
             throw new RuntimeException("任务已经完成，不能取消上报");
         }
 		hcrwMapper.updateDocReadyReportFlag(hcrwId, flag, user.getName());

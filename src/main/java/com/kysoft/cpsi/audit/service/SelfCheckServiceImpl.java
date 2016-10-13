@@ -95,6 +95,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             return Float.parseFloat("0.00");
         }
     }
+    private Integer parseInt(String floatStr){
+        if(null !=floatStr && !floatStr.trim().equals("")){
+            return Integer.parseInt(floatStr);
+        }else{
+            return 0;
+        }
+    }
     private BigDecimal parseBigDecimal(String bigDecimalStr){
         DecimalFormat   df   =new   java.text.DecimalFormat("#.00");
         if(null !=bigDecimalStr && !bigDecimalStr.trim().equals("")){
@@ -169,7 +176,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setYzbm(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(5)));
             annualReport.setLxdh(POIUtils.getStringCellValue(sheetZCB.getRow(5).getCell(5)));
             annualReport.setMail(POIUtils.getStringCellValue(sheetZCB.getRow(6).getCell(5)));
-            annualReport.setCyrs(Integer.parseInt(POIUtils.getStringCellValue(sheetZCB.getRow(7).getCell(5))));
+            annualReport.setCyrs(parseInt(POIUtils.getStringCellValue(sheetZCB.getRow(7).getCell(5))));
             annualReport.setJyzt(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(3)));
             annualReport.setSftzgmgq(POIUtils.getStringCellValue(sheetZCB.getRow(13).getCell(4)));
             annualReport.setSfydwdbxx(POIUtils.getStringCellValue(sheetZCB.getRow(14).getCell(4)));
@@ -476,13 +483,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         Sheet sheetLRB = workbook.getSheet("利润表");
         String errorMsg="";
 
-        if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4))).compareTo(new BigDecimal("0"))==0
+        /*if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4))).compareTo(new BigDecimal("0"))==0
                 && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))).compareTo(new BigDecimal("0"))==0
                 && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))).compareTo(new BigDecimal("0"))==0
                 && parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))).compareTo(new BigDecimal("0"))==0){
             errorMsg=errorMsg+"[资产负债表E49 F49 J49 K49不能全为0] ";
         }else{
-        }
+        }*/
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
 

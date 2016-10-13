@@ -928,7 +928,8 @@
         </if>
 		<if test="docReadyReportFlag!=null">
 		  AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
-		</if>) m LEFT JOIN 
+		</if>
+         ) m LEFT JOIN
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY
         <if test="order != null">
