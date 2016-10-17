@@ -156,3 +156,8 @@ create index IDX_T_NB_WD_1 on T_NB_WD (HCRW_ID);
 create index IDX_T_XZXKXX_1 on T_NB_XZXK (HCRW_ID);
 comment on column T_SCZT.ztlx is '主体类型';
 comment on column T_HCRW.ztlx is '企业主体类型';
+
+--20161013
+alter table t_hcrw add zcb_result varchar2(4000);
+--pkg_hc 915
+--  v_hcsx_sm||(select zcb_result from t_hcrw where id=p_HCRWID)

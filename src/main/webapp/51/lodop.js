@@ -428,8 +428,12 @@ function printZelingluxingtongzhishu() {
 }
 
 //打印企业年报公示信息核查结果报告
-function writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize ){
-    LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
+function writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,xh){
+    if(xh!=5 && xh!=6 && xh!=7 && xh!=8 && xh!=9 && xh!=10 && xh!=11) {
+        LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
+    }else{
+        LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull-columnWidths[7]), 0, 1);//横线
+    }
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
     LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), data[0]);
     LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
@@ -508,21 +512,23 @@ function getDataFromDataList(xh,dataList,zhongDian){
             data[4]=dataList[i].bznr;
             data[5]=dataList[i].sjnr;
             data[6]=dataList[i].hcjg==1?"通过":"不通过";
-            data[7]=dataList[i].sm;
+            if(xh!=5 && xh!=6 && xh!=7 && xh!=8 && xh!=9 && xh!=10 && xh!=11) {
+                data[7] = dataList[i].sm;
+            }
         }
     }
     return data;
 }
-function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
+function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(gridId){
     $("#gaozhishuWindow").window("close");
-    var columnWidths=[5,15,30,45,45,45,10,0];//195
+    var columnWidths=[5,15,25,25,25,25,10,65];//195
     var columnWidthFull = columnWidths[0]+columnWidths[1]+columnWidths[2]+columnWidths[3]+columnWidths[4]+columnWidths[5]+columnWidths[6]+columnWidths[7];
 
     var left = 0;
     var top = 0;
     var rowHeight = 0;
 
-    var qy=$("#grid1").datagrid("getSelected");
+    var qy=$("#"+gridId).datagrid("getSelected");
     var dataList=null;
     $.getJSON("./"+qy.id+"/getHcsxJg",null,function(response){
         if(response.status==1){
@@ -630,17 +636,17 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             colLeft=0;
             fontSize=6;
             var data=getDataFromDataList(1,dataList,"重点");//["1","重点","企业投资设立企业、购买股权信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,1);
             top = top + rowHeight;
             rowHeight=20;
             colLeft=0;
             data=getDataFromDataList(2,dataList,"重点");//["2","","股东或发起人认缴和实缴的出资额、出资时间、出资方式等信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,2);
             top = top + rowHeight;
             rowHeight=20;
             colLeft=0;
             data=getDataFromDataList(3,dataList,"重点");//["3","","有限公司股东股权转让等股权变更信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,3);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -648,7 +654,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,4);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -656,7 +662,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,5);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -664,7 +670,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,6);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -672,7 +678,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,7);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -680,7 +686,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,8);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -688,7 +694,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,9);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -696,7 +702,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,10);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
@@ -704,52 +710,52 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
             data[3]=moneyFormatter(data[3]);
             data[4]=moneyFormatter(data[4]);
             data[5]=moneyFormatter(data[5]);
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,11);
             top = top + rowHeight;
             rowHeight=20;
             colLeft=0;
             data=getDataFromDataList(12,dataList,"重点");//["12","","对外提供保证担保信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,12);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(13,dataList,"一般");//["13","一般","企业通信地址","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,13);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(14,dataList,"一般");//["14","","邮政编码","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,14);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(15,dataList,"一般");//["15","","联系电话","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,15);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(16,dataList,"一般");//["16","","电子邮箱","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,16);
             top = top + rowHeight;
             rowHeight=20;
             colLeft=0;
             data=getDataFromDataList(17,dataList,"一般");//["17","","企业网站以及从事网络经营的网店名称、网址等信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,17);
             top = top + rowHeight;
             rowHeight=10;
             colLeft=0;
             data=getDataFromDataList(18,dataList,"一般");//["18","","企业开业、歇业、清算等存续状态","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,18);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(19,dataList,"一般");//["19","","从业人数","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,19);
             top = top + rowHeight;
             rowHeight=8;
             colLeft=0;
             data=getDataFromDataList(20,dataList,"一般");//["20","","党建信息","","","","",""];
-            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,20);
             top = top + rowHeight;
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最下横线
 

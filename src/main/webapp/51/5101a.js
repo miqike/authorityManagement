@@ -85,6 +85,7 @@ function myTaskGridLoadSucessHandler(data) {
 	} else {
 	    if($('#p_jhbh').val() != "") {
 	    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+            myTaskGridClickHandler();
 	    }
 	}
 }
@@ -179,7 +180,7 @@ function refreshAuditItemList() {
 }
 
 function showTaskListWindow() {
-	var options = $("#grid1").datagrid("options")
+	var options = $("#grid1").datagrid("options");
 	options.url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2);
 	
 	$("#myTaskListWindow").window({
@@ -261,7 +262,7 @@ function sendQyzshch() {
 }
 
 function printAuditReport() {
-	printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+	printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao("grid1");
 }
 
 //=============================

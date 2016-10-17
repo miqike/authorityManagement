@@ -199,7 +199,9 @@ function showAuditDialog() {
 		}
 	});
 }
-
+function printAuditReport() {
+    printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao("grid2");
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();
