@@ -55,7 +55,7 @@ function grid1ClickHandler() {
 
 function loadMyTask(jhbh) {
     $("#grid2").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh+"&docReadyReportFlag=1",
+		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh+"&docReadyReportFlag=1"+"&sort=rwzt&order=asc",
 		collapsible:true,
 		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
