@@ -40,7 +40,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     }
 
     @Override
-    public void addHcclmx(Hcclmx hcclmx) {
+    public Integer addHcclmx(Hcclmx hcclmx) {
         Hccl hccl=hcclMapper.selectByPrimaryKey(hcclmx.getHcclId());
 
         //删除旧数据
@@ -62,7 +62,7 @@ public class HcclmxServiceImpl implements HcclmxService {
         hcclmxMapper.insert(hcclmx);
 */
         MongoLogger.info("task", "附加核查材料添加成功");
-        calcDoc(hcclmx.getHcrwId());
+        return calcDoc(hcclmx.getHcrwId());
     }
 
     @Override
@@ -80,11 +80,10 @@ public class HcclmxServiceImpl implements HcclmxService {
         calcDocJs(hcclmx.getHcrwId());
     }
 
-    public void calcDoc(String hcrwId) {
-    	 hcrwMapper.updateHcclStatByPrimaryKey(hcrwId);
-         Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);
-         int uploaded = hcrw.getUploadFiles();
-         int required = hcrw.getRequiredFiles();
+    public Integer calcDoc(String hcrwId) {
+    	 hcrwMapper.updateHcclStatByPrimaryKey(hcrwId);//更新已经上传的文件个数
+         int uploaded = hcclmxMapper.getYSCBXWJGSByHcrwlId(hcrwId);
+         int required = hcclmxMapper.getBXSCWJGSByHcrwlId(hcrwId);
          int docReadyFlag = 0;
          if(required > 0) {
          	if(uploaded == required) {
@@ -95,7 +94,9 @@ public class HcclmxServiceImpl implements HcclmxService {
          		docReadyFlag = 0;
          	}
          }
+
          hcrwMapper.updateDocReadyFlag(hcrwId, docReadyFlag);
+        return docReadyFlag;
     }
 
     public void calcDocJs(String hcrwId) {

@@ -40,7 +40,7 @@ public class HcclmxController extends BaseController {
 		
 		Map<String, Object> result = Maps.newHashMap();
 		try {
-			hcclmxService.addHcclmx(hcclmx);
+			result.put(DATA,hcclmxService.addHcclmx(hcclmx));
 			result.put(MESSAGE, "检查材料保存成功");
 			result.put(STATUS, SUCCESS);
 		} catch (Exception e) {

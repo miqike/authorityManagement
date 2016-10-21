@@ -6,7 +6,7 @@ public interface HcclmxService {
 
 	void delete(String id);
 
-	void addHcclmx(Hcclmx hcclmx);
+	Integer addHcclmx(Hcclmx hcclmx);
 	void addHcclmxJs(Hcclmx hcclmx);
 
 	void delete2(String id);

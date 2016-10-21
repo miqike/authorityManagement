@@ -120,6 +120,9 @@ function viewDocList() {
 		href : "./docListb.jsp",
 		onLoad : function() {
 			//doDocListInit();
+		},
+		onClose:function(){
+			grid1ClickHandler();
 		}
 	});
 }
