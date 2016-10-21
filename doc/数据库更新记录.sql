@@ -23,7 +23,7 @@ values ('dxnType', '2', '企业公示信息自查表', 1, null, '财务核查数
 commit;
 
 --20160908  已经全部更新
-  pkg_hc;
+  --pkg_hc;
 update t_hcsx set page='subsistStatus' where id='08f630ac1b3947d2ab91e572c3f75e01';
 update sys_res set name= '财务深度查账' where id='4102';
 --20160921

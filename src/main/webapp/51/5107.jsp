@@ -125,10 +125,6 @@
 			    <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
 			    <td class="label"  style="width:90px;">计划结束时间</td>
 			    <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
-			    <td class="label"  style="width:90px;">检查结果</td>
-			    <td ><input id="p_hcjieguo" class="easyui-combobox" data-options="width:187" codeName="gsjg" disabled/>
-			        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
-			    </td>
 			    </tr>
 		</table>
 		<div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
@@ -163,9 +159,12 @@
 			    <shiro:hasPermission name="5105:btnPrintAuditReport">
 					<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
 			    </shiro:hasPermission>
-			    <shiro:hasPermission name="5105:btnUpdateHcjg">
-					<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" >设置检查结果</a>
-			    </shiro:hasPermission>
+                <shiro:hasPermission name="5105:btnUpdateHcjg">
+                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" >设置检查结果</a>
+                    <input id="p_hcjieguo" class="easyui-combobox" data-options="width:187" codeName="gsjg" disabled/>
+                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+                </shiro:hasPermission>
+
 			</div>
 		</div>
 	</div>
