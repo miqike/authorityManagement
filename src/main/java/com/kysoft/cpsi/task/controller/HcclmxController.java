@@ -66,4 +66,21 @@ public class HcclmxController extends BaseController {
 		}
 		return result;
 	}
+
+	@RequestMapping(value = "/hcclmx/dxnMongoId", method = RequestMethod.GET)
+	public Map<String, Object> getDxnMongoId(String hcrwId,String dxnType) {
+
+		Map<String, Object> result = Maps.newHashMap();
+		try {
+			String mongoId=hcclmxService.getDxnMongoIdByHcrwId(hcrwId,dxnType);
+			result.put(MESSAGE, "查询成功");
+			result.put(STATUS, SUCCESS);
+			result.put(DATA, mongoId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result.put(STATUS, FAIL);
+			result.put(MESSAGE, "查询失败");
+		}
+		return result;
+	}
 }

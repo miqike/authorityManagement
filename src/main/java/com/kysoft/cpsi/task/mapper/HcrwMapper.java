@@ -83,9 +83,9 @@ public interface HcrwMapper {
 
 	void updateStatusByPrimaryKey(@Param("taskId") String hcrwId,  @Param("statusCode")Integer statusCode);
 
-	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}")
+	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}") /*and hcjh_id=#{hcjhId}*/
 	@ResultType(value = java.lang.String.class)
-	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
+	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm/*, @Param("hcjhId")String hcjhId*/);
 
 	void updateDispatchByPlanId(@Param("hcjhId") String hcjhId, @Param("xdzt")Integer xdzt);
 
@@ -95,9 +95,7 @@ public interface HcrwMapper {
 	void updateHcclStatByPrimaryKey(String hcrwId);
 
 	void updateRequiredDocByPlanId(String hcjhId);
-	
-	void updateRequiredDocByPlanId2(String hcjhId);
-	
+
 	@Update("UPDATE T_HCRW SET DOC_READY_FLAG = #{docReadyFlag} WHERE ID=#{hcrwId}")
 	void updateDocReadyFlag(@Param("hcrwId")String hcrwId, @Param("docReadyFlag")int docReadyFlag);
 

@@ -935,29 +935,34 @@ function queryAll(){
     });
 }
 
+var candidateEnterpriseSelectDialog;
+function saveCandidateEnterpriseQuery(){
+    addEnterpriseShortcut();
+    candidateEnterpriseSelectDialog.dialog("destroy");
+}
 function showCandidateEnterpriseSelectDialog() {
-	var candidateEnterpriseSelectDialog =
+	candidateEnterpriseSelectDialog =
 	$.easyui.showDialog({
 		title : "快速选择待核查移出企业",
 		iconCls: 'icon2 r25_c12',
 		width : 850,
 		height : 450,
 		topMost : false,
-		enableSaveButton : true,
+		// enableSaveButton : true,
 		enableApplyButton : false,
 		enableCloseButton : false,
-		saveButtonText : "选择并认领",
-		//closeButtonText : "返回",
+		saveButtonText : "返回",
+		// closeButtonText : "返回",
 		//closeButtonIconCls : "icon-undo",
 		href : "./candidateEnterpriseSelectDialog.jsp",
 		onLoad : function() {
 			doCandidateEnterpriseSelectDialogInit();
-		},
+		}/*,
 		onSave : function() {
 			addEnterpriseShortcut();
 			candidateEnterpriseSelectDialog.dialog("destroy");
 			return false;
-		}
+		}*/
 	});
 }
 

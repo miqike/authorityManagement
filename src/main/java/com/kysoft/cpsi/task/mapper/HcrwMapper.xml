@@ -734,10 +734,13 @@
       <if test="sjwcrqNullFlag!=null">
         and sjwcrq is not null
       </if>
+      <if test="rwzt!=null">
+        and rwzt = #{rwzt}
+      </if>
 
         ORDER BY
         <if test="order == 1">
-          hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
+          hcjieguo desc,hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
         </if>
         <if test="order ==2">
           hcjg,djjg,hcdw_xydm,ZZXS, HCJGMC

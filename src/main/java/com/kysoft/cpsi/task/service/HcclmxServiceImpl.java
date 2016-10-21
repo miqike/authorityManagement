@@ -43,6 +43,12 @@ public class HcclmxServiceImpl implements HcclmxService {
     public void addHcclmx(Hcclmx hcclmx) {
         Hccl hccl=hcclMapper.selectByPrimaryKey(hcclmx.getHcclId());
 
+        //删除旧数据
+        String oldMongoId=hcclmxMapper.getMongoIdByMaterialId(hcclmx.getHcrwId(),hcclmx.getHcclId(),hcclmx.getHcsxId());
+        if(null!=oldMongoId) {
+            DownloadUtils.mongoDelete(oldMongoId);
+        }
+
         hcclmxMapper.deleteByMaterialId(hcclmx.getHcrwId(),hccl.getMaterialId());
         hcclmxMapper.insertByMaterialId(hccl.getMaterialId(),hcclmx.getHcdwXydm(),hcclmx.getHcjhnd(),hcclmx.getHcrwId(),hcclmx.getMongoId());
 /*
@@ -63,6 +69,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     public void addHcclmxJs(Hcclmx hcclmx) {
         Hcclmx oldHcclmx = hcclmxMapper.selectJsBy(hcclmx.getHcrwId(), hcclmx.getHcsxId(), hcclmx.getHcdwXydm(), hcclmx.getHcclId());
         if (null != oldHcclmx) {
+            DownloadUtils.mongoDelete(oldHcclmx.getMongoId());
             hcclmxMapper.deleteByPrimaryKey(oldHcclmx.getId());
         }
 
@@ -141,7 +148,12 @@ public class HcclmxServiceImpl implements HcclmxService {
     	hcclmxMapper.updateByPrimaryKeySelective2(hcclmx);
     	calcDocFur(hcclmx.getHcrwId());
     }
-    
+
+    @Override
+    public String getDxnMongoIdByHcrwId(String hcrwId, String dxnType) {
+        return hcclmxMapper.getDxnMongoIdByHcrwlId(hcrwId,dxnType);
+    }
+
     void calcDocFur(String hcrwId) {
     	hcrwMapper.updateHcclStatByPrimaryKey2(hcrwId);
     	Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);

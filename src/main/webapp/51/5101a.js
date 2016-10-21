@@ -193,7 +193,7 @@ function showTaskListWindow() {
         autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
         autoHCenter: false,      //该属性如果设置为 true，则使窗口保持横向居中，默认为 true。
 		onOpen : function() {
-			loadMyTask();
+			// loadMyTask();
 		}
     });
 }
@@ -278,12 +278,21 @@ function updateHcjg() {
 
 function confirmUpdateHcjg() {
 	var row = $("#grid1").datagrid("getSelected");
+	var rowIndex=$("#grid1").datagrid("getRowIndex",row);
 	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
 		$.messager.alert("提示", response.message, 'info');
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");
-		loadMyTask();
+		if(response.status ==1 ){
+			row.hcjieguo= $("#p_hcjieguo").combobox("getValue");
+			$("#grid1").datagrid("updateRow", {
+					index: rowIndex,
+					row: row
+				}
+			)
+		}
+		// loadMyTask();
 	})
 }
 

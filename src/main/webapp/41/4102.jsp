@@ -127,7 +127,7 @@
          <table id="grid2"
                 class="easyui-datagrid"
                 data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,fit:false,offset: { width: -80, height: -220},
-					onClickRow:myTaskGridClickHandler,method:'get'"
+					onClickRow:myTaskGridClickHandler,method:'get',rownumbers:true"
                 toolbar="#grid2Toolbar"
                 sortOrder="asc">
              <thead>
@@ -160,8 +160,14 @@
 				data-options="disabled:false">企业公示信息自查表导入</a>
 			 <a href="#" id="btnFinancialValidate" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
 				data-options="disabled:false">财务数据验证</a>
+			 <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
          </div>
      </div>
+</div>
+
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
 </div>
 
 </body>

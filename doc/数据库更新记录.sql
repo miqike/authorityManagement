@@ -161,3 +161,23 @@ comment on column T_HCRW.ztlx is '企业主体类型';
 alter table t_hcrw add zcb_result varchar2(4000);
 --pkg_hc 915
 --  v_hcsx_sm||(select zcb_result from t_hcrw where id=p_HCRWID)
+--20161018
+update t_hcsx_sm set content='企业填报信息与登记系统中登记/备案信息不一致' where id='637ad23f755b459ebe5979c5d4ce8bfb';
+update t_hcsx_sm set content='企业填报邮政编码信息与登记备案的信息不一致。' where id='cb256913b57a4d869904eba74e053733';
+update t_hcsx_sm set content='企业填报邮政编码信息与根据企业提供的通讯地址的实际邮政编码信息不一致。' where id='0b33abd176294168a8e095b37aea2471';
+commit;
+--pkg_hc 1114
+/*begin
+  select * into v_t_nb_bd_1 from t_nb_bd where nd=v_t_hcrw.nd and xydm=v_t_hcrw.hcdw_xydm and sjly=1;
+  exception
+  when others then
+  v_t_nb_bd_1:=null;
+end;*/
+update t_hcrw set sjwcrq = null where rwzt<>5 and sjwcrq is not null;
+INSERT INTO SYS_RES T (ID, NAME, PARENT_ID, IDENTITY, URL, PARENT_IDS, ICON, WEIGHT, TYPE)
+VALUES (510801, '审核', 5108, '5108' || CHR(58) || 'btnShowAuditDialog', NULL, '0/5/51/5108/', 'r12_c19', 1, NULL);
+INSERT INTO SYS_RES T (ID, NAME, PARENT_ID, IDENTITY, URL, PARENT_IDS, ICON, WEIGHT, TYPE)
+VALUES (510802, '取消审核', 5108, '5108' || CHR(58) || 'btnCancelAuditStatus', NULL, '0/5/51/5108/', 'r12_c19', 1, NULL);
+COMMIT;
+--20101021
+--pkg_hc prc_getHcsxjg

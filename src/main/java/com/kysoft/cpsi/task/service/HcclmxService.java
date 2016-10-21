@@ -16,4 +16,6 @@ public interface HcclmxService {
 
 	void updateHcclmx2(Hcclmx hcclmx);
 
+	String getDxnMongoIdByHcrwId(String hcrwId,String dxnType);
+
 }
