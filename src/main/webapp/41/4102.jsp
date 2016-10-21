@@ -81,7 +81,7 @@
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="4" style="text-align-right;">
+	                <td colspan="4" style="text-align:right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -139,13 +139,15 @@
                  <th data-options="field:'RWZT'" halign="center" align="center" width="80" codeName="rwzt" formatter="formatCodeList">核查结果</th>
                  <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="140">统一社会信用代码</th>
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
-                 <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
-                 <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
+				 <th data-options="field:'ZFRY_NAME1'" center="center" align="center" width="90" formatter="formatZfry">检查人员</th>
+				 <th data-options="field:'QYMC'" center="center" align="center" width="80">管辖单位</th>
                  <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">企业类型</th>
                  <th data-options="field:'HYFL'" halign="center" align="center" width="80" codeName="hyfl" formatter="formatCodeList">行业分类</th>
                  <th data-options="field:'ZZXS'" halign="center" align="center" width="80" codeName="qyzzxs" formatter="formatCodeList">组织形式</th>
                  <th data-options="field:'JYZT'" halign="center" align="center" width="80" codeName="jyzt" formatter="formatCodeList">经营状态</th>
                  <th data-options="field:'FR'" center="center" align="center" width="80">法人代表</th>
+				 <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
+				 <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
              </tr>
              </thead>
          </table>

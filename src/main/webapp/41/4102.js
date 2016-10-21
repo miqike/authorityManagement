@@ -194,6 +194,16 @@ function _reportDocReady(task) {
 	});
 }
 
+function formatZfry(val, row) {
+    if(row.ZFRY_NAME1 != null && row.ZFRY_NAME2 != null ) {
+        return row.ZFRY_NAME1 + "/" + row.ZFRY_NAME2;
+    } else if(row.ZFRY_NAME1 == null ) {
+        return row.ZFRY_NAME2;
+    } else if(row.ZFRY_NAME2 == null ) {
+        return row.ZFRY_NAME1;
+    }
+}
+
 //鼎信诺调用按钮事件
 function importFinancial(){
     //财务电子数据导入
