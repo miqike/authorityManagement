@@ -1,22 +1,19 @@
 package com.kysoft.cpsi.audit.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
-import javax.annotation.Resource;
-
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.kysoft.cpsi.audit.service.AuditService;
+import net.sf.husky.exception.BaseException;
+import net.sf.husky.web.controller.BaseController;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.kysoft.cpsi.audit.service.AuditService;
-
-import net.sf.husky.exception.BaseException;
-import net.sf.husky.web.controller.BaseController;
+import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 @RestController
 @RequestMapping("/eai")

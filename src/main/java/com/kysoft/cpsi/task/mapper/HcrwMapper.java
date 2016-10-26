@@ -83,9 +83,7 @@ public interface HcrwMapper {
 
 	void updateStatusByPrimaryKey(@Param("taskId") String hcrwId,  @Param("statusCode")Integer statusCode);
 
-	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}") /*and hcjh_id=#{hcjhId}*/
-	@ResultType(value = java.lang.String.class)
-	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm/*, @Param("hcjhId")String hcjhId*/);
+	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm, @Param("hcjhId")String hcjhId);
 
 	void updateDispatchByPlanId(@Param("hcjhId") String hcjhId, @Param("xdzt")Integer xdzt);
 

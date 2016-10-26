@@ -977,6 +977,13 @@
         select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR} and RLR IS NOT NULL AND rlrq IS NOT NULL
     </select>
 
+  <select id="selectTaskIdByNdAndXydm" resultType="java.lang.String">
+    select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}
+    <if test="hcjhId != null">
+      and hcjh_id=#{hcjhId}
+    </if>
+  </select>
+
     <update id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
         {
         call prc_import_hc(
