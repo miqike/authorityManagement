@@ -7,6 +7,7 @@ package com.kysoft.cpsi.audit.controller;
 
 import java.io.*;
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -62,8 +63,31 @@ public class SelfCheckAjaxUploadController {
             is = request.getInputStream();
             String mongoId=null;
 
-            Map<String,Object> dxn=selfCheckService.getDXNHccl();
-            if(hcclName.equals(dxn.get("NAME").toString()) && hcsxmc.equals(dxn.get("HCSXMC").toString())) {
+            Map<String,Object> params=new HashedMap();
+            params.put("dxnType",2);
+            Map<String,Object> dxnHccl2=selfCheckService.getDXNHccl(params);
+            params.put("dxnType",1);
+            Map<String,Object> dxnHccl1=selfCheckService.getDXNHccl(params);
+            if(hcclName.equals(dxnHccl2.get("NAME").toString()) && hcsxmc.equals(dxnHccl2.get("HCSXMC").toString())) {
+                //处理自查表
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = is.read(buffer)) > -1) {
+                    baos.write(buffer, 0, len);
+                }
+                baos.flush();
+                // 打开一个新的输入流
+                InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
+                InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
+                //处理文件内容
+                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename);
+
+                //将文件保存到MONGODB中
+                mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
+            } else if(hcclName.equals(dxnHccl1.get("NAME").toString()) && hcsxmc.equals(dxnHccl1.get("HCSXMC").toString())) {
+                //处理手工帐数据
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
                 byte[] buffer = new byte[1024];
@@ -78,7 +102,7 @@ public class SelfCheckAjaxUploadController {
                 InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
 
                 //处理文件内容
-                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename);
+                selfCheckService.judgeRepeatExcle(is2,5,2, filename);
 
                 //将文件保存到MONGODB中
                 mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);

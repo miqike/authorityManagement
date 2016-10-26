@@ -86,7 +86,7 @@ public class HcclmxServiceImpl implements HcclmxService {
          int required = hcclmxMapper.getBXSCWJGSByHcrwlId(hcrwId);
          int docReadyFlag = 0;
          if(required > 0) {
-         	if(uploaded == required) {
+         	if(uploaded >= required) {
          		docReadyFlag = 2;
          	} else if(uploaded > 0) {
          		docReadyFlag = 1;

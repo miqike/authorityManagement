@@ -12,6 +12,8 @@ import net.sf.husky.utils.POIUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -682,9 +684,33 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
 
     @Override
-    public Map<String, Object> getDXNHccl() {
-        Map<String, Object> params=new HashedMap();
+    public Map<String, Object> getDXNHccl(Map<String,Object> params) {
         return hcclMapper.getDXNHcsx(params).get(0);
+    }
+
+    @Override
+    public void judgeRepeatExcle(InputStream is, int firstRowNum, int colNum,String fileName) throws Exception {
+        Map<String,Object> sheetValues = new HashedMap();
+        Workbook workbook=null;
+        if (fileName.endsWith("xls")) {
+            POIFSFileSystem fs=new POIFSFileSystem(is);
+            workbook = new HSSFWorkbook(fs);
+        } else if (fileName.endsWith("xlsx")) {
+            workbook = new XSSFWorkbook(is);
+        }
+        Sheet sheet = workbook.getSheetAt(0);
+        for (int i=firstRowNum;i<sheet.getLastRowNum();i++){
+            Row row = sheet.getRow(i-1);
+            Cell cell=row.getCell(colNum-1);
+            System.out.println(i);
+            if(null!=cell && null!=POIUtils.getStringCellValue(cell) && !POIUtils.getStringCellValue(cell).equals("")) {
+                if (sheetValues.containsKey(POIUtils.getStringCellValue(cell))) {
+                    throw new RuntimeException(POIUtils.getStringCellValue(cell) + "科目编号重复！！！");
+                } else {
+                    sheetValues.put(POIUtils.getStringCellValue(cell), i);
+                }
+            }
+        }
     }
 
 }

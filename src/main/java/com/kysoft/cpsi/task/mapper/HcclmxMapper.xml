@@ -366,10 +366,10 @@
         select count(1) from t_hcclmx where hcrw_id =#{hcrwId}
     </select>
     <select id="getBXSCWJGSByHcrwlId"  resultType="java.lang.Integer">
-        select count(1) from t_hccl where hcsx_id in(select hcsx_id from t_hcrw where id=#{hcrwId}) and sfbyx=1
+        select count(1) from t_hccl a where a.hcsx_id in(select c.hcsx_id from t_hcsxjg c where hcrw_id=#{hcrwId}) and sfbyx=1
     </select>
     <select id="getYSCBXWJGSByHcrwlId"  resultType="java.lang.Integer">
-        select count(1) from t_hcclmx where hcrw_id =#{hcrwId} and hccl_id in(select hccl_id from t_hccl where hcsx_id in(select hcsx_id from t_hcrw where id=#{hcrwId}) and sfbyx=1)
+        select count(1) from t_hcclmx a where a.hcrw_id =#{hcrwId} and a.hccl_id in(select b.id from t_hccl b where b.hcsx_id in(select c.hcsx_id from t_hcsxjg c where c.hcrw_id=#{hcrwId}) and b.sfbyx=1)
     </select>
 
 </mapper>
