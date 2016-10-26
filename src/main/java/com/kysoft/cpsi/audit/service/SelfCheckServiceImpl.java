@@ -198,7 +198,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             stockholderContributionMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetGDCZ.getLastRowNum();
-            for(int i=6;i<rowNum;i++){
+            for(int i=6;i<=rowNum;i++){
                 if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).equals("")) {
                     StockholderContribution stockholderContribution = new StockholderContribution();
                     stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -227,7 +227,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             stockRightChangeMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetGQBG.getLastRowNum();
-            for (int i = 6; i < rowNum; i++) {
+            for (int i = 6; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).equals("")) {
                     StockRightChange stockRightChange = new StockRightChange();
                     stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -253,7 +253,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             investmentMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetDWTZ.getLastRowNum();
-            for (int i = 5; i < rowNum; i++) {
+            for (int i = 5; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).equals("")) {
                     Investment investment = new Investment();
                     investment.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -277,7 +277,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             guaranteeMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetDWDB.getLastRowNum();
-            for (int i = 5; i < rowNum; i++) {
+            for (int i = 5; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).equals("")) {
                     Guarantee guarantee = new Guarantee();
                     guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -307,7 +307,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             licenseMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetXZXK.getLastRowNum();
-            for (int i = 5; i < rowNum; i++) {
+            for (int i = 5; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).equals("")) {
                     License license = new License();
                     license.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -332,7 +332,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsStockholderContributionMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i < rowNum; i++) {
+            for (int i = 6; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsStockholderContribution jsStockholderContribution = new JsStockholderContribution();
                     jsStockholderContribution.setId("");
@@ -364,7 +364,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsGqbgMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i < rowNum; i++) {
+            for (int i = 6; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsGqbg jsGqbg = new JsGqbg();
                     jsGqbg.setId("");
@@ -390,7 +390,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsXzcfMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i < rowNum; i++) {
+            for (int i = 6; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsXzcf jsXzcf = new JsXzcf();
                     jsXzcf.setId("");
@@ -418,7 +418,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsLicenseMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 5; i < rowNum; i++) {
+            for (int i = 5; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsLicense jsXjsLicensecf = new JsLicense();
                     jsXjsLicensecf.setId("");
@@ -449,7 +449,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsZscqMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 5; i < rowNum; i++) {
+            for (int i = 5; i <= rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsZscq jsZscq = new JsZscq();
                     jsZscq.setId("");
@@ -699,7 +699,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             workbook = new XSSFWorkbook(is);
         }
         Sheet sheet = workbook.getSheetAt(0);
-        for (int i=firstRowNum;i<sheet.getLastRowNum();i++){
+        for (int i=firstRowNum;i<=sheet.getLastRowNum()+1;i++){
             Row row = sheet.getRow(i-1);
             Cell cell=row.getCell(colNum-1);
             if(null!=cell && null!=POIUtils.getStringCellValue(cell) && !POIUtils.getStringCellValue(cell).equals("")) {
