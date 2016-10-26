@@ -702,7 +702,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         for (int i=firstRowNum;i<sheet.getLastRowNum();i++){
             Row row = sheet.getRow(i-1);
             Cell cell=row.getCell(colNum-1);
-            System.out.println(i);
             if(null!=cell && null!=POIUtils.getStringCellValue(cell) && !POIUtils.getStringCellValue(cell).equals("")) {
                 if (sheetValues.containsKey(POIUtils.getStringCellValue(cell))) {
                     throw new RuntimeException(POIUtils.getStringCellValue(cell) + "科目编码重复，请重新修改后上传！");
