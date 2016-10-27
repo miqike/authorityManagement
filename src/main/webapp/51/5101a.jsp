@@ -105,20 +105,20 @@
 	    <table id="taskDetailTable">
 	        <tr>
 	            <td class="label" style="width:60px">计划编号</td>
-	            <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+	            <td style="width:130px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 	            <td class="label" style="width:75px">计划名称</td>
 	            <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 	        </tr>
 	        <tr>
 	            <td class="label">注册号</td>
-	            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+	            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 	            <td class="label">被抽查企业</td>
 	            <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 	            
 	        </tr>
 	        <tr>   
 	            <td class="label">计划年度</td>
-	            <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
+	            <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:130px"/></td>
 	            <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
 	            <td class="label" >计划下达单位</td>
 	            <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>

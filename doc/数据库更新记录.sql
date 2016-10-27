@@ -181,3 +181,6 @@ VALUES (510802, '取消审核', 5108, '5108' || CHR(58) || 'btnCancelAuditStatus
 COMMIT;
 --20101021
 --pkg_hc prc_getHcsxjg
+--20161026
+--pkg_import 89  /*i_hcrw.ND*/v_jhnd-1
+--pkg_import 323 select a.nd-1 into v_nd from t_hcjh a,t_hcrw b where a.id=b.hcjh_id and b.id=p_HCRWID;--日常监管计划的任务年度直接取计划年度减1
