@@ -102,7 +102,9 @@ public class SelfCheckAjaxUploadController {
                 InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
 
                 //处理文件内容
-                selfCheckService.judgeRepeatExcle(is2,5,2, filename);
+                if (filename.endsWith("xls") || filename.endsWith("xlsx")) {
+                    selfCheckService.judgeRepeatExcle(is2, 5, 2, filename);
+                }
 
                 //将文件保存到MONGODB中
                 mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);

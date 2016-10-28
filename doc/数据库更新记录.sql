@@ -184,3 +184,5 @@ COMMIT;
 --20161026
 --pkg_import 89  /*i_hcrw.ND*/v_jhnd-1
 --pkg_import 323 select a.nd-1 into v_nd from t_hcjh a,t_hcrw b where a.id=b.hcjh_id and b.id=p_HCRWID;--日常监管计划的任务年度直接取计划年度减1
+-- Create/Recreate indexes
+create unique index idx_t_hcjh_1 on T_HCJH (jhmc);
