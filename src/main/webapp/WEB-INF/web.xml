@@ -196,7 +196,6 @@
         <servlet-name>activitiProxyServlet</servlet-name>
         <url-pattern>/activiti-rest/*</url-pattern>
     </servlet-mapping>
-     -->
 
     <servlet>
         <servlet-name>weixinServlet</servlet-name>
@@ -206,6 +205,7 @@
         <servlet-name>weixinServlet</servlet-name>
         <url-pattern>/weixin/*</url-pattern>
     </servlet-mapping>
+     -->
 
     <!-- druid监控 -->
     <servlet>
