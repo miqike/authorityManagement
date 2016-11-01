@@ -40,8 +40,14 @@ public class HcclmxServiceImpl implements HcclmxService {
     }
 
     @Override
-    public void addHcclmx(Hcclmx hcclmx) {
+    public Integer addHcclmx(Hcclmx hcclmx) {
         Hccl hccl=hcclMapper.selectByPrimaryKey(hcclmx.getHcclId());
+
+        //删除旧数据
+        String oldMongoId=hcclmxMapper.getMongoIdByMaterialId(hcclmx.getHcrwId(),hcclmx.getHcclId(),hcclmx.getHcsxId());
+        if(null!=oldMongoId) {
+            DownloadUtils.mongoDelete(oldMongoId);
+        }
 
         hcclmxMapper.deleteByMaterialId(hcclmx.getHcrwId(),hccl.getMaterialId());
         hcclmxMapper.insertByMaterialId(hccl.getMaterialId(),hcclmx.getHcdwXydm(),hcclmx.getHcjhnd(),hcclmx.getHcrwId(),hcclmx.getMongoId());
@@ -56,13 +62,14 @@ public class HcclmxServiceImpl implements HcclmxService {
         hcclmxMapper.insert(hcclmx);
 */
         MongoLogger.info("task", "附加核查材料添加成功");
-        calcDoc(hcclmx.getHcrwId());
+        return calcDoc(hcclmx.getHcrwId());
     }
 
     @Override
     public void addHcclmxJs(Hcclmx hcclmx) {
         Hcclmx oldHcclmx = hcclmxMapper.selectJsBy(hcclmx.getHcrwId(), hcclmx.getHcsxId(), hcclmx.getHcdwXydm(), hcclmx.getHcclId());
         if (null != oldHcclmx) {
+            DownloadUtils.mongoDelete(oldHcclmx.getMongoId());
             hcclmxMapper.deleteByPrimaryKey(oldHcclmx.getId());
         }
 
@@ -73,14 +80,13 @@ public class HcclmxServiceImpl implements HcclmxService {
         calcDocJs(hcclmx.getHcrwId());
     }
 
-    public void calcDoc(String hcrwId) {
-    	 hcrwMapper.updateHcclStatByPrimaryKey(hcrwId);
-         Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);
-         int uploaded = hcrw.getUploadFiles();
-         int required = hcrw.getRequiredFiles();
+    public Integer calcDoc(String hcrwId) {
+    	 hcrwMapper.updateHcclStatByPrimaryKey(hcrwId);//更新已经上传的文件个数
+         int uploaded = hcclmxMapper.getYSCBXWJGSByHcrwlId(hcrwId);
+         int required = hcclmxMapper.getBXSCWJGSByHcrwlId(hcrwId);
          int docReadyFlag = 0;
          if(required > 0) {
-         	if(uploaded == required) {
+         	if(uploaded >= required) {
          		docReadyFlag = 2;
          	} else if(uploaded > 0) {
          		docReadyFlag = 1;
@@ -88,7 +94,9 @@ public class HcclmxServiceImpl implements HcclmxService {
          		docReadyFlag = 0;
          	}
          }
+
          hcrwMapper.updateDocReadyFlag(hcrwId, docReadyFlag);
+        return docReadyFlag;
     }
 
     public void calcDocJs(String hcrwId) {
@@ -141,7 +149,12 @@ public class HcclmxServiceImpl implements HcclmxService {
     	hcclmxMapper.updateByPrimaryKeySelective2(hcclmx);
     	calcDocFur(hcclmx.getHcrwId());
     }
-    
+
+    @Override
+    public String getDxnMongoIdByHcrwId(String hcrwId, String dxnType) {
+        return hcclmxMapper.getDxnMongoIdByHcrwlId(hcrwId,dxnType);
+    }
+
     void calcDocFur(String hcrwId) {
     	hcrwMapper.updateHcclStatByPrimaryKey2(hcrwId);
     	Hcrw hcrw = hcrwMapper.selectByPrimaryKey(hcrwId);

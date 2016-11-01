@@ -85,6 +85,7 @@ function myTaskGridLoadSucessHandler(data) {
 	} else {
 	    if($('#p_jhbh').val() != "") {
 	    	$("#grid1").datagrid("selectRow", getRowIndex($('#p_jhbh').val()));
+            myTaskGridClickHandler();
 	    }
 	}
 }
@@ -179,7 +180,7 @@ function refreshAuditItemList() {
 }
 
 function showTaskListWindow() {
-	var options = $("#grid1").datagrid("options")
+	var options = $("#grid1").datagrid("options");
 	options.url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditor" + (userInfo.ext1 == 1 ? 1: 2);
 	
 	$("#myTaskListWindow").window({
@@ -192,7 +193,7 @@ function showTaskListWindow() {
         autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
         autoHCenter: false,      //该属性如果设置为 true，则使窗口保持横向居中，默认为 true。
 		onOpen : function() {
-			loadMyTask();
+			// loadMyTask();
 		}
     });
 }
@@ -261,7 +262,7 @@ function sendQyzshch() {
 }
 
 function printAuditReport() {
-	printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao();
+	printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao("grid1");
 }
 
 //=============================
@@ -277,12 +278,21 @@ function updateHcjg() {
 
 function confirmUpdateHcjg() {
 	var row = $("#grid1").datagrid("getSelected");
+	var rowIndex=$("#grid1").datagrid("getRowIndex",row);
 	$.post("../51/" + row.id + "/jieguo", {"jieguo": $("#p_hcjieguo").combobox("getValue")}, function (response) {
 		$.messager.alert("提示", response.message, 'info');
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");
-		loadMyTask();
+		if(response.status ==1 ){
+			row.hcjieguo= $("#p_hcjieguo").combobox("getValue");
+			$("#grid1").datagrid("updateRow", {
+					index: rowIndex,
+					row: row
+				}
+			)
+		}
+		// loadMyTask();
 	})
 }
 

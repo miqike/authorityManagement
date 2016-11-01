@@ -81,7 +81,7 @@
 	                <td class="label">检查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="4" style="text-align-right;">
+	                <td colspan="4" style="text-align:right;">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -127,24 +127,27 @@
          <table id="grid2"
                 class="easyui-datagrid"
                 data-options="ctrlSelect:true,collapsible:true,pageSize: 100, pagination: true,fit:false,offset: { width: -80, height: -220},
-					onClickRow:myTaskGridClickHandler,method:'get'"
+					onClickRow:myTaskGridClickHandler,method:'get',rownumbers:true"
                 toolbar="#grid2Toolbar"
                 sortOrder="asc">
              <thead>
              <tr>
                  <th data-options="field:'DOC_READY_REPORT_FLAG'" halign="center" align="center" width="80" codeName="reportDocReadyFlag" formatter="formatCodeList"  styler="docReadyReportFlagStyler">上报标志</th>
-                 <th data-options="field:'REPORT_DOC_READY_TIME'" halign="center" align="center" width="100" formatter="formatDate">上报时间</th>
+                 <th data-options="field:'REPORT_DOC_READY_TIME'" halign="center" align="center" width="80" formatter="formatDate">上报时间</th>
                  <th data-options="field:'DOC_READY_FLAG'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">上传文档状态</th>
                  <th data-options="field:'DOC_READY_FLAG_FUR'" halign="center" align="center" width="80" codeName="docReadyFlag" formatter="formatCodeList" styler="docReadyFlagStyler">附加文档状态</th>
+                 <th data-options="field:'RWZT'" halign="center" align="center" width="80" codeName="rwzt" formatter="formatCodeList">核查结果</th>
                  <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="140">统一社会信用代码</th>
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
-                 <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
-                 <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
+				 <th data-options="field:'ZFRY_NAME1'" center="center" align="center" width="90" formatter="formatZfry">检查人员</th>
+				 <th data-options="field:'QYMC'" center="center" align="center" width="80">管辖单位</th>
                  <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">企业类型</th>
                  <th data-options="field:'HYFL'" halign="center" align="center" width="80" codeName="hyfl" formatter="formatCodeList">行业分类</th>
                  <th data-options="field:'ZZXS'" halign="center" align="center" width="80" codeName="qyzzxs" formatter="formatCodeList">组织形式</th>
                  <th data-options="field:'JYZT'" halign="center" align="center" width="80" codeName="jyzt" formatter="formatCodeList">经营状态</th>
                  <th data-options="field:'FR'" center="center" align="center" width="80">法人代表</th>
+				 <th data-options="field:'LLR'" halign="center" align="center" width="80">工商联络员</th>
+				 <th data-options="field:'LXDH'" halign="center" align="center" width="80">联系电话</th>
              </tr>
              </thead>
          </table>
@@ -159,8 +162,14 @@
 				data-options="disabled:false">企业公示信息自查表导入</a>
 			 <a href="#" id="btnFinancialValidate" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
 				data-options="disabled:false">财务数据验证</a>
+			 <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
          </div>
      </div>
+</div>
+
+<div id="mm" style="width:150px">
+	<div data-options="name:'xydm'">统一社会信用代码</div>
+	<div data-options="name:'qymc',selected:true">企业名称</div>
 </div>
 
 </body>

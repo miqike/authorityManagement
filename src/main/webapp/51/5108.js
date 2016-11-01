@@ -11,7 +11,7 @@ function quickSearch (value, name) {
     });*/
 	
 	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-    var selected = treeObj.getSelectedNodes()
+    var selected = treeObj.getSelectedNodes();
     var hcjh = $('#grid1').datagrid('getSelected');
     if (selected.length == 1 && hcjh != null) {
 
@@ -21,7 +21,7 @@ function quickSearch (value, name) {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
             order: 1,
-            sjwcrqNullFlag:0
+            rwzt:5
         });
     } else {
         $.messager.alert("提示","请首先选择计划和单位")
@@ -110,7 +110,7 @@ function search() {
 }
 
 function firstLoadMyPlan() {
-	var options = $("#grid1").datagrid("options")
+	var options = $("#grid1").datagrid("options");
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
 	loadMyPlan();
 }
@@ -165,7 +165,7 @@ function onTreeClick(event, treeId, treeNode, clickFlag) {
             organization: processorOrgId(selected[0].id),
             filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
             order: 1,
-            sjwcrqNullFlag:0
+            rwzt:5
         });
     } else {
         $.messager.alert("提示","请首先选择计划和单位")
@@ -199,7 +199,24 @@ function showAuditDialog() {
 		}
 	});
 }
-
+function printAuditReport() {
+    printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao("grid2");
+}
+function exportAuditReport() {
+    var qy=$("#grid2").datagrid("getSelected");
+    if(null!=qy) {
+        $.messager.progress({
+            title: '请等待',
+            msg: '',
+            text: '处理中.......'
+        });
+        var url = "./" + qy.id + "/exportExcelHcsxJg";
+        $("<iframe id='poiExport' style='display:none' src=" + url + ">").appendTo("body");
+        $.messager.progress("close");
+    }else{
+        $.messager.show("操作提醒", '请先选择企业', "info", "bottomRight");
+    }
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();
@@ -222,7 +239,7 @@ $(function () {
                 organization: processorOrgId(selected[0].id),
                 filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
                 order: 1,
-                sjwcrqNullFlag:0
+                rwzt:5
             });
         }
     });

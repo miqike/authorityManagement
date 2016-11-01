@@ -734,10 +734,13 @@
       <if test="sjwcrqNullFlag!=null">
         and sjwcrq is not null
       </if>
+      <if test="rwzt!=null">
+        and rwzt = #{rwzt}
+      </if>
 
         ORDER BY
         <if test="order == 1">
-          hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
+          hcjieguo desc,hcjg,djjg,hcdw_xydm,HCJGMC, ZFRY_NAME1, ZFRY_NAME2
         </if>
         <if test="order ==2">
           hcjg,djjg,hcdw_xydm,ZZXS, HCJGMC
@@ -928,7 +931,8 @@
         </if>
 		<if test="docReadyReportFlag!=null">
 		  AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
-		</if>) m LEFT JOIN 
+		</if>
+         ) m LEFT JOIN
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY
         <if test="order != null">
@@ -972,6 +976,13 @@
     <select id="selectYrlsByPlanId" resultType="java.lang.Integer">
         select COUNT(*) from T_HCRW WHERE hcjh_id = #{planId,jdbcType=VARCHAR} and RLR IS NOT NULL AND rlrq IS NOT NULL
     </select>
+
+  <select id="selectTaskIdByNdAndXydm" resultType="java.lang.String">
+    select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}
+    <if test="hcjhId != null">
+      and hcjh_id=#{hcjhId}
+    </if>
+  </select>
 
     <update id="pullData" parameterType="java.util.HashMap" statementType="CALLABLE">
         {

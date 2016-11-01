@@ -27,6 +27,13 @@
 	<script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
 	<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 	<script type="text/javascript" src="./5108.js"></script>
+	<script type="text/javascript" src="./lodop.js"></script>
+	<!-- 打印控件引入定义开始 -->
+	<script type="text/javascript" src="../js/LodopFuncs.js"></script>
+	<object id="LODOP_OB"
+			classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+	</object>
     <style>
 
         td.label {
@@ -175,14 +182,20 @@
             </thead>
         </table>
         <div id="planGridToolbar">
-            <a href="#" id="btnShowAuditDialog" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" disabled
-               data-options="">审核</a>
-            <a href="#" id="btnCancelAuditStatus" class="easyui-linkbutton" iconCls="icon2 r12_c20" plain="true" disabled
-               data-options="">取消审核</a>
+			<shiro:hasPermission name="5108:btnShowAuditDialog">
+				<a href="#" id="btnShowAuditDialog" class="easyui-linkbutton" iconCls="icon2 r12_c19" plain="true" disabled
+				   data-options="">审核</a>
+			</shiro:hasPermission>
+			<shiro:hasPermission name="5108:btnCancelAuditStatus">
+				<a href="#" id="btnCancelAuditStatus" class="easyui-linkbutton" iconCls="icon2 r12_c20" plain="true" disabled
+				   data-options="">取消审核</a>
+			</shiro:hasPermission>
             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
             <input type="radio" name="filterByAuditResult" value="1" style="margin:1px 3px 3px 5px" checked/>全部
             <input type="radio" name="filterByAuditResult" value="2" style="margin:1px 3px 3px 5px"/>已审核
             <input type="radio" name="filterByAuditResult" value="3" style="margin:1px 3px 3px 5px"/>未审核
+			<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon-print" >打印公示信息核查结果报告</a>
+			<a href="javascript:void(0);" id="btnExportAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >导出核查结果报告EXCEL</a>
         </div>
     </div>
 

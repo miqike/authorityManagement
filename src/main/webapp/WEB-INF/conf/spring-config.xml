@@ -47,32 +47,8 @@
 
     <!-- 开启AOP监听 只对当前配置文件有效 
     <aop:aspectj-autoproxy expose-proxy="true"/>
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/cpsiDS"/>
      -->
-<!-- 
-E:\3rdparty\m2\repo\com\alibaba\druid\1.0.25>java -cp druid-1.0.25.jar com.alibaba.druid.filter.config.ConfigTools cpsi
-privateKey:MIIBVQIBADANBgkqhkiG9w0BAQEFAASCAT8wggE7AgEAAkEAmMQ9fM+n8tWCUNeXFiSFXKDVj8bherdzFGiyXXvPFr5dzpiPeRF3c9hFQGRbc9LCr39cc60NrAr5vT5cjW5ffQIDAQABAkEAjEW9M+q1C1wTccnUOIfGURx5nLCAgB8Ms1PDW+WAbR9qZ4yINRJLpdLfWPkK1+K0ZmYepexhpa88eHOnzbpnAQIhAMkkBaGJDcNFb69yw+54F+n5DzJLvKLr0Ad6KgWDhcZBAiEAwm6nrG4aty4PziZQmRYH3tAHWOeBktQiwbt94ALZoj0CIGdRmZLgU7F6eWQmD37vMVl+FdBAFyWY+8LbfbpXVOABAiEAjsZtEDzGF2+WoZ4XH2NDIkYGry1JRAXNBBBnLaFKKU0CICqclFfEIvkQOZFi21qEXQOeG6BwYqp+KqS1s+MmYxH8
-publicKey:MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJjEPXzPp/LVglDXlxYkhVyg1Y/G4Xq3cxRosl17zxa+Xc6Yj3kRd3PYRUBkW3PSwq9/XHOtDawK+b0+XI1uX30CAwEAAQ==
-password:GZdecCqXDx3Cec3OqnEgBZKTWvtH8uC4azZ8QJakaXE1TTGUxa2qjF6VCJ5IaM9p/dMAwnNsuhay7J657g4WUg==
- -->
-<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-  destroy-method="close" init-method="init">
-  <property name="url" value="jdbc:oracle:thin:@192.168.5.186:1521/orcl" />
-  <property name="username" value="cpsi" />
-  <property name="password" value="GZdecCqXDx3Cec3OqnEgBZKTWvtH8uC4azZ8QJakaXE1TTGUxa2qjF6VCJ5IaM9p/dMAwnNsuhay7J657g4WUg==" />
-  <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-  <property name="initialSize" value="5" />
-  <property name="maxActive" value="20" />
-  <property name="maxWait" value="60000" />
-  <property name="removeAbandoned" value="true" />
-  <property name="removeAbandonedTimeout" value="180" />
-  <property name="poolPreparedStatements" value="true" />
-  <property name="filters" value="stat,wall,config" /> 
-  <property name="maxPoolPreparedStatementPerConnectionSize"
-    value="20" />
-  <property name="connectionProperties"
-    value="config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJjEPXzPp/LVglDXlxYkhVyg1Y/G4Xq3cxRosl17zxa+Xc6Yj3kRd3PYRUBkW3PSwq9/XHOtDawK+b0+XI1uX30CAwEAAQ==" />
-</bean>
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/cpsiDS"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

@@ -105,20 +105,20 @@
 	    <table id="taskDetailTable">
 	        <tr>
 	            <td class="label" style="width:60px">计划编号</td>
-	            <td style="width:110px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+	            <td style="width:130px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 	            <td class="label" style="width:75px">计划名称</td>
 	            <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 	        </tr>
 	        <tr>
 	            <td class="label">注册号</td>
-	            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:110px;"/></td>
+	            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 	            <td class="label">被抽查企业</td>
 	            <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 	            
 	        </tr>
 	        <tr>   
 	            <td class="label">计划年度</td>
-	            <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:110px"/></td>
+	            <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" style="width:130px"/></td>
 	            <!-- <td><input id="p_jhnd" class="easyui-validatebox" readonly="readonly" data-options="width:200"/></td> -->
 	            <td class="label" >计划下达单位</td>
 	            <td><input id="p_djjgmc" class="easyui-validatebox" readonly="readonly" style="width:180px"/></td>
@@ -206,12 +206,12 @@
 						height:340,onBeforeLoad:checkParam,onLoadSuccess:myTaskGridLoadSucessHandler,pageSize: 100, pagination: true">
 	            <thead>
 		            <tr>
-						<th data-options="field:'rwzt', halign:'center',align:'center'" width="60" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
-			            <th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>
-		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
+						<th data-options="field:'rwzt', halign:'center',align:'center'" width="55" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
+			            <th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="55">计划年度</th>
+		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="55">计划编号</th>
 		                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
-		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="170">任务下达单位</th>
-		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="140">统一社会信用代码</th>
+		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达单位</th>
+		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120">统一社会信用代码</th>
 		                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
 		                <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
                         <!-- <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>

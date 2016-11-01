@@ -67,4 +67,10 @@ public interface HcclmxMapper {
     void deleteByMaterialId(@Param("hcrwId") String hcrwId, @Param("materialId") String materialId);
     void insertByMaterialId(@Param("materialId") String materialId,@Param("hcdwXydm") String hcdwXydm, @Param("hcjhnd") Integer hcjhnd, @Param("hcrwId") String hcrwId, @Param("mongoId") String mongoId);
 
+    String getMongoIdByMaterialId(@Param("hcrwId") String hcrwId, @Param("hcclId") String hcclId, @Param("hcsxId") String hcsxId);
+    String getDxnMongoIdByHcrwlId(@Param("hcrwId") String hcrwId,@Param("dxnType") String dxnType);
+    Integer getYSCWJGSByHcrwlId(@Param("hcrwId") String hcrwId);/*已经上传的文件个数*/
+    Integer getBXSCWJGSByHcrwlId(@Param("hcrwId") String hcrwId);/*必须上传的文件个数*/
+    Integer getYSCBXWJGSByHcrwlId(@Param("hcrwId") String hcrwId);/*必须上传的文件中已经上传的个数*/
+
 }
