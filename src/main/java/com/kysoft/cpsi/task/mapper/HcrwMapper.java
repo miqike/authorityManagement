@@ -41,10 +41,10 @@ public interface HcrwMapper {
 	 * @mbg.generated  Wed Sep 21 17:27:21 CST 2016
 	 */
 	int updateByPrimaryKey(Hcrw record);
-	//根据�????????查单位查询任务列�????????--3101
-	 //查询已认�?
+	//根据�????????查单位查询任务列�????????--3101
+	 //查询已认�?
     List<Hcrw> queryForOrg1(Map<String, Object> param);
-    //查询未认�?
+    //查询未认�?
     List<Hcrw> queryForOrg2(Map<String, Object> param);
   
     
@@ -52,7 +52,7 @@ public interface HcrwMapper {
     //根据信用代码查询任务列表--2101
     List<Hcrw> queryForXydm(Map<String, Object> param);
 
-    //根据�????????查人员查询任务列�????????--5101
+    //根据�????????查人员查询任务列�????????--5101
     List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
@@ -83,7 +83,9 @@ public interface HcrwMapper {
 
 	void updateStatusByPrimaryKey(@Param("taskId") String hcrwId,  @Param("statusCode")Integer statusCode);
 
-	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm, @Param("hcjhId")String hcjhId);
+	@Select("select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}")
+	@ResultType(value = java.lang.String.class)
+	String selectTaskIdByNdAndXydm(@Param("nd")Integer nd, @Param("xydm")String xydm);
 
 	void updateDispatchByPlanId(@Param("hcjhId") String hcjhId, @Param("xdzt")Integer xdzt);
 
@@ -93,7 +95,9 @@ public interface HcrwMapper {
 	void updateHcclStatByPrimaryKey(String hcrwId);
 
 	void updateRequiredDocByPlanId(String hcjhId);
-
+	
+	void updateRequiredDocByPlanId2(String hcjhId);
+	
 	@Update("UPDATE T_HCRW SET DOC_READY_FLAG = #{docReadyFlag} WHERE ID=#{hcrwId}")
 	void updateDocReadyFlag(@Param("hcrwId")String hcrwId, @Param("docReadyFlag")int docReadyFlag);
 
@@ -122,8 +126,5 @@ public interface HcrwMapper {
 	void updateCancelAudit(@Param("taskIds") List<String> taskIds);
 
 	void getHcsxJgData(Map<String, Object> param);
-
-	@Update("UPDATE T_HCRW SET ZCB_RESULT = #{result} WHERE ID=#{hcrwId}")
-	void updateZcbResultByPrimaryKey(@Param("hcrwId")String hcrwId,@Param("result")String result);
 
 }

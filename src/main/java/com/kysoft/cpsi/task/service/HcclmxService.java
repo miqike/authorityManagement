@@ -6,7 +6,7 @@ public interface HcclmxService {
 
 	void delete(String id);
 
-	Integer addHcclmx(Hcclmx hcclmx);
+	void addHcclmx(Hcclmx hcclmx);
 	void addHcclmxJs(Hcclmx hcclmx);
 
 	void delete2(String id);
@@ -15,7 +15,5 @@ public interface HcclmxService {
 	void addJsHcclmx2(Hcclmx hcclmx);
 
 	void updateHcclmx2(Hcclmx hcclmx);
-
-	String getDxnMongoIdByHcrwId(String hcrwId,String dxnType);
 
 }

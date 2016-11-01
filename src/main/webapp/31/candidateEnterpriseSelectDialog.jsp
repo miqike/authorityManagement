@@ -132,7 +132,6 @@ function candidateEnterpriseGridLoadSucessHandler(data) {
 				<td>
 					<a href="javascript:void(0);" id="btnQueryCandidateEnterprise" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a> 
 					<a href="javascript:void(0);" id="btnResetCandidateEnterpriseQuery" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
-					<a href="javascript:void(0);" id="btnSaveCandidateEnterpriseQuery" class="easyui-linkbutton" plain="true" iconCls="icon2 r25_c12">选择并认领</a>
 				</td>
 			</tr>
 			

@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=100" />
 
     <%--控制浏览器的解码方式。如果前面的解码都一致并且无误的话，这个编码格式用不用设置都可以--%>
-    <title>经营异常移出企业检查</title>
+    <title>计划检查</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
@@ -108,23 +108,27 @@
  		<table id="taskDetailTable">
 			<tr>
 			    <td class="label" style="width:90px">计划编号</td>
-			    <td style="width:130px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
+			    <td style="width:100px;"><input id="p_jhbh" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
 			    <td class="label" style="width:90px">计划名称</td>
 			    <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 			    
 			</tr>
 			<tr>
 			    <td class="label">注册号</td>
-			    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
+			    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:100px;"/></td>
 			    <td class="label" >抽查单位</td>
 			    <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 			    
 			</tr>
 			<tr>   
 			    <td class="label">下达时间</td>
-			    <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" style="width:130px"/></td>
+			    <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
 			    <td class="label"  style="width:90px;">计划结束时间</td>
-			    <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" style="width:130px"/></td>
+			    <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" data-options="width:107"/></td>
+			    <td class="label"  style="width:90px;">检查结果</td>
+			    <td ><input id="p_hcjieguo" class="easyui-combobox" data-options="width:187" codeName="gsjg" disabled/>
+			        <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+			    </td>
 			    </tr>
 		</table>
 		<div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
@@ -159,12 +163,9 @@
 			    <shiro:hasPermission name="5105:btnPrintAuditReport">
 					<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
 			    </shiro:hasPermission>
-                <shiro:hasPermission name="5105:btnUpdateHcjg">
-                    <a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" >设置检查结果</a>
-                    <input id="p_hcjieguo" class="easyui-combobox" data-options="width:187" codeName="gsjg" disabled/>
-                    <a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
-                </shiro:hasPermission>
-
+			    <shiro:hasPermission name="5105:btnUpdateHcjg">
+					<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" >设置检查结果</a>
+			    </shiro:hasPermission>
 			</div>
 		</div>
 	</div>
@@ -211,12 +212,12 @@
 						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
 	            <thead>
 		            <tr>
-						<th data-options="field:'rwzt', halign:'center',align:'center'" width="55" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
-		            	<th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="55">计划年度</th>
-		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="55">计划编号</th>
+						<th data-options="field:'rwzt', halign:'center',align:'center'" width="60" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
+		            	<th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="60">计划年度</th>
+		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="100">公示系统计划编号</th>
 		                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="170">计划名称</th>
-		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达单位</th>
-		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120">统一社会信用代码</th>
+		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="170">任务下达单位</th>
+		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="140">统一社会信用代码</th>
 		                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
 		                <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
                         <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>

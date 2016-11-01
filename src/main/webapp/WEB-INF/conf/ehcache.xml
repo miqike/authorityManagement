@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache name="cpsi">
 
-    <!--java 启动参数
-    -Dcom.sun.management.jmxremote
-    -Djava.rmi.server.hostname=192.168.5.180
-    -Dcom.sun.management.jmxremote.port=1099
-    -Dcom.sun.management.jmxremote.ssl=false
-    -Dcom.sun.management.jmxremote.authenticate=false
-    -->
-
     <diskStore path="java.io.tmpdir"/>
 
-    <!--集群配置 -->
-    <!--自动的成员发现-->
-     <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
-            properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4448, timeToLive=32"
-     />
+    <!--成员发现-->
     <!--手动方式列出除本实例之外其他实例的IP和端口以及CacheName-->
-<!--
-    <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
-                                     properties="peerDiscovery=manual,rmiUrls=//192.168.5.100:40007/sys-userCache|//192.168.5.100:40007/sys-codeListCache"
-    />
--->
+    <!-- <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+    properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4448, timeToLive=32" /> -->
+    <!--properties="peerDiscovery=manual,rmiUrls=//192.168.5.100:40007/sys-userCache|//192.168.5.100:40007/sys-codeListCache" />-->
+
     <!--监听从成员们发到本实例CacheManager的消息-->
     <!--手动方式，指定本实例监听40008端口，hostName可选-->
-     <cacheManagerPeerListenerFactory
-            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
-            properties="port=40008,socketTimeoutMillis=2000"
-    />
+    <!-- <cacheManagerPeerListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"  /> -->
+            <!--properties="port=40008,socketTimeoutMillis=2000" />-->
 
     <defaultCache
             maxEntriesLocalHeap="1000"
@@ -69,11 +55,9 @@
         timeToLiveSeconds="0"
         timeToIdleSeconds="0"
         statistics="true">
-        <!--集群配置-->
-         <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000"
-         />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <!-- 菜单缓存/没必要过期/分布-->
@@ -85,11 +69,9 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="true">
-        <!--集群配置-->
-         <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000"
-         />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <cache name="sys-codeListCache"
@@ -100,11 +82,9 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="true">
-        <!--集群配置-->
-         <cacheEventListenerFactory
+        <!-- <cacheEventListenerFactory
             class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
-            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000"
-         />
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,replicateUpdatesViaCopy=false, replicateRemovals=true,asynchronousReplicationIntervalMillis=1000" /> -->
     </cache>
 
     <cache name="shiro-authentication"

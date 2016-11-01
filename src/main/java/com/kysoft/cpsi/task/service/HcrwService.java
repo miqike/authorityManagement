@@ -39,6 +39,4 @@ public interface HcrwService {
 	void batchCancelAuditHcrw(List<String> taskIds);
 
 	JSONArray getHcsxJg(String hcrwId);
-
-	Map<String,Object> exportExcelHcsxJg(String hcrwId) throws Exception;
 }

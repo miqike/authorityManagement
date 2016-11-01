@@ -351,31 +351,4 @@
         select replace(sys_guid(),'-','') id,#{hcdwXydm} hcdw_xydm,#{hcjhnd} hcjhnd,b.name name,a.sfbyx sfbyx,a.wjlx wjlx,a.id hccl_id,a.hcsx_id,#{hcrwId} hcrw_id,#{mongoId} mongo_id,a.yhtg,2 ly,a.hcsxmc,sysdate UPLOAD_TIME
         from t_hccl a,t_material b where a.material_id=#{materialId} and a.material_id=b.id
     </insert>
-
-    <select id="getMongoIdByMaterialId"  resultType="java.lang.String">
-        select distinct mongo_id from t_hcclmx
-          where hcrw_id=#{hcrwId} and hccl_id=#{hcclId} and hcsx_id=#{hcsxId}
-    </select>
-
-    <select id="getDxnMongoIdByHcrwlId"  resultType="java.lang.String">
-        select a.mongo_id from t_hcclmx a,t_hccl b,t_hcjh_hcsx d,t_hcrw c where a.hccl_id=b.id
-        and a.hcsx_id=d.hcsx_id and c.hcjh_id=d.hcjh_id and a.hcrw_id=c.id and b.dxn_type=#{dxnType} and c.id=#{hcrwId}
-    </select>
-
-    <select id="getYSCWJGSByHcrwlId"  resultType="java.lang.Integer">
-        select count(1) from t_hcclmx where hcrw_id =#{hcrwId}
-    </select>
-    <select id="getBXSCWJGSByHcrwlId"  resultType="java.lang.Integer">
-        select count(1) from t_hccl b,t_hcjh_hcsx c,t_hcrw e
-        where b.hcsx_id=c.hcsx_id and c.hcjh_id=e.hcjh_id
-        and b.sfbyx=1
-        and e.id=#{hcrwId}
-    </select>
-    <select id="getYSCBXWJGSByHcrwlId"  resultType="java.lang.Integer">
-        select count(1) from t_hcclmx a where a.hcrw_id =#{hcrwId} and a.hccl_id in(select b.id from t_hccl b,t_hcjh_hcsx c,t_hcrw e
-        where b.hcsx_id=c.hcsx_id and c.hcjh_id=e.hcjh_id
-        and b.sfbyx=1
-        and e.id=#{hcrwId})
-    </select>
-
 </mapper>

@@ -210,7 +210,7 @@
 
   <select id="getDXNHcsx" resultType="java.util.Map">
     SELECT DISTINCT *
-    from T_HCCL WHERE DXN_TYPE = #{dxnType}
+    from T_HCCL WHERE dxn_type =2
   </select>
 
 </mapper>

@@ -428,12 +428,8 @@ function printZelingluxingtongzhishu() {
 }
 
 //打印企业年报公示信息核查结果报告
-function writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize,xh){
-    if(xh!=5 && xh!=6 && xh!=7 && xh!=8 && xh!=9 && xh!=10 && xh!=11) {
-        LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
-    }else{
-        LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull-columnWidths[7]), 0, 1);//横线
-    }
+function writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize ){
+    LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
     LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), data[0]);
     LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
@@ -512,271 +508,265 @@ function getDataFromDataList(xh,dataList,zhongDian){
             data[4]=dataList[i].bznr;
             data[5]=dataList[i].sjnr;
             data[6]=dataList[i].hcjg==1?"通过":"不通过";
-            if(xh!=5 && xh!=6 && xh!=7 && xh!=8 && xh!=9 && xh!=10 && xh!=11) {
-                data[7] = dataList[i].sm;
-            }
+            data[7]=dataList[i].sm;
         }
     }
     return data;
 }
-function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(gridId){
+function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(){
     $("#gaozhishuWindow").window("close");
-    var columnWidths=[5,15,25,25,25,25,10,65];//195
+    var columnWidths=[5,15,30,45,45,45,10,0];//195
     var columnWidthFull = columnWidths[0]+columnWidths[1]+columnWidths[2]+columnWidths[3]+columnWidths[4]+columnWidths[5]+columnWidths[6]+columnWidths[7];
 
     var left = 0;
     var top = 0;
     var rowHeight = 0;
 
-    var qy=$("#"+gridId).datagrid("getSelected");
+    var qy=$("#grid1").datagrid("getSelected");
     var dataList=null;
-    if(null != qy) {
-        $.getJSON("./" + qy.id + "/getHcsxJg", null, function (response) {
-            if (response.status == 1) {
-                dataList = response.data;
-                //LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
-                var LODOP = getLodop();
-                //设置纸张
-                LODOP.BKIMG_PRINT
-                LODOP.PRINT_INITA("5mm", "3mm", "210mm", "297mm", "");
-                LODOP.SET_PRINT_PAGESIZE(1, toMilli(210), toMilli(297), "CreateCustomPage");
-                LODOP.SET_PRINTER_INDEX(-1);
-                LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
-                LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
-                LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
-                //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
+    $.getJSON("./"+qy.id+"/getHcsxJg",null,function(response){
+        if(response.status==1){
+            dataList=response.data;
+            //LODOP = getLodop(document.getElementById('LODOP_OB'), document.getElementById('LODOP_EM'));
+            var LODOP = getLodop();
+            //设置纸张
+            LODOP.BKIMG_PRINT
+            LODOP.PRINT_INITA("5mm", "3mm", "210mm", "297mm", "");
+            LODOP.SET_PRINT_PAGESIZE(1, toMilli(210), toMilli(297), "CreateCustomPage");
+            LODOP.SET_PRINTER_INDEX(-1);
+            LODOP.SET_PRINT_MODE("RESELECT_PRINTER", 0);
+            LODOP.SET_PRINT_MODE("AUTO_CLOSE_PREWINDOW", 1);
+            LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);
+            //LODOP.SET_PRINT_MODE("POS_BASEON_PAPER", 1);
 
-                //开始打印
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业年报公示信息核查结果报告");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "黑体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 18);
-                top = top + 10;
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "检查机关：" + qy.hcjgmc);
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left + 150), toMilli(columnWidthFull), toMilli(rowHeight), "检查时间：" + formatDate(qy.jhxdrq));
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                top = top + 5;
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划名称：" + qy.jhmc);
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left + 150), toMilli(columnWidthFull), toMilli(rowHeight), "计划编号：" + qy.jhbh);
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                top = top + 5;
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业名称：" + qy.hcdwName);
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                top = top + 5;
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "注册号/社会统一信用代码：" + qy.hcdwXydm);
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left + 150), toMilli(columnWidthFull), toMilli(rowHeight), "抽查结果：" + $.codeListLoader.getCodeLiteral("gsjg", qy.hcjieguo));
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
-                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            //开始打印
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "企业年报公示信息核查结果报告");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "黑体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 18);
+            top = top + 10;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight),"检查机关："+qy.hcjgmc);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight),"检查时间："+formatDate(qy.jhxdrq));
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "计划名称："+qy.jhmc);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight),"计划编号："+qy.jhbh);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight),  "企业名称："+qy.hcdwName);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            top = top + 5;
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "注册号/社会统一信用代码："+qy.hcdwXydm);
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left+150), toMilli(columnWidthFull), toMilli(rowHeight), "抽查结果："+$.codeListLoader.getCodeLiteral("gsjg",qy.hcjieguo));
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+            LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
 
-                //打印表格头
-                var fontSize;//内容行字号
-                var fontSizeOfTitle = 9;//标题行字号
-                rowHeight = 12;
-                top = top + 5;
-                var colLeft = 0;
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最上横线
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "序号");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[0]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[0]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[0];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[1]), toMilli(rowHeight), "检查信息分类");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[1]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[1]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[1];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[2]), toMilli(rowHeight), "检查项目");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[2]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[2]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[2];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[3]), toMilli(rowHeight), "公示内容");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[3]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[3]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[3];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[4]), toMilli(rowHeight), "登记/备案内容");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[4]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[4]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[4];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[5]), toMilli(rowHeight), "实际内容");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[5]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[5]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[5];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[6]), toMilli(rowHeight), "对比结果");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[6]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[6]), 0, 1);//竖线
-                colLeft = colLeft + columnWidths[6];
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[7]), toMilli(rowHeight), "问题描述");
-                LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
-                LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(columnWidthFull), toMilli(top + rowHeight), toMilli(columnWidthFull), 0, 2);//竖线
+            //打印表格头
+            var fontSize;//内容行字号
+            var fontSizeOfTitle=9;//标题行字号
+            rowHeight=12;
+            top = top + 5;
+            var colLeft=0;
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最上横线
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "序号");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[0]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[0]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[0];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[1]), toMilli(rowHeight), "检查信息分类");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[1]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[1]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[1];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[2]), toMilli(rowHeight), "检查项目");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[2]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[2]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[2];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[3]), toMilli(rowHeight), "公示内容");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[3]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[3]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[3];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[4]), toMilli(rowHeight), "登记/备案内容");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[4]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[4]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[4];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[5]), toMilli(rowHeight), "实际内容");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[5]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[5]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[5];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[6]), toMilli(rowHeight), "对比结果");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[6]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[6]), 0, 1);//竖线
+            colLeft=colLeft+columnWidths[6];
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[7]), toMilli(rowHeight), "问题描述");
+            LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
+            LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSizeOfTitle);
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(columnWidthFull), toMilli(top + rowHeight ), toMilli(columnWidthFull), 0, 2);//竖线
 
-                top = top + rowHeight;
-                rowHeight = 20;
-                colLeft = 0;
-                fontSize = 6;
-                var data = getDataFromDataList(1, dataList, "重点");//["1","重点","企业投资设立企业、购买股权信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 1);
-                top = top + rowHeight;
-                rowHeight = 20;
-                colLeft = 0;
-                data = getDataFromDataList(2, dataList, "重点");//["2","","股东或发起人认缴和实缴的出资额、出资时间、出资方式等信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 2);
-                top = top + rowHeight;
-                rowHeight = 20;
-                colLeft = 0;
-                data = getDataFromDataList(3, dataList, "重点");//["3","","有限公司股东股权转让等股权变更信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 3);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(4, dataList, "重点");//["4","","资产总额（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 4);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(5, dataList, "重点");//["5","","负债总额（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 5);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(6, dataList, "重点");//["6","","所有者权益合计（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 6);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(7, dataList, "重点");//["7","","营业总收入（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 7);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(8, dataList, "重点");//["8","","主营业务收入（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 8);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(9, dataList, "重点");//["9","","利润总额（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 9);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(10, dataList, "重点");//["10","","净利润（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 10);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(11, dataList, "重点");//["11","","纳税总额（万元）","","","","",""];
-                data[3] = moneyFormatter(data[3]);
-                data[4] = moneyFormatter(data[4]);
-                data[5] = moneyFormatter(data[5]);
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 11);
-                top = top + rowHeight;
-                rowHeight = 20;
-                colLeft = 0;
-                data = getDataFromDataList(12, dataList, "重点");//["12","","对外提供保证担保信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 12);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(13, dataList, "一般");//["13","一般","企业通信地址","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 13);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(14, dataList, "一般");//["14","","邮政编码","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 14);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(15, dataList, "一般");//["15","","联系电话","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 15);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(16, dataList, "一般");//["16","","电子邮箱","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 16);
-                top = top + rowHeight;
-                rowHeight = 20;
-                colLeft = 0;
-                data = getDataFromDataList(17, dataList, "一般");//["17","","企业网站以及从事网络经营的网店名称、网址等信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 17);
-                top = top + rowHeight;
-                rowHeight = 10;
-                colLeft = 0;
-                data = getDataFromDataList(18, dataList, "一般");//["18","","企业开业、歇业、清算等存续状态","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 18);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(19, dataList, "一般");//["19","","从业人数","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 19);
-                top = top + rowHeight;
-                rowHeight = 8;
-                colLeft = 0;
-                data = getDataFromDataList(20, dataList, "一般");//["20","","党建信息","","","","",""];
-                writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths, data, LODOP, top, colLeft, columnWidthFull, rowHeight, fontSize, 20);
-                top = top + rowHeight;
-                LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最下横线
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            fontSize=6;
+            var data=getDataFromDataList(1,dataList,"重点");//["1","重点","企业投资设立企业、购买股权信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(2,dataList,"");//["2","","股东或发起人认缴和实缴的出资额、出资时间、出资方式等信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(3,dataList,"");//["3","","有限公司股东股权转让等股权变更信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(4,dataList,"");//["4","","资产总额（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(5,dataList,"");//["5","","负债总额（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(6,dataList,"");//["6","","所有者权益合计（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(7,dataList,"");//["7","","营业总收入（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(8,dataList,"");//["8","","主营业务收入（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(9,dataList,"");//["9","","利润总额（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(10,dataList,"");//["10","","净利润（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(11,dataList,"");//["11","","纳税总额（万元）","","","","",""];
+            data[3]=moneyFormatter(data[3]);
+            data[4]=moneyFormatter(data[4]);
+            data[5]=moneyFormatter(data[5]);
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(12,dataList,"");//["12","","对外提供保证担保信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(13,dataList,"一般");//["13","一般","企业通信地址","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(14,dataList,"");//["14","","邮政编码","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(15,dataList,"");//["15","","联系电话","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=10;
+            colLeft=0;
+            data=getDataFromDataList(16,dataList,"");//["16","","电子邮箱","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(17,dataList,"");//["17","","企业网站以及从事网络经营的网店名称、网址等信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(18,dataList,"");//["18","","企业开业、歇业、清算等存续状态","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(19,dataList,"");//["19","","从业人数","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            rowHeight=12;
+            colLeft=0;
+            data=getDataFromDataList(20,dataList,"");//["20","","党建信息","","","","",""];
+            writeQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(columnWidths,data,LODOP,top,colLeft,columnWidthFull,rowHeight,fontSize);
+            top = top + rowHeight;
+            LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 2);//最下横线
 
-                LODOP.PREVIEW();
-                // LODOP.PRINT();
-                var data = {};
-                data.moduleName = "gaozhishu";
-                data.desc = "打印通知书";
-                data.message = "打印企业年报公示信息核查结果报告";
-                data.businessKey = $("#zeling_hcrwId").text();
-                $.post("../sys/log", data, function (response) {
-                    //console.log(response.message);
-                });
-            } else {
-                $.messager.show("操作提醒", '查询核查结果数据失败', "info", "bottomRight");
-            }
-        });
-    }else{
-        $.messager.show("操作提醒", '请先选择企业', "info", "bottomRight");
-    }
+            LODOP.PREVIEW();
+            // LODOP.PRINT();
+            var data = {};
+            data.moduleName = "gaozhishu";
+            data.desc = "打印通知书";
+            data.message = "打印企业年报公示信息核查结果报告";
+            data.businessKey = $("#zeling_hcrwId").text();
+            $.post("../sys/log", data, function (response) {
+                //console.log(response.message);
+            });
+        }else{
+            $.messager.show("操作提醒", '查询核查结果数据失败', "info", "bottomRight");
+        }
+    });
 }
 //公示信息更正审批表
 function printGongShiXinXiGengZhengBiao(){

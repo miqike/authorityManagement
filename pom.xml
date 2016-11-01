@@ -59,7 +59,50 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
+            
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.13.v20161014</version>
+                <configuration>
+                	<scanIntervalSeconds>10</scanIntervalSeconds>
+                    <jettyXml>src/etc/jetty.xml,src/etc/jetty-http.xml,src/etc/jetty-jmx.xml</jettyXml>
+                    <webApp>
+                    	<contextPath>/cpsi</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+            	<groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                	<container>
+                		<containerId>tomcat8x</containerId>
+                		<!-- <home>d:\apache-tomcat-8.0.38</home> -->
+                		<type>remote</type>
+                	</container>
+                	<configuration>
+                		<type>runtime</type>
+                		<properties>
+                			<cargo.remote.username>admin</cargo.remote.username>
+                			<cargo.remote.password>876543</cargo.remote.password>
+                			<cargo.remote.manager.url>http://192.168.5.100:9090/manager</cargo.remote.manager.url>
+                			<cargo.servlet.port>9090</cargo.servlet.port>
+			                <cargo.hostname>192.168.5.100</cargo.hostname>
+			                <cargo.tomcat.ajp.port>9009</cargo.tomcat.ajp.port>
+                		</properties>
+                		
+                		<!-- <type>standalone</type>
+                		<home>${project.build.directory}/tomcat8x</home>
+                		<properties>
+                			<cargo.servlet.port>8090</cargo.servlet.port>
+                		</properties> -->
+                	</configuration>
+                </configuration>
+            </plugin>
+            
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -124,19 +167,34 @@
             <groupId>net.sf.husky</groupId>
             <artifactId>husky-common</artifactId>
             <version>1.0.0</version>
+            <exclusions>
+            	<exclusion>
+            		<groupId>me.chanjar</groupId>
+            		<artifactId>weixin-java-cp</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>me.chanjar</groupId>
+            		<artifactId>weixin-java-common</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.springframework</groupId> 
+            		<artifactId>spring-jms</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.jasig.cas.client</groupId>
+            		<artifactId>cas-client-core</artifactId>
+            	</exclusion>
+            	<exclusion>
+            		<groupId>org.apache.shiro</groupId>
+            		<artifactId>shiro-cas</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.guoyukun.jdbc</groupId>
-            <artifactId>oracle-ojdbc6</artifactId>
-            <version>11.2.0.3.0</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -169,12 +227,6 @@
             <version>11.2.0.3.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.jasig.cas.client</groupId>
-            <artifactId>cas-client-core</artifactId>
-            <version>3.4.1</version>
-            <scope>provided</scope>
-        </dependency>
 
 
         <dependency>

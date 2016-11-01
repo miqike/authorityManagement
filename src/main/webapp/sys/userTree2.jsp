@@ -78,8 +78,8 @@
 <body style="padding:5px">
     <div class="easyui-layout" data-options="fit:true">
         <div id="treePanel" data-options="region:'west',collapsed:false,title:'',split:true,border:true,width:287">
-            <div class="easyui-panel" title="单位列表aaaa" style="padding:5px 0px;"
-                 data-options="iconCls:'icon-search',collapsible:true,collapsed:true">
+            <div class="easyui-panel" title="单位列表" style="padding:5px 0px;"
+                 data-options="iconCls:'icon-search',collapsible:true,collapsed:true,fit:true,">
                 <div id="p">
                     <span style="margin-left:5px;margin-right:0px;">编码</span>
                     <input id="q_ba0101" style="margin:0px 5px 5px 0px; width:100px;"/>
@@ -92,8 +92,8 @@
                 <a href="javascript:void(0);" id="btnSearch1" class="easyui-linkbutton" plain="true" iconCls="icon-search" style="margin-left:5px;">查找</a>
                 <a href="javascript:void(0);" id="btnReset1" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
             </div>
-            <div <%--style="float:left;margin:0px 5px;solid: lightgray"--%>>
-                <ul id='orgTree' class="ztree" <%--style="height: 450px"--%>></ul>
+            <div style="float:left;margin:0px 5px;solid: lightgray">
+                <ul id='orgTree' class="ztree" style="height: 450px"></ul>
             </div>
         </div>
         <div data-options="region:'center'">

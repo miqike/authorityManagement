@@ -8,10 +8,10 @@ function getLodop(oOBJECT,oEMBED){
   如果页面没有相关对象元素，则新建一个或使用上次那个,避免重复生成。
   64位浏览器指向64位的安装程序install_lodop64.exe。
 **************************/
-        var strHtmInstall="<br><font color='#FF00FF'>打印控件未安装!点击这里<a href='../install_lodop32.exe' target='_self'>执行安装</a>,安装后请刷新页面或重新进入。</font>";
-        var strHtmUpdate="<br><font color='#FF00FF'>打印控件需要升级!点击这里<a href='../install_lodop32.exe' target='_self'>执行升级</a>,升级后请重新进入。</font>";
-        var strHtm64_Install="<br><font color='#FF00FF'>打印控件未安装!点击这里<a href='../install_lodop64.exe' target='_self'>执行安装</a>,安装后请刷新页面或重新进入。</font>";
-        var strHtm64_Update="<br><font color='#FF00FF'>打印控件需要升级!点击这里<a href='../install_lodop64.exe' target='_self'>执行升级</a>,升级后请重新进入。</font>";
+        var strHtmInstall="<br><font color='#FF00FF'>打印控件未安装!点击这里<a href='install_lodop32.exe' target='_self'>执行安装</a>,安装后请刷新页面或重新进入。</font>";
+        var strHtmUpdate="<br><font color='#FF00FF'>打印控件需要升级!点击这里<a href='install_lodop32.exe' target='_self'>执行升级</a>,升级后请重新进入。</font>";
+        var strHtm64_Install="<br><font color='#FF00FF'>打印控件未安装!点击这里<a href='install_lodop64.exe' target='_self'>执行安装</a>,安装后请刷新页面或重新进入。</font>";
+        var strHtm64_Update="<br><font color='#FF00FF'>打印控件需要升级!点击这里<a href='install_lodop64.exe' target='_self'>执行升级</a>,升级后请重新进入。</font>";
         var strHtmFireFox="<br><br><font color='#FF00FF'>（注意：如曾安装过Lodop旧版附件npActiveXPLugin,请在【工具】->【附加组件】->【扩展】中先卸它）</font>";
         var strHtmChrome="<br><br><font color='#FF00FF'>(如果此前正常，仅因浏览器升级或重安装而出问题，需重新执行以上安装）</font>";
         var LODOP;		
@@ -49,15 +49,16 @@ function getLodop(oOBJECT,oEMBED){
 	                 document.documentElement.innerHTML=strHtmInstall+document.documentElement.innerHTML;
 	             return LODOP;
 	     } else 
-	     if (LODOP.VERSION<"6.1.9.8") {
+	     if (LODOP.VERSION<"6.1.9.0") {
 	             if (is64IE) document.write(strHtm64_Update); else
 	             if (isIE) document.write(strHtmUpdate); else
 	             document.documentElement.innerHTML=strHtmUpdate+document.documentElement.innerHTML;
 	    	     return LODOP;
 	     };
 	     //=====如下空白位置适合调用统一功能(如注册码、语言选择等):====	     
-		LODOP.SET_LICENSES("大连科艺软件开发有限公司", "85B2E5078AE17DEEED3894BC7E83CA1C","", "");
-	     //============================================================
+        LODOP.SET_LICENSES("大连科艺软件开发有限公司", "85B2E5078AE17DEEED3894BC7E83CA1C","", "");
+
+	     //============================================================	     
 	     return LODOP; 
 	} catch(err) {
 	     if (is64IE)	
@@ -66,3 +67,13 @@ function getLodop(oOBJECT,oEMBED){
 	     return LODOP; 
 	};
 }
+
+$(function() {
+	if(/firefox/.test(navigator.userAgent.toLowerCase())) {
+		$("#LODOP_OB").next().css("margin-top", "-15px");
+	} else if(/webkit/.test(navigator.userAgent.toLowerCase())) {
+		$("#LODOP_OB").next().css("margin-top", "5px");
+	} else if(/msie/.test(navigator.userAgent.toLowerCase())) {
+		$("#LODOP_OB").next().css("margin-top", "5px");
+	}
+});

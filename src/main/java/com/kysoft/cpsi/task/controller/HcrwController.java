@@ -5,15 +5,11 @@ import com.kysoft.cpsi.task.entity.Hcrw;
 import com.kysoft.cpsi.task.service.HcrwService;
 import net.sf.husky.utils.HuskyConstants;
 import net.sf.husky.web.controller.BaseController;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +30,11 @@ public class HcrwController extends BaseController {
             //核查结果为6种,只要设定核查结果,任务设为完成状态:5
             if(jieguo==null) {
                 hcrw.setRwzt(2);
-                hcrw.setSjwcrq(null);
             }else{
                 hcrw.setRwzt(5);
-                hcrw.setSjwcrq(new Date());
             }
             hcrw.setHcjieguo(jieguo);
+            hcrw.setSjwcrq(new Date());
             hcrwService.updateHcrw(hcrw);
             result.put(MESSAGE, "更新核查结果成功");
             result.put(STATUS, SUCCESS);
@@ -250,27 +245,6 @@ public class HcrwController extends BaseController {
             result.put(MESSAGE, "取得核查结果数据失败");
         }
         return result;
-    }
-
-    @RequestMapping(value = "/{hcrwId}/exportExcelHcsxJg", method = RequestMethod.GET)
-    public void exportExcelHcsxJg(HttpServletResponse response,@PathVariable String hcrwId) {
-        try {
-            Map<String,Object> exportResult=hcrwService.exportExcelHcsxJg(hcrwId);
-            HSSFWorkbook hssfWorkbook= (HSSFWorkbook)exportResult.get("workbook");
-            String xlsFile= exportResult.get("fileName")+".xls";
-
-            response.reset();
-            response.addHeader("Content-Disposition", "attachment;filename=" + new String(xlsFile.getBytes("UTF-8"), "8859_1"));
-            OutputStream outputStream  = new BufferedOutputStream(response.getOutputStream());
-            response.setContentType("application/vnd.ms-text;charset=utf-8");
-
-            hssfWorkbook.write(outputStream);
-
-            outputStream.flush();
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }
