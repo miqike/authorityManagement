@@ -67,6 +67,8 @@ function grid1ClickHandler() {
     if ($('#grid1').datagrid('getSelected') != null) {
         var row = $('#grid1').datagrid('getSelected');
         loadMyTask(row.jhbh);
+        $('#btnViewDocList').linkbutton('disable');
+        $('#btnReportDocReady').linkbutton('disable');
     }
 }
 
@@ -132,7 +134,7 @@ function search() {
 }
 
 function firstLoadMyPlan() {
-	var options = $("#grid1").datagrid("options")
+	var options = $("#grid1").datagrid("options");
 	options.url = "../common/query?mapper=hcjhMapper&queryName=query" + (userInfo.ext1 == 1 ? "Ext": "");
 }
 

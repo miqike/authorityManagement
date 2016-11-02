@@ -2,7 +2,11 @@
 <script>
 	function formatDocOperation(val, row, rowIndex) {
 		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
-			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			if($("#grid2").datagrid("getSelected").DOC_READY_REPORT_FLAG != 1){
+				return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+			}else{
+                return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>";
+			}
 		} else {
 			return "<a class='easyui-linkbutton' onclick='uploadFile(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
 		}
@@ -10,7 +14,11 @@
 	
 	function formatDocOperation2(val, row, rowIndex) {
 		if(row.MONGO_ID != null && row.MONGO_ID != undefined) {
-			return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+            if($("#grid2").datagrid("getSelected").DOC_READY_REPORT_FLAG != 1){
+                return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>　<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
+            }else {
+                return "<a href=\"javascript: displayAttachment('" + row.MONGO_ID + "');\">查看</a>";
+            }
 		} else {
 			return "<a class='easyui-linkbutton' onclick='uploadFile2(\"" + rowIndex + "\");' href='javascript:void(0);'>上传</a>";
 		}

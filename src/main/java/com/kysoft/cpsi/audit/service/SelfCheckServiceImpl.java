@@ -1,14 +1,15 @@
 package com.kysoft.cpsi.audit.service;
 
-import com.kysoft.cpsi.audit.entity.*;
-import com.kysoft.cpsi.audit.mapper.*;
-import com.kysoft.cpsi.repo.mapper.HcclMapper;
-import com.kysoft.cpsi.task.entity.Hcrw;
-import com.kysoft.cpsi.task.mapper.HcrwMapper;
-import net.sf.husky.exception.ExceptionUtils;
-import net.sf.husky.log.MongoLogger;
-import net.sf.husky.log.service.LogService;
-import net.sf.husky.utils.POIUtils;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -17,17 +18,20 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.UUID;
+import com.kysoft.cpsi.audit.entity.*;
+import com.kysoft.cpsi.audit.mapper.*;
+import com.kysoft.cpsi.repo.mapper.HcclMapper;
+import com.kysoft.cpsi.task.entity.Hcrw;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
+
+import net.sf.husky.exception.ExceptionUtils;
+import net.sf.husky.log.MongoLogger;
+import net.sf.husky.log.service.LogService;
+import net.sf.husky.utils.POIUtils;
 
 @Service("selfCheckService")
 public class SelfCheckServiceImpl implements SelfCheckService {
@@ -76,6 +80,9 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
     @Resource
     HcclMapper hcclMapper;
+
+    @Value(value = "${import.selfdata.flag}")
+    private String importFlag;
 
     /**
      * 可能的数据错误
@@ -198,7 +205,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             stockholderContributionMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetGDCZ.getLastRowNum();
-            for(int i=6;i<=rowNum;i++){
+            for(int i=6;i<rowNum;i++){
                 if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).equals("")) {
                     StockholderContribution stockholderContribution = new StockholderContribution();
                     stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -227,7 +234,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             stockRightChangeMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetGQBG.getLastRowNum();
-            for (int i = 6; i <= rowNum; i++) {
+            for (int i = 6; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).equals("")) {
                     StockRightChange stockRightChange = new StockRightChange();
                     stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -253,7 +260,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             investmentMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetDWTZ.getLastRowNum();
-            for (int i = 5; i <= rowNum; i++) {
+            for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).equals("")) {
                     Investment investment = new Investment();
                     investment.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -277,7 +284,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             guaranteeMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetDWDB.getLastRowNum();
-            for (int i = 5; i <= rowNum; i++) {
+            for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).equals("")) {
                     Guarantee guarantee = new Guarantee();
                     guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -307,7 +314,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             licenseMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheetXZXK.getLastRowNum();
-            for (int i = 5; i <= rowNum; i++) {
+            for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).equals("")) {
                     License license = new License();
                     license.setId(UUID.randomUUID().toString().replace("-", ""));
@@ -332,7 +339,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsStockholderContributionMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i <= rowNum; i++) {
+            for (int i = 6; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsStockholderContribution jsStockholderContribution = new JsStockholderContribution();
                     jsStockholderContribution.setId("");
@@ -364,7 +371,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsGqbgMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i <= rowNum; i++) {
+            for (int i = 6; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsGqbg jsGqbg = new JsGqbg();
                     jsGqbg.setId("");
@@ -390,7 +397,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsXzcfMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 6; i <= rowNum; i++) {
+            for (int i = 6; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsXzcf jsXzcf = new JsXzcf();
                     jsXzcf.setId("");
@@ -418,7 +425,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsLicenseMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 5; i <= rowNum; i++) {
+            for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsLicense jsXjsLicensecf = new JsLicense();
                     jsXjsLicensecf.setId("");
@@ -449,7 +456,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             jsZscqMapper.deleteByTaskId2(hcrw.getId());
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
-            for (int i = 5; i <= rowNum; i++) {
+            for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
                     JsZscq jsZscq = new JsZscq();
                     jsZscq.setId("");
@@ -654,32 +661,33 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         //校验表数据
         validateExcel(hcrwId, workbook);
-        /*//网址
-        nianbaoWangzhiwangdian(hcrw,workbook.getSheet("企业公示信息自查表"));
-        //年报数据
-        nianbao(hcrw,workbook.getSheet("资产负债表"),workbook.getSheet("企业公示信息自查表"),workbook.getSheet("利润表"));
+        if(importFlag.equals("1")) {
+            //网址
+            nianbaoWangzhiwangdian(hcrw,workbook.getSheet("企业公示信息自查表"));
+            //年报数据
+            nianbao(hcrw,workbook.getSheet("资产负债表"),workbook.getSheet("企业公示信息自查表"),workbook.getSheet("利润表"));
 
-        //股东出资
-        gudongchuzi(hcrw,workbook.getSheet("股东及出资信息"));
+            //股东出资
+            gudongchuzi(hcrw,workbook.getSheet("股东及出资信息"));
 
-        //股权变更
-        guquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
+            //股权变更
+            guquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
 
-        //对外投资
-        duiwaitouzi(hcrw,workbook.getSheet("企业投资设立企业、购买股权信息"));
+            //对外投资
+            duiwaitouzi(hcrw,workbook.getSheet("企业投资设立企业、购买股权信息"));
 
-        //对外担保
-        duiwandanbao(hcrw,workbook.getSheet("对外担保信息"));
+            //对外担保
+            duiwandanbao(hcrw,workbook.getSheet("对外担保信息"));
 
-        //行政许可
-        xingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
+            //行政许可
+            xingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
 
-        jsGudongchuzhi(hcrw,workbook.getSheet("股东及出资信息"));
-        jsGuquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
-        jsXingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
-        jsZhishichanquan(hcrw,workbook.getSheet("知识产权出质登记信息"));
-        jsXingzhengchufa(hcrw,workbook.getSheet("受到行政处罚信息"));
-*/
+            jsGudongchuzhi(hcrw,workbook.getSheet("股东及出资信息"));
+            jsGuquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
+            jsXingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
+            jsZhishichanquan(hcrw,workbook.getSheet("知识产权出质登记信息"));
+            jsXingzhengchufa(hcrw,workbook.getSheet("受到行政处罚信息"));
+        }
         workbook.close();
     }
 
