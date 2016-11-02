@@ -806,7 +806,7 @@ create or replace package body pkg_import is
               v_handle_all:=v_handle_all+1;
               v_step:=3;
               v_zchs:=v_zchs||p.zch||',';
-              if(v_handle_cnt>=10) then
+              if(v_handle_cnt>=200) then
                 v_step:=4;
                 v_zchs:=substr(v_zchs,1,length(v_zchs)-1);
                 prc_importRcRwAll(v_jhid,v_zchs,v_zfry,v_zfry_name,1,v_log_xh);
