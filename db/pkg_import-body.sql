@@ -774,7 +774,7 @@ create or replace package body pkg_import is
     cursor cur_djjg is--gov_nbcc_rc_qy表中的全部决定机关，做为登记机关来循环处理
       select distinct jdjg from gov_nbcc_rc_qy where jdjg is not null;
     cursor cur_djjg_rc_qy(p_jdjg in varchar2,p_jhbh in varchar2) is
-      select a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
+      select distinct a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
       where a.jhbh =p_jhbh
             and b.jdjg=p_jdjg
             and not exists(select 1 from t_hcrw c where c.hcjh_id=a.id and c.hcdw_xydm=b.zch);
