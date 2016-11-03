@@ -73,8 +73,17 @@ function grid1ClickHandler() {
 }
 
 function loadMyTask(jhbh) {
+    var docReadyFlag=$('input[name="docReadyFlag"]:checked ').val();
+    var url;
+    if(docReadyFlag=="0") {
+        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyReportFlag0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+    }else if(docReadyFlag=="1"){
+        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyReportFlagNo0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+    }else{
+        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh  + "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+    }
     $("#grid2").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh+"&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME",
+		url:url,
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
@@ -231,7 +240,27 @@ $(function () {
     } else {
         $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
     }
-    
+
+    $("input[name=docReadyFlag]:eq(1)").attr("checked",'checked');
+
+    $("#docReadyFlag0").click(function(){
+        var hcjh=$("#grid1").datagrid("getSelected");
+        if(null!=hcjh){
+            loadMyTask(hcjh.jhbh);
+        }
+    });
+    $("#docReadyFlag1").click(function(){
+        var hcjh=$("#grid1").datagrid("getSelected");
+        if(null!=hcjh){
+            loadMyTask(hcjh.jhbh);
+        }
+    });
+    $("#docReadyFlag").click(function(){
+        var hcjh=$("#grid1").datagrid("getSelected");
+        if(null!=hcjh){
+            loadMyTask(hcjh.jhbh);
+        }
+    });
 	/*$("#grid1").datagrid("load", {
 		nd: myDate.getFullYear()
 	});*/

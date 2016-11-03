@@ -932,6 +932,12 @@
 		<if test="docReadyReportFlag!=null">
 		  AND DOC_READY_REPORT_FLAG = #{docReadyReportFlag}
 		</if>
+      <if test="docReadyReportFlag0!=null">
+        AND DOC_READY_REPORT_FLAG = 0
+      </if>
+      <if test="docReadyReportFlagNo0!=null">
+        AND DOC_READY_REPORT_FLAG != 0
+      </if>
          ) m LEFT JOIN
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY

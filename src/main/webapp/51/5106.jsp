@@ -156,6 +156,9 @@
              <a href="#" id="btnReportDocReady" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                 data-options="disabled:true">上报完成/取消完成</a>
              <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
+			 <input type="radio" name="docReadyFlag" id="docReadyFlag0" value="0"/>未上传
+			 <input type="radio" name="docReadyFlag" id="docReadyFlag1" value="1" selected/>已上传
+			 <input type="radio" name="docReadyFlag" id="docReadyFlag" value="" />全部
 			 <%--<a href="#" id="btnImportExcel" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
 				data-options="disabled:false">导入自查表数据-Excel</a>--%>
          </div>
