@@ -76,9 +76,9 @@ function loadMyTask(jhbh) {
     var docReadyFlag=$('input[name="docReadyFlag"]:checked ').val();
     var url;
     if(docReadyFlag=="0") {
-        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyReportFlag0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyFlag0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
     }else if(docReadyFlag=="1"){
-        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyReportFlagNo0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyFlagNo0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
     }else{
         url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh  + "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
     }
