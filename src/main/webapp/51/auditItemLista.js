@@ -101,7 +101,7 @@ function canBeSelected(index) {
 }
 
 function initAuditItemList() {
-    $("#p_hcjieguo").combobox("disable")
+    $("#p_hcjieguo").combobox("disable");
     $("#btnUpdateHcjg").linkbutton("enable");
     $("#btnConfirmUpdateHcjg").hide();
 
@@ -150,7 +150,9 @@ function doAuditItemListInit() {
                                     window.auditItemDataReady = true;
                                     initAuditItemList();
                                 } else {
-                                    //$.messager.alert('删除失败', response, 'info');
+                                    $.messager.alert('加载数据', response.message, 'info');
+                                    $("#annualAuditItemGrid").datagrid("loadData",[]);
+                                    $("#instanceAuditItemGrid").datagrid("loadData",[]);
                                 }
                             }
                         });
