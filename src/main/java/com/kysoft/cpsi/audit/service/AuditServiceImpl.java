@@ -196,7 +196,7 @@ public class AuditServiceImpl implements AuditService {
 		System.out.println("---------nd-------------" + nd);
 		System.out.println("---------xydm-------------" + xydm);
 		System.out.println("---------hcjhId-------------" + hcjhId);
-		String hcrwId = hcrwMapper.selectTaskIdByNdAndXydm(nd, xydm,hcjhId);
+		String hcrwId = hcrwMapper.selectTaskIdByNdAndXydm(null, xydm,hcjhId);
 		System.out.println("================\t" + hcrwId);
 		if(hcrwId == null) {
 			throw new BaseException("核查任务不存在,请检查年度、企业统一社会信用代码和核查系统计划编号是否正确录入");

@@ -984,9 +984,12 @@
     </select>
 
   <select id="selectTaskIdByNdAndXydm" resultType="java.lang.String">
-    select ID from T_HCRW where ND = #{nd} and HCDW_XYDM = #{xydm}
+    select ID from T_HCRW where HCDW_XYDM = #{xydm}
     <if test="hcjhId != null">
       and hcjh_id=#{hcjhId}
+    </if>
+    <if test="nd != null">
+      and ND = #{nd}
     </if>
   </select>
 
