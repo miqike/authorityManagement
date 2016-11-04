@@ -186,7 +186,7 @@
         --pkg_import 323 select a.nd-1 into v_nd from t_hcjh a,t_hcrw b where a.id=b.hcjh_id and b.id=p_HCRWID;--日常监管计划的任务年度直接取计划年度减1
         -- Create/Recreate indexes
         create unique index idx_t_hcjh_1 on T_HCJH (jhmc);
---20161031
+--20161031 陕西更新
         --pkg_import 64-90 hcrw表中的djjg从接口表中的hcjg取得
         /*merge into t_hcrw
         using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
@@ -215,7 +215,7 @@
           i_hcrw.HCJIEGUO,i_hcrw.JYZT,i_hcrw.HCJGGSQK,v_rlr,v_rlrq,i_hcrw.SJWCRQ,p_zfryName,i_hcrw.ZFRY_NAME2,
           i_hcrw.HCJGMC,i_hcrw.DJJGMC,i_hcrw.DJJG,i_hcrw.ZTLX,i_hcrw.ZZXS,i_hcrw.QYBM,i_hcrw.QYMC,v_userName,i_hcrw.JHWCRQ,*//*i_hcrw.ND*//*v_jhnd-1,i_hcrw.JHMC,
           i_hcrw.JHXDRQ,i_hcrw.NR,i_hcrw.JHBH,v_requiredFiles,i_hcrw.clrq,i_hcrw.zs,v_plan_type,v_jhnd,i_hcrw.lrrq);*/
---20161101
+--20161101 陕西更新
     --pkg_import 4 procedure prc_importRcRwAll(p_hcjhId in varchar2,p_zchList varchar2,p_userId varchar2,p_zfryName varchar2,p_rlbz number,p_parent_xh number default null)
     --        25 pkg_log.INFO('pkg_import.prc_importRcRw','导入日常核查任务','导入日常核查任务'||p_parent_xh,p_hcjhId,v_log_xh);
     --pkg_import 增加 procedure prc_rc_autohandle is

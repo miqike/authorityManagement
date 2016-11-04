@@ -196,7 +196,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }catch(Exception e){
             e.printStackTrace();
             MongoLogger.warn("企业自查表数据上传 年报基本信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
-            throw new RuntimeException("[企业公示信息自查表]数据导入处理出错;");
+            throw new RuntimeException("[企业公示信息年报基本信息]数据导入处理出错;");
         }
     }
     //年报-股东出资
@@ -503,13 +503,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(9))))<0.00000001){
 
         }else{
-            errorMsg=errorMsg+"＂资产负债表的资产总计期初数E49不等于负债和所有者权益(或股东权益)总计期初数J49＂；";
+            errorMsg=errorMsg+"资产负债表的资产总计期初数E49不等于负债和所有者权益(或股东权益)总计期初数J49；";
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(10))))<0.00000001){
 
         }else{
-            errorMsg=errorMsg+"＂资产负债表的资产总计期末数F49不等于负债和所有者权益(或股东权益)总计期末数K49＂；";
+            errorMsg=errorMsg+"资产负债表的资产总计期末数F49不等于负债和所有者权益(或股东权益)总计期末数K49；";
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(3)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))))<0.00000001
@@ -517,13 +517,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(10))).subtract(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9)))))==0){
 
         }else{
-            errorMsg=errorMsg+"＂利润表的未分配利润本期发生额D41不等于资产负债表的未分配利润期末数K47＂；";// 或者 利润表的未分配利润本期发生额D41应该等于资产表资产负债表的未分配利润期末数K47-资产负债表的未分配利润期初数J47]
+            errorMsg=errorMsg+"利润表的未分配利润本期发生额D41不等于资产负债表的未分配利润期末数K47；";// 或者 利润表的未分配利润本期发生额D41应该等于资产表资产负债表的未分配利润期末数K47-资产负债表的未分配利润期初数J47]
         }
 
         if(Math.abs(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(40).getCell(4)))-parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(46).getCell(9))))<0.00000001){
 
         }else{
-            errorMsg=errorMsg+"＂利润表的未分配利润上期发生额E41不等于资产负债表的未分配利润期初数J47＂；";
+            errorMsg=errorMsg+"利润表的未分配利润上期发生额E41不等于资产负债表的未分配利润期初数J47；";
         }
 
         /*if(parseBigDecimal(POIUtils.getCellFormatValue(sheetZCFZB.getRow(20).getCell(4))).compareTo(getSumValue(sheetZCFZB,4,7,19))==0){
