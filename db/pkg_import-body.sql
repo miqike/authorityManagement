@@ -65,14 +65,14 @@ create or replace package body pkg_import is
         using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
                      (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(1,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE1,--存储名称重复的情况
                      (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(2,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE2,
-                     null RWZT,1 HCFL,a.jdjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
+                     null RWZT,1 HCFL,a.djjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
                      pkg_hc.fun_get_xcr(1,xcr) ZFRY_NAME1,pkg_hc.fun_get_xcr(2,xcr) ZFRY_NAME2,
-                     a.jdjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
+                     a.djjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
                      GXDW QYBM,a.gxdw_mc QYMC,
                      null RLRMC,v_YQWCSJ JHWCRQ, ND,v_jhmc JHMC,v_XDRQ JHXDRQ,v_nr nr,v_jhbh jhbh,clrq,zs,lrrq
               from (select rownum XH,v_jhbh JHXH,NBXH,ZCH,QYMC,FDDBR,QYLXDL,DJJG,GXDW,
                       xcr,XCSJ,0 WCBJ,ND,clrq,zs,lrrq,qyzzxs,jdjg,jdjg_mc,djjg_mc,gxdw_mc
-                    from gov_nbcc_rc_qy where zch=o.zch and rownum<=1) a) i_hcrw
+                    from gov_nbcc_rc_qy where zch=o.zch and rownum<=1 and jdjg is not null) a) i_hcrw
         on(i_hcrw.hcjh_id=t_hcrw.hcjh_id and i_hcrw.hcdw_xydm=t_hcrw.hcdw_xydm)
         WHEN MATCHED THEN
         update set HCDW_NAME=i_hcrw.HCDW_NAME,
@@ -772,7 +772,7 @@ create or replace package body pkg_import is
   */
   procedure prc_rc_autohandle is
     cursor cur_djjg is--gov_nbcc_rc_qy表中的全部决定机关，做为登记机关来循环处理
-      select distinct jdjg from gov_nbcc_rc_qy where jdjg is not null;
+      select distinct djjg from gov_nbcc_rc_qy where djjg is not null;
     cursor cur_djjg_rc_qy(p_jdjg in varchar2,p_jhbh in varchar2) is
       select distinct a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
       where a.jhbh =p_jhbh
@@ -795,13 +795,13 @@ create or replace package body pkg_import is
           v_handle_cnt:=0;
           v_handle_all:=0;
           v_zchs:='';
-          pkg_log.INFO('pkg_import.prc_rc_autohandle','导入日常核查任务','自动导入日常核查任务',o.jdjg,v_log_xh);
-          select user_id,name into v_zfry,v_zfry_name from sys_user where org_id=o.jdjg and rownum<=1;
+          pkg_log.INFO('pkg_import.prc_rc_autohandle','导入日常核查任务','自动导入日常核查任务',o.djjg,v_log_xh);
+          select user_id,name into v_zfry,v_zfry_name from sys_user where org_id=o.djjg and rownum<=1;
           v_step:=2;
           for v_xh_i in 1..3 loop
-            v_jhbh:=o.jdjg||(to_char(sysdate,'yy')-v_xh_i);--根据规则计算计划编号
+            v_jhbh:=o.djjg||(to_char(sysdate,'yy')-v_xh_i);--根据规则计算计划编号
             select id into v_jhid from t_hcjh where jhbh=v_jhbh;--根据计算出来的计划编号查询对应的计划主键
-            for p in cur_djjg_rc_qy(o.jdjg,v_jhbh) loop
+            for p in cur_djjg_rc_qy(o.djjg,v_jhbh) loop
               v_handle_cnt:=v_handle_cnt+1;
               v_handle_all:=v_handle_all+1;
               v_step:=3;
