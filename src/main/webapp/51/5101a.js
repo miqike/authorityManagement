@@ -69,14 +69,37 @@ function checkParam(param) {
 }
 
 function loadMyTask() {
-    $("#grid1").datagrid("load",  {
-		planType: planType,
-		nd: $('#f_nd').val(),
-		hcjhId: $('#f_hcjhId').val(),
-		jhmc: $('#f_jhmc').val(),
-		hcdwXydm: $('#f_hcdwXydm').val(),
-		hcdwName: $('#f_hcdwName').val()
-	});
+    var rwztWCFlag=$('input[name="rwztWCFlag"]:checked ').val();
+    if(rwztWCFlag=="1") {
+        $("#grid1").datagrid("load", {
+            planType: planType,
+            nd: $('#f_nd').val(),
+            hcjhId: $('#f_hcjhId').val(),
+            jhmc: $('#f_jhmc').val(),
+            hcdwXydm: $('#f_hcdwXydm').val(),
+            hcdwName: $('#f_hcdwName').val(),
+            rwztWCFlag:5
+        });
+    }else if(rwztWCFlag=="0"){
+        $("#grid1").datagrid("load", {
+            planType: planType,
+            nd: $('#f_nd').val(),
+            hcjhId: $('#f_hcjhId').val(),
+            jhmc: $('#f_jhmc').val(),
+            hcdwXydm: $('#f_hcdwXydm').val(),
+            hcdwName: $('#f_hcdwName').val(),
+            rwztWWCFlag:1
+        });
+    }else{
+        $("#grid1").datagrid("load", {
+            planType: planType,
+            nd: $('#f_nd').val(),
+            hcjhId: $('#f_hcjhId').val(),
+            jhmc: $('#f_jhmc').val(),
+            hcdwXydm: $('#f_hcdwXydm').val(),
+            hcdwName: $('#f_hcdwName').val()
+        });
+    }
 }
 
 function myTaskGridLoadSucessHandler(data) {
@@ -193,6 +216,7 @@ function showTaskListWindow() {
         autoVCenter: false,     //该属性如果设置为 true，则使窗口保持纵向居中，默认为 true。
         autoHCenter: false,      //该属性如果设置为 true，则使窗口保持横向居中，默认为 true。
 		onOpen : function() {
+            $("input[name=rwztWCFlag]:eq('0')").attr("checked",'checked');
 			// loadMyTask();
 		}
     });

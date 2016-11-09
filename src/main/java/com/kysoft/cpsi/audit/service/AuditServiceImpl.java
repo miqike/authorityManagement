@@ -196,6 +196,10 @@ public class AuditServiceImpl implements AuditService {
 		System.out.println("---------nd-------------" + nd);
 		System.out.println("---------xydm-------------" + xydm);
 		System.out.println("---------hcjhId-------------" + hcjhId);
+
+		if(null==hcjhId || hcjhId.equals("") || null==xydm || xydm.equals("")){
+			throw new BaseException("核查单位信用代码或核查计划编号参数异常");
+		}
 		String hcrwId = hcrwMapper.selectTaskIdByNdAndXydm(null, xydm,hcjhId);
 		System.out.println("================\t" + hcrwId);
 		if(hcrwId == null) {

@@ -858,7 +858,13 @@
         <if test="hcdwName!=null">
             AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
+      <if test="rwztWCFlag!=null">
+        AND RWZT = #{rwztWCFlag}
+      </if>
+      <if test="rwztWWCFlag!=null">
+        AND (RWZT != 5 or RWZT is null)
+      </if>
+        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
         ORDER BY
         <if test="order != null">
             ${sort} ${order},
@@ -894,7 +900,13 @@
         <if test="hcdwName!=null">
             AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
         </if>
-        AND RLR IS NOT NULL AND RLRQ IS NOT NULL 
+      <if test="rwztWCFlag!=null">
+        AND RWZT = #{rwztWCFlag}
+      </if>
+      <if test="rwztWWCFlag!=null">
+        AND (RWZT != 5 or RWZT is null)
+      </if>
+        AND RLR IS NOT NULL AND RLRQ IS NOT NULL
         ORDER BY
         <if test="order != null">
             ${sort} ${order},

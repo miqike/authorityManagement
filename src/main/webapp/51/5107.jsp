@@ -175,7 +175,7 @@
 
 <div id="myTaskListWindow" >
 	<div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	    <div data-options="region:'north',split:false,height:70" title="">
+	    <div data-options="region:'north',split:false,height:100" title="">
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
@@ -186,8 +186,6 @@
 						<td style="text-align:center;">
 							<a href="javascript:void(0);" id="btnLoadMyTask" class="easyui-linkbutton" plain="true"
 							   iconCls="icon-search">查找</a>
-							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
-							   iconCls="icon2 r3_c10">重置</a>
 						</td>
 		            </tr>
 		            <tr>
@@ -195,12 +193,24 @@
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
-		                
-		                <td style="text-align:center;">
-		                    <a href="javascript:void(0);" id="btnMinimizeMyTaskWindow" class="easyui-linkbutton" plain="true"
-		                       iconCls="icon-back">确认返回</a>
-		                </td>
+
+						<td style="text-align:center;" >
+							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
+							   iconCls="icon2 r3_c10">重置</a>
+						</td>
 		            </tr>
+					<tr>
+						<td class="label" style="width:70px;">任务状态</td>
+						<td colspan="3">
+							<input type="radio" name="rwztWCFlag" id="rwztWCFlag0" value="0" selected/>未完成
+							<input type="radio" name="rwztWCFlag" id="rwztWCFlag1" value="1" />已完成
+							<input type="radio" name="rwztWCFlag" id="rwztWCFlag" value="" />全部
+						</td>
+						<td style="text-align:center;" >
+							<a href="javascript:void(0);" id="btnMinimizeMyTaskWindow" class="easyui-linkbutton" plain="true"
+							   iconCls="icon-back">确认返回</a>
+						</td>
+					</tr>
 		        </table>
 		    </div>
 	    </div>
@@ -208,7 +218,7 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:340,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
+						height:310,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
 	            <thead>
 		            <tr>
 						<th data-options="field:'rwzt', halign:'center',align:'center'" width="55" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
