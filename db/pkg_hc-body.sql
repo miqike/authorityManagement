@@ -1224,32 +1224,35 @@ create or replace package body pkg_hc is
                   ||v_t_nb_bd_2.DJ_FRDBSFDZZSJ
                   ||'"';
           when 'ae9230ddad3e4505ac03c966fd8bac3e' then --从业人员信息
-          v_qygsnr:='"qygsnr":"'||v_t_nb.GXBYS_JY||','
+          v_qygsnr:='"qygsnr":"'||v_t_nb.cyrs
+                    /*||','v_t_nb.GXBYS_JY||','
                     ||v_t_nb.GXBYS_GG||','
                     ||v_t_nb.TYSBS_JY||','
                     ||v_t_nb.TYSBS_GG||','
                     ||v_t_nb.CJRS_JY||','
                     ||v_t_nb.CJRS_GG||','
                     ||v_t_nb.ZJYS_JY||','
-                    ||v_t_nb.ZJYS_GG
+                    ||v_t_nb.ZJYS_GG*/
                     ||'"';
-          v_bznr:='"bznr":"'||v_t_nb_bd_1.GXBYS_JY||','
+          v_bznr:='"bznr":"'||v_t_nb_bd_1.cyrs
+                  /*||','v_t_nb_bd_1.GXBYS_JY||','
                   ||v_t_nb_bd_1.GXBYS_GG||','
                   ||v_t_nb_bd_1.TYSBS_JY||','
                   ||v_t_nb_bd_1.TYSBS_GG||','
                   ||v_t_nb_bd_1.CJRS_JY||','
                   ||v_t_nb_bd_1.CJRS_GG||','
                   ||v_t_nb_bd_1.ZJYS_JY||','
-                  ||v_t_nb_bd_1.ZJYS_GG
+                  ||v_t_nb_bd_1.ZJYS_GG*/
                   ||'"';
-          v_sjnr:='"sjnr":"'||v_t_nb_bd_2.GXBYS_JY||','
+          v_sjnr:='"sjnr":"'||v_t_nb_bd_2.cyrs
+                  /*||','v_t_nb_bd_2.GXBYS_JY||','
                   ||v_t_nb_bd_2.GXBYS_GG||','
                   ||v_t_nb_bd_2.TYSBS_JY||','
                   ||v_t_nb_bd_2.TYSBS_GG||','
                   ||v_t_nb_bd_2.CJRS_JY||','
                   ||v_t_nb_bd_2.CJRS_GG||','
                   ||v_t_nb_bd_2.ZJYS_JY||','
-                  ||v_t_nb_bd_2.ZJYS_GG
+                  ||v_t_nb_bd_2.ZJYS_GG*/
                   ||'"';
           when '8dd2b47ff88046679dabe66012ba1d35' then --资产总额、负债总额等资产财务数据
           v_qygsnr:='"qygsnr":"'||v_t_nb.SYZQYHJ||','
