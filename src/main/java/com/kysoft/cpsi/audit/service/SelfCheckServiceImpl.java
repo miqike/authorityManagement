@@ -1,15 +1,14 @@
 package com.kysoft.cpsi.audit.service;
 
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-
+import com.kysoft.cpsi.audit.entity.*;
+import com.kysoft.cpsi.audit.mapper.*;
+import com.kysoft.cpsi.repo.mapper.HcclMapper;
+import com.kysoft.cpsi.task.entity.Hcrw;
+import com.kysoft.cpsi.task.mapper.HcrwMapper;
+import net.sf.husky.exception.ExceptionUtils;
+import net.sf.husky.log.MongoLogger;
+import net.sf.husky.log.service.LogService;
+import net.sf.husky.utils.POIUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -22,16 +21,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.kysoft.cpsi.audit.entity.*;
-import com.kysoft.cpsi.audit.mapper.*;
-import com.kysoft.cpsi.repo.mapper.HcclMapper;
-import com.kysoft.cpsi.task.entity.Hcrw;
-import com.kysoft.cpsi.task.mapper.HcrwMapper;
-
-import net.sf.husky.exception.ExceptionUtils;
-import net.sf.husky.log.MongoLogger;
-import net.sf.husky.log.service.LogService;
-import net.sf.husky.utils.POIUtils;
+import javax.annotation.Resource;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 
 @Service("selfCheckService")
 public class SelfCheckServiceImpl implements SelfCheckService {
@@ -185,7 +182,17 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setYzbm(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(5)));
             annualReport.setLxdh(POIUtils.getStringCellValue(sheetZCB.getRow(5).getCell(5)));
             annualReport.setMail(POIUtils.getStringCellValue(sheetZCB.getRow(6).getCell(5)));
+
             annualReport.setCyrs(parseInt(POIUtils.getStringCellValue(sheetZCB.getRow(7).getCell(5))));
+            annualReport.setGxbysGg(0);
+            annualReport.setGxbysJy(0);
+            annualReport.setTysbsGg(0);
+            annualReport.setTysbsJy(0);
+            annualReport.setCjrsGg(0);
+            annualReport.setCjrsJy(0);
+            annualReport.setZjysGg(0);
+            annualReport.setZjysJy(0);
+
             annualReport.setJyzt(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(3)));
             annualReport.setSftzgmgq(POIUtils.getStringCellValue(sheetZCB.getRow(13).getCell(4)));
             annualReport.setSfydwdbxx(POIUtils.getStringCellValue(sheetZCB.getRow(14).getCell(4)));
