@@ -221,3 +221,4 @@
     --pkg_import 增加 procedure prc_rc_autohandle is
 --20161109
     --pkg_import 人员数如果为空则转为0
+    --PKG_hc 898 人数比较中只比较cyrs
