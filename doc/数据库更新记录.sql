@@ -222,3 +222,4 @@
 --20161109
     --pkg_import 人员数如果为空则转为0
     --PKG_hc 898 人数比较中只比较cyrs
+    --pkg_hc 1226 prc_gethcsxjg 人员数据只取从业人员

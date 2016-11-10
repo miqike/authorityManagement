@@ -213,7 +213,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheetGDCZ.getLastRowNum();
             for(int i=6;i<rowNum;i++){
-                if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).equals("")) {
+                if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).trim().equals("")) {
                     StockholderContribution stockholderContribution = new StockholderContribution();
                     stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
                     stockholderContribution.setNd(hcrw.getNd());
@@ -242,7 +242,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheetGQBG.getLastRowNum();
             for (int i = 6; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).trim().equals("")) {
                     StockRightChange stockRightChange = new StockRightChange();
                     stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
                     stockRightChange.setNd(hcrw.getNd());
@@ -268,7 +268,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheetDWTZ.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)) && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).trim() && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).trim().equals("")) {
                     Investment investment = new Investment();
                     investment.setId(UUID.randomUUID().toString().replace("-", ""));
                     investment.setNd(hcrw.getNd());
@@ -292,7 +292,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheetDWDB.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).trim().equals("")) {
                     Guarantee guarantee = new Guarantee();
                     guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
                     guarantee.setNd(hcrw.getNd());
@@ -322,7 +322,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheetXZXK.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).trim().equals("")) {
                     License license = new License();
                     license.setId(UUID.randomUUID().toString().replace("-", ""));
                     license.setNd(hcrw.getNd());
@@ -347,7 +347,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
             for (int i = 6; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsStockholderContribution jsStockholderContribution = new JsStockholderContribution();
                     jsStockholderContribution.setId("");
                     jsStockholderContribution.setHcrwId(hcrw.getId());
@@ -379,7 +379,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
             for (int i = 6; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsGqbg jsGqbg = new JsGqbg();
                     jsGqbg.setId("");
                     jsGqbg.setHcrwId(hcrw.getId());
@@ -405,7 +405,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
             for (int i = 6; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsXzcf jsXzcf = new JsXzcf();
                     jsXzcf.setId("");
                     jsXzcf.setHcrwId(hcrw.getId());
@@ -433,7 +433,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsLicense jsXjsLicensecf = new JsLicense();
                     jsXjsLicensecf.setId("");
                     jsXjsLicensecf.setHcrwId(hcrw.getId());
@@ -464,7 +464,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             // 得到总行数
             int rowNum = sheet.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
-                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)) && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).equals("")) {
+                if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsZscq jsZscq = new JsZscq();
                     jsZscq.setId("");
                     jsZscq.setHcrwId(hcrw.getId());
