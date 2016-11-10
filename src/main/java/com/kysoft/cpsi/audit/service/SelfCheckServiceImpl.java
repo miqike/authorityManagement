@@ -121,19 +121,21 @@ public class SelfCheckServiceImpl implements SelfCheckService {
 
         try {
             //年报数据
-            Homepage homepage = new Homepage();
-            homepage.setNd(hcrw.getNd());
-            homepage.setXydm(hcrw.getHcdwXydm());
-            homepage.setHcrwId(hcrw.getId());
-            homepage.setId(UUID.randomUUID().toString().replace("-", ""));
+            if(null!=POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)).trim() && !POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)).trim().equals("")){
+                Homepage homepage = new Homepage();
+                homepage.setNd(hcrw.getNd());
+                homepage.setXydm(hcrw.getHcdwXydm());
+                homepage.setHcrwId(hcrw.getId());
+                homepage.setId(UUID.randomUUID().toString().replace("-", ""));
 
-            homepage.setName("网址");
-            homepage.setType("网址");
-            homepage.setWz(POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)));
-            //删除老数据
-            homepageMapper.deleteByTaskId(hcrw.getId());
-            //插入新数据
-            homepageMapper.insert2(homepage);
+                homepage.setName("非网络交易平台网站");
+                homepage.setType("非网络交易平台网站");
+                homepage.setWz(POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)));
+                //删除老数据
+                homepageMapper.deleteByTaskId(hcrw.getId());
+                //插入新数据
+                homepageMapper.insert2(homepage);
+            }
         }catch(Exception e){
             e.printStackTrace();
             MongoLogger.warn("企业自查表数据上传 网址 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
