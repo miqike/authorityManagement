@@ -716,8 +716,9 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             workbook = new XSSFWorkbook(is);
         }
         Sheet sheet = workbook.getSheetAt(0);
-        for (int i=firstRowNum;i<=sheet.getLastRowNum()+1;i++){
+        for (int i=firstRowNum;i<sheet.getLastRowNum()+1;i++){
             Row row = sheet.getRow(i-1);
+            System.out.println(i);
             Cell cell=row.getCell(colNum-1);
             if(null!=cell && null!=POIUtils.getStringCellValue(cell) && !POIUtils.getStringCellValue(cell).equals("")) {
                 if (sheetValues.containsKey(POIUtils.getStringCellValue(cell))) {

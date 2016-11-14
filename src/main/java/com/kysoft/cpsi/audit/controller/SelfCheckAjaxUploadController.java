@@ -124,8 +124,8 @@ public class SelfCheckAjaxUploadController {
             ex.printStackTrace();
             result.put("status",-1);
             result.put("mongoId","");
-            result.put("message", ex.getMessage());
-            MongoLogger.warn("企业自查表数据上传",ExceptionUtils.getStackTrace(ex),hcrwId);
+            result.put("message","数据处理异常"+ ex.getMessage());
+            MongoLogger.warn("数据处理异常",ExceptionUtils.getStackTrace(ex),hcrwId);
         } finally {
             try {
                 is.close();
