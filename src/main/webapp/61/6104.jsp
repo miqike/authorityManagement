@@ -151,7 +151,7 @@
                 <tr>
                     <!-- <th data-options="field:'id'" halign="center" align="left" sortable="true" width="30">序号</th> -->
                     <th data-options="field:'hcjgmc'" halign="center" align="left" sortable="true" width="150">检查机关</th>
-                    <th data-options="field:'djjgmc'" halign="center" align="left" sortable="true" width="150">登记机关</th>
+                    <th data-options="field:'djjgmc'" halign="center" align="left" sortable="true" width="150">登记(移出)机关</th>
                     <th data-options="field:'hcdwXydm'" halign="center" align="left" sortable="true" width="140">统一社会信用代码</th>
                     <th data-options="field:'hcdwName'" halign="center" align="left" sortable="true" width="180">企业名称
                     </th>

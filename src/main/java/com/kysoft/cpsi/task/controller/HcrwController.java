@@ -40,9 +40,14 @@ public class HcrwController extends BaseController {
                 hcrw.setSjwcrq(new Date());
             }
             hcrw.setHcjieguo(jieguo);
-            hcrwService.updateHcrw(hcrw);
-            result.put(MESSAGE, "更新核查结果成功");
-            result.put(STATUS, SUCCESS);
+            if(null!=hcrw.getAuditResult()){
+                result.put(MESSAGE, "任务已经审核，不能更新");
+                result.put(STATUS, FAIL);
+            }else {
+                hcrwService.updateHcrw(hcrw);
+                result.put(MESSAGE, "更新核查结果成功");
+                result.put(STATUS, SUCCESS);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
@@ -163,7 +168,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "检查任务在线数据加载失败");
+            result.put(MESSAGE, "检查任务在线数据加载失败！"+e.getMessage());
         }
         return result;
     }

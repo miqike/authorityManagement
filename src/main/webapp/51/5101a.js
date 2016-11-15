@@ -296,6 +296,7 @@ function updateHcjg() {
 		$.messager.alert("操作提示", "检查结果已经审核通过,不能修改!");
 	} else {
 		$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
+		$("#btnDeleteUpdateHcjg").show().linkbutton("enable");
 		$("#p_hcjieguo").combobox("enable").combobox("showPanel");
 	}
 }
@@ -307,6 +308,7 @@ function confirmUpdateHcjg() {
 		$.messager.alert("提示", response.message, 'info');
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
+	    $("#btnDeleteUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");
 		if(response.status ==1 ){
 			row.hcjieguo= $("#p_hcjieguo").combobox("getValue");
@@ -314,10 +316,34 @@ function confirmUpdateHcjg() {
 					index: rowIndex,
 					row: row
 				}
-			)
+			);
+            loadMyTask();
 		}
 		// loadMyTask();
 	})
+}
+
+function deleteUpdateHcjg() {
+    var row = $("#grid1").datagrid("getSelected");
+    var rowIndex=$("#grid1").datagrid("getRowIndex",row);
+    $.post("../51/" + row.id + "/jieguo", null, function (response) {
+        $.messager.alert("提示", response.message, 'info');
+        $("#btnUpdateHcjg").linkbutton("enable");
+        $("#btnConfirmUpdateHcjg").hide();
+        $("#btnDeleteUpdateHcjg").hide();
+        $("#p_hcjieguo").combobox("disable");
+        if(response.status ==1 ){
+            row.hcjieguo= null;
+            $("#grid1").datagrid("updateRow", {
+                    index: rowIndex,
+                    row: row
+                }
+            );
+            $("#p_hcjieguo").combobox("setValue",null);
+            loadMyTask();
+        }
+        // loadMyTask();
+    })
 }
 
 function getAuditItem() {
@@ -383,4 +409,5 @@ $(function () {
     } else {
         $.subscribe("USERINFO_INITIALIZED", showTaskListWindow);
     }
+    $("#btnDeleteUpdateHcjg").hide();
 });

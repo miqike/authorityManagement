@@ -148,7 +148,7 @@
 				            offset: { width: -255, height: -205}">
 	            <thead>
 		            <tr>
-		                <th data-options="field:'djjgMc',halign:'center',align:'left'" sortable="true" width="150">登记机关</th>
+		                <th data-options="field:'djjgMc',halign:'center',align:'left'" sortable="true" width="150">登记(移出)机关</th>
 		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
 		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
@@ -211,7 +211,7 @@
             <th data-options="field:'jhbh'" halign="center" align="left" width="60" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
             <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
-            <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记机关</th>
+            <th data-options="field:'djjgmc'" halign="center" align="left" width="150">登记(移出)机关</th>
             <th data-options="field:'qymc'" halign="center" align="left" width="100">管辖单位</th>
             <th data-options="field:'zfryCode1'" halign="center" align="left" width="100" formatter="formatZfry">检查人员</th>
             <th data-options="field:'hcjieguo'" halign="center" align="left" width="70" codeName="gsjg" formatter="formatCodeList">检查结果</th>

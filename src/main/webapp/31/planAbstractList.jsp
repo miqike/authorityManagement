@@ -19,7 +19,7 @@
             <th data-options="field:'gsjhbh',halign:'center',align:'center'" width="80">公示计划编号</th>
             <th data-options="field:'jhmc',halign:'center',align:'left'" width="200">计划名称</th>
             <th data-options="field:'cxwh',halign:'center',align:'left'" width="200">抽查文号</th>
-            <th data-options="field:'djjgmc',halign:'center',align:'center'" width="150">登记机关</th>
+            <th data-options="field:'djjgmc',halign:'center',align:'center'" width="150">登记(移出)机关</th>
             <th data-options="field:'hcrwsl',halign:'center',align:'center'" width="60" >任务数量</th>
         </tr>
         </thead>

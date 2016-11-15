@@ -138,7 +138,7 @@
 				                            <th data-options="field:'rwzt', halign:'center',align:'center'" width="70" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 				                            <th data-options="field:'hcdwXydm', halign:'center',align:'center'" width="140" >统一社会信用代码</th>
 				                            <th data-options="field:'hcdwName', halign:'center',align:'left'" width="200" >被检单位名称</th>
-				                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记机关</th>
+				                            <th data-options="field:'djjgmc', halign:'center',align:'left'" width="100" >登记(移出)机关</th>
 				                            <th data-options="field:'hcjgmc', halign:'center',align:'left'" width="100" >检查机关</th>
 				                            <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
 				                            <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="70" formatter="formatDate">下达时间</th>

@@ -64,7 +64,7 @@
             <td><input class="easyui-textbox" type="text" id="c_name" style="width:200px;"/></td>
         </tr>
         <tr>
-            <td width="300px" align="right">登记机关</td>
+            <td width="300px" align="right">登记(移出)机关</td>
             <td><input class="easyui-textbox" id="c_regist" type="text" style="width:200px;" data-options=""/></td>
         </tr>
         <tr>

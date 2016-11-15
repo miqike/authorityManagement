@@ -100,7 +100,7 @@
                     <tr>
                         <td class="label">统一社会信用代码</td>
                         <td><input id="f_hcdwXydm" class="easyui-validatebox" style=""/></td>
-                        <td class="label">登记机关</td>
+                        <td class="label">登记(移出)机关</td>
                         <td><input id="f_djjgmc" class="easyui-validatebox" style=""/></td>
                         <!-- <td class="label">核查机关</td>
                         <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td> -->
@@ -138,8 +138,8 @@
                     <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="300">企业名称</th>
                     <th data-options="field:'rlr',halign:'center',align:'left'" sortable="true" width="100">认领人</th>
                     <th data-options="field:'rlrq',halign:'center',align:'left'" sortable="true" width="80" formatter="formatDate">认领日期</th>
-                    <th data-options="field:'djjgmc',halign:'center',align:'left'" sortable="true" width="200">登记机关名称</th>
-                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200">登记机关</th>
+                    <th data-options="field:'djjgmc',halign:'center',align:'left'" sortable="true" width="200">登记(移出)机关名称</th>
+                    <th data-options="field:'hcjgmc',halign:'center',align:'left'" sortable="true" width="200">登记(移出)机关</th>
                 </tr>
                 </thead>
             </table>

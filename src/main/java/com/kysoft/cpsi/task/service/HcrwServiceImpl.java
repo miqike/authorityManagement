@@ -67,11 +67,16 @@ public class HcrwServiceImpl implements HcrwService {
 
     @Override
     public void pullData(String hcrwId) {
-        Map<String, Object> param = Maps.newHashMap();
-        param.put("hcrwId", hcrwId);
-        hcrwMapper.pullData(param);
-        hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
-        MongoLogger.info("task", "用户对核查任务进行数据加载操作");
+        Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
+        if(null!=hcrw.getHcjieguo()){
+            throw new RuntimeException("已经设置核查结果，请先取消！");
+        }else {
+            Map<String, Object> param = Maps.newHashMap();
+            param.put("hcrwId", hcrwId);
+            hcrwMapper.pullData(param);
+            hcrwMapper.updateLoadedByPrimaryKey(hcrwId);
+            MongoLogger.info("task", "用户对核查任务进行数据加载操作");
+        }
     }
 
     @Override

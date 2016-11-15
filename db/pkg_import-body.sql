@@ -65,9 +65,9 @@ create or replace package body pkg_import is
         using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
                      (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(1,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE1,--存储名称重复的情况
                      (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(2,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE2,
-                     null RWZT,1 HCFL,a.djjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
+                     null RWZT,1 HCFL,a.jdjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
                      pkg_hc.fun_get_xcr(1,xcr) ZFRY_NAME1,pkg_hc.fun_get_xcr(2,xcr) ZFRY_NAME2,
-                     a.djjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
+                     a.jdjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
                      GXDW QYBM,a.gxdw_mc QYMC,
                      null RLRMC,v_YQWCSJ JHWCRQ, ND,v_jhmc JHMC,v_XDRQ JHXDRQ,v_nr nr,v_jhbh jhbh,clrq,zs,lrrq
               from (select rownum XH,v_jhbh JHXH,NBXH,ZCH,QYMC,FDDBR,QYLXDL,DJJG,GXDW,
@@ -777,6 +777,7 @@ create or replace package body pkg_import is
       select distinct a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
       where a.jhbh =p_jhbh
             and b.jdjg=p_jdjg
+            and b.lrsy like '%《企业信息公示暂行条例》%'
             and not exists(select 1 from t_hcrw c where c.hcjh_id=a.id and c.hcdw_xydm=b.zch);
     v_zfry varchar2(100);--执法人员代码
     v_zfry_name varchar2(100);--执法人员名称
@@ -832,5 +833,11 @@ create or replace package body pkg_import is
           pkg_log.updatelog(v_log_xh,SQLCODE,v_step||'；运行失败'||'；'||SQLERRM);
         end;
       end loop;
+      --陕西特有
+      update t_hcrw set zfry_code1='100918',zfry_name1='庞国锋',rlr='100918',rlrmc='庞国锋',rlrq=sysdate
+      where hcjg='610000' and jhbh like '610000%';
+      update t_hcrw set djjg=hcjg,djjgmc=hcjgmc where hcjg<>djjg and jhbh like '610%';
+      commit;
+      --陕西特有
     end prc_rc_autohandle;
 end pkg_import;

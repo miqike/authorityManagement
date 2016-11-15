@@ -159,6 +159,7 @@
 					<input id="p_hcjieguo" class="easyui-combobox"
 						   data-options="width:145" codeName="gsjg" disabled/>
 					<a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
+					<a href="javascript:void(0);" id="btnDeleteUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-cancel" disabled>删除结果</a>
 			    </shiro:hasPermission>
 			</div>
 		</div>
