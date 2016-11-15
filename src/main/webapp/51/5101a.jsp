@@ -155,11 +155,11 @@
 					<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >年报公示信息核查结果报告</a>
 			    </shiro:hasPermission>
 			    <shiro:hasPermission name="5105:btnUpdateHcjg">
+					<a href="javascript:void(0);" id="btnDeleteUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-cancel">删除结果</a>
 					<a href="javascript:void(0);" id="btnUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon2 r12_c19" disabled>设置检查结果</a>
 					<input id="p_hcjieguo" class="easyui-combobox"
 						   data-options="width:145" codeName="gsjg" disabled/>
 					<a href="javascript:void(0);" id="btnConfirmUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-ok" disabled>确认</a>
-					<a href="javascript:void(0);" id="btnDeleteUpdateHcjg" class="easyui-linkbutton" plain="true" iconCls="icon-cancel" disabled>删除结果</a>
 			    </shiro:hasPermission>
 			</div>
 		</div>

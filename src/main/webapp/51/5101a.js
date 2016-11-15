@@ -296,7 +296,6 @@ function updateHcjg() {
 		$.messager.alert("操作提示", "检查结果已经审核通过,不能修改!");
 	} else {
 		$("#btnConfirmUpdateHcjg").show().linkbutton("enable");
-		$("#btnDeleteUpdateHcjg").show().linkbutton("enable");
 		$("#p_hcjieguo").combobox("enable").combobox("showPanel");
 	}
 }
@@ -308,7 +307,6 @@ function confirmUpdateHcjg() {
 		$.messager.alert("提示", response.message, 'info');
 		$("#btnUpdateHcjg").linkbutton("enable");
 	    $("#btnConfirmUpdateHcjg").hide();
-	    $("#btnDeleteUpdateHcjg").hide();
 		$("#p_hcjieguo").combobox("disable");
 		if(response.status ==1 ){
 			row.hcjieguo= $("#p_hcjieguo").combobox("getValue");
@@ -317,7 +315,7 @@ function confirmUpdateHcjg() {
 					row: row
 				}
 			);
-            loadMyTask();
+            // loadMyTask();
 		}
 		// loadMyTask();
 	})
@@ -330,7 +328,6 @@ function deleteUpdateHcjg() {
         $.messager.alert("提示", response.message, 'info');
         $("#btnUpdateHcjg").linkbutton("enable");
         $("#btnConfirmUpdateHcjg").hide();
-        $("#btnDeleteUpdateHcjg").hide();
         $("#p_hcjieguo").combobox("disable");
         if(response.status ==1 ){
             row.hcjieguo= null;
@@ -340,7 +337,7 @@ function deleteUpdateHcjg() {
                 }
             );
             $("#p_hcjieguo").combobox("setValue",null);
-            loadMyTask();
+            // loadMyTask();
         }
         // loadMyTask();
     })
@@ -409,5 +406,4 @@ $(function () {
     } else {
         $.subscribe("USERINFO_INITIALIZED", showTaskListWindow);
     }
-    $("#btnDeleteUpdateHcjg").hide();
 });
