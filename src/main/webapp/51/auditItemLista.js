@@ -392,6 +392,7 @@ function confirmFail () {
 }
 
 function closeAuditWindow() {
+    $("#btnShowPrompt").tooltip("hide");
 	if($("#_hcjieguo_").text() != 1) {
 		fail();
 	}
