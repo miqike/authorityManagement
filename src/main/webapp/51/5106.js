@@ -78,6 +78,7 @@ function loadMyTask(jhbh) {
 
     var url;
 	var docReadyFlagUrl="";
+	var docReadyReportFlagUrl="";
     if(docReadyFlag=="0") {
 		docReadyFlagUrl="&docReadyFlag0=0";
     }else if(docReadyFlag=="1"){
@@ -86,7 +87,15 @@ function loadMyTask(jhbh) {
 		docReadyFlagUrl="";
     }
 
-	url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + docReadyFlagUrl+ "&docReadyReportFlag="+docReadyReportFlag+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+	if(docReadyReportFlag=="0") {
+		docReadyReportFlagUrl="&docReadyReportFlag=0";
+	}else if(docReadyReportFlag=="1"){
+		docReadyReportFlagUrl="&docReadyReportFlag=1";
+	}else{
+		docReadyReportFlagUrl="";
+	}
+
+	url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + docReadyFlagUrl+ docReadyReportFlagUrl+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
 
     $("#grid2").datagrid({
 		url:url,
@@ -281,6 +290,12 @@ $(function () {
             loadMyTask(hcjh.jhbh);
         }
     });
+	$("#docReadyReportFlag").click(function(){
+		var hcjh=$("#grid1").datagrid("getSelected");
+		if(null!=hcjh){
+			loadMyTask(hcjh.jhbh);
+		}
+	});
 	/*$("#grid1").datagrid("load", {
 		nd: myDate.getFullYear()
 	});*/

@@ -161,6 +161,7 @@
 			 <input type="radio" name="docReadyFlag" id="docReadyFlag" value="" />全部上传
 			 <input type="radio" name="docReadyReportFlag" id="docReadyReportFlag0" value="0" selected/>未上报
 			 <input type="radio" name="docReadyReportFlag" id="docReadyReportFlag1" value="1" />已上报
+			 <input type="radio" name="docReadyReportFlag" id="docReadyReportFlag" value="" />全部上报
 
 			 <%--<a href="#" id="btnImportExcel" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
 				data-options="disabled:false">导入自查表数据-Excel</a>--%>
