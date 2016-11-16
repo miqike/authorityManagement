@@ -74,14 +74,20 @@ function grid1ClickHandler() {
 
 function loadMyTask(jhbh) {
     var docReadyFlag=$('input[name="docReadyFlag"]:checked ').val();
+	var docReadyReportFlag=$('input[name="docReadyReportFlag"]:checked ').val();
+
     var url;
+	var docReadyFlagUrl="";
     if(docReadyFlag=="0") {
-        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyFlag0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+		docReadyFlagUrl="&docReadyFlag0=0";
     }else if(docReadyFlag=="1"){
-        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + "&docReadyFlagNo0=0"+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+		docReadyFlagUrl= "&docReadyFlagNo0=0";
     }else{
-        url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh  + "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+		docReadyFlagUrl="";
     }
+
+	url = "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + jhbh + docReadyFlagUrl+ "&docReadyReportFlag="+docReadyReportFlag+ "&order=DOC_READY_REPORT_FLAG,REPORT_DOC_READY_TIME";
+
     $("#grid2").datagrid({
 		url:url,
 		collapsible:true,
@@ -242,6 +248,7 @@ $(function () {
     }
 
     $("input[name=docReadyFlag]:eq(1)").attr("checked",'checked');
+    $("input[name=docReadyReportFlag]:eq(0)").attr("checked",'checked');
 
     $("#docReadyFlag0").click(function(){
         var hcjh=$("#grid1").datagrid("getSelected");
@@ -256,6 +263,19 @@ $(function () {
         }
     });
     $("#docReadyFlag").click(function(){
+        var hcjh=$("#grid1").datagrid("getSelected");
+        if(null!=hcjh){
+            loadMyTask(hcjh.jhbh);
+        }
+    });
+
+    $("#docReadyReportFlag0").click(function(){
+        var hcjh=$("#grid1").datagrid("getSelected");
+        if(null!=hcjh){
+            loadMyTask(hcjh.jhbh);
+        }
+    });
+    $("#docReadyReportFlag1").click(function(){
         var hcjh=$("#grid1").datagrid("getSelected");
         if(null!=hcjh){
             loadMyTask(hcjh.jhbh);
