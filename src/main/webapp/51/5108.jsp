@@ -102,7 +102,7 @@
 	                <td class="label">核查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="2" style="text-align-right;">
+	                <td colspan="2" style="text-align:right">
 	                    <a href="javascript:void(0);" id="btnLoadGrid1" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"
@@ -191,10 +191,11 @@
 				   data-options="">取消审核</a>
 			</shiro:hasPermission>
             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
+            <span>核查结果</span><input class="easyui-combobox" id="s_hcjieguo" codeName="query_gsjg" />
             <input type="radio" name="filterByAuditResult" value="1" style="margin:1px 3px 3px 5px" checked/>全部
             <input type="radio" name="filterByAuditResult" value="2" style="margin:1px 3px 3px 5px"/>已审核
             <input type="radio" name="filterByAuditResult" value="3" style="margin:1px 3px 3px 5px"/>未审核
-			<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon-print" >打印公示信息核查结果报告</a>
+			<a href="javascript:void(0);" id="btnPrintAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon-print" >打印核查结果报告</a>
 			<a href="javascript:void(0);" id="btnExportAuditReport" class="easyui-linkbutton" plain="true" iconCls="icon2 r8_c13" >导出核查结果报告EXCEL</a>
         </div>
     </div>

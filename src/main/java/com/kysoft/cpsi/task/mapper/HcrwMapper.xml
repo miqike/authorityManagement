@@ -737,6 +737,9 @@
       <if test="rwzt!=null">
         and rwzt = #{rwzt}
       </if>
+      <if test="hcjieguo!=null and hcjieguo!='' ">
+        and hcjieguo = #{hcjieguo}
+      </if>
 
         ORDER BY
         <if test="order == 1">

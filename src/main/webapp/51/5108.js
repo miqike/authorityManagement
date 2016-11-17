@@ -16,7 +16,7 @@ function quickSearch (value, name) {
     if (selected.length == 1 && hcjh != null) {
 
         var options = $("#grid2").datagrid("options");
-        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&' + name + "=" + value,
+        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg&' + name + "=" + value;
         $('#grid2').datagrid('load', {
             hcjhId: hcjh.id,
             organization: processorOrgId(selected[0].id),
@@ -217,6 +217,25 @@ function exportAuditReport() {
         $.messager.show("操作提醒", '请先选择企业', "info", "bottomRight");
     }
 }
+
+//查询数据
+function queryData(){
+    var treeObj = $.fn.zTree.getZTreeObj("orgTree");
+    var selected = treeObj.getSelectedNodes();
+    var hcjh = $('#grid1').datagrid('getSelected');
+    if (selected.length == 1 && hcjh != null) {
+        var options = $("#grid2").datagrid("options");
+        options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
+        $('#grid2').datagrid('load', {
+            hcjhId: hcjh.id,
+            organization: processorOrgId(selected[0].id),
+            filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
+            order: 1,
+            rwzt:5,
+            hcjieguo:$("#s_hcjieguo").combobox("getValue")
+        });
+    }
+}
 //初始化
 $(function () {
 	$.husky.getUserInfo();
@@ -227,20 +246,11 @@ $(function () {
     } else {
         $.subscribe("USERINFO_INITIALIZED", firstLoadMyPlan);
     }
-    $("input[name='filterByAuditResult']").change(function(){
-    	var treeObj = $.fn.zTree.getZTreeObj("orgTree");
-        var selected = treeObj.getSelectedNodes();
-        var hcjh = $('#grid1').datagrid('getSelected');
-        if (selected.length == 1 && hcjh != null) {
-            var options = $("#grid2").datagrid("options");
-            options.url = '../common/query?mapper=hcrwMapper&queryName=queryForOrg';
-            $('#grid2').datagrid('load', {
-                hcjhId: hcjh.id,
-                organization: processorOrgId(selected[0].id),
-                filterByAuditResult:$("input[name='filterByAuditResult']:checked").val(),
-                order: 1,
-                rwzt:5
-            });
+    $("input[name='filterByAuditResult']").change(queryData);
+
+    $("#s_hcjieguo").combobox({
+        onSelect:function(record){
+            queryData();
         }
     });
 });
