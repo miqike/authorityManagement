@@ -251,8 +251,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     stockRightChange.setHcrwId(hcrw.getId());
                     stockRightChange.setXydm(hcrw.getHcdwXydm());
                     stockRightChange.setGd(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)));
-                    stockRightChange.setBgqGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3))));
-                    stockRightChange.setBghGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(4))));
+                    stockRightChange.setBgqGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3)))*100);
+                    stockRightChange.setBghGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(4)))*100);
                     stockRightChange.setBgrq(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(5)));
                     stockRightChangeMapper.insert2(stockRightChange);
                 }
