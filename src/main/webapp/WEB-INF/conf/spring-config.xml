@@ -136,7 +136,7 @@
         <import resource="spring-config-shiro.xml"/>
     </beans>
     <beans profile="cas">
-        <import resource="spring-config-shiro-cas.xml"/>
+        <import resource="spring-config-shiro-sso.xml"/>
     </beans>
 
 </beans>
