@@ -11,12 +11,12 @@
         Map<String,Object> params = new HashedMap();
         params.put("vid",id);
         params.put("ticket",ticket);
-        String validateResult= HttpClientUtils.httpGet("http://192.168.5.180:9080/casserver/ssoAuth/validUserInfo", params, null);
-        JSONObject jsonObject=JSONObject.parseObject(validateResult);
+//        String validateResult= HttpClientUtils.httpGet("http://192.168.5.180:9080/casserver/ssoAuth/validUserInfo", params, null);
+//        JSONObject jsonObject=JSONObject.parseObject(validateResult);
 
-        String userInfo=(String)((JSONObject)jsonObject.get("data")).get("userInfo");
-        String userId=userInfo.substring(1,userInfo.length()).replace("$",",").split(",")[0];//可能只适用于重庆
-        System.out.println(userId);
+//        String userInfo=(String)((JSONObject)jsonObject.get("data")).get("userInfo");
+//        String userId=userInfo.substring(1,userInfo.length()).replace("$",",").split(",")[0];//可能只适用于重庆
+        String userId="";
     %>
     <script>
         eval("var userId = '" + '<%= userId %>'+"'");

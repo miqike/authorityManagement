@@ -32,8 +32,8 @@
     </context-param>
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>cas</param-value>
-        <!--<param-value>local</param-value>-->
+        <!--<param-value>cas</param-value>-->
+        <param-value>local</param-value>
     </context-param>
 
     <listener>
