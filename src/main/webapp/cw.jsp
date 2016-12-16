@@ -20,7 +20,8 @@
     %>
     <script>
         eval("var userId = '" + '<%= userId %>'+"'");
-        var param = "lieKysoft://" +userId +",";
+//        var param = "lieKysoft://" +userId +",";
+        var param = "lieKysoft://" +userId ;
         location.replace(param);
     </script>
 </head>
