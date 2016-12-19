@@ -62,6 +62,7 @@
                 /captcha* = anon
                 /caserror.jsp = anon
                 /cw.jsp = anon
+                /user/getUserInfo = anon
 
                 /cas =cas
                 /index.jsp = sysUser
