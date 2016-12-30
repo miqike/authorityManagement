@@ -146,7 +146,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     private void nianbao(Hcrw hcrw, Sheet sheetZCFZB, Sheet sheetZCB, Sheet sheetLRB){
 
         try {
-            DecimalFormat decimalFormat = new DecimalFormat(".00");
+            DecimalFormat decimalFormat = new DecimalFormat("#.00");
             //年报数据
             AnnualReport annualReport = new AnnualReport();
             annualReport.setNd(hcrw.getNd());

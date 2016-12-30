@@ -369,7 +369,7 @@ create or replace package body pkg_import is
                           dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy,zcze,YZBM,yyzsr,dj_dzzjz,dj_frdbsfdzzsj,sjly)
         select v_nd ND,v_zch XYDM,v_qymc QYMC, a.dom TXDZ, a.email MAIL,
                case when(select count(1) from hz_dwtz c where c.pripid=v_nbxh)>0 then '是' else '否' end SFTZGMGQ,
-               decode(trim(a.opstate),'K','开业','清算') JYZT, null SFYWZWD,
+               '开业' JYZT, null SFYWZWD,
                null SFYDWDBXX,
                a.empnum CYRS, null SYZQYHJ, null LRZE, null ZYYWSR, null JLR, null NSZE, null FZZE,p_hcrwid HCRW_ID,a.tel lxdh,
                0 gxbys_jy, 0  gxbys_gg, 0 tysbs_jy, 0 tysbs_gg, 0 cjrs_jy, 0 cjrs_gg, 0 zjys_jy, 0 zjys_gg,
@@ -431,7 +431,8 @@ create or replace package body pkg_import is
                (select content from BM_CZXS e where e.code=a.conform) RJCZFS,a.acconam SJCZE,a.condate SJCZSJ,
                (select content from BM_CZXS e where e.code=a.conform) SJCZFS, p_HCRWID HCRW_ID,v_sjly sjly
         from hz_qytzf a
-        where a.pripid=v_nbxh;
+        where a.pripid=v_nbxh
+              and substr(a.condate,1,4)<=v_nd;
       --股权变更
       v_step:=5;
       insert into t_nb_GQBG (id,ND, XYDM, GD, BGQ_GQBL, BGH_GQBL, BGRQ, HCRW_ID)
@@ -446,12 +447,12 @@ create or replace package body pkg_import is
       v_step:=6;
       insert into t_nb_wd (id,TYPE, NAME, WZ, ND, XYDM, HCRW_ID)
         select sys_guid() id,(select content from BM_WZLX c where c.code=a.WEBTYPE) TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM, p_HCRWID HCRW_ID
-        from nnb_wzxx a
-        where a.nbxh=v_nbxh and a.nd=v_nd;
+      from nnb_wzxx a
+      where a.nbxh=v_nbxh and a.nd=v_nd;
       insert into t_nb_bd_wd (id,TYPE, NAME, WZ, ND, XYDM, HCRW_ID,sjly)
         select sys_guid() id,a.WEBTYPE TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM, p_HCRWID HCRW_ID,v_sjly sjly
-        from nnb_wzxx a
-        where a.nbxh=v_nbxh and a.nd=v_nd;
+      from nnb_wzxx a
+      where a.nbxh=v_nbxh and a.nd=v_nd;
       --导入即时数据
       v_step:=7;
       pkg_import.prc_import_js_hc(p_hcrwid,pkg_hc.CONS_HCLX_JH);
@@ -834,7 +835,7 @@ create or replace package body pkg_import is
         end;
       end loop;
       --陕西特有
-      update t_hcrw set zfry_code1='100918',zfry_name1='庞国锋',rlr='100918',rlrmc='庞国锋',rlrq=sysdate
+      update t_hcrw set zfry_code1='100918',zfry_code2='100905',zfry_name1='庞国锋',zfry_name2='周迅',rlr='100918',rlrmc='庞国锋',rlrq=sysdate
       where hcjg='610000' and jhbh like '610000%';
       update t_hcrw set djjg=hcjg,djjgmc=hcjgmc where hcjg<>djjg and jhbh like '610%';
       commit;

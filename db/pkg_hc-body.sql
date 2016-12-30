@@ -66,6 +66,32 @@ create or replace package body pkg_hc is
       end case;
       return(FunctionResult);
     end fun_cal_hcsxjg;
+  --计算核查结果 通信地址
+  function fun_cal_hcsxjg_address(p_DBXXLY integer,p_nb varchar2,p_dj varchar2,p_sj varchar2 ) return integer is
+    FunctionResult integer;
+    begin
+      case p_DBXXLY
+        when CONS_HCSXJG_DBXXLY_NBDJ then
+        if instr(p_dj,p_nb)>0 then
+          FunctionResult:=CONS_HCSXJG_TG;
+        else
+          FunctionResult:=CONS_HCSXJG_BTG;
+        end if;
+        when CONS_HCSXJG_DBXXLY_NBSJ then
+        if instr(p_sj,p_nb)>0 then
+          FunctionResult:=CONS_HCSXJG_TG;
+        else
+          FunctionResult:=CONS_HCSXJG_BTG;
+        end if;
+      else
+        if instr(p_dj,p_nb)>0 and instr(p_sj,p_nb)>0 then
+          FunctionResult:=CONS_HCSXJG_TG;
+        else
+          FunctionResult:=CONS_HCSXJG_BTG;
+        end if;
+      end case;
+      return(FunctionResult);
+    end fun_cal_hcsxjg_address;
   --比对网址网店
   function func_cal_hcsxjg_wz(p_HCRWID varchar2,p_DBXXLY integer) return integer is
     FunctionResult integer;
@@ -102,15 +128,15 @@ create or replace package body pkg_hc is
         select count(1) into v_cnt_bd
         from(
           select TYPE,NAME,WZ from t_nb_bd_wd where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_DJ
-          minus
-          select TYPE,NAME,WZ from t_nb_wd where HCRW_ID=p_HCRWID
+                                                                     minus
+                                                                     select TYPE,NAME,WZ from t_nb_wd where HCRW_ID=p_HCRWID
         );
         when CONS_HCSXJG_DBXXLY_NBSJ then
         select count(1) into v_cnt_bd
         from(
           select TYPE,NAME,WZ from t_nb_bd_wd where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_SJ
-          minus
-          select TYPE,NAME,WZ from t_nb_wd where HCRW_ID=p_HCRWID
+                                                                     minus
+                                                                     select TYPE,NAME,WZ from t_nb_wd where HCRW_ID=p_HCRWID
         );
       else
         select count(1) into v_cnt_bd
@@ -371,7 +397,7 @@ create or replace package body pkg_hc is
       end if;
       return FunctionResult;
     end func_cal_hcsxjg_xzxk;
-  --比对股东出资
+  --比对股东出资 修改成只比对实缴数据（将来需要改成将认缴和实缴分开）
   function func_cal_hcsxjg_gdcz(p_HCRWID varchar2,p_DBXXLY integer) return integer is
     FunctionResult integer;
     v_cnt_gs number;--公示表数据个数
@@ -382,23 +408,23 @@ create or replace package body pkg_hc is
         when CONS_HCSXJG_DBXXLY_NBDJ then
         select count(1) into v_cnt_gs
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_DJ
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_DJ
         );
         when CONS_HCSXJG_DBXXLY_NBSJ then
         select count(1) into v_cnt_gs
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_SJ
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_SJ
         );
       else
         select count(1) into v_cnt_gs
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID
         );
       end case;
       --再找出比对表中数据是否在公示表中都存在
@@ -406,23 +432,23 @@ create or replace package body pkg_hc is
         when CONS_HCSXJG_DBXXLY_NBDJ then
         select count(1) into v_cnt_bd
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_DJ
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_DJ
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
         );
         when CONS_HCSXJG_DBXXLY_NBSJ then
         select count(1) into v_cnt_bd
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_SJ
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID and sjly=CONS_BD_SJLY_SJ
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
         );
       else
         select count(1) into v_cnt_bd
         from(
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where HCRW_ID=p_HCRWID
           minus
-          select GD,RJCZE,RJCZDQSJ,RJCZFS,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
+          select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where HCRW_ID=p_HCRWID
         );
       end case;
       if(v_cnt_gs=0 and v_cnt_bd=0) then--正确匹配
@@ -825,7 +851,7 @@ create or replace package body pkg_hc is
             when '10a5cbafa03044239b8bedafb301d0a8' then--企业通信地址
             v_step:=9;
             update t_hcsxjg set qygsnr=v_nb_gs.txdz,BZNR=v_nb_bd_dj.txdz,sjNR=v_nb_bd_sj.txdz,
-              hcjg=fun_cal_hcsxjg(o.dbxxly,v_nb_gs.txdz,v_nb_bd_dj.txdz,v_nb_bd_sj.txdz),
+              hcjg=fun_cal_hcsxjg_address(o.dbxxly,v_nb_gs.txdz,v_nb_bd_dj.txdz,v_nb_bd_sj.txdz),
               dbxxly=o.dbxxly,
               page=(select page from t_hcsx where id=o.hcsx_id),
               sm= case when fun_cal_hcsxjg(o.dbxxly,v_nb_gs.txdz,v_nb_bd_dj.txdz,v_nb_bd_sj.txdz)=CONS_HCSXJG_BTG then v_hcsx_sm else null end
@@ -2215,7 +2241,7 @@ create or replace package body pkg_hc is
     end prc_insertAvailableAuditItem;
 
 begin
-  -- Initialization
+-- Initialization
   execute immediate 'alter session set nls_date_format=''yyyy-mm-dd hh24:mi:ss''';
   null;
 end pkg_hc;
