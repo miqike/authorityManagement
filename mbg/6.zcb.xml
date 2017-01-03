@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="E:/3rdparty/m2/repo/com/oracle/ojdbc6/11.2.0.3.0/ojdbc6-11.2.0.3.0.jar" />
+
+	<context id="context" defaultModelType="conditional">
+				
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.5.186:1521/orcl"
+			userId="cpsi" password="cpsi" />
+		<javaModelGenerator targetPackage="com.kysoft.cpsi.zcb.entity"
+			targetProject="cpsi" />
+		<sqlMapGenerator targetPackage="com.kysoft.cpsi.zcb.mapper"
+			targetProject="cpsi" />
+		<javaClientGenerator targetPackage="com.kysoft.cpsi.zcb.mapper"
+			targetProject="cpsi" type="XMLMAPPER" />
+
+		<table tableName="SCT_DWDB" domainObjectName="SctDwdb"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="ND"  javaType="java.lang.Integer"	/>
+			<columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="XH"  javaType="java.lang.Integer"	/>
+			<columnOverride column="ZZQSE"  javaType="java.lang.Float"	/>
+			<columnOverride column="LXZWQX"  javaType="java.util.Date"	/>
+		</table>
+
+        <table tableName="SCT_DWTZ" domainObjectName="SctDwtz"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+        </table>
+
+        <table tableName="SCT_GDCZ" domainObjectName="SctGdcz"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SJCZE"  javaType="java.lang.Float"	/>
+            <columnOverride column="SJCZSJ"  javaType="java.util.Date"	/>
+            <columnOverride column="JZRQ"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="SCT_GQBG" domainObjectName="SctGqbg"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+            <columnOverride column="BGQBL"  javaType="java.lang.Float"	/>
+            <columnOverride column="BGHBL"  javaType="java.lang.Float"	/>
+            <columnOverride column="JZRQ"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="SCT_GSXXZCB" domainObjectName="SctGsxxzcb"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="CYRS"  javaType="java.lang.Integer"	/>
+            <columnOverride column="QNGZZE"  javaType="java.lang.Float"	/>
+            <columnOverride column="QNNSZE"  javaType="java.lang.Float"	/>
+            <columnOverride column="SFY_GDCZ"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_GQBG"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_DWTZ"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_DWDB"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_XZXK"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_ZSCQ"  javaType="java.lang.Integer"	/>
+            <columnOverride column="SFY_XZCF"  javaType="java.lang.Integer"	/>
+        </table>
+
+        <table tableName="SCT_LRB" domainObjectName="SctLrb"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="ITEM1_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM1_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM39_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM39_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM40_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM40_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM41_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM41_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM42_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM42_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM43_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM43_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM44_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM44_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM45_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM45_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM46_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM46_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM47_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM47_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM48_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM48_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM49_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM49_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM50_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM50_SQFSE"  javaType="java.lang.Float"	/>
+        </table>
+
+        <table tableName="SCT_XJLLB" domainObjectName="SctXjllb"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="ITEM1_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM1_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_SQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_BQFSE"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_SQFSE"  javaType="java.lang.Float"	/>
+        </table>
+
+        <table tableName="SCT_XZCF" domainObjectName="SctXzcf"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+            <columnOverride column="CFRQ"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="SCT_XZXK" domainObjectName="SctXzxk"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+            <columnOverride column="YXQ_FROM"  javaType="java.util.Date"	/>
+            <columnOverride column="YXQ_TO"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="SCT_ZCFZB" domainObjectName="SctZcfzb"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="ITEM1_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM1_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM2_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM3_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM4_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM5_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM6_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM7_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM8_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM9_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM10_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM11_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM12_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM13_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM14_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM15_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM16_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM17_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM18_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM19_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM20_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM21_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM22_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM23_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM24_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM25_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM26_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM27_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM28_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM29_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM30_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM31_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM32_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM33_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM34_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM35_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM36_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM37_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM38_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM39_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM39_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM40_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM40_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM41_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM41_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM42_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM42_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM43_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM43_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM44_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM44_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM45_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM45_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM46_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM46_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM47_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM47_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM48_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM48_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM49_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM49_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM50_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM50_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM51_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM51_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM52_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM52_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM53_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM53_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM54_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM54_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM55_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM55_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM56_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM56_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM57_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM57_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM58_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM58_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM59_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM59_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM60_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM60_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM61_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM61_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM62_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM62_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM63_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM63_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM64_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM64_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM65_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM65_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM66_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM66_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM67_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM67_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM68_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM68_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM69_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM69_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM70_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM70_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM71_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM71_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM72_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM72_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM73_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM73_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM74_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM74_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM75_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM75_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM76_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM76_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM77_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM77_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM78_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM78_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM79_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM79_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM80_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM80_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM81_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM81_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM82_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM82_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM83_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM83_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM84_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM84_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM85_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM85_QMS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM86_QCS"  javaType="java.lang.Float"	/>
+            <columnOverride column="ITEM86_QMS"  javaType="java.lang.Float"	/>
+        </table>
+
+        <table tableName="SCT_ZSCQ" domainObjectName="SctZscq"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="ND"  javaType="java.lang.Integer"	/>
+            <columnOverride column="TBRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="XH"  javaType="java.lang.Integer"	/>
+        </table>
+
+	</context>
+</generatorConfiguration>
