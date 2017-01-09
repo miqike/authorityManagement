@@ -125,14 +125,14 @@ public class AuditServiceImpl implements AuditService {
         String hcsxMc = hcsx.getName();
         switch (hcsxMc) {
             case "党建信息":
-                result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
-                result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
-                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
+                result.put("a", annualReportMapper.selectByHcrwId(hcrwId));
+                result.put("b", annualReportMapper.selectByHcrwId2(hcrwId));
+                result.put("c", annualReportMapper.selectByHcrwId3(hcrwId));
                 break;
             case "从业人员信息":
-                result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
-                result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
-                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
+                result.put("a", annualReportMapper.selectByHcrwId(hcrwId));
+                result.put("b", annualReportMapper.selectByHcrwId2(hcrwId));
+                result.put("c", annualReportMapper.selectByHcrwId3(hcrwId));
                 break;
             case "企业网站及从事经营的网店的名称和网址":
                 result.put("a", homepageMapper.selectByTaskId(hcrwId));
@@ -158,9 +158,9 @@ public class AuditServiceImpl implements AuditService {
 
                 break;
             case "资产总额、负债总额等资产财务数据":
-                result.put("a", annualReportMapper.selectByPrimaryKey(hcrwId));
-                result.put("b", annualReportMapper.selectByPrimaryKey2(hcrwId));
-                result.put("c", annualReportMapper.selectByPrimaryKey3(hcrwId));
+                result.put("a", annualReportMapper.selectByHcrwId(hcrwId));
+                result.put("b", annualReportMapper.selectByHcrwId2(hcrwId));
+                result.put("c", annualReportMapper.selectByHcrwId3(hcrwId));
                 break;
             case "有限公司股东股权转让等变更信息"://即时
                 break;
@@ -205,7 +205,6 @@ public class AuditServiceImpl implements AuditService {
 		if(hcrwId == null) {
 			throw new BaseException("核查任务不存在,请检查年度、企业统一社会信用代码和核查系统计划编号是否正确录入");
 		} else {
-			ar.setHcrwId(hcrwId);
 			annualReportMapper.deleteByTaskId2(hcrwId);
 			annualReportMapper.insert2(ar);
 			//股东出资
@@ -286,7 +285,6 @@ public class AuditServiceImpl implements AuditService {
 		shc.setSjcze(shcObj.getFloat("sjcze"));		//实缴出资额
 		shc.setSjczsj(shcObj.getString("sjczsj"));	//出资时间
 		shc.setSjczfs(shcObj.getString("sjczfs"));	//出资方式
-		shc.setHcrwId(hcrwId);	//核查任务代码
 		return shc;
 	}
 	
@@ -315,7 +313,6 @@ public class AuditServiceImpl implements AuditService {
 		investment.setId(UUID.randomUUID().toString().replace("-", ""));
 		investment.setNd(nd);
 		investment.setXydm(xydm);
-		investment.setHcrwId(hcrwId); 	//核查任务代码
 		investment.setTzqymc(investmentObj.getString("slqymc"));	//投资设立企业或者购买股权企业名称
 		investment.setTzqyZch(investmentObj.getString("zch"));		//被投资企业注册号
 		return investment;
@@ -346,8 +343,7 @@ public class AuditServiceImpl implements AuditService {
 		guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
 		guarantee.setNd(nd);
 		guarantee.setXydm(xydm);
-		guarantee.setHcrwId(hcrwId); 	//核查任务代码
-		
+
 		guarantee.setZqr(guaranteeObj.getString("zqr")); 	//债权人
 		guarantee.setZwr(guaranteeObj.getString("zwr")); 	//债务人
 		guarantee.setZzqzl(guaranteeObj.getString("zzqzl")); 	//主债权种类
@@ -385,7 +381,6 @@ public class AuditServiceImpl implements AuditService {
 		stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
 		stockRightChange.setNd(nd);
 		stockRightChange.setXydm(xydm);
-		stockRightChange.setHcrwId(hcrwId); 	//核查任务代码
 		stockRightChange.setGd(stockRightChangeObj.getString("gd"));	//股东
 		stockRightChange.setBgqGqbl(stockRightChangeObj.getFloat("bgqbl"));	//变更前股权比例
 		stockRightChange.setBghGqbl(stockRightChangeObj.getFloat("bghbl"));	//变更后股权比例
@@ -420,8 +415,7 @@ public class AuditServiceImpl implements AuditService {
 		homepage.setId(UUID.randomUUID().toString().replace("-", ""));
 		homepage.setNd(nd);
 		homepage.setXydm(xydm);
-		homepage.setHcrwId(hcrwId); 	//核查任务代码
-		
+
 		homepage.setType(investmentObj.getString("type"));	//类型
 		homepage.setName(investmentObj.getString("name"));	//名称
 		homepage.setWz(investmentObj.getString("wz"));		//网址
@@ -451,7 +445,6 @@ public class AuditServiceImpl implements AuditService {
 		license.setId(UUID.randomUUID().toString().replace("-", ""));
 		license.setNd(nd);
 		license.setXydm(xydm);
-		license.setHcrwId(hcrwId); 	//核查任务代码
 		license.setXkwjmc(licenseObj.getString("xkwjmc"));	//许可文件名称
 		license.setYxq(licenseObj.getString("yxq_ks") + " 至 " + licenseObj.getString("yxq_zz") );		//有效期至
 		//license.setDjzt(licenseObj.getString("yxq"));		//有效期至

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="E:/3rdparty/m2/repo/com/oracle/ojdbc6/11.2.0.3.0/ojdbc6-11.2.0.3.0.jar" />
+
+	<context id="context" defaultModelType="conditional">
+				
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.5.186:1521/orcl"
+			userId="cpsi" password="cpsi" />
+		<javaModelGenerator targetPackage="com.kysoft.cpsi.audit.entity"
+			targetProject="cpsi" />
+		<sqlMapGenerator targetPackage="com.kysoft.cpsi.audit.mapper"
+			targetProject="cpsi" />
+		<javaClientGenerator targetPackage="com.kysoft.cpsi.audit.mapper"
+			targetProject="cpsi" type="XMLMAPPER" />
+
+		<table tableName="T_JS_GDCZ" domainObjectName="JsStockholderContribution"
+  				enableSelectByPrimaryKey="true"
+  				enableSelectByExample="false"
+				enableUpdateByPrimaryKey="true"
+				enableDeleteByPrimaryKey="true"
+				enableDeleteByExample="false"
+				enableCountByExample="false"
+				enableUpdateByExample="false"
+				selectByPrimaryKeyQueryId="false"
+				selectByExampleQueryId="false">
+			<columnOverride column="BGRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="GSSJ"  javaType="java.util.Date"	/>
+			<columnOverride column="RJCZRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="SJCZRQ"  javaType="java.util.Date"	/>
+			<columnOverride column="RJCZE"  javaType="java.math.BigDecimal"	/>
+			<columnOverride column="SJCZE"  javaType="java.math.BigDecimal"	/>
+			<columnOverride column="RJE"  javaType="java.math.BigDecimal"	/>
+			<columnOverride column="SJE"  javaType="java.math.BigDecimal"	/>
+		</table>
+
+        <table tableName="T_JS_GQBG" domainObjectName="JsGqbg"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="BGRQ"  javaType="java.util.Date"	/>
+            <columnOverride column="GSSJ"  javaType="java.util.Date"	/>
+            <columnOverride column="BGQBL"  javaType="java.lang.BigDecimal"	/>
+            <columnOverride column="BGHBL"  javaType="java.lang.BigDecimal"	/>
+        </table>
+
+        <table tableName="T_JS_XZCF" domainObjectName="JsXzcf"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="GSSJ"  javaType="java.util.Date"	/>
+            <columnOverride column="CFRQ"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="T_JS_XZXK" domainObjectName="JsLicense"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="GSSJ"  javaType="java.util.Date"	/>
+            <columnOverride column="YXQ_KS"  javaType="java.util.Date"	/>
+            <columnOverride column="YXQ_JS"  javaType="java.util.Date"	/>
+            <columnOverride column="HDRQ"  javaType="java.util.Date"	/>
+        </table>
+
+        <table tableName="T_JS_ZSCQ" domainObjectName="JsZscq"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               selectByPrimaryKeyQueryId="false"
+               selectByExampleQueryId="false">
+            <columnOverride column="GSSJ"  javaType="java.util.Date"	/>
+            <columnOverride column="ZQDJRQ"  javaType="java.util.Date"	/>
+        </table>
+
+    </context>
+</generatorConfiguration>
