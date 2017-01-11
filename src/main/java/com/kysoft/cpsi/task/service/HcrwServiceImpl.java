@@ -328,6 +328,7 @@ public class HcrwServiceImpl implements HcrwService {
         jsonObject.put("source","所有者权益合计（万元）");
         jsonObject.put("dest","所有者权益合计（万元）");
         dataRelation.add(jsonObject);
+        jsonObject=new JSONObject();
         jsonObject.put("xh",7);
         jsonObject.put("source","营业总收入（万元）");
         jsonObject.put("dest","营业总收入（万元）");
