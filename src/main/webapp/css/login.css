@@ -101,8 +101,8 @@ input {
 #loginPanel {
 	background: rgba(255, 255, 255, 0.2) !important;
 	background: #fff;
-	filter: Alpha(opacity = 20);
 	filter: Alpha(opacity = 80) !important;
+	filter: Alpha(opacity = 20);
 }
 
 td.label {
