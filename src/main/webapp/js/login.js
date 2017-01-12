@@ -75,9 +75,9 @@ function retrievePass(){
 }
 
 function checkIE() {
-    if(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1) {
+    /*if(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1) {
     	location.href ='./chromeframe/default.html'
-    }
+    }*/
 }
 
 $(function(){
