@@ -38,10 +38,6 @@
     <script type="text/javascript" src="../audit_61/gridAudit.js"></script>
  <!-- 打印控件引入定义开始 -->
     <script type="text/javascript" src="../js/LodopFuncs.js"></script>
-    <object id="LODOP_OB"
-            classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
-        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
-    </object>
     <!-- 打印控件引入定义结束 -->
     <style>
         body {
@@ -92,7 +88,7 @@
 	    window.planType = 1;
     </script>
 </head>
-<body style="padding:5px;margin-top:-20px;">
+<body style="padding:5px;margin-top:-5px;">
 <div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
 	<div id="northPanel" data-options="region: 'north', height:174, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11',
 		tools: [
