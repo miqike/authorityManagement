@@ -41,11 +41,11 @@
     }
 
     .validatebox-invalid {
-        border-color: ffa8a8;
+        border-color: #ffa8a8;
         background-repeat: repeat-x;
         background-position: center bottom;
-        background-color: fff3f3;
-        background-image: url("");
+        background-color: #fff3f3;
+        background-image: none;
     }
        
         body {

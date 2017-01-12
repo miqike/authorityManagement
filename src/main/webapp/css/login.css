@@ -71,18 +71,18 @@ input {
 }
 
 .validatebox-invalid {
-    border-color: ffa8a8;
+    border-color: #ffa8a8;
     background-repeat: repeat-x;
     background-position: center bottom;
-    background-color: fff3f3;
-    background-image: url("");
+    background-color: #fff3f3;
+    background-image: none;
 }
 
 .box{
 	width:1024px;
    	height:659px;	
 	overflow: auto;  
-			margin: auto;  
+	margin: auto;
 	position: absolute;  
 	top: 0; left: 0; bottom: 0; right: 0;  
 
@@ -100,8 +100,9 @@ input {
 
 #loginPanel {
 	background: rgba(255, 255, 255, 0.2) !important;
-	filter: Alpha(opacity = 20);
 	background: #fff;
+	filter: Alpha(opacity = 20);
+	filter: Alpha(opacity = 80) !important;
 }
 
 td.label {
