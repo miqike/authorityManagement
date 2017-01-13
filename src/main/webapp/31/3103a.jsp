@@ -162,7 +162,7 @@
 	                <td class="label">任务下达机关</td>
 	                <td><input id="f_hcjgmc" class="easyui-validatebox" style=""/></td>
 					
-	                <td style="text-align-right;">
+	                <td style="text-align: right">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"

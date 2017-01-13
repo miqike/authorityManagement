@@ -79,7 +79,7 @@
 	                <td class="label">核查分类</td>
 	                <td><input id="f_fl" class="easyui-combobox" codeName="hcfl"
 	                           data-options="panelHeight:60,width:143,onChange:loadGrid1" style=""/></td>
-	                <td colspan="2" style="text-align-right;">
+	                <td colspan="2" style="text-align: right">
 	                    <a href="javascript:void(0);" id="btnLoadGrid1" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"

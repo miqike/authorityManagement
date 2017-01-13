@@ -117,13 +117,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报网址网店
-    private void nianbaoWangzhiwangdian(Hcrw hcrw, Sheet sheetZCB){
+    private void nianbaoWangzhiwangdian(Hcrw hcrw, Sheet sheetZCB,Integer nd){
 
         try {
             //年报数据
             if(null!=POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)).trim() && !POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)).trim().equals("")){
                 Homepage homepage = new Homepage();
-                homepage.setNd(hcrw.getNd());
+                homepage.setNd(nd);
                 homepage.setXydm(hcrw.getHcdwXydm());
                 homepage.setId(UUID.randomUUID().toString().replace("-", ""));
 
@@ -131,7 +131,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 homepage.setType("非网络交易平台网站");
                 homepage.setWz(POIUtils.getCellFormatValue(sheetZCB.getRow(7).getCell(3)));
                 //删除老数据
-                homepageMapper.deleteByTaskId(hcrw.getId());
+                homepageMapper.deleteByTaskIdNd(hcrw.getId(),nd);
                 //插入新数据
                 homepageMapper.insert2(homepage);
             }
@@ -142,13 +142,13 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报基本信息
-    private void nianbao(Hcrw hcrw, Sheet sheetZCFZB, Sheet sheetZCB, Sheet sheetLRB){
+    private void nianbao(Hcrw hcrw, Sheet sheetZCFZB, Sheet sheetZCB, Sheet sheetLRB,Integer nd){
 
         try {
             DecimalFormat decimalFormat = new DecimalFormat("#.00");
             //年报数据
             AnnualReport annualReport = new AnnualReport();
-            annualReport.setNd(hcrw.getNd());
+            annualReport.setNd(nd);
             annualReport.setXydm(hcrw.getHcdwXydm());
             annualReport.setQymc(hcrw.getHcdwName());
 
@@ -197,7 +197,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setSftzgmgq(POIUtils.getStringCellValue(sheetZCB.getRow(13).getCell(4)));
             annualReport.setSfydwdbxx(POIUtils.getStringCellValue(sheetZCB.getRow(14).getCell(4)));
             //删除老数据
-            annualReportMapper.deleteByTaskId2(hcrw.getId());
+            annualReportMapper.deleteByTaskIdNd2(hcrw.getId(),nd);
             //插入新数据
             annualReportMapper.insert2(annualReport);
         }catch(Exception e){
@@ -207,16 +207,16 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报-股东出资
-    private void gudongchuzi(Hcrw hcrw,Sheet sheetGDCZ){
+    private void gudongchuzi(Hcrw hcrw,Sheet sheetGDCZ,Integer nd){
         try{
-            stockholderContributionMapper.deleteByTaskId2(hcrw.getId());
+            stockholderContributionMapper.deleteByTaskIdNd(hcrw.getId(),nd);
             // 得到总行数
             int rowNum = sheetGDCZ.getLastRowNum();
             for(int i=6;i<rowNum;i++){
                 if(null != POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)).trim().equals("")) {
                     StockholderContribution stockholderContribution = new StockholderContribution();
                     stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
-                    stockholderContribution.setNd(hcrw.getNd());
+                    stockholderContribution.setNd(nd);
                     stockholderContribution.setXydm(hcrw.getHcdwXydm());
                     stockholderContribution.setGd(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)));
                     stockholderContribution.setRjcze(null);
@@ -235,16 +235,16 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报-股权变更
-    private void guquanbiangeng(Hcrw hcrw,Sheet sheetGQBG){
+    private void guquanbiangeng(Hcrw hcrw,Sheet sheetGQBG,Integer nd){
         try {
-            stockRightChangeMapper.deleteByTaskId2(hcrw.getId());
+            stockRightChangeMapper.deleteByTaskIdNd(hcrw.getId(),nd);
             // 得到总行数
             int rowNum = sheetGQBG.getLastRowNum();
             for (int i = 6; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)).trim().equals("")) {
                     StockRightChange stockRightChange = new StockRightChange();
                     stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
-                    stockRightChange.setNd(hcrw.getNd());
+                    stockRightChange.setNd(nd);
                     stockRightChange.setXydm(hcrw.getHcdwXydm());
                     stockRightChange.setGd(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)));
                     stockRightChange.setBgqGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3)))*100);
@@ -260,16 +260,16 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报-对外投资
-    private void duiwaitouzi(Hcrw hcrw,Sheet sheetDWTZ){
+    private void duiwaitouzi(Hcrw hcrw,Sheet sheetDWTZ,Integer nd){
         try {
-            investmentMapper.deleteByTaskId2(hcrw.getId());
+            investmentMapper.deleteByTaskIdNd(hcrw.getId(),nd);
             // 得到总行数
             int rowNum = sheetDWTZ.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).trim() && !POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)).trim().equals("")) {
                     Investment investment = new Investment();
                     investment.setId(UUID.randomUUID().toString().replace("-", ""));
-                    investment.setNd(hcrw.getNd());
+                    investment.setNd(nd);
                     investment.setXydm(hcrw.getHcdwXydm());
                     investment.setTzqymc(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(2)));
                     investment.setTzqyZch(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)));
@@ -283,16 +283,16 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报-对外担保
-    private void duiwandanbao(Hcrw hcrw,Sheet sheetDWDB){
+    private void duiwandanbao(Hcrw hcrw,Sheet sheetDWDB,Integer nd){
         try {
-            guaranteeMapper.deleteByTaskId2(hcrw.getId());
+            guaranteeMapper.deleteByTaskIdNd(hcrw.getId(),nd);
             // 得到总行数
             int rowNum = sheetDWDB.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)).trim().equals("")) {
                     Guarantee guarantee = new Guarantee();
                     guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
-                    guarantee.setNd(hcrw.getNd());
+                    guarantee.setNd(nd);
                     guarantee.setXydm(hcrw.getHcdwXydm());
                     guarantee.setZqr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)));
                     guarantee.setZwr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(3)));
@@ -312,16 +312,16 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }
     }
     //年报-行政许可
-    private void xingzhengxuke(Hcrw hcrw,Sheet sheetXZXK){
+    private void xingzhengxuke(Hcrw hcrw,Sheet sheetXZXK,Integer nd){
         try {
-            licenseMapper.deleteByTaskId2(hcrw.getId());
+            licenseMapper.deleteByTaskIdNd(hcrw.getId(),nd);
             // 得到总行数
             int rowNum = sheetXZXK.getLastRowNum();
             for (int i = 5; i < rowNum; i++) {
                 if (null != POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(2)).trim().equals("")) {
                     License license = new License();
                     license.setId(UUID.randomUUID().toString().replace("-", ""));
-                    license.setNd(hcrw.getNd());
+                    license.setNd(nd);
                     license.setXydm(hcrw.getHcdwXydm());
                     license.setXkwjmc(POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(3)));
                     license.setYxq(POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(4)) + "-" + POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(5)));
@@ -646,7 +646,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
 	@Override
     @Transactional
-	public void uploadSelfCheckData(InputStream is, String hcrwId, String fileName) throws Exception {
+	public void uploadSelfCheckData(InputStream is, String hcrwId, String fileName,Integer nd) throws Exception {
         Hcrw hcrw=hcrwMapper.selectByPrimaryKey(hcrwId);
         Workbook workbook=null;
         if (fileName.endsWith("xls")) {
@@ -660,24 +660,24 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         validateExcel(hcrwId, workbook);
         if(importFlag.equals("1")) {
             //网址
-            nianbaoWangzhiwangdian(hcrw,workbook.getSheet("企业公示信息自查表"));
+            nianbaoWangzhiwangdian(hcrw,workbook.getSheet("企业公示信息自查表"),nd);
             //年报数据
-            nianbao(hcrw,workbook.getSheet("资产负债表"),workbook.getSheet("企业公示信息自查表"),workbook.getSheet("利润表"));
+            nianbao(hcrw,workbook.getSheet("资产负债表"),workbook.getSheet("企业公示信息自查表"),workbook.getSheet("利润表"),nd);
 
             //股东出资
-            gudongchuzi(hcrw,workbook.getSheet("股东及出资信息"));
+            gudongchuzi(hcrw,workbook.getSheet("股东及出资信息"),nd);
 
             //股权变更
-            guquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));
+            guquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"),nd);
 
             //对外投资
-            duiwaitouzi(hcrw,workbook.getSheet("企业投资设立企业、购买股权信息"));
+            duiwaitouzi(hcrw,workbook.getSheet("企业投资设立企业、购买股权信息"),nd);
 
             //对外担保
-            duiwandanbao(hcrw,workbook.getSheet("对外担保信息"));
+            duiwandanbao(hcrw,workbook.getSheet("对外担保信息"),nd);
 
             //行政许可
-            xingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"));
+            xingzhengxuke(hcrw,workbook.getSheet("行政许可取得、变更、延续信息"),nd);
 
             jsGudongchuzhi(hcrw,workbook.getSheet("股东及出资信息"));
             jsGuquanbiangeng(hcrw,workbook.getSheet("股东股权转让等股权变更信息"));

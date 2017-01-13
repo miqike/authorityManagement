@@ -52,7 +52,7 @@ public class SelfCheckAjaxUploadController {
     @RequestMapping(value = "selfCheckUpload", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> ajaxUpload(HttpServletRequest request, HttpServletResponse response, String owner, String col, String ownerKey,
-                                         String hcrwId,String hcclName,String hcsxmc) {
+                                         String hcrwId,String hcclName,String hcsxmc,Integer nd) {
 
         Map<String,Object> result=new HashedMap();
 
@@ -82,7 +82,7 @@ public class SelfCheckAjaxUploadController {
                 InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
                 InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
                 //处理文件内容
-                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename);
+                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename,nd);
 
                 //将文件保存到MONGODB中
                 mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
