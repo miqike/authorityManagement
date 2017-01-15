@@ -2,6 +2,8 @@ package com.kysoft.cpsi.zcb.entity;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class SctXzxk extends SctXzxkKey {
     /**
      *
@@ -10,6 +12,7 @@ public class SctXzxk extends SctXzxkKey {
      *
      * @mbg.generated Tue Jan 03 14:17:25 CST 2017
      */
+	 @JSONField(format="yyyy-mm-dd")
     private Date tbrq;
 
     /**
@@ -37,6 +40,7 @@ public class SctXzxk extends SctXzxkKey {
      *
      * @mbg.generated Tue Jan 03 14:17:25 CST 2017
      */
+    @JSONField(format="yyyy-mm-dd")
     private Date yxqFrom;
 
     /**
@@ -46,6 +50,7 @@ public class SctXzxk extends SctXzxkKey {
      *
      * @mbg.generated Tue Jan 03 14:17:25 CST 2017
      */
+    @JSONField(format="yyyy-mm-dd")
     private Date yxqTo;
 
     /**
