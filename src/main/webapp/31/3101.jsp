@@ -6,13 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>计划任务分配</title>
 <link href="../css/content.css" rel="stylesheet" />
-<link href="../css/jquery-easyui-theme/${theme}/easyui.css"
-	rel="stylesheet" />
+<link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet" />
 <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet" />
-<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
+<link rel="stylesheet" href="../css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
 
 <style>
 td.label {
@@ -47,14 +44,6 @@ td.label {
 	background-size: auto;
 	background-origin: padding-box;
 	background-clip: border-box;
-}
-
-.validatebox-invalid {
-	border-color: ffa8a8;
-	background-repeat: repeat-x;
-	background-position: center bottom;
-	background-color: fff3f3;
-	background-image: url("");
 }
 </style>
 </head>
@@ -172,7 +161,7 @@ td.label {
 
 
 	<div id="myPlanListWindow">
-		<div id="panel" class="easyui-layout" data-options="fit:true"
+		<div class="easyui-layout" data-options="fit:true"
 			style="overflow: hidden;">
 			<div data-options="region:'north',split:false,height:95" title="">
 				<div style="padding: 0px 0px 0px 0px">

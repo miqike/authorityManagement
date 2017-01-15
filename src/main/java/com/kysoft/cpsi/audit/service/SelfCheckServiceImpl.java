@@ -125,7 +125,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 Homepage homepage = new Homepage();
                 homepage.setNd(hcrw.getNd());
                 homepage.setXydm(hcrw.getHcdwXydm());
-                homepage.setHcrwId(hcrw.getId());
                 homepage.setId(UUID.randomUUID().toString().replace("-", ""));
 
                 homepage.setName("非网络交易平台网站");
@@ -152,7 +151,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setNd(hcrw.getNd());
             annualReport.setXydm(hcrw.getHcdwXydm());
             annualReport.setQymc(hcrw.getHcdwName());
-            annualReport.setHcrwId(hcrw.getId());
 
             annualReport.setSyzqyhj(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
 
@@ -219,7 +217,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     StockholderContribution stockholderContribution = new StockholderContribution();
                     stockholderContribution.setId(UUID.randomUUID().toString().replace("-", ""));
                     stockholderContribution.setNd(hcrw.getNd());
-                    stockholderContribution.setHcrwId(hcrw.getId());
                     stockholderContribution.setXydm(hcrw.getHcdwXydm());
                     stockholderContribution.setGd(POIUtils.getStringCellValue(sheetGDCZ.getRow(i).getCell(2)));
                     stockholderContribution.setRjcze(null);
@@ -248,7 +245,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     StockRightChange stockRightChange = new StockRightChange();
                     stockRightChange.setId(UUID.randomUUID().toString().replace("-", ""));
                     stockRightChange.setNd(hcrw.getNd());
-                    stockRightChange.setHcrwId(hcrw.getId());
                     stockRightChange.setXydm(hcrw.getHcdwXydm());
                     stockRightChange.setGd(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(2)));
                     stockRightChange.setBgqGqbl(parseFloat(POIUtils.getStringCellValue(sheetGQBG.getRow(i).getCell(3)))*100);
@@ -274,7 +270,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     Investment investment = new Investment();
                     investment.setId(UUID.randomUUID().toString().replace("-", ""));
                     investment.setNd(hcrw.getNd());
-                    investment.setHcrwId(hcrw.getId());
                     investment.setXydm(hcrw.getHcdwXydm());
                     investment.setTzqymc(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(2)));
                     investment.setTzqyZch(POIUtils.getStringCellValue(sheetDWTZ.getRow(i).getCell(3)));
@@ -298,7 +293,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     Guarantee guarantee = new Guarantee();
                     guarantee.setId(UUID.randomUUID().toString().replace("-", ""));
                     guarantee.setNd(hcrw.getNd());
-                    guarantee.setHcrwId(hcrw.getId());
                     guarantee.setXydm(hcrw.getHcdwXydm());
                     guarantee.setZqr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(2)));
                     guarantee.setZwr(POIUtils.getStringCellValue(sheetDWDB.getRow(i).getCell(3)));
@@ -328,7 +322,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     License license = new License();
                     license.setId(UUID.randomUUID().toString().replace("-", ""));
                     license.setNd(hcrw.getNd());
-                    license.setHcrwId(hcrw.getId());
                     license.setXydm(hcrw.getHcdwXydm());
                     license.setXkwjmc(POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(3)));
                     license.setYxq(POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(4)) + "-" + POIUtils.getStringCellValue(sheetXZXK.getRow(i).getCell(5)));
@@ -352,7 +345,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsStockholderContribution jsStockholderContribution = new JsStockholderContribution();
                     jsStockholderContribution.setId("");
-                    jsStockholderContribution.setHcrwId(hcrw.getId());
                     jsStockholderContribution.setXydm(hcrw.getHcdwXydm());
                     jsStockholderContribution.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
                     jsStockholderContribution.setBgrq(getDateValue(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
@@ -363,7 +355,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     jsStockholderContribution.setRjcze(null);
                     jsStockholderContribution.setRjczrq(null);
                     jsStockholderContribution.setSjczfs(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5)));
-                    jsStockholderContribution.setSjcze(parseFloat(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
+                    jsStockholderContribution.setSjcze(new BigDecimal(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3))));
                     jsStockholderContribution.setSjczrq(getDateValue(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4))));
                     jsStockholderContributionMapper.insert2(jsStockholderContribution);
                 }
@@ -384,7 +376,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsGqbg jsGqbg = new JsGqbg();
                     jsGqbg.setId("");
-                    jsGqbg.setHcrwId(hcrw.getId());
                     jsGqbg.setXydm(hcrw.getHcdwXydm());
                     jsGqbg.setGd(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
                     jsGqbg.setBgrq(getDateValue(POIUtils.getStringCellValue(sheet.getRow(i).getCell(5))));
@@ -410,7 +401,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsXzcf jsXzcf = new JsXzcf();
                     jsXzcf.setId("");
-                    jsXzcf.setHcrwId(hcrw.getId());
                     jsXzcf.setXydm(hcrw.getHcdwXydm());
                     jsXzcf.setXzcfjdswh(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
                     jsXzcf.setWflx(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
@@ -438,7 +428,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsLicense jsXjsLicensecf = new JsLicense();
                     jsXjsLicensecf.setId("");
-                    jsXjsLicensecf.setHcrwId(hcrw.getId());
                     jsXjsLicensecf.setXydm(hcrw.getHcdwXydm());
                     jsXjsLicensecf.setXkwjbh(POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)));
                     jsXjsLicensecf.setXkwjmc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
@@ -469,7 +458,6 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                 if (null != POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim() && !POIUtils.getStringCellValue(sheet.getRow(i).getCell(2)).trim().equals("")) {
                     JsZscq jsZscq = new JsZscq();
                     jsZscq.setId("");
-                    jsZscq.setHcrwId(hcrw.getId());
                     jsZscq.setXydm(hcrw.getHcdwXydm());
                     jsZscq.setQymc(POIUtils.getStringCellValue(sheet.getRow(i).getCell(3)));
                     jsZscq.setZl(POIUtils.getStringCellValue(sheet.getRow(i).getCell(4)));
