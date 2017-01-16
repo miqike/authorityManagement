@@ -48,6 +48,19 @@
 			 $("#d_id").val(hcsx.ID);
 			 $("#d_name").val(hcsx.NAME);
 		}
+        if(type==1){
+            var row=$('#docGrid').datagrid("getSelected");
+            $.get("../selfCheckUpload/dxnHccl", {"dxnType": 2}, function (response) {
+                if (response.status == $.husky.SUCCESS && response.data.NAME==row.HCCL_NAME && response.data.HCSXMC==row.HCSXMC){
+                    $("#trNd").show();
+                }else{
+                    $("#trNd").hide();
+                }
+            });
+        }else {
+            $("#trNd").hide();
+        }
+
         $("#d_type").val(type);
         $("#d_hcjhnd").val(hcsx.HCJHND);
         $("#d_hcdwXydm").val(hcsx.HCDW_XYDM);
@@ -128,7 +141,7 @@
         <td class="label">文件类型</td>
         <td><input class="easyui-combobox" id="d_wjlx" data-options="" codeName="wjlx" disabled /></td>
     </tr>
-    <tr>
+    <tr id="trNd">
         <td class="label">数据年度</td>
         <td><input class="easyui-combobox" id="d_nd" data-options="" codeName="year" /></td>
     </tr>

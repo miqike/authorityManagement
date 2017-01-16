@@ -55,7 +55,7 @@
 	    $("#docPanel").panel({
 	        href: '../51/docFormb.jsp',
 	        onLoad: function () {
-	            doInit(type);
+                doInit(type);
 	        }
 	    });
 	}
@@ -183,7 +183,7 @@
 
  <div id="documentWindow" title="检查材料" class="easyui-dialog"
      data-options="modal:true,closed:true,iconCls:'icon2 r16_c14'"
-     style="width: 600px; height: 205px; padding: 10px;">
+     style="width: 600px; height: 255px; padding: 10px;">
     <div id="docPanel" style="padding:10px;"></div>
 </div>
  

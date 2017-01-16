@@ -135,6 +135,27 @@ public class SelfCheckAjaxUploadController {
         return result;
     }
 
+    @RequestMapping(value = "selfCheckUpload/dxnHccl", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getDXNHccl( String dxnType) {
+        try{
+            Map<String,Object> params=new HashedMap();
+            params.put("dxnType",dxnType);
+            Map<String,Object> dxnHccl=selfCheckService.getDXNHccl(params);
+            Map<String,Object> result=new HashedMap();
+            result.put("status",1);
+            result.put("message","获取成功");
+            result.put("data",dxnHccl);
+            return result;
+        }catch (Exception e){
+            Map<String,Object> result=new HashedMap();
+            result.put("status",-1);
+            result.put("message","获取失败");
+            result.put("data","");
+            return result;
+        }
+    }
+
     @RequestMapping(value = "selfCheckUpload/delete", method = RequestMethod.POST)
     @ResponseBody
     public String ajaxUploadDelete(
