@@ -1,64 +1,4 @@
  <%@ page contentType="text/html; charset=UTF-8" %>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
-    <script type="text/javascript" >
-    $(function(){
-    	$("tr").each(function(index){
-    		if(index>1){
-    			var value=$(this).attr("id");
-    		$(this).find('input:first').textbox('setValue',value);
-    	}
-    	});
-    	 $('#btnSave').click(function() {
-    	      
-             var data=new Array();
-    	     
-    	     $("tr").each(function(index) {
-    	   	 var xydm=$("tr:first").find('td').find('input#p_xydm').val();
-    	   	 var nd=$("tr:first").find('td').find('input#p_nd').val();
-    	   	 var tbrq=$("tr:first").find('td').find('input#p_tbrq').val();
-    	   	 if (index>1) {
-    	   		var xh=$(this).find('td').find('input#p_xh').val();
-    	   		var zqr=$(this).find('td').find("input#p_zqr").val();
-    	   		if(zqr!=""){
-    	   			var zwr=$(this).find('td').find("input#p_zwr").val();
-    	   	        var zzqzl=$(this).find('td').find("input#p_zzqzl").val();
-    	   	        var zzqse=$(this).find('td').find("input#p_zzqse").val();
-    	   	        var lxzwqx=$(this).find('td').find("input#p_lxzwqx").val();
-    	   	        var bzqj=$(this).find('td').find("input#p_bzqj").val();
-    	   	        var bzfs=$(this).find('td').find("input#p_bzfs").val();
-    	   	        var bzdbfw=$(this).find('td').find("input#p_bzdbfw").val();
-    	   	        var tr={'xydm':xydm,'nd':nd,'tbrq':tbrq,'xh':xh,'zqr':zqr,'zwr':zwr,'zzqzl':zzqzl,'zzqse':zzqse,'lxzwqx':lxzwqx,'bzqj':bzqj,'bzfs':bzfs,'bzdbfw':bzdbfw};
-    	   	        data.push(tr);
-    	   		}
-    	        
-    			}
-    		});
-
-    	        $.ajax({
-    	           
-    	            type: 'POST',
-    	            url: '../zcb/saveDWDB',
-    	            data: JSON.stringify(data) ,
-    	            dataType:"json",
-    	            contentType: 'application/json;charset=utf-8',
-    	            success: function (response) {
-    	            	if(response.status == SUCCESS){
-    		            	   $.messager.alert('成功', response.message, 'info');
-    		            	   $("input").val("");
-    		            	   
-    		            	   
-    		               }else {
-    		            	   $.messager.alert('失败', response.message, 'info');
-    					}
-    	            }
-    	        });
-    	    });
-    })
-    </script>
 <table id="dwdb111" width="80%" border="1" cellspacing="0" align="center">
 		<caption align="top" style="font-size: 30px;">对外提供保证担保信息</caption>
 		<tr>
@@ -402,6 +342,6 @@
 		</tr>
 	</table>
 	<div style="position: relative; bottom: -9px; left: 0px;">
-		<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
-			plain="true">保存</a>
+		<a href="#" id="btnSavedwdb" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 	</div>
+<script type="text/javascript" src="./dwdb.js"></script>

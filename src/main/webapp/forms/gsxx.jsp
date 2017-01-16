@@ -1,36 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
-    <script type="text/javascript" >
-    $(function(){
-   	 $('#btnSave').click(function() {
-   	      
-   	        var data=$.easyuiExtendObj.drillDownForm('gsxxzcb111');
-
-   	        $.ajax({
-   	           
-   	            type: 'POST',
-   	            url: '../zcb/saveGSXXZCB',
-   	            data: data ,
-   	            dataType:"json",
-   	            success: function (response) {
-   	               if(response.status == SUCCESS){
-   	            	   $.messager.alert('成功', response.message, 'info');
-   	            	   $("input").val("");
-   	            	   
-   	            	   
-   	               }else {
-   	            	   $.messager.alert('失败', response.message, 'info');
-   				}
-   	            }
-   	        });
-   	    });
-   	 
-   })
-    </script>
 <table id="gsxxzcb111" width="80%" border="1" cellspacing="0" align="center">
 	<caption align="top" style="font-size: 30px;">企业公示信息自查表</caption>
 	<tr>
@@ -129,5 +97,6 @@
 	</tr>
 </table>
     <div style="position: relative;bottom: -9px;left: 130px;">
-	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
+	<a href="#" id="btnSaveGsxx" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 	</div>
+	<script type="text/javascript"  src="./gsxx.js">

@@ -1,64 +1,4 @@
  <%@ page contentType="text/html; charset=UTF-8" %>
-    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/jqueryExtend/jquery.extend.js"></script>
-    <script type="text/javascript" src="../js/easyuiExtend/jeasyui.extend.js"></script>
-    <script type="text/javascript" >
-    $(function() {
-    	$("tr").each(function(index){
-    		if(index>1){
-    			var value=$(this).attr("id");
-    		$(this).find('input:first').textbox('setValue',value);
-    	}
-    	});
-    		
-    	 $('#btnSave').click(function() {
-    	      
-    		 var data=new Array();
-    	     
-    	     $("tr").each(function(index) {
-    	   	 var xydm=$("tr:first").find('td').find('input#p_xydm').val();
-    	   	 var nd=$("tr:first").find('td').find('input#p_nd').val();
-    	   	 var tbrq=$("tr:first").find('td').find('input#p_tbrq').val();
-    	   	 if (index>1) {
-    	   		var xh=$(this).find('td').find('input#p_xh').val();
-    	   		var xkwjbh=$(this).find('td').find("input#p_xkwjbh").val();
-    	   		if(xkwjbh!=""){
-    	   			var xkwjmc=$(this).find('td').find("input#p_xkwjmc").val();
-    	   	        var yxqFrom=$(this).find('td').find("input#p_yxqFrom").val();
-    	   	        var yxqTo=$(this).find('td').find("input#p_yxqTo").val();
-    	   	        var xkjg=$(this).find('td').find("input#p_xkjg").val();
-    	   	        var djzt=$(this).find('td').find("input#p_djzt").val();
-    	   	        var tr={'xydm':xydm,'nd':nd,'tbrq':tbrq,'xh':xh,'xkwjbh':xkwjbh,'xkwjmc':xkwjmc,'yxqFrom':yxqFrom,'yxqTo':yxqTo,'xkjg':xkjg,'djzt':djzt};
-    	   	        data.push(tr);
-    	   		}
-    	        
-    			}
-    		});
-
-    	        $.ajax({
-    	           
-    	            type: 'POST',
-    	            url: '../zcb/saveXZXK',
-    	            data: JSON.stringify(data) ,
-    	            dataType:"json",
-    	            contentType: 'application/json;charset=utf-8',
-    	            success: function (response) {
-    	               if(response.status == SUCCESS){
-    	            	   $.messager.alert('成功', response.message, 'info');
-    	            	   $("input").val("");
-    	            	   
-    	            	   
-    	               }else {
-    	            	   $.messager.alert('失败', response.message, 'info');
-    				}
-    	            }
-    	        });
-    	    });
-    	
-    })
-    </script>
 <table id="xzxk111" width="80%" border="1" cellspacing="0" align="center">
 	<caption align="top" style="font-size: 30px;">行政许可信息</caption>
 	<tr>
@@ -323,3 +263,4 @@
 	<div style="position: relative;bottom: -9px;left: 130px;">
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 </div>
+ <script type="text/javascript" src="./xzxk.js"> </script>
