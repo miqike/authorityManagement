@@ -8,7 +8,6 @@
 
 	$(function() {
 			 $('#btnSave').click(function() {
-		      	alert(111111);
 		        var data=$.easyuiExtendObj.drillDownForm('zcfz111');
 
 		        $.ajax({
