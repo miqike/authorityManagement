@@ -52,7 +52,7 @@ public class SelfCheckAjaxUploadController {
     @RequestMapping(value = "selfCheckUpload", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> ajaxUpload(HttpServletRequest request, HttpServletResponse response, String owner, String col, String ownerKey,
-                                         String hcrwId,String hcclName,String hcsxmc) {
+                                         String hcrwId,String hcclName,String hcsxmc,Integer nd) {
 
         Map<String,Object> result=new HashedMap();
 
@@ -82,7 +82,7 @@ public class SelfCheckAjaxUploadController {
                 InputStream is1 = new ByteArrayInputStream(baos.toByteArray());
                 InputStream is2 = new ByteArrayInputStream(baos.toByteArray());
                 //处理文件内容
-                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename);
+                selfCheckService.uploadSelfCheckData(is2, hcrwId, filename,nd);
 
                 //将文件保存到MONGODB中
                 mongoId = FileUploadUtils.mongoUpload(is1, filename, owner, ownerKey);
@@ -133,6 +133,27 @@ public class SelfCheckAjaxUploadController {
             }
         }
         return result;
+    }
+
+    @RequestMapping(value = "selfCheckUpload/dxnHccl", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> getDXNHccl( String dxnType) {
+        try{
+            Map<String,Object> params=new HashedMap();
+            params.put("dxnType",dxnType);
+            Map<String,Object> dxnHccl=selfCheckService.getDXNHccl(params);
+            Map<String,Object> result=new HashedMap();
+            result.put("status",1);
+            result.put("message","获取成功");
+            result.put("data",dxnHccl);
+            return result;
+        }catch (Exception e){
+            Map<String,Object> result=new HashedMap();
+            result.put("status",-1);
+            result.put("message","获取失败");
+            result.put("data","");
+            return result;
+        }
     }
 
     @RequestMapping(value = "selfCheckUpload/delete", method = RequestMethod.POST)

@@ -85,7 +85,7 @@
         window.planType = 1;
     </script>
 </head>
-<body style="padding:5px;margin-top:-20px;">
+<body style="padding:5px;margin-top:-5px;">
 
 <div id="planWindow" style="padding: 5px;">
     <%-- <jsp:include page="../sys/iterationBar.jsp"/> --%>

@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 
 import com.kysoft.cpsi.audit.entity.AnnualReport;
 import com.kysoft.cpsi.audit.entity.AnnualReportKey;
+import org.apache.ibatis.annotations.Param;
 
 public interface AnnualReportMapper {
 
@@ -43,8 +44,9 @@ public interface AnnualReportMapper {
 	AnnualReport selectByHcrwId3(String hcrwId);
 
 	@Delete("DELETE from T_NB_BD where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=#{hcrwId}) and SJLY = 2")
-	//T_NB_BD导入数据前先删除之前导入的数来源标志2)
 	void deleteByTaskId2(String hcrwId);
+	@Delete("DELETE from T_NB_BD where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=#{hcrwId}) and nd=#{nd} and SJLY = 2")
+	void deleteByTaskIdNd2(@Param("hcrwId")String hcrwId, @Param("nd")Integer nd);
 
 	//T_NB_BD导入数据来源标志2
 	void insert2(AnnualReport ar);

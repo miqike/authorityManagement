@@ -48,6 +48,19 @@
 			 $("#d_id").val(hcsx.ID);
 			 $("#d_name").val(hcsx.NAME);
 		}
+        /*if(type==1){
+            var row=$('#docGrid').datagrid("getSelected");
+            $.get("../selfCheckUpload/dxnHccl", {"dxnType": 2}, function (response) {
+                if (response.status == $.husky.SUCCESS && response.data.NAME==row.HCCL_NAME && response.data.HCSXMC==row.HCSXMC){
+                    $("#trNd").show();
+                }else{
+                    $("#trNd").hide();
+                }
+            });
+        }else {
+            $("#trNd").hide();
+        }
+*/
         $("#d_type").val(type);
         $("#d_hcjhnd").val(hcsx.HCJHND);
         $("#d_hcdwXydm").val(hcsx.HCDW_XYDM);
@@ -74,7 +87,8 @@
                         ownerKey: "#datagridBi05",
                         hcrwId:hcrw.ID,
                         hcclName:type == 1?hcsx.HCCL_NAME:hcsx.NAME,
-                        hcsxmc:hcsx.HCSXMC
+                        hcsxmc:hcsx.HCSXMC,
+                        nd:$("#d_nd").combobox("getValue")
                     });
                     $("#progressbar").show().width('260px');
                 },
@@ -127,7 +141,11 @@
         <td class="label">文件类型</td>
         <td><input class="easyui-combobox" id="d_wjlx" data-options="" codeName="wjlx" disabled /></td>
     </tr>
-    
+    <tr id="trNd">
+        <td class="label">数据年度</td>
+        <td><input class="easyui-combobox" id="d_nd" data-options="" codeName="year" /></td>
+    </tr>
+
     <!-- 
     <th data-options="field:'HCCL_NAME',halign:'center',align:'left'" sortable="true" width="110">检查材料名称</th>
             <th data-options="field:'HCSXMC',halign:'center',align:'left'" sortable="true" width="100">检查事项</th>

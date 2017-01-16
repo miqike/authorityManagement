@@ -46,39 +46,11 @@
             font: 13px/1.5 \5b8b\4f53, Arial, sans-serif;
             background: #ffffff;
         }
-        
-        div#tabPanel .datagrid-wrap {
-            border-left: 0px;
-            border-top: 0px;
-        }
 
         td.label {
             text-align: right;
         }
 
-        div.hcsx {
-            display: inline-block;
-            width: 140px;
-            color: brown;
-            font-weight: bold;
-            text-align: right;
-        }
-        
-        td.hcsx {
-            width: 140px;
-            color: brown;
-            font-weight: bold;
-            text-align: right;
-            vertical-align: top;
-        }
-        
-        span.commentItem {
-	        height:20px;  
-			margin:3px 3px 0px 0px; 
-        	font-weight:bold;
-        	font-size:14px;
-			color:blue;
-        }
     </style>
     
     <%
@@ -100,7 +72,7 @@
 	                <td><input id="f_hcjhId" class="easyui-validatebox"/></td>
 	                <td class="label">计划名称</td>
 	                <td><input id="f_jhmc" class="easyui-validatebox"/></td>
-	                <td colspan="2" style="text-align-right;">
+	                <td colspan="2" style="text-align: right">
 	                    <a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true"
 	                       iconCls="icon-search">查找</a>
 	                    <a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true"

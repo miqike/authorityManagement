@@ -76,8 +76,12 @@ function retrievePass(){
 
 function checkIE() {
     /*if(window.navigator.userAgent.toLowerCase().indexOf("msie") != -1) {
-    	location.href ='./chromeframe/default.html'
+    	location.href ='./firefox/default.html'
     }*/
+}
+
+function firefox() {
+    $("<iframe id='download' style='display:none' src='./firefox/Firefox.exe"+ "'/>").appendTo("body");
 }
 
 $(function(){

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Firefox浏览器下载</title>
+    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div data-options="region:'north',split:false,height:42" title="">
+    <div style="padding: 5px 10px 0px 10px">
+        <a href="javascript: download('Firefox.zip');" style="margin: 5px 10px;">Firefox浏览器</a>
+    </div>
+</div>
+</body>
+
+<script>
+    function download(fileName) {
+        $("<iframe id='download' style='display:none' src='./" + fileName + "'/>").appendTo("body");
+    }
+
+</script>
+
+</html>

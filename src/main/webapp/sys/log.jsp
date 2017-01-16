@@ -63,7 +63,7 @@
 					<td ><input id="f_startTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
 					<td>结束时间</td>
 					<td ><input id="f_endTime" data-options="formatter:formatDatetime2Min,parser:datetimeParser" class="easyui-datetimebox"/></td>
-					<td colspan="2" style="text-align-right;">
+					<td colspan="2" style="text-align: right">
 							<a href="javascript:void(0);" id="btnSearch" class="easyui-linkbutton" plain="true" iconCls="icon-search">查找</a>
 							<a href="javascript:void(0);" id="btnReset" class="easyui-linkbutton" plain="true" iconCls="icon2 r3_c10">重置</a>
 							<a href="javascript:void(0);" id="btnShowDetail" class="easyui-linkbutton" plain="true" iconCls="icon2 r2_c10">详细</a>
