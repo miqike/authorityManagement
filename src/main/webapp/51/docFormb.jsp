@@ -48,7 +48,7 @@
 			 $("#d_id").val(hcsx.ID);
 			 $("#d_name").val(hcsx.NAME);
 		}
-        if(type==1){
+        /*if(type==1){
             var row=$('#docGrid').datagrid("getSelected");
             $.get("../selfCheckUpload/dxnHccl", {"dxnType": 2}, function (response) {
                 if (response.status == $.husky.SUCCESS && response.data.NAME==row.HCCL_NAME && response.data.HCSXMC==row.HCSXMC){
@@ -60,7 +60,7 @@
         }else {
             $("#trNd").hide();
         }
-
+*/
         $("#d_type").val(type);
         $("#d_hcjhnd").val(hcsx.HCJHND);
         $("#d_hcdwXydm").val(hcsx.HCDW_XYDM);

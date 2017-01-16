@@ -63,6 +63,7 @@
                 /jcaptcha* = anon
                 /captcha* = anon
                 /cw.jsp = anon
+                /firefox/**/* = anon
 
                 /login = authc,kickout
                 /activiti-rest = sysUser,activiti-rest
