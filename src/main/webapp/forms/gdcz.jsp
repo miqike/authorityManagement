@@ -114,7 +114,7 @@
 		</tr>
 
 	</table>
-    <div style="position: relative;bottom: -9px;left: 130px;">
+    <div style="position: relative;bottom: -9px;left: 98px;">
 	<a href="#" id="btn" class="easyui-linkbutton" iconCls="icon-add" plain="true">增加一行</a>
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 	</div>

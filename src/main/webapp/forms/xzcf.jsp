@@ -1,5 +1,5 @@
  <%@ page contentType="text/html; charset=UTF-8" %>
-<table width="80%" border="1" cellspacing="0" align="center">
+<table width="900px;" border="1" cellspacing="0" align="center">
 	<caption align="top" style="font-size: 30px;">行政处罚信息</caption>
 	<tr>
                 <td>统一社会信用代码</td>
@@ -231,7 +231,7 @@
 	
 		
 </table>
-<div style="position: relative;bottom: -9px;left: 130px;">
+<div style="position: relative;bottom: -9px;left: 177px;">
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 </div>
    <script type="text/javascript" src="./xzcf.js"></script>

@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<table id="dwtz111" width="80%" border="1" cellspacing="0"
+<table id="dwtz111" width="900px;" border="1" cellspacing="0"
 	align="center">
 	<caption align="top" style="font-size: 30px;">企业投资设立企业、购买股权信息</caption>
-	<tr>
-		<td>统一社会信用代码</td>
+	<tr >
+		<td height="35px">统一社会信用代码</td>
 		<td><input id="p_xydm" class="easyui-textbox"
 			data-options="required:true" style="width: 100%; height: 100%;"></td>
 		<td>年度</td>
@@ -141,7 +141,7 @@
 			style="border: none; width: 100%; height: 100%" /></td>
 	</tr>
 </table>
-<div style="position: relative; bottom: -9px; left: 130px;">
+<div style="position: relative; bottom: -9px; left: 207px;">
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save"
 		plain="true">保存</a>
 </div>
