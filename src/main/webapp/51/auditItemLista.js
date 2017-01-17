@@ -208,7 +208,7 @@ function annualAuditItemInit() {
         if (response.status == $.husky.SUCCESS) {
         	$("#annualAuditItemGrid").datagrid("loadData",response);
         	if(!checkFinicialDataImport(response.rows)) {
-        		$.messager.alert("操作提示", "您尚未导入财务报表数据信息,请执行<<采集数据导入及验证>>后再核查");
+        		$.messager.alert("操作提示", "您尚未导入财务报表数据信息,请企业上传财务报表数据后再核查");
         	}
         }
     });

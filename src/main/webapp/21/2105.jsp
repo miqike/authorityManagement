@@ -56,7 +56,7 @@
             <td width="800px" colspan="2" bgcolor="#a9a9a9" align="center">被举报企业信息</td>
         </tr>
         <tr>
-            <td width="300px" align="right">统一社会信用代码/注册号</td>
+            <td width="300px" align="right">统一社会信用代码</td>
             <td width="500px"><input class="easyui-textbox" id="c_Id" type="text" style="width:200px;"/></td>
         </tr>
         <tr>

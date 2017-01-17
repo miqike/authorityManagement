@@ -166,6 +166,7 @@ function myTaskGridClickHandler() {
         $('#btnPullData').linkbutton("enable");
     }
     refreshAuditItemList();
+    minimizeMyTaskWindow();
 }
 
 function goFirst() {

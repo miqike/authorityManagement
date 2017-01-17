@@ -93,7 +93,7 @@
  -->    
  
  <div id="mainLayout" class="easyui-layout hidden" data-options="fit: true">
-	<div id="northPanel" data-options="region: 'north', height:174, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11',
+	<div id="northPanel" data-options="region: 'north', height:194, title:'任务详细信息', closable:false, collapsible:true,iconCls:'icon2 r2_c11',
 		tools: [
 			{iconCls:'icon-first', handler:goFirst},
 			{iconCls:'icon-previous', handler:goPrev},
@@ -110,7 +110,7 @@
 			    
 			</tr>
 			<tr>
-			    <td class="label">注册号</td>
+			    <td class="label">统一社会信用代码</td>
 			    <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 			    <td class="label" >抽查单位</td>
 			    <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
@@ -172,7 +172,7 @@
 
 <div id="myTaskListWindow" >
 	<div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	    <div data-options="region:'north',split:false,height:100" title="">
+	    <div data-options="region:'north',split:false,height:110" title="">
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
@@ -186,7 +186,7 @@
 						</td>
 		            </tr>
 		            <tr>
-		                <td class="label" style="width:70px;">信用代码</td>
+		                <td class="label" style="width:70px;">统一社会信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
@@ -215,17 +215,17 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:310,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
+						height:300,onBeforeLoad:checkParam,pageSize: 100, pagination: true,onLoadSuccess:myTaskGridLoadSucessHandlerb">
 	            <thead>
 		            <tr>
 						<th data-options="field:'rwzt', halign:'center',align:'center'" width="55" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>
 		            	<th data-options="field:'jhnd'" halign="center" align="center" sortable="true" width="55">计划年度</th>
 		                <th data-options="field:'jhbh'" halign="center" align="left" sortable="true" width="55">计划编号</th>
 		                <th data-options="field:'jhmc'" halign="center" align="center" sortable="true" width="90">计划名称</th>
-		                <th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达单位</th>
+						<th data-options="field:'nd'" halign="center" align="center" sortable="true" width="55">年报年度</th>
 		                <th data-options="field:'hcdwXydm',halign:'center',align:'center'" sortable="true" width="120">统一社会信用代码</th>
 		                <th data-options="field:'hcdwName',halign:'center',align:'left'" sortable="true" width="210">单位名称</th>
-						<th data-options="field:'nd'" halign="center" align="center" sortable="true" width="55">年报年度</th>
+						<th data-options="field:'djjgmc'" halign="center" align="center" sortable="true" width="130">任务下达单位</th>
 		                <th data-options="field:'zfryCode1', halign:'center',align:'center'" width="100" formatter="formatZfry">检查人员</th>
                         <th data-options="field:'jhxdrq', halign:'center',align:'center'" width="80" formatter="formatDate">下达时间</th>
                         <th data-options="field:'jhwcrq', halign:'center',align:'center'" width="80" formatter="formatDate">计划结束时间</th>

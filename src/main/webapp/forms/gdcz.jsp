@@ -2,7 +2,7 @@
 	<table id="gdcz111" width="80%" border="1" cellspacing="0" align="center">
 		<caption align="top" style="font-size: 30px;">股东及出资信息</caption>
 		<tr>
-			<td>信用代码</td>
+			<td>统一社会信用代码</td>
 			<td><input class="easyui-textbox" id="p_xydm"
 				style="border: none; width: 100%; height: 100%"
 				data-options="required:true" ></td>

@@ -106,7 +106,7 @@
 	            <td colspan="3"><input id="p_jhmc" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
 	        </tr>
 	        <tr>
-	            <td class="label">注册号</td>
+	            <td class="label">统一社会信用代码</td>
 	            <td> <input id="p_hcdwXydm" class="easyui-validatebox" readonly="readonly" style="width:130px;"/></td>
 	            <td class="label">被抽查企业</td>
 	            <td colspan="3"><input id="p_hcdwName" class="easyui-validatebox" readonly="readonly" style="width:384px;"/></td>
@@ -167,7 +167,7 @@
 
 <div id="myTaskListWindow" >
 	<div id="panel" class="easyui-layout" data-options="fit:true" style="overflow: hidden;">
-	    <div data-options="region:'north',split:false,height:100" title="">
+	    <div data-options="region:'north',split:false,height:110" title="">
 		    <div style="padding: 5px 10px 0px 10px">
 		        <table id="queryTable">
 		            <tr>
@@ -182,7 +182,7 @@
 						</td>
 		            </tr>
 		            <tr>
-		                <td class="label" style="width:70px;">信用代码</td>
+		                <td class="label" style="width:70px;">统一社会信用代码</td>
 		                <td><input id="f_hcdwXydm" class="easyui-validatebox" data-options="validType:'integer'"/></td>
 		                <td class="label" style="width:70px;">单位名称</td>
 		                <td><input id="f_hcdwName" class="easyui-validatebox"/></td>
@@ -211,7 +211,7 @@
 	    <div data-options="region:'center',split:true" style="width:340px;">
 	        <table id="grid1" class="easyui-datagrid"
 	               data-options="collapsible:true,onClickRow:myTaskGridClickHandler,singleSelect:true,ctrlSelect:false,method:'get',
-						height:310,onBeforeLoad:checkParam,onLoadSuccess:myTaskGridLoadSucessHandler,pageSize: 100, pagination: true">
+						height:300,onBeforeLoad:checkParam,onLoadSuccess:myTaskGridLoadSucessHandler,pageSize: 100, pagination: true">
 	            <thead>
 		            <tr>
 						<th data-options="field:'rwzt', halign:'center',align:'center'" width="55" codeName="rwzt" formatter="formatCodeList" styler="taskStatusStyler">任务状态</th>

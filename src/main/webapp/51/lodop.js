@@ -142,7 +142,7 @@ function printShidihechagaozhishu() {
     rowHeight = 20;
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top), toMilli(left + columnWidth1 + columnWidth2), 0, 2);//最上橫线
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(left), toMilli(top + rowHeight), toMilli(left), 0, 2);//最左侧竖线
-    LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "注册号");
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(left), toMilli(columnWidth1), "10mm", "统一社会信用代码");
     LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
     LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
     LODOP.SET_PRINT_STYLEA(0, "FontSize", 16);
@@ -575,7 +575,7 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(gridId){
                 LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
                 LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
                 top = top + 5;
-                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "注册号/社会统一信用代码：" + qy.hcdwXydm);
+                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "社会统一信用代码：" + qy.hcdwXydm);
                 LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
                 LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
                 LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
@@ -839,7 +839,7 @@ function printGongShiXinXiGengZhengBiao(){
             colLeft = 0;
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
-            LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "注册号");
+            LODOP.ADD_PRINT_TEXTA("0", toMilli(top + 2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "统一社会信用代码");
             LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
             LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
             LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[0]), toMilli(top + rowHeight), toMilli(colLeft + columnWidths[0]), 0, 1);//竖线
@@ -1014,7 +1014,7 @@ function printGongShiXinXiGengZhengBiaoJs(){
     colLeft=0;
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top), toMilli(columnWidthFull), 0, 1);//横线
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft), toMilli(top + rowHeight), toMilli(colLeft), 0, 2);//最左边竖线
-    LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "注册号");
+    LODOP.ADD_PRINT_TEXTA("0", toMilli(top+2), toMilli(colLeft), toMilli(columnWidths[0]), toMilli(rowHeight), "统一社会信用代码");
     LODOP.SET_PRINT_STYLEA(0, "Alignment", 2);
     LODOP.SET_PRINT_STYLEA(0, "FontSize", fontSize);
     LODOP.ADD_PRINT_LINE(toMilli(top), toMilli(colLeft + columnWidths[0]), toMilli(top + rowHeight ), toMilli(colLeft + columnWidths[0]), 0, 1);//竖线

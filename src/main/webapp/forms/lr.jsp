@@ -2,7 +2,7 @@
 	<table id="lr111" width="80%" border="1" cellspacing="0" align="center">
 		<caption align="top" style="font-size: 30px;">利润表</caption>
 		<tr>
-                <td>信用代码</td>
+                <td>统一社会信用代码</td>
                 <td ><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;border: none;"></td>
                 <td>年度</td>
                 <td ><input id="p_nd" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;border: none;"></td>

@@ -154,7 +154,7 @@ $(function () {
         };
         var columnList = [];
         columnList.push({"fieldName": "hcdwName", "header": "企业名称", "colWidth": 80});
-        columnList.push({"fieldName": "hcdwXydm", "header": "注册号", "colWidth": 60});
+        columnList.push({"fieldName": "hcdwXydm", "header": "统一社会信用代码", "colWidth": 60});
         columnList.push({"fieldName": "hcjgmc", "header": "检查机关", "colWidth": 60});
         columnList.push({"fieldName": "sjwcrq", "header": "检查时间", "colWidth": 20,"codeName": "date"});
         columnList.push({"fieldName": "hcjieguo", "header": "抽查结果", "colWidth": 30, "codeName": "gsjg"});

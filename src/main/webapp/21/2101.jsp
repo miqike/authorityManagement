@@ -150,7 +150,7 @@
 		            <tr>
 		                <th data-options="field:'djjgMc',halign:'center',align:'left'" sortable="true" width="150">登记(移出)机关</th>
 		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
-		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码/注册号</th>
+		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
 		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="qylxdl"
 		                    formatter="formatCodeList">企业类型
@@ -190,7 +190,7 @@
      style="width: 880px; height: 390px; ">
     <table>
     	<tr>
-    		<td>社会统一信息代码/注册号</td><td><span id="p_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td>社会统一信息代码</td><td><span id="p_code" style="color:blue;margin:0px 5px;"></span></td>
     		<td>企业(机构)名称</td><td><span id="p_name" style="color:blue;margin:0px 5px;"></span></td>
     	</tr>
     </table> 
@@ -230,7 +230,7 @@
      style="width: 850px; height: 500px;">
     <table>
     	<tr>
-    		<td style="text-align:right" >社会统一信息代码/注册号</td><td><span id="m_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right" >社会统一信息代码</td><td><span id="m_code" style="color:blue;margin:0px 5px;"></span></td>
     		<td style="text-align:right">企业(机构)名称</td><td><span id="m_name" style="color:blue;margin:0px 5px;"></span></td>
     	</tr>
     	<tr>

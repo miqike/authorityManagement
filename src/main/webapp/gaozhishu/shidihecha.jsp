@@ -18,7 +18,7 @@
 					<input class="easyui-validatebox" id="shidi_qymc"  style="width: 425px;"></input></td>
 			</tr>
 			<tr>
-				<td style="border:1px black solid;border-right:0px;border-bottom:0px;height:32px;">注册号</td>
+				<td style="border:1px black solid;border-right:0px;border-bottom:0px;height:32px;">统一社会信用代码</td>
 				<td style="border:1px black solid; padding:2px 5px;border-bottom:0px;">
 					<input class="easyui-validatebox" id="shidi_xydm"  style="width: 425px;"></input></td>
 			</tr>

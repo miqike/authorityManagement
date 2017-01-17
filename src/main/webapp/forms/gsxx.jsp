@@ -11,7 +11,7 @@
 	
 	</tr>
 	<tr>
-	<td colspan="2">注册号</td>
+	<td colspan="2">统一社会信用代码</td>
 	<td colspan="2"><input class="easyui-textbox" id="p_xydm"style="border: none; width: 100%;" data-options="required:true" /></td>
 	<td colspan="2">法定代表人</td>
 	<td colspan="3"><input class="easyui-textbox" id="p_fddbr"style="border: none; width: 100%;" /></td>

@@ -469,7 +469,7 @@ public class HcrwServiceImpl implements HcrwService {
         cell = row.createCell(0);
         cell.setCellType(CellType.STRING);
         cell.setCellStyle(setCellStyle(workbook, "@", HorizontalAlignment.LEFT, VerticalAlignment.CENTER, BorderStyle.NONE , BorderStyle.NONE, BorderStyle.NONE, BorderStyle.NONE, false, 8));
-        cell.setCellValue("注册号/社会统一信用代码："+ hcrw.getHcdwXydm());
+        cell.setCellValue("社会统一信用代码："+ hcrw.getHcdwXydm());
         sheet.addMergedRegion(new CellRangeAddress(iRow,iRow,0,5-1));
         cell = row.createCell(5);
         cell.setCellType(CellType.STRING);

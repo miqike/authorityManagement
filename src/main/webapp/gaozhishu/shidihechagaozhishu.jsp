@@ -24,7 +24,7 @@
             </td>
         </tr>
         <tr>
-            <td sytle="text-align:right;">注册号</td>
+            <td sytle="text-align:right;">统一社会信用代码</td>
             <td><input class="easyui-validatebox" type="text" id="shidi_xydm" data-options=""
                        style="width:200px;"/>
             </td>

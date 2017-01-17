@@ -3,7 +3,7 @@
 	align="center">
 	<caption align="top" style="font-size: 30px;">企业投资设立企业、购买股权信息</caption>
 	<tr>
-		<td>信用代码</td>
+		<td>统一社会信用代码</td>
 		<td><input id="p_xydm" class="easyui-textbox"
 			data-options="required:true" style="width: 100%; height: 100%;"></td>
 		<td>年度</td>
@@ -17,7 +17,7 @@
 	<tr>
 		<td height="35px" align="center" colspan="2">序号</td>
 		<td align="center" colspan="2">设立企业名称</td>
-		<td align="center" colspan="2">设立企业统一社会信息代码/注册号</td>
+		<td align="center" colspan="2">设立企业统一社会信息代码</td>
 	</tr>
 
 	<tr id="1">

@@ -7,7 +7,7 @@ var auditApproach =
 
 var auditTableColumnsConfig =  [[
 	{field:"tzqymc",title:"投资企业名称",width:250},
-	{field:"xydm",title:"信用代码",width:150}
+	{field:"xydm",title:"统一社会信用代码",width:150}
 	
 ]];
 </script>
