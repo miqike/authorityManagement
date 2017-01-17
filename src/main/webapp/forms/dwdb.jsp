@@ -1,5 +1,5 @@
  <%@ page contentType="text/html; charset=UTF-8" %>
-<table id="dwdb111" width="80%" border="1" cellspacing="0" align="center">
+<table id="dwdb111" width="900px;" border="1" cellspacing="0" align="center">
 		<caption align="top" style="font-size: 30px;">对外提供保证担保信息</caption>
 		<tr>
 			<td>统一社会信用代码</td>

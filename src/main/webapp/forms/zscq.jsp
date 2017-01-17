@@ -1,6 +1,7 @@
  <%@ page contentType="text/html; charset=UTF-8" %>
-<table width="80%" border="1" cellspacing="0" align="center">
+<table width="1000px;" border="1" cellspacing="0" align="center">
 	<caption align="top" style="font-size: 30px;">知识产权出质登记信息</caption>
+	
 	<tr>
                 <td>统一社会信用代码</td>
                 <td colspan="2"><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;"></td>
@@ -291,7 +292,7 @@
 				style="border: none; width: 100%;height: 100%" /></td>
 		</tr>
 </table>
-<div style="position: relative;bottom: -9px;left: 0px;">
+<div style="position: relative;bottom: -9px;left: 15px;">
 	<a href="#" id="btnSave" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 </div>
   <script type="text/javascript" src="./zscq.js"></script>
