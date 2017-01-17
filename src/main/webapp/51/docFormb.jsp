@@ -65,6 +65,7 @@
         $("#d_hcjhnd").val(hcsx.HCJHND);
         $("#d_hcdwXydm").val(hcsx.HCDW_XYDM);
         $("#d_hcsxmc").val(hcsx.HCSXMC);
+        $("#d_nd").val(hcrw.ND);
         setTimeout(function() {
 	        $("#d_sfbyx").combobox("setValue", hcsx.SFBYX);
     	    $("#d_wjlx").combobox("setValue", hcsx.WJLX);
@@ -88,7 +89,7 @@
                         hcrwId:hcrw.ID,
                         hcclName:type == 1?hcsx.HCCL_NAME:hcsx.NAME,
                         hcsxmc:hcsx.HCSXMC,
-                        nd:$("#d_nd").combobox("getValue")
+                        nd:$("#d_nd").val()
                     });
                     $("#progressbar").show().width('260px');
                 },
@@ -114,7 +115,7 @@
     }
 
     $(function () {
-    	$.codeListLoader.parse($('#docPanel'))
+    	$.codeListLoader.parse($('#docPanel'));
     });
 </script>
 
@@ -142,8 +143,8 @@
         <td><input class="easyui-combobox" id="d_wjlx" data-options="" codeName="wjlx" disabled /></td>
     </tr>
     <tr id="trNd">
-        <td class="label">数据年度</td>
-        <td><input class="easyui-combobox" id="d_nd" data-options="" codeName="year" /></td>
+        <td class="label">年报年度</td>
+        <td><input class="easyui-validatebox" id="d_nd" data-options="" disabled/></td>
     </tr>
 
     <!-- 

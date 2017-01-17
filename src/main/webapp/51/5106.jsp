@@ -138,6 +138,7 @@
 				 <th data-options="field:'RWZT'" halign="center" align="center" width="80" codeName="rwzt" formatter="formatCodeList">核查结果</th>
                  <th data-options="field:'HCDW_XYDM'" halign="center" align="center" width="140">统一社会信用代码</th>
                  <th data-options="field:'HCDW_NAME'" halign="center" align="left" width="180">企业名称</th>
+				 <th data-options="field:'ND'" halign="center" align="center" width="80" >年报年度</th>
 				 <th data-options="field:'ZFRY_NAME1'" center="center" align="center" width="90" formatter="formatZfry">检查人员</th>
 				 <th data-options="field:'QYMC'" center="center" align="center" width="80">管辖单位</th>
                  <th data-options="field:'ZTLX'" halign="center" align="center" width="80" codeName="qylxdl" formatter="formatCodeList">市场主体类型</th>
