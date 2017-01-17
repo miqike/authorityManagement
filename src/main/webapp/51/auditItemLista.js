@@ -101,9 +101,6 @@ function canBeSelected(index) {
 }
 
 function initAuditItemList() {
-    $("#p_hcjieguo").combobox("disable");
-    $("#btnUpdateHcjg").linkbutton("enable");
-    $("#btnConfirmUpdateHcjg").hide();
 
     $("#auditItemAccordion").accordion("select", 0);
     var hcrw = $('#grid1').datagrid('getSelected');
@@ -116,12 +113,13 @@ function initAuditItemList() {
         $("#auditItemTabs").tabs("disableTab", 0);
         $("#auditItemTabs").tabs("enableTab", 1);
         $("#auditItemTabs").tabs("select", 1);
-        instanceAuditItemInit()
+        instanceAuditItemInit();
     } else {
         $("#auditItemTabs").tabs("enableTab", 0);
         $("#auditItemTabs").tabs("enableTab", 1);
         $("#auditItemTabs").tabs("select", 0);
-        annualAuditItemInit()
+        annualAuditItemInit();
+        instanceAuditItemInit();
     }
 }
 

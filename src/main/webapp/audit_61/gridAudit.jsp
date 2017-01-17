@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<!-- <script type="text/javascript" src="../audit_61/gridAudit.js"></script> -->
+<script type="text/javascript" src="../audit_61/gridAudit.js"></script>
 <script>
 function doInit() {
 	doInitGrid();

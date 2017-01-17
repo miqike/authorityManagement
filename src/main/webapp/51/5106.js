@@ -69,6 +69,7 @@ function grid1ClickHandler() {
         loadMyTask(row.jhbh);
         $('#btnViewDocList').linkbutton('disable');
         $('#btnReportDocReady').linkbutton('disable');
+        $("#s_searchBox").searchbox("setValue","");
     }
 }
 

@@ -156,7 +156,7 @@
                 data-options="disabled:true">上报材料查阅</a>
              <a href="#" id="btnReportDocReady" class="easyui-linkbutton" iconCls="icon2 r1_c15" plain="true"
                 data-options="disabled:true">上报完成/取消完成</a>
-             <input class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
+             <input id="s_searchBox" class="easyui-searchbox" data-options="width: 260, height: 24, prompt: '快速定位', searcher: quickSearch, menu:'#mm'" />
 			 <input type="radio" name="docReadyFlag" id="docReadyFlag0" value="0"/>未上传
 			 <input type="radio" name="docReadyFlag" id="docReadyFlag1" value="1" selected/>已上传
 			 <input type="radio" name="docReadyFlag" id="docReadyFlag" value="" />全部上传
@@ -171,8 +171,8 @@
 </div>
 
 <div id="mm" style="width:150px">
-	<div data-options="name:'xydm'">统一社会信用代码</div>
-	<div data-options="name:'qymc',selected:true">企业名称</div>
+	<div data-options="name:'xydm',selected:true">统一社会信用代码</div>
+	<div data-options="name:'qymc'">企业名称</div>
 </div>
 
 <div id="selfCheckDocumentWindow" title="自查表数据导入" class="easyui-dialog"

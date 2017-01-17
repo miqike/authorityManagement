@@ -14,7 +14,7 @@ function doInitGrid() {
 	$("#btnAutoMatch").click(autoMatch);
 
 	// var auditTask = $('#myTaskGrid').datagrid('getSelected');
-	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
+	var auditItem = $("#instanceAuditItemGrid").datagrid("getSelected");
 	var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
 	$.post("../js/audit/getCompareInfo", param,
 		function(response){
