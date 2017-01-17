@@ -50,8 +50,7 @@
 				textField: 'name',
 				data: response//.reverse()
 			});
-			//console.log(response);
-		}); 
+		});
 		var doc= $("#docGrid").datagrid("getSelected");
         $.easyui.loading();
         setTimeout(function(){
@@ -94,7 +93,6 @@
 	
 	function selectMaterail(materialId) {
 		var material = getMaterial(materialId);
-		console.log(material);
 		$("#d_name").val(material.name)
 		$("#d_wjlx").combobox("setValue", material.type);
 	}

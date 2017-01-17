@@ -16,7 +16,6 @@
 	        }
 	        
 	        for (var index = 0; index<array.length; index++) {
-	        	console.log(index)
 	            if (text.contains("/")) {
 	                result += array[index].split("/")[1];
 	            } else {

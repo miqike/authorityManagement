@@ -91,7 +91,6 @@ function _save(){
             }else if(window.operateType=="addChild"){//增加下级
                 $.zTreeExtendObj.addNodeBySelectedNode("tree",data);
             }else if(window.operateType=="edit"){//修改
-            	console.log(data)
                 $.zTreeExtendObj.updateSelectedNode("tree",data,null);
             }else {//删除
                 $.zTreeExtendObj.removeSelectedNode("tree");

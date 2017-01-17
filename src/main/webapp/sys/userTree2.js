@@ -436,7 +436,6 @@ function reset() {
 }
 
 function saveUser(){
-	console.log(window.operation)
 	if($('#userTable').form('validate')) {
 		var data = $.husky.getFormData("userTable");
 		data.ext1 = $('#p_ext1')[0].checked ? $('#p_ext1').attr("checkedValue"): "1";

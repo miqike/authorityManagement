@@ -46,7 +46,6 @@ modifierMap = {
 _mods = { 16: false, 18: false, 17: false, 91: false },
 //返回键码
 code = function(x){ 
-    console.log();
   return _keyMap[x] || x.toUpperCase().charCodeAt(0);
 },
 _handlers={};

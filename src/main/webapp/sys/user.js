@@ -668,7 +668,6 @@ function aclSelect() {
 }
 
 function poiExport() {
-    console.log("----------")
     $("<iframe id='poiExport' style='display:none' src='../user/poiExport'>") .appendTo("body");
 }
 

@@ -51,7 +51,6 @@ function autoMatch() {
 				for (var j=0; j<dataB.rows.length; j++) {
 					var dataItemB = dataB.rows[j];
 					if(dataItemB.matched != true && _.isEqual(dataItemA, dataItemB)	) {
-						console.log("matched.....")
 						dataItemA.matched = true;
 						dataItemB.matched = true;
 					} 

@@ -179,7 +179,6 @@ function markReaded() {
     }
 }
 function moveFavoriate() {
-	console.log(" movFavoriate ");
 }
 function deleteMessage() {
 	var oriMsgs = $("#inboxGrid").datagrid("getSelections");

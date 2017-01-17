@@ -1107,7 +1107,6 @@ $.extend($.fn.datagrid.methods, {
             footerObj.push({"name":field+"当页最小值","salary":footer['min']});
         };
 
-        console.log(footerObj);
         if(footerObj.length > 0){
             $(jq).datagrid('reloadFooter',footerObj);
         }

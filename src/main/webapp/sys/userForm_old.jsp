@@ -6,7 +6,6 @@ function doInit(operation) {
     	$.easyuiExtendObj.loadForm("baseInfo", $("#mainGrid").datagrid("getSelected"));
 	} else {
 		var hcsx =  $("#mainGrid").datagrid("getSelected");
-		console.log(hcsx);	
 	}
 }
 

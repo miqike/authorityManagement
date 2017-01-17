@@ -128,7 +128,6 @@ function save() {
             data.auditFlag="0";
             data.chargeFlag="1";
         });
-        console.log(data)
         $.post("../sys/resource/" + $("#treeNodeForm input[name='id']").val(), data, function(response) {
             var treeObj = $.fn.zTree.getZTreeObj("tree");
             var nodes = treeObj.getSelectedNodes();

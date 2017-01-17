@@ -40,7 +40,6 @@
     				} else if(data.redirect == "/login?forceLogout=1") {
     					errMsg = "被管理员强行踢出";
     				}
-					console.log(errMsg)
 					$.messager.alert("警告", errMsg,'info',function(){
 						redirect(data.redirect);
 					});

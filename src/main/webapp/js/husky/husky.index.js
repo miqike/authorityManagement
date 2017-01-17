@@ -384,5 +384,4 @@ function setUserTheme() {
 }
 
 function showMsgDialog() {
-	console.log("ShowMsgDialog")
 }

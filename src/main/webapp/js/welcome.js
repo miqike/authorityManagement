@@ -89,7 +89,6 @@ function showForm(src, taskId) {
         parent.window.addTabPage("999", "我的任务", url, 'icon-tip');
         $(src).tooltip("hide");
     } else {
-        console.log(taskId);
     }
 }
 

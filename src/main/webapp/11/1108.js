@@ -34,7 +34,6 @@ function beforeTreeClick(treeId, treeNode, clickFlag) {
 function onTreeClick(event, treeId, treeNode, clickFlag) {
     var options = $('#mainGrid').datagrid('options');
     options.url = '../common/query?mapper=bmMapper&queryName=query';
-    console.log(treeNode);
     options.queryParams = {
         orgId: treeNode.id
     };

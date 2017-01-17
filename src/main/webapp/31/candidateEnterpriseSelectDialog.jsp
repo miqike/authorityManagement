@@ -100,7 +100,6 @@ function addEnterpriseShortcut() {
 				if(response.status == $.husky.SUCCESS) {
 					$.messager.show("操作提醒", "添加核查单位成功", "info", "bottomRight");
 					$("#grid1").datagrid("reload");
-					console.log(" Close this dialog")
 				} else {
 					$.messager.alert("错误", "添加核查单位失败");
 				}
