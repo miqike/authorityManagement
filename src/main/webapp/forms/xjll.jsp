@@ -2,9 +2,9 @@
 	<table id="xjll111" width="80%" border="1" cellspacing="0" align="center">
 
 		<caption align="top" style="font-size: 30px;">现金流量表</caption>
-		<tr style="height: 20px;">
+		<tr >
                 <td>信用代码</td>
-                <td ><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;"></td>
+                <td style="padding: opx;"><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width: 100px;"></td>
                 <td>年度</td>
                 <td ><input id="p_nd" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;"></td>
                 <td >填报日期</td>

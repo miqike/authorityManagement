@@ -3,11 +3,11 @@
 		<caption align="top" style="font-size: 30px;">利润表</caption>
 		<tr>
                 <td>信用代码</td>
-                <td ><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;"></td>
+                <td ><input id="p_xydm" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;border: none;"></td>
                 <td>年度</td>
-                <td ><input id="p_nd" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;"></td>
+                <td ><input id="p_nd" class="easyui-textbox" data-options="required:true" style="width:100%;height:100%;border: none;"></td>
                 <td >填报日期</td>
-                <td ><input id="p_tbrq" class="easyui-textbox"  style="width:100%;height:100%;"></td>
+                <td ><input id="p_tbrq" class="easyui-textbox"  style="width:100%;height:100%;border: none;"></td>
             </tr>
 		<tr>
 			<th>项 目</th>
@@ -374,7 +374,7 @@
 			<td>44</td>
 			<td colspan="2"><input class="easyui-textbox" id="p_item46Bqfse"
 				style="border: none; width: 100%;" /></td>
-			<td colspan="2"><input class="easyui-textbox" id="p_item46Sqfse" style="border: none;" /></td>
+			<td colspan="2"><input class="easyui-textbox" id="p_item46Sqfse" style="border: none;width: 100%" /></td>
 		</tr>
 		<tr>
 			<td>（二）以后将重分类进损益的其他综合收益</td>
