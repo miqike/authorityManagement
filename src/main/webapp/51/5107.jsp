@@ -121,7 +121,9 @@
 			    <td><input id="p_jhxdrq" class="easyui-datebox" readonly="readonly" style="width:130px"/></td>
 			    <td class="label"  style="width:90px;">计划结束时间</td>
 			    <td style="width:100px;"><input id="p_jhwcrq" class="easyui-datebox" readonly="readonly" style="width:130px"/></td>
-			    </tr>
+				<td class="label"  style="width:90px;">年报年度</td>
+				<td style="width:100px;"><input id="p_nd" class="easyui-validatebox" readonly="readonly" style="width:130px"/></td>
+		    </tr>
 		</table>
 		<div class="easyui-panel" data-options="height:64, noheader:true, collapsed:false,collapsible:false," style="padding-top:5px;width:auto">
 			<div id="toobar1">

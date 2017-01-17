@@ -149,7 +149,8 @@ function myTaskGridClickHandler() {
     $('#p_jhwcrq').datebox("setValue", formatDate(hcrw.jhwcrq));
     $('#p_jhnd').val(hcrw.jhnd);
     $('#p_djjgmc').val(hcrw.djjgmc);
-    
+    $('#p_nd').val(hcrw.nd);
+
     $('#p_hcjieguo').combobox("setValue", hcrw.hcjieguo);
 
     $('#btnSendHcgzs').linkbutton("enable");
