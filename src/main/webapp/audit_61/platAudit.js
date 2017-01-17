@@ -6,7 +6,7 @@ function doInitPlat() {
 		$.alert("首先需要加载数据");
 	} else {*/
 	var auditItem = $("#annualAuditItemGrid").datagrid("getSelected");
-	var param = {hcrwId: auditItem.hcrwId, hcsxId: auditItem.hcsxId};
+	var param = {"hcrwId": auditItem.hcrwId, "hcsxId": auditItem.hcsxId};
 	$.post("../audit/getCompareInfo", param,
 		function(response){
 			if(response.a == null ) {

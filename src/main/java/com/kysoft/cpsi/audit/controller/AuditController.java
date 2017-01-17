@@ -4,8 +4,6 @@ import com.google.common.collect.Maps;
 import com.kysoft.cpsi.audit.entity.MailVerifyException;
 import com.kysoft.cpsi.audit.service.AuditService;
 import com.kysoft.cpsi.task.service.HcsxjgService;
-
-import net.sf.husky.log.MongoLogger;
 import net.sf.husky.log.service.LogService;
 import net.sf.husky.web.controller.BaseController;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -90,7 +88,7 @@ public class AuditController extends BaseController {
         } catch (MailVerifyException e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "获得比对数据失败: " + e.getMessage());
+            result.put(MESSAGE, "获得比对数据异常");
         }
         return result;
     }

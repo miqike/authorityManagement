@@ -39,14 +39,14 @@
 			<columnOverride column="CJRS_GG"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZJYS_JY"  javaType="java.lang.Integer"	/>
 			<columnOverride column="ZJYS_GG"  javaType="java.lang.Integer"	/>
-			<columnOverride column="DJ_FRSFDY"  javaType="java.lang.Integer"	/>
+			<columnOverride column="DJ_FRSFDY"  javaType="java.lang.String"	/>
 			<columnOverride column="DJ_QTZW"  javaType="java.lang.Integer"	/>
 			<columnOverride column="DJ_DYZS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="DJ_ZCDYS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="DJ_WZRS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="DJ_FZDYS"  javaType="java.lang.Integer"	/>
 			<columnOverride column="DJ_JJFZS"  javaType="java.lang.Integer"	/>
-			<columnOverride column="DJ_SFJLZZ"  javaType="java.lang.Integer"	/>
+			<columnOverride column="DJ_SFJLZZ"  javaType="java.lang.String"	/>
 			<columnOverride column="SYZQYHJ"  javaType="java.lang.Float"/>
 			<columnOverride column="LRZE"  javaType="java.lang.Float"/>
 			<columnOverride column="ZYYWSR"  javaType="java.lang.Float"/>
@@ -57,7 +57,7 @@
 			<columnOverride column="YYZSR"  javaType="java.lang.Float"/>
 		</table>
 
-		<table tableName="T_NB_GQBG" domainObjectName="StockRightChange"
+		<!-- <table tableName="T_NB_GQBG" domainObjectName="StockRightChange"
 			   enableSelectByPrimaryKey="true"
 			   enableSelectByExample="false"
 			   enableUpdateByPrimaryKey="true"
@@ -159,7 +159,7 @@
 			   selectByPrimaryKeyQueryId="false"
 			   selectByExampleQueryId="false">
 			<columnOverride column="ND"  javaType="java.lang.Integer"	/>
-		</table>
+		</table> -->
 
     </context>
 </generatorConfiguration>
