@@ -171,5 +171,5 @@ where a.nbxh=b.nbxh and b.nd=a.nd
       and b.zch in(select hcdw_xydm from t_hcrw);
 --指定操作员可核查的经营异常企业
 select * from gov_nbcc_rc_qy a where DJJG IN ( SELECT ID FROM SYS_ORGANIZATION
-START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID='k06009') CONNECT BY PRIOR ID=PARENT_ID
-) and exists(select 1 from nnb_jbqk b where b.nbxh=a.nbxh)
+START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID='k06023') CONNECT BY PRIOR ID=PARENT_ID
+) and exists(select 1 from nnb_jbqk b where b.nbxh=a.nbxh) and jdjg is not null
