@@ -131,6 +131,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     @Override
     public void addHcclmx2(Hcclmx hcclmx) {
     	hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
+    	hcclmx.setUploadTime(new Date());
     	hcclmxMapper.insert2(hcclmx);
     	calcDocFur(hcclmx.getHcrwId());
     	 MongoLogger.info("task", "用户添加附加核查材料: " + hcclmx.getHcclId(), null, hcclmx.getHcrwId());
@@ -138,6 +139,7 @@ public class HcclmxServiceImpl implements HcclmxService {
     @Override
     public void addJsHcclmx2(Hcclmx hcclmx) {
         hcclmx.setId(UUID.randomUUID().toString().replace("-", ""));
+        hcclmx.setUploadTime(new Date());
         hcclmxMapper.insert2(hcclmx);
         calcJsDocFur(hcclmx.getHcrwId());
         MongoLogger.info("task", "用户添加附加核查材料: " + hcclmx.getHcclId(), null, hcclmx.getHcrwId());
