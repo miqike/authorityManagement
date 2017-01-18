@@ -199,8 +199,8 @@
 </div>
 
 <div id="mm" style="width:150px">
-	<div data-options="name:'xydm'">统一社会信用代码</div>
-	<div data-options="name:'qymc',selected:true">企业名称</div>
+	<div data-options="name:'xydm',selected:true">统一社会信用代码</div>
+	<div data-options="name:'qymc'">企业名称</div>
 </div>
 
 </body>
