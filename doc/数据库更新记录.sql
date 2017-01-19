@@ -1011,7 +1011,7 @@ comment on column GOV_NBCC_JH_QY.zch_old is '注册号';
 create or replace view gov_nbcc_rc_qy as
         select a.pripid NBXH,nvl(uniscid,regno) ZCH,regno zch_old,entname QYMC,lerep FDDBR,QYLXDL,regorg DJJG,(select content from bm_djjg c where c.code=b.regorg) djjg_mc,
                localadm GXDW,(select content from bm_gxdw c where c.code=b.localadm) gxdw_mc,estdate clrq,dom zs,null qyzzxs,
-                a.jdjg,(select content from bm_djjg c where c.code=a.jdjg) jdjg_mc,lrrq,
+                nvl(a.jdjg,b.regorg) jdjg,(select content from bm_djjg c where c.code=nvl(a.jdjg,b.regorg)) jdjg_mc,lrrq,
                 (select content from ztjg_bm_jyycsy c where c.code=a.lrsy and (b.qylxdl=c.qylxdl or c.qylxdl is null) and rownum<=1) lrsy,
                 null xcr,sysdate xcsj,to_char(sysdate,'yyyy')-1 nd,b.UNISCID xydm
         from GOV_EXCEPTIONREASON a,hz_qyhznr b
