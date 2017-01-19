@@ -173,3 +173,15 @@ where a.nbxh=b.nbxh and b.nd=a.nd
 select * from gov_nbcc_rc_qy a where DJJG IN ( SELECT ID FROM SYS_ORGANIZATION
 START WITH ID IN ( SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID='k06023') CONNECT BY PRIOR ID=PARENT_ID
 ) and exists(select 1 from nnb_jbqk b where b.nbxh=a.nbxh) and jdjg is not null
+--删除计划
+delete from T_CW where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_GZXX where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_HCCLMX where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_HCCL_FUR where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_HCRW_ND where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_HCSXJG where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_JS_HCSXJG where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_MAIL_VERIFY where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from T_WS where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
+delete from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%');
+delete from t_hcjh where jhmc like '%韩城%';

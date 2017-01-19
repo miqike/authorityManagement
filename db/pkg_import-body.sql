@@ -21,8 +21,10 @@ create or replace package body pkg_import is
     v_rlrq date;--认领日期
     v_rwzt number;--任务状态
     v_rlr varchar2(100);--认领人代码
+    v_rwid number;--任务编码
+    v_clnd number;--企业成立年度
     begin
-      pkg_log.INFO('pkg_import.prc_importRcRw','导入日常核查任务','导入日常核查任务'||p_parent_xh,p_hcjhId,v_log_xh);
+      pkg_log.INFO('pkg_import.prc_importRcRwAll','导入日常核查任务','导入日常核查任务'||p_parent_xh,p_hcjhId,v_log_xh);
       select zfry into v_zfryId from sys_user where user_id=p_userId;
       if(p_hcjhId is null) then
         v_hcjhId := sys_guid();
@@ -61,33 +63,48 @@ create or replace package body pkg_import is
                           LENGTH (p_zchList) - LENGTH (REPLACE (p_zchList, ',', ''))+1) loop
         v_step:=11;
         v_zch:=o.zch;
-        merge into t_hcrw
-        using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
-                     (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(1,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE1,--存储名称重复的情况
-                     (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(2,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE2,
-                     null RWZT,1 HCFL,a.jdjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
-                     pkg_hc.fun_get_xcr(1,xcr) ZFRY_NAME1,pkg_hc.fun_get_xcr(2,xcr) ZFRY_NAME2,
-                     a.jdjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
-                     GXDW QYBM,a.gxdw_mc QYMC,
-                     null RLRMC,v_YQWCSJ JHWCRQ, ND,v_jhmc JHMC,v_XDRQ JHXDRQ,v_nr nr,v_jhbh jhbh,clrq,zs,lrrq
-              from (select rownum XH,v_jhbh JHXH,NBXH,ZCH,QYMC,FDDBR,QYLXDL,DJJG,GXDW,
-                      xcr,XCSJ,0 WCBJ,ND,clrq,zs,lrrq,qyzzxs,jdjg,jdjg_mc,djjg_mc,gxdw_mc
-                    from gov_nbcc_rc_qy where zch=o.zch and rownum<=1 and jdjg is not null) a) i_hcrw
-        on(i_hcrw.hcjh_id=t_hcrw.hcjh_id and i_hcrw.hcdw_xydm=t_hcrw.hcdw_xydm)
-        WHEN MATCHED THEN
-        update set HCDW_NAME=i_hcrw.HCDW_NAME,
-          zfry_code1=i_hcrw.zfry_code1,
-          zfry_code2=i_hcrw.zfry_code2,
-          zfry_name1=i_hcrw.zfry_name1,
-          zfry_name2=i_hcrw.zfry_name2,
-          REQUIRED_FILES=v_requiredFiles
-        WHEN NOT MATCHED THEN
-        insert(ID,HCJH_ID,HCDW_XYDM,HCDW_NAME,ZFRY_CODE1,ZFRY_CODE2,RWZT,HCFL,HCJG,HCJIEGUO,JYZT,HCJGGSQK,RLR,RLRQ,SJWCRQ,ZFRY_NAME1,ZFRY_NAME2,
-               HCJGMC,DJJGMC,DJJG,ZTLX,ZZXS,QYBM,QYMC,RLRMC,JHWCRQ,ND,JHMC,JHXDRQ,NR,JHBH,required_files,clrq,zs,plan_type,jhnd,lrrq)
-        values(seq_hcrw.nextval,i_hcrw.HCJH_ID,i_hcrw.HCDW_XYDM,i_hcrw.HCDW_NAME,v_zfryId,null,v_RWZT,i_hcrw.HCFL,i_hcrw.HCJG,
-          i_hcrw.HCJIEGUO,i_hcrw.JYZT,i_hcrw.HCJGGSQK,v_rlr,v_rlrq,i_hcrw.SJWCRQ,p_zfryName,i_hcrw.ZFRY_NAME2,
-          i_hcrw.HCJGMC,i_hcrw.DJJGMC,i_hcrw.DJJG,i_hcrw.ZTLX,i_hcrw.ZZXS,i_hcrw.QYBM,i_hcrw.QYMC,v_userName,i_hcrw.JHWCRQ,/*i_hcrw.ND*/v_jhnd-1,i_hcrw.JHMC,
-          i_hcrw.JHXDRQ,i_hcrw.NR,i_hcrw.JHBH,v_requiredFiles,i_hcrw.clrq,i_hcrw.zs,v_plan_type,v_jhnd,i_hcrw.lrrq);
+        --获取企业成立年度 重庆和陕西可能会不一样
+        select extract(year from ESTDATE) into v_clnd from hz_qyhznr where PRIPID=(select NBXH from gov_nbcc_rc_qy where zch=o.zch and rownum<=1);
+        --经营异常计划，循环增加3个任务，任务年度是计划年度-1 -2 -3，如2017年计划，则任务年度为2016 2015 2014
+        --同时判断企业成立日期，成立年不核查，不增加任务
+        for p in(select v_jhnd-rownum rwnd from dual connect by level<=3) loop
+          if v_clnd<p.rwnd then
+            v_rwid:=seq_hcrw.nextval;
+            merge into t_hcrw
+            using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
+                         (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(1,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE1,--存储名称重复的情况
+                         (select user_name from xt_user b where b.full_name=pkg_hc.fun_get_xcr(2,xcr) and b.djjg=a.djjg and rownum<=1) ZFRY_CODE2,
+                         null RWZT,1 HCFL,a.jdjg HCJG,null HCJIEGUO,1 JYZT,null HCJGGSQK,null RLR,null RLRQ,null SJWCRQ,
+                         pkg_hc.fun_get_xcr(1,xcr) ZFRY_NAME1,pkg_hc.fun_get_xcr(2,xcr) ZFRY_NAME2,
+                         a.jdjg_mc HCJGMC,a.djjg_mc DJJGMC,DJJG,qylxdl ZTLX,qyzzxs ZZXS,
+                         GXDW QYBM,a.gxdw_mc QYMC,
+                         null RLRMC,v_YQWCSJ JHWCRQ, ND,v_jhmc JHMC,v_XDRQ JHXDRQ,v_nr nr,v_jhbh jhbh,clrq,zs,lrrq
+                  from (select rownum XH,v_jhbh JHXH,NBXH,ZCH,QYMC,FDDBR,QYLXDL,DJJG,GXDW,
+                          xcr,XCSJ,0 WCBJ,ND,clrq,zs,lrrq,qyzzxs,jdjg,jdjg_mc,djjg_mc,gxdw_mc
+                        from gov_nbcc_rc_qy where zch=o.zch and rownum<=1 and jdjg is not null) a) i_hcrw
+            on(i_hcrw.hcjh_id=t_hcrw.hcjh_id and i_hcrw.hcdw_xydm=t_hcrw.hcdw_xydm and t_hcrw.nd=p.rwnd)
+            WHEN MATCHED THEN
+            update set HCDW_NAME=i_hcrw.HCDW_NAME,
+              zfry_code1=i_hcrw.zfry_code1,
+              zfry_code2=i_hcrw.zfry_code2,
+              zfry_name1=i_hcrw.zfry_name1,
+              zfry_name2=i_hcrw.zfry_name2,
+              REQUIRED_FILES=v_requiredFiles
+            WHEN NOT MATCHED THEN
+            insert(ID,HCJH_ID,HCDW_XYDM,HCDW_NAME,ZFRY_CODE1,ZFRY_CODE2,RWZT,HCFL,HCJG,HCJIEGUO,JYZT,HCJGGSQK,RLR,RLRQ,SJWCRQ,ZFRY_NAME1,ZFRY_NAME2,
+                   HCJGMC,DJJGMC,DJJG,ZTLX,ZZXS,QYBM,QYMC,RLRMC,JHWCRQ,ND,JHMC,JHXDRQ,NR,JHBH,required_files,clrq,zs,plan_type,jhnd,lrrq)
+            values(v_rwid,i_hcrw.HCJH_ID,i_hcrw.HCDW_XYDM,i_hcrw.HCDW_NAME,v_zfryId,null,v_RWZT,i_hcrw.HCFL,i_hcrw.HCJG,
+              i_hcrw.HCJIEGUO,i_hcrw.JYZT,i_hcrw.HCJGGSQK,v_rlr,v_rlrq,i_hcrw.SJWCRQ,p_zfryName,i_hcrw.ZFRY_NAME2,
+              i_hcrw.HCJGMC,i_hcrw.DJJGMC,i_hcrw.DJJG,i_hcrw.ZTLX,i_hcrw.ZZXS,i_hcrw.QYBM,i_hcrw.QYMC,v_userName,i_hcrw.JHWCRQ,p.rwnd,i_hcrw.JHMC,
+              i_hcrw.JHXDRQ,i_hcrw.NR,i_hcrw.JHBH,v_requiredFiles,i_hcrw.clrq,i_hcrw.zs,v_plan_type,v_jhnd,i_hcrw.lrrq);
+            --插入核查任务-年度数据 默认是插入计划年度的前三年 如计划年度2015，则任务年度列表插入2015 20014 2013(现改成一个计划增加三个任务，所以此处只加一个年度)
+            MERGE INTO t_hcrw_nd
+            USING ( select hcdw_xydm,jhnd,nd,id from t_hcrw a where id=v_rwid) hcrw
+            ON (hcrw.id = t_hcrw_nd.hcrw_id and t_hcrw_nd.nd=p.rwnd)
+            WHEN NOT MATCHED THEN
+            insert(hcrw_id,nd) values(hcrw.id,p.rwnd);
+          end if;
+        end loop;
         --merge sczt data from hcrw
         v_step:=14;
         MERGE INTO t_sczt
@@ -158,6 +175,7 @@ create or replace package body pkg_import is
         v_step:=11;
         v_hcrwId:=o.hcrwId;
         DELETE FROM T_HCRW WHERE ID=o.hcrwId;
+        delete from t_hcrw_nd where hcrw_id=o.hcrwId;
       end loop;
 
       update t_hcjh a set hcrwsl=(select count(1) from t_hcrw b where b.hcjh_id=a.id),
@@ -279,6 +297,13 @@ create or replace package body pkg_import is
       WHEN NOT MATCHED THEN
       insert(XYDM,NAME,ZTLX,HYFL,ZZXS,JYZT,FR,LXDH,MAIL,DJJG,JYDZ,LLR,QYBM,QYMC,clrq,zs)
       values(hcrw.zch,hcrw.qymc,hcrw.qylxdl,null,null,1,hcrw.FDDBR ,null ,null,hcrw.djjg,null ,null ,hcrw.gxdw,hcrw.gxdwmc,hcrw.clrq,hcrw.zs);
+      p_step:=4;
+      --插入双随机计划的核查年度列表，每个任务应该只有一个年度
+      merge into t_hcrw_nd
+      using(select id,nd from t_hcrw where plan_type=1) i_hcrw
+      on(i_hcrw.id=t_hcrw_nd.hcrw_id and i_hcrw.nd=t_hcrw_nd.nd)
+      WHEN NOT MATCHED THEN
+      insert(hcrw_id,nd) values( i_hcrw.id,i_hcrw.nd);
     end prc_importByJhid;
   procedure prc_importDblink(p_hcjhId in varchar2) is
     v_hcjhId varchar2(100);
@@ -318,38 +343,40 @@ create or replace package body pkg_import is
       select a.HCDW_XYDM,b.GSJHBH,a.plan_type into v_xydm,v_gsjhxh,v_plan_type from t_hcrw a,t_hcjh b where a.ID=p_hcrwid and a.hcjh_id=b.id;
       --根据计划类型，从不同的任务接口表中取得企业相关数据
       if(v_plan_type=pkg_hc.CONS_HCJH_PLAN_TYPE_SSJ) then
-        select nbxh,nd,qymc,zch into v_nbxh,v_nd,v_qymc,v_zch from gov_nbcc_jh_qy where jhxh=v_gsjhxh and zch=v_xydm;
+        select nbxh,nd,qymc,zch into v_nbxh,v_nd,v_qymc,v_zch from gov_nbcc_jh_qy where jhxh=v_gsjhxh and (zch=v_xydm or xydm=v_xydm);
       elsif(v_plan_type=pkg_hc.CONS_HCJH_PLAN_TYPE_RC) then
         select nbxh, nd,qymc,zch into v_nbxh,v_nd,v_qymc,v_zch from gov_nbcc_rc_qy where zch=v_xydm and rownum<=1;
-        select a.nd-1 into v_nd from t_hcjh a,t_hcrw b where a.id=b.hcjh_id and b.id=p_HCRWID;--日常监管计划的任务年度直接取计划年度减1
+        select b.nd into v_nd from t_hcjh a,t_hcrw b where a.id=b.hcjh_id and b.id=p_HCRWID;
       else
         v_nbxh:=null;
         v_nd:=null;
       end if;
       --删除历史数据
       v_step:=0;
-      delete from t_nb where hcrw_id=p_HCRWID;
-      delete from t_nb_bd where hcrw_id=p_HCRWID and sjly=1;
-      delete from t_nb_dwdb where hcrw_id=p_HCRWID;
-      delete from t_nb_bd_dwdb where hcrw_id=p_HCRWID and sjly=1;
-      delete from t_nb_dwtz where hcrw_id=p_HCRWID;
-      delete from t_nb_bd_dwtz where hcrw_id=p_HCRWID and sjly=1;
-      delete from t_nb_gdcz where hcrw_id=p_HCRWID;
-      delete from t_nb_bd_gdcz where hcrw_id=p_HCRWID and sjly=1;
-      delete from t_nb_GQBG where hcrw_id=p_HCRWID;
-      delete from t_nb_bd_GQBG where hcrw_id=p_HCRWID and sjly=1;
-      delete from t_nb_wd where hcrw_id=p_HCRWID;
-      delete from t_nb_bd_wd where hcrw_id=p_HCRWID and sjly=1;
+      delete from t_nb where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_dwdb where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_dwdb where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_dwtz where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_dwtz where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_gdcz where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_gdcz where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_GQBG where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_GQBG where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_wd where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_wd where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
+      delete from t_nb_xzxk where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      delete from t_nb_bd_xzxk where (xydm,nd) in(select a.hcdw_xydm,b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid) and sjly=1;
       --年报基本情况
       v_step:=1;
       insert into t_nb(ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD,
-                       SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, HCRW_ID,LXDH,
+                       SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, LXDH,
                        gxbys_jy, gxbys_gg, tysbs_jy, tysbs_gg, cjrs_jy, cjrs_gg, zjys_jy, zjys_gg,
                        dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy,zcze,YZBM,yyzsr,dj_dzzjz,dj_frdbsfdzzsj)
-        select v_nd ND,v_zch XYDM,v_qymc QYMC, f.txdz TXDZ, f.dzyx MAIL, decode(trim(e.sfydwtz),'0','否','是') SFTZGMGQ,
+        select a.nd ND,v_zch XYDM,v_qymc QYMC, f.txdz TXDZ, f.dzyx MAIL, decode(trim(e.sfydwtz),'0','否','是') SFTZGMGQ,
                (select content from BM_TCKYQK g where g.code=a.yyzk) JYZT, decode(trim(e.sfywzwd),'0','否','是') SFYWZWD,
                case when (select count(1) from nnb_dwdb g where g.nd=v_nd and g.nbxh=v_nbxh)>0 then '是' else '否' end  SFYDWDBXX,
-               e.cyrs CYRS, c.syzqyhj SYZQYHJ, c.LRZE LRZE, c.zyywsr ZYYWSR, c.jlr JLR, c.nsze NSZE, c.fzze FZZE,p_hcrwid HCRW_ID,f.lxdh lxdh,
+               e.cyrs CYRS, c.syzqyhj SYZQYHJ, c.LRZE LRZE, c.zyywsr ZYYWSR, c.jlr JLR, c.nsze NSZE, c.fzze FZZE,f.lxdh lxdh,
                nvl(e.COLGRANUM,0) gxbys_jy, nvl(e.COLEMPLNUM,0)  gxbys_gg, nvl(e.RETSOLNUM,0) tysbs_jy, nvl(e.RETEMPLNUM,0) tysbs_gg, nvl(e.DISPERNUM,0) cjrs_jy,
                nvl(e.DISEMPLNUM,0) cjrs_gg, nvl(e.UNENUM,0) zjys_jy, nvl(e.UNEEMPLNUM,0) zjys_gg,
                decode(trim(d.RESPARMSIGN),'1','是','2','否','其他') dj_frsfdy, d.lxdh dj_lxdh, d.RESPARSECSIGN dj_qtzw, d.NUMPARM dj_dyzs, d.ZCDYS dj_zcdys,
@@ -357,21 +384,21 @@ create or replace package body pkg_import is
                case when d.parins=9 then '否' else '是' end dj_sfjlzz, d.wjlzzyy dj_wjlzzyy,
                c.zcze zcze,f.yzbm YZBM,c.QNYYSR yyzsr,d.dzzjz dj_dzzjz,d.frdbsfdzzsj dj_frdbsfdzzsj
         from nnb_jbqk a,nnb_zczk c,nnb_fgdj d,nnb_qtxx e,nnb_txxx f
-        where a.nbxh=v_nbxh and a.nd=v_nd
+        where a.nbxh=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid)
               and c.nbxh(+)=a.nbxh and c.nd(+)=a.nd
               and d.nbxh(+)=a.nbxh and d.nd(+)=a.nd
               and e.nbxh(+)=a.nbxh and e.nd(+)=a.nd
               and f.nbxh(+)=a.nbxh and f.nd(+)=a.nd;
       v_step:=11;
       insert into t_nb_bd(ND, XYDM, QYMC, TXDZ, MAIL, SFTZGMGQ, JYZT, SFYWZWD,
-                          SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE, HCRW_ID,LXDH,
+                          SFYDWDBXX, CYRS, SYZQYHJ, LRZE, ZYYWSR, JLR, NSZE, FZZE,LXDH,
                           gxbys_jy, gxbys_gg, tysbs_jy, tysbs_gg, cjrs_jy, cjrs_gg, zjys_jy, zjys_gg,
                           dj_frsfdy, dj_lxdh, dj_qtzw, dj_dyzs, dj_zcdys, dj_wzrs, dj_fzdys, dj_jjfzs, dj_sfjlzz, dj_wjlzzyy,zcze,YZBM,yyzsr,dj_dzzjz,dj_frdbsfdzzsj,sjly)
         select v_nd ND,v_zch XYDM,v_qymc QYMC, a.dom TXDZ, a.email MAIL,
                case when(select count(1) from hz_dwtz c where c.pripid=v_nbxh)>0 then '是' else '否' end SFTZGMGQ,
                '开业' JYZT, null SFYWZWD,
                null SFYDWDBXX,
-               a.empnum CYRS, null SYZQYHJ, null LRZE, null ZYYWSR, null JLR, null NSZE, null FZZE,p_hcrwid HCRW_ID,a.tel lxdh,
+               a.empnum CYRS, null SYZQYHJ, null LRZE, null ZYYWSR, null JLR, null NSZE, null FZZE,a.tel lxdh,
                0 gxbys_jy, 0  gxbys_gg, 0 tysbs_jy, 0 tysbs_gg, 0 cjrs_jy, 0 cjrs_gg, 0 zjys_jy, 0 zjys_gg,
                decode(trim(c.frdybz),'1','是','2','否','其他') dj_frsfdy, c.lxdh dj_lxdh, c.qtzw dj_qtzw, c.dyrs dj_dyzs, c.dyrs dj_zcdys, c.wzrs dj_wzrs, c.bnxzdyrs dj_fzdys,
                c.jjfzs dj_jjfzs, case when c.dzzjz=9 then '否' else '是' end dj_sfjlzz, c.wjlzzyy dj_wjlzzyy,
@@ -380,79 +407,79 @@ create or replace package body pkg_import is
         where a.pripid=v_nbxh and c.pripid(+)=a.pripid;
       --对外担保
       v_step:=2;
-      insert into t_nb_dwdb(id,ND, XYDM,ZQR, ZWR, ZZQZL, ZZQSE, LXZWQX, BZQJ, BZFS, BZDBFW, HCRW_ID)
+      insert into t_nb_dwdb(id,ND, XYDM,ZQR, ZWR, ZZQZL, ZZQSE, LXZWQX, BZQJ, BZFS, BZDBFW)
         select sys_guid() id, a.ND nd,v_zch XYDM,a.more ZQR,a.MORTGAGOR ZWR,
                case trim(a.PRICLASECKIND) when '1' then '合同' when '2' then '其他' else '无' end ZZQZL, a.PRICLASECAM ZZQSE,
                to_char(a.PEFPERFORM,'yyyy/mm/dd')||'----'||to_char(a.PEFPERTO,'yyyy/mm/dd') LXZWQX,
                case trim(a.GUARANPERIOD) when '1' then '期限' when '2' then '未约定' else '无' end BZQJ,
                case trim(a.GATYPE) when '1' then '一般保证' when '2' then '连带保证' when '3' then '未约定' else '无' end BZFS,
-               null BZDBFW, p_HCRWID HCRW_ID
+               null BZDBFW
         from nnb_dwdb a
-        where a.nbxh=v_nbxh and a.nd=v_nd;
-      insert into t_nb_bd_dwdb(id,ND, XYDM,ZQR,ZWR, ZZQZL, ZZQSE, LXZWQX, BZQJ, BZFS, BZDBFW, HCRW_ID,sjly)
+        where a.nbxh=v_nbxh and a.nd  in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      insert into t_nb_bd_dwdb(id,ND, XYDM,ZQR,ZWR, ZZQZL, ZZQSE, LXZWQX, BZQJ, BZFS, BZDBFW,sjly)
         select sys_guid() id, a.ND nd,v_zch XYDM,a.more ZQR,a.MORTGAGOR ZWR,PRICLASECKIND ZZQZL,a.PRICLASECAM ZZQSE,
                to_char(a.PEFPERFORM,'yyyy/mm/dd')||'----'||to_char(a.PEFPERTO,'yyyy/mm/dd') LXZWQX, GUARANPERIOD BZQJ, GATYPE BZFS,null BZDBFW,
-               p_HCRWID HCRW_ID,v_sjly sjly
+               v_sjly sjly
         from hz_dwdb a
-        where a.pripid=v_nbxh and a.nd=v_nd;
+        where a.pripid=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
       --对外投资
       v_step:=3;
-      insert into t_nb_dwtz (id,ND, XYDM, TZQYMC, HCRW_ID,tzqy_zch)
-        select sys_guid() id,a.ND, v_zch XYDM, a.entname TZQYMC, p_HCRWID HCRW_ID,a.REGNO tzqy_zch
+      insert into t_nb_dwtz (id,ND, XYDM, TZQYMC,tzqy_zch)
+        select sys_guid() id,a.ND, v_zch XYDM, a.entname TZQYMC,a.REGNO tzqy_zch
         from nnb_tz a
-        where a.nbxh=v_nbxh and a.nd=v_nd;
+        where a.nbxh=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
       v_step:=31;
-      insert into t_nb_bd_dwtz (id,ND, XYDM, TZQYMC, HCRW_ID,tzqy_zch,sjly)
-        select sys_guid() id,v_nd ND, v_zch XYDM, a.intentname TZQYMC, p_HCRWID HCRW_ID,a.REGNO tzqy_zch,v_sjly sjly
+      insert into t_nb_bd_dwtz (id,ND, XYDM, TZQYMC,tzqy_zch,sjly)
+        select sys_guid() id,v_nd ND, v_zch XYDM, a.intentname TZQYMC,a.REGNO tzqy_zch,v_sjly sjly
         from hz_dwtz a
         where a.pripid=v_nbxh;
       --股东出资
       v_step:=4;
-      insert into t_nb_gdcz (id,ND, XYDM, GD, RJCZE, RJCZDQSJ, RJCZFS, SJCZE, SJCZSJ, SJCZFS, HCRW_ID)
+      insert into t_nb_gdcz (id,ND, XYDM, GD, RJCZE, RJCZDQSJ, RJCZFS, SJCZE, SJCZSJ, SJCZFS)
         select sys_guid() id,e.nd nd,e.xydm xydm, e.name gd,
-               e.cze rjcze,e.czrq rjczrq,e.czfs rjczfs,f.cze sjcze,f.czrq sjczrq,f.czfs sjczfs,p_HCRWID hcrw_id
+               e.cze rjcze,e.czrq rjczrq,e.czfs rjczfs,f.cze sjcze,f.czrq sjczrq,f.czfs sjczfs
         from
           (select d.nbxh,d.nd,d.name,d.seq seq,
                                      (select content from BM_CZXS e where e.code=c.czfs) czfs,c.czrq,c.cze,v_zch xydm
            from nnb_fr d,nnb_frczqk c
            where d.nbxh=c.nbxh and d.seq=c.seq and d.nd=c.nd
-                 and c.nbxh=v_nbxh and c.nd=v_nd
+                 and c.nbxh=v_nbxh and c.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid)
                  and c.czlx='1') e,
           (select d.nbxh,d.nd,d.name,d.seq seq,
                                      (select content from BM_CZXS e where e.code=c.czfs) czfs,c.czrq,c.cze,v_zch xydm
            from nnb_fr d,nnb_frczqk c
            where d.nbxh=c.nbxh and d.seq=c.seq and d.nd=c.nd
-                 and c.nbxh=v_nbxh and c.nd=v_nd
+                 and c.nbxh=v_nbxh and c.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid)
                  and czlx='2') f
         where e.nbxh=f.nbxh(+) and e.nd=f.nd(+) and e.seq=f.seq(+);
       v_step:=41;
-      insert into t_nb_bd_gdcz (id,ND, XYDM, GD, RJCZE, RJCZDQSJ, RJCZFS, SJCZE, SJCZSJ, SJCZFS, HCRW_ID,sjly)
+      insert into t_nb_bd_gdcz (id,ND, XYDM, GD, RJCZE, RJCZDQSJ, RJCZFS, SJCZE, SJCZSJ, SJCZFS,sjly)
         select sys_guid() id,v_nd ND, v_zch XYDM, a.inv GD, a.subconam RJCZE, a.baldelper RJCZDQSJ,
                (select content from BM_CZXS e where e.code=a.conform) RJCZFS,a.acconam SJCZE,a.condate SJCZSJ,
-               (select content from BM_CZXS e where e.code=a.conform) SJCZFS, p_HCRWID HCRW_ID,v_sjly sjly
+               (select content from BM_CZXS e where e.code=a.conform) SJCZFS,v_sjly sjly
         from hz_qytzf a
         where a.pripid=v_nbxh
-              and substr(a.condate,1,4)<=v_nd;
+              and substr(a.condate,1,4)<= (select max(b.nd) from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
       --股权变更
       v_step:=5;
-      insert into t_nb_GQBG (id,ND, XYDM, GD, BGQ_GQBL, BGH_GQBL, BGRQ, HCRW_ID)
-        select sys_guid() id,a.ND, v_zch XYDM,a.INV GD, a.TRANSAMPR BGQ_GQBL, a.TRANSAMOR BGH_GQBL,a.ALTDATE BGRQ, p_HCRWID HCRW_ID
+      insert into t_nb_GQBG (id,ND, XYDM, GD, BGQ_GQBL, BGH_GQBL, BGRQ)
+        select sys_guid() id,a.ND, v_zch XYDM,a.INV GD, a.TRANSAMPR BGQ_GQBL, a.TRANSAMOR BGH_GQBL,a.ALTDATE BGRQ
         from NNB_GQBG a
-        where a.nbxh=v_nbxh and a.nd=v_nd;
-      insert into t_nb_bd_GQBG (id,ND, XYDM, GD, BGQ_GQBL, BGH_GQBL, BGRQ, HCRW_ID,sjly)
-        select sys_guid() id,v_nd ND, v_zch XYDM,a.INV GD, a.TRANSAMPR BGQ_GQBL, a.TRANSAMOR BGH_GQBL,a.ALTDATE BGRQ, p_HCRWID HCRW_ID,v_sjly sjly
+        where a.nbxh=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      insert into t_nb_bd_GQBG (id,ND, XYDM, GD, BGQ_GQBL, BGH_GQBL, BGRQ,sjly)
+        select sys_guid() id,v_nd ND, v_zch XYDM,a.INV GD, a.TRANSAMPR BGQ_GQBL, a.TRANSAMOR BGH_GQBL,a.ALTDATE BGRQ,v_sjly sjly
         from hz_gqbg a
-        where a.pripid=v_nbxh and a.nd=v_nd;
+        where a.pripid=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
       --网店
       v_step:=6;
-      insert into t_nb_wd (id,TYPE, NAME, WZ, ND, XYDM, HCRW_ID)
-        select sys_guid() id,(select content from BM_WZLX c where c.code=a.WEBTYPE) TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM, p_HCRWID HCRW_ID
+      insert into t_nb_wd (id,TYPE, NAME, WZ, ND, XYDM)
+        select sys_guid() id,(select content from BM_WZLX c where c.code=a.WEBTYPE) TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM
       from nnb_wzxx a
-      where a.nbxh=v_nbxh and a.nd=v_nd;
-      insert into t_nb_bd_wd (id,TYPE, NAME, WZ, ND, XYDM, HCRW_ID,sjly)
-        select sys_guid() id,a.WEBTYPE TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM, p_HCRWID HCRW_ID,v_sjly sjly
+      where a.nbxh=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
+      insert into t_nb_bd_wd (id,TYPE, NAME, WZ, ND, XYDM,sjly)
+        select sys_guid() id,a.WEBTYPE TYPE,a.WEBSITNAME NAME,a.DOMAIN WZ, a.ND,v_zch XYDM,v_sjly sjly
       from nnb_wzxx a
-      where a.nbxh=v_nbxh and a.nd=v_nd;
+      where a.nbxh=v_nbxh and a.nd in(select b.nd from t_hcrw a,t_hcrw_nd b where a.id=b.hcrw_id and a.id=p_hcrwid);
       --导入即时数据
       v_step:=7;
       pkg_import.prc_import_js_hc(p_hcrwid,pkg_hc.CONS_HCLX_JH);
@@ -678,78 +705,78 @@ create or replace package body pkg_import is
       end if;
       --删除历史数据
       v_step:=0.1;
-      delete from t_js_gdcz where id not in(select id from js_hz_gdcz) and hcrw_id=p_HCRWID;
-      delete from t_js_bd_gdcz where id not in(select id from js_gs_gdcz) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and hcrw_id=p_HCRWID;
-      delete from t_js_gqbg where id not in(select id from JS_HZ_GQBG) and hcrw_id=p_HCRWID;
-      delete from t_js_bd_gqbg where id not in(select id from JS_gs_GQBG) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and hcrw_id=p_HCRWID;
-      delete from t_js_xzcf where id not in(select id from JS_HZ_XZCF) and hcrw_id=p_HCRWID;
-      delete from t_js_bd_xzcf where id not in(select id from JS_gs_XZCF) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and hcrw_id=p_HCRWID;
-      delete from t_js_xzxk where id not in(select id from JS_HZ_XZXK) and hcrw_id=p_HCRWID;
-      delete from t_js_bd_xzxk where id not in(select id from JS_gs_XZXK) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and hcrw_id=p_HCRWID;
-      delete from t_js_zscq where id not in(select id from JS_HZ_ZSCQ) and hcrw_id=p_HCRWID;
-      delete from t_js_bd_zscq where id not in(select id from JS_gs_ZSCQ) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and hcrw_id=p_HCRWID;
+      delete from t_js_gdcz where id not in(select id from js_hz_gdcz) and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_bd_gdcz where id not in(select id from js_gs_gdcz) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_gqbg where id not in(select id from JS_HZ_GQBG) and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_bd_gqbg where id not in(select id from JS_gs_GQBG) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_xzcf where id not in(select id from JS_HZ_XZCF) and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_bd_xzcf where id not in(select id from JS_gs_XZCF) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_xzxk where id not in(select id from JS_HZ_XZXK) and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_bd_xzxk where id not in(select id from JS_gs_XZXK) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_zscq where id not in(select id from JS_HZ_ZSCQ) and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
+      delete from t_js_bd_zscq where id not in(select id from JS_gs_ZSCQ) and sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS and xydm= (select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid);
 
       --股东出资
       v_step:=1;
-      insert into t_js_gdcz(HCRW_ID,XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ,ID)
-        select p_HCRWID HCRW_ID,regno XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ,ID
+      insert into t_js_gdcz(XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ,ID)
+        select regno XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ,ID
         from js_hz_gdcz a
         where a.regno=v_xydm and id not in(select id from t_js_gdcz);
       v_step:=11;
-      insert into t_js_bd_gdcz(SJLY,HCRW_ID,ID,XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ)
-        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,p_HCRWID HCRW_ID,ID,regno XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ
+      insert into t_js_bd_gdcz(SJLY,ID,XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ)
+        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,ID,regno XYDM,GD,BGRQ,RJE,SJE,GSSJ,RJCZFS,RJCZE,RJCZRQ,SJCZFS,SJCZE,SJCZRQ
         from js_gs_gdcz a
         where a.regno=v_xydm and id not in(select id from t_js_bd_gdcz where sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS);
       --update js_hz_gdcz set read_flag=1 where read_flag=0;
       --update js_gs_gdcz set read_flag=1 where read_flag=0;
       --股权变更
       v_step:=2;
-      insert into t_js_gqbg(XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,HCRW_ID,ID)
-        select regno XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,p_HCRWID HCRW_ID,ID
+      insert into t_js_gqbg(XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID)
+        select regno XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID
         from JS_HZ_GQBG a
         where a.regno=v_xydm and id not in(select id from t_js_gqbg);
       v_step:=21;
-      insert into t_js_bd_gqbg(SJLY,HCRW_ID,XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID)
-        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,p_HCRWID HCRW_ID,regno XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID
+      insert into t_js_bd_gqbg(SJLY,XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID)
+        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,regno XYDM,GD,BGRQ,BGQBL,BGHBL,GSSJ,ID
         from JS_GS_GQBG a
         where a.regno=v_xydm and id not in(select id from t_js_bd_gqbg where sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS);
       --update JS_HZ_GQBG set read_flag=1 where read_flag=0;
       --update JS_GS_GQBG set read_flag=1 where read_flag=0;
       --行政处罚
       v_step:=3;
-      insert into t_js_xzcf(XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ,ID,HCRW_ID)
-        select regno XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ,ID,p_HCRWID HCRW_ID
+      insert into t_js_xzcf(XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ,ID)
+        select regno XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ,ID
         from JS_HZ_XZCF a
         where a.regno=v_xydm and id not in(select id from t_js_xzcf);
       v_step:=31;
-      insert into t_js_bd_xzcf(SJLY,ID,HCRW_ID,XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ)
-        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,ID,p_hcrwid HCRW_ID,regno XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ
+      insert into t_js_bd_xzcf(SJLY,ID,XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ)
+        select pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,ID,regno XYDM,XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ,GSSJ
         from JS_GS_XZCF a
         where a.regno=v_xydm and id not in(select id from t_js_bd_xzcf where sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS);
       --update JS_HZ_XZCF set read_flag=1 where read_flag=0;
       --update JS_GS_XZCF set read_flag=1 where read_flag=0;
       --行政许可
       v_step:=4;
-      insert into t_js_xzxk(XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ,HDRQ,HCRW_ID,ID)
-        select regno XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ,HDRQ,p_hcrwid HCRW_ID,ID
+      insert into t_js_xzxk(XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ,HDRQ,ID)
+        select regno XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ,HDRQ,ID
         from JS_HZ_XZXK a
         where a.regno=v_xydm and id not in(select id from t_js_xzxk);
       v_step:=41;
-      insert into t_js_bd_xzxk(HDRQ,ID,SJLY,HCRW_ID,XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ)
-        select HDRQ,ID,pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY, p_hcrwid HCRW_ID,regno XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ
+      insert into t_js_bd_xzxk(HDRQ,ID,SJLY,XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ)
+        select HDRQ,ID,pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,regno XYDM,XKWJBH,YXQ_KS,YXQ_JS,XKWJMC,XKJG,XKNR,ZT,GSSJ,XQ
         from JS_GS_XZXK a
         where a.regno=v_xydm and id not in(select id from t_js_bd_xzxk where sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS);
       --update JS_HZ_XZXK set read_flag=1 where read_flag=0;
       --update JS_GS_XZXK set read_flag=1 where read_flag=0;
       --知识产权
       v_step:=5;
-      insert into t_js_zscq(HCRW_ID,ID,XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK)
-        select p_hcrwid HCRW_ID,ID,regno XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK
+      insert into t_js_zscq(ID,XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK)
+        select ID,regno XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK
         from JS_HZ_zscq a
         where a.regno=v_xydm and id not in(select id from t_js_zscq);
       v_step:=51;
-      insert into t_js_bd_zscq(HCRW_ID,ID,SJLY,XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK)
-        select p_hcrwid HCRW_ID,ID,pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,regno XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK
+      insert into t_js_bd_zscq(ID,SJLY,XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK)
+        select ID,pkg_hc.CONS_HCSXJG_DBXXLY_JSGS SJLY,regno XYDM,CZRMC,ZL,QYMC,ZQRMC,ZQDJRQ,ZT,GSSJ,BHQK
         from JS_GS_zscq a
         where a.regno=v_xydm and id not in(select id from t_js_bd_zscq where sjly=pkg_hc.CONS_HCSXJG_DBXXLY_JSGS);
       --update JS_HZ_zscq set read_flag=1 where read_flag=0;
@@ -765,10 +792,8 @@ create or replace package body pkg_import is
   --循环GOV_NBCC_RC_QY表，根据规则，将企业自动加入到对应的核查计划中；需要将此过程放在自动任务中执行
   /*
     规则如下：
-    1、各单位增加三个日常监管的经营异常计划（2013，2014，2015）。计划编号：登记机关6位编码+13或14或15。计划名称：2013或2014或2015年经营异常+单位名称。检查单位是各个登记机关。
-    交换数据规则：按照gov_nbcc_rc_qy表中的hcjg关联t_hcjh表的检查机关，多条经营异常记录只取一条，数据分别放在13，14，15各自计划里。如果新增加的经营异常。和我们系统比对一下，新增加的，交换进去。
-    计划编号：登记机关(gov_nbcc_rc_qy.JDJG)6位编码+13或14或15
-    计划名称：2013或2014或2015年经营异常+单位名称(gov_nbcc_rc_qy.JDJG_MC)
+    1、各单位增加一个日常监管的经营异常计划，指定计划编号，每年新建核查计划时手动修改存储过程。检查单位是各个登记机关。
+    交换数据规则：按照gov_nbcc_rc_qy表中的hcjg关联t_hcjh表的检查机关，多条经营异常记录只取一条。
     核查人根据登记机关随机选取一个
   */
   procedure prc_rc_autohandle is
@@ -778,8 +803,9 @@ create or replace package body pkg_import is
       select distinct a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
       where a.jhbh =p_jhbh
             and b.jdjg=p_jdjg
+            and a.plan_type=2
             and b.lrsy like '%《企业信息公示暂行条例》%'
-            and not exists(select 1 from t_hcrw c where c.hcjh_id=a.id and c.hcdw_xydm=b.zch);
+            and not exists(select 1 from t_hcrw c where c.hcjh_id=a.id and c.hcdw_xydm=b.zch and (select count(1) from t_hcrw d where d.hcjh_id=a.id and d.hcdw_xydm=b.zch)=3);
     v_zfry varchar2(100);--执法人员代码
     v_zfry_name varchar2(100);--执法人员名称
     v_handle_cnt number;--一次处理的个数
@@ -787,7 +813,6 @@ create or replace package body pkg_import is
     v_zchs varchar2(4000);--注册号列表
     v_jhid varchar2(100);--核查计划主键代码
     v_log_xh number;--日志序号
-    v_xh_i number;
     v_step number;
     v_jhbh varchar2(100);--计算出来的计划编号
     begin
@@ -800,30 +825,28 @@ create or replace package body pkg_import is
           pkg_log.INFO('pkg_import.prc_rc_autohandle','导入日常核查任务','自动导入日常核查任务',o.djjg,v_log_xh);
           select user_id,name into v_zfry,v_zfry_name from sys_user where org_id=o.djjg and rownum<=1;
           v_step:=2;
-          for v_xh_i in 1..3 loop
-            v_jhbh:=o.djjg||(to_char(sysdate,'yy')-v_xh_i);--根据规则计算计划编号
-            select id into v_jhid from t_hcjh where jhbh=v_jhbh;--根据计算出来的计划编号查询对应的计划主键
-            for p in cur_djjg_rc_qy(o.djjg,v_jhbh) loop
-              v_handle_cnt:=v_handle_cnt+1;
-              v_handle_all:=v_handle_all+1;
-              v_step:=3;
-              v_zchs:=v_zchs||p.zch||',';
-              if(v_handle_cnt>=200) then
-                v_step:=4;
-                v_zchs:=substr(v_zchs,1,length(v_zchs)-1);
-                prc_importRcRwAll(v_jhid,v_zchs,v_zfry,v_zfry_name,1,v_log_xh);
-                v_step:=5;
-                v_handle_cnt:=0;
-                v_zchs:='';
-              end if;
-            end loop;
-            if(length(v_zchs)>1) then
+          v_jhbh:=o.djjg||'16';--根据规则计算计划编号
+          select id into v_jhid from t_hcjh where jhbh=v_jhbh;--根据计算出来的计划编号查询对应的计划主键
+          for p in cur_djjg_rc_qy(o.djjg,v_jhbh) loop
+            v_handle_cnt:=v_handle_cnt+1;
+            v_handle_all:=v_handle_all+1;
+            v_step:=3;
+            v_zchs:=v_zchs||p.zch||',';
+            if(v_handle_cnt>=200) then
+              v_step:=4;
               v_zchs:=substr(v_zchs,1,length(v_zchs)-1);
-              v_step:=6;
-              prc_importRcRw(v_jhid,v_zchs,v_zfry,v_zfry_name);
-              v_step:=7;
+              prc_importRcRwAll(v_jhid,v_zchs,v_zfry,v_zfry_name,1,v_log_xh);
+              v_step:=5;
+              v_handle_cnt:=0;
+              v_zchs:='';
             end if;
           end loop;
+          if(length(v_zchs)>1) then
+            v_zchs:=substr(v_zchs,1,length(v_zchs)-1);
+            v_step:=6;
+            prc_importRcRwAll(v_jhid,v_zchs,v_zfry,v_zfry_name,1,v_log_xh);
+            v_step:=7;
+          end if;
           v_step:=8;
           v_handle_all:=v_handle_all/3;
           pkg_log.UPDATELOG(v_log_xh,'成功，共处理'||v_handle_all||'个企业');
@@ -831,7 +854,7 @@ create or replace package body pkg_import is
           exception
           when others then
           rollback;
-          pkg_log.updatelog(v_log_xh,SQLCODE,v_step||'；运行失败'||'；'||SQLERRM);
+          pkg_log.updatelog(v_log_xh,SQLCODE,v_step||':计划编号-'||v_jhbh||'；运行失败'||'；'||SQLERRM);
         end;
       end loop;
       --陕西特有
@@ -841,4 +864,96 @@ create or replace package body pkg_import is
       commit;
       --陕西特有
     end prc_rc_autohandle;
+
+  --部分企业有统一信用代码，将此企业XYDM字段更新成统一信用代码
+  --此过程应该放到JOB中运行
+  procedure prc_job_updateXydmFromZch is
+    v_xydm varchar2(100);
+    v_log_xh number;--日志序号
+    v_step number;--运行的步骤，日志中使用
+    cursor qys is
+      select * from
+        (select distinct nbxh,zch_old zch,xydm from gov_nbcc_jh_qy union all select distinct nbxh,zch_old zch,xydm from gov_nbcc_rc_qy) a
+      where exists(select 1 from t_sczt b where b.xydm=a.zch)
+            and not exists(select 1 from t_sczt b where b.xydm=a.xydm)
+            and a.xydm is not null;
+    begin
+      v_step:=1;
+      pkg_log.INFO('pkg_import.prc_job_updateXydmFromZch','更新企业XYDM字段','部分企业有统一信用代码，将此企业XYDM字段更新成统一信用代码',null,v_log_xh);
+      for o in qys loop
+        v_xydm:=o.xydm;
+        v_step:=2;
+        update t_sczt set xydm=o.xydm where xydm=o.zch;
+        v_step:=3;
+        update T_GZXX set HCDW_XYDM=o.xydm where HCDW_XYDM=o.zch;
+        v_step:=4;
+        update T_HCCLMX set HCDW_XYDM=o.xydm where HCDW_XYDM=o.zch;
+        v_step:=5;
+        update T_HCCL_FUR set HCDW_XYDM=o.xydm where HCDW_XYDM=o.zch;
+        v_step:=6;
+        update T_HCRW set HCDW_XYDM=o.xydm where HCDW_XYDM=o.zch;
+        v_step:=7;
+        update T_TOKEN set xydm=o.xydm where xydm=o.zch;
+        v_step:=8;
+        update T_XGJL set xydm=o.xydm where xydm=o.zch;
+        v_step:=9;
+        update T_JS_BD_GDCZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=10;
+        update T_JS_BD_GQBG set xydm=o.xydm where xydm=o.zch;
+        v_step:=11;
+        update T_JS_BD_XZCF set xydm=o.xydm where xydm=o.zch;
+        v_step:=12;
+        update T_JS_BD_XZXK set xydm=o.xydm where xydm=o.zch;
+        v_step:=13;
+        update T_JS_BD_ZSCQ set xydm=o.xydm where xydm=o.zch;
+        v_step:=14;
+        update T_JS_GDCZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=15;
+        update T_JS_GQBG set xydm=o.xydm where xydm=o.zch;
+        v_step:=16;
+        update T_JS_HCRW set hcdw_xydm=o.xydm where hcdw_xydm=o.zch;
+        v_step:=17;
+        update T_JS_XZCF set xydm=o.xydm where xydm=o.zch;
+        v_step:=18;
+        update T_JS_XZXK set xydm=o.xydm where xydm=o.zch;
+        v_step:=19;
+        update T_JS_ZSCQ set xydm=o.xydm where xydm=o.zch;
+        v_step:=20;
+        update T_NB set xydm=o.xydm where xydm=o.zch;
+        v_step:=21;
+        update T_NB_BD set xydm=o.xydm where xydm=o.zch;
+        v_step:=22;
+        update T_NB_BD_DWDB set xydm=o.xydm where xydm=o.zch;
+        v_step:=23;
+        update T_NB_BD_DWTZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=24;
+        update T_NB_BD_GDCZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=25;
+        update T_NB_BD_GQBG set xydm=o.xydm where xydm=o.zch;
+        v_step:=26;
+        update T_NB_BD_WD set xydm=o.xydm where xydm=o.zch;
+        v_step:=27;
+        update T_NB_BD_XZXK set xydm=o.xydm where xydm=o.zch;
+        v_step:=28;
+        update T_NB_DWDB set xydm=o.xydm where xydm=o.zch;
+        v_step:=29;
+        update T_NB_DWTZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=30;
+        update T_NB_GDCZ set xydm=o.xydm where xydm=o.zch;
+        v_step:=31;
+        update T_NB_GQBG set xydm=o.xydm where xydm=o.zch;
+        v_step:=32;
+        update T_NB_WD set xydm=o.xydm where xydm=o.zch;
+        v_step:=33;
+        update T_NB_XZXK set xydm=o.xydm where xydm=o.zch;
+      end loop;
+      v_step:=9;
+      pkg_log.UPDATELOG(v_log_xh,'成功');
+      commit;
+      exception
+      when others then
+      rollback;
+      pkg_log.updatelog(v_log_xh,SQLCODE,v_step||'；运行失败，企业信用代码：'||v_xydm||'；'||SQLERRM);
+    end prc_job_updateXydmFromZch;
+
 end pkg_import;

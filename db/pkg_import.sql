@@ -17,4 +17,5 @@ create or replace package pkg_import is
   procedure prc_importJsRw;
   procedure prc_import_js_hc(p_HCRWID in varchar2,p_hclx in number);
   procedure prc_rc_autohandle;
+  procedure prc_job_updateXydmFromZch;
 end pkg_import;
