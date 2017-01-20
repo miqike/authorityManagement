@@ -181,7 +181,7 @@ function viewHcsxjg(){
         $("#m_jhnd").text(rw.jhnd);
         $("#m_planType").text(rw.planType == 1 ? "双随机": "日常监管");
         $("#m_jhbh").text(rw.jhbh);
-        $("#m_hcjgmc").text(rw.hcjgmc);
+        $("#m_jhmc").text(rw.jhmc);
         
         var options = $("#grid3").datagrid("options");
         options.url = '../common/query?mapper=hcsxjgMapper&queryName=queryForTask';

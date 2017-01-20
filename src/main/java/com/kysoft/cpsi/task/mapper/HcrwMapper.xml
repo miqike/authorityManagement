@@ -831,7 +831,7 @@
         select
         <include refid="Base_Column_List" />
         from T_HCRW where hcdw_xydm=#{hcdwXydm}
-        ORDER BY JHND DESC
+        ORDER BY JHND DESC,nd
     </select>
 
     <select id="queryForAuditor1" resultMap="BaseResultMap">

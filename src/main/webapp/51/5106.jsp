@@ -183,7 +183,6 @@
 
 </body>
 </html>
-<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
@@ -196,5 +195,7 @@
 <script type="text/javascript" src="../js/husky/husky.common.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
 <script type="text/javascript" src="../js/husky/husky.easyui.extend.1.3.6.js"></script>
+<script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
 <script type="text/javascript" src="../js/jquery.progressbar.min.js"></script>
+
 <script type="text/javascript" src="./5106.js"></script>

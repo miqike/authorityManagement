@@ -60,7 +60,7 @@ function loadMyTask(jhbh) {
 		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 
@@ -287,7 +287,7 @@ function quickSearch(value, name) {
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 //初始化

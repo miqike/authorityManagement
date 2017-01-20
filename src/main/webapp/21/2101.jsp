@@ -150,7 +150,7 @@
 		            <tr>
 		                <th data-options="field:'djjgMc',halign:'center',align:'left'" sortable="true" width="150">登记(移出)机关</th>
 		                <th data-options="field:'qymc',halign:'center',align:'left'" sortable="true" width="80" >管辖单位</th>
-		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">社会统一信用代码</th>
+		                <th data-options="field:'xydm',halign:'center',align:'center'" sortable="true" width="150">统一社会信用代码</th>
 		                <th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="180">企业(机构)名称</th>
 		                <th data-options="field:'ztlx',halign:'center',align:'center'" sortable="true" width="100" codeName="qylxdl"
 		                    formatter="formatCodeList">企业类型
@@ -190,7 +190,7 @@
      style="width: 880px; height: 390px; ">
     <table>
     	<tr>
-    		<td>社会统一信息代码</td><td><span id="p_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td>统一社会信用代码</td><td><span id="p_code" style="color:blue;margin:0px 5px;"></span></td>
     		<td>企业(机构)名称</td><td><span id="p_name" style="color:blue;margin:0px 5px;"></span></td>
     	</tr>
     </table> 
@@ -206,7 +206,7 @@
            style="height: 318px">
         <thead>
         <tr>
-            <th data-options="field:'nd'" halign="center" align="center" width="60">计划年度</th>
+            <th data-options="field:'nd'" halign="center" align="center" width="60">年报年度</th>
             <th data-options="field:'planType'" halign="center" align="left" width="70" codeName="planType" formatter="formatCodeList">计划类型</th>
             <th data-options="field:'jhbh'" halign="center" align="left" width="60" >计划编号</th>
             <th data-options="field:'jhmc'" halign="center" align="left" width="170" >计划名称</th>
@@ -230,7 +230,7 @@
      style="width: 850px; height: 500px;">
     <table>
     	<tr>
-    		<td style="text-align:right" >社会统一信息代码</td><td><span id="m_code" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right" >统一社会信用代码</td><td><span id="m_code" style="color:blue;margin:0px 5px;"></span></td>
     		<td style="text-align:right">企业(机构)名称</td><td><span id="m_name" style="color:blue;margin:0px 5px;"></span></td>
     	</tr>
     	<tr>
@@ -239,7 +239,7 @@
     	</tr>
     	<tr>
     		<td style="text-align:right">计划编号</td><td><span id="m_jhbh" style="color:blue;margin:0px 5px;"></span></td>
-    		<td style="text-align:right">计划名称</td><td><span id="m_hcjgmc" style="color:blue;margin:0px 5px;"></span></td>
+    		<td style="text-align:right">计划名称</td><td><span id="m_jhmc" style="color:blue;margin:0px 5px;"></span></td>
     		<td style="text-align:right"><a href="#" id="btnCloseHcsxjg" class="easyui-linkbutton" iconCls="icon-back" plain="true">返回</a></td>
     	</tr>
     </table>
@@ -256,12 +256,11 @@
         <tr>
 			<th data-options="field:'name',halign:'center',align:'left'" sortable="true" width="150">检查事项</th>
 			<th data-options="field:'hcfs',halign:'center',align:'center'" sortable="true" width="70" codeName="hcfs" formatter="formatCodeList">检查方式</th>
-			<th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly"
-			    formatter="formatCodeList">比对信息来源</th>
+			<th data-options="field:'dbxxly',halign:'center',align:'center'" sortable="true" width="90" codeName="sjly" formatter="formatCodeList">比对信息来源</th>
 			<th data-options="field:'qygsnr',halign:'center',align:'left'" sortable="true" width="180">公示内容</th>
 			<th data-options="field:'bznr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerRegist">登记/备案内容</th>
 			<th data-options="field:'sjnr',halign:'center',align:'left'" sortable="true" width="180" formatter="formatCompareCol" styler="stylerActual">实际内容</th>
-			<th data-options="field:'hcjieguo',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
+			<th data-options="field:'hcjg',halign:'center',align:'center'" sortable="true" width="60" codeName="hcjg" formatter="formatCodeList" styler="stylerHcjg">比对结果</th>
 			<th data-options="field:'sm',halign:'center',align:'center'" sortable="true" width="150" >问题描述</th>
 
         </tr>

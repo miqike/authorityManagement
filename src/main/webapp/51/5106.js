@@ -7,7 +7,7 @@ function quickSearch(value, name) {
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 
@@ -103,7 +103,7 @@ function loadMyTask(jhbh) {
 		collapsible:true,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 

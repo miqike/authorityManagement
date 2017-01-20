@@ -8,7 +8,7 @@ function quickSearch(value, name) {
 		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 
@@ -84,7 +84,7 @@ function loadMyTask(jhbh) {
 		onLoadSuccess:grid2LoadSucessHandler,
 		onClickRow:myTaskGridClickHandler,
 		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: false
+		pageSize: 100, pagination: true
 	});
 }
 

@@ -185,3 +185,12 @@ delete from T_MAIL_VERIFY where hcrw_id in(select id from t_hcrw where hcjh_id i
 delete from T_WS where hcrw_id in(select id from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%'));
 delete from t_hcrw where hcjh_id in(select id from t_hcjh where jhmc like '%韩城%');
 delete from t_hcjh where jhmc like '%韩城%';
+--根据计划插入丢失的核查事项
+insert into t_hcsxjg(HCSX_ID,HCRW_ID,NAME,HCJG,HCFS,QYGSNR,BZNR,HCZT,SM,PAGE,HCLX,SJNR,DBXXLY)
+  select a.id hcsx_id,b.id hcrw_id,a.name,null hcjg,a.hcff,null qygsnr,null bznr,1 hczt, null sm,a.page,a.hclx,null sjnr,a.dbxxly
+  from
+    (select hcsx_id,b.id from t_hcjh_hcsx a,t_hcrw b where a.hcjh_id='a2c44a3442ab4b17bdc0e7aa6f97e11b' and b.hcjh_id='a2c44a3442ab4b17bdc0e7aa6f97e11b'
+     minus
+     select hcsx_id,hcrw_id from t_hcsxjg where hcrw_id in(select id from t_hcrw where hcjh_id='a2c44a3442ab4b17bdc0e7aa6f97e11b')) b,
+    t_hcsx a
+  where a.id=b.hcsx_id

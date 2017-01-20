@@ -168,7 +168,7 @@ public class HcrwController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
             result.put(STATUS, FAIL);
-            result.put(MESSAGE, "检查任务在线数据加载失败！"+e.getMessage());
+            result.put(MESSAGE, "检查任务接口数据不存在！");
         }
         return result;
     }

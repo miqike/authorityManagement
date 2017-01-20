@@ -164,6 +164,7 @@
             <tr>
                 <!-- <th data-options="field:'id'" halign="center" align="left" width="30">序号</th> -->
                 <th data-options="field:'hcjgmc'" halign="center" align="left" width="150">检查机关</th>
+				<th data-options="field:'nd'" halign="center" align="center" width="80">年报年度</th>
                 <th data-options="field:'hcdwName'" halign="center" align="left" width="180">企业名称</th>
                 <th data-options="field:'hcdwXydm'" halign="center" align="center" width="140">统一社会信用代码</th>
 				<th data-options="field:'sjwcrq'" halign="center" align="left" width="70" formatter="formatDate">检查时间</th>

@@ -17,7 +17,7 @@
 	<tr>
 		<td height="35px" align="center" colspan="2">序号</td>
 		<td align="center" colspan="2">设立企业名称</td>
-		<td align="center" colspan="2">设立企业统一社会信息代码</td>
+		<td align="center" colspan="2">设立统一社会信用代码</td>
 	</tr>
 
 	<tr id="1">
