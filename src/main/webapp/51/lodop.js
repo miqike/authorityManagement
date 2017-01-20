@@ -574,6 +574,11 @@ function printQiYeNianBaoGongShiXinXiHeChaJieGuoBaoGao(gridId){
                 LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
                 LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
                 LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+                LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left + 150), toMilli(columnWidthFull), toMilli(rowHeight), "年报年度：" + qy.nd);
+                LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);
+                LODOP.SET_PRINT_STYLEA(0, "FontName", "宋体");
+                LODOP.SET_PRINT_STYLEA(0, "FontSize", 10);
+
                 top = top + 5;
                 LODOP.ADD_PRINT_TEXTA("0", toMilli(top), toMilli(left), toMilli(columnWidthFull), toMilli(rowHeight), "统一社会信用代码：" + qy.hcdwXydm);
                 LODOP.SET_PRINT_STYLEA(0, "Alignment", 1);

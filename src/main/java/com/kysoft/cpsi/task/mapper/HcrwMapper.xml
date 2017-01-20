@@ -914,7 +914,7 @@
         <if test="order != null">
             ${sort} ${order},
         </if>
-      plan_type desc,jhbh desc,hcdw_xydm
+      plan_type desc,jhbh desc,hcdw_xydm,nd
     </select>
 
 	<select id="queryForAuditorM" resultType="java.util.Map">
