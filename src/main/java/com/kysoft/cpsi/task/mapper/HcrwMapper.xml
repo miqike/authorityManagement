@@ -918,7 +918,7 @@
     </select>
 
 	<select id="queryForAuditorM" resultType="java.util.Map">
-        SELECT m.*, n.FR,n.ZZXS, n.LLR, n.LXDH, n.HYFL FROM (
+        SELECT m.*, n.FR,n.LLR, n.LXDH, n.HYFL FROM (
         select
         <include refid="Base_Column_List" />,
         (select a.mongo_id from t_hcclmx a,t_hccl b,t_hcjh_hcsx d where a.hccl_id=b.id and a.hcsx_id=d.hcsx_id and c.hcjh_id=d.hcjh_id and a.hcrw_id=c.id and b.dxn_type=1) mongoid_1,
