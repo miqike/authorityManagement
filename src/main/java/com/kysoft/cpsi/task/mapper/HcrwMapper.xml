@@ -856,7 +856,7 @@
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
         <if test="hcdwXydm!=null">
-            AND HCDW_XYDM = #{hcdwXydm}
+            AND HCDW_XYDM like concat('%', #{hcdwXydm})
         </if>
         <if test="hcdwName!=null">
             AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
@@ -898,7 +898,7 @@
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
         <if test="hcdwXydm!=null">
-            AND HCDW_XYDM = #{hcdwXydm}
+            AND HCDW_XYDM like concat('%', #{hcdwXydm})
         </if>
         <if test="hcdwName!=null">
             AND HCDW_NAME LIKE concat(concat('%', #{hcdwName}), '%')
@@ -939,7 +939,7 @@
             AND JHMC LIKE concat(concat('%', #{jhmc}), '%')
         </if>
         <if test="xydm">
-            AND HCDW_XYDM = #{xydm}
+            AND HCDW_XYDM like concat('%', #{xydm})
         </if>
         <if test="qymc!=null">
             AND HCDW_NAME LIKE concat(concat('%', #{qymc}), '%')

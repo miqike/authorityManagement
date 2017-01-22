@@ -155,8 +155,8 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setSyzqyhj(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
 
             //计算利润总额
-            Float lrze=parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3)))
-                    -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(9).getCell(3)))
+            Float lrze=parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(6).getCell(3)))
+                    -parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(9).getCell(3)))
                     -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(12).getCell(3)))
                     -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(13).getCell(3)))
                     -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(14).getCell(3)))
@@ -172,7 +172,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             Float jlr=lrze-parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(26).getCell(3)));
             annualReport.setJlr(parseFloat(decimalFormat.format(jlr / 10000)));
 
-            annualReport.setYyzsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
+            annualReport.setYyzsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
             annualReport.setZyywsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(7).getCell(3))) / 10000)));
             annualReport.setNsze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetZCB.getRow(9).getCell(5))) )));
             annualReport.setFzze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(35).getCell(10))) / 10000)));
