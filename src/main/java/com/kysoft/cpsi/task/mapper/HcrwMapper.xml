@@ -953,6 +953,9 @@
       <if test="docReadyFlagNo0!=null">
         AND (DOC_READY_FLAG != 0)
       </if>
+      <if test="excludeFinished!=null">
+        AND rwzt!=5
+      </if>
          ) m LEFT JOIN
 		 t_sczt n ON m.hcdw_xydm = n.xydm
         ORDER BY
