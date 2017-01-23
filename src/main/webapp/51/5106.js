@@ -1,14 +1,19 @@
 window.excludeSaved = false;
 
 function quickSearch(value, name) {
-	var row = $('#grid1').datagrid('getSelected');
-	$("#grid2").datagrid({
-		url:"../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + row.jhbh + "&" + name + "=" + value,
-		collapsible:true,
-		onClickRow:myTaskGridClickHandler,
-		singleSelect:true,ctrlSelect:false,method:'get',
-		pageSize: 100, pagination: true
-	});
+    console.log(value);
+	if(value!=null && value!="") {
+        var row = $('#grid1').datagrid('getSelected');
+        $("#grid2").datagrid({
+            url: "../common/query?mapper=hcrwMapper&queryName=queryForAuditorM&hcjhId=" + row.jhbh + "&" + name + "=" + value,
+            collapsible: true,
+            onClickRow: myTaskGridClickHandler,
+            singleSelect: true, ctrlSelect: false, method: 'get',
+            pageSize: 100, pagination: true
+        });
+    }else{
+        grid1ClickHandler();
+	}
 }
 
 function formatZfry(val, row) {
