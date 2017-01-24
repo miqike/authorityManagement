@@ -143,7 +143,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
     }
     //年报基本信息
     private void nianbao(Hcrw hcrw, Sheet sheetZCFZB, Sheet sheetZCB, Sheet sheetLRB,Integer nd){
-
+        String errorMsg="";
         try {
             DecimalFormat decimalFormat = new DecimalFormat("#.00");
             //年报数据
@@ -151,10 +151,11 @@ public class SelfCheckServiceImpl implements SelfCheckService {
             annualReport.setNd(nd);
             annualReport.setXydm(hcrw.getHcdwXydm());
             annualReport.setQymc(hcrw.getHcdwName());
-
+            errorMsg="所有者权益合计";
             annualReport.setSyzqyhj(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(47).getCell(10))) / 10000)));
 
             //计算利润总额
+            errorMsg="利润总额";
             Float lrze=parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(6).getCell(3)))
                     -parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(9).getCell(3)))
                     -parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(12).getCell(3)))
@@ -169,32 +170,54 @@ public class SelfCheckServiceImpl implements SelfCheckService {
                     ;
             annualReport.setLrze(parseFloat(decimalFormat.format(lrze / 10000)));
             //计算净利润
+            errorMsg="净利润";
             Float jlr=lrze-parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(26).getCell(3)));
             annualReport.setJlr(parseFloat(decimalFormat.format(jlr / 10000)));
 
+            errorMsg="营业总收入";
             annualReport.setYyzsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetLRB.getRow(6).getCell(3))) / 10000)));
+            errorMsg="主营业务收入";
             annualReport.setZyywsr(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetLRB.getRow(7).getCell(3))) / 10000)));
+            errorMsg="纳税总额";
             annualReport.setNsze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getStringCellValue(sheetZCB.getRow(9).getCell(5))) )));
+            errorMsg="负债总额";
             annualReport.setFzze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(35).getCell(10))) / 10000)));
+            errorMsg="资产总额";
             annualReport.setZcze(parseFloat(decimalFormat.format(parseFloat(POIUtils.getCellFormatValue(sheetZCFZB.getRow(48).getCell(5))) / 10000)));
 
+            errorMsg="通信地址";
             annualReport.setTxdz(POIUtils.getStringCellValue(sheetZCB.getRow(6).getCell(3)));
+            errorMsg="邮政编码";
             annualReport.setYzbm(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(5)));
+            errorMsg="联系电话";
             annualReport.setLxdh(POIUtils.getStringCellValue(sheetZCB.getRow(5).getCell(5)));
+            errorMsg="电子邮箱";
             annualReport.setMail(POIUtils.getStringCellValue(sheetZCB.getRow(6).getCell(5)));
 
+            errorMsg="从业人数";
             annualReport.setCyrs(parseInt(POIUtils.getStringCellValue(sheetZCB.getRow(7).getCell(5))));
+            errorMsg="高校毕业生雇工";
             annualReport.setGxbysGg(0);
+            errorMsg="高校毕业生经营";
             annualReport.setGxbysJy(0);
+            errorMsg="退役士兵雇工";
             annualReport.setTysbsGg(0);
+            errorMsg="退役士兵经营";
             annualReport.setTysbsJy(0);
+            errorMsg="残疾人数雇工";
             annualReport.setCjrsGg(0);
+            errorMsg="残疾人数经营";
             annualReport.setCjrsJy(0);
+            errorMsg="再就业人数雇工";
             annualReport.setZjysGg(0);
+            errorMsg="再就业人数经营";
             annualReport.setZjysJy(0);
 
+            errorMsg="经营状态";
             annualReport.setJyzt(POIUtils.getStringCellValue(sheetZCB.getRow(8).getCell(3)));
+            errorMsg="是否投资购买股权";
             annualReport.setSftzgmgq(POIUtils.getStringCellValue(sheetZCB.getRow(13).getCell(4)));
+            errorMsg="是否有对外担保信息";
             annualReport.setSfydwdbxx(POIUtils.getStringCellValue(sheetZCB.getRow(14).getCell(4)));
             //删除老数据
             annualReportMapper.deleteByTaskIdNd2(hcrw.getId(),nd);
@@ -203,7 +226,7 @@ public class SelfCheckServiceImpl implements SelfCheckService {
         }catch(Exception e){
             e.printStackTrace();
             MongoLogger.warn("企业自查表数据上传 年报基本信息 出错", ExceptionUtils.getStackTrace(e),hcrw.getId());
-            throw new RuntimeException("[企业公示信息年报基本信息]数据导入处理出错;");
+            throw new RuntimeException("[企业公示信息年报基本信息 "+errorMsg+"]数据导入处理出错;");
         }
     }
     //年报-股东出资
