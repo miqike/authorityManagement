@@ -1,25 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title>经营异常企业查询</title>
-    <link href="../css/content.css" rel="stylesheet"/>
-    <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
-    <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../js/jeasyui-extensions/jeasyui.extensions.css" type="text/css">
-
-    <script type="text/javascript" src="../js/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.3.6/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-easyui-1.3.6/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions-release/jquery.jdirk.min.js"></script>
-    <script type="text/javascript" src="../js/jeasyui-extensions-release/jeasyui.extensions.all.min.js"></script>
-
-    <script type="text/javascript" src="../js/formatter.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.common.depreciated.js"></script>
-    <script type="text/javascript" src="../js/husky/husky.easyui.codeList.js"></script>
-    <script type="text/javascript" src="../js/underscore-min-1.8.3.js"></script>
-    <script type="text/javascript" src="./huskyCommonQuery.js" ></script>
     <script>
         //表配置，需要给出表名和显示的列表
         var tableConfig = {tableName:"GOV_EXCEPTIONREASON",columns:[[
@@ -50,17 +29,14 @@
             doInitGrid();
         }
         function reset(){
-            huskyCommonQueryWheres= new Array();
-            doInitGrid();
+            $("#panel").panel('refresh','GOV_EXCEPTIONREASON.jsp');
         }
         $(function() {
              $("#btnSearch").click(search);
              $("#btnReset").click(reset);
         });
     </script>
-</head>
-<body style="padding:5px;">
-<div id="panel" class="easyui-panel" title="">
+<div id="panel" class="easyui-panel" title="" >
     <%--查询条件--%>
     <div style="padding: 5px 10px 0px 10px">
         <p style="margin-top: 0px; margin-bottom: 5px;">
@@ -74,5 +50,3 @@
 
     <table id="dg" class="easyui-datagrid" >  </table>
 </div>
-</body>
-</html>
