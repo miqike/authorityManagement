@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>经营异常企业查询</title>
+    <title>接口表数据查询</title>
     <link href="../css/content.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/${theme}/easyui.css" rel="stylesheet"/>
     <link href="../css/jquery-easyui-theme/icon.css" rel="stylesheet"/>
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="./huskyCommonQuery.js" ></script>
 </head>
 <body id="cc" class="easyui-layout"  align="center" data-options="fit:true">
-<div data-options="region:'north',split:true" style="height:100px;" align="center"><font size="50px;">接口查询</font></div>
-<div data-options="region:'west',title:'West',split:true" style="width:250px;"><div id= "tt" class="easyui-tree" data-options="lines:true,data:[{
+<div data-options="region:'north',split:true" style="height:100px;" align="center"><font size="50px;">接口数据查询</font></div>
+<div data-options="region:'west',title:'接口表名',split:true" style="width:250px;"><div id= "tt" class="easyui-tree" data-options="lines:true,data:[{
 			id: 'interfaceQuery',
 			text: '接口查询',
 			children: [{id:'GOV_EXCEPTIONREASON',text: '经营异常企业名录'},{id:'GOV_NBCC_JH',text: '年报核查计划信息'},
@@ -44,7 +44,7 @@
 			           {id:'NNB_TXXX',text: '年报_企业通信信息'},{id:'NNB_TZ',text: '年报_企业投资信息'},
 			           {id:'NNB_WZXX',text: '年报_网址信息'},{id:'NNB_ZCZK',text: '年报_企业资产状况'} ]
 		}]"/></div></div>
-<div data-options="region:'center',title:'Center',split:true" style="padding: 2px;overflow: hidden;"  data-options="collapsible:true,fit:true,content:'lr.html'">
+<div data-options="region:'center',title:'查询',split:true" style="padding: 2px;overflow: hidden;"  data-options="collapsible:true,fit:true,content:'lr.html'">
     <div id="main"></div>
 </div>
 
