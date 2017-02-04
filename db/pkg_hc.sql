@@ -30,4 +30,6 @@ create or replace package pkg_hc is
 
   procedure prc_bidui_js_hc(p_HCRWID in varchar2);
   procedure prc_js_getHcsxjg(p_HCRWID in varchar2,p_out out clob);
+
+  function func_convertToDate(dateStr in varchar2) return date;
 end pkg_hc;

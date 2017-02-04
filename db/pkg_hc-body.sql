@@ -29,6 +29,31 @@ create or replace package body pkg_hc is
       where rn=xh;
       return(FunctionResult);
     end fun_get_xcr;
+  --转换字符串成日期
+  function func_convertToDate(dateStr in varchar2) return date is
+    FunctionResult date;
+    v_year number;
+    v_month number;
+    v_day number;
+    v_dateStrNew varchar2(100);
+    begin
+      v_dateStrNew:=dateStr;
+      v_year:=substr(v_dateStrNew,1,instr(v_dateStrNew,'-')-1);
+
+      v_dateStrNew:=substr(v_dateStrNew,instr(v_dateStrNew,'-')+1,length(v_dateStrNew));
+      v_month:=substr(v_dateStrNew,1,instr(v_dateStrNew,'-')-1);
+      v_month:=100+v_month;
+
+      v_dateStrNew:=substr(v_dateStrNew,instr(v_dateStrNew,'-')+1,length(v_dateStrNew));
+      v_day:=v_dateStrNew;
+      v_day:=100+v_day;
+
+      FunctionResult:=to_date(v_year||'-'||substr(to_char(v_month),2)||'-'||substr(to_char(v_day),2),'yyyy-mm-dd');
+      return FunctionResult;
+      exception
+      when others then
+      return null;
+    end func_convertToDate;
   --将组织机构代码后面连续的两个零去掉
   FUNCTION FUN_CAL_ORG_ID_00(P_ID IN VARCHAR2) RETURN VARCHAR2 IS
     V_LAST VARCHAR2(10);
@@ -76,7 +101,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -135,7 +160,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -194,7 +219,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -253,7 +278,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -312,7 +337,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -371,7 +396,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -446,7 +471,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -505,7 +530,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -576,7 +601,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -635,7 +660,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -694,7 +719,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -753,7 +778,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -812,7 +837,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -871,7 +896,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -930,7 +955,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -989,7 +1014,7 @@ create or replace package body pkg_hc is
     v_cnt_nb number;
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --取得公示系统数据
         select count(1) into v_cnt_nb from t_nb where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd;
         if(v_cnt_nb=0) then
@@ -1045,7 +1070,7 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
@@ -1109,7 +1134,7 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
@@ -1173,29 +1198,29 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_gs
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_gs
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
           );
         else
           select count(1) into v_cnt_gs
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         --再找出比对表中数据是否在公示表中都存在
@@ -1203,23 +1228,23 @@ create or replace package body pkg_hc is
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_bd
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_bd
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         else
           select count(1) into v_cnt_bd
           from(
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_bd_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select gd,bgq_gqbl,bgh_gqbl,bgrq from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select gd,bgq_gqbl,bgh_gqbl,func_convertToDate(bgrq) from T_NB_GQBG where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         if(v_cnt_gs=0 and v_cnt_bd=0) and v_hcjg=CONS_HCSXJG_TG then--正确匹配
@@ -1237,29 +1262,29 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_gs
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_gs
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
           );
         else
           select count(1) into v_cnt_gs
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         --再找出比对表中数据是否在公示表中都存在
@@ -1267,23 +1292,23 @@ create or replace package body pkg_hc is
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_bd
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_bd
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         else
           select count(1) into v_cnt_bd
           from(
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_bd_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select ZQR,ZWR,ZZQZL,ZZQSE,LXZWQX,BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select ZQR,ZWR,ZZQZL,ZZQSE,func_convertToDate(LXZWQX),BZQJ,BZFS,BZDBFW from T_NB_DWDB where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         if(v_cnt_gs=0 and v_cnt_bd=0) and v_hcjg=CONS_HCSXJG_TG then--正确匹配
@@ -1301,7 +1326,7 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
@@ -1365,29 +1390,29 @@ create or replace package body pkg_hc is
     v_cnt_bd number;--比对表数据个数
     begin
       v_hcjg:=CONS_HCSXJG_TG;
-      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId and nd>(select nvl(extract(year from clrq),0) from t_sczt where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid)) order by nd) loop
+      for o in(select nd from t_hcrw_nd where hcrw_id=p_hcrwId order by nd) loop
         --首先找出公示表中数据是否在比对表中都存在
         case p_DBXXLY
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_gs
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_gs
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
           );
         else
           select count(1) into v_cnt_gs
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         --再找出比对表中数据是否在公示表中都存在
@@ -1395,23 +1420,23 @@ create or replace package body pkg_hc is
           when CONS_HCSXJG_DBXXLY_NBDJ then
           select count(1) into v_cnt_bd
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_DJ
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
           when CONS_HCSXJG_DBXXLY_NBSJ then
           select count(1) into v_cnt_bd
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd and sjly=CONS_BD_SJLY_SJ
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         else
           select count(1) into v_cnt_bd
           from(
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_bd_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
             minus
-            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,SJCZSJ,SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
+            select GD/*,RJCZE,RJCZDQSJ,RJCZFS*/,SJCZE,func_convertToDate(SJCZSJ),SJCZFS from T_NB_GDCZ where xydm=(select hcdw_xydm from t_hcrw where id=p_hcrwid) and nd=o.nd
           );
         end case;
         if(v_cnt_gs=0 and v_cnt_bd=0) and v_hcjg=CONS_HCSXJG_TG then--正确匹配
@@ -1616,23 +1641,23 @@ create or replace package body pkg_hc is
         when CONS_HCSXJG_DBXXLY_jsgs then
         select count(1) into v_cnt_gs
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsgs
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsgs
         );
         when CONS_HCSXJG_DBXXLY_jsSJ then
         select count(1) into v_cnt_gs
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsSJ
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsSJ
         );
       else
         select count(1) into v_cnt_gs
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
         );
       end case;
       --再找出比对表中数据是否在即时表中都存在
@@ -1640,23 +1665,23 @@ create or replace package body pkg_hc is
         when CONS_HCSXJG_DBXXLY_jsgs then
         select count(1) into v_cnt_bd
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsgs
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsgs
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
         );
         when CONS_HCSXJG_DBXXLY_jsSJ then
         select count(1) into v_cnt_bd
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsSJ
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid) and sjly=CONS_HCSXJG_DBXXLY_jsSJ
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
         );
       else
         select count(1) into v_cnt_bd
         from(
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_bd_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
           minus
-          select XZCFJDSWH,WFLX,XZCFNR,CFJG,CFRQ,BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
+          select XZCFJDSWH,WFLX,XZCFNR,CFJG,func_convertToDate(CFRQ),BZ from T_JS_XZCF where xydm=(select a.hcdw_xydm from t_hcrw a where a.id=p_hcrwid)
         );
       end case;
       if(v_cnt_gs=0 and v_cnt_bd=0) then--正确匹配

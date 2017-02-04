@@ -68,7 +68,7 @@ create or replace package body pkg_import is
         --经营异常计划，循环增加3个任务，任务年度是计划年度-1 -2 -3，如2017年计划，则任务年度为2016 2015 2014
         --同时判断企业成立日期，成立年不核查，不增加任务
         for p in(select v_jhnd-rownum rwnd from dual connect by level<=3) loop
-          if v_clnd<p.rwnd then
+          if v_clnd<=p.rwnd then
             v_rwid:=seq_hcrw.nextval;
             merge into t_hcrw
             using(select v_hcjhId HCJH_ID,zch HCDW_XYDM,qymc HCDW_NAME,
@@ -543,7 +543,6 @@ create or replace package body pkg_import is
       rollback;
       pkg_log.updatelog(v_log_xh,SQLCODE,v_step||'；运行失败，计划编号：'||v_hcjh||'；'||SQLERRM);
     end prc_job_hcrw;
-
   --导入即时核查任务，单独的过程，主要是从接口表中取得即时信息有变化的企业，将企业信息写入到T_JS_HCRW表中
   --应该是在JOB中自动运行此过程，前台程序只负责展示数据
   procedure prc_importJsRw is
@@ -565,7 +564,6 @@ create or replace package body pkg_import is
         union all
         select regno from JS_HZ_ZSCQ where read_flag=0
       );
-
     begin
       pkg_log.INFO('pkg_import.prc_importJsRw','导入即时核查任务','导入即时核查任务',null,v_log_xh);
 
@@ -798,7 +796,7 @@ create or replace package body pkg_import is
   */
   procedure prc_rc_autohandle is
     cursor cur_djjg is--gov_nbcc_rc_qy表中的全部决定机关，做为登记机关来循环处理
-      select distinct djjg from gov_nbcc_rc_qy where djjg is not null;
+      select distinct djjg from gov_nbcc_rc_qy where djjg is not null and lrsy like '%《企业信息公示暂行条例》%';
     cursor cur_djjg_rc_qy(p_jdjg in varchar2,p_jhbh in varchar2) is
       select distinct a.id,b.zch from t_hcjh a,gov_nbcc_rc_qy b
       where a.jhbh =p_jhbh
@@ -848,7 +846,6 @@ create or replace package body pkg_import is
             v_step:=7;
           end if;
           v_step:=8;
-          v_handle_all:=v_handle_all/3;
           pkg_log.UPDATELOG(v_log_xh,'成功，共处理'||v_handle_all||'个企业');
           commit;
           exception
