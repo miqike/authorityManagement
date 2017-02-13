@@ -56,7 +56,11 @@ public interface HcrwMapper {
     List<Hcrw> queryForAuditor1(Map<String, Object> param);
     
     List<Hcrw> queryForAuditor2(Map<String, Object> param);
-    
+    List<Hcrw> statistics1(Map<String, Object> param);/*核查结构*/
+    List<Hcrw> statistics2(Map<String, Object> param);/*核查结果*/
+    List<Hcrw> statistics3(Map<String, Object> param);/*核查事项*/
+    List<Hcrw> statistics4(Map<String, Object> param);/*核查企业*/
+
     List<Map<String, Object>> queryForAuditorM(Map<String, Object> param);
 
     List<Map<String, Object>> queryForPlanAndAuditor(Map<String, Object> param);

@@ -749,7 +749,73 @@
           hcjg,djjg,hcdw_xydm,ZZXS, HCJGMC
         </if>
     </select>
-    
+
+  <select id="statistics1" resultType="java.util.Map">
+     select HCJG,HCJGMC,sum(case when HCJIEGUO=1 then 1 else 0 end) success_num,sum(case when HCJIEGUO=1 then 0 else 1 end) fail_num
+    from T_HCRW where HCJH_ID = #{hcjhId}
+    AND (
+    (DJJG IN (
+    SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+    SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+    CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
+    or ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId})=2)
+    )
+    AND HCJG like concat(#{organization,jdbcType=VARCHAR}, '%')
+      and hcjieguo is not null
+    group by HCJG,HCJGMC
+  </select>
+    <select id="statistics2" resultType="java.util.Map">
+        select HCJG,HCJGMC,hcjieguo,(select literal from x_codelist where name='gsjg' and value=a.hcjieguo) hcjieguomc,count(1) fail_num
+        from T_HCRW a where a.HCJH_ID = #{hcjhId}
+        AND (
+        (a.DJJG IN (
+        SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+        SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+        CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
+        or ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId})=2)
+        )
+        AND a.HCJG =#{organization,jdbcType=VARCHAR}
+        and a.hcjieguo is not null
+        and a.hcjieguo != 1
+        group by a.HCJG,a.HCJGMC,a.hcjieguo
+    </select>
+    <select id="statistics3" resultType="java.util.Map">
+        select a.HCJG,a.HCJGMC,a.hcjieguo,(select literal from x_codelist where name='gsjg' and value=a.hcjieguo) hcjieguomc,
+        b.hcsx_id,(select t_hcsx.name from t_hcsx where t_hcsx.id=b.hcsx_id) hcsx_mc,
+        count(1) fail_num
+        from T_HCRW a,t_hcsxjg b where b.hcrw_id=a.id
+        and a.HCJH_ID = #{hcjhId}
+        AND (
+        (a.DJJG IN (
+        SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+        SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+        CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
+        or ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId})=2)
+        )
+        AND a.HCJG =#{organization,jdbcType=VARCHAR}
+        and a.hcjieguo is not null
+        and a.hcjieguo != 1
+        and a.hcjieguo=#{hcjieguo}
+        group by a.HCJG,a.HCJGMC,a.hcjieguo,b.hcsx_id
+    </select>
+    <select id="statistics4" resultType="java.util.Map">
+        select a.HCJG,a.HCJGMC,a.hcjieguo,(select literal from x_codelist where name='gsjg' and value=a.hcjieguo) hcjieguomc,
+        b.hcsx_id,(select t_hcsx.name from t_hcsx where t_hcsx.id=b.hcsx_id) hcsx_mc,a.hcdw_xydm,a.hcdw_name
+        from T_HCRW a,t_hcsxjg b where b.hcrw_id=a.id
+        and a.HCJH_ID = #{hcjhId}
+        AND (
+        (a.DJJG IN (
+        SELECT ID FROM SYS_ORGANIZATION START WITH ID IN (
+        SELECT ORG_ID FROM T_USER_ORG WHERE USER_ID=#{_userId})
+        CONNECT BY PRIOR ID=PARENT_ID) and (select ext1 from sys_user where user_id=#{_userId})=1)
+        or ((zfry_code1= (select zfry from sys_user where user_id=#{_userId}) or zfry_code2= (select zfry from sys_user where user_id=#{_userId})) and (select ext1 from sys_user where user_id=#{_userId})=2)
+        )
+        AND a.HCJG =#{organization,jdbcType=VARCHAR}
+        and a.hcjieguo is not null
+        and a.hcjieguo != 1
+        and a.hcjieguo=#{hcjieguo}
+        and b.hcsx_id=#{hcsxId}
+    </select>
     <select id="queryForOrg1" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
